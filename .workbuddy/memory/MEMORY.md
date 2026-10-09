@@ -33,5 +33,5 @@
 - 根目录已完成首次整理；方案与台账：《目录整理方案与清单-20261009.md》+ `archive/整理清单-20261009.csv`（309 行，可还原）。历史文件（论文 v3–v20.1 及补充材料、研判报告、旧实验计划/旧核验、一次性构建脚本等 243 条目）均在 `archive/` 七子目录；**archive/ 不入库（用户决定）**，只移未删。
 - `.gitignore` 已生效：忽略 `.env`（含服务器明文凭据，严禁入库）、`.omx/.codegraph/.integrations/academic-research-skills/.agents/.codex/.openscience-codex`（工具状态）、依赖缓存、`datasets/`、`related_work/`、`research/.backup-*`、临时派生与运行日志（证据日志定向放行）；`.workbuddy/memory/` 入库。
 - Git：已推送 **https://github.com/mightyoung/pre-combination-governance**（main；首次提交 `deda8f4`，597 文件；2026-10-09）。凭据：gh 设备码登录（mightyoung，token 在 Windows 凭据管理器）+ 仓库级 helper（`gh auth git-credential`）；本机对 GitHub 网络间歇不稳，push 失败可重试 2–6 次。文件夹改名放最后。user.name=yanghonghui。
-- ⚠️ 仓库当前为 **public（公开）**：`AGENTS.md` 等文件含内网主机信息（192.168.11.16:10022、用户名、主机指纹）。如需转私有：`gh repo edit mightyoung/pre-combination-governance --visibility private`（或告知处理）；如需脱敏需改写历史（force-push）。
+- ⚠️ 仓库为 **public（公开）**。`AGENTS.md` 已于 2026-10-09 从远端**及全部历史**移除（本地保留并已 gitignore；历史重写后哈希 `820f76d`/`36169d4`/`aa212f9`，原 `deda8f4`/`b0adf85` 失效）；**其余文件仍含内网主机信息**（ResourceAwareExecutionPlan-v6.11.json、SHK001A 校验、server-profile、tools/*、数据集报告、GateChecklist、tests、dataset-validation 日志），如需同样处理需另行执行。GitHub 孤儿旧提交经精确 SHA 可能短时可达——彻底清除=删库重建（gh 需 delete_repo 授权）或联系官方支持。
 - 已删除且勿再堆积：`.codegraph` 索引（约 26 GB，可再生）；今后历史版本/旧报告一律先进 `archive/` 再决定去向。
