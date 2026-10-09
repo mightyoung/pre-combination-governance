@@ -1,0 +1,754 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "rfb.contracts/phase0_qualification_manifest.schema.json@1.0.0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "generated_at_utc",
+        "execution_lane",
+        "classification",
+        "formal_gate_effect",
+        "contains_formal_claims",
+        "formal_admission_eligible",
+        "shk001b_eligible",
+        "bindings",
+        "requirements",
+        "audits",
+        "formal_boundary",
+        "decision",
+        "manifest_self_sha256"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0.0"
+        },
+        "generated_at_utc": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+        },
+        "execution_lane": {
+            "const": "RESEARCH"
+        },
+        "classification": {
+            "const": "DEVELOPMENT_NONCONFIRMATORY"
+        },
+        "formal_gate_effect": {
+            "const": "NONE"
+        },
+        "contains_formal_claims": {
+            "const": false
+        },
+        "formal_admission_eligible": {
+            "const": false
+        },
+        "shk001b_eligible": {
+            "const": false
+        },
+        "manifest_self_sha256": {
+            "$ref": "#/$defs/hash"
+        },
+        "bindings": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "preregistration_path",
+                "preregistration_sha256",
+                "scope_decision_path",
+                "scope_decision_sha256",
+                "research_source_set",
+                "research_source_set_sha256"
+            ],
+            "properties": {
+                "preregistration_path": {
+                    "const": ".omx/plans/MMEPreregistration-v1.json"
+                },
+                "preregistration_sha256": {
+                    "const": "28da62ba38df360de52b87d373b7fcb498967c8af21bd2b83084e6680b023550"
+                },
+                "scope_decision_path": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "scope_decision_sha256": {
+                    "const": "d738590057a64099faf7d287773040a08b265ced8a2aa4280288e601655ff80c"
+                },
+                "research_source_set": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "$ref": "#/$defs/fileRef"
+                    }
+                },
+                "research_source_set_sha256": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "requirements": {
+            "type": "array",
+            "minItems": 10,
+            "maxItems": 10,
+            "items": {
+                "$ref": "#/$defs/requirement"
+            }
+        },
+        "audits": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "credential",
+                "truth_path",
+                "candidate_write",
+                "d_test",
+                "environment",
+                "lifecycle_qualification"
+            ],
+            "properties": {
+                "credential": {
+                    "$ref": "#/$defs/audit"
+                },
+                "truth_path": {
+                    "$ref": "#/$defs/audit"
+                },
+                "candidate_write": {
+                    "$ref": "#/$defs/audit"
+                },
+                "d_test": {
+                    "$ref": "#/$defs/audit"
+                },
+                "environment": {
+                    "$ref": "#/$defs/environmentAudit"
+                },
+                "lifecycle_qualification": {
+                    "$ref": "#/$defs/lifecycleAudit"
+                }
+            }
+        },
+        "formal_boundary": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "gate_checklist_before_sha256",
+                "gate_checklist_after_sha256",
+                "formal_stage_admission_present",
+                "mme_execution_authorization_present",
+                "d_test_present",
+                "remote_actions",
+                "mme_blocks_executed"
+            ],
+            "properties": {
+                "gate_checklist_before_sha256": {
+                    "const": "923be30aa19a9c475d49ac5aa00703fdc6fd98cb29ccfd73fbbf3483a8535331"
+                },
+                "gate_checklist_after_sha256": {
+                    "const": "923be30aa19a9c475d49ac5aa00703fdc6fd98cb29ccfd73fbbf3483a8535331"
+                },
+                "formal_stage_admission_present": {
+                    "const": false
+                },
+                "mme_execution_authorization_present": {
+                    "const": false
+                },
+                "d_test_present": {
+                    "const": false
+                },
+                "remote_actions": {
+                    "const": false
+                },
+                "mme_blocks_executed": {
+                    "const": 0
+                }
+            }
+        },
+        "decision": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "phase0_qualified",
+                "authorization_eligible",
+                "execution_authorized",
+                "authorization_artifact_created"
+            ],
+            "properties": {
+                "phase0_qualified": {
+                    "type": "boolean"
+                },
+                "authorization_eligible": {
+                    "type": "boolean"
+                },
+                "execution_authorized": {
+                    "type": "boolean"
+                },
+                "authorization_artifact_created": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    "$defs": {
+        "hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+        },
+        "fileRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "path",
+                "sha256"
+            ],
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "node_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "locator": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "auditRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "audit_id",
+                "report_sha256"
+            ],
+            "properties": {
+                "audit_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "report_sha256": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "testReceiptRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "path",
+                "sha256",
+                "node_id"
+            ],
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "pattern": "^\\.omx/handoff/g018-phase0/evidence/g01[678]\\.test-receipt\\.json$"
+                },
+                "sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "node_id": {
+                    "enum": [
+                        "g016",
+                        "g017",
+                        "g018"
+                    ]
+                }
+            }
+        },
+        "reviewRecordRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "artifact_path",
+                "artifact_sha256",
+                "goal_id",
+                "decision",
+                "reviewer_role",
+                "reviewer_id",
+                "producer_id"
+            ],
+            "properties": {
+                "artifact_path": {
+                    "pattern": "^\\.omx/handoff/g018-phase0/evidence/g01[67]\\.structured-review-receipt\\.json$"
+                },
+                "artifact_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "goal_id": {
+                    "enum": [
+                        "G016-phase-0-scorer-only-capability-isola",
+                        "G017-phase-0-lifecycle-property-generator"
+                    ]
+                },
+                "decision": {
+                    "const": "APPROVE"
+                },
+                "reviewer_role": {
+                    "const": "independent"
+                },
+                "reviewer_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "producer_id": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "acceptanceCheck": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "check_id",
+                "expected",
+                "observed"
+            ],
+            "properties": {
+                "check_id": {
+                    "enum": [
+                        "root_mapper",
+                        "highest_version_replacement",
+                        "authority_lifecycle_engine",
+                        "controls_safety_ledger_budget_gate_action_atomicity",
+                        "cas_loser_zero_commit"
+                    ]
+                },
+                "expected": {
+                    "const": "PASS"
+                },
+                "observed": {
+                    "const": "PASS"
+                }
+            }
+        },
+        "requirement": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "requirement",
+                "requirement_sha256",
+                "status",
+                "blocker_code",
+                "source_refs",
+                "test_refs",
+                "audit_refs",
+                "review_receipts"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "pattern": "^P0-(0[1-9]|10)$"
+                },
+                "requirement": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "requirement_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "status": {
+                    "enum": [
+                        "PASS",
+                        "FAIL",
+                        "BLOCKED"
+                    ]
+                },
+                "blocker_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "source_refs": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/fileRef"
+                    }
+                },
+                "test_refs": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/testReceiptRef"
+                    }
+                },
+                "audit_refs": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/auditRef"
+                    }
+                },
+                "review_receipts": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/reviewRecordRef"
+                    }
+                },
+                "acceptance_checks": {
+                    "type": "array",
+                    "minItems": 5,
+                    "maxItems": 5,
+                    "uniqueItems": true,
+                    "items": {
+                        "$ref": "#/$defs/acceptanceCheck"
+                    }
+                }
+            },
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "id": {
+                                "const": "P0-02"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "acceptance_checks"
+                        ]
+                    }
+                }
+            ]
+        },
+        "audit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "audit_id",
+                "scope",
+                "allowlist",
+                "command",
+                "command_sha256",
+                "violations",
+                "status",
+                "report_sha256",
+                "argv",
+                "argv_sha256",
+                "cwd",
+                "started_at_utc",
+                "ended_at_utc",
+                "exit_code",
+                "stdout_sha256",
+                "stderr_sha256"
+            ],
+            "properties": {
+                "audit_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "scope": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "allowlist": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "command": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "command_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "violations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "status": {
+                    "enum": [
+                        "PASS",
+                        "FAIL",
+                        "BLOCKED"
+                    ]
+                },
+                "report_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "argv": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "argv_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "cwd": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "started_at_utc": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ended_at_utc": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "exit_code": {
+                    "type": "integer"
+                },
+                "stdout_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "stderr_sha256": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "lifecycleAudit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "audit_id",
+                "scope",
+                "allowlist",
+                "command",
+                "command_sha256",
+                "violations",
+                "status",
+                "report_sha256",
+                "qualification_result_sha256"
+            ],
+            "properties": {
+                "audit_id": {
+                    "const": "lifecycle_qualification"
+                },
+                "scope": {
+                    "type": "array",
+                    "minItems": 1
+                },
+                "allowlist": {
+                    "type": "array",
+                    "minItems": 1
+                },
+                "command": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "command_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "violations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "status": {
+                    "enum": [
+                        "PASS",
+                        "FAIL",
+                        "BLOCKED"
+                    ]
+                },
+                "report_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "qualification_result_sha256": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "environmentAudit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "audit_id",
+                "scope",
+                "allowlist",
+                "command",
+                "command_sha256",
+                "argv",
+                "argv_sha256",
+                "cwd",
+                "started_at_utc",
+                "ended_at_utc",
+                "violations",
+                "status",
+                "blocker_code",
+                "platform",
+                "python_version",
+                "sealed_linux_runtime",
+                "environment_id",
+                "qualification_path",
+                "qualification_sha256",
+                "runtime_manifest_sha256",
+                "receipt_refs",
+                "pip_check_returncode",
+                "pip_check_output_sha256",
+                "frozen_runtime_checks",
+                "report_sha256"
+            ],
+            "properties": {
+                "audit_id": {
+                    "const": "environment"
+                },
+                "scope": {
+                    "type": "array",
+                    "minItems": 1
+                },
+                "allowlist": {
+                    "type": "array",
+                    "minItems": 1
+                },
+                "command": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "command_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "argv": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "argv_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "cwd": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "started_at_utc": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ended_at_utc": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "violations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "status": {
+                    "enum": [
+                        "PASS",
+                        "BLOCKED",
+                        "FAIL"
+                    ]
+                },
+                "blocker_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "platform": {
+                    "type": "string"
+                },
+                "python_version": {
+                    "type": "string"
+                },
+                "sealed_linux_runtime": {
+                    "type": "boolean"
+                },
+                "environment_id": {
+                    "$ref": "#/$defs/hash"
+                },
+                "qualification_path": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "qualification_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "runtime_manifest_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "receipt_refs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["kind", "path", "sha256"],
+                        "properties": {
+                            "kind": {
+                                "enum": ["pip_check", "unit", "property", "integration", "reproducibility", "schema", "artifact_hash"]
+                            },
+                            "path": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "sha256": {
+                                "$ref": "#/$defs/hash"
+                            }
+                        }
+                    }
+                },
+                "pip_check_returncode": {
+                    "type": "integer"
+                },
+                "pip_check_output_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "frozen_runtime_checks": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "unit",
+                        "property",
+                        "integration",
+                        "reproducibility",
+                        "schema",
+                        "artifact_hash"
+                    ],
+                    "properties": {
+                        "unit": {
+                            "type": "string"
+                        },
+                        "property": {
+                            "type": "string"
+                        },
+                        "integration": {
+                            "type": "string"
+                        },
+                        "reproducibility": {
+                            "type": "string"
+                        },
+                        "schema": {
+                            "type": "string"
+                        },
+                        "artifact_hash": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "report_sha256": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        }
+    }
+}

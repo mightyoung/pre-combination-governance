@@ -1,0 +1,13 @@
+﻿order,phase,independent_units,execution_batch_bundles,execution_batches,superblock_rule,legacy_bytes,provisional_microstages,formal,compute,gate
+0,CONTROL_PREFLIGHT,0,NA,NA,NA,0,0,False,LOCAL control + REMOTE read-only,allowed
+1,SHK001A_GENERATOR_CANARY,28 non-promotable bundles,28,1,not inferential; no methods,100000000,1,False,REMOTE 4 CPU workers,development admission
+2,SHK001B_FULL_PANEL_SIZE,28 bundles x 7 methods,28,1,not inferential; full panel,,PENDING_SHK001,False,REMOTE after runtime exists,MethodRegistry and runtime PASS
+3,PHASE0_G1_G2,2 x (50k random + 1k crash traces),5000/250 traces,28,qualification only,,PENDING_SHK001,False,REMOTE CPU + LOCAL audit,SHK001B and contracts PASS
+4,MME_SCREEN,672,28,24,6 batches x 4 superblocks,55453440000,3,True,REMOTE 7 methods together,G0-G3a PASS
+5,MME_VERIFY,1680,28,60,6 batches x 10 superblocks,138633600000,7,True,REMOTE presealed,SCREEN locked
+6,D_SELECT,672,24,28,7 batches x 4 superblocks,55453440000,3,True,REMOTE + LOCAL blinded bootstrap,MME GO
+7,PILOT_W1,720,24,30,5 batches x 6 superblocks,58896000000,3,True,REMOTE nuisance only,G* frozen
+8,PILOT_W2,720,24,30,5 batches x 6 superblocks,58896000000,3,True,REMOTE nuisance only,W1 precision
+9,PILOT_W3,480,24,20,5 batches x 4 superblocks,39264000000,2,True,REMOTE nuisance only,W2 precision
+10,PILOT_HELDOUT,480,24,20,5 batches x 4 superblocks,39264000000,2,True,REMOTE kernel validation,fit precision PASS
+11,CONFIRMATORY,FINAL_N,24,FINAL_N/24,5 batches; FINAL_N/120 superblocks,,PENDING_SHK001,True,REMOTE frozen + LOCAL audit,joint power-confirm

@@ -1,0 +1,16 @@
+{
+  "root": "/share/data4/yhh-rfb/dataset-validation-20260727/extracted/HA4M",
+  "file_count": 51816,
+  "logical_bytes": 60466797818,
+  "extensions": {
+    ".db": 3,
+    ".ply": 8635,
+    ".png": 34540,
+    ".txt": 8638
+  },
+  "top_level_file_counts": {
+    "IDU001V001": 14565,
+    "IDU001V002": 15931,
+    "IDU024V001": 21320
+  }
+}

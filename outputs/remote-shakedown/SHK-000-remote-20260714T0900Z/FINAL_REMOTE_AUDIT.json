@@ -1,0 +1,16 @@
+{
+  "audited_at_utc": "2026-07-14T09:06:19.758514+00:00",
+  "credential_literal_hits": 0,
+  "credential_scan_files": 66,
+  "host_key_verified": true,
+  "remote": {
+    "actual_d_test_namespace_dirs": [],
+    "candidate_writeable_entries": [],
+    "data_test_exists": false,
+    "release_entries": [],
+    "runs_confirm_exists": false
+  },
+  "schema": "shk000-final-remote-compliance-audit-1.0",
+  "status": "PASS",
+  "substring_false_positive_note": "Earlier broad filename substring scan matched scipy _page_trend_test.py and its pyc inside the venv; neither is a D_test namespace."
+}

@@ -1,0 +1,220 @@
+
+==================================== ERRORS ====================================
+_________ ERROR collecting tests/test_gate_a_architect_adversarial.py __________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_a_architect_adversarial.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_a_architect_adversarial.py:4: in <module>
+    from rfb.methods import get_registry
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+____________ ERROR collecting tests/test_gate_a_formal_capacity.py _____________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_a_formal_capacity.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_a_formal_capacity.py:17: in <module>
+    from rfb.formal.lifecycle import FormalLifecycle, LifecycleError, LifecycleState
+src/rfb/formal/__init__.py:3: in <module>
+    from .runner import FormalRunner, MethodEntry, RunResult
+src/rfb/formal/runner.py:15: in <module>
+    from ..methods import METHOD_IDS
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+__________ ERROR collecting tests/test_gate_a_formal_ledger_schema.py __________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_a_formal_ledger_schema.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_a_formal_ledger_schema.py:9: in <module>
+    from rfb.formal.runner import FormalRunner
+src/rfb/formal/__init__.py:3: in <module>
+    from .runner import FormalRunner, MethodEntry, RunResult
+src/rfb/formal/runner.py:15: in <module>
+    from ..methods import METHOD_IDS
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+__________ ERROR collecting tests/test_gate_a_methods_adversarial.py ___________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_a_methods_adversarial.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_a_methods_adversarial.py:8: in <module>
+    from rfb.methods import METHOD_IDS, generate_registry_document, get_registry, parse_method_input, run_all
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+____________ ERROR collecting tests/test_gate_a_semantics_strict.py ____________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_a_semantics_strict.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_a_semantics_strict.py:5: in <module>
+    from rfb.methods import run_method
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+_____________ ERROR collecting tests/test_gate_b_closeout_audit.py _____________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_b_closeout_audit.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_b_closeout_audit.py:20: in <module>
+    from rfb.gate_evidence import _fixture_row
+src/rfb/gate_evidence.py:34: in <module>
+    from .g004_evidence import (
+src/rfb/g004_evidence.py:31: in <module>
+    from .regeneration import (
+src/rfb/regeneration.py:18: in <module>
+    from .methods import METHOD_IDS
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+_________________ ERROR collecting tests/test_gate_b_purge.py __________________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_b_purge.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_b_purge.py:10: in <module>
+    from rfb.methods import METHOD_IDS
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+____________ ERROR collecting tests/test_gate_b_purge_hardening.py _____________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_b_purge_hardening.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_b_purge_hardening.py:12: in <module>
+    from rfb.gate_evidence import _fixture_row
+src/rfb/gate_evidence.py:34: in <module>
+    from .g004_evidence import (
+src/rfb/g004_evidence.py:31: in <module>
+    from .regeneration import (
+src/rfb/regeneration.py:18: in <module>
+    from .methods import METHOD_IDS
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+______________ ERROR collecting tests/test_gate_b_regeneration.py ______________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_b_regeneration.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_b_regeneration.py:7: in <module>
+    from rfb.methods import METHOD_IDS
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+_________ ERROR collecting tests/test_gate_b_regeneration_hardening.py _________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_b_regeneration_hardening.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_b_regeneration_hardening.py:10: in <module>
+    import rfb.regeneration as regeneration
+src/rfb/regeneration.py:18: in <module>
+    from .methods import METHOD_IDS
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+____________ ERROR collecting tests/test_gate_component_evidence.py ____________
+ImportError while importing test module '/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/test_gate_component_evidence.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/tmp/py311/python/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gate_component_evidence.py:11: in <module>
+    import rfb.gate_evidence as gate_evidence
+src/rfb/gate_evidence.py:34: in <module>
+    from .g004_evidence import (
+src/rfb/g004_evidence.py:31: in <module>
+    from .regeneration import (
+src/rfb/regeneration.py:18: in <module>
+    from .methods import METHOD_IDS
+src/rfb/methods/__init__.py:3: in <module>
+    from .api import (
+src/rfb/methods/api.py:11: in <module>
+    from .registry import METHOD_IDS, MethodSpec, generate_registry_document as _document
+src/rfb/methods/registry.py:13: in <module>
+    from .algorithms import (
+E   ImportError: cannot import name 'normalized_conjunctive' from 'rfb.methods.algorithms' (/sessions/dreamy-keen-ritchie/mnt/人机料法环五证据流/risk-fusion-bench/tests/../src/rfb/methods/algorithms.py)
+=========================== short test summary info ============================
+ERROR tests/test_gate_a_architect_adversarial.py
+ERROR tests/test_gate_a_formal_capacity.py
+ERROR tests/test_gate_a_formal_ledger_schema.py
+ERROR tests/test_gate_a_methods_adversarial.py
+ERROR tests/test_gate_a_semantics_strict.py
+ERROR tests/test_gate_b_closeout_audit.py
+ERROR tests/test_gate_b_purge.py
+ERROR tests/test_gate_b_purge_hardening.py
+ERROR tests/test_gate_b_regeneration.py
+ERROR tests/test_gate_b_regeneration_hardening.py
+ERROR tests/test_gate_component_evidence.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 11 errors during collection !!!!!!!!!!!!!!!!!!!
+11 errors in 1.88s

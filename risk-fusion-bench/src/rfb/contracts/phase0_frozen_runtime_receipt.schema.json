@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "environment_id", "test_plan_sha256", "receipt_derivation_contract_sha256", "argv", "cwd", "started_at_utc", "ended_at_utc", "exit_code", "status", "stdout_path", "stdout_sha256", "stderr_path", "stderr_sha256", "report_path", "report_sha256", "derived_summary_sha256", "receipt_self_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "kind": {"enum": ["pip_check", "unit", "property", "integration", "reproducibility", "schema", "artifact_hash"]},
+    "environment_id": {"$ref": "#/$defs/hash"},
+    "test_plan_sha256": {"$ref": "#/$defs/hash"},
+    "receipt_derivation_contract_sha256": {"$ref": "#/$defs/hash"},
+    "argv": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "cwd": {"type": "string", "minLength": 1},
+    "started_at_utc": {"type": "string", "format": "date-time"},
+    "ended_at_utc": {"type": "string", "format": "date-time"},
+    "exit_code": {"type": "integer"},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "stdout_path": {"type": "string", "minLength": 1},
+    "stdout_sha256": {"$ref": "#/$defs/hash"},
+    "stderr_path": {"type": "string", "minLength": 1},
+    "stderr_sha256": {"$ref": "#/$defs/hash"},
+    "report_path": {"type": "string", "minLength": 1},
+    "report_sha256": {"$ref": "#/$defs/hash"},
+    "derived_summary_sha256": {"$ref": "#/$defs/hash"},
+    "receipt_self_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

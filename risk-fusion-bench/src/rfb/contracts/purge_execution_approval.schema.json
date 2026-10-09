@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "purge-execution-approval.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "status",
+    "role",
+    "identity",
+    "key_id",
+    "trust_epoch",
+    "capability_hash",
+    "segment_id",
+    "root",
+    "root_identity",
+    "manifest_hash",
+    "allowlist_hash",
+    "target_bindings",
+    "nonce",
+    "operation_id",
+    "issued_at",
+    "expires_at",
+    "signature"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "purge-execution-approval.v1"
+    },
+    "status": {
+      "const": "ISSUED"
+    },
+    "role": {
+      "const": "DestructiveApprover"
+    },
+    "identity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "key_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trust_epoch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capability_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "segment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "root_identity": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "manifest_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "allowlist_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "nonce": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "signature": {
+      "$ref": "#/$defs/hash"
+    },
+    "target_bindings": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "st_dev",
+          "st_ino",
+          "sha256"
+        ],
+        "properties": {
+          "st_dev": {
+            "type": "integer"
+          },
+          "st_ino": {
+            "type": "integer"
+          },
+          "sha256": {
+            "$ref": "#/$defs/hash"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

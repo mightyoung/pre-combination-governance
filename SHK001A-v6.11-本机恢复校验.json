@@ -1,0 +1,58 @@
+{
+  "schema_version": "v6.11-shk001a-restore-2",
+  "created_at_utc": "2026-07-15T05:22:21.805536+00:00",
+  "classification": "NON_CONFIRMATORY_RESTORE_CACHE_NOT_DURABLE_ARCHIVE",
+  "source": {
+    "host": "192.168.11.16:10022",
+    "remote_root": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-001A-resource-v611-20260715"
+  },
+  "destination": "outputs/restore-cache/SHK-001A-resource-v611-20260715",
+  "host_key_sha256": "eDfwLjrpTces2mQp4d+gKdg2i/4t7k7sLfF/nLtx1oA",
+  "file_count": 7,
+  "total_bytes": 6465634,
+  "qa_report_present": true,
+  "qa_status": "PASS",
+  "confirmatory": false,
+  "claim_support": "none",
+  "non_confirmatory_marker_present": true,
+  "manifest_artifact_count": 6,
+  "all_manifest_hashes_match": true,
+  "all_qa_checks_pass": true,
+  "files": [
+    {
+      "relative_path": "arrival_manifest.jsonl",
+      "bytes": 3690201,
+      "sha256": "cb963d0c00d5431dc7356d06ab3f4c6a1535d462c89104a05850b2e34584c9e7"
+    },
+    {
+      "relative_path": "manifest.json",
+      "bytes": 2115,
+      "sha256": "70bfe7bd33329fadfba672ade779d5fe15779dda56e4bed52bef95f8bcbd7958"
+    },
+    {
+      "relative_path": "method_visible_operational_payload.jsonl",
+      "bytes": 2655525,
+      "sha256": "e6a5aebb3b30bb1c6c501543914e79c321de2ff3c7bc33e171400a96f50e26db"
+    },
+    {
+      "relative_path": "NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "bytes": 96,
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "relative_path": "qa.json",
+      "bytes": 945,
+      "sha256": "f9f1f4fac3b33b595e5266bbce42aa1c575c4c4fde5dcd7353485f2895beb6da"
+    },
+    {
+      "relative_path": "run_ledger.jsonl",
+      "bytes": 52752,
+      "sha256": "5b3964367fc08178f33e65f9f4a40bdbfccd092b7f8dca50b8a1369951e6c017"
+    },
+    {
+      "relative_path": "scorer_only_truth_store.jsonl",
+      "bytes": 64000,
+      "sha256": "cb6458c59f6d167014cdfdcf337978c75cfcc1658262df8c3ea6371219a32b4b"
+    }
+  ]
+}

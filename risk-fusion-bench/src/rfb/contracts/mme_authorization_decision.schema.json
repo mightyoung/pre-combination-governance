@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "request_id", "request_sha256", "generated_at_utc", "status", "blocker_code", "execution_authorized", "signature_present", "trust_root_present", "revocation_state_present", "decision_self_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "request_id": {"$ref": "#/$defs/hash"}, "request_sha256": {"$ref": "#/$defs/hash"},
+    "generated_at_utc": {"type": "string", "format": "date-time"}, "status": {"const": "BLOCKED"}, "blocker_code": {"const": "BLOCKED_NO_INDEPENDENT_SIGNATURE"},
+    "execution_authorized": {"const": false}, "signature_present": {"const": false}, "trust_root_present": {"const": false}, "revocation_state_present": {"const": false}, "decision_self_sha256": {"$ref": "#/$defs/hash"}
+  }, "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

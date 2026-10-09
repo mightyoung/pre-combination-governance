@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "status", "execution_protocol_id", "authorization_id", "request_id", "request_sha256", "run_family", "execution_plan_sha256", "issued_at_utc", "expires_at_utc", "trust_epoch", "trust_root_sha256", "producer_attestation", "independent_signature"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "status": {"const": "SIGNED_AUTHORIZATION"}, "execution_protocol_id": {"const": "RFB_MME_V1_EXACT27_LOCAL"}, "authorization_id": {"$ref": "#/$defs/hash"}, "request_id": {"$ref": "#/$defs/hash"}, "request_sha256": {"$ref": "#/$defs/hash"},
+    "run_family": {"const": "MME_V1_LOCAL_EXACT27"}, "execution_plan_sha256": {"$ref": "#/$defs/hash"}, "issued_at_utc": {"type": "string", "format": "date-time"}, "expires_at_utc": {"type": "string", "format": "date-time"}, "trust_epoch": {"type": "string", "minLength": 1}, "trust_root_sha256": {"$ref": "#/$defs/hash"},
+    "producer_attestation": {"$ref": "#/$defs/signature"}, "independent_signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "signature": {"type": "object", "additionalProperties": false, "required": ["signer_id", "signer_role", "key_id", "algorithm", "signed_at_utc", "signature_b64"], "properties": {"signer_id": {"type": "string", "minLength": 1}, "signer_role": {"enum": ["PRODUCER_ATTESTER", "INDEPENDENT_EXECUTION_APPROVER"]}, "key_id": {"type": "string", "minLength": 1}, "algorithm": {"const": "ED25519"}, "signed_at_utc": {"type": "string", "format": "date-time"}, "signature_b64": {"type": "string", "minLength": 1}}}
+  }
+}

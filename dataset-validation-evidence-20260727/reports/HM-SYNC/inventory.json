@@ -1,0 +1,30 @@
+{
+  "root": "/share/data4/yhh-rfb/dataset-validation-20260727/extracted/HM-SYNC",
+  "file_count": 118209,
+  "logical_bytes": 8682187748,
+  "extensions": {
+    ".jsonl": 19,
+    ".png": 118190
+  },
+  "top_level_file_counts": {
+    "train-000": 7221,
+    "train-001": 6932,
+    "train-002": 6716,
+    "train-003": 7017,
+    "train-004": 7127,
+    "train-005": 7121,
+    "train-006": 6764,
+    "train-007": 6685,
+    "train-008": 6542,
+    "train-009": 6105,
+    "train-010": 1855,
+    "train-011": 6728,
+    "train-012": 7510,
+    "train-013": 6378,
+    "train-014": 6386,
+    "train-015": 5674,
+    "train-016": 6316,
+    "train-022": 6363,
+    "train-033": 2769
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "files": [
+    {
+      "bytes": 9539,
+      "path": "server-profile.json",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/manifests/hardware/server-profile-20260714T084545Z.json",
+      "sha256": "26c00c8c838406ecd5d7e282544fe971b8f295e9353b1278becf7bb69214bf22"
+    },
+    {
+      "bytes": 7278,
+      "path": "candidate-PACKAGE_MANIFEST.json",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/candidates/v20.1-v6.7-design-repaired-75d97aac7770/PACKAGE_MANIFEST.json",
+      "sha256": "ac92d91f68cf0cba4a569fca5b513f4b7e4f50f17448b624f7dcc7e8a1f29285"
+    },
+    {
+      "bytes": 2852,
+      "path": "RUN_RESULT.json",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/RUN_RESULT.json",
+      "sha256": "b96a3f49ca206e7b1cd680a4d4af821b7e027dfaf2b12d22763ee8ed5d7cea85"
+    },
+    {
+      "bytes": 326,
+      "path": "environment.freeze.txt",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/environment.freeze.txt",
+      "sha256": "f35d011464e93462ed8658ae3bb4bc673e1f474533707d938dda5cc410ded70a"
+    },
+    {
+      "bytes": 942,
+      "path": "qa.json",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/canary/qa.json",
+      "sha256": "8f9f5d2a6f6ee196aff71e161f0174c18cb9f9f3272b2a1312d541573a93508b"
+    },
+    {
+      "bytes": 2108,
+      "path": "manifest.json",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/canary/manifest.json",
+      "sha256": "97828582c8b06090685e888634b2e9c251d3b5f47a6802ebc82269ddd9a45e2d"
+    },
+    {
+      "bytes": 18243,
+      "path": "scorer_only_truth_store.jsonl",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/canary/scorer_only_truth_store.jsonl",
+      "sha256": "071cc5668b8fe3e0ce6a8543b3e6cdbc0e700e7e415b0302db74f737d8356f9d"
+    },
+    {
+      "bytes": 758644,
+      "path": "method_visible_operational_payload.jsonl",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/canary/method_visible_operational_payload.jsonl",
+      "sha256": "87b8b19d4e45b3516120ffac695fd9f9860fd5c3958d5708d55bf72f236e1f48"
+    },
+    {
+      "bytes": 1054072,
+      "path": "arrival_manifest.jsonl",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/canary/arrival_manifest.jsonl",
+      "sha256": "d2a4661d2ba71890cf00d231762d7188e28747a4a374fc4a53a5127759b7926f"
+    },
+    {
+      "bytes": 15072,
+      "path": "run_ledger.jsonl",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/canary/run_ledger.jsonl",
+      "sha256": "20688b7996122a65ddd668d5c6fb5e2c9453f618acd2d328fd4b77a9674659a8"
+    },
+    {
+      "bytes": 96,
+      "path": "NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/canary/NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "bytes": 99,
+      "path": "pytest.stdout.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/03_pytest.stdout.log",
+      "sha256": "9c56a38323e4c26f42e9a09c643799fa463dd60f6c47b525174e7880ab141381"
+    },
+    {
+      "bytes": 826,
+      "path": "pytest.resource.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/03_pytest.stderr.log",
+      "sha256": "aa02e95c69e0f8579b7c3fa60186a55b88a4cf723cfe5b2f00a9f758ef3b561b"
+    },
+    {
+      "bytes": 388,
+      "path": "legacy_demo.stdout.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/04_legacy_demo.stdout.log",
+      "sha256": "b5b8acab40ebd71e6478ca964aea7436c801c5327c20f26094cf62cf56a74222"
+    },
+    {
+      "bytes": 792,
+      "path": "legacy_demo.resource.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/04_legacy_demo.stderr.log",
+      "sha256": "607fba44ab03d55a4a3ba7c07dfe090ffc73cf4f8f3fc82578d697d91c38a989"
+    },
+    {
+      "bytes": 273,
+      "path": "canary.stdout.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/05_shakedown_canary.stdout.log",
+      "sha256": "eb0037d2dbb3f23ce3b7a35696086907e00aad99d2e5f170409de48baa378850"
+    },
+    {
+      "bytes": 941,
+      "path": "canary.resource.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/05_shakedown_canary.stderr.log",
+      "sha256": "db9a3b1a3d20686957934d87a581a383afe316b2600da3c35e1fb76a58d85685"
+    },
+    {
+      "bytes": 452,
+      "path": "post_resource.stdout.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/07_post_resource.stdout.log",
+      "sha256": "dae0ce54eb657699ecaa92511887ef001b13b9ab229085d6f220bab8aef443c5"
+    },
+    {
+      "bytes": 0,
+      "path": "post_resource.stderr.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/07_post_resource.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 15935,
+      "path": "generator_scale_qualification.json",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/generator_scale_qualification.json",
+      "sha256": "8a913caafce3717ad80c39bc1a53f747dcf1fc3313249dd39286d03308375fd2"
+    },
+    {
+      "bytes": 3720,
+      "path": "RUN_RESULT.v2.json",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/RUN_RESULT.v2.json",
+      "sha256": "26cbf2dc14f9b50e63d9573a46e4aefd96ac2b1856e2e743d362645153ebd517"
+    },
+    {
+      "bytes": 30,
+      "path": "08_pip_check.stdout.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/08_pip_check.stdout.log",
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "bytes": 0,
+      "path": "08_pip_check.stderr.log",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/logs/SHK-000-remote-20260714T0900Z/08_pip_check.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3872,
+      "path": "RUN_RESULT.v3.json",
+      "remote_path": "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-000-remote-20260714T0900Z/RUN_RESULT.v3.json",
+      "sha256": "49da71aef1cff2a184049039ab56cf71e8a2fcf2a0f9778259086486b52e8bbc"
+    },
+    {
+      "bytes": 602,
+      "path": "FINAL_REMOTE_AUDIT.json",
+      "remote_path": "local-final-audit",
+      "sha256": "d76c3c93bc9848913476f95b03fba2e73109263b1126a3c77b547769d1d8d16a"
+    }
+  ],
+  "host_key_verified": true,
+  "retrieved_at_utc": "2026-07-14T09:09:10.153133+00:00",
+  "run_id": "SHK-000-remote-20260714T0900Z",
+  "schema": "remote-retrieval-manifest-1.2",
+  "supersedes_sha256": "3719e7e626428cbeeb42b2675598c896e322bbb230b2ba7d07b7cddf95ac0921",
+  "verified": {
+    "canary_artifact_hashes": true,
+    "final_remote_compliance_audit": "PASS",
+    "generator_scale_counts": {
+      "noise_seeds": 10,
+      "physical_seeds": 100,
+      "unique_evidence_under_noise": 10,
+      "unique_truth_hashes": 100,
+      "unique_truth_under_noise": 1
+    },
+    "generator_scale_status": "PASS",
+    "pip_check": "PASS",
+    "pytest_25_passed": true,
+    "qa_all_checks": true,
+    "qa_status": "PASS",
+    "run_result_gates": {
+      "D_TEST_AUTHORIZED": false,
+      "G0_RESOURCE": "FAIL",
+      "G1_CANARY": "PASS",
+      "G2_CANARY": "PASS",
+      "PILOT_AUTHORIZED": false
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rfb.contracts/phase0_review_receipt.schema.json@1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "execution_lane", "classification", "formal_gate_effect",
+    "contains_formal_claims", "formal_admission_eligible", "shk001b_eligible",
+    "goal_id", "decision", "reviewer_role", "reviewer_id", "producer_id",
+    "source_record", "receipt_self_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "execution_lane": {"const": "RESEARCH"},
+    "classification": {"const": "DEVELOPMENT_NONCONFIRMATORY"},
+    "formal_gate_effect": {"const": "NONE"},
+    "contains_formal_claims": {"const": false},
+    "formal_admission_eligible": {"const": false},
+    "shk001b_eligible": {"const": false},
+    "goal_id": {"enum": ["G016-phase-0-scorer-only-capability-isola", "G017-phase-0-lifecycle-property-generator"]},
+    "decision": {"const": "APPROVE"},
+    "reviewer_role": {"const": "independent"},
+    "reviewer_id": {"type": "string", "minLength": 1},
+    "producer_id": {"type": "string", "minLength": 1},
+    "source_record": {
+      "type": "object", "additionalProperties": false,
+      "required": ["container_path", "container_raw_sha256", "container_length_bytes", "container_prefix_sha256", "locator", "record_canonical_sha256"],
+      "properties": {
+        "container_path": {"const": ".omx/ultragoal/ledger.jsonl"},
+        "container_raw_sha256": {"$ref": "#/$defs/hash"},
+        "container_length_bytes": {"type": "integer", "minimum": 1},
+        "container_prefix_sha256": {"$ref": "#/$defs/hash"},
+        "locator": {"enum": ["goalId=G016-phase-0-scorer-only-capability-isola;event=goal_completed", "goalId=G017-phase-0-lifecycle-property-generator;event=goal_completed"]},
+        "record_canonical_sha256": {"enum": ["4b88a7d962dc3ff78b85ea7998502ec20e244dc8d34251769ade9988a4b5a810", "a3c82d683569d9c06a78f3254fb9e3eecf3afb2de53d446e1cc4e1791c9e8282"]}
+      }
+    },
+    "receipt_self_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

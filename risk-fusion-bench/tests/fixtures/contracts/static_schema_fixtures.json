@@ -1,0 +1,199 @@
+{
+  "NormativeReleaseManifest": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "release_id": "rel-001",
+      "main_version": "v21",
+      "main_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "S1_version": "v20.1",
+      "S1_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "S2_version": "v20.1",
+      "S2_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "experiment_version": "v6.8",
+      "experiment_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "ClaimRegister_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "SafetyArtifactIR_schema_version": "1.0.0",
+      "SafetyArtifactIR_schema_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "SafetyArtifactIR_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "compiler_version": "compiler-v1",
+      "compiler_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "failure_code_registry_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "RootIdentityManifest_schema_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "AcquisitionManifest_schema_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "Eventifier_version": "eventifier-v1",
+      "Eventifier_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "SourceAdapterRegistry_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "RootLevelMapperRegistry_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "CouplingFamilyRegistry_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "SetwiseEligibilityGenerator_version": "generator-v1",
+      "SetwiseEligibilityGenerator_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "OperationalSafetyArtifact_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "MethodRegistry_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "ArmFrameMatrix_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "SeedManifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "AllocationManifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "TestManifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "analysis_container_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "dependency_edges": [
+        {"from": "rel-001", "to": "main_sha256"}
+      ]
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "release_id": "rel-001",
+      "failure_registry_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "RootIdentity": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "credential_subject": "subject-a",
+      "acquisition_uuid": "acq-uuid-a",
+      "root_epoch": "epoch-a",
+      "root_type": "observation",
+      "TTL_policy_id": "ttl-policy-a",
+      "acquisition_manifest_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "signature": "sig-root-a"
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "credential_subject": "subject-a",
+      "acquisition_uuid": "acq-uuid-a",
+      "root_epoch": "epoch-a",
+      "root_type": "observation",
+      "TTL_policy_id": "ttl-policy-a",
+      "acquisition_manifest_hash": "PENDING_HASH",
+      "signature": "sig-root-a"
+    }
+  },
+  "Acquisition": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "acquisition_uuid": "acq-uuid-a",
+      "root_epoch": "epoch-a",
+      "Eventifier_id": "eventifier-a",
+      "Eventifier_version": "eventifier-v1",
+      "Eventifier_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "trusted_clock_domain": "clock-a",
+      "t_start": "2026-07-16T00:00:00Z",
+      "t_end": "2026-07-16T00:01:00Z",
+      "causal_boundary_id": "boundary-a",
+      "causal_boundary_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "raw_acquisition_identity": "raw-acq-a",
+      "segmentation_evidence_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "signature": "sig-acq-a"
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "acquisition_uuid": "acq-uuid-a",
+      "root_epoch": "epoch-a",
+      "Eventifier_id": "eventifier-a",
+      "Eventifier_version": "eventifier-v1",
+      "trusted_clock_domain": "clock-a",
+      "t_start": "2026-07-16T00:00:00Z",
+      "t_end": "2026-07-16T00:01:00Z",
+      "causal_boundary_id": "boundary-a",
+      "causal_boundary_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "raw_acquisition_identity": "raw-acq-a",
+      "segmentation_evidence_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "signature": "sig-acq-a"
+    }
+  },
+  "Event": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "event_id": "event-a",
+      "root_id": "root-a",
+      "acquisition_id": "acq-a",
+      "eventifier_version": "eventifier-v1",
+      "event_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "event_id": "event-a",
+      "root_id": "root-a",
+      "acquisition_id": "acq-a",
+      "eventifier_version": "PENDING-HASH",
+      "event_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "Method": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "method_id": "B0",
+      "method_family": "baseline",
+      "implementation_version": "impl-v1",
+      "implementation_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "method_id": "B0",
+      "method_family": "baseline",
+      "implementation_version": "impl-v1",
+      "implementation_sha256": "PENDING_HASH"
+    }
+  },
+  "ArmFrame": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "arm_id": "arm-a",
+      "frame_id": "frame-a",
+      "method_id": "B0",
+      "eligibility_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "arm_id": "arm-a",
+      "frame_id": "frame-a",
+      "method_id": "B0",
+      "eligibility_sha256": "short"
+    }
+  },
+  "Seed": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "seed_id": "seed-a",
+      "algorithm_seed": 12345,
+      "commitment_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "seed_id": "seed-a",
+      "algorithm_seed": "12345",
+      "commitment_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "Allocation": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "allocation_id": "alloc-a",
+      "seed_id": "seed-a",
+      "arm_id": "arm-a",
+      "bundle_id": "bundle-a"
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "allocation_id": "alloc-a",
+      "seed_id": "seed-a",
+      "arm_id": "arm-a",
+      "bundle_id": "bundle-a",
+      "extra": "not-closed"
+    }
+  },
+  "Test": {
+    "positive": {
+      "schema_version": "1.0.0",
+      "test_id": "test-a",
+      "allocation_id": "alloc-a",
+      "sealed": true,
+      "manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "negative": {
+      "schema_version": "1.0.0",
+      "test_id": "test-a",
+      "allocation_id": "alloc-a",
+      "sealed": "true",
+      "manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  }
+}

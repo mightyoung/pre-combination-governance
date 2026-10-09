@@ -1,0 +1,87 @@
+{
+  "schema_version": "remote-runtime-snapshot.v1",
+  "created_at_utc": "2026-07-27T14:10:38.370714+00:00",
+  "classification": "READ_ONLY_CURRENT_REMOTE_OBSERVATION_NOT_FORMAL_GATE_EVIDENCE",
+  "remote": {
+    "host": "192.168.11.16",
+    "port": 10022,
+    "user": "r4900g3",
+    "workdir": "/home/r4900g3/yhh/"
+  },
+  "host_key": {
+    "type": "ssh-ed25519",
+    "sha256": "eDfwLjrpTces2mQp4d+gKdg2i/4t7k7sLfF/nLtx1oA",
+    "expected_sha256": "eDfwLjrpTces2mQp4d+gKdg2i/4t7k7sLfF/nLtx1oA",
+    "match": true
+  },
+  "commands": {
+    "identity_time": {
+      "command": "hostname; date -u +%Y-%m-%dT%H:%M:%SZ; uname -srmo",
+      "exit_status": 0,
+      "stdout": "r4900g3-UniServer-R4900-G3\n2026-07-27T14:09:35Z\nLinux 6.8.0-124-generic x86_64 GNU/Linux\n",
+      "stderr": ""
+    },
+    "python": {
+      "command": "python3 --version 2>&1 || true",
+      "exit_status": 0,
+      "stdout": "Python 3.10.12\n",
+      "stderr": ""
+    },
+    "disk_home": {
+      "command": "df -B1 -P /home",
+      "exit_status": 0,
+      "stdout": "文件系统              1的块         已用         可用 容量 挂载点\n/dev/sda2      943412031488 752757661696 142654758912  85% /\n",
+      "stderr": ""
+    },
+    "disk_data4": {
+      "command": "df -B1 -P /share/data4",
+      "exit_status": 0,
+      "stdout": "文件系统                          1的块         已用          可用 容量 挂载点\n192.168.11.2:/data4/share 7937304035328 535852744704 7001356632064   8% /share/data4\n",
+      "stderr": ""
+    },
+    "mount_data4": {
+      "command": "findmnt -T /share/data4 -o TARGET,SOURCE,FSTYPE,OPTIONS -n",
+      "exit_status": 0,
+      "stdout": "/share/data4 192.168.11.2:/data4/share nfs4   rw,relatime,vers=4.2,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=192.168.11.16,local_lock=none,addr=192.168.11.2\n",
+      "stderr": ""
+    },
+    "memory": {
+      "command": "free -b",
+      "exit_status": 0,
+      "stdout": "               total        used        free      shared  buff/cache   available\n内存：134788001792 32915296256  1080225792  4288581632 100792479744 96483811328\n交换： 2147479552     1310720  2146168832\n",
+      "stderr": ""
+    },
+    "gpu": {
+      "command": "nvidia-smi --query-gpu=index,name,uuid,memory.total,memory.used,memory.free,utilization.gpu,driver_version --format=csv,noheader,nounits 2>&1 || true",
+      "exit_status": 0,
+      "stdout": "0, NVIDIA L20, GPU-00257298-ba48-2525-27c3-ca8fb515d888, 46068, 11699, 33896, 0, 535.309.01\n1, NVIDIA L20, GPU-f486a30f-239d-f9b5-d69c-ee05da74fde1, 46068, 17909, 27686, 99, 535.309.01\n",
+      "stderr": ""
+    },
+    "gpu_processes": {
+      "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader,nounits 2>&1 || true",
+      "exit_status": 0,
+      "stdout": "3266, ./locate_server, 10176\n3367, ./asr_server, 1218\n7048, /app/lib/ld-linux-x86-64.so.2, 284\n2183924, python3, 17886\n",
+      "stderr": ""
+    },
+    "workdir": {
+      "command": "test -d /home/r4900g3/yhh/ && stat -c '%n|%F|%s|%y' /home/r4900g3/yhh/ && du -s -B1 /home/r4900g3/yhh/ 2>/dev/null || true",
+      "exit_status": 0,
+      "stdout": "/home/r4900g3/yhh/|目录|4096|2026-07-20 20:15:21.072021212 +0800\n109346156544\t/home/r4900g3/yhh/\n",
+      "stderr": ""
+    },
+    "datasets": {
+      "command": "test -d /home/r4900g3/yhh//datasets && find /home/r4900g3/yhh//datasets -mindepth 1 -maxdepth 1 -type d -printf '%f\\n' | sort && du -s -B1 /home/r4900g3/yhh//datasets/* 2>/dev/null | sort -n || true",
+      "exit_status": 0,
+      "stdout": "HA4M\nHM-SYNC\nMECCANO\nMIMII\nTEP\n38187008\t/home/r4900g3/yhh//datasets/TEP\n6915964928\t/home/r4900g3/yhh//datasets/MIMII\n8556867584\t/home/r4900g3/yhh//datasets/HM-SYNC\n23889178624\t/home/r4900g3/yhh//datasets/MECCANO\n41200328704\t/home/r4900g3/yhh//datasets/HA4M\n",
+      "stderr": ""
+    },
+    "data4_workroot": {
+      "command": "if test -d /share/data4/yhh-rfb; then stat -c '%n|%F|%s|%y' /share/data4/yhh-rfb; du -s -B1 /share/data4/yhh-rfb 2>/dev/null; else echo ABSENT; fi",
+      "exit_status": 0,
+      "stdout": "/share/data4/yhh-rfb|目录|4096|2026-07-27 14:54:41.315085037 +0800\n99942477824\t/share/data4/yhh-rfb\n",
+      "stderr": ""
+    }
+  },
+  "all_commands_exit_zero": true,
+  "formal_gate_effect": "NONE"
+}

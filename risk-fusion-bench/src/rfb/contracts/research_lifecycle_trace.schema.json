@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rfb.contracts/research_lifecycle_trace.schema.json@1.0.0",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "run_id", "approved_remote_parent", "remote_run_root", "terminal_status", "records"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "approved_remote_parent": {"type": "string", "minLength": 1},
+    "remote_run_root": {"type": ["string", "null"]},
+    "terminal_status": {"enum": ["SUCCEEDED", "FAILED", "BLOCKED"]},
+    "records": {"type": "array", "minItems": 20, "maxItems": 20, "items": {"$ref": "#/$defs/record"}}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "record": {
+      "type": "object", "additionalProperties": false,
+      "required": ["run_id", "step_id", "event", "actor", "approved_remote_parent", "remote_run_root", "timestamp_utc", "monotonic_ns", "input_hashes", "output_hashes", "status", "failure", "previous_trace_hash", "trace_hash", "execution_lane", "classification", "formal_gate_effect", "formal_admission_eligible", "shk001b_eligible", "contains_formal_claims"],
+      "properties": {
+        "run_id": {"type": "string", "minLength": 1}, "step_id": {"type": "integer", "minimum": 1, "maximum": 20},
+        "event": {"type": "string", "minLength": 1}, "actor": {"type": "string", "minLength": 1},
+        "approved_remote_parent": {"type": "string", "minLength": 1}, "remote_run_root": {"type": ["string", "null"]},
+        "timestamp_utc": {"type": "string", "format": "date-time"}, "monotonic_ns": {"type": "integer", "minimum": 0},
+        "input_hashes": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/sha256"}},
+        "output_hashes": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/sha256"}},
+        "status": {"enum": ["SUCCEEDED", "FAILED", "BLOCKED", "SKIPPED"]}, "failure": {"type": ["object", "string", "null"]},
+        "previous_trace_hash": {"$ref": "#/$defs/sha256"}, "trace_hash": {"$ref": "#/$defs/sha256"},
+        "execution_lane": {"const": "RESEARCH"}, "classification": {"const": "DEVELOPMENT_NONCONFIRMATORY"}, "formal_gate_effect": {"const": "NONE"}, "formal_admission_eligible": {"const": false}, "shk001b_eligible": {"const": false}, "contains_formal_claims": {"const": false}
+      }
+    }
+  }
+}

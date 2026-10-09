@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>领域地图 · G1–G8 八方向追踪（2026-10-08）</title>
+<style>
+:root{
+  --ink:#17222e; --muted:#64748b; --line:#e3e9f0; --bg:#eef2f7; --card:#ffffff; --soft:#f7f9fc;
+  --red:#c0392b; --red-d:#8e2b2b; --amber:#c2410c; --yellow:#a16207;
+  --blue:#1d4ed8; --green:#15803d; --teal:#0f766e; --violet:#6d28d9;
+  --shadow:0 1px 2px rgba(23,34,46,.05),0 10px 26px rgba(23,34,46,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.78 "Microsoft YaHei","PingFang SC","Noto Sans CJK SC",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 20px 64px}
+code,.mono{font-family:Consolas,"SFMono-Regular",Menlo,monospace;font-size:.92em;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+h2{font-size:20px;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+h2 .no{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;border-radius:10px;background:var(--ink);color:#fff;font-size:14px;letter-spacing:.5px}
+h3{font-size:16px;margin:20px 0 8px;color:var(--ink)}
+h3::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--teal);margin-right:8px;vertical-align:1px}
+p{margin:8px 0}
+ul{margin:8px 0;padding-left:22px}
+li{margin:5px 0}
+.cover{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:32px 32px 26px;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--blue)}
+.cover .kicker{color:var(--blue);font-size:13px;font-weight:500;letter-spacing:1px}
+.cover h1{margin:8px 0 10px;font-size:27px;line-height:1.35}
+.cover .sub{color:var(--muted);font-size:14px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+section.block{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:26px 28px;margin-top:22px}
+nav.toc{position:sticky;top:0;z-index:50;margin-top:18px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:12px;padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px;box-shadow:var(--shadow)}
+nav.toc a{font-size:13px;color:var(--ink);text-decoration:none;padding:4px 10px;border-radius:8px;border:1px solid transparent}
+nav.toc a:hover{background:var(--soft);border-color:var(--line)}
+.pill{display:inline-block;font-size:12px;line-height:1.6;padding:1px 9px;border-radius:999px;border:1px solid var(--line);background:var(--soft);color:var(--muted);white-space:nowrap}
+.pill.blue{color:var(--blue);border-color:#c7d8f8;background:#eef4ff}
+.pill.green{color:var(--green);border-color:#cde8d3;background:#eefaf1}
+.pill.teal{color:var(--teal);border-color:#c5e8e2;background:#eefaf7}
+.pill.amber{color:var(--amber);border-color:#f4d7c2;background:#fdf3ec}
+.pill.red{color:var(--red);border-color:#f0cfcb;background:#fdeeec}
+.pill.violet{color:var(--violet);border-color:#ddd2f5;background:#f4f0fe}
+.pill.ink{color:#fff;background:var(--ink);border-color:var(--ink)}
+.grid{display:grid;gap:14px}
+.grid.c4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.grid.c2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;background:linear-gradient(180deg,#fff,var(--soft))}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.card h4{margin:0;font-size:15px}
+.card .q{color:var(--muted);font-size:13px;min-height:38px}
+.card .anchors{font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}
+.callout{border-left:4px solid var(--blue);background:var(--soft);border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.callout.red{border-left-color:var(--red)}
+.callout.amber{border-left-color:var(--amber)}
+.callout.green{border-left-color:var(--green)}
+.callout.violet{border-left-color:var(--violet)}
+.callout b{font-weight:600}
+.tblwrap{overflow:auto;border:1px solid var(--line);border-radius:12px;margin:12px 0;max-height:520px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff}
+th{position:sticky;top:0;background:#f1f5fa;text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;z-index:2}
+td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#fafcfe}
+tbody tr:hover{background:#f2f7fd}
+figure{margin:16px 0 6px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:14px}
+figcaption{color:var(--muted);font-size:12.5px;margin-top:8px;text-align:center}
+.srcline{color:var(--muted);font-size:12.5px;border-top:1px dashed var(--line);margin-top:14px;padding-top:8px}
+.footer{color:var(--muted);text-align:center;font-size:12.5px;margin-top:26px;line-height:2}
+.footer b{color:var(--ink)}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+@media print{nav.toc{position:static}.tblwrap{max-height:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="kicker">RESEARCH-WORKFLOW · 主交付物 · 可视化版</div>
+  <h1>领域地图：HRI 六源证据流 · G1–G8 八方向追踪</h1>
+  <div class="sub">面向「人机交互风险实时评估 × 人机料法环测六源异构证据融合（组合前治理主线）」的文献前沿追踪。快照日期 2026-10-08（首轮八方向调研 + G1/G2 月度增量已并入）。</div>
+  <div class="badges">
+    <span class="pill blue">8 个追踪方向</span>
+    <span class="pill teal">文献 55 篇（p01–p55）</span>
+    <span class="pill teal">检索 42 次（q01–q42）</span>
+    <span class="pill teal">来源 70 条（s01–s70）</span>
+    <span class="pill green">check-research.py PASS</span>
+    <span class="pill amber">阅读深度：abstract / source_only 为主</span>
+    <span class="pill red">1 个需主动防守的邻近面（BELIEFRAG 系）</span>
+  </div>
+  <div class="callout amber" style="margin-top:18px">
+    <b>阅读深度声明：</b>除特别注明外，本轮文献均只读到摘要或检索片段（<span class="mono">abstract</span> / <span class="mono">source_only</span>），不得在论文中冒充全文证据；标准状态以 iso.org 等官方页面为准。行业媒体/二手来源仅作线索，引用前须回原文。
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#s1">速览</a>
+  <a href="#s2">总览仪表盘</a>
+  <a href="#s3">跨方向发现</a>
+  <a href="#s4">G1 依赖证据/冲突</a>
+  <a href="#s5">G2 EDL×LLM 校准</a>
+  <a href="#s6">G3 多智能体聚合</a>
+  <a href="#s7">G4 provenance×BF</a>
+  <a href="#s8">G5 HRC 标准</a>
+  <a href="#s9">G6 屏障/过程安全</a>
+  <a href="#s10">G7 本体栈与数据质量</a>
+  <a href="#s11">G8 前兆与选择性预测</a>
+  <a href="#s12">v21/v22 修正清单</a>
+  <a href="#s13">维护机制</a>
+</nav>
+<section class="block" id="s1">
+  <h2><span class="no">速览</span>这份地图是什么</h2>
+  <p>本项目为论文主工程提供文献追踪服务：围绕「<b>人-机-料-法-环-测</b>六源异构证据流 × 组合前治理」主线，按 G1–G8 八个方向持续扫描前沿。关键问题是——<b>同一物理事件经多视图、多模型、多版本重复进入融合时，如何在组合前阻断未裁决依赖，并在版本 / 合并 / 退休 / 重放的全生命周期中保持根级贡献守恒</b>；方法内核是 D-S/TBM 之上的 fusion-specific exactly-once 准入语义。</p>
+  <div class="grid c2">
+    <div class="callout blue" style="margin:0"><b>三条跨方向要义（详见「跨方向发现」）</b><br/>① 聚合空档被 2026 理论硬化，但竞争协议升级（池化后验）；<br/>②「大模型只能是受控证据源」获三向独立证据；<br/>③ 拒判统计可证书化，no-harm 不必自造。</div>
+    <div class="callout red" style="margin:0"><b>唯一需主动防守的邻近面</b><br/>G2 方向出现 LLM 证据治理邻近工作（BELIEFRAG 的「证据状态」闭环、系统级不确定性传播分类）——须在引言明确对象差异（BF 组合前准入 / 根级守恒 vs RAG 控制回路状态），避免被读作重叠。</div>
+  </div>
+  <p style="margin-top:14px;color:#64748b;font-size:13px">阅读方式：每个方向按「最新进展 → 核心方法对比 → 现存瓶颈 → 后续关注重点 → 来源与时间范围」五要素呈现；带 <span class="mono">[papers/pXX@rev]</span> 的为可追溯证据引用（对应 <span class="mono">research/papers.jsonl</span>）。</p>
+</section>
+
+<section class="block" id="s2">
+  <h2><span class="no">总览</span>八方向仪表盘</h2>
+  <div class="grid c4">
+    <div class="card">
+      <div class="top"><h4>G1 · 依赖证据 / 冲突</h4><span class="pill blue">月度</span></div>
+      <div class="q">高冲突 / 依赖证据的度量、修正与组合。</div>
+      <div class="anchors">arXiv 2608.13108 · Tang 2026 · IEECR · gamma-CUBV<br/>本轮新证据 <b>10</b> 条 · 详见 <a href="#s4">G1 节</a></div>
+    </div>
+    <div class="card">
+      <div class="top"><h4>G2 · EDL×LLM 校准</h4><span class="pill blue">月度</span> <span class="pill red">防守面</span></div>
+      <div class="q">生成式证据的校准、单趟不确定性与防污染。</div>
+      <div class="anchors">ETN · C-EDL / CLEAR · BELIEFRAG · EESD · SLLCP<br/>本轮新证据 <b>12+2</b> 条 · 详见 <a href="#s5">G2 节</a></div>
+    </div>
+    <div class="card">
+      <div class="top"><h4>G3 · 多智能体聚合与记忆治理</h4><span class="pill teal">季度</span> <span class="pill amber">竞争协议</span></div>
+      <div class="q">辩论 / 投票之外有原理的聚合；记忆投毒治理。</div>
+      <div class="anchors">Blackwell(MA-PoP) · KDD 2026 consensus · OWASP 2026<br/>本轮新证据 <b>5+2</b> 条 · 详见 <a href="#s6">G3 节</a></div>
+    </div>
+    <div class="card">
+      <div class="top"><h4>G4 · provenance×BF</h4><span class="pill teal">季度</span></div>
+      <div class="q">谱系如何改变组合算子本身。</div>
+      <div class="anchors">PRIMEX-PEV（JAIF 2025-12）· arXiv 2604.21618 · Yu 2008<br/>本轮新证据 <b>2+1</b> 条 · 详见 <a href="#s7">G4 节</a></div>
+    </div>
+    <div class="card">
+      <div class="top"><h4>G5 · HRC 标准与动态风险</h4><span class="pill amber">事件驱动</span></div>
+      <div class="q">标准口径与动态风险方法前沿。</div>
+      <div class="anchors">ISO 10218:2025 · ISO/AWI 15066-1 · (EU) 2023/1230<br/>本轮新证据 <b>4+3</b> 条 · 详见 <a href="#s8">G5 节</a></div>
+    </div>
+    <div class="card">
+      <div class="top"><h4>G6 · 屏障 / 过程安全</h4><span class="pill violet">半年度</span></div>
+      <div class="q">动态屏障与 AI-HAZOP 的真实效能。</div>
+      <div class="anchors">AIChE PSP 2026 两篇 · ChatP&amp;ID · 19–37% 有效性<br/>本轮新证据 <b>5</b> 条 · 详见 <a href="#s9">G6 节</a></div>
+    </div>
+    <div class="card">
+      <div class="top"><h4>G7 · 本体栈与数据质量</h4><span class="pill violet">半年度</span></div>
+      <div class="q">异构接入的语义标准与质量基准。</div>
+      <div class="anchors">AAS / IEC 63278 · 数字主线语义图 · mTSBench<br/>本轮新证据 <b>4</b> 条 · 详见 <a href="#s10">G7 节</a></div>
+    </div>
+    <div class="card">
+      <div class="top"><h4>G8 · 前兆与选择性预测 / IUT</h4><span class="pill violet">半年度</span></div>
+      <div class="q">拒判的统计证书与预警提前量。</div>
+      <div class="anchors">SCoRE · joint certificate · 临床分流 2026<br/>本轮新证据 <b>3+2</b> 条 · 详见 <a href="#s11">G8 节</a></div>
+    </div>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 680 192" width="100%" role="img" aria-label="八方向追踪节奏图">
+      <text x="12" y="41" font-size="12.5" fill="#64748b">月度</text>
+      <rect x="110" y="28" width="64" height="26" rx="8" fill="#E9F1FE" stroke="#1d4ed8" stroke-width="1"/>
+      <text x="142" y="41" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="500" fill="#1d4ed8">G1</text>
+      <rect x="184" y="28" width="64" height="26" rx="8" fill="#E9F1FE" stroke="#1d4ed8" stroke-width="1"/>
+      <text x="216" y="41" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="500" fill="#1d4ed8">G2</text>
+      <text x="268" y="41" font-size="11.5" fill="#94a3b8">每月上旬自动增量</text>
+      <text x="12" y="79" font-size="12.5" fill="#64748b">季度</text>
+      <rect x="110" y="66" width="64" height="26" rx="8" fill="#E6F7F2" stroke="#0f766e" stroke-width="1"/>
+      <text x="142" y="79" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="500" fill="#0f766e">G3</text>
+      <rect x="184" y="66" width="64" height="26" rx="8" fill="#E6F7F2" stroke="#0f766e" stroke-width="1"/>
+      <text x="216" y="79" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="500" fill="#0f766e">G4</text>
+      <text x="268" y="79" font-size="11.5" fill="#94a3b8">每 3 个月一轮</text>
+      <text x="12" y="117" font-size="12.5" fill="#64748b">事件驱动</text>
+      <rect x="110" y="104" width="64" height="26" rx="8" fill="#FDF3EC" stroke="#c2410c" stroke-width="1"/>
+      <text x="142" y="117" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="500" fill="#c2410c">G5</text>
+      <text x="184" y="117" font-size="11.5" fill="#94a3b8">标准发布 / 修订触发（ISO/TC 299 · EU OJ · 认证机构公告）</text>
+      <text x="12" y="155" font-size="12.5" fill="#64748b">半年</text>
+      <rect x="110" y="142" width="64" height="26" rx="8" fill="#F1ECFD" stroke="#6d28d9" stroke-width="1"/>
+      <text x="142" y="155" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="500" fill="#6d28d9">G6</text>
+      <rect x="184" y="142" width="64" height="26" rx="8" fill="#F1ECFD" stroke="#6d28d9" stroke-width="1"/>
+      <text x="216" y="155" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="500" fill="#6d28d9">G7</text>
+      <rect x="258" y="142" width="64" height="26" rx="8" fill="#F1ECFD" stroke="#6d28d9" stroke-width="1"/>
+      <text x="290" y="155" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="500" fill="#6d28d9">G8</text>
+      <text x="332" y="155" font-size="11.5" fill="#94a3b8">每 6 个月一轮</text>
+    </svg>
+    <figcaption>图 1 · 追踪节奏：G1/G2 月度、G3/G4 季度、G5 事件驱动、G6/G7/G8 半年度。每轮增量同步落入 <span class="mono">research/*.jsonl</span> 并回写本图（快照 2026-10-08）。</figcaption>
+  </figure>
+</section>
+<section class="block" id="s3">
+  <h2><span class="no">跨向</span>跨方向发现（对研究方向的核心判断）</h2>
+
+  <div class="callout blue">
+    <span class="pill blue">G3 → 论证</span> <b>聚合空档被 2026 理论硬化，但竞争协议升级。</b>
+    Blackwell 结果 [papers/p10@3] 证明投票与辩论诱导的信息结构不优于全体私有信息的池化；论文中「替代辩论/投票」的叙事应从「空档存在」升级为「证据论协议提供投票所不具备的无知表示、冲突度量、依赖路由与拒判语义，且与池化后验可对撞」。<b>MME 第五臂建议加入 product-of-posteriors 型基线。</b>
+  </div>
+
+  <div class="callout green">
+    <span class="pill green">G6 + G2 + G3 → 设计</span> <b>「大模型只能是受控证据源」获三向独立证据。</b>
+    LLM-HAZOP 场景仅 19–37% 技术有效 [papers/p32@1]、生产环境记忆投毒实测 [papers/p14@1]、EDL 单趟校准路线成熟 [papers/p05@3][papers/p07@1]——可靠性权重 + 复核门禁 + 校准外挂不是保守设计，而是必要配置；可在论文引言引为设计动机。
+  </div>
+
+  <div class="callout violet">
+    <span class="pill violet">G8 → 方法</span> <b>拒判统计可证书化，no-harm 不必自造。</b>
+    SCoRE / joint certificate [papers/p38@3][papers/p40@3] 的「风险上界 + 接受下界 + 效用下界」三重证书与可用性判据直接对应 C2′ 的报告格式；建议 v21 §6.3 引用并采用其证书结构，把「拒绝不伪装安全」从设计原则升级为可检验统计陈述。
+  </div>
+
+  <div class="callout red">
+    <span class="pill red">G2 → 邻近警示</span> <b>LLM 证据治理同步兴起（本轮唯一需主动防守的邻近面）。</b>
+    BELIEFRAG [papers/p52@1] 的「证据状态」闭环与系统级不确定性传播分类 [papers/p55@1] 说明「证据生命周期治理」在 LLM 侧成为热点；本文须在引言明确对象差异（<b>BF 组合前准入 / 根级守恒 vs RAG 控制回路状态</b>），避免被读作重叠。
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 680 246" width="100%" role="img" aria-label="八方向与治理内核的关系结构">
+      <rect x="40" y="26" width="600" height="156" rx="16" fill="#F7F9FC" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="60" y="50" font-size="12.5" font-weight="500" fill="#64748b">应用域与标准 · G5 HRC 标准与动态风险 · G6 屏障 / 过程安全</text>
+      <rect x="80" y="62" width="520" height="102" rx="12" fill="#EEF4FF" stroke="#93b4ec" stroke-width="1"/>
+      <text x="100" y="84" font-size="12.5" font-weight="500" fill="#1d4ed8">证据方法层 · G1 依赖证据与冲突 · G2 语义校准 · G3 聚合协议 · G4 谱系编码</text>
+      <rect x="150" y="104" width="380" height="44" rx="10" fill="#17222e"/>
+      <text x="340" y="121" text-anchor="middle" font-size="12.5" font-weight="500" fill="#ffffff">治理内核（本项目）：组合前准入 · 根级贡献守恒</text>
+      <text x="340" y="139" text-anchor="middle" font-size="11.5" fill="#cbd5e1">fusion-specific exactly-once · 生命周期一致（supersede / merge / retire / replay）</text>
+      <rect x="110" y="200" width="220" height="34" rx="10" fill="#E6F7F2" stroke="#0f766e" stroke-width="1"/>
+      <text x="220" y="217" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#0f766e">G7 底座 · 本体栈与数据质量</text>
+      <rect x="350" y="200" width="220" height="34" rx="10" fill="#F1ECFD" stroke="#6d28d9" stroke-width="1"/>
+      <text x="460" y="217" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#6d28d9">G8 验证 · 拒判证书与 IUT</text>
+      <line x1="220" y1="200" x2="220" y2="182" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="460" y1="200" x2="460" y2="182" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3"/>
+    </svg>
+    <figcaption>图 2 · 八方向与治理内核的关系：G5/G6 提供应用域与标准约束；G1–G4 是方法层；G7 提供语义底座、G8 提供统计验证工具。每个方向的增量都在问同一个问题——它是否压缩「组合前治理 + 根级守恒」的差异化空间。</figcaption>
+  </figure>
+</section>
+<section class="block" id="s4">
+  <h2><span class="no">G1</span>依赖证据 / 冲突新作 <span class="pill blue">月度</span></h2>
+
+  <h3>最新进展</h3>
+  <ul>
+    <li><b>混沌冲突度量 + 历史经验加权</b>（arXiv:2608.13108，2026-08）[papers/p01@1]：把「证据间冲突」与「证据内非特异性」联合度量（五条形式化性质），用谱聚类划分决策空间、遗憾理论计算历史可靠性画像；16 个基准平均 F1 85.78 / AUC 93.30，超 8 个 DST 基线。</li>
+    <li><b>复杂网络可靠性模型</b>（Tang et al., <i>Group Decision and Negotiation</i> 35(3), 2026）[papers/p02@1]：把证据体当网络节点、证据距离当边权，用直接/间接强度定权，缓解高冲突反直觉。</li>
+    <li><b>软似然 + 可靠性优化</b>（Lu &amp; Zhu, <i>EAAI</i> 163, 2026-05）[papers/p03@1]：SLSQP 约束优化估源相似度 + OWA 权重替代差分权重，单步软似然融合；目标识别 +0.14pp。</li>
+    <li><b>中文期刊动向</b>（兵器装备工程学报 2026 增刊）[papers/p04@1]：模糊隶属度→全集未知分配 + 内聚度/冲突度双维加权——「BPA 未知项的物理意义」仍是活跃问题。</li>
+    <li><b>领域 SLR 锚点</b>（Fei, Li &amp; Ding, <i>Neurocomputing</i> 643:130419, 2025）[papers/p30@1]：DST × 安全/事故/应急的系统综述，按 4R 危机管理框架分类——「安全 × 证据理论」是<b>窄口</b>而非空白，差异化必须在治理/依赖/生命周期维度上主张。</li>
+    <li><b>量子干涉再分配</b>（IEECR, SSRN 7549569, 2026）[papers/p44@1]：焦点元素关联图量化命题间干涉强度，将多元素焦元质量再分配至单点；模糊隶属度生成 BPA + Deng 熵排序证据；四数据集超 5 个代表性融合方法（91.00% / 85.00%）。</li>
+    <li><b>依赖感知风险界</b>（gamma-CUBV, arXiv:2610.03465, 2026-10）[papers/p45@1]：折间等相关下有效折数 K<sub>eff</sub>=K/[1+(K−1)ρ]，按「未来风险上界最小化」选权——<b>依赖折扣首次以风险证书语言出现在分析侧</b>（与 G3 的 N<sub>eff</sub> 同构；本文主张治理侧，不与之争新颖）。</li>
+    <li><b><i>Information Fusion</i> 125（2026）目录信号</b>[papers/p46@1][papers/p47@1]：过自信/非合作行为的多尺度群决策融合（103401）、概率密度的边际分布鲁棒融合（103423）——顶刊入口在「行为偏差 × 鲁棒融合」。</li>
+    <li><b>IJAR 认知不确定性应用</b>（2026）[papers/p48@1]：元公平框架下 DST（Yager 函数 + 厚区间）医疗风险预测，含 50 人用户研究（经中文新闻转述，引用前核原文）。</li>
+  </ul>
+
+  <h3>核心方法对比</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>方法族</th><th>依赖处理</th><th>冲突处理</th><th>决策输出</th><th>局限</th></tr></thead>
+    <tbody>
+      <tr><td>Dempster 归一化</td><td>要求 distinct</td><td>归一化放大冲突</td><td>单一 BetP</td><td>高冲突反直觉（经典）</td></tr>
+      <tr><td>PCR5 / PCR6（Dezert）</td><td>不处理依赖</td><td>比例再分配部分冲突</td><td>质量函数</td><td>多源组合规模增长；≠ 依赖</td></tr>
+      <tr><td>cautious / 最小承诺</td><td>幂等保守</td><td>保留无知</td><td>区间</td><td>保守性代价</td></tr>
+      <tr><td>ER / ERr-DE / ER-TLD</td><td>依赖度参数化</td><td>权重-可靠性分离</td><td>效用 / 区间</td><td>依赖参数或已知或难估</td></tr>
+      <tr><td>依赖感知风险界（p45）</td><td>K<sub>eff</sub> 有效折数折扣</td><td>权重 = 未来风险上界最小化</td><td>风险界 / 证书</td><td>分析侧工具；不涉组合前治理</td></tr>
+      <tr><td>本轮新作（p01–p04；p44/p46–p48）</td><td>历史 / 网络 / 量子 / 行为先验</td><td>双维 / 混沌 / 干涉度量</td><td>区间或分类</td><td>仍属单次融合，无流式累计视角</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>现存瓶颈</h3>
+  <p>单次组合规则拥挤且增量收窄；依赖仍以「估计参数」或「内容相似度」为主，<b>没有把依赖当前置的资格路由</b>；绝大多数不评估流式/累计影响。本轮增量出现依赖折扣的<b>分析侧证书化</b>（p45）与冲突再分配的<b>量子化新形态</b>（p44），但组合前资格、exactly-once 与生命周期治理仍无对应工作——<b>本文差异化空间未被压缩</b>。</p>
+
+  <h3>后续关注重点</h3>
+  <p>IF / Fuzzy Sets &amp; Systems / IJAR / ESWA / KBS 的 dependent evidence、conflict measure、cautious 新作；BELIEF 会议论文集；Yongchuan Tang / Yong Deng / Xinyang Deng 课题组动向；IEECR 期刊正式版与 gamma-CUBV 的评论跟进。</p>
+
+  <div class="srcline">来源与时间范围：WebSearch 2026-10-08（增量轮 5 次：IF 卷目 / FSS+IJAR / ESWA+KBS / Deng 组雪球 / Denœux+PCR 定向；首轮 2 次）；dblp 详情页直连被反爬拦截，仅用搜索快照；覆盖 bounded（未穷尽）。</div>
+</section>
+<section class="block" id="s5">
+  <h2><span class="no">G2</span>EDL×LLM 校准 <span class="pill blue">月度</span> <span class="pill red">防守面</span></h2>
+
+  <h3>最新进展</h3>
+  <ul>
+    <li><b>证据知识蒸馏</b>（arXiv:2507.18366，2025-07）[papers/p05@3]：把需多趟采样的不确定性教师（BNN / Laplace / BayesPE）蒸成 LoRA 学生、单趟输出；softmax 与 Dirichlet（evidential）两条学生路线，后者显式建模认知不确定性；代码开源（BPE-KD）。</li>
+    <li><b>DRO + 证据集成校准微调基础模型</b>（ICLR 2026）[papers/p06@1]：微调后验变平坦/多峰导致 UQ 失效，用分布鲁棒优化 + 证据理论做多样性集成，理论保证校准改进；覆盖大视觉语言模型。</li>
+    <li><b>Evidential Transformation Networks</b>（ETN, 2026）[papers/p07@1]：post-hoc 轻量模块，在 logit 空间学样本相关仿射变换→Dirichlet 参数，让现成预训练模型输出 EDL 式不确定性，单趟免重训——为「给 VLM 证据源外挂校准器」提供现成路线（source_only：经二手技术媒体转述，引用前定位原文）。</li>
+    <li><b>EvidentialRAG</b>（2026-07）[papers/p08@1]：用 EDL 量化并缓解多源 RAG 的信息冲突——直接对应语义证据的冲突处理（source_only：经论文聚合站转述）。</li>
+    <li><b>post-hoc 冲突感知校准成形</b>：C-EDL（arXiv:2506.05937 v3 2026-10-02 = ICLR 2026 正式版）[papers/p49@1] 与 CLEAR（arXiv:2610.01384）[papers/p50@1] 以「任务保持变换 / 潜空间扰动视图」量化表示分歧，动态压低证据强度；C-EDL 把 OOD/对抗覆盖降至约 55% / 90%，CLEAR 提升 OOD/对抗 AUROC +8.29 / +5.01 且比同类 post-hoc 快 17.4×。</li>
+    <li><b>证据蒸馏「支持 vs 质量」分离</b>（EESD, arXiv:2610.08514, 2026-10-06）[papers/p51@1]：执行相关性（支持）与有效伪计数（证据量）分开建模，Dirichlet 后验产生不确定性惩罚权重；NLL 降 55.0–59.3%，一轮修正学习后 Pass@1 15.0→20.4%（[+2.8, +8.0]pp）——与「贡献守恒 / 质量元层」同向的 LLM 侧旁证。</li>
+    <li><b>RAG 证据状态治理登场</b>（BELIEFRAG, arXiv:2609.39139）[papers/p52@1]：显式状态（充分性/可靠性/冲突/不确定性/缺口/获取成本）闭环控制检索—改写—验证—回答—停止—拒答；F1 0.572 vs 0.555 且 token 省 39%；「校准的可回答性」最有效，但<b>来源漂移可使同一决策信号失效</b>——LLM 证据治理最邻近工作，须引用并定位差异。</li>
+    <li><b>conformal 校准外挂成熟</b>：SLLCP（冻结 VLM + 标签局部化 conformal，肇事轨迹识别 89.6% / 88.4% vs 基线 4.6% / 39.1%）[papers/p53@1]；paraphrase-aware conformal（改写鲁棒，NeurIPS 2026）[papers/p54@1]。</li>
+    <li><b>系统级不确定性传播</b>（arXiv:2604.23505，雪球发现）[papers/p55@1]：不确定性在复合 LLM 系统内跨边界被变换复用，早期错误传播复合、难检测难治理；给出 P1/P2/P3 分类与五个开放挑战——与「生命周期一致治理」问题意识直接同构，可引为问题动机。</li>
+    <li><b>资源盘点</b>：awesome-evidential-deep-learning 经 raw README 核实（48KB）——<b>列表最后更新 2025/01，已停更</b>，2026 年 G2 追踪不能依赖它；列表确认含 4 篇综述（2022 belief theory meets DL、2022 IJCAI evidential reasoning survey、2023 TMLR prior/posterior networks、2024 综合 EDL survey）[papers/p09@1] 与 IB-EDL（ICLR 2025，openreview PDF + 代码库）[papers/p43@1]；另存 BFTA 2025 Denœux 讲义（Evidential ML 全集）。</li>
+  </ul>
+
+  <h3>核心方法对比</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>路线</th><th>不确定性来源</th><th>开销</th><th>适配 LLM / VLM 证据源</th></tr></thead>
+    <tbody>
+      <tr><td>贝叶斯 / 集成</td><td>参数 / 采样</td><td>多趟，高</td><td>教师模型</td></tr>
+      <tr><td>evidential 蒸馏</td><td>Dirichlet 证据</td><td>单趟（学生）</td><td>已支持文本分类</td></tr>
+      <tr><td>ETN post-hoc</td><td>logit → Dirichlet</td><td>单趟 + 小数据</td><td>适配现成预训练模型</td></tr>
+      <tr><td>冲突感知 post-hoc（p49/p50）</td><td>表示分歧 / 潜空间冲突</td><td>单趟 + 校准数据</td><td>适配现成模型；未验 LLM 危害推理</td></tr>
+      <tr><td>conformal / black-box（p53/p54）</td><td>经验分布</td><td>校准集</td><td>黑盒可用但无 epistemic 分解；改写 / 漂移鲁棒性开始被处理</td></tr>
+      <tr><td>自一致性 / verbalized</td><td>采样方差</td><td>多趟</td><td>不等于经验正确率（校准漂移）</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>现存瓶颈</h3>
+  <p>可靠性结论多限于分类任务；开放文本危害推理的外推未证；post-hoc 校准与版本漂移的联合影响缺少系统评测；RAG/智能体侧已出现「证据状态治理」（p52）与系统级传播分类（p55）——<b>融合层与 LLM 证据状态之间的接口（冲突/缺口信号如何进入 BF 组合前治理）尚无系统评测</b>，是本轮新暴露的空白。</p>
+
+  <h3>后续关注重点</h3>
+  <p>IB-EDL（ICLR 2025）之后的 LLM-evidential 新作；arXiv cs.CL/cs.LG 的「evidential + LLM/RAG」组合；校准度量（ECE / Brier / NLL）在开放生成上的可用性；post-hoc 冲突感知校准（C-EDL / CLEAR 谱系）与 BF 治理层的接口。</p>
+
+  <div class="srcline">来源与时间范围：WebSearch 2026-10-08（evidential distillation / post-hoc、RAG 冲突、conformal 各 1 次 + awesome 列表复核）；关键条目经 arXiv abs 页逐条核验版本；覆盖 bounded。</div>
+</section>
+<section class="block" id="s6">
+  <h2><span class="no">G3</span>多智能体聚合与记忆治理 <span class="pill teal">季度</span> <span class="pill amber">竞争协议升级</span></h2>
+
+  <h3>最新进展</h3>
+  <ul>
+    <li><b>Blackwell 信息量视角的形式化判决</b>（arXiv:2605.06028，2026-05）[papers/p10@3]：证明投票与辩论诱导的信息结构<b>不优于全体私有信息的池化</b>，贝叶斯池化后验是 Blackwell 序下的上界；MA-PoP（product-of-posteriors）在 6 个 QA 基准超过 SOTA 辩论 / 投票且 token 更少。<b>既是「辩论/投票无原理性」论证的 2026 最强外部佐证，也引入了强竞争协议——MME 基线必须认真考虑。</b></li>
+    <li><b>共识 ≠ 正确</b>（KDD Workshop on Evaluation and Trustworthiness of Agentic AI，2026-08-09）[papers/p11@1]：15 任务 × 5 模型族；协议诱导的同意 miscoverage 18–47%；有效智能体数 N<sub>eff</sub>≈N/[1+(N−1)ρ] 诊断；建议 split-conformal 证书 + 校准辩论。<b>直接支撑「模型数量 ≠ 独立信息量」与两轴区分策略</b>（source_only：经行业博客转述）。</li>
+    <li><b>反向贝叶斯锚定</b>（arXiv 2026-09-10, When Agents Disagree）[papers/p12@1]：前向 / 反向两种 factorized 后验的 JS 一致性排序，MinJS / FwdJS / LogLin 三策略，分歧子集增益最大（source_only：经科技媒体转述）。</li>
+    <li><b>OWASP Top 10 for Agentic Applications 2026</b>（2025-12 发布）[papers/p13@1]：ASI06 记忆与上下文投毒等十条风险；配合 Microsoft 2026-02 六十天实测（在 M365 Copilot / ChatGPT / Claude / Gemini / Perplexity / Grok 生产流量中观测到记忆投毒尝试）[papers/p14@1]——记忆治理从研究 artifact 变成运维现实。</li>
+    <li><b>可信记忆栈</b>（行业综合，2026）[papers/p15@1]：provenance + validity window、双时序、WAL+MVCC、内容寻址四层；学术锚点 MINJA（2025 记忆注入攻击）、A-MemGuard（2025 共识记忆防御）、The Log is the Agent（arXiv 2605.21997）、Multi-Agent Memory 体系结构视角（arXiv 2603.10062）。</li>
+  </ul>
+
+  <h3>核心方法对比</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>聚合协议</th><th>理论性质</th><th>独立信息处理</th><th>审计 / 治理</th></tr></thead>
+    <tbody>
+      <tr><td>投票 / 多数</td><td>无信息增益保证</td><td>默认独立</td><td>弱</td></tr>
+      <tr><td>辩论（MAD）</td><td>鞅 / 不优于投票</td><td>共识内生（多样性坍缩）</td><td>弱</td></tr>
+      <tr><td>异构委员会 / Council</td><td>降幻觉但增成本</td><td>模型多 ≠ 独立</td><td>中</td></tr>
+      <tr><td>证据论折扣聚合（本项目）</td><td>有界影响 / 指数遗忘</td><td>显式折扣 + 依赖路由</td><td>强（日志 + 血缘）</td></tr>
+      <tr><td>池化后验（MA-PoP）/ 反向锚</td><td>Blackwell 上界 / 双因子化</td><td>相关误差仍可过自信</td><td>中</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>现存瓶颈</h3>
+  <p>池化后验强的协议假设条件独立；证据论路线缺少与 Blackwell / MA-PoP 同量级的<b>信息量层面</b>对比；记忆防御（A-MemGuard 等）与融合层的耦合尚无标准评测。</p>
+
+  <h3>后续关注重点</h3>
+  <p>Blackwell / 池化后验与证据聚合的对比实验（可作 MME 第五臂）；记忆投毒与 lineage 交叉的评测基准；NIST AI Agent Standards Initiative（2026-02）后续文件。</p>
+
+  <div class="srcline">来源与时间范围：WebSearch 2026-10-08；覆盖 bounded。secondary 来源（博客 / 新闻）仅作线索，引用前须回原文。</div>
+</section>
+
+<section class="block" id="s7">
+  <h2><span class="no">G4</span>provenance × BF <span class="pill teal">季度</span></h2>
+
+  <h3>最新进展</h3>
+  <ul>
+    <li><b>PRIMEX-PEV 正式出版</b>（<i>J. Advances in Information Fusion</i> 20(2):152–171, 2025-12；Chang, Kuo, Bar-Shalom, Chong, Mori）[papers/p16@1]：素指数向量（PEV）表示，在指数空间用 GCD / LCM 做冗余消除与谱系保留；扩展异步更新与部分信息传播；面向边缘 / 联邦 / 资源受限。<b>最接近的 lineage-only 强基线有了权威最新版。</b></li>
+    <li><b>事件触发分布式跟踪</b>（arXiv:2604.21618）[papers/p17@3]：consensus PRIMEX + greedy gossip PRIMEX + 信息码新颖度驱动的事件触发；对比协方差交与集中式。注意：<b>PRIMEX 作用于概率密度（高斯域），不是信念函数</b>——作为基线的对应关系须如实写明。</li>
+    <li><b>经典锚点</b>（Yu, Kallurkar &amp; Flo, CTS 2008）[papers/p18@1]：provenance-aware D-S 信任评估，避免 double counting 的原则化处理——本项目 C1 的直接思想近邻。</li>
+  </ul>
+
+  <h3>核心方法对比</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>工作</th><th>表示</th><th>依赖处理</th><th>重复消除</th><th>时间维度</th></tr></thead>
+    <tbody>
+      <tr><td>Yu 2008</td><td>BF + 软件智能体</td><td>provenance 检测</td><td>事后解释</td><td>无</td></tr>
+      <tr><td>PRIMEX / PRIMEX-PEV</td><td>素指数编码 pdf</td><td>显式谱系</td><td>代数消除（GCD）</td><td>异步更新</td></tr>
+      <tr><td>本项目</td><td>BF + 双注册表 + 账本</td><td>组合前资格（UNKNOWN 失败关闭）</td><td>根级 exactly-once</td><td>生命周期事件（supersede / merge / retire / replay）</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>现存瓶颈</h3>
+  <p>PEV 编码假设谱系可由素数乘积忠实编码（高阶超边 / 部分依赖受限）；<b>BF × provenance 的联合 2026 新作稀缺——这是 G1/G4 之间真实的空隙</b>；post-commit equivalence 的撤销-重建仍无标准 benchmark。</p>
+
+  <h3>后续关注重点</h3>
+  <p>JAIF / FUSION 会议的 lineage 论文；PEV 与 BF 的混合编码可行性；IF 期刊「provenance」关键词月度追踪。</p>
+
+  <div class="srcline">来源与时间范围：WebSearch 2026-10-08（isif.org 官方页 + arXiv）；覆盖 bounded。</div>
+</section>
+<section class="block" id="s8">
+  <h2><span class="no">G5</span>HRC 标准与动态风险 <span class="pill amber">事件驱动</span></h2>
+
+  <h3>最新进展（标准口径，2026-10-08 官方核验）</h3>
+  <ul>
+    <li><b>ISO 10218-1:2025 与 ISO 10218-2:2025 已发布</b>（2025-02 出版、2025-04 生效）[papers/p19@1][papers/p20@1]：ISO/TS 15066:2016 的协作应用要求（SRMS / 手引导 / SSM / PFL 四技术、生物力学接触限值表）<b>已并入 ISO 10218 系列</b>，不再作为独立技术规范存在；新增机器人安全相关<b>网络安全要求</b>、明确功能安全要求、新机器人分类与测试方法；术语从「协作机器人」改为「协作应用」（机器人 + 任务 + 工具 + 环境整体）。</li>
+    <li><b>EN 版列入 EU 公报</b>（2026-09-07）[papers/p21@1]：获机械指令推定符合；但 <b>(EU) 2023/1230 机械法规 2027-01-20 起取代机械指令</b>，届时需重新列名。法规明确纳入<b>集成 AI/ML（行为随时间改变）的机械</b>与网络安全基本要求——为「治理层 + AI 证据源」提供合规叙事接口。</li>
+    <li><b>ISO/AWI 15066-1 在研</b>（iso.org 官方页）[papers/p22@1]：Robotics — Physical contact with robots — Part 1: Biomechanical thresholds and data，2025-06-23 立项（stage 20.00），将取代 ISO/TS 15066:2016。行业媒体流传的「ISO/TS 15066:2026 / Annex C 动态力审计（±5N/&lt;100ms）」<b>未在 iso.org 得到确认</b>；TÜV 2026-05 认证要求更新公告 [papers/p23@1] 按行业信号跟踪、引用前须官方核实。</li>
+    <li><b>动态风险方法前沿</b>：AI 增强协作机器人综述（Schlotzhauer et al., <i>Results in Engineering</i> 2025）[papers/p24@1]；DT-HRCA 装配综述（<i>Machines</i> 14(3):255, 2026）[papers/p25@1]；SSM 三十年架构综述（Adamides 2025，经二次转述）[papers/p26@1]；RL 预 active SRMS（Tiwari 2025，同上转述）。</li>
+  </ul>
+
+  <h3>核心方法对比</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>层</th><th>代表</th><th>输出</th><th>与本文关系</th></tr></thead>
+    <tbody>
+      <tr><td>标准 / 合规</td><td>ISO 10218:2025、(EU) 2023/1230</td><td>PL / SIL、符合性</td><td>边界与威胁模型；不主张标准合规</td></tr>
+      <tr><td>感知层</td><td>RGB-D / OpenPose / SSM 传感融合</td><td>距离 / 姿态 / 意图</td><td>六源中的「人」流证据</td></tr>
+      <tr><td>控制层</td><td>PFL / 阻抗 / MPC 安全滤波器</td><td>速度 / 力调整</td><td>行动侧，融合层只读镜像</td></tr>
+      <tr><td>风险评估层（本文）</td><td>证据融合 + 组合前治理</td><td>风险区间 / 拒判</td><td>提供可审计的决策依据</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>现存瓶颈</h3>
+  <p>标准把「协作安全性」定义为应用级属性但不规定在线证据治理；AI 安全验证（动态响应审计）尚无统一基准；学术动态风险与标准合规两层皮。</p>
+
+  <h3>后续关注重点</h3>
+  <p>ISO/TC 299 与 IEC/TC 65 发布；(EU) 2023/1230 列名进展；ANSI/RIA R15.06 与 CSA Z434 对齐；15066-1 DIS 进展。</p>
+
+  <div class="srcline">来源与时间范围：WebSearch 2026-10-08；iso.org 官方页（p22）+ EU 官方公报转引（p21）+ 行业媒体（p23，待核）。</div>
+</section>
+
+<section class="block" id="s9">
+  <h2><span class="no">G6</span>屏障 / 过程安全 <span class="pill violet">半年度</span></h2>
+
+  <h3>最新进展</h3>
+  <ul>
+    <li><b>动态屏障管理系统</b>（AIChE <i>Process Safety Progress</i>, prs.70040, 2026）[papers/p27@1]：Bowtie + 企业数据 + 实时告警 / 绩效 / 检查表闭环更新风险分；对齐 ANSI Z10 / ISO 45001 / 45002。</li>
+    <li><b>矿业动态屏障监测</b>（AIChE PSP, prs.70015, 2026）[papers/p28@1]：CCM（连续控制监测）把维护管理工具与风险管理工具双向联通；复述 Qiao 等系统综述指出的三个未决问题（基准确定、实时数据成本-收益、屏障要素交互）。</li>
+    <li><b>AI-HAZOP 工程化</b>（TU Delft 过程智能组）[papers/p29@1]：DEXPI Smart P&amp;ID 知识图谱 + ChatP&amp;ID GraphRAG（<i>AIChE Journal</i> 72:e70540, 2026）+ pyDEXPI + DigiCo；生成式 AI 产出节点 / 偏差 / 原因 / 后果 / 措施草稿，<b>工程师保持负责</b>。</li>
+    <li><b>HAZOP KG 构建</b>（Guo et al., <i>JLPPI</i> 99:105814, 2026-01）[papers/p31@1]：本体设计与 LLM 信息抽取双优化。</li>
+    <li><b>关键负面证据</b>：2026 年四模型对比研究显示 LLM 生成的 HAZOP 场景<b>仅 19–37% 技术有效</b>（且多建议程序性而非工程性屏障）[papers/p32@1]；DT+AI-HAZOP 批判性综述（Alrowaie 2026 预印本）[papers/p33@1] 给出四条技术路径与失效模式（漂移 / 传感器故障 / 幻觉 / 自满）。</li>
+  </ul>
+
+  <h3>核心方法对比</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>路径</th><th>代表</th><th>强度</th><th>风险</th></tr></thead>
+    <tbody>
+      <tr><td>Bowtie + 实时数据</td><td>prs.70040 / prs.70015</td><td>屏障健康闭环</td><td>依赖数据质量；无认证资格</td></tr>
+      <tr><td>DEXPI / KG + GraphRAG</td><td>ChatP&amp;ID</td><td>可 grounding 的检索</td><td>仍需人工终审</td></tr>
+      <tr><td>GenAI 直生 HAZOP</td><td>四模型研究</td><td>快</td><td>19–37% 有效性，幻觉 [papers/p32@1]</td></tr>
+      <tr><td>本文 SafetyArtifactIR</td><td>IR + 禁止推理清单</td><td>边界显式、fail-closed</td><td>工件错误不在保证内</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>现存瓶颈</h3>
+  <p>动态屏障缺公共基准；LLM 安全分析有效性低且无证书；「屏障独立性」与「证据 distinctness」常被混用（本项目已单列禁止推理）。</p>
+
+  <h3>后续关注重点</h3>
+  <p>AIChE PSP / JLPPI / PSEP / RESS；CCPS RBPS 与新一代工业安全 KPI 结合的报告；EU 机械法规下 SIS / AI 的认证动态。</p>
+
+  <div class="srcline">来源与时间范围：WebSearch 2026-10-08；覆盖 bounded；p32 为行业媒体转述的同行评议研究，引用前须定位原文。</div>
+</section>
+<section class="block" id="s10">
+  <h2><span class="no">G7</span>本体栈与数据质量 <span class="pill violet">半年度</span></h2>
+
+  <h3>最新进展</h3>
+  <ul>
+    <li><b>AAS 成为采购事实标准</b>：AAS 元模型已标准化为 <b>IEC 63278-1</b>；IDTA 发布 Part 1 v3；Eclipse BaSyx 2.0；EU 数字产品护照（ESPR）与德系车企供应商 AASX 要求驱动采纳 [papers/p34@1]（source_only：从业者文章，事实可回 IEC / IDTA 官网核）。</li>
+    <li><b>语义图统一工业数字主线</b>（arXiv:2608.24918, 2026-08）[papers/p35@3]：本体驱动 RDF 知识图谱统一 11 类系统（ERP / MES / PLM / SCADA / QMS / SCM），78 类 / 108 对象属性 / 243 数据属性，援引 ISA-95 / OPC UA / eClass / AAS / RAMI 4.0；<b>实证：阻断 24 个跨系统工具后 recall 1.00→0.31，69% 可发现信号需跨系统连接</b>；经 287 个 MCP 工具暴露给 LLM 智能体。</li>
+    <li><b>MTS-AD 基准成熟</b>：mTSBench（arXiv:2506.21550, v2 2026-02）[papers/p36@3]：19 数据集 344 条序列 × 24 检测器（含 LLM 检测器）；无通用冠军；最好的无监督选择器仅捕获 oracle 的 72%；LLM 检测器精度高但慢 10 倍。</li>
+    <li><b>事件级扰动基准</b>（arXiv:2602.15457, 2026-02）[papers/p37@3]：统一事件级增强（校准传感器丢失、线性/对数漂移、加噪、窗口平移），14 模型 × 5 公开（SWaT / WADI / SMD / SKAB / TEP）+ 2 工业数据集；图模型在丢失 / 长事件下迁移最好；归一化流对对数漂移脆弱（F1 0.75→0.57）。</li>
+  </ul>
+
+  <h3>核心方法对比</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>层</th><th>标准 / 工具</th><th>作用</th><th>对本项目用途</th></tr></thead>
+    <tbody>
+      <tr><td>观测语义</td><td>W3C SOSA / SSN</td><td>观测-特征对象模型</td><td>源适配层本体</td></tr>
+      <tr><td>资产语义</td><td>AAS / IEC 63278、OPC UA</td><td>资产-子模型-语义 ID</td><td>主数据 / 测点绑定（Q01 / Q05）</td></tr>
+      <tr><td>血缘</td><td>W3C PROV-O</td><td>主体-活动-实体派生</td><td>PCR / OLR 与 ledger</td></tr>
+      <tr><td>集成</td><td>OBDA / Ontop、RDF KG</td><td>虚拟化查询</td><td>六源接入矩阵</td></tr>
+      <tr><td>质量</td><td>漂移补偿、事件级基准</td><td>质量度量与评测</td><td>质量元层（Q02–Q08）与压力测试</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>现存瓶颈</h3>
+  <p>语义标准之间（AAS vs SOSA vs PROV）映射靠工程缝合；实时数据成本-收益未闭环（G6 同款问题）；AD 基准的「事件级」指标未被安全融合论文普遍采用。</p>
+
+  <h3>后续关注重点</h3>
+  <p>IDTA / IEC TC 65 发布；ESPR 时间表；事件级 AD 协议向风险融合评测的迁移；多本体对齐（AAS-SOSA-PROV）论文。</p>
+
+  <div class="srcline">来源与时间范围：WebSearch 2026-10-08；覆盖 bounded。</div>
+</section>
+
+<section class="block" id="s11">
+  <h2><span class="no">G8</span>前兆挖掘与选择性预测 / IUT <span class="pill violet">半年度</span></h2>
+
+  <h3>最新进展</h3>
+  <ul>
+    <li><b>选择性预测证书化</b>：SCoRE（arXiv:2603.24704, 2026-03）[papers/p38@3]——广义 e 值 + 假设检验，对任意有界连续风险给出有限样本信任决策，免均匀集中、可推广到分布漂移；临床分流（<i>Sci Rep</i> 2026, Kwon &amp; Kim）[papers/p39@1]——split / Mondrian / 加权 conformal + 成本感知延迟，80% 覆盖率下保留案例错误降 46.7–49.6%；<b>joint finite-sample certificate</b>（arXiv:2606.08517）[papers/p40@3]——单证书同时上界被选风险、下界接受概率（1/√p_min 改进 vs 1/p_min）与下界部署效用。<b>与「拒判成本 / 可用性 no-harm」同构，可直接采用而非自造统计工具。</b></li>
+    <li><b>前兆挖掘 / 领先指标</b>：预测性安全分析（near-miss 聚簇、纠正措施逾期、班次压力等领先指标）成为 2026 EHS 软件主线；CanQualify 2026 框架称领先指标 + 预测模型比滞后指标准 25–40%、案例称 TRIR 降 20–40%（<b>厂商研究 / 案例，证据弱，须标注</b>）[papers/p41@1]；业内共识：需 2–3 年一致数据，最大障碍是数据纪律而非算法 [papers/p42@1]。</li>
+    <li><b>IUT / 共同主终点</b>：本轮未检索到 2026 新综述；项目内 v6.8 已采用（交并检验、SESOI、no-harm 门、联合功效 Monte Carlo、预算硬门）——<b>保持项目内权威</b>，外部只需追踪统计社区对 adaptive selection 下证书的新结果（p40 即相关）。</li>
+  </ul>
+
+  <h3>核心方法对比</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>工具</th><th>保证</th><th>适用本文场景</th></tr></thead>
+    <tbody>
+      <tr><td>RC 曲线 / 自报置信</td><td>无证书</td><td>仅诊断</td></tr>
+      <tr><td>conformal 集合</td><td>边际覆盖率</td><td>风险区间输出</td></tr>
+      <tr><td>CRC / 选择性 conformal</td><td>被选案例风险上界</td><td>unsafe-SAFE 复合终点</td></tr>
+      <tr><td>SCoRE / joint certificate</td><td>风险 + 接受 + 效用三重证书</td><td>可用性-安全对撞的报告格式</td></tr>
+      <tr><td>IUT（交并检验）</td><td>多共同主终点 α 控制</td><td>确认性 Phase 2 主检验</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>现存瓶颈</h3>
+  <p>证书多假设交换 / 校准集有效；安全证据融合中「拒判」的效用定义缺标准；前兆预测的受控结局研究稀少（案例多、RCT 少）。</p>
+
+  <h3>后续关注重点</h3>
+  <p>conformal / CRC 在安全关键拒判中的采用；always-valid / sequential testing（在线预警提前量的序贯检验）；near-miss 前兆的有对照评估。</p>
+
+  <div class="srcline">来源与时间范围：WebSearch 2026-10-08；覆盖 bounded。</div>
+</section>
+<section class="block" id="s12">
+  <h2><span class="no">修正</span>对 v21/v22 修正的直接影响（可执行清单）</h2>
+  <p>以下清单由本轮调研直接产出，随每轮增量复核；具体执行按论文主工程 v19 规格冻结治理登记。依据栏 <span class="mono">pXX</span> 对应 <span class="mono">research/papers.jsonl</span>。</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>#</th><th>行动</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>引用口径改 ISO 10218-1/-2:2025，注明 TS 15066:2016 并入史；跟进 ISO/AWI 15066-1</td><td>p19–p23</td></tr>
+      <tr><td>2</td><td>§2 补 Fei 2025 SLR（安全×DST 现状）、PRIMEX-PEV 正式版、Blackwell 2026</td><td>p30 / p16 / p10</td></tr>
+      <tr><td>3</td><td>MME 基线集加入 product-of-posteriors（或明确排除理由）；lineage 基线锚定 PRIMEX-PEV 最新版</td><td>p10 / p16</td></tr>
+      <tr><td>4</td><td>§6 拒判与可用性判据引用 conformal 证书族，定义风险-接受-效用三重报告</td><td>p38 / p40</td></tr>
+      <tr><td>5</td><td>引言引 LLM-HAZOP 19–37% 与记忆投毒实测作语义证据治理动机</td><td>[papers/p32@1] [papers/p14@1]</td></tr>
+      <tr><td>6</td><td>六源接入矩阵挂接 AAS/IEC 63278-1、SOSA/SSN、PROV-O 现行版本</td><td>p34 / p35</td></tr>
+      <tr><td>7</td><td>G1 相关：§2 引 gamma-CUBV（K_eff 依赖折扣=分析侧证书，明确不与之争新颖）与 IEECR；IF 125 卷目信号入台账</td><td>p44 / p45 / p46 / p47</td></tr>
+      <tr><td>8</td><td>G2 相关：引言/§2 引 C-EDL/CLEAR（post-hoc 冲突感知校准）与 BELIEFRAG（LLM 证据治理，须定位差异）；EESD 作「支持-质量分离」旁证；p55 作问题动机</td><td>p49–p55</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="block" id="s13">
+  <h2><span class="no">维护</span>维护机制</h2>
+  <div class="grid c2">
+    <div class="callout blue" style="margin:0"><b>更新频率</b><br/>G1/G2 月度（每月上旬）；G3/G4 季度；G5 事件驱动（ISO/TC 299、IEC、EU OJ、认证机构公告）；G6/G7/G8 半年度。</div>
+    <div class="callout green" style="margin:0"><b>每轮增量动作</b><br/>追加 <span class="mono">searches / papers（阅读深度如实）/ claims</span> 日志 → 更新地图对应小节并标注版本 → 运行 <span class="mono">check-research.py</span>（Windows 无 fcntl，禁加 mark-review）。</div>
+  </div>
+  <h3>编号台账</h3>
+  <ul>
+    <li>首轮：q01–q20 / s01–s43 / p01–p43 / c01–c10；</li>
+    <li>2026-10-08 G1/G2 增量轮：q21–q29 / s44–s54 / p44–p55 / c11–c20；</li>
+    <li>实验前置侦察（配套轮，另见同目录 dataset.md）：q30–q42 / s55–s70。</li>
+  </ul>
+  <h3>文献四分类台账</h3>
+  <p><span class="pill ink">input</span> 背景与输入   <span class="pill blue">baseline</span> 对比基线   <span class="pill green">differentiator</span> 差异化依据   <span class="pill red">threat</span> 威胁新颖性（立即升级处理）</p>
+</section>
+
+<div class="footer">
+  <b>领域地图 · G1–G8 八方向追踪（可视化版）</b><br/>
+  渲染自 <span class="mono">研究方向调研-G1-G8/landscape.md</span>（快照 2026-10-08）· 离线单文件 · 全内联 SVG · 无外部依赖<br/>
+  证据校验：check-research.py PASS · 阅读深度以 research/*.jsonl 为准 · 本页不构成全文证据或检索穷尽声明
+</div>
+
+</div>
+</body>
+</html>

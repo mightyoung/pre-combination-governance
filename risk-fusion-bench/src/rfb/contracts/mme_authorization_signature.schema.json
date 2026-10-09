@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "request_id", "request_sha256", "signer_id", "signer_role", "key_id", "trust_epoch", "trust_root_sha256", "algorithm", "signed_at_utc", "signature_b64"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "request_id": {"$ref": "#/$defs/hash"}, "request_sha256": {"$ref": "#/$defs/hash"},
+    "signer_id": {"type": "string", "minLength": 1}, "signer_role": {"const": "INDEPENDENT_EXECUTION_APPROVER"}, "key_id": {"type": "string", "minLength": 1},
+    "trust_epoch": {"type": "string", "minLength": 1}, "trust_root_sha256": {"$ref": "#/$defs/hash"}, "algorithm": {"const": "ED25519"},
+    "signed_at_utc": {"type": "string", "format": "date-time"}, "signature_b64": {"type": "string", "minLength": 1}
+  }, "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

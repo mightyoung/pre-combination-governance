@@ -1,0 +1,482 @@
+{
+  "status": "PASS",
+  "reference_count": 50,
+  "passed": 50,
+  "failed": 0,
+  "method": "49 automated Crossref/official-URL checks plus NRC primary-source web confirmation after timeout",
+  "results": [
+    {
+      "reference": 1,
+      "kind": "official_url",
+      "identifier": "https://webstore.iec.ch/en/publication/61289",
+      "url": "https://webstore.iec.ch/en/publication/61289",
+      "final_url": "https://webstore.iec.ch/en/publication/61289",
+      "http_status": 200,
+      "marker_results": {
+        "IEC 61511-1": true,
+        "Functional safety": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference": 2,
+      "kind": "official_url",
+      "identifier": "https://webstore.iec.ch/en/publication/5520",
+      "url": "https://webstore.iec.ch/en/publication/5520",
+      "final_url": "https://webstore.iec.ch/en/publication/5520",
+      "http_status": 200,
+      "marker_results": {
+        "IEC 61508-6": true,
+        "Functional safety": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference": 3,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.psep.2025.107018",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.psep.2025.107018",
+      "returned_title": "Multiparametric resilience assessment of chemical process systems incorporating process dynamics and independent protection layers",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 4,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.ssci.2021.105647",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.ssci.2021.105647",
+      "returned_title": "Safety barriers in the chemical process industries: A state-of-the-art review on their classification, assessment, and management",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 5,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.jss.2024.112034",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.jss.2024.112034",
+      "returned_title": "ACCESS: Assurance Case Centric Engineering of Safety–critical Systems",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 6,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.jss.2024.112256",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.jss.2024.112256",
+      "returned_title": "Andromeda: A model-connected framework for safety assessment and assurance",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 7,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.inffus.2020.02.003",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.inffus.2020.02.003",
+      "returned_title": "Multi-classifier information fusion in risk analysis",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 8,
+      "kind": "official_url",
+      "identifier": "https://webstore.iec.ch/en/publication/24321",
+      "url": "https://webstore.iec.ch/en/publication/24321",
+      "final_url": "https://webstore.iec.ch/en/publication/24321",
+      "http_status": 200,
+      "marker_results": {
+        "IEC 61882": true,
+        "Hazard and operability": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference": 9,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.dche.2025.100227",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.dche.2025.100227",
+      "returned_title": "Real-time process safety and systems decision-making toward safe and smart chemical manufacturing",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 10,
+      "kind": "doi_crossref",
+      "identifier": "10.1002/9781119490357",
+      "url": "https://api.crossref.org/works/10.1002%2F9781119490357",
+      "returned_title": "Bow Ties in Risk Management",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 11,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.ress.2024.110564",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.ress.2024.110564",
+      "returned_title": "Dynamic risk assessment for process operational safety based on reachability analysis",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 12,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.jlp.2023.105034",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.jlp.2023.105034",
+      "returned_title": "Dynamic-risk-informed safety barrier management: An application to cost-effective barrier optimization based on data from multiple sources",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 13,
+      "kind": "doi_crossref",
+      "identifier": "10.23919/ICIF.2018.8455764",
+      "url": "https://api.crossref.org/works/10.23919%2FICIF.2018.8455764",
+      "returned_title": "Provenance Across Evidence Combination in Theory of Belief Functions",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 14,
+      "kind": "doi_crossref",
+      "identifier": "10.1214/aoms/1177698950",
+      "url": "https://api.crossref.org/works/10.1214%2Faoms%2F1177698950",
+      "returned_title": "Upper and Lower Probabilities Induced by a Multivalued Mapping",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 15,
+      "kind": "doi_crossref",
+      "identifier": "10.1515/9780691214696",
+      "url": "https://api.crossref.org/works/10.1515%2F9780691214696",
+      "returned_title": "A Mathematical Theory of Evidence",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 16,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/0004-3702(94)90026-4",
+      "url": "https://api.crossref.org/works/10.1016%2F0004-3702%2894%2990026-4",
+      "returned_title": "The transferable belief model",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 17,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.ijar.2016.05.003",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.ijar.2016.05.003",
+      "returned_title": "The problem of dependent evidence",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 18,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.artint.2007.05.008",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.artint.2007.05.008",
+      "returned_title": "Conjunctive and disjunctive combination of belief functions induced by nondistinct bodies of evidence",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 19,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.inffus.2006.08.001",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.inffus.2006.08.001",
+      "returned_title": "Refined modeling of sensor reliability in the belief function framework using contextual discounting",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 20,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.dss.2015.02.017",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.dss.2015.02.017",
+      "returned_title": "Combining partially independent belief functions",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 21,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/S1566-2535(01)00026-4",
+      "url": "https://api.crossref.org/works/10.1016%2FS1566-2535%2801%2900026-4",
+      "returned_title": "A new distance between two bodies of evidence",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 22,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.dss.2013.06.012",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.dss.2013.06.012",
+      "returned_title": "How to preserve the conflict as an alarm in the combination of belief functions?",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 23,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.ijar.2019.03.009",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.ijar.2019.03.009",
+      "returned_title": "Decision-making with belief functions: A review",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 24,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.jlp.2025.105632",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.jlp.2025.105632",
+      "returned_title": "Dynamic and integrated safety and security barrier management: A new framework to manage major event risks in chemical plants",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 25,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.inffus.2024.102750",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.inffus.2024.102750",
+      "returned_title": "IFNet: Data-driven multisensor estimate fusion with unknown correlation in sensor measurement noises",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 26,
+      "kind": "doi_crossref",
+      "identifier": "10.1109/CTS.2008.4543955",
+      "url": "https://api.crossref.org/works/10.1109%2FCTS.2008.4543955",
+      "returned_title": "A Demspter-Shafer approach to provenance-aware trust assessment",
+      "title_token_coverage": 0.8571,
+      "status": "PASS"
+    },
+    {
+      "reference": 27,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.inffus.2021.11.007",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.inffus.2021.11.007",
+      "returned_title": "Explaining the impact of source behaviour in evidential reasoning",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 28,
+      "kind": "official_url",
+      "identifier": "https://www.w3.org/TR/prov-o/",
+      "url": "https://www.w3.org/TR/prov-o/",
+      "final_url": "https://www.w3.org/TR/prov-o/",
+      "http_status": 200,
+      "marker_results": {
+        "PROV-O": true,
+        "PROV Ontology": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference": 29,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.compchemeng.2021.107281",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.compchemeng.2021.107281",
+      "returned_title": "An extended Tennessee Eastman simulation dataset for fault-detection and decision support systems",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 30,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.ijar.2014.02.007",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.ijar.2014.02.007",
+      "returned_title": "New distances between bodies of evidence based on Dempsterian specialization matrices and their consistency with the conjunctive combination rule",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 31,
+      "kind": "doi_crossref",
+      "identifier": "10.1109/ACC.1997.609105",
+      "url": "https://api.crossref.org/works/10.1109%2FACC.1997.609105",
+      "returned_title": "A non-divergent estimation algorithm in the presence of unknown correlations",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 32,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.artint.2013.09.003",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.artint.2013.09.003",
+      "returned_title": "Evidential reasoning rule for evidence combination",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 33,
+      "kind": "doi_crossref",
+      "identifier": "10.1002/int.21695",
+      "url": "https://api.crossref.org/works/10.1002%2Fint.21695",
+      "returned_title": "Handling of Dependence in Dempster-Shafer Theory",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 34,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.inffus.2024.102754",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.inffus.2024.102754",
+      "returned_title": "Information fusion for large-scale multi-source data based on the Dempster-Shafer evidence theory",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 35,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.jlp.2025.105814",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.jlp.2025.105814",
+      "returned_title": "HAZOP knowledge graph construction: Dual optimization of ontology design and information extraction",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 36,
+      "kind": "official_url",
+      "identifier": "https://isif.org/media/encoding-information-lineage-scalable-distributed-fusion",
+      "url": "https://isif.org/media/encoding-information-lineage-scalable-distributed-fusion",
+      "final_url": "https://isif.org/media/encoding-information-lineage-scalable-distributed-fusion",
+      "http_status": 200,
+      "marker_results": {
+        "Encoding information lineage": true,
+        "distributed fusion": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference": 37,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.inffus.2025.103106",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.inffus.2025.103106",
+      "returned_title": "An empirical survey-type analysis of uncertainty measures for the fusion of crisp and fuzzy bodies of evidence",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 38,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.ipl.2014.09.022",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.ipl.2014.09.022",
+      "returned_title": "Credibility decay model in temporal evidence combination",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 39,
+      "kind": "official_url",
+      "identifier": "https://proceedings.mlr.press/v215/shenoy23a.html",
+      "url": "https://proceedings.mlr.press/v215/shenoy23a.html",
+      "final_url": "https://proceedings.mlr.press/v215/shenoy23a.html",
+      "http_status": 200,
+      "marker_results": {
+        "On distinct belief functions": true,
+        "Dempster-Shafer": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference": 40,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.cja.2023.03.037",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.cja.2023.03.037",
+      "returned_title": "On the evidential reasoning rule for dependent evidence combination",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 41,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.engappai.2023.106978",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.engappai.2023.106978",
+      "returned_title": "Inference and analysis on the evidential reasoning rule with time-lagged dependencies",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 42,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.inffus.2023.102102",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.inffus.2023.102102",
+      "returned_title": "Deceptive evidence detection in information fusion of belief functions based on reinforcement learning",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 43,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.ijar.2019.04.007",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.ijar.2019.04.007",
+      "returned_title": "Complementary Lipschitz continuity results for the distribution of intersections or unions of independent random sets in finite discrete spaces",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 44,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.artint.2006.05.002",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.artint.2006.05.002",
+      "returned_title": "Analyzing the degree of conflict among belief functions",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 45,
+      "kind": "doi_crossref",
+      "identifier": "10.14778/2824032.2824076",
+      "url": "https://api.crossref.org/works/10.14778%2F2824032.2824076",
+      "returned_title": "The dataflow model",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 46,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.inffus.2025.103917",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.inffus.2025.103917",
+      "returned_title": "Robust factor information fusion for industrial safety through TSFD-Based phase space reconstruction and noise reduction",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 47,
+      "kind": "web_primary_manual",
+      "status": "PASS",
+      "evidence_url": "https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr0492/index",
+      "evidence": "NRC official page confirms Fault Tree Handbook, NUREG-0492, authors, and January 1981 publication; urllib timed out but primary-source web retrieval succeeded"
+    },
+    {
+      "reference": 48,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.psep.2012.01.005",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.psep.2012.01.005",
+      "returned_title": "Dynamic safety analysis of process systems by mapping bow-tie into Bayesian network",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 49,
+      "kind": "doi_crossref",
+      "identifier": "10.1016/j.jlp.2012.02.003",
+      "url": "https://api.crossref.org/works/10.1016%2Fj.jlp.2012.02.003",
+      "returned_title": "Epistemic uncertainty in fault tree analysis approached by the evidence theory",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    },
+    {
+      "reference": 50,
+      "kind": "doi_crossref",
+      "identifier": "10.1002/9781118948743",
+      "url": "https://api.crossref.org/works/10.1002%2F9781118948743",
+      "returned_title": "Guidelines for Initiating Events and Independent Protection Layers in Layer of Protection Analysis",
+      "title_token_coverage": 1.0,
+      "status": "PASS"
+    }
+  ],
+  "failures": []
+}

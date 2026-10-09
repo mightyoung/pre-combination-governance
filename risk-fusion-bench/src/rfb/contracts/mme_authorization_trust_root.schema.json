@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "trust_epoch", "keys", "trust_root_self_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "trust_epoch": {"type": "string", "minLength": 1},
+    "keys": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "object", "additionalProperties": false, "required": ["key_id", "signer_id", "signer_role", "independent", "algorithm", "public_key_b64", "not_before_utc", "not_after_utc"], "properties": {"key_id": {"type": "string", "minLength": 1}, "signer_id": {"type": "string", "minLength": 1}, "signer_role": {"enum": ["PRODUCER_ATTESTER", "INDEPENDENT_EXECUTION_APPROVER", "TRUST_ADMIN", "BLOCK_ISSUER"]}, "independent": {"type": "boolean"}, "algorithm": {"const": "ED25519"}, "public_key_b64": {"type": "string", "minLength": 43, "maxLength": 44}, "not_before_utc": {"type": "string", "format": "date-time"}, "not_after_utc": {"type": "string", "format": "date-time"}}}},
+    "trust_root_self_sha256": {"$ref": "#/$defs/hash"}
+  }, "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rfb.contracts/lifecycle_property_corpus.schema.json@2.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "classification", "formal_gate_effect", "seed", "coverage_certificate", "traces", "invalid_traces"],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "classification": {"const": "DEVELOPMENT_NONCONFIRMATORY"},
+    "formal_gate_effect": {"const": "NONE"},
+    "seed": {"const": 20260820},
+    "coverage_certificate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["operations", "faults", "trace_ids", "properties", "complete", "sha256"],
+      "properties": {
+        "operations": {"type": "array", "uniqueItems": true, "items": {"enum": ["INITIALIZE", "EQUIVALENCE", "SUPERSEDE", "MERGE", "RETIRE", "REPLAY", "SAFE_HALT", "REPLAY_VALIDATION_FAILED"]}},
+        "faults": {"type": "array", "uniqueItems": true, "items": {"enum": ["PRE_COMMIT_CRASH", "POST_COMMIT_CRASH", "CAS_CONFLICT"]}},
+        "trace_ids": {"type": "array", "minItems": 10, "maxItems": 10, "uniqueItems": true, "items": {"type": "string", "pattern": "^g017-"}},
+        "properties": {
+          "type": "object", "minProperties": 24, "maxProperties": 24,
+          "patternProperties": {"^L(0[1-9]|1[0-9]|2[0-4])$": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/coverage"}}},
+          "additionalProperties": false
+        },
+        "complete": {"const": true},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "traces": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"$ref": "#/$defs/trace"}},
+    "invalid_traces": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/trace"}}
+  },
+  "$defs": {
+    "coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["trace_id", "checkpoint", "assertion_id", "test_id"],
+      "properties": {"trace_id": {"type": "string"}, "checkpoint": {"type": "string"}, "assertion_id": {"type": "string"}, "test_id": {"type": "string"}}
+    },
+    "trace": {
+      "type": "object", "additionalProperties": false,
+      "required": ["trace_id", "scenario", "cap", "budget", "actions"],
+      "properties": {
+        "trace_id": {"type": "string", "pattern": "^g017-"}, "scenario": {"type": "string", "minLength": 1},
+        "cap": {"type": "integer", "minimum": 1}, "budget": {"type": "number", "minimum": 0},
+        "actions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/action"}}
+      }
+    },
+    "action": {
+      "type": "object", "additionalProperties": false,
+      "required": ["action_id", "op", "order"],
+      "properties": {
+        "action_id": {"type": "string", "minLength": 1}, "op": {"enum": ["INITIALIZE", "EQUIVALENCE", "SUPERSEDE", "MERGE", "RETIRE", "REPLAY", "SAFE_HALT", "REPLAY_VALIDATION_FAILED"]},
+        "order": {"type": "integer", "minimum": 0}, "message_id": {"type": "string"}, "version": {"type": "integer", "minimum": 1},
+        "root_id": {"type": "string"}, "support": {"type": "number", "minimum": 0, "maximum": 1}, "reliability": {"type": "number", "minimum": 0, "maximum": 1},
+        "contribution_amount": {"type": "number", "minimum": 0}, "processing_cost": {"type": "number", "minimum": 0},
+        "roots": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "canonical_root": {"type": "string"}, "replacement_root": {"type": "string"},
+        "fault": {"enum": ["PRE_COMMIT_CRASH", "POST_COMMIT_CRASH", "CAS_CONFLICT"]}
+      }
+    }
+  }
+}

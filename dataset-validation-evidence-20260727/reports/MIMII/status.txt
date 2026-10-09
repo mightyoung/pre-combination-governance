@@ -1,0 +1,7 @@
+dataset=MIMII
+status=STARTED
+started=2026-07-27T14:55:00+08:00
+status=PASS
+archive_count=1
+manifest_file_count=4170
+finished=2026-07-27T15:09:56+08:00

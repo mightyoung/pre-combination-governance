@@ -1,0 +1,190 @@
+{
+  "status": "PASS",
+  "delivery_readiness": "PASS",
+  "submission_readiness": "BLOCKED",
+  "editorial_judgment": "PREMATURE_REJECT_UNTIL_LIFECYCLE_RUNTIME_ORACLE_AND_MME_PASS",
+  "checks": {
+    "all_delivery_files_exist": true,
+    "docx_structure_pass": true,
+    "reference_external_verification_50_of_50": true,
+    "citation_sequence_and_usage_pass": true,
+    "information_fusion_reference_limit": true,
+    "information_fusion_page_range": true,
+    "main_figure_present": true,
+    "shk_uses_v3_authoritative_results": true,
+    "shk_no_stale_v2_links": true,
+    "shk_absolute_local_links": true,
+    "shk_pip_check_recorded": true,
+    "remote_boundary_audit_pass": true,
+    "no_d_test_or_confirmatory_activity": true,
+    "candidate_and_release_boundaries_clean": true,
+    "experiment_claim_support_none": true,
+    "resource_gate_honestly_fails": true,
+    "pilot_and_d_test_not_authorized": true,
+    "normative_supplements_not_silently_versioned": true
+  },
+  "failures": [],
+  "citation_audit": {
+    "reference_count": 50,
+    "sequence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "sequence_ok": true,
+    "missing_entries": [],
+    "uncited_references": []
+  },
+  "word_com_readonly_statistics": {
+    "00-论文-中文阅读稿v21-生命周期一致组合前治理与IF创新主线版.docx": {
+      "pages": 13,
+      "words": 9884,
+      "tables": 4,
+      "inline_shapes": 1
+    },
+    "实验设计与执行计划v6.8-机制先行与表示中立验证蓝图.docx": {
+      "pages": 4,
+      "words": 2365,
+      "tables": 4,
+      "inline_shapes": 0
+    },
+    "研判报告二十四-报告二十三裁决与v21-Information-Fusion创新性论证.docx": {
+      "pages": 4,
+      "words": 2876,
+      "tables": 3,
+      "inline_shapes": 0
+    },
+    "实验执行记录v6.7-SHK-000-远程资格启动.docx": {
+      "pages": 6,
+      "words": 4851,
+      "tables": 6,
+      "inline_shapes": 0
+    }
+  },
+  "reference_verification": {
+    "status": "PASS",
+    "reference_count": 50,
+    "passed": 50,
+    "failed": 0,
+    "method": "49 automated Crossref/official-URL checks plus NRC primary-source web confirmation after timeout"
+  },
+  "experiment_gates": {
+    "D_TEST_AUTHORIZED": false,
+    "G0_RESOURCE": "FAIL",
+    "G1_CANARY": "PASS",
+    "G2_CANARY": "PASS",
+    "PILOT_AUTHORIZED": false
+  },
+  "experiment_evidence_class": {
+    "claim_support": "none",
+    "confirmatory": false,
+    "evidence_class": "ENGINEERING_QUALIFICATION_ONLY",
+    "run_class": "G0_G2_SHAKEDOWN",
+    "test_opened": false
+  },
+  "remote_boundary_audit": {
+    "audited_at_utc": "2026-07-14T09:06:19.758514+00:00",
+    "credential_literal_hits": 0,
+    "credential_scan_files": 66,
+    "host_key_verified": true,
+    "remote": {
+      "actual_d_test_namespace_dirs": [],
+      "candidate_writeable_entries": [],
+      "data_test_exists": false,
+      "release_entries": [],
+      "runs_confirm_exists": false
+    },
+    "schema": "shk000-final-remote-compliance-audit-1.0",
+    "status": "PASS",
+    "substring_false_positive_note": "Earlier broad filename substring scan matched scipy _page_trend_test.py and its pyc inside the venv; neither is a D_test namespace."
+  },
+  "file_manifest": {
+    "00-论文-中文阅读稿v21-生命周期一致组合前治理与IF创新主线版.md": {
+      "bytes": 46624,
+      "sha256": "fd066f0a33934691aede72c1b75eadbaefbd0166918b86d2b1ebdd0cf5205522"
+    },
+    "00-论文-中文阅读稿v21-生命周期一致组合前治理与IF创新主线版.docx": {
+      "bytes": 478524,
+      "sha256": "cea1ee0c0331c6c2405d9e5305d82fecbaf962c413f2fdb26677f5ab1953b054"
+    },
+    "实验设计与执行计划v6.8-机制先行与表示中立验证蓝图.md": {
+      "bytes": 10980,
+      "sha256": "5d476aa22f63e6dbba8499a3e3f87de9a3fa533da9998c1377cc3ada0792ba31"
+    },
+    "实验设计与执行计划v6.8-机制先行与表示中立验证蓝图.docx": {
+      "bytes": 45732,
+      "sha256": "719c4c23032b4f502618f90eb2e9381d75d2765c0fa4dd6d67a9767b859068e0"
+    },
+    "研判报告二十四-报告二十三裁决与v21-Information-Fusion创新性论证.md": {
+      "bytes": 12183,
+      "sha256": "c29cf5b14719b76ca74281e1b75fe83a4e16c0552e975d62438a31712b8c9621"
+    },
+    "研判报告二十四-报告二十三裁决与v21-Information-Fusion创新性论证.docx": {
+      "bytes": 46553,
+      "sha256": "ea1d29b24fbc6a929887f6c87e3eb3f325512d1094388b3126e9e6c9aca9d607"
+    },
+    "实验执行记录v6.7-SHK-000-远程资格启动.md": {
+      "bytes": 20854,
+      "sha256": "e4d3a678c76890a5129f16267e6136f8e3b4b1cc41eb4f460bc737c33dd5e8e8"
+    },
+    "实验执行记录v6.7-SHK-000-远程资格启动.docx": {
+      "bytes": 48324,
+      "sha256": "a8abd5005552a3217dba2a622872b4ea71469cab79996f3871210137bfdce944"
+    },
+    "v21-v6.8-DOCX结构与引用核验报告.json": {
+      "bytes": 5581,
+      "sha256": "d4f41fb5341f0f189ab162ca3c058d4f413024cd5a9cfb487001c30566b47013"
+    },
+    "v21-参考文献外部元数据核验.json": {
+      "bytes": 19009,
+      "sha256": "6a6f98b14c22f7bce7099954170434a67ad91bb10be62a8f698edac35f22f71d"
+    }
+  }
+}

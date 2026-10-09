@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "execution_protocol_id", "request_nonce", "producer_id", "producer_key_id", "requested_action", "execution_scope", "classification", "issued_at_utc", "expires_at_utc", "bindings", "request_id", "request_self_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "status": {"const": "DRAFT_UNSIGNED"},
+    "execution_protocol_id": {"const": "RFB_MME_V1_EXACT27_LOCAL"},
+    "request_nonce": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "producer_id": {"const": "G020_AUTHORIZATION_REQUEST_GENERATOR"},
+    "producer_key_id": {"const": "G020_PRODUCER_ATTESTATION_KEY"},
+    "requested_action": {"const": "EXECUTE_MME_LOCAL_EXACT27_DEVELOPMENT"},
+    "execution_scope": {"type": "object", "additionalProperties": false, "required": ["mode", "independent_blocks", "dataset_split", "remote_actions", "formal_writes", "d_test_access"], "properties": {"mode": {"const": "LOCAL_ONLY"}, "independent_blocks": {"const": 27}, "dataset_split": {"const": "D_development"}, "remote_actions": {"const": false}, "formal_writes": {"const": false}, "d_test_access": {"const": false}}},
+    "classification": {"$ref": "#/$defs/classification"},
+    "issued_at_utc": {"type": "string", "format": "date-time"},
+    "expires_at_utc": {"type": "string", "format": "date-time"},
+    "bindings": {"$ref": "#/$defs/bindings"},
+    "request_id": {"$ref": "#/$defs/hash"},
+    "request_self_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "ref": {"type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/hash"}}},
+    "classification": {"type": "object", "additionalProperties": false, "required": ["execution_lane", "classification", "formal_gate_effect", "formal_admission_eligible", "shk001b_eligible", "contains_formal_claims"], "properties": {"execution_lane": {"const": "RESEARCH"}, "classification": {"const": "DEVELOPMENT_NONCONFIRMATORY"}, "formal_gate_effect": {"const": "NONE"}, "formal_admission_eligible": {"const": false}, "shk001b_eligible": {"const": false}, "contains_formal_claims": {"const": false}}},
+    "bindings": {"type": "object", "additionalProperties": false, "required": ["files", "phase0_manifest_self_sha256", "runtime_environment_id", "schemas", "execution_plan"], "properties": {"files": {"type": "object", "additionalProperties": false, "required": ["preregistration", "scope", "gate_checklist", "phase0_manifest", "phase0_raw_receipt", "runtime_manifest", "runtime_qualification"], "properties": {"preregistration": {"$ref": "#/$defs/ref"}, "scope": {"$ref": "#/$defs/ref"}, "gate_checklist": {"$ref": "#/$defs/ref"}, "phase0_manifest": {"$ref": "#/$defs/ref"}, "phase0_raw_receipt": {"$ref": "#/$defs/ref"}, "runtime_manifest": {"$ref": "#/$defs/ref"}, "runtime_qualification": {"$ref": "#/$defs/ref"}}}, "phase0_manifest_self_sha256": {"$ref": "#/$defs/hash"}, "runtime_environment_id": {"$ref": "#/$defs/hash"}, "schemas": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"$ref": "#/$defs/ref"}}, "execution_plan": {"type": "object", "additionalProperties": false, "required": ["preregistration_sha256", "core_factors", "blocks", "block_ids", "method_panel", "method_orders", "test_plan_sha256", "receipt_derivation_contract_sha256", "execution_plan_sha256"], "properties": {"preregistration_sha256": {"$ref": "#/$defs/hash"}, "core_factors": {"type": "object"}, "blocks": {"type": "array", "minItems": 27, "maxItems": 27, "items": {"type": "object"}}, "block_ids": {"type": "array", "minItems": 27, "maxItems": 27, "uniqueItems": true, "items": {"type": "string"}}, "method_panel": {"type": "array", "minItems": 7, "maxItems": 7, "uniqueItems": true, "items": {"type": "string"}}, "method_orders": {"type": "array", "minItems": 27, "maxItems": 27, "items": {"type": "object"}}, "test_plan_sha256": {"$ref": "#/$defs/hash"}, "receipt_derivation_contract_sha256": {"$ref": "#/$defs/hash"}, "execution_plan_sha256": {"$ref": "#/$defs/hash"}}}}}
+  }
+}

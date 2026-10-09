@@ -1,0 +1,500 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://risk-fusion-bench.local/schemas/transaction_ledger.schema.json",
+  "title": "Stage-2 Transaction Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contains_raw_dataset",
+    "records",
+    "head_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "contains_raw_dataset": {
+      "const": false
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/record"
+      }
+    },
+    "head_hash": {
+      "$ref": "#/$defs/sha256"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonnegative_number": {
+      "type": "number",
+      "minimum": 0
+    },
+    "contribution_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "belief_changed",
+        "budget_used",
+        "charge_applied",
+        "contribution_token",
+        "processing_charge",
+        "processing_spend",
+        "scientific_state_changed"
+      ],
+      "properties": {
+        "belief_changed": {
+          "type": "boolean"
+        },
+        "budget_used": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "charge_applied": {
+          "const": true
+        },
+        "contribution_token": {
+          "$ref": "#/$defs/sha256"
+        },
+        "processing_charge": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "processing_spend": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "scientific_state_changed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "audit_contribution_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "belief_changed",
+        "budget_used",
+        "charge_applied",
+        "contribution_token",
+        "processing_charge",
+        "processing_spend",
+        "scientific_state_changed"
+      ],
+      "properties": {
+        "belief_changed": {
+          "type": "boolean"
+        },
+        "budget_used": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "charge_applied": {
+          "const": true
+        },
+        "contribution_token": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "processing_charge": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "processing_spend": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "scientific_state_changed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "duplicate_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "charge_applied",
+        "reason",
+        "scientific_state_changed"
+      ],
+      "properties": {
+        "charge_applied": {
+          "const": false
+        },
+        "reason": {
+          "const": "EXACT_EVENT_DUPLICATE"
+        },
+        "scientific_state_changed": {
+          "const": false
+        }
+      }
+    },
+    "halted_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "charge_applied",
+        "reason",
+        "scientific_state_changed"
+      ],
+      "properties": {
+        "charge_applied": {
+          "const": false
+        },
+        "reason": {
+          "enum": [
+            "EVENT_ID_EQUIVOCATION",
+            "RUNTIME_UNAVAILABLE"
+          ]
+        },
+        "scientific_state_changed": {
+          "const": false
+        }
+      }
+    },
+    "equivocation_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "belief_changed",
+        "budget_changed",
+        "charge_applied",
+        "committed_event_hash",
+        "received_event_hash",
+        "reason",
+        "scientific_state_changed"
+      ],
+      "properties": {
+        "belief_changed": {
+          "const": false
+        },
+        "budget_changed": {
+          "const": false
+        },
+        "charge_applied": {
+          "const": false
+        },
+        "committed_event_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "received_event_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reason": {
+          "const": "EVENT_ID_EQUIVOCATION"
+        },
+        "scientific_state_changed": {
+          "const": true
+        }
+      }
+    },
+    "domain_failure_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "belief_changed",
+        "budget_changed",
+        "budget_used",
+        "charge_applied",
+        "contribution_token",
+        "processing_charge",
+        "processing_spend",
+        "reason",
+        "scientific_state_changed"
+      ],
+      "properties": {
+        "belief_changed": {
+          "const": false
+        },
+        "budget_changed": {
+          "const": false
+        },
+        "budget_used": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "charge_applied": {
+          "const": true
+        },
+        "contribution_token": {
+          "type": "null"
+        },
+        "processing_charge": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "processing_spend": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "reason": {
+          "enum": [
+            "BUDGET_CAP",
+            "FULL_CONFLICT",
+            "ROOT_IDENTITY_CONFLICT"
+          ]
+        },
+        "scientific_state_changed": {
+          "const": true
+        }
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "record_type",
+        "event_id",
+        "event_hash",
+        "processing_token",
+        "before_scientific_hash",
+        "after_scientific_hash",
+        "details",
+        "previous_hash",
+        "record_hash"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "record_type": {
+          "enum": [
+            "ACCEPTED",
+            "SUPERSEDED",
+            "ALTERNATE_VIEW_AUDIT",
+            "STALE_VERSION_AUDIT",
+            "DUPLICATE_AUDIT",
+            "EVENT_ID_EQUIVOCATION",
+            "HALTED_AUDIT",
+            "BUDGET_CAP_AUDIT",
+            "FULL_CONFLICT_AUDIT",
+            "ROOT_IDENTITY_CONFLICT_AUDIT"
+          ]
+        },
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "event_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "processing_token": {
+          "$ref": "#/$defs/sha256"
+        },
+        "before_scientific_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "after_scientific_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "details": {
+          "type": "object"
+        },
+        "previous_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "record_hash": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "record_type": {
+                "enum": [
+                  "ACCEPTED",
+                  "SUPERSEDED"
+                ]
+              }
+            },
+            "required": [
+              "record_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "details": {
+                "$ref": "#/$defs/contribution_details"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "record_type": {
+                "enum": [
+                  "ALTERNATE_VIEW_AUDIT",
+                  "STALE_VERSION_AUDIT"
+                ]
+              }
+            },
+            "required": [
+              "record_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "details": {
+                "$ref": "#/$defs/audit_contribution_details"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "record_type": {
+                "const": "DUPLICATE_AUDIT"
+              }
+            },
+            "required": [
+              "record_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "details": {
+                "$ref": "#/$defs/duplicate_details"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "record_type": {
+                "const": "HALTED_AUDIT"
+              }
+            },
+            "required": [
+              "record_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "details": {
+                "$ref": "#/$defs/halted_details"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "record_type": {
+                "const": "EVENT_ID_EQUIVOCATION"
+              }
+            },
+            "required": [
+              "record_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "details": {
+                "$ref": "#/$defs/equivocation_details"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "record_type": {
+                "const": "BUDGET_CAP_AUDIT"
+              }
+            },
+            "required": [
+              "record_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "details": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/domain_failure_details"
+                  },
+                  {
+                    "properties": {
+                      "reason": {
+                        "const": "BUDGET_CAP"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "record_type": {
+                "const": "FULL_CONFLICT_AUDIT"
+              }
+            },
+            "required": [
+              "record_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "details": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/domain_failure_details"
+                  },
+                  {
+                    "properties": {
+                      "reason": {
+                        "const": "FULL_CONFLICT"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "record_type": {
+                "const": "ROOT_IDENTITY_CONFLICT_AUDIT"
+              }
+            },
+            "required": [
+              "record_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "details": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/domain_failure_details"
+                  },
+                  {
+                    "properties": {
+                      "reason": {
+                        "const": "ROOT_IDENTITY_CONFLICT"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

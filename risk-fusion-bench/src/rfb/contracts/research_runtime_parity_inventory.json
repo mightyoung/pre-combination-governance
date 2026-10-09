@@ -1,0 +1,17 @@
+{
+  "schema_version": "r005-runtime-parity.v2",
+  "runtime_format": "python_zipapp_stdlib_v1",
+  "dependency_profile": "stdlib_only",
+  "hash_contract": "Each component hash is SHA-256 of the complete shared source file. The canonical component-to-hash map is embedded in __main__.py, so any inventoried source change changes runtime_source_sha256, runtime_file_sha256, and runtime_manifest_sha256.",
+  "components": {
+    "models": {"shared_source_file": "src/rfb/research/models.py", "behavior_vectors": ["classification_exact"]},
+    "events": {"shared_source_file": "src/rfb/research/trace.py", "behavior_vectors": ["trace_positive", "trace_chain_negative"]},
+    "lock": {"shared_source_file": "src/rfb/research/lock.py", "behavior_vectors": ["lock_collision", "stale_two_observations"]},
+    "probes": {"shared_source_file": "src/rfb/research/preflight.py", "behavior_vectors": ["probe_fresh", "probe_stale_negative"]},
+    "classification": {"shared_source_file": "src/rfb/research/models.py", "behavior_vectors": ["classification_exact", "classification_mutation_negative"]},
+    "result": {"shared_source_file": "src/rfb/research/receipts.py", "behavior_vectors": ["closed_result_positive", "closed_result_symlink_negative"]},
+    "receipt": {"shared_source_file": "src/rfb/research/receipts.py", "behavior_vectors": ["authoritative_receipt_before_release", "release_proof_separate"]},
+    "publication": {"shared_source_file": "src/rfb/research/files.py", "behavior_vectors": ["no_replace_positive", "no_replace_collision_negative"]},
+    "capacity": {"shared_source_file": "src/rfb/research/adapters.py", "behavior_vectors": ["capacity_boundaries", "subbudget_non_borrowing"]}
+  }
+}

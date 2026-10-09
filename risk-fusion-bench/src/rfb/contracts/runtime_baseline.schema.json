@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"runtime-baseline.v1","type":"object","required":["schema_id"],"properties":{"schema_id":{"const":"runtime-baseline.v1"}},"additionalProperties":true}

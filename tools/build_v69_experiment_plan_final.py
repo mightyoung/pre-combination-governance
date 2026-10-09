@@ -1,0 +1,678 @@
+from __future__ import annotations
+
+import csv
+import hashlib
+import json
+import random
+from collections import Counter
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent.parent
+MD_OUT = ROOT / "实验设计与执行计划v6.9-指定执行版-机制验证到确认性试验.md"
+JSON_OUT = ROOT / "ExperimentExecutionPlan-v6.9.json"
+ALLOCATION_OUT = ROOT / "MMEAllocation-v6.9.csv"
+TEMPLATE_OUT = ROOT / "MMETemplateMatrix-v6.9.csv"
+
+PLAN_SEED = 202607140609
+METHODS = [
+    "A",
+    "B0_NAIVE",
+    "B1_TRANSPORT_EOS",
+    "B2P_LATE_LINEAGE_RECOMPILE",
+    "B3_CAUTIOUS",
+    "B4_PARTIAL_DEP",
+    "B5_UNKNOWN_CORR",
+]
+PILOT_METHODS = ["A", "G_STAR", "SENTINEL_1", "SENTINEL_2", "SENTINEL_3"]
+STRATA = [
+    (topology, path, severity)
+    for topology in ["T1", "T2"]
+    for path in ["P1", "P2", "P3", "P4"]
+    for severity in ["S1", "S2", "S3"]
+]
+
+
+PLAN_MD = r"""# 实验设计与执行计划 v6.9：指定执行版——从机制验证到确认性试验
+
+> **状态：EXECUTION-SPECIFIED / REMOTE-RUN-BLOCKED。** 本版根据 v6.8、研判报告二十四及三路独立复核，将原则蓝图改成可审计的规模、随机化、统计门、资源门、责任和排期。当前 `G0_RESOURCE=FAIL`，因此只允许本地开发、计划冻结与非晋级 dry-run；不得启动 SHK-001、正式 MME、pilot、功效确认或任何 `D_test` 操作。
+
+## 0 一页执行结论
+
+| 阶段 | 指定规模 | 目的 | 启动条件 |
+| --- | ---: | --- | --- |
+| Phase 0/G1–G2 | 每实现 50,000 lifecycle traces + 1,000 crash traces | 生成器、双 oracle、完整 runtime、第二实现资格 | 本地可开发；正式关闭须审计工件齐全 |
+| MME-SCREEN | 84 templates × 8 = **672 independent bundles**；7 方法共 4,704 evaluations | 暴露机制/实现失败；不作显著性裁决 | G0、G1、G2 PASS；G3a 预注册冻结 |
+| MME-VERIFY | 28 个预密封 templates × 60 = **1,680 independent bundles**；7 方法共 11,760 evaluations | 一次性裁决 fusion-specific increment | VERIFY 模板在 SCREEN 前密封；SCREEN 锁定后解封执行 |
+| D_select | 24 strata × 28 = **672 bundles**；10,000 次整簇 bootstrap | 只在 MME GO 后冻结 G* | G3c GO；不得查看 A−G* 方向选 G* |
+| Pilot-fit | +720 → +720 → +480；累计 **1,920 bundles** | 只估 nuisance、discordance、ICC、tail、failure | G* 与 3 sentinels 冻结；不得估 A−G* 效应 |
+| Pilot-heldout | 独立 **480 bundles** | 验证 kernel coverage、tail 与 topology transport | fit 精度门通过 |
+| Confirmatory | 总 n 只取 120 的整数倍；最终 n 由 joint power-confirm 决定 | C-System IUT、no-harm 与一次性 test | G4a/b/c 全 PASS，双钥匙授权 |
+
+**编辑硬门：**若 A 只能击败 transport exactly-once，却不能击败允许晚到谱系重算的强 `B2+`，或者优势只来自更多 ABSTAIN/UNAVAILABLE、内部 ledger 指标或 A 私有 oracle，`MME_VERDICT=NO_GO`，停止当前 Information Fusion 创新主线，不扩大 CSTR 确认试验。
+
+## 1 独立单位、估计对象与随机化
+
+### 1.1 唯一独立单位
+
+MME、pilot 与确认性试验的科学独立单位均为 `physical_seed_base_bundle`。每个 bundle 由物理参数、初始条件、扰动、故障时刻、屏障响应和事故路径共同生成，只计一次独立样本。method、algorithm seed、attack、arrival、noise、registry/Eventifier 变换、窗口、view、replay 和同一 simulationRun 的时间点全部嵌套，不增加 n。
+
+若同一物理轨迹派生多个模板/视图，这些模板仍属于同一 bundle cluster，必须先在 bundle 内归并，再形成 A−baseline 配对差。执行 batch 从一开始就是方差聚类单位；所有 bootstrap 都按 batch 整簇抽样并保留簇内全部 bundle、方法和技术重复。禁止根据 pilot ICC 大小在普通 bootstrap 与 cluster bootstrap 之间切换。
+
+### 1.2 分层与外推边界
+
+科学分层固定为 `2 topology × 4 path family × 3 severity = 24 strata`。两个 topology 是固定层，不是从“拓扑总体”抽取的两个随机 cluster；论文不得据此外推至任意拓扑。P1–P4 的领域名称、可达域和层权须在 G1 冻结。当前 `uniform_1_over_24` 仅是分配用工作权重，最终确认性权重仍为 `PENDING_DOMAIN_SIGNOFF`。
+
+连续物理参数在层内用 seeded maximin Latin hypercube；离散 operating/barrier/CCF 水平用平衡置换。七方法采用 **14 条 Williams 序列**，五方法采用 **10 条 Williams 序列**。容器 reset、node、batch、cache/warm 状态不得与方法混杂。
+
+### 1.3 计划表不是运行种子
+
+`MMEAllocation-v6.9.csv` 冻结 template/batch/stratum/方法顺序槽位，但故意不含可执行 physical seed。`contains_executable_seeds=false`。数据与安全审计人仅在 G3a 后生成 SCREEN SeedManifest，并在 SCREEN 前把 VERIFY template payload 与 seeds 加密密封；公开计划只保存承诺 hash。当前 G0 失败时不得提前生成实验数据。
+
+## 2 五级门控 G0–G4
+
+| Gate | 定义 | 通过条件 | 失败后允许事项 | 强制工件 |
+| --- | --- | --- | --- | --- |
+| G0 | 资源、完整性与物理隔离 | 独立存储/配额、CPU/GPU 预约、candidate 只读、method 与 truth/scorer 分 UID/container、ACL 负测、空输出路径、digest 全通过 | 仅本地开发和 `NON_CONFIRMATORY_DO_NOT_PROMOTE` dry-run | `ServerProfile-v6.9.json`、`StorageCapacityPlan.json`、`ResourceReservation.json`、`IsolationQualification.json`、`CandidateIntegrityManifest.json`、`G0Decision.json` |
+| G1 | 物理生成器、双 oracle 与场景资格 | 两 CSTR、24 层、seed tree、truth/declared 双图、ActionTruth、泄漏负测与可行性 mask 双签 | 重构生成器；toy case 不算样本 | `ScenarioQualificationManifest.json`、`SeedTreeManifest.json`、`OracleGraphQualification.json`、`ActionTruthRuleManifest.json`、`LeakageNegativeTestReport.json`、`G1Decision.json` |
+| G2 | lifecycle runtime 与独立复现 | 状态机、原子撤销/替换、online=replay、故障恢复、双实现冻结 trace 一致 | 核心 invariant 失败即停止性能主线 | `Phase0QualificationManifest.json`、`ReplayEquivalenceReport.json`、`CrashRecoveryReport.json`、`DifferentialImplementationReport.json`、SBOM/digest、`G2Decision.json` |
+| G3 | 表示中立 MME 与设计冻结 | G3a 预注册；G3b SCREEN/VERIFY；G3c 独立裁决；仅 GO 后 G3d 冻结 G* | MME FAIL 停止 IF 主线或升版重定义 | `MMEPreregistration.json`、`MMETemplateMatrix-v6.9.csv`、bundles/truth hashes、`MMEIndependentVerdict.json`、`GStarSelectionManifest.json` |
+| G4 | pilot、联合功效、密封 test 与锁定分析 | G4a pilot；G4b power-confirm；G4c 双钥匙密封授权；G4d 单次 test/盲态分析 | 任一失败都保持 `D_TEST_AUTHORIZED=false` | `PilotNuisanceReport.json`、`JointPowerSurface.json`、`PowerConfirmReport.json`、`AllocationManifest.json`、`TestManifest.json`、`DTestAuthorization.json`、RunLedger |
+
+门之间严格顺序。并行开发可以进行，但不能并行关闭下游门，也不能用 dry-run、canary、请求数或技术重复替代独立 bundle 资格。
+
+## 3 Phase 0：G1/G2 资格合同
+
+### 3.1 当前可以立即执行的本地工作
+
+1. 完成 INITIALIZE、SUPERSEDE、MERGE、RETIRE、REPLAY、SAFE_HALT 与原子 belief/ledger/budget/action 切换；
+2. 建立与主 runtime 分库、分作者审查的 pure-reference 第二实现；
+3. 实现 scorer-only truth graph、method-visible declared graph 与泄漏负测；
+4. 建立 exact retry、ABA、乱序、post-commit equivalence、crash/restart、CAS retry、cap overflow 的 property/fault harness；
+5. 实现 B0–B5 公平 adapter、共同 deadline/cap/failure mapping 和容器重置；
+6. 编写 manifest/schema/SBOM、SeedTree、ActionTruth、失败账本与只读审计脚本。
+
+这些输出必须标记 `DEV_ONLY` 或 `DRY_RUN`，不能形成论文效果结论。
+
+### 3.2 G2 最低资格规模
+
+- 主实现和第二实现各至少 50,000 条随机 lifecycle traces；
+- 每实现另至少 1,000 条 crash/restart/CAS retry traces，并覆盖每个持久化切点；
+- 每个 canonical class 的 active contribution 始终为 0 或 1；
+- online/replay registry、belief、ledger、budget、gate、action hash 100% 一致；
+- mandatory merge/replay 失败必须进入 UNAVAILABLE/SAFE_HALT；
+- 双实现输出在预签数值容差内 100% agreement；
+- unit/property/integration、`pip check`、artifact hash、credential/path/ACL audit 全通过。
+
+任一核心 invariant 失败即 G2 FAIL；修复后必须新建 qualification run，保留失败记录，不能覆盖重跑。
+
+## 4 Minimal Mechanism Experiment（G3）
+
+### 4.1 方法面板与强基线
+
+| 方法 | 冻结能力与公平约束 |
+| --- | --- |
+| A | 完整 lifecycle admission、class recompilation、belief/ledger/budget/action 原子切换；不读 truth |
+| B0 | naïve normalized conjunctive；只作公开下界 |
+| B1 | 与 A 相同 mapper 与 NormConj，只做 message-id/version transport exactly-once、checkpoint/replay |
+| B2+ | 接收相同 lineage/control events；晚到边后从当前叶节点重算并原子发布新 belief；但没有 class-version、budget、action 的联合生命周期事务 |
+| B3 | cautious rule；读相同公共事件/lineage，不读 scorer truth |
+| B4 | partial-dependence 强近邻；参数只能在独立 calibration 分区冻结 |
+| B5 | unknown-correlation conservative baseline；仅在公共 belief/risk/action schema 可比时纳入 |
+
+若给 B2+ 加上联合 ledger/budget/action 事务后与 A 语义等价，必须报告“机制收敛为同一语义”，不能通过换名称维持创新。
+
+### 4.2 双 oracle，禁止 A 自证
+
+第一层是表示中立的 method-specific clean counterfactual：
+
+$$O^{clean}_{m}=m\text{ 在 scorer 构造的无重复、正确版本、唯一物理根流上的输出}.$$
+
+每个方法与自己的 clean counterfactual 比较，不能要求 cautious/partial 复制 A 的 NormConj。第二层是公共外部 truth：latent physical state、真实 acquisition/ancestry、冻结 action loss、deadline 与 availability loss。所有方法统一比较 proper score、action regret、wrong-direction action 与 correct-action delay。A 的 canonicalizer、ledger/root count 只能诊断，不能生成主 oracle。
+
+### 4.3 SCREEN：84 templates × 8 bundles
+
+SCREEN 使用 72 个核心模板与 12 个强制边界模板：
+
+- 核心模板为 Q0、M1–M5 六个 motif × 3 evidence-strength × 2 history-depth × 2 arrival-offset，合计 72；
+- 边界模板为 missing edge、spurious edge、Eventifier over-split、over-merge × 3 dose，合计 12；
+- 每模板 8 个独立 bundles，总 n=672；24 strata 各 28，24 batches 各 28；
+- 每 batch 14 条 Williams 序列各用 2 次，故每条序列全阶段恰用 48 次；
+- 7 方法共 4,704 method-bundle evaluations；若 `r_alg=3`，原始运行数为 14,112，但 n 仍为 672。
+
+模板矩阵在运行前必须通过：可行二因素组合覆盖率 100%；`post-commit timing × lifecycle × duplicate class` 关键三因素全部覆盖；不可行组合由冻结 feasibility mask 解释。SCREEN 只暴露机制、实现和响应曲线，**不作显著性裁决**。每模板 n=8 的零事件单侧 95% 上界约 31%，没有 no-harm 证明力。
+
+### 4.4 VERIFY：预密封 28 templates × 60 bundles
+
+VERIFY payload 与 seeds 必须在 SCREEN 前生成、加密密封并禁止方法/统计团队访问。公开矩阵只展示类别与 commitment：
+
+- 12 个 post-commit lifecycle 核心挑战；
+- 6 个独立新信息/SRI no-harm；
+- 4 个 transport-only negative controls；
+- 6 个 registry/Eventifier/fail-stop 边界模板。
+
+每模板 60 个独立 bundles，总 n=1,680；24 strata 各 70；60 batches 各 28；14 条 Williams 序列各120次；7 方法共11,760 evaluations。若 `r_alg=3`，原始运行数35,280，但 n 不变。
+
+每模板 n=60 的零事件单侧95%上界为4.87%。若签署的 template-level no-harm tolerance 为2%或1%，VERIFY 每模板至少需149或299个独立 bundles；必须在 SCREEN 前升版扩容，不能用技术重复补足。主裁决对预签核心模板集合做加权配对估计，不对28模板逐一检验后选择性报告。
+
+### 4.5 最小充分操纵与确定性参考
+
+| ID | 轨迹 | 主要区分 |
+| --- | --- | --- |
+| Q0 | 同 key/version/hash exact retry | 阴性对照；B1 失败则基线无效 |
+| M1 | 同一采集、不同消息键，第二提交前已知 equivalence | epistemic identity 不等于 transport key |
+| M2 | 第二份已进入 belief 并完成一次 action query 后才披露 equivalence | A 对 B1 与强 B2+；评分全恢复轨迹 |
+| M3 | 两次真正独立采集但 payload 与 M1/M2 同向相同 | 防止“重复全部拒绝” |
+| M4 | 真正独立、方向相反且强度不对称 | proper loss、冲突方向与错误 abstention |
+| M5 | `commit v1 → supersede v2 → late merge → retire → crash/replay` | torn state、过期 action、恢复和重放 |
+
+M1–M3 构成 payload 相同、latent ancestry 不同的配对世界。冻结参考：同源世界 `m(H)=0.80,m(Θ)=0.20`；独立同向世界 `m(H)=0.96,m(Θ)=0.04`。M4 标准冲突点为 `m1(H)=0.8,m2(not-H)=0.6`，归一合取参考 `m(H)=0.6153846,m(not-H)=0.2307692,m(Θ)=0.1538462`。确定性反例不做 p 值检验；恢复后 L1 误差须≤1e-10。
+
+### 4.6 指标与失败映射
+
+主要指标：全查询轨迹 oracle-deviation AUC；equivalence disclosure 至持续正确状态的恢复延迟；外部可见 torn-state（硬门0）；terminal deviation；Brier/log proper loss；action regret；wrong-direction action；availability、ABSTAIN、false block；P99、memory、replay cost、timeout/OOM/crash。
+
+每个 control event 前后设置固定逻辑查询点。UNAVAILABLE、超时和方法失败不得删失，按预签最差端点/损失计入并单独报告 availability。不得把 abstention 当作“没有 unsafe action”。
+
+### 4.7 MME GO/NO-GO
+
+VERIFY 的 GO 是交集：
+
+1. 所有 deterministic lifecycle/crash cutpoints：A 零 invariant failure、零 torn state、online=replay、双实现100% agreement；
+2. 在 M2 核心集合上，A 相对 B1 **和** B2+ 的配对 trajectory-deviation 差值均越过预签 `PENDING-MME-DELTA-DRI/RECOVERY`；这是 IUT，不能只胜 B1；
+3. M3/M4 的 external proper loss、SRI、action regret、availability、abstention、delay、资源均通过 no-harm；
+4. 把 ABSTAIN/UNAVAILABLE 计入预签代价后优势仍存在；
+5. 优势至少体现在公共 belief/action/availability，不依赖 internal ledger 或 A 私有 truth；
+6. B1/B2+ 即使 SCREEN 表现差也不得删除。
+
+以下任一项立即 NO-GO：B2+ 与 A 在公共指标/资源落入预签等效区；A 只赢终态或 ledger；A 靠更多 abstention/false block 获胜；独立世界未恢复0.96；任一 invariant/replay/第二实现失败；method-specific clean oracle 后优势消失；结果依赖更宽资源或私有 metadata。
+
+registry/Eventifier 错设用于限定保证域，不与创新核心混成一个有利平均数；必须报告 missing/spurious/higher-order omission/over-split/over-merge 的完整剂量反应。
+
+## 5 D_select 与 pilot（G3d/G4a）
+
+### 5.1 G* 选择
+
+MME GO 后生成 `D_select=24×28=672 bundles`，7 方法共4,704 evaluations；按28个 batch 整簇抽样10,000次。G* 只在 B0–B5 中按冻结 safety loss、availability、deadline、resource 与 tie-break 选择，不查看 A−baseline 效应方向。单赢家资格：选择频率≥0.90，且与 runner-up 的 loss-gap 95%区间排除0；否则停止单G*路线，升版为多基线 simultaneous comparison。
+
+### 5.2 Pilot 方法与波次
+
+pilot 只运行 `A + G* + 3 fixed sentinels = 5 methods`，使用10条Williams序列。G*、sentinels、tie-break 在 pilot 前冻结，pilot 不重新选 G*。
+
+| 阶段 | 新增 bundles | 累计 fit | 每 stratum | batches | method runs |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Wave 1 | 720 | 720 | 30 | 30 | 3,600 |
+| Wave 2 | 720 | 1,440 | 60 | 60 | 累计7,200 |
+| Wave 3 | 480 | 1,920 | 80 | 80 | 累计9,600 |
+| heldout | 独立480 | — | 20 | 20 | 2,400 |
+
+每 batch 含24 strata各1 bundle。最大 pilot 为2,400 bundles、12,000 method evaluations。每波只查看盲态 nuisance summaries，禁止查看 A−G* 的符号、p值、赢家或用观察效应做样本量重估。
+
+### 5.3 Pilot 精度停止门
+
+停止 fit 必须全部满足：
+
+1. 每个共同主二元终点总配对 discordance `b+c≥60`，且每 topology≥20；
+2. 每方法成功 delay≥1,000，P95 的95%区间相对半宽≤10%；
+3. 若P99为硬门，fit+heldout每方法合格观测≥2,000且约有≥20个1%尾部观测；
+4. batch数≥30，ICC 95%区间宽度≤0.10；ICC上界进入功效grid，不改变分析器；
+5. failure/common-invalid/miss mass 单侧上界低于预签容忍度；
+6. heldout kernel coverage、tail 与 topology transport 资格通过。
+
+零事件使用 `U_0,95=1-0.05^(1/n)`。n=720、1,440、1,920 时分别约0.415%、0.208%、0.156%；Wave1层内 n=30 的上界仍约9.5%，不能声称逐层稀有事件安全。Wave3后仍未过门即 `PILOT_PRECISION_FAIL / C-System=NOT_TESTED`；追加样本必须升版并换 seed namespace。
+
+## 6 确认性试验与联合功效（G4b–G4d）
+
+### 6.1 共同主终点与 IUT
+
+1. `Y_UF=I(Y_US or Y_F)`：unsafe-SAFE 或方法失败；并分别对 unsafe-SAFE 与 method failure 设 no-harm；
+2. restricted correct-action delay：错误方向、超时、无动作和窗口内失败都不能完成终点。
+
+绑定门包括 benign SAFE availability、miss mass、误升级、ABSTAIN、barrier calibration、demand sensitivity、P99、memory/OOM、update/query budget 与 SAFE invariant。组件执行阈值设为单侧 `alpha_run=0.020`，保留0.005给实现/Monte Carlo资格缓冲；论文 family cap 仍为0.025。IUT组件间不再拆alpha；支持性多基线使用Holm。
+
+### 6.2 n 的候选规则
+
+正式总 n 只取120的整数倍，以同时平衡24 strata与五方法10条Williams序列。最终 n 不是本计划拍脑袋给定：由冻结 `n_max_budget` 内的最小 joint-power 合格点确定。若预算上限仍无合格点，`C-System=NOT_TESTED`，不生成 `D_test`。
+
+### 6.3 三阶段 Monte Carlo
+
+1. `power-search`：每个 `n×nuisance-grid` 2,000 outer replicates，仅粗筛；
+2. shortlist：相邻两个候选 n 各5,000；
+3. 独立 `power-confirm`：新 seed/container，冻结不超过16个 least-favourable vertices。
+
+最多16个 confirm vertices 时采用 Bonferroni 同时 Wilson 界：
+
+- power：每vertex 20,000次，完整 gate pass≥18,126（observed≥90.63%），才保证同时95%下界≥0.90；
+- Type I：每least-favourable null 50,000次，错误拒绝≤1,146（observed≤2.292%），才保证同时95%上界≤0.025；
+- 若只有1个vertex，对应阈值为18,084/20,000与1,181/50,000；
+- vertices>16必须重新计算，禁止沿用上述阈值。
+
+失败/不收敛 replicate 一律计未通过。kernel simulation 每 replicate 重跑 selection、estimator、failure mapping 和全部 gates；不需要重启7个真实容器，但另抽200 replicates做端到端容器一致性审计。power-confirm失败后不得换seed反复运行；只能修改协议、升版并建新namespace。
+
+`D_test` 不设非盲效应中期分析。若保留SSR，只允许一次50% information的盲态 nuisance look，且最大增幅在 test seal 前冻结。
+
+## 7 数据分区、盲态与禁止事项
+
+命名空间严格分离：`D_impl_unit`、`D_mapper_cal`、`D_mapper_qual`、`D_mme_screen`、`D_mme_verify`、`D_select`、`D_pilot_fit`、`D_pilot_heldout`、`D_test`、`D_external`。每区绑定独立 master key、generator/data version、container digest、ACL 与只读 manifest。
+
+独立过程安全团队在任何 pilot/test seed 前双签 ActionTruth、允许/禁止动作、deadline、generator/scorer hash 和争议规则。禁止逐 bundle 人工改 truth。`D_test` 当前不得生成、读取、复制、迁移、重命名或预创建目录。
+
+明确禁止：把 method/seed/attack/window/replay 当 n；SCREEN 后挑 VERIFY 模板；根据 SCREEN 调 MME margin；pilot 重选 G*、删终点或改层权；用 pilot 的 A−G* 效应重估 n；按 ICC 切分析器；把两个 topology 当随机总体；丢弃 crash/timeout/失败；在 nuisance grid 挑容易点；以边际功效乘积冒充 joint pass probability。
+
+## 8 当前服务器资源门
+
+远端实测为 NVIDIA L20 46,068 MiB，但探测时 GPU 共享占用、文件系统仅余217,182,134,272 bytes（约23.02%），故 G0 FAIL。
+
+1. 35 GB十进制 SHK-001 启动前 free≥270,853,007,872 bytes；当前至少差53,670,873,600 bytes；若按35GiB工程上至少释放约57GB；
+2. 结束后 free≥235,853,007,872 bytes（总盘25%）；SHK-001输出须为空的新目录并永久标记 `NON_CONFIRMATORY_DO_NOT_PROMOTE`；
+3. v6.7旧高包络3.0680419877TB只构成容量**下限参考**。按结束保留25%至少需4.0907226503TB有效容量，建议不少于5TB；但 v6.9运行数改变，必须由 `StorageCapacityPlan-v6.9` 用微基准重算，未重算前5TB也不能视为充分；
+4. 原预算至少2,050 CPU-h/128 GPU-h；预约建议含20%余量约2,460 CPU-h/154 GPU-h，同样须按v6.9微基准重算；
+5. GPU必须独占预约或有明确隔离quota；保存pre/post nvidia-smi、OOM/Xid/ECC、峰值显存与温度；
+6. candidate SHA不匹配、可写挂载、ACL负测失败、输出目录非空、资源日志缺失或未分类系统失败均立即退出。
+
+G0失败期间允许本地代码、双实现、生成器/oracle、property tests、baseline adapters、统计kernel toy-data dry-run与manifest；禁止远端SHK-001、正式MME、D_select、pilot、GPU性能结论、功效晋级与任何D_test操作。
+
+## 9 RACI 与不可兼任约束
+
+角色：PI=项目/论文负责人；INF=基础设施；FM=融合方法；PS=过程安全/生成器；SI=独立第二实现；STAT=统计；DS=数据与安全审计；IR-A/B=两名独立安全复核者。
+
+| 工作 | R | A | C | I |
+| --- | --- | --- | --- | --- |
+| G0资源/ACL/candidate完整性 | INF、DS | PI | STAT、PS | FM、SI、IR |
+| G1 CSTR/24层/双oracle/ActionTruth | PS、DS | PS | IR-A、IR-B、STAT | PI、FM、SI、INF |
+| G2 runtime/双实现/故障恢复 | FM、INF、SI | PI（非编码裁决） | DS、STAT | PS、IR |
+| G3 MME设计、运行、独立分析 | STAT、DS、实验工程 | PI | FM、SI、PS、IR | INF |
+| G3d G*与设计冻结 | STAT执行算法、DS审计 | PI | FM、SI | PS、IR |
+| G4 pilot/power-confirm | STAT、INF、DS | PI | PS、SI | FM、IR |
+| D_test解封 | DS执行、STAT见证 | PI | IR-A、IR-B | FM、PS、INF |
+| 盲态分析/独立复算 | STAT、SI | PI | DS | FM、PS、IR |
+
+FM不得担任SI唯一作者/豁免者；PS/IR不得看输出后改ActionTruth；STAT不得人工挑G*；PI不能单人解封D_test，至少“PI授权+DS执行+STAT见证”。
+
+## 10 24周排期与4周缓冲
+
+| 周次 | 工作与里程碑 | Gate |
+| --- | --- | --- |
+| W1–2 | 冻结claim tree、路径、角色、PENDING签署日；申请独立卷/GPU预约；G1/G2本地开发并行 | G0准备 |
+| W3–4 | 容器/UID/ACL、candidate只读、负向探针、资源微基准与新容量计划 | G0决策 |
+| W5 | 仅G0-S通过才运行SHK-001；否则继续本地，不晋级 | G0-S |
+| W5–6 | 冻结两CSTR方程、积分器、seed tree、ActionTruth与24层 | G1 |
+| W7–8 | 双图/双oracle、可达性/守恒/边界、泄漏负测与双人复核 | G1决策 |
+| W5–10 | lifecycle runtime、property/bounded traces、crash/CAS/乱序/cap与第二实现 | G2开发 |
+| W11 | differential、online/replay、完整Phase0资格 | G2决策 |
+| W12 | 冻结MME margins、模板/feasibility、Williams分配；VERIFY加密密封 | G3a |
+| W13 | SCREEN后锁定实现；按预注册规则处理实现缺陷，不得挑模板 | G3b-SCREEN |
+| W14 | 一次性VERIFY、独立统计裁决、边界曲线、MME GO/NO-GO | G3b/c |
+| W15 | 仅MME GO后执行D_select并冻结G*、sentinels、tie-break | G3d |
+| W16–17 | pilot Wave1–3按精度门顺序；达到门即停；独立heldout | G4a |
+| W18 | power-search/shortlist；冻结≤16 least-favourable vertices | G4b |
+| W19 | 独立power-confirm/null与200次容器审计；冻结Test/Allocation/Release manifests | G4b/c |
+| W20–21 | 双钥匙授权后一次生成/执行D_test；无协议外重跑 | G4c/d |
+| W22 | 锁定分析、第二容器复算、一次解盲 | G4d |
+| W23 | 独立simulator/shadow/HIL支持；不得补救失败主结果 | External |
+| W24 | 数据卡、匿名复现包、论文结果表与最终编辑GO/NO-GO | 结项 |
+| W25–28 | 仅吸收采购、排队、工程故障、外部复核延迟 | Buffer |
+
+若W4 G0未闭，所有正式任务整体顺延；不得用并行解封数据追回进度。缓冲不得用于换主张、终点、基线或margin追逐阳性结果。
+
+## 11 必须在首次接触相应数据前签署的 PENDING
+
+- MME：`PENDING-MME-DELTA-DRI`、`PENDING-MME-DELTA-RECOVERY`、SRI/availability/delay/false-block/resource no-harm、feasibility mask、template weights、`r_alg`与cold/warm repeats；
+- 确认性：`delta_S`、`delta_A`、所有no-harm margins、24层权重、G*与3 sentinels、failure/common-invalid/miss容忍率、P99硬门身份；
+- 功效/资源：pilot ICC/discordance/tail/failure ranges、confirm vertex清单/数量、`n_max_budget`、单bundle成本、归档预算、SSR最大增幅、最终`n_max_generate`；
+- 最终确认性 n：只能由独立joint power-confirm冻结。
+
+MME margins必须在SCREEN前签；确认性SESOI/no-harm/层权必须在pilot前签，不能从SCREEN或pilot反推。
+
+## 12 最低交付与全局停止条件
+
+最低工件：本计划MD/DOCX、`ExperimentExecutionPlan-v6.9.json`、`MMETemplateMatrix-v6.9.csv`、`MMEAllocation-v6.9.csv`及SHA；G0–G4所有decision/manifests；environment/container/resource/failure ledgers；独立复算报告。
+
+全局停止：核心invariant失败；MME NO-GO；G1/ActionTruth无法双签；G*不稳定；pilot精度失败；预算内无joint-power点；G0/ACL/hash任一失败；test泄漏/选择性重跑/结果后改margin。停止不是“实验失败”，而是阻止不可解释结果进入论文。
+"""
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def williams_sequences(items: list[str]) -> list[list[str]]:
+    """Return position-balanced Williams sequences; odd t uses the reversed set too."""
+    n = len(items)
+    base = [0]
+    low, high = 1, n - 1
+    while len(base) < n:
+        base.append(low)
+        low += 1
+        if len(base) < n:
+            base.append(high)
+            high -= 1
+    forward = [[items[(value + shift) % n] for value in base] for shift in range(n)]
+    if n % 2:
+        return forward + [list(reversed(sequence)) for sequence in forward]
+    return forward
+
+
+def screen_templates() -> list[dict[str, object]]:
+    motifs = [
+        ("Q0", "exact retry negative control", "NEGATIVE_CONTROL"),
+        ("M1", "same acquisition, different key, pre-commit equivalence", "CORE_IUT"),
+        ("M2", "post-commit equivalence after an action query", "CORE_IUT"),
+        ("M3", "independent roots with identical same-direction payload", "SRI_NO_HARM"),
+        ("M4", "independent conflicting roots with asymmetric strength", "SRI_NO_HARM"),
+        ("M5", "supersede-late-merge-retire-crash-replay", "CORE_IUT"),
+    ]
+    rows: list[dict[str, object]] = []
+    idx = 1
+    for motif, description, go_role in motifs:
+        for strength in ["L065", "N080", "H090"]:
+            for history_depth in [1, 3]:
+                for arrival_offset in ["NEAR", "FAR"]:
+                    rows.append(
+                        {
+                            "template_id": f"SCR-CA-{idx:03d}",
+                            "phase": "SCREEN",
+                            "template_access": "PUBLIC_PREREGISTRATION",
+                            "template_category": "CORE_COVERAGE",
+                            "go_role": go_role,
+                            "motif": motif,
+                            "evidence_strength": strength,
+                            "history_depth": history_depth,
+                            "arrival_or_dose": arrival_offset,
+                            "description": description,
+                            "bundles_per_template": 8,
+                            "payload_ref": "FREEZE_AT_G3A",
+                        }
+                    )
+                    idx += 1
+    for boundary in ["MISSING_EDGE", "SPURIOUS_EDGE", "EVENTIFIER_OVERSPLIT", "EVENTIFIER_OVERMERGE"]:
+        for dose in ["LOW", "MEDIUM", "HIGH"]:
+            rows.append(
+                {
+                    "template_id": f"SCR-BND-{boundary}-{dose}",
+                    "phase": "SCREEN",
+                    "template_access": "PUBLIC_PREREGISTRATION",
+                    "template_category": "BOUNDARY_DOSE_RESPONSE",
+                    "go_role": "CLAIM_BOUNDARY_NOT_CORE_AVERAGE",
+                    "motif": "BOUNDARY",
+                    "evidence_strength": "N080",
+                    "history_depth": "PENDING_FEASIBILITY_MASK",
+                    "arrival_or_dose": dose,
+                    "description": boundary.lower().replace("_", " "),
+                    "bundles_per_template": 8,
+                    "payload_ref": "FREEZE_AT_G3A",
+                }
+            )
+    assert len(rows) == 84
+    return rows
+
+
+def verify_templates() -> list[dict[str, object]]:
+    definitions: list[tuple[str, str, str]] = []
+    for i in range(1, 13):
+        motif = "M2" if i <= 6 else "M5"
+        definitions.append((f"VER-PC-{i:02d}", "POSTCOMMIT_LIFECYCLE", f"sealed {motif} challenge {i}"))
+    for i in range(1, 7):
+        motif = "M3" if i <= 3 else "M4"
+        definitions.append((f"VER-SRI-{i:02d}", "SRI_NO_HARM", f"sealed {motif} independent-information challenge {i}"))
+    for i in range(1, 5):
+        definitions.append((f"VER-NEG-{i:02d}", "TRANSPORT_NEGATIVE_CONTROL", f"sealed Q0 transport control {i}"))
+    boundary_names = ["missing edge", "spurious edge", "higher-order omission", "over-split", "over-merge", "fail-stop"]
+    for i, name in enumerate(boundary_names, start=1):
+        definitions.append((f"VER-BND-{i:02d}", "BOUNDARY_FAILSTOP", f"sealed {name} challenge"))
+
+    rows = []
+    for template_id, category, description in definitions:
+        rows.append(
+            {
+                "template_id": template_id,
+                "phase": "VERIFY",
+                "template_access": "SEALED_BEFORE_SCREEN_BY_DS",
+                "template_category": category,
+                "go_role": "CORE_IUT" if category == "POSTCOMMIT_LIFECYCLE" else category,
+                "motif": "SEALED",
+                "evidence_strength": "ENCRYPTED",
+                "history_depth": "ENCRYPTED",
+                "arrival_or_dose": "ENCRYPTED",
+                "description": description,
+                "bundles_per_template": 60,
+                "payload_ref": "ENCRYPTED_DS_OBJECT_AND_COMMITMENT",
+            }
+        )
+    assert len(rows) == 28
+    return rows
+
+
+def build_allocation(templates: list[dict[str, object]]) -> list[dict[str, object]]:
+    rng = random.Random(PLAN_SEED)
+    method_sequences = williams_sequences(METHODS)
+    rows: list[dict[str, object]] = []
+
+    phase_specs = [
+        ("SCREEN", [t for t in templates if t["phase"] == "SCREEN"], 24),
+        ("VERIFY", [t for t in templates if t["phase"] == "VERIFY"], 60),
+    ]
+    for phase, phase_templates, batches in phase_specs:
+        for batch_zero in range(batches):
+            if phase == "SCREEN":
+                selected = [phase_templates[(batch_zero * 28 + j) % 84] for j in range(28)]
+            else:
+                selected = list(phase_templates)
+            sequence_ids = [sequence_id for sequence_id in range(1, 15) for _ in range(2)]
+            rng.shuffle(sequence_ids)
+            batch_rows: list[dict[str, object]] = []
+            for j, (template, sequence_id) in enumerate(zip(selected, sequence_ids, strict=True)):
+                topology, path, severity = STRATA[(batch_zero * 28 + j) % 24]
+                bundle_slot = f"{phase}-B{batch_zero + 1:03d}-S{j + 1:02d}"
+                batch_rows.append(
+                    {
+                        "phase": phase,
+                        "execution_batch": batch_zero + 1,
+                        "bundle_slot": bundle_slot,
+                        "template_id": template["template_id"],
+                        "template_category": template["template_category"],
+                        "go_role": template["go_role"],
+                        "topology": topology,
+                        "path_family": path,
+                        "severity": severity,
+                        "stratum": f"{topology}-{path}-{severity}",
+                        "method_sequence_id": f"W7-{sequence_id:02d}",
+                        "method_order": "|".join(method_sequences[sequence_id - 1]),
+                        "seed_slot": f"SEED-{bundle_slot}",
+                        "physical_seed_commitment": "TO_BE_FILLED_BY_DS_AT_G3A",
+                        "noise_seed_commitment": "TO_BE_FILLED_BY_DS_AT_G3A",
+                        "arrival_seed_commitment": "TO_BE_FILLED_BY_DS_AT_G3A",
+                        "r_alg": "PENDING_DOMAIN_SIGNOFF",
+                        "seed_release_condition": "G3A_PASS" if phase == "SCREEN" else "SCREEN_LOCK_AND_DS_DUAL_CONTROL",
+                        "contains_executable_seed": False,
+                    }
+                )
+            rng.shuffle(batch_rows)
+            for run_order, row in enumerate(batch_rows, start=1):
+                row["run_order_within_batch"] = run_order
+                rows.append(row)
+    return rows
+
+
+def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
+    with path.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def validate_allocation(rows: list[dict[str, object]]) -> dict[str, object]:
+    results: dict[str, object] = {}
+    for phase, expected_rows, expected_batches, expected_per_stratum, expected_sequence_use in [
+        ("SCREEN", 672, 24, 28, 48),
+        ("VERIFY", 1680, 60, 70, 120),
+    ]:
+        subset = [r for r in rows if r["phase"] == phase]
+        assert len(subset) == expected_rows
+        assert len({r["execution_batch"] for r in subset}) == expected_batches
+        stratum_counts = Counter(str(r["stratum"]) for r in subset)
+        assert len(stratum_counts) == 24 and set(stratum_counts.values()) == {expected_per_stratum}
+        sequence_counts = Counter(str(r["method_sequence_id"]) for r in subset)
+        assert len(sequence_counts) == 14 and set(sequence_counts.values()) == {expected_sequence_use}
+        batch_sizes = Counter(int(r["execution_batch"]) for r in subset)
+        assert set(batch_sizes.values()) == {28}
+        position_counts: Counter[tuple[str, int]] = Counter()
+        for row in subset:
+            for position, method in enumerate(str(row["method_order"]).split("|"), start=1):
+                position_counts[(method, position)] += 1
+        expected_position = expected_rows // 7
+        assert set(position_counts.values()) == {expected_position}
+        results[phase] = {
+            "rows": len(subset),
+            "batches": expected_batches,
+            "per_stratum": expected_per_stratum,
+            "williams_sequence_use": expected_sequence_use,
+            "method_position_count": expected_position,
+        }
+    assert all(not bool(r["contains_executable_seed"]) for r in rows)
+    return results
+
+
+def main() -> None:
+    screen = screen_templates()
+    verify = verify_templates()
+    templates = screen + verify
+    allocations = build_allocation(templates)
+    allocation_validation = validate_allocation(allocations)
+
+    write_csv(TEMPLATE_OUT, templates)
+    write_csv(ALLOCATION_OUT, allocations)
+    MD_OUT.write_text(PLAN_MD.rstrip() + "\n", encoding="utf-8")
+
+    contract = {
+        "schema": "experiment-execution-plan-v6.9-final-1.0",
+        "status": "EXECUTION_SPECIFIED_REMOTE_BLOCKED",
+        "authoritative_generator": Path(__file__).name,
+        "plan_seed": PLAN_SEED,
+        "contains_executable_seeds": False,
+        "independent_unit": "physical_seed_base_bundle",
+        "variance_unit": "execution_batch_cluster_from_first_analysis",
+        "strata": {
+            "topologies": 2,
+            "path_families": 4,
+            "severity_bands": 3,
+            "total": 24,
+            "topologies_are_fixed_not_random_population": True,
+            "final_weights": "PENDING_DOMAIN_SIGNOFF",
+        },
+        "methods": {
+            "mme": METHODS,
+            "pilot": PILOT_METHODS,
+            "mme_williams_sequences": len(williams_sequences(METHODS)),
+            "pilot_williams_sequences": len(williams_sequences(PILOT_METHODS)),
+        },
+        "mme": {
+            "screen": {
+                "templates": 84,
+                "bundles_per_template": 8,
+                "independent_bundles": 672,
+                "batches": 24,
+                "per_stratum": 28,
+                "method_evaluations": 4704,
+                "zero_event_upper_95_template": 0.3123439781,
+                "inferential_role": "debug_and_response_surface_only",
+            },
+            "verify": {
+                "templates": 28,
+                "bundles_per_template": 60,
+                "independent_bundles": 1680,
+                "batches": 60,
+                "per_stratum": 70,
+                "method_evaluations": 11760,
+                "zero_event_upper_95_template": 0.0487029133,
+                "sealed_before_screen": True,
+            },
+            "primary_iut": ["A_better_than_B1", "A_better_than_B2P"],
+            "oracle": ["method_specific_clean_counterfactual", "common_external_truth_and_action_loss"],
+            "pending": [
+                "PENDING-MME-DELTA-DRI",
+                "PENDING-MME-DELTA-RECOVERY",
+                "SRI_availability_delay_falseblock_resource_margins",
+                "feasibility_mask_and_template_weights",
+                "r_alg_and_technical_repeats",
+            ],
+        },
+        "selection": {
+            "independent_bundles": 672,
+            "per_stratum": 28,
+            "batches": 28,
+            "bootstrap_replicates": 10000,
+            "winner_stability_min": 0.90,
+            "runner_up_gap_interval_excludes_zero": True,
+        },
+        "pilot": {
+            "fit_waves_added_bundles": [720, 720, 480],
+            "fit_cumulative_bundles": [720, 1440, 1920],
+            "heldout_bundles": 480,
+            "maximum_total_bundles": 2400,
+            "maximum_method_evaluations": 12000,
+            "precision_gates": {
+                "paired_discordance_total_min": 60,
+                "paired_discordance_per_topology_min": 20,
+                "successful_delay_per_method_min": 1000,
+                "p95_relative_halfwidth_max": 0.10,
+                "p99_hard_gate_min_observations_if_enabled": 2000,
+                "batch_count_min": 30,
+                "icc_interval_width_max": 0.10,
+            },
+        },
+        "confirmatory_power": {
+            "total_n_rule": "multiples_of_120_up_to_signed_n_max_budget",
+            "alpha_run_one_sided": 0.020,
+            "family_cap": 0.025,
+            "power_search_replicates": 2000,
+            "shortlist_replicates": 5000,
+            "max_confirm_vertices_without_recalculation": 16,
+            "power_confirm_replicates_per_vertex": 20000,
+            "power_confirm_min_passes_for_16_vertices": 18126,
+            "type1_confirm_replicates_per_null_vertex": 50000,
+            "type1_confirm_max_rejections_for_16_vertices": 1146,
+            "single_vertex_power_min_passes": 18084,
+            "single_vertex_type1_max_rejections": 1181,
+            "container_end_to_end_audit_replicates": 200,
+            "final_n": "PENDING_JOINT_POWER_CONFIRM",
+        },
+        "resource_gates": {
+            "current_G0_RESOURCE": "FAIL",
+            "current_free_bytes": 217182134272,
+            "shk001_start_free_bytes_min": 270853007872,
+            "shk001_additional_free_bytes_min_decimal_35GB": 53670873600,
+            "legacy_high_envelope_bytes_floor_reference": 3068041987700,
+            "legacy_floor_with_25pct_headroom_bytes": 4090722650267,
+            "v69_capacity_recalculation_required": True,
+            "recommended_effective_capacity_floor_bytes": 5000000000000,
+            "pilot_authorized": False,
+            "d_test_authorized": False,
+        },
+        "allocation_validation": allocation_validation,
+        "files": {
+            "markdown": {"name": MD_OUT.name, "sha256": sha256(MD_OUT)},
+            "template_matrix": {"name": TEMPLATE_OUT.name, "rows": len(templates), "sha256": sha256(TEMPLATE_OUT)},
+            "allocation": {"name": ALLOCATION_OUT.name, "rows": len(allocations), "sha256": sha256(ALLOCATION_OUT)},
+        },
+    }
+    JSON_OUT.write_text(json.dumps(contract, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(
+        json.dumps(
+            {
+                "markdown": str(MD_OUT),
+                "json": str(JSON_OUT),
+                "template_matrix": str(TEMPLATE_OUT),
+                "allocation": str(ALLOCATION_OUT),
+                "templates": len(templates),
+                "allocation_rows": len(allocations),
+                "validation": allocation_validation,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,675 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "regeneration_sampling_qa.schema.json",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "generated_at",
+        "status",
+        "development_status",
+        "live_status",
+        "development_only",
+        "local_live_gate_passed",
+        "regeneration_verified",
+        "purge_authorized",
+        "frozen_before_execution",
+        "segment_id",
+        "bundle_count",
+        "sample_count",
+        "sample_rule",
+        "selected_bundle_ids",
+        "no_replacement",
+        "runtime_authority",
+        "plan",
+        "freeze_event",
+        "execution_ledger_rows",
+        "expectations",
+        "reports",
+        "aggregate_verdict",
+        "authoritative"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "regeneration-sampling-qa.v3"
+        },
+        "generated_at": {
+            "type": "string",
+            "minLength": 1
+        },
+        "status": {
+            "const": "REGEN_CONSISTENT_UNATTESTED"
+        },
+        "development_status": {
+            "const": "PASS"
+        },
+        "live_status": {
+            "const": "PENDING"
+        },
+        "development_only": {
+            "const": true
+        },
+        "local_live_gate_passed": {
+            "const": false
+        },
+        "regeneration_verified": {
+            "const": true
+        },
+        "purge_authorized": {
+            "const": false
+        },
+        "frozen_before_execution": {
+            "const": true
+        },
+        "segment_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "bundle_count": {
+            "type": "integer",
+            "minimum": 2
+        },
+        "sample_count": {
+            "type": "integer",
+            "minimum": 2
+        },
+        "sample_rule": {
+            "const": "max(2,ceil(0.01*N))_without_replacement"
+        },
+        "selected_bundle_ids": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "no_replacement": {
+            "const": true
+        },
+        "runtime_authority": {
+            "$ref": "#/$defs/authority"
+        },
+        "plan": {
+            "$ref": "#/$defs/plan"
+        },
+        "freeze_event": {
+            "$ref": "#/$defs/freeze"
+        },
+        "execution_ledger_rows": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+                "$ref": "#/$defs/ledgerRow"
+            }
+        },
+        "expectations": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+                "$ref": "#/$defs/expectation"
+            }
+        },
+        "reports": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+                "$ref": "#/$defs/report"
+            }
+        },
+        "aggregate_verdict": {
+            "$ref": "#/$defs/verdict"
+        },
+        "authoritative": {
+            "const": false
+        },
+        "regeneration_attestation": {
+            "type": "object",
+            "required": [
+                "key_id",
+                "role",
+                "trust_epoch",
+                "sealed_commitments",
+                "signature"
+            ],
+            "properties": {
+                "key_id": {
+                    "type": "string"
+                },
+                "role": {
+                    "const": "RegenerationAttester"
+                },
+                "trust_epoch": {
+                    "type": "string"
+                },
+                "sealed_commitments": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "result_manifest_hash",
+                        "archive_a_readback_root",
+                        "archive_b_readback_root",
+                        "truth_isolation_commitment",
+                        "sealed_package_root"
+                    ],
+                    "properties": {
+                        "result_manifest_hash": {
+                            "$ref": "#/$defs/hash"
+                        },
+                        "archive_a_readback_root": {
+                            "$ref": "#/$defs/hash"
+                        },
+                        "archive_b_readback_root": {
+                            "$ref": "#/$defs/hash"
+                        },
+                        "truth_isolation_commitment": {
+                            "$ref": "#/$defs/hash"
+                        },
+                        "sealed_package_root": {
+                            "$ref": "#/$defs/hash"
+                        }
+                    }
+                },
+                "signature": {
+                    "$ref": "#/$defs/hash"
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "$defs": {
+        "hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+        },
+        "relativePath": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*\\\\)(?!.*\\.\\.).+$"
+        },
+        "authority": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "schema_version",
+                "development_only",
+                "live_use_allowed",
+                "runtime_baseline_path",
+                "runtime_baseline_self_sha256",
+                "source_tree_manifest_path",
+                "source_tree_sha256",
+                "generator_path",
+                "generator_sha256",
+                "method_registry_path",
+                "method_registry_sha256",
+                "container_lock_path",
+                "container_definition_sha256",
+                "seed_commitment_path",
+                "algorithm_seed_commitment_sha256",
+                "allocation_commitment_path",
+                "allocation_commitment_sha256",
+                "segment_config_path",
+                "segment_config_sha256",
+                "authority_hash"
+            ],
+            "properties": {
+                "schema_version": {
+                    "const": "runtime-commitment-authority.v1"
+                },
+                "development_only": {
+                    "const": true
+                },
+                "live_use_allowed": {
+                    "const": false
+                },
+                "runtime_baseline_path": {
+                    "$ref": "#/$defs/relativePath"
+                },
+                "runtime_baseline_self_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "source_tree_manifest_path": {
+                    "$ref": "#/$defs/relativePath"
+                },
+                "source_tree_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "generator_path": {
+                    "$ref": "#/$defs/relativePath"
+                },
+                "generator_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "method_registry_path": {
+                    "$ref": "#/$defs/relativePath"
+                },
+                "method_registry_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "container_lock_path": {
+                    "$ref": "#/$defs/relativePath"
+                },
+                "container_definition_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "seed_commitment_path": {
+                    "$ref": "#/$defs/relativePath"
+                },
+                "algorithm_seed_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "allocation_commitment_path": {
+                    "$ref": "#/$defs/relativePath"
+                },
+                "allocation_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "segment_config_path": {
+                    "$ref": "#/$defs/relativePath"
+                },
+                "segment_config_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "authority_hash": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "plan": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "schema_version",
+                "development_only",
+                "authoritative_commitments_bound",
+                "segment_id",
+                "bundle_ids",
+                "bundle_count",
+                "bundle_ids_hash",
+                "sample_selection_seed",
+                "sample_rule",
+                "selected_ids",
+                "selected_ids_hash",
+                "sample_count",
+                "replay_policy_hash",
+                "runtime_authority",
+                "authority_hash",
+                "pre_execution_state",
+                "pre_execution_ledger_head",
+                "frozen_before_execution",
+                "plan_hash"
+            ],
+            "properties": {
+                "schema_version": {
+                    "const": "regeneration-plan.v3"
+                },
+                "development_only": {
+                    "const": true
+                },
+                "authoritative_commitments_bound": {
+                    "const": true
+                },
+                "segment_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "bundle_ids": {
+                    "type": "array",
+                    "minItems": 2,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "bundle_count": {
+                    "type": "integer",
+                    "minimum": 2
+                },
+                "bundle_ids_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "sample_selection_seed": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "sample_rule": {
+                    "const": "max(2,ceil(0.01*N))_without_replacement"
+                },
+                "selected_ids": {
+                    "type": "array",
+                    "minItems": 2,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "selected_ids_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "sample_count": {
+                    "type": "integer",
+                    "minimum": 2
+                },
+                "replay_policy_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "runtime_authority": {
+                    "$ref": "#/$defs/authority"
+                },
+                "authority_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "pre_execution_state": {
+                    "enum": [
+                        "PLANNED",
+                        "ADMITTED",
+                        "MATERIALIZING"
+                    ]
+                },
+                "pre_execution_ledger_head": {
+                    "$ref": "#/$defs/hash"
+                },
+                "frozen_before_execution": {
+                    "const": true
+                },
+                "plan_hash": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "freeze": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "schema_version",
+                "event",
+                "segment_id",
+                "state",
+                "prev_hash",
+                "plan_hash",
+                "authority_hash",
+                "entry_hash"
+            ],
+            "properties": {
+                "schema_version": {
+                    "const": "regeneration-freeze-event.v1"
+                },
+                "event": {
+                    "const": "REGENERATION_PLAN_FROZEN"
+                },
+                "segment_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "state": {
+                    "enum": [
+                        "PLANNED",
+                        "ADMITTED",
+                        "MATERIALIZING"
+                    ]
+                },
+                "prev_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "plan_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "authority_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "entry_hash": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "ledgerRow": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "segment_id",
+                "entry_hash"
+            ],
+            "properties": {
+                "event": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "segment_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "state": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "prev_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "schema_version": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "plan_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "authority_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "entry_hash": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "expectation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "schema_version",
+                "segment_id",
+                "bundle_id",
+                "plan_hash",
+                "authority_hash",
+                "selected_ids_hash",
+                "payload_commitment_sha256",
+                "expected_panel_commitment_sha256",
+                "replay_policy_hash",
+                "method_registry_hash",
+                "expectation_hash"
+            ],
+            "properties": {
+                "schema_version": {
+                    "const": "regeneration-expectation.v1"
+                },
+                "segment_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "bundle_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "plan_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "authority_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "selected_ids_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "payload_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "expected_panel_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "replay_policy_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "method_registry_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "expectation_hash": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "report": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "schema_version",
+                "segment_id",
+                "bundle_id",
+                "plan_hash",
+                "expectation_hash",
+                "authority_hash",
+                "payload_commitment_sha256",
+                "regenerated_payload_commitment_sha256",
+                "expected_panel_commitment_sha256",
+                "observed_panel_commitment_sha256",
+                "regenerated_panel_commitment_sha256",
+                "payload_commitment_match",
+                "expected_panel_commitment_match",
+                "full_panel_replay_match",
+                "regeneration_verified",
+                "status",
+                "report_hash"
+            ],
+            "properties": {
+                "schema_version": {
+                    "const": "regeneration-sample-report.v1"
+                },
+                "segment_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "bundle_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "plan_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "expectation_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "authority_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "payload_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "regenerated_payload_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "expected_panel_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "observed_panel_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "regenerated_panel_commitment_sha256": {
+                    "$ref": "#/$defs/hash"
+                },
+                "payload_commitment_match": {
+                    "const": true
+                },
+                "expected_panel_commitment_match": {
+                    "const": true
+                },
+                "full_panel_replay_match": {
+                    "const": true
+                },
+                "regeneration_verified": {
+                    "const": true
+                },
+                "status": {
+                    "const": "REGEN_VERIFIED"
+                },
+                "report_hash": {
+                    "$ref": "#/$defs/hash"
+                }
+            }
+        },
+        "verdict": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "schema_version",
+                "segment_id",
+                "plan_hash",
+                "authority_hash",
+                "selected_bundle_ids",
+                "sample_count",
+                "status",
+                "regeneration_verified",
+                "next_segment_allowed",
+                "dataset_retained",
+                "purge_authorized",
+                "report_hashes",
+                "verdict_hash",
+                "authoritative"
+            ],
+            "properties": {
+                "schema_version": {
+                    "const": "regeneration-verdict.v2"
+                },
+                "segment_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "plan_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "authority_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "selected_bundle_ids": {
+                    "type": "array",
+                    "minItems": 2,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "sample_count": {
+                    "type": "integer",
+                    "minimum": 2
+                },
+                "status": {
+                    "const": "REGEN_CONSISTENT_UNATTESTED"
+                },
+                "regeneration_verified": {
+                    "const": true
+                },
+                "next_segment_allowed": {
+                    "const": false
+                },
+                "dataset_retained": {
+                    "const": false
+                },
+                "purge_authorized": {
+                    "const": false
+                },
+                "report_hashes": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                        "$ref": "#/$defs/hash"
+                    }
+                },
+                "verdict_hash": {
+                    "$ref": "#/$defs/hash"
+                },
+                "authoritative": {
+                    "const": false
+                }
+            }
+        }
+    }
+}

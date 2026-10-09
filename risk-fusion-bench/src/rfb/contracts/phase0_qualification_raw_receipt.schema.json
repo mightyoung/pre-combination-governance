@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rfb.contracts/phase0_qualification_raw_receipt.schema.json@1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at_utc", "execution_lane", "classification", "formal_gate_effect", "contains_formal_claims", "formal_admission_eligible", "shk001b_eligible", "manifest_path", "manifest_self_sha256", "manifest_raw_bytes_sha256", "receipt_self_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "generated_at_utc": {"type": "string", "format": "date-time", "pattern": "Z$"},
+    "execution_lane": {"const": "RESEARCH"},
+    "classification": {"const": "DEVELOPMENT_NONCONFIRMATORY"},
+    "formal_gate_effect": {"const": "NONE"},
+    "contains_formal_claims": {"const": false},
+    "formal_admission_eligible": {"const": false},
+    "shk001b_eligible": {"const": false},
+    "manifest_path": {"const": "Phase0QualificationManifest.json"},
+    "manifest_self_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "manifest_raw_bytes_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "receipt_self_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

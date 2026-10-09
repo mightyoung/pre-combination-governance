@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "purge-no-writer-attestation.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "status",
+    "role",
+    "attester_id",
+    "key_id",
+    "trust_epoch",
+    "root",
+    "root_identity",
+    "operation_id",
+    "allowlist_hash",
+    "target_bindings",
+    "facts",
+    "issued_at",
+    "expires_at",
+    "signature"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "purge-no-writer-attestation.v1"
+    },
+    "status": {
+      "const": "ATTESTED"
+    },
+    "role": {
+      "const": "PurgeNoWriterAttester"
+    },
+    "attester_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "key_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trust_epoch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "root_identity": {
+      "type": "object"
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowlist_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "target_bindings": {
+      "type": "object"
+    },
+    "facts": {
+      "type": "object",
+      "required": [
+        "exclusive_writer"
+      ],
+      "properties": {
+        "exclusive_writer": {
+          "const": true
+        }
+      }
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

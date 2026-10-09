@@ -1,0 +1,354 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "rfb.contracts/phase0_test_receipt.schema.json@1.0.0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "execution_lane",
+        "classification",
+        "formal_gate_effect",
+        "contains_formal_claims",
+        "formal_admission_eligible",
+        "shk001b_eligible",
+        "suite_id",
+        "argv",
+        "targets",
+        "cwd",
+        "started_at_utc",
+        "ended_at_utc",
+        "exit_code",
+        "passed",
+        "failed",
+        "skipped",
+        "environment_sha256",
+        "stdout_path",
+        "stdout_sha256",
+        "stderr_path",
+        "stderr_sha256",
+        "report_path",
+        "report_sha256",
+        "test_source_hashes",
+        "node_outcomes",
+        "assertions",
+        "receipt_self_sha256"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0.0"
+        },
+        "execution_lane": {
+            "const": "RESEARCH"
+        },
+        "classification": {
+            "const": "DEVELOPMENT_NONCONFIRMATORY"
+        },
+        "formal_gate_effect": {
+            "const": "NONE"
+        },
+        "contains_formal_claims": {
+            "const": false
+        },
+        "formal_admission_eligible": {
+            "const": false
+        },
+        "shk001b_eligible": {
+            "const": false
+        },
+        "suite_id": {
+            "enum": [
+                "g016",
+                "g017",
+                "g018"
+            ]
+        },
+        "argv": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string"
+            }
+        },
+        "targets": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "cwd": {
+            "type": "string",
+            "minLength": 1
+        },
+        "started_at_utc": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ended_at_utc": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "exit_code": {
+            "const": 0
+        },
+        "passed": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "failed": {
+            "const": 0
+        },
+        "skipped": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "environment_sha256": {
+            "$ref": "#/$defs/hash"
+        },
+        "stdout_path": {
+            "type": "string",
+            "minLength": 1
+        },
+        "stdout_sha256": {
+            "$ref": "#/$defs/hash"
+        },
+        "stderr_path": {
+            "type": "string",
+            "minLength": 1
+        },
+        "stderr_sha256": {
+            "$ref": "#/$defs/hash"
+        },
+        "report_path": {
+            "type": "string",
+            "minLength": 1
+        },
+        "report_sha256": {
+            "$ref": "#/$defs/hash"
+        },
+        "test_source_hashes": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "$ref": "#/$defs/hash"
+            }
+        },
+        "node_outcomes": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "enum": [
+                    "PASS",
+                    "FAIL",
+                    "SKIP"
+                ]
+            }
+        },
+        "assertions": {
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/g016"
+                },
+                {
+                    "$ref": "#/$defs/g017"
+                },
+                {
+                    "$ref": "#/$defs/g018"
+                }
+            ]
+        },
+        "receipt_self_sha256": {
+            "$ref": "#/$defs/hash"
+        }
+    },
+    "$defs": {
+        "hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+        },
+        "g016": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "ISO-NEG-01",
+                "ISO-NEG-02",
+                "ISO-NEG-03",
+                "ISO-NEG-04",
+                "ISO-NEG-05",
+                "ISO-NEG-06",
+                "requirement_results"
+            ],
+            "properties": {
+                "ISO-NEG-01": {
+                    "const": "PASS"
+                },
+                "ISO-NEG-02": {
+                    "const": "PASS"
+                },
+                "ISO-NEG-03": {
+                    "const": "PASS"
+                },
+                "ISO-NEG-04": {
+                    "const": "PASS"
+                },
+                "ISO-NEG-05": {
+                    "const": "PASS"
+                },
+                "ISO-NEG-06": {
+                    "const": "PASS"
+                },
+                "requirement_results": {
+                    "$ref": "#/$defs/g016RequirementResults"
+                }
+            }
+        },
+        "g017": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "semantic_agreement",
+                "online_checkpoint_replay",
+                "mandatory_rebuild_fail_closed",
+                "tamper_fail_closed",
+                "p0_02_acceptance",
+                "requirement_results"
+            ],
+            "properties": {
+                "semantic_agreement": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "numerator",
+                        "denominator",
+                        "rate"
+                    ],
+                    "properties": {
+                        "numerator": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "denominator": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "rate": {
+                            "const": 1.0
+                        }
+                    }
+                },
+                "online_checkpoint_replay": {
+                    "const": "PASS"
+                },
+                "mandatory_rebuild_fail_closed": {
+                    "const": "PASS"
+                },
+                "tamper_fail_closed": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "passed",
+                        "total"
+                    ],
+                    "properties": {
+                        "passed": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "total": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                },
+                "p0_02_acceptance": {
+                    "$ref": "#/$defs/p002Acceptance"
+                },
+                "requirement_results": {
+                    "$ref": "#/$defs/g017RequirementResults"
+                }
+            }
+        },
+        "g018": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "reopen_validator",
+                "atomic_writer",
+                "scanner_unavailable_fail_closed",
+                "tamper_matrix",
+                "requirement_results"
+            ],
+            "properties": {
+                "reopen_validator": {
+                    "const": "PASS"
+                },
+                "atomic_writer": {
+                    "const": "PASS"
+                },
+                "scanner_unavailable_fail_closed": {
+                    "const": "PASS"
+                },
+                "tamper_matrix": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "passed",
+                        "total"
+                    ],
+                    "properties": {
+                        "passed": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "total": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                },
+                "requirement_results": {
+                    "$ref": "#/$defs/g018RequirementResults"
+                }
+            }
+        },
+        "g016RequirementResults": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["P0-05"],
+            "properties": {"P0-05": {"const": "PASS"}}
+        },
+        "g017RequirementResults": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["P0-01", "P0-02", "P0-03", "P0-04", "P0-06", "P0-07", "P0-08"],
+            "properties": {
+                "P0-01": {"const": "PASS"}, "P0-02": {"const": "PASS"},
+                "P0-03": {"const": "PASS"}, "P0-04": {"const": "PASS"},
+                "P0-06": {"const": "PASS"}, "P0-07": {"const": "PASS"},
+                "P0-08": {"const": "PASS"}
+            }
+        },
+        "g018RequirementResults": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["P0-09", "P0-10"],
+            "properties": {"P0-09": {"const": "PASS"}, "P0-10": {"const": "PASS"}}
+        },
+        "p002Acceptance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "root_mapper", "highest_version_replacement", "authority_lifecycle_engine",
+                "controls_safety_ledger_budget_gate_action_atomicity", "cas_loser_zero_commit"
+            ],
+            "properties": {
+                "root_mapper": {"const": "PASS"},
+                "highest_version_replacement": {"const": "PASS"},
+                "authority_lifecycle_engine": {"const": "PASS"},
+                "controls_safety_ledger_budget_gate_action_atomicity": {"const": "PASS"},
+                "cas_loser_zero_commit": {"const": "PASS"}
+            }
+        }
+    }
+}

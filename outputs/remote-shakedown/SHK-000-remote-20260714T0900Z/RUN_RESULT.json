@@ -1,0 +1,93 @@
+{
+  "candidate": "/home/r4900g3/yhh/provenance-fusion/candidates/v20.1-v6.7-design-repaired-75d97aac7770",
+  "candidate_archive_sha256": "75d97aac77702977b1778e230da9ac7c6891d1be857df2d506f13cbc14d90cac",
+  "completed_at_utc": "2026-07-14T08:59:40.871014+00:00",
+  "environment": "/home/r4900g3/yhh/provenance-fusion/envs/g0g2-75d97aac7770",
+  "gates": {
+    "D_TEST_AUTHORIZED": false,
+    "G0_RESOURCE": "FAIL",
+    "G1_CANARY": "PASS",
+    "G2_CANARY": "PASS",
+    "PILOT_AUTHORIZED": false
+  },
+  "limitations": [
+    "legacy demo is smoke only and supports no paper claim",
+    "transactional replacement/replay/retire/merge and independent second implementation remain pending",
+    "truth/payload separation is logical in SHK-000; container or ACL isolation remains pending",
+    "workspace free-space gate was already below 25% before this run"
+  ],
+  "qualification_canary": {
+    "checks": {
+      "arrival_only_changes_arrival_manifest": true,
+      "arrival_row_count": true,
+      "ledger_row_count": true,
+      "method_visible_payload_forbidden_fields_absent": true,
+      "minimum_2_arrival_views": true,
+      "minimum_2_noise_views": true,
+      "minimum_8_physical_bundles": true,
+      "noise_and_arrival_do_not_change_truth_hash": true,
+      "noise_changes_observation_semantics": true,
+      "payload_row_count": true,
+      "physical_seed_changes_truth_hash": true,
+      "same_seed_replay_arrival_identical": true,
+      "same_seed_replay_payload_identical": true,
+      "same_seed_replay_truth_identical": true,
+      "semantic_hash_contracts_valid": true,
+      "truth_row_count": true
+    },
+    "counts": {
+      "arrival_manifest_rows": 32,
+      "operational_payload_rows": 16,
+      "run_ledger_rows": 32,
+      "truth_rows": 8
+    },
+    "manifest_sha256": "97828582c8b06090685e888634b2e9c251d3b5f47a6802ebc82269ddd9a45e2d",
+    "status": "PASS"
+  },
+  "run_id": "SHK-000-remote-20260714T0900Z",
+  "run_policy": {
+    "claim_support": "none",
+    "confirmatory": false,
+    "evidence_class": "ENGINEERING_QUALIFICATION_ONLY",
+    "run_class": "G0_G2_SHAKEDOWN",
+    "test_opened": false
+  },
+  "schema": "g0g2-remote-run-result-1.0",
+  "steps": [
+    {
+      "exit_code": 0,
+      "name": "01_venv_create",
+      "wall_seconds": 3.789
+    },
+    {
+      "exit_code": 0,
+      "name": "02_pip_install",
+      "wall_seconds": 21.173
+    },
+    {
+      "exit_code": 0,
+      "name": "03_pytest",
+      "wall_seconds": 3.674
+    },
+    {
+      "exit_code": 0,
+      "name": "04_legacy_demo",
+      "wall_seconds": 0.134
+    },
+    {
+      "exit_code": 0,
+      "name": "05_shakedown_canary",
+      "wall_seconds": 1.121
+    },
+    {
+      "exit_code": 0,
+      "name": "06_pip_freeze",
+      "wall_seconds": 0.472
+    },
+    {
+      "exit_code": 0,
+      "name": "07_post_resource",
+      "wall_seconds": 0.046
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id", "execution_manifest_sha256", "terminal_state", "execution_lane",
+    "classification", "formal_gate_effect", "formal_admission_eligible",
+    "shk001b_eligible", "contains_formal_claims", "self_hash"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "execution_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "prepared_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "controller_nonce": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "formal_snapshot_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "preflight_evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "terminal_state": {"enum": ["SUCCEEDED", "FAILED", "BLOCKED"]},
+    "failure_code": {"type": "string"},
+    "remote_receipt_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "copy_verification_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "remote_result_tree_sha256": {"type": "string"},
+    "local_result_tree_sha256": {"type": "string"},
+    "local_result_path": {"type": "string"},
+    "directory_durable": {"type": "boolean"},
+    "formal_side_effect_recheck": {"type": "boolean"},
+    "runtime_format": {"enum": ["python_zipapp_stdlib_v1", "python_pinned_venv_v1"]},
+    "runtime_file_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_dependency_profile": {"enum": ["stdlib_only", "tep_nonconfirmatory_v1"]},
+    "pinned_runtime_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "pinned_runtime_closure_fingerprint": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "copy_verification": {"$ref": "copy_verification.schema.json"},
+    "runtime_format": {"enum": ["python_zipapp_stdlib_v1", "python_pinned_venv_v1"]},
+    "runtime_path": {"type": "string", "minLength": 1},
+    "runtime_file_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_dependency_profile": {"enum": ["stdlib_only", "tep_nonconfirmatory_v1"]},
+    "lifecycle_trace": {"type": "object"},
+    "lifecycle_trace_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_lane": {"const": "RESEARCH"},
+    "classification": {"const": "DEVELOPMENT_NONCONFIRMATORY"},
+    "formal_gate_effect": {"const": "NONE"},
+    "formal_admission_eligible": {"const": false},
+    "shk001b_eligible": {"const": false},
+    "contains_formal_claims": {"const": false},
+    "self_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"terminal_state": {"const": "SUCCEEDED"}}},
+      "then": {
+        "required": [
+          "remote_receipt_hash", "copy_verification_hash",
+          "controller_nonce", "formal_snapshot_sha256", "preflight_evidence_sha256",
+          "remote_result_tree_sha256", "local_result_tree_sha256",
+          "prepared_manifest_sha256",
+          "local_result_path", "directory_durable",
+          "formal_side_effect_recheck", "copy_verification", "runtime_format",
+          "runtime_path", "runtime_file_sha256", "runtime_source_sha256",
+          "runtime_manifest_sha256", "runtime_dependency_profile",
+          "lifecycle_trace", "lifecycle_trace_sha256"
+        ],
+        "properties": {
+          "directory_durable": {"const": true},
+          "formal_side_effect_recheck": {"const": true},
+          "copy_verification": {"type": "object"}
+        }
+      },
+      "else": {"required": ["failure_code"]}
+    },
+    {
+      "if": {"required": ["runtime_dependency_profile"], "properties": {"runtime_dependency_profile": {"const": "tep_nonconfirmatory_v1"}}},
+      "then": {"required": ["pinned_runtime_manifest_sha256", "pinned_runtime_closure_fingerprint"]}
+    }
+  ]
+}

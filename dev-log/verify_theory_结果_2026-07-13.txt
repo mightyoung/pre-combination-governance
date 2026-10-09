@@ -1,0 +1,14 @@
+== Theorem 1: L_delta empirical check ==
+ delta=0.05  bound 3/(2d)=  30.00  1/d= 20.00  max_ratio= 17.560  n=56011
+ delta=0.10  bound 3/(2d)=  15.00  1/d= 10.00  max_ratio=  9.830  n=55567
+ delta=0.15  bound 3/(2d)=  10.00  1/d=  6.67  max_ratio=  6.440  n=54736
+ delta=0.20  bound 3/(2d)=   7.50  1/d=  5.00  max_ratio=  4.913  n=54028
+ delta=0.30  bound 3/(2d)=   5.00  1/d=  3.33  max_ratio=  3.286  n=52208
+ delta=0.50  bound 3/(2d)=   3.00  1/d=  2.00  max_ratio=  1.998  n=48044
+
+== Prop 0: pooling invariance ==
+ ||q(1 msg) - q(20 dup)||_1 = 0.00e+00
+
+== Cumulative influence counterexample (per-message cap fails) ==
+ simulated Bel after 100 msgs = 0.917800   analytic limit = 0.917809
+ full D-S simulation Bel({w1}) after 100 msgs = 0.917800

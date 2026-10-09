@@ -1,0 +1,499 @@
+{
+  "root": "/share/data4/yhh-rfb/dataset-validation-20260727/extracted",
+  "MIMII": {
+    "wav_files": 4170,
+    "readable_wav_headers": 0,
+    "unreadable_wav_headers": 4170,
+    "unreadable_examples": [
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000000.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000001.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000002.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000003.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000004.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000005.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000006.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000007.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000008.wav",
+        "error": "Error: unknown format: 65534"
+      },
+      {
+        "path": "6_dB_valve/valve/id_00/abnormal/00000009.wav",
+        "error": "Error: unknown format: 65534"
+      }
+    ],
+    "sample_rates": {},
+    "channels": {},
+    "sample_width_bytes": {},
+    "frame_counts": {},
+    "compression_types": {},
+    "labels": {
+      "normal": 3691,
+      "abnormal": 479
+    },
+    "machine_ids": {
+      "id_04": 1120,
+      "id_06": 1112,
+      "id_00": 1110,
+      "id_02": 828
+    }
+  },
+  "HA4M": {
+    "counts": {
+      "png": 34540,
+      "ply": 8635,
+      "txt": 8638,
+      "db": 3
+    },
+    "packages": {
+      "IDU024V001": 21320,
+      "IDU001V002": 15931,
+      "IDU001V001": 14565
+    },
+    "modalities_from_paths": {
+      "Color": 8637,
+      "Infrared": 8636,
+      "Depth": 8635
+    },
+    "png": {
+      "valid_ihdr": 34540,
+      "failures": 0,
+      "failure_examples": [],
+      "shapes": {
+        "640x576/bit16/color0": 17270,
+        "2048x1536/bit8/color2": 8635,
+        "640x576/bit8/color6": 8635
+      }
+    },
+    "ply": {
+      "valid_headers": 8635,
+      "failures": 0,
+      "failure_examples": [],
+      "formats": {
+        "binary_little_endian": 8635
+      },
+      "element_shapes": {
+        "{\"vertex\": 262405}": 9,
+        "{\"vertex\": 197545}": 8,
+        "{\"vertex\": 197171}": 7,
+        "{\"vertex\": 196043}": 7,
+        "{\"vertex\": 197396}": 7,
+        "{\"vertex\": 262164}": 7,
+        "{\"vertex\": 262112}": 7,
+        "{\"vertex\": 261398}": 7,
+        "{\"vertex\": 262189}": 6,
+        "{\"vertex\": 261319}": 6,
+        "{\"vertex\": 196366}": 5,
+        "{\"vertex\": 196456}": 5,
+        "{\"vertex\": 196293}": 5,
+        "{\"vertex\": 196301}": 5,
+        "{\"vertex\": 195838}": 5,
+        "{\"vertex\": 196302}": 5,
+        "{\"vertex\": 196020}": 5,
+        "{\"vertex\": 195899}": 5,
+        "{\"vertex\": 262059}": 5,
+        "{\"vertex\": 262143}": 5
+      }
+    },
+    "txt": {
+      "readable": 8638,
+      "failures": 0,
+      "failure_examples": [],
+      "shapes": {
+        "33x14": 8635,
+        "2427x3": 1,
+        "2655x3": 1,
+        "3553x3": 1
+      },
+      "numeric": {
+        "false": 8635,
+        "true": 3
+      },
+      "parent_directories": {
+        "000124702712": 5082,
+        "000099302712": 3553,
+        "IDU001V001": 1,
+        "IDU001V002": 1,
+        "IDU024V001": 1
+      },
+      "skeleton_32x3_files": 0,
+      "skeleton_flat_96_files": 0,
+      "examples": {
+        "2427x3": {
+          "path": "IDU001V001/IDU001V001/Labels.txt",
+          "first_lines": [
+            "0 0 0",
+            "1 0 0",
+            "2 0 0"
+          ],
+          "numeric": true
+        },
+        "33x14": {
+          "path": "IDU001V001/IDU001V001/Skeletons/000124702712/FrameID000000_DeviceTimeStamp450817733us.txt",
+          "first_lines": [
+            "BodyID\tJointID\tConfidance\tX\tY\tZ\tQw\tQx\tQy\tQz\tX2DColor\tY2DColor\tX2DDepth\tY2DDepth",
+            "1\t0\t0.666667\t88.077148\t-65.974510\t1846.956909\t0.592435\t-0.417524\t0.603524\t-0.332344\t1054.360352\t846.397644\t347.490662\t319.489899",
+            "1\t1\t0.666667\t97.707268\t-232.640350\t1768.735474\t0.574082\t-0.448775\t0.580662\t-0.363129\t1060.243042\t754.637695\t351.130402\t271.707031"
+          ],
+          "numeric": false
+        },
+        "2655x3": {
+          "path": "IDU001V002/IDU001V002/Labels.txt",
+          "first_lines": [
+            "0 0 0",
+            "1 0 0",
+            "2 0 0"
+          ],
+          "numeric": true
+        },
+        "3553x3": {
+          "path": "IDU024V001/IDU024V001/Labels.txt",
+          "first_lines": [
+            "0 0 0",
+            "1 0 0",
+            "2 0 0"
+          ],
+          "numeric": true
+        }
+      }
+    },
+    "db": [
+      {
+        "path": "IDU001V001/IDU001V001/Color/000124702712/Thumbs.db",
+        "sqlite_magic": false,
+        "error": "DatabaseError: file is not a database"
+      },
+      {
+        "path": "IDU001V001/IDU001V001/Infrared/000124702712/Thumbs.db",
+        "sqlite_magic": false,
+        "error": "DatabaseError: file is not a database"
+      },
+      {
+        "path": "IDU024V001/IDU024V001/Color/000099302712/Thumbs.db",
+        "sqlite_magic": false,
+        "error": "DatabaseError: file is not a database"
+      }
+    ]
+  },
+  "HM-SYNC": {
+    "jsonl_files": 19,
+    "records": 118190,
+    "parse_failures": 0,
+    "parse_failure_examples": [],
+    "per_shard": [
+      {
+        "path": "train-000/train-000/metadata.jsonl",
+        "records": 7220,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-001/train-001/metadata.jsonl",
+        "records": 6931,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-002/train-002/metadata.jsonl",
+        "records": 6715,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-003/train-003/metadata.jsonl",
+        "records": 7016,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-004/train-004/metadata.jsonl",
+        "records": 7126,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-005/train-005/metadata.jsonl",
+        "records": 7120,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-006/train-006/metadata.jsonl",
+        "records": 6763,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-007/train-007/metadata.jsonl",
+        "records": 6684,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-008/train-008/metadata.jsonl",
+        "records": 6541,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-009/train-009/metadata.jsonl",
+        "records": 6104,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-010/train-010/metadata.jsonl",
+        "records": 1854,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-011/train-011/metadata.jsonl",
+        "records": 6727,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-012/train-012/metadata.jsonl",
+        "records": 7509,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-013/train-013/metadata.jsonl",
+        "records": 6377,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-014/train-014/metadata.jsonl",
+        "records": 6385,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-015/train-015/metadata.jsonl",
+        "records": 5673,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-016/train-016/metadata.jsonl",
+        "records": 6315,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-022/train-022/metadata.jsonl",
+        "records": 6362,
+        "parse_failures": 0
+      },
+      {
+        "path": "train-033/train-033/metadata.jsonl",
+        "records": 2768,
+        "parse_failures": 0
+      }
+    ],
+    "top_level_keysets": {
+      "action_label|action_number|datetime|file_name|frame|location_label|skeleton|user_label|view_label": 118190
+    },
+    "record_schema_shapes": {
+      "{\"action_label\": \"str\", \"action_number\": \"int\", \"datetime\": \"str\", \"file_name\": \"str\", \"frame\": \"int\", \"location_label\": \"int\", \"skeleton\": [[\"str\"]], \"user_label\": \"int\", \"view_label\": \"int\"}": 118190
+    },
+    "hint_fields": {
+      "action:action_label": {
+        "unique_count": 17,
+        "top_values": {
+          "refit_buildplate": 29556,
+          "adjusting_tool": 20233,
+          "using_flexpendant_mobile": 16279,
+          "using_flexpendant_mounted": 11009,
+          "walking": 9932,
+          "wiring": 6751,
+          "using_control_panel": 4848,
+          "observing": 4245,
+          "inspecting_buildplate": 3544,
+          "close_door": 3262,
+          "preparing_buildplate": 2588,
+          "open_door": 1253,
+          "toggle_lights": 1237,
+          "turning_gas_knobs": 1150,
+          "grinding_buildplate": 1113,
+          "donning_ppe": 1015,
+          "doffing_ppe": 175
+        }
+      },
+      "action:action_number": {
+        "unique_count": 611,
+        "top_values": {
+          "397": 6507,
+          "538": 4259,
+          "449": 3862,
+          "383": 3482,
+          "380": 2668,
+          "534": 1869,
+          "395": 1701,
+          "381": 1657,
+          "39": 1360,
+          "81": 1326,
+          "63": 1301,
+          "537": 1260,
+          "1215": 1220,
+          "379": 1143,
+          "390": 1082,
+          "545": 1072,
+          "421": 1057,
+          "723": 1057,
+          "399": 956,
+          "1224": 924,
+          "3": 908,
+          "59": 849,
+          "126": 817,
+          "71": 794,
+          "515": 758,
+          "18": 749,
+          "530": 746,
+          "499": 742,
+          "116": 729,
+          "107": 721
+        }
+      },
+      "action:location_label": {
+        "unique_count": 7,
+        "top_values": {
+          "7": 36829,
+          "0": 32470,
+          "6": 25711,
+          "2": 12667,
+          "1": 4848,
+          "3": 4515,
+          "5": 1150
+        }
+      },
+      "action:user_label": {
+        "unique_count": 4,
+        "top_values": {
+          "0": 91865,
+          "2": 14607,
+          "1": 10951,
+          "3": 767
+        }
+      },
+      "action:view_label": {
+        "unique_count": 2,
+        "top_values": {
+          "1": 77972,
+          "0": 40218
+        }
+      },
+      "image:file_name": {
+        "unique_count": 118190,
+        "top_values": {
+          "outer_depths/000000.png": 1,
+          "outer_depths/000001.png": 1,
+          "outer_depths/000002.png": 1,
+          "outer_depths/000003.png": 1,
+          "outer_depths/000004.png": 1,
+          "outer_depths/000005.png": 1,
+          "outer_depths/000006.png": 1,
+          "outer_depths/000007.png": 1,
+          "outer_depths/000008.png": 1,
+          "outer_depths/000009.png": 1,
+          "outer_depths/000010.png": 1,
+          "outer_depths/000011.png": 1,
+          "outer_depths/000012.png": 1,
+          "outer_depths/000013.png": 1,
+          "outer_depths/000014.png": 1,
+          "outer_depths/000015.png": 1,
+          "outer_depths/000016.png": 1,
+          "outer_depths/000017.png": 1,
+          "outer_depths/000018.png": 1,
+          "outer_depths/000019.png": 1,
+          "outer_depths/000020.png": 1,
+          "outer_depths/000021.png": 1,
+          "outer_depths/000022.png": 1,
+          "outer_depths/000023.png": 1,
+          "outer_depths/000024.png": 1,
+          "outer_depths/000025.png": 1,
+          "outer_depths/000026.png": 1,
+          "outer_depths/000027.png": 1,
+          "outer_depths/000028.png": 1,
+          "outer_depths/000029.png": 1
+        }
+      },
+      "image:frame": {
+        "unique_count": 118190,
+        "top_values": {
+          "0": 1,
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 1,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 1,
+          "10": 1,
+          "11": 1,
+          "12": 1,
+          "13": 1,
+          "14": 1,
+          "15": 1,
+          "16": 1,
+          "17": 1,
+          "18": 1,
+          "19": 1,
+          "20": 1,
+          "21": 1,
+          "22": 1,
+          "23": 1,
+          "24": 1,
+          "25": 1,
+          "26": 1,
+          "27": 1,
+          "28": 1,
+          "29": 1
+        }
+      },
+      "subject:user_label": {
+        "unique_count": 4,
+        "top_values": {
+          "0": 91865,
+          "2": 14607,
+          "1": 10951,
+          "3": 767
+        }
+      },
+      "view:view_label": {
+        "unique_count": 2,
+        "top_values": {
+          "1": 77972,
+          "0": 40218
+        }
+      }
+    },
+    "first_record_redacted_to_schema": {
+      "action_label": "str",
+      "action_number": "int",
+      "datetime": "str",
+      "file_name": "str",
+      "frame": "int",
+      "location_label": "int",
+      "skeleton": [
+        [
+          "str"
+        ]
+      ],
+      "user_label": "int",
+      "view_label": "int"
+    }
+  }
+}

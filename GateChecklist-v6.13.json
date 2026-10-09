@@ -1,0 +1,559 @@
+{
+  "capacity_invariant": {
+    "cap_breach_action": "SAFE_HALT_CAP_BREACH",
+    "formula": "max(project_tree_allocated_bytes, filesystem_used_delta_bytes + owned_external_layers_bytes) <= 25000000000",
+    "open_deleted_files_count_toward_cap": true,
+    "same_volume_result_archive_counts_toward_cap": true,
+    "unknown_owned_external_layer_action": "SAFE_HALT"
+  },
+  "created_date": "2026-07-15",
+  "dataset_purge_gate": {
+    "authorization_requires": [
+      "result_sealed_local=PASS",
+      "result_archive_a=PASS",
+      "result_archive_b=PASS",
+      "regen_verified=PASS",
+      "contains_raw_dataset=false",
+      "truth_isolation=PASS",
+      "DS_signature=PASS",
+      "STAT_signature=PASS"
+    ],
+    "pass_condition": "ephemeral_files_remaining=0; open_deleted_bytes=0; unexplained_space_delta=0; only durable result index remains locally",
+    "status": "PENDING",
+    "tasks": [
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/purge/dataset_purge_ledger.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "purge allowlist hash"
+        ],
+        "id": "P0",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "build_manifest_allowlist",
+        "status": "PENDING"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/purge/dataset_purge_ledger.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "dataset_purge_ledger.json"
+        ],
+        "id": "P1",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "purge_ephemeral_and_transient_objects",
+        "status": "BLOCKED_BY_AUTHORIZATION"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/purge/dataset_purge_tombstone.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "ephemeral_files_remaining=0",
+          "open_deleted_bytes=0"
+        ],
+        "id": "P2",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "scan_residuals_and_open_deleted_files",
+        "status": "BLOCKED_BY_P1"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/purge/dataset_purge_tombstone.json",
+          "risk-fusion-bench/outputs/gate_components/closeout/segment_closeout_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "dataset_purge_tombstone.json",
+          "post-purge inventory",
+          "Archive A/B result recheck"
+        ],
+        "id": "P3",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "reconcile_space_and_result_archives",
+        "status": "BLOCKED_BY_P2"
+      }
+    ]
+  },
+  "durable_result_gate": {
+    "pass_condition": "bundle-method-seed result rows complete; hashes closed; contains_raw_dataset=false",
+    "required_result_fields": [
+      "bundle_id",
+      "method_id",
+      "algorithm_seed",
+      "prediction_or_decision",
+      "scorer_metrics",
+      "validity_status",
+      "failure_or_timeout_code",
+      "stratum_template_batch_superblock_keys",
+      "resource_telemetry",
+      "input_commitment",
+      "generator_candidate_method_scorer_schema_container_allocation_prereg_hashes",
+      "transaction_id",
+      "result_sha256"
+    ],
+    "status": "PENDING",
+    "tasks": [
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/durable_result/fixture_package/durable_result_manifest.json",
+          "risk-fusion-bench/outputs/gate_components/durable_result/durable_result_schema_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "durable_result_manifest.schema.json"
+        ],
+        "id": "R0",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "define_durable_result_schema",
+        "status": "PENDING"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/durable_result/raw_dataset_exclusion_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "raw dataset signature negative test",
+          "contains_raw_dataset=false"
+        ],
+        "id": "R1",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "reject_raw_dataset_in_result_package",
+        "status": "PENDING"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/durable_result/fixture_package/durable_result_manifest.json",
+          "risk-fusion-bench/outputs/gate_components/durable_result/durable_result_schema_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "result manifest",
+          "Merkle root",
+          "expected-vs-observed closure"
+        ],
+        "id": "R2",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "seal_local_result_package",
+        "status": "BLOCKED_BY_R0_R1"
+      }
+    ]
+  },
+  "execution_volume_note_20260723": "分段执行卷由本地 /dev/sda2（可用仅约114GiB，不达标）迁至同主机 NFS4 共享卷 /share/data4（来自192.168.11.2），段工作根 /share/data4/yhh-rfb/。data4 实测 total=7,937,304,035,328 B、avail=7,109,158,633,472 B，段起始空闲阈值 segment_start_free_min_bytes(265,853,007,872) 与 remote_reserve_floor_bytes(235,853,007,872) 沿用不变、直接判定 PASS（余量6.22TiB）；本备注不修改任何阈值常量或门禁状态。NFS 语义已实测：原子重命名保真、st_blocks×512==st_size、disk_usage可读。注意 capacity_invariant 的 filesystem_used_delta 在多用户卷上可能被他人写入污染而保守提前触发 SAFE_HALT_CAP_BREACH，执行时以 project_tree_allocated_bytes 为主约束。详见《执行计划修订-执行卷迁移至share-data4-20260723.md》。runtime_gate 已回 PASS，C2 现为 READY_FOR_NONCONFIRMATORY_SIZING_SMOKE，为下一步唯一合法动作；总状态仍 FORMAL_EXPERIMENT_BLOCKED。",
+  "formal_stage_admission": {
+    "required_fields": {
+      "effect_peeking": false,
+      "formal_start_allowed": true,
+      "purge_gate": "PASS",
+      "raw_dataset_retained": false,
+      "regeneration_gate": "PASS",
+      "result_archive_a": "PASS",
+      "result_archive_b": "PASS",
+      "runtime_gate": "PASS",
+      "segment_cap_gate": "PASS"
+    },
+    "required_file": "FORMAL_STAGE_ADMISSION-v6.13.json",
+    "status": "BLOCKED"
+  },
+  "global_rules": {
+    "capacity_measurement_interval_seconds": 30,
+    "capacity_unit": "decimal_bytes",
+    "drain_threshold_bytes": 24000000000,
+    "durable_results_retained": true,
+    "effect_peeking_allowed": false,
+    "external_drift_guard_bytes": 5000000000,
+    "physical_segment_cap_bytes": 25000000000,
+    "planning_peak_limit_bytes": 22000000000,
+    "raw_dataset_archive_allowed": false,
+    "raw_dataset_retained_after_reconcile": false,
+    "remote_reserve_floor_bytes": 235853007872,
+    "segment_start_free_min_bytes": 265853007872,
+    "split_complete_bundle_across_segments_allowed": false,
+    "split_method_panel_allowed": false
+  },
+  "object_lifecycle": {
+    "durable_result": {
+      "archive_allowed": true,
+      "contains_raw_dataset": false,
+      "examples": [
+        "method_output",
+        "scorer_output",
+        "failure_code",
+        "resource_telemetry",
+        "ledger",
+        "manifest",
+        "hashes",
+        "seed_commitment",
+        "purge_tombstone"
+      ],
+      "minimum_granularity": "bundle_id x method_id x algorithm_seed",
+      "retention_after_segment": "REQUIRED_IN_ARCHIVE_A_AND_B"
+    },
+    "ephemeral_dataset": {
+      "archive_allowed": false,
+      "examples": [
+        "payload",
+        "truth_store",
+        "method_input_cache",
+        "regenerable_features",
+        "decompressed_copies"
+      ],
+      "retention_after_segment": "PROHIBITED"
+    },
+    "transient_runtime": {
+      "archive_allowed": false,
+      "examples": [
+        "partial",
+        "scratch",
+        "WAL",
+        "checkpoint",
+        "retry_payload",
+        "quarantine_payload",
+        "raw_logs"
+      ],
+      "retention_after_segment": "PROHIBITED_EXCEPT_SMALL_DIAGNOSTIC_SUMMARY"
+    }
+  },
+  "regeneration_gate": {
+    "failure_action": "INVALID_RESULT_KEEP_DATASET_STOP_NEXT_SEGMENT",
+    "pass_condition": "all frozen samples reproduce; no replacement sampling",
+    "sample_selection_frozen_before_execution": true,
+    "sample_size_rule": "max(2, ceil(0.01 * bundles_in_segment))",
+    "status": "PENDING",
+    "tasks": [
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/regeneration/regeneration_sampling_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "regeneration_sampling_qa.json"
+        ],
+        "id": "G0",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "regenerate_frozen_sample",
+        "status": "PENDING"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/regeneration/regeneration_sampling_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "payload commitment match",
+          "method result hash or prespecified tolerance match"
+        ],
+        "id": "G1",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "compare_payload_commitment_and_method_replay",
+        "status": "PENDING"
+      }
+    ]
+  },
+  "remote_snapshot_note_20260727": {
+    "data4_available_bytes": 7001356632064,
+    "data4_segment_start_threshold_pass": true,
+    "data4_workroot_allocated_bytes": 99942477824,
+    "data4_workroot_breakdown_bytes": {
+      "audit": 8192,
+      "dataset-validation-20260727": 80263213056,
+      "prepared": 19679252480
+    },
+    "evidence": "risk-fusion-bench/outputs/runtime_gate/remote_runtime_snapshot_20260727T141038Z.json",
+    "gate_effect": "No live gate promoted. Before C2 writes, use and meter a fresh segment-scoped root; the 99.94 GB aggregate yhh-rfb workroot is not evidence that a physical segment satisfies the 25 GB cap.",
+    "gpu_observation": "2 x NVIDIA L20 observed; GPU0 used 11699 MiB at 0 percent, GPU1 used 17909 MiB at 99 percent. This does not authorize GPU use.",
+    "home_available_bytes": 142654758912,
+    "home_segment_start_threshold_pass": false,
+    "host_key_match": true,
+    "host_key_sha256": "eDfwLjrpTces2mQp4d+gKdg2i/4t7k7sLfF/nLtx1oA",
+    "host_key_type": "ssh-ed25519",
+    "observed_at_utc": "2026-07-27T14:10:38.370714+00:00"
+  },
+  "repair_note_20260723": "source_evidence 第5项原为编码损坏的乱码文件名，2026-07-23 验收时按目录中实际存在的文件更正为《实验设计与执行计划v6.10-100GB分阶段执行版.md》，并新增本备注字段；除此之外未改动任何门禁状态、任务或哈希字段。乱码的历史字节可在 GateChecklist-v6.13.before-g007-final-20260723.json（G007 前快照，同样含该乱码）中追溯。",
+  "result_archive_gate": {
+    "archive_scope": "DURABLE_RESULT_ONLY",
+    "pass_condition": "A and B contain only durable results; missing=0; unexpected=0; mismatch=0; at least one copy off-host/off-volume immutable or append-only",
+    "status": "PENDING",
+    "tasks": [
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/archive/result_archive_targets.json",
+          "risk-fusion-bench/outputs/gate_components/archive/result_archive_ab_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "result_archive_targets.json",
+          "write/list/readback/hash PASS"
+        ],
+        "id": "B0",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "configure_result_archive_a",
+        "status": "PENDING"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/archive/result_archive_targets.json",
+          "risk-fusion-bench/outputs/gate_components/archive/result_archive_ab_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "result_archive_targets.json",
+          "write/list/readback/hash PASS",
+          "independent failure domain"
+        ],
+        "id": "B1",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "configure_independent_result_archive_b",
+        "status": "PENDING"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/archive/result_archive_ab_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "result_archive_ab_qa.json"
+        ],
+        "id": "B2",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "verify_result_package_both_copies",
+        "status": "BLOCKED_BY_B0_B1"
+      }
+    ]
+  },
+  "runtime_gate": {
+    "batchd_note_20260723": "批次D于2026-07-23晚间在Linux沙箱（Python 3.11.11 venv；numpy 2.1.3/scipy 1.14.1/matplotlib 3.9.4/pytest 9.1.1/jsonschema 4.26.0）完成。修复3处：(1) methods/registry.py 第18/173行 normalized_conjunctive→normalized_noisy_or 符号改名同步（冻结的rule/rationale字符串未动）；(2) capacity_probe.py open_deleted_bytes 将 os.name 检查移到 Path 实例化之前（修复非POSIX分支在 os.name=nt 补丁下抛 NotImplementedError 而非 ProbeUnavailable 的顺序缺陷）；(3) regeneration.py _authority_path 增加 PureWindowsPath 盘符/绝对路径跨平台拒绝（修复 C:/outside.py 在 Linux 上落到 FileNotFoundError 而非 ValueError）。修复后 pytest 全量 376 passed 0 failed 0 skipped（Linux 无 WinError 1314 跳过项），compileall 通过。method_outputs_7of7.json 经 run_all 对冻结 fixture 重放再生：7/7 方法数值预测与旧值完全一致，仅 implementation_sha256/result_sha256 因源码哈希变化更新，证实批次A/B'数值语义不变'声明。refresh_runtime_freeze 重新生成 source_tree_manifest.json 与 runtime_baseline.json。本批次未运行 ruff/mypy（沙箱未安装），G007 的 ruff/mypy 结论不适用于当前树。证据：outputs/runtime_gate/batchD_pytest_green_20260723.log 与 batchD_pytest_failure_20260723.log。",
+    "last_verified": "2026-07-27T14:14:46.750991Z",
+    "runtime_stale_note_20260731": "The authoritative 2026-07-27 runtime freeze covers 89 files with source_tree_sha256=adb3bb946b70ba605d044f53785aefefad75e97d66918bf49faa3dab5c77ed0b. The current tree contains 128 files with source_tree_sha256=3cadb39744968f6b6d41db2eaf3151a5e3c236d092c34b0911483e291c7c9460. Local Stage A/C implementation and bounded regression evidence do not authorize a runtime refreeze: genuine A0 authority migration still lacks a configured production authority-generation signer, exclusive no-writer freeze evidence for both legacy authority files, and production broker ACL proof. No authoritative runtime artifacts were regenerated.",
+    "pass_condition": "7/7 methods registered; transaction and result schemas closed; scorer-only isolation PASS; no placeholder method output",
+    "required_methods": [
+      "B0",
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "Proposed"
+    ],
+    "runtime_refresh_note_20260727": "2026-07-27 runtime refresh on Windows with CPython 3.11.9. The prior 85-file manifest had missing=0 mismatch=0 and gained exactly four reviewed real-loader files: src/rfb/loaders/ha4m_real.py, src/rfb/loaders/hm_sync.py, src/rfb/loaders/mimii.py, and tests/test_real_dataset_loaders.py. Fresh full regression: 369 passed, 13 skipped; skips are Windows symlink/WinError 1314 limitations. compileall passed. Ruff, Ruff format, and Mypy were not available in the current Python environment and are not claimed. Method implementation files did not change, so method_registry.json and method_outputs_7of7.json were retained. Runtime freeze was regenerated with 89 files. Formal live gates remain PENDING and FORMAL_STAGE_ADMISSION-v6.13.json remains absent.",
+    "status": "STALE_SOURCE_MODIFIED_20260731",
+    "tasks": [
+      {
+        "evidence": [
+          "risk-fusion-bench/outputs/runtime_gate/runtime_baseline.json",
+          "risk-fusion-bench/outputs/runtime_gate/source_tree_manifest.json",
+          "risk-fusion-bench/outputs/runtime_gate/container_lock.json",
+          "risk-fusion-bench/outputs/runtime_gate/seed_commitment.json",
+          "risk-fusion-bench/outputs/runtime_gate/allocation_commitment.json"
+        ],
+        "id": "A0",
+        "name": "freeze_code_baseline",
+        "status": "STALE_SOURCE_MODIFIED_20260731"
+      },
+      {
+        "evidence": [
+          "risk-fusion-bench/outputs/runtime_gate/method_registry.json",
+          "risk-fusion-bench/tests/test_gate_a_methods_adversarial.py",
+          "risk-fusion-bench/tests/test_gate_a_semantics_strict.py"
+        ],
+        "id": "A1",
+        "name": "implement_method_registry",
+        "status": "PASS"
+      },
+      {
+        "evidence": [
+          "risk-fusion-bench/src/rfb/contracts/formal_transaction_ledger.schema.json",
+          "risk-fusion-bench/outputs/runtime_gate/formal_transaction_ledger_evidence.json",
+          "risk-fusion-bench/tests/test_gate_a_formal_ledger_schema.py",
+          "risk-fusion-bench/tests/test_gate_a_formal_capacity.py"
+        ],
+        "id": "A2",
+        "name": "implement_transaction_lifecycle",
+        "status": "PASS"
+      },
+      {
+        "evidence": [
+          "risk-fusion-bench/outputs/runtime_gate/truth_isolation_qa.json",
+          "risk-fusion-bench/tests/test_gate_a_formal_capacity.py",
+          "risk-fusion-bench/tests/test_gate_a_architect_adversarial.py"
+        ],
+        "id": "A3",
+        "name": "enforce_scorer_only_truth_isolation",
+        "status": "PASS"
+      },
+      {
+        "evidence": [
+          "risk-fusion-bench/src/rfb/contracts/method_output.schema.json",
+          "risk-fusion-bench/outputs/runtime_gate/method_outputs_7of7.json",
+          "risk-fusion-bench/tests/test_gate_a_semantics_strict.py"
+        ],
+        "id": "A4",
+        "name": "implement_non_placeholder_method_outputs",
+        "status": "PASS"
+      }
+    ],
+    "verification_summary": {
+      "ai_slop_cleaner": "历史(G007): PASS / bounded G007 cleanup; .omx/ultragoal/ai-slop-cleaner-g007-final.md",
+      "code_review": "历史(G007): APPROVE P0-P3=0; architect CLEAR。批次D的3处修复未经独立代码审查",
+      "compileall": "src/tests PASS (2026-07-31, CPython 3.11.9 Windows)",
+      "formal_ledger_schema": "included in batch D full regression",
+      "full_regression": "369 passed, 13 skipped (2026-07-27 Windows, CPython 3.11.9; 13 skips are symlink/WinError 1314 limitations)",
+      "mypy": "not run: Mypy is not installed in the current Python 3.11 environment",
+      "real_dataset_loader_tests": "included in 2026-07-27 full regression",
+      "remote_snapshot": "risk-fusion-bench/outputs/runtime_gate/remote_runtime_snapshot_20260727T141038Z.json",
+      "remote_snapshot_classification": "READ_ONLY_CURRENT_REMOTE_OBSERVATION_NOT_FORMAL_GATE_EVIDENCE",
+      "ruff": "PASS on 27 scoped G001/G005 files (2026-07-31, Ruff 0.15.0)",
+      "ruff_format": "27 scoped G001/G005 files already formatted (2026-07-31, Ruff 0.15.0)",
+      "runtime_baseline_embedded_self_sha256": "b06321e3bbb611bbd71af2066f413ea9c6bb340b837ef7b11c318f493fa2852a",
+      "runtime_baseline_sha256": "359c23f4daeb76ff71cc14aa02c97365f4dc6d13011b8140768b0ac9aaab3ae1",
+      "current_source_tree_observation": "128 regular files under src/tests; source_tree_sha256=3cadb39744968f6b6d41db2eaf3151a5e3c236d092c34b0911483e291c7c9460 (2026-07-31; observation only, no authoritative refreeze)",
+      "source_manifest_consistency": "STALE: authoritative manifest has 89 files and source_tree_sha256=adb3bb946b70ba605d044f53785aefefad75e97d66918bf49faa3dab5c77ed0b; current tree has 128 files and source_tree_sha256=3cadb39744968f6b6d41db2eaf3151a5e3c236d092c34b0911483e291c7c9460",
+      "targeted_regression_20260731": "501 passed, 16 skipped, 0 failed across non-overlapping Stage A/C, Gate A/B, C2/C3, component-evidence, and runtime slices; not represented as a single full-suite run",
+      "strict_semantics": "included in 2026-07-27 full regression",
+      "targeted_gate_b_evidence": "历史(G007): 96 passed, 6 skipped; 批次D以全量回归覆盖"
+    }
+  },
+  "schema": "gate-checklist-v6.13-1.0",
+  "segment_budget_bytes": {
+    "budget_borrowing_allowed": false,
+    "durable_result_staging": 3000000000,
+    "emergency_reserve_unallocatable": 3000000000,
+    "ephemeral_dataset": 16000000000,
+    "retry_quarantine_wal": 1000000000,
+    "scratch_partial": 2000000000,
+    "total": 25000000000
+  },
+  "segment_cap_gate": {
+    "pass_condition": "all samples <= 25000000000 bytes; planning peak <= 22000000000 bytes; every segment contains only complete bundles and full method panels",
+    "status": "PENDING",
+    "tasks": [
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/capacity/capacity_telemetry.jsonl",
+          "risk-fusion-bench/outputs/gate_components/capacity/capacity_probe_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "capacity_telemetry.jsonl",
+          "open-deleted-file probe test"
+        ],
+        "id": "C0",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "implement_capacity_probe",
+        "status": "PENDING"
+      },
+      {
+        "development_evidence": [
+          "risk-fusion-bench/outputs/gate_components/capacity/capacity_probe_qa.json"
+        ],
+        "development_status": "PASS",
+        "development_verified_at": "2026-07-23T05:22:31.260577Z",
+        "evidence": [
+          "24GB drain test",
+          "25GB breach fail-closed test"
+        ],
+        "id": "C1",
+        "live_blocker": "Development evidence is not fresh live-segment gate evidence.",
+        "live_status": "PENDING",
+        "name": "verify_subbudgets_and_halt",
+        "status": "PENDING"
+      },
+      {
+        "evidence": [
+          "single_bundle_sizing_report.json"
+        ],
+        "id": "C2",
+        "name": "run_one_bundle_full_panel_smoke",
+        "blocker": "Blocked until the stale runtime baseline is legitimately refrozen after genuine A0 authority migration with a production authority-generation signer, exclusive no-writer freeze evidence for both legacy authority files, and production broker ACL proof.",
+        "status": "BLOCKED_BY_STALE_RUNTIME_AND_A0_MIGRATION"
+      },
+      {
+        "evidence": [
+          "shk001b_sizing_report.json",
+          "updated segment allocation matrix"
+        ],
+        "id": "C3",
+        "name": "freeze_segment_size_from_q99",
+        "status": "BLOCKED_BY_C2"
+      }
+    ]
+  },
+  "segment_state_machine": {
+    "exception_states": [
+      "PAUSED_SAFE",
+      "SAFE_HALT_CAP_BREACH",
+      "INVALID_RESULT"
+    ],
+    "next_segment_requires_previous_state": "RECONCILED",
+    "purge_is_allowlist_only": true,
+    "purge_is_idempotent": true,
+    "states": [
+      "PLANNED",
+      "ADMITTED",
+      "MATERIALIZING",
+      "EXECUTING",
+      "RESULT_SEALED_LOCAL",
+      "RESULT_ARCHIVED_A",
+      "RESULT_ARCHIVED_B",
+      "REGEN_VERIFIED",
+      "DATASET_PURGE_AUTHORIZED",
+      "DATASET_PURGING",
+      "DATASET_PURGED",
+      "RECONCILED"
+    ]
+  },
+  "shk001b_execution": {
+    "bundles_total": 28,
+    "final_evidence": [
+      "shk001b_sizing_report.json",
+      "all segment result manifests",
+      "all purge tombstones"
+    ],
+    "methods_per_bundle": 7,
+    "nonconfirmatory": true,
+    "per_segment_required_terminal_state": "RECONCILED",
+    "segment_size": "FROZEN_AFTER_ONE_BUNDLE_FULL_PANEL_SMOKE",
+    "single_segment_required": false,
+    "status": "BLOCKED_BY_CAPACITY_ARCHIVE_REGENERATION_AND_PURGE_GATES"
+  },
+  "source_evidence": [
+    "ExecutionPlan-Gates-v6.12.md",
+    "GateChecklist-v6.12.json",
+    "ResourceAwareExecutionPlan-v6.11.json",
+    "ResourceStageMatrix-v6.11.csv",
+    "实验设计与执行计划v6.10-100GB分阶段执行版.md"
+  ],
+  "status": "FORMAL_EXPERIMENT_BLOCKED",
+  "supersedes_storage_design": "GateChecklist-v6.12.json"
+}

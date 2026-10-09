@@ -1,0 +1,9 @@
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+pytest>=7.0
+jsonschema>=4.18  # gate_evidence.py / g004_evidence.py 及 Gate A/B 测试的硬依赖（2026-07-23 验收补录）
+# M2/M3阶段再启用：
+# torch>=2.1
+# vllm
+# openai

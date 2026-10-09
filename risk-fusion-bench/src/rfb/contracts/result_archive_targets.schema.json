@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "safeEvidence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "propertyNames": {
+            "not": {
+              "pattern": "(?i:credential|password|passwd|secret|token|private[_-]?key|access[_-]?key|api[_-]?key|authorization|bearer)"
+            }
+          },
+          "additionalProperties": {"$ref": "#/$defs/safeEvidence"}
+        },
+        {
+          "type": "array",
+          "items": {"$ref": "#/$defs/safeEvidence"}
+        },
+        {
+          "type": "string",
+          "not": {
+            "pattern": "(?i:credential|password|passwd|secret|token|private[_-]?key|access[_-]?key|api[_-]?key|authorization|bearer)"
+          }
+        },
+        {"type": ["number", "integer", "boolean", "null"]}
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "root",
+        "failure_domain",
+        "immutable",
+        "append_only"
+      ],
+      "properties": {
+        "name": {"enum": ["A", "B"]},
+        "root": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?:[A-Za-z]:[\\\\/]|/|\\\\\\\\)"
+        },
+        "failure_domain": {"type": "string", "minLength": 1},
+        "off_host": {"type": "boolean"},
+        "off_volume": {"type": "boolean"},
+        "immutable": {"type": "boolean"},
+        "append_only": {"type": "boolean"},
+        "live_evidence": {"$ref": "#/$defs/safeEvidence"}
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {"properties": {"immutable": {"const": true}}},
+            {"properties": {"append_only": {"const": true}}}
+          ]
+        },
+        {
+          "if": {
+            "properties": {"name": {"const": "B"}},
+            "required": ["name"]
+          },
+          "then": {
+            "anyOf": [
+              {
+                "properties": {"off_host": {"const": true}},
+                "required": ["off_host"]
+              },
+              {
+                "properties": {"off_volume": {"const": true}},
+                "required": ["off_volume"]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["targets"],
+  "properties": {
+    "targets": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/target"},
+      "allOf": [
+        {
+          "contains": {
+            "properties": {"name": {"const": "A"}},
+            "required": ["name"]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {"name": {"const": "B"}},
+            "required": ["name"]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    }
+  }
+}

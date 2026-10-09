@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "formal-stage-admission-v6.13.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "status",
+    "formal_start_allowed",
+    "raw_dataset_retained",
+    "effect_peeking",
+    "admission_intent_digest",
+    "intent",
+    "signatures",
+    "admission_sha256"
+  ],
+  "properties": {
+    "schema_id": {"const": "formal-stage-admission-v6.13.v1"},
+    "status": {"const": "ADMITTED"},
+    "formal_start_allowed": {"const": true},
+    "raw_dataset_retained": {"const": false},
+    "effect_peeking": {"const": false},
+    "admission_intent_digest": {"$ref": "#/$defs/hash"},
+    "intent": {"type": "object"},
+    "signatures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["DS", "STAT"],
+      "properties": {
+        "DS": {"$ref": "#/$defs/signature"},
+        "STAT": {"$ref": "#/$defs/signature"}
+      }
+    },
+    "admission_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "signature": {
+      "type": "object",
+      "required": [
+        "role",
+        "key_id",
+        "trust_epoch",
+        "admission_intent_digest",
+        "signature"
+      ],
+      "properties": {
+        "role": {"enum": ["DS", "STAT"]},
+        "key_id": {"type": "string", "minLength": 1},
+        "trust_epoch": {"type": "string", "minLength": 1},
+        "admission_intent_digest": {"$ref": "#/$defs/hash"},
+        "signature": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

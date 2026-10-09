@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-07-17T16:58:47.428126+00:00",
+  "method_subprocess_isolation": true,
+  "negative_leakage_tests": [
+    {
+      "case": 0,
+      "error": "sensitive key: observations.truth",
+      "pass": true
+    },
+    {
+      "case": 1,
+      "error": "sensitive key: observations.nested.raw_payload",
+      "pass": true
+    },
+    {
+      "case": 2,
+      "error": "raw bytes at observations.x",
+      "pass": true
+    },
+    {
+      "case": 3,
+      "error": "sensitive string at observations.frame.object.alias",
+      "pass": true
+    }
+  ],
+  "schema_version": "1.0.0",
+  "scorer_only_truth_isolation": true,
+  "truth_visible_to_method": false,
+  "truth_visible_to_scorer_only": true
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dataset_purge_ledger.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "version",
+    "development_status",
+    "live_status",
+    "development_only",
+    "local_live_gate_passed",
+    "segment_id",
+    "plan_hash",
+    "manifest_hash",
+    "ledger_head",
+    "events"
+  ],
+  "properties": {
+    "schema_version": {"const": "dataset-purge-ledger-document.v2"},
+    "version": {"const": 2},
+    "development_status": {"const": "PASS"},
+    "live_status": {"const": "PENDING"},
+    "development_only": {"const": true},
+    "local_live_gate_passed": {"const": false},
+    "segment_id": {"type": "string", "minLength": 1},
+    "plan_hash": {"$ref": "#/$defs/hash"},
+    "manifest_hash": {"$ref": "#/$defs/hash"},
+    "ledger_head": {"$ref": "#/$defs/hash"},
+    "events": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "event", "operation_id", "plan_hash", "prev_hash", "entry_hash"],
+        "properties": {
+          "version": {"const": 2},
+          "event": {"enum": ["PURGE_INTENT", "UNLINK_INTENT", "UNLINK", "PURGE_COMMITTED"]},
+          "operation_id": {"$ref": "#/$defs/hash"},
+          "plan_hash": {"$ref": "#/$defs/hash"},
+          "manifest_hash": {"$ref": "#/$defs/hash"},
+          "authorization_hash": {"$ref": "#/$defs/hash"},
+          "development_only": {"type": "boolean"},
+          "path": {"type": "string", "minLength": 1},
+          "expected_lstat": {"$ref": "#/$defs/lstat"},
+          "recovered_missing_after_intent": {"type": "boolean"},
+          "deleted_count": {"type": "integer", "minimum": 0},
+          "prev_hash": {"type": "string", "pattern": "^(|[0-9a-f]{64})$"},
+          "entry_hash": {"$ref": "#/$defs/hash"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "lstat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dev", "ino", "size", "allocated_bytes", "sha256"],
+      "properties": {
+        "dev": {"type": "integer"},
+        "ino": {"type": "integer"},
+        "size": {"type": "integer", "minimum": 0},
+        "allocated_bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

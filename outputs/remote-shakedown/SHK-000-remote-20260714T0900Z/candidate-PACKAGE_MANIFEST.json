@@ -1,0 +1,201 @@
+{
+  "candidate_status": "DESIGN_REPAIRED_CONFIRM_BLOCKED",
+  "created_at_utc": "2026-07-14T08:55:52.792715+00:00",
+  "file_count": 37,
+  "files": [
+    {
+      "bytes": 755,
+      "path": "RUN_POLICY.json",
+      "sha256": "ca04ab9f3a5dd6bdf5784bb7c17d808b5254f463337afc6ae707c72ea88d3c53"
+    },
+    {
+      "bytes": 83164,
+      "path": "normative/00-论文-中文阅读稿v20.1-一致性修复与投稿主线收敛版.md",
+      "sha256": "420cd7086e038d8aa2178ef2e10c8949cd0bd0c904cc96b973687366adb7ebbf"
+    },
+    {
+      "bytes": 2917,
+      "path": "normative/AllocationManifest-v6.7.template.json",
+      "sha256": "4ea1de0d7818b42e2ad27af84c8a407a2516f9bde7476e26032caa3df4410bc1"
+    },
+    {
+      "bytes": 12420,
+      "path": "normative/NormativeReleaseManifest-v20.1-v6.7.json",
+      "sha256": "4a397b4ee6c5bca2b079ed1361c6b102a0bbc9a4963799a9579cc21991167bb2"
+    },
+    {
+      "bytes": 6980,
+      "path": "normative/NormativeReleaseManifest-v20.1-v6.7.schema.json",
+      "sha256": "578888a1069bcec7b719d000cf95e9c94ef8dd47f2c6314aae9310e607141a7d"
+    },
+    {
+      "bytes": 1877,
+      "path": "normative/PowerConfirmConfig-v6.7.template.json",
+      "sha256": "2854c44c29b5a11fbf2601de26652e0d9e5d39651fbc405785b02375d3f7e0a4"
+    },
+    {
+      "bytes": 2192,
+      "path": "normative/TestManifest-v6.7.template.json",
+      "sha256": "b8016f23f98850948274dead9e95767876f1893cdf162559c7466471aee769cc"
+    },
+    {
+      "bytes": 20724,
+      "path": "normative/实验设计与执行计划v6.7-精简确认性预注册蓝图.md",
+      "sha256": "b0c915844da3e6495338f3fa0fbe50d6878a831006a44c3289ca30669adb6a97"
+    },
+    {
+      "bytes": 65868,
+      "path": "normative/补充材料S1-v20.1-组合前治理证明与性质测试.md",
+      "sha256": "80af5dae7521fcf5d9b796122e7f31833fb1b96a2dcfd11137d1724e94176ee5"
+    },
+    {
+      "bytes": 29270,
+      "path": "normative/补充材料S2-v20.1-运行合同与观察映射规范.md",
+      "sha256": "d499fa472465aca99c05faf62a913e84ec2932bb701c6fd15b2baac251e11da7"
+    },
+    {
+      "bytes": 7536,
+      "path": "risk-fusion-bench/README.md",
+      "sha256": "1384a9d1a21a8c46dc0a7af7df29ccc52c3e21a7b788c6fb2a3725c3174e3fe2"
+    },
+    {
+      "bytes": 2624,
+      "path": "risk-fusion-bench/demo.py",
+      "sha256": "5f8dc8a0c317d775763803ae68e69bc071fba323c8abedc15d296e905b670d23"
+    },
+    {
+      "bytes": 68,
+      "path": "risk-fusion-bench/experiments/__init__.py",
+      "sha256": "62f126973f9ff0973ad16830febe8e4663e7e0304903004bb7a45ef9177c24c5"
+    },
+    {
+      "bytes": 18829,
+      "path": "risk-fusion-bench/experiments/shakedown_canary.py",
+      "sha256": "7b96b1562610ddc391698f2c4be989cc50066067f197c18ffdc3ff1e21d7204f"
+    },
+    {
+      "bytes": 107,
+      "path": "risk-fusion-bench/requirements.txt",
+      "sha256": "0ab19b9e8ce0e4d51038ad5adf6814a256f89b1da53d35bc06f37d331a946623"
+    },
+    {
+      "bytes": 0,
+      "path": "risk-fusion-bench/src/rfb/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "risk-fusion-bench/src/rfb/benchmark/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7198,
+      "path": "risk-fusion-bench/src/rfb/benchmark/generator.py",
+      "sha256": "c42d22f8218bcce79d7fc0e160ce7f25e29eead0df5f04d0a0c576ae92b15021"
+    },
+    {
+      "bytes": 4441,
+      "path": "risk-fusion-bench/src/rfb/dst.py",
+      "sha256": "bf71dd6e150e8375482d404e5e7cb07e91cb40fb421b56d0e462bc5182ebf492"
+    },
+    {
+      "bytes": 0,
+      "path": "risk-fusion-bench/src/rfb/loaders/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4791,
+      "path": "risk-fusion-bench/src/rfb/loaders/base.py",
+      "sha256": "80578e4eb1cab29079f55dd360c786039a712d017095a76a2dac2ea01effdb33"
+    },
+    {
+      "bytes": 5176,
+      "path": "risk-fusion-bench/src/rfb/loaders/cwru.py",
+      "sha256": "33fd0e438425f3120cdaaa92f90690070f3899e5eec126d1bd98ff3f319b5f61"
+    },
+    {
+      "bytes": 4421,
+      "path": "risk-fusion-bench/src/rfb/loaders/gas.py",
+      "sha256": "60ea7d55ce295513929666e02847d46fb0adcd628377d8dd5ab702b467fdce38"
+    },
+    {
+      "bytes": 4949,
+      "path": "risk-fusion-bench/src/rfb/loaders/ha4m.py",
+      "sha256": "09149ec358dc5bd7d0529ae25812dcaeac1e3eede4e2cfbb1743d5c6bb6edbb3"
+    },
+    {
+      "bytes": 3872,
+      "path": "risk-fusion-bench/src/rfb/loaders/mvtec.py",
+      "sha256": "435849b095796d5349053e8152d7b3ca13e06a42735f0be3df264c2c66e40a98"
+    },
+    {
+      "bytes": 6009,
+      "path": "risk-fusion-bench/src/rfb/loaders/tep.py",
+      "sha256": "ee4e295c0185ed8f07d7875a6c44616482a3e1e5d94b11da21e9e406ac5b2437"
+    },
+    {
+      "bytes": 2721,
+      "path": "risk-fusion-bench/src/rfb/reliability.py",
+      "sha256": "268629ec718806f50354e294e167e26fb2ac42372e07ad9c6eafaf93bf46a340"
+    },
+    {
+      "bytes": 7038,
+      "path": "risk-fusion-bench/src/rfb/temporal.py",
+      "sha256": "ad2b64ef0bc72e84a6582026931bba995b523bc4171b0fcffbc842c2a9f03fae"
+    },
+    {
+      "bytes": 0,
+      "path": "risk-fusion-bench/tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4116,
+      "path": "risk-fusion-bench/tests/test_conservation_contract.py",
+      "sha256": "efe96332d7c7a41a7e52926bcf8846b3e97d7cc1e4733e87cd70894fc2bbd415"
+    },
+    {
+      "bytes": 2519,
+      "path": "risk-fusion-bench/tests/test_cwru.py",
+      "sha256": "dc5888fd65a798fd943ca930a46c1d587651f0c8b502cec26c057db3e0ff616d"
+    },
+    {
+      "bytes": 2068,
+      "path": "risk-fusion-bench/tests/test_generator_contract.py",
+      "sha256": "05ad285d8c8585d918e76ac7f8376f9bbf6da8f2a3e77b9e70d4b7bb2a4c202b"
+    },
+    {
+      "bytes": 4485,
+      "path": "risk-fusion-bench/tests/test_ha4m_mvtec.py",
+      "sha256": "e0ee4860f220a6033fc58285b1637caf93f7a067e12c7a5fc6df21faecf1ca65"
+    },
+    {
+      "bytes": 4652,
+      "path": "risk-fusion-bench/tests/test_loaders.py",
+      "sha256": "f09147b16678a033cbf98ebf239cc09d7795af467b48c3893df03cacaf573bfa"
+    },
+    {
+      "bytes": 4498,
+      "path": "risk-fusion-bench/tests/test_payload_isolation.py",
+      "sha256": "2fc0b1088b55227357021c540ccb01b6902c1513306a09ef1114215e1f1f881f"
+    },
+    {
+      "bytes": 3289,
+      "path": "risk-fusion-bench/tests/test_props.py",
+      "sha256": "eb6882336e7a73010204dc095112fb2456650f70e030b294629f89f10f2469e9"
+    },
+    {
+      "bytes": 7597,
+      "path": "risk-fusion-bench/tests/test_shakedown_canary.py",
+      "sha256": "fa07d2189705875e2a7c48e8e7df35f27173e4722652a5f08995b699cf1eceac"
+    }
+  ],
+  "run_policy": {
+    "claim_support": "none",
+    "confirmatory": false,
+    "confirmatory_generation_allowed": false,
+    "evidence_class": "ENGINEERING_QUALIFICATION_ONLY",
+    "run_class": "G0_G2_SHAKEDOWN",
+    "test_opened": false
+  },
+  "schema": "risk-fusion-candidate-package-1.0"
+}

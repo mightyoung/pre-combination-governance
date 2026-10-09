@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "live-gate-verdict-set.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "classification",
+    "signer_role",
+    "signer_id",
+    "trust_epoch",
+    "source_snapshot",
+    "source_snapshot_hash",
+    "sealed_evidence_hash",
+    "segment_id",
+    "manifest_hash",
+    "verdicts",
+    "issued_at",
+    "signature"
+  ],
+  "properties": {
+    "schema_id": {"const": "live-gate-verdict-set.v1"},
+    "classification": {"const": "LIVE_GATE_VERDICT_SET"},
+    "signer_role": {"const": "LiveGateVerifier"},
+    "signer_id": {"type": "string", "minLength": 1},
+    "trust_epoch": {"type": "string", "minLength": 1},
+    "source_snapshot": {"type": "object"},
+    "source_snapshot_hash": {"$ref": "#/$defs/hash"},
+    "sealed_evidence_hash": {"$ref": "#/$defs/hash"},
+    "segment_id": {"type": "string", "minLength": 1},
+    "manifest_hash": {"$ref": "#/$defs/hash"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "signature": {"$ref": "#/$defs/hash"},
+    "verdicts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "segment_cap_gate",
+        "durable_result_gate",
+        "result_archive_gate",
+        "regeneration_gate",
+        "dataset_purge_gate"
+      ],
+      "properties": {
+        "segment_cap_gate": {"$ref": "#/$defs/verdict"},
+        "durable_result_gate": {"$ref": "#/$defs/verdict"},
+        "result_archive_gate": {"$ref": "#/$defs/verdict"},
+        "regeneration_gate": {"$ref": "#/$defs/verdict"},
+        "dataset_purge_gate": {"$ref": "#/$defs/verdict"}
+      }
+    }
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence_refs", "evidence_hash"],
+      "properties": {
+        "status": {"const": "PASS"},
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "evidence_hash": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

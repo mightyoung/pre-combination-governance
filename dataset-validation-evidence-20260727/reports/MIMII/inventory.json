@@ -1,0 +1,11 @@
+{
+  "root": "/share/data4/yhh-rfb/dataset-validation-20260727/extracted/MIMII",
+  "file_count": 4170,
+  "logical_bytes": 10675533600,
+  "extensions": {
+    ".wav": 4170
+  },
+  "top_level_file_counts": {
+    "6_dB_valve": 4170
+  }
+}

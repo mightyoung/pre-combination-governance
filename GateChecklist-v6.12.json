@@ -1,0 +1,108 @@
+{
+  "schema": "gate-checklist-v6.12-1.0",
+  "created_date": "2026-07-15",
+  "status": "FORMAL_EXPERIMENT_BLOCKED",
+  "source_evidence": [
+    "ResourceAwareExecutionPlan-v6.11.json",
+    "v6.11-双机资源多阶段计划验收.json",
+    "实验执行记录v6.11-SHK-001A-生成器金丝雀与本机恢复校验.md",
+    "SHK001A-v6.11-本机恢复校验.json"
+  ],
+  "global_rules": {
+    "hard_stage_cap_bytes": 100000000000,
+    "physical_microstage_cap_bytes": 25000000000,
+    "formal_start_free_min_bytes": 265853007872,
+    "development_start_free_min_bytes": 210000000000,
+    "remote_free_after_shk001a_bytes": 216624607232,
+    "formal_shortfall_after_shk001a_approx_gb": 49.23,
+    "effect_peeking_allowed": false,
+    "split_bundle_allowed": false,
+    "split_method_panel_allowed": false
+  },
+  "runtime_gate": {
+    "status": "PENDING",
+    "required_methods": ["B0", "B1", "B2", "B3", "B4", "B5", "Proposed"],
+    "tasks": [
+      {
+        "id": "A0",
+        "name": "freeze_code_baseline",
+        "status": "PENDING",
+        "evidence": ["runtime_baseline.json"]
+      },
+      {
+        "id": "A1",
+        "name": "implement_method_registry",
+        "status": "PENDING",
+        "evidence": ["method_registry.json", "registry unit tests"]
+      },
+      {
+        "id": "A2",
+        "name": "implement_transaction_lifecycle",
+        "status": "PENDING",
+        "evidence": ["transaction_ledger.schema.json", "ledger/manifest closure tests"]
+      },
+      {
+        "id": "A3",
+        "name": "enforce_scorer_only_truth_isolation",
+        "status": "PENDING",
+        "evidence": ["truth_isolation_qa.json", "negative leakage tests"]
+      },
+      {
+        "id": "A4",
+        "name": "implement_non_placeholder_method_outputs",
+        "status": "PENDING",
+        "evidence": ["method_output.schema.json", "7/7 method smoke outputs"]
+      },
+      {
+        "id": "A5",
+        "name": "run_shk001b_full_panel_sizing",
+        "status": "BLOCKED_BY_A1_A4",
+        "evidence": ["shk001b_sizing_report.json", "updated ResourceStageMatrix"]
+      }
+    ],
+    "pass_condition": "7 methods registered, 196/196 SHK-001B transactions terminal, ledger/manifest/hash closed, scorer-only isolation PASS, NON_CONFIRMATORY_DO_NOT_PROMOTE retained"
+  },
+  "storage_archive_gate": {
+    "status": "PENDING",
+    "tasks": [
+      {
+        "id": "B0",
+        "name": "recover_formal_free_space",
+        "status": "PENDING",
+        "evidence": ["storage_pre_cleanup_inventory.json", "storage_cleanup_ledger.json", "df snapshot >= 265853007872 free bytes"]
+      },
+      {
+        "id": "B1",
+        "name": "configure_archive_a",
+        "status": "PENDING",
+        "evidence": ["archive_targets.json", "1GB write/readback/hash PASS"]
+      },
+      {
+        "id": "B2",
+        "name": "configure_archive_b_independent",
+        "status": "PENDING",
+        "evidence": ["archive_targets.json", "1GB write/readback/hash PASS", "independent failure domain documented"]
+      },
+      {
+        "id": "B3",
+        "name": "verify_local_rolling_restore_cache",
+        "status": "PENDING",
+        "evidence": ["restore_sampling_qa.json"]
+      }
+    ],
+    "pass_condition": "remote formal free threshold met, Archive A PASS, Archive B PASS, at least one archive off-host/off-volume immutable or append-only, restore sampling PASS"
+  },
+  "formal_stage_admission": {
+    "status": "BLOCKED",
+    "required_file": "FORMAL_STAGE_ADMISSION-v6.12.json",
+    "required_fields": {
+      "runtime_gate": "PASS",
+      "storage_gate": "PASS",
+      "archive_a": "PASS",
+      "archive_b": "PASS",
+      "restore_sampling": "PASS",
+      "effect_peeking": false,
+      "formal_start_allowed": true
+    }
+  }
+}

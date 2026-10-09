@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rfb.contracts/formal_transaction_ledger.schema.json@1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "transaction_id", "expected_rows", "events", "rows", "head_hash", "ledger_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "transaction_id": {"type": "string", "minLength": 1},
+    "expected_rows": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "events": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/event"}},
+    "rows": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/row"}
+    },
+    "head_hash": {"$ref": "#/$defs/sha256"},
+    "ledger_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "state", "transaction_id", "payload", "previous_hash", "event_hash"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1},
+        "state": {"enum": ["RUNNING", "SUCCEEDED", "FAILED", "TIMEOUT", "SKIPPED_POLICY", "SEALED"]},
+        "transaction_id": {"type": "string", "minLength": 1},
+        "payload": {"type": "object"},
+        "previous_hash": {"$ref": "#/$defs/sha256"},
+        "event_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bundle_id", "method_id", "algorithm_seed", "output", "output_sha256", "metrics"],
+      "properties": {
+        "bundle_id": {"type": "string", "minLength": 1},
+        "method_id": {"enum": ["B0", "B1", "B2", "B3", "B4", "B5", "Proposed"]},
+        "algorithm_seed": {"type": "integer", "minimum": 0},
+        "output": {"type": "object"},
+        "output_sha256": {"$ref": "#/$defs/sha256"},
+        "metrics": {"type": "object"}
+      }
+    }
+  }
+}

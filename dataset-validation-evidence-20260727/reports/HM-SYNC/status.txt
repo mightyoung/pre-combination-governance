@@ -1,0 +1,7 @@
+dataset=HM-SYNC
+status=STARTED
+started=2026-07-27T16:47:24+08:00
+status=PASS
+archive_count=19
+manifest_file_count=118209
+finished=2026-07-27T17:36:54+08:00

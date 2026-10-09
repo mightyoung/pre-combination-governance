@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id", "terminal_state", "execution_lane", "classification",
+    "formal_gate_effect", "formal_admission_eligible", "shk001b_eligible",
+    "contains_formal_claims", "self_hash"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "execution_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "attempted_execution_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "prepared_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "preflight_evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "preflight_after_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "formal_snapshot_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "controller_nonce": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "started_at_utc": {"type": "string", "format": "date-time"},
+    "ended_at_utc": {"type": "string", "format": "date-time"},
+    "exit_code": {"type": "integer"},
+    "hostname": {"type": "string"},
+    "root_identity": {"type": "string"},
+    "approved_remote_parent": {"type": "string", "minLength": 1},
+    "remote_run_root": {"type": "string", "minLength": 1},
+    "mount_identity": {"type": "string"},
+    "gpu_policy": {"const": "cpu_only"},
+    "gpu_identity": {"type": "string"},
+    "gpu_allocation": {"type": "object"},
+    "resource_peaks": {"type": "object"},
+    "pre_post_hashes": {"type": "object"},
+    "terminal_state": {"enum": ["RESULT_SEALED_REMOTE", "FAILED", "TIMEOUT", "CANCELLED", "BLOCKED"]},
+    "failure_code": {"type": ["string", "null"]},
+    "error": {"type": "string"},
+    "cleanup_error": {"type": "string"},
+    "adapter_id": {"type": ["string", "null"]},
+    "adapter_implementation_sha256": {"type": "string"},
+    "fixed_argv_digest": {"type": "string"},
+    "minimal_environment_digest": {"type": "string"},
+    "runtime_format": {"enum": ["python_zipapp_stdlib_v1", "python_pinned_venv_v1"]},
+    "runtime_path": {"type": "string", "minLength": 1},
+    "runtime_file_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_dependency_profile": {"enum": ["stdlib_only", "tep_nonconfirmatory_v1"]},
+    "pinned_runtime_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "pinned_runtime_closure_fingerprint": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "lifecycle_trace_records": {"type": "array", "minItems": 17, "maxItems": 17},
+    "lifecycle_trace_head_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "result_path": {"type": "string"},
+    "remote_result_tree_sha256": {"type": "string"},
+    "result_tree_sha256": {"type": "string"},
+    "receipt_self_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "directory_durable": {"type": "boolean"},
+    "formal_artifacts_created": {"type": "array", "maxItems": 0},
+    "shk001b_started": {"const": false},
+    "gate_checklist_mutated": {"const": false},
+    "events": {"type": "array"},
+    "scorer_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status", "scientific_eligible", "failure_code",
+        "excluded_from_result_tree", "ephemeral", "d_test_namespace_touched"
+      ],
+      "properties": {
+        "status": {"enum": ["SEALED", "SCORER_FAILED", "NOT_APPLICABLE"]},
+        "scientific_eligible": {"type": "boolean"},
+        "failure_code": {"type": ["string", "null"]},
+        "truth_content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "prediction_seal_self_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "excluded_from_result_tree": {"const": true},
+        "ephemeral": {"const": true},
+        "d_test_namespace_touched": {"const": false}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "SEALED"}}},
+          "then": {
+            "required": ["truth_content_sha256", "prediction_seal_self_hash"],
+            "properties": {
+              "scientific_eligible": {"const": true},
+              "failure_code": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "SCORER_FAILED"}}},
+          "then": {
+            "properties": {
+              "scientific_eligible": {"const": false},
+              "failure_code": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "NOT_APPLICABLE"}}},
+          "then": {
+            "properties": {
+              "scientific_eligible": {"const": false},
+              "failure_code": {"type": "null"}
+            }
+          }
+        }
+      ]
+    },
+    "execution_lane": {"const": "RESEARCH"},
+    "classification": {"const": "DEVELOPMENT_NONCONFIRMATORY"},
+    "formal_gate_effect": {"const": "NONE"},
+    "formal_admission_eligible": {"const": false},
+    "shk001b_eligible": {"const": false},
+    "contains_formal_claims": {"const": false},
+    "self_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"terminal_state": {"const": "RESULT_SEALED_REMOTE"}}},
+      "then": {
+        "required": [
+          "execution_manifest_sha256", "result_path", "remote_result_tree_sha256",
+          "prepared_manifest_sha256", "preflight_evidence_sha256",
+          "preflight_after_sha256", "pre_post_hashes",
+          "formal_snapshot_sha256", "controller_nonce", "started_at_utc",
+          "ended_at_utc", "exit_code", "hostname", "root_identity",
+          "approved_remote_parent", "remote_run_root",
+          "mount_identity", "gpu_policy", "gpu_identity", "resource_peaks",
+          "result_tree_sha256", "receipt_self_hash", "directory_durable",
+          "formal_artifacts_created", "shk001b_started", "gate_checklist_mutated",
+          "runtime_format", "runtime_path", "runtime_file_sha256",
+          "runtime_source_sha256", "runtime_manifest_sha256",
+          "runtime_dependency_profile",
+          "lifecycle_trace_records", "lifecycle_trace_head_sha256"
+        ],
+        "properties": {"directory_durable": {"const": true}}
+      },
+      "else": {"required": ["failure_code"]}
+    },
+    {
+      "if": {"required": ["runtime_dependency_profile"], "properties": {"runtime_dependency_profile": {"const": "tep_nonconfirmatory_v1"}}},
+      "then": {"required": ["pinned_runtime_manifest_sha256", "pinned_runtime_closure_fingerprint"]}
+    }
+  ]
+}

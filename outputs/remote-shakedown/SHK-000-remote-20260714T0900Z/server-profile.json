@@ -1,0 +1,54 @@
+{
+  "schema": "v6.7-server-profile-raw-1.0",
+  "captured_at_utc": "2026-07-14T08:45:45.172330+00:00",
+  "host": {
+    "address": "192.168.11.16",
+    "port": 10022,
+    "user": "r4900g3",
+    "host_key_type": "ssh-ed25519",
+    "host_key_sha256": "eDfwLjrpTces2mQp4d+gKdg2i/4t7k7sLfF/nLtx1oA"
+  },
+  "workspace_root": "/home/r4900g3/yhh/provenance-fusion",
+  "run_policy": {
+    "run_class": "G0_G2_SHAKEDOWN",
+    "evidence_class": "ENGINEERING_QUALIFICATION_ONLY",
+    "confirmatory": false,
+    "claim_support": "none",
+    "test_opened": false
+  },
+  "observed": {
+    "realpath": "/home/r4900g3/yhh/provenance-fusion",
+    "stat": "r4900g3:r4900g3 750 /home/r4900g3/yhh/provenance-fusion",
+    "uname": "Linux r4900g3-UniServer-R4900-G3 6.8.0-124-generic #124~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 26 21:05:19 UTC  x86_64 x86_64 x86_64 GNU/Linux",
+    "os_release": "Ubuntu 22.04",
+    "python": "Python 3.10.12",
+    "cpu_count": "48",
+    "cpu": "架构：                                   x86_64\nCPU 运行模式：                           32-bit, 64-bit\nAddress sizes:                           46 bits physical, 48 bits virtual\n字节序：                                 Little Endian\nCPU:                                     48\n在线 CPU 列表：                          0-47\n厂商 ID：                                GenuineIntel\n型号名称：                               Intel(R) Xeon(R) Silver 4214 CPU @ 2.20GHz\nCPU 系列：                               6\n型号：                                   85\n每个核的线程数：                         2\n每个座的核数：                           12\n座：                                     2\n步进：                                   7\nCPU 最大 MHz：                           3200.0000\nCPU 最小 MHz：                           1000.0000\nBogoMIPS：                               4400.00\n标记：                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 cdp_l3 intel_ppin ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm mpx rdt_a avx512f avx512dq rdseed adx smap clflushopt clwb intel_pt avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts hwp hwp_act_window hwp_epp hwp_pkg_req vnmi pku ospke avx512_vnni md_clear flush_l1d arch_capabilities ibpb_exit_to_user\n虚拟化：                                 VT-x\nL1d 缓存：                               768 KiB (24 instances)\nL1i 缓存：                               768 KiB (24 instances)\nL2 缓存：                                24 MiB (24 instances)\nL3 缓存：                                33 MiB (2 instances)\nNUMA 节点：                              2\nNUMA 节点0 CPU：                         0-11,24-35\nNUMA 节点1 CPU：                         12-23,36-47\nVulnerability Gather data sampling:      Mitigation; Microcode\nVulnerability Indirect target selection: Mitigation; Aligned branch/return thunks\nVulnerability Itlb multihit:             KVM: Mitigation: VMX disabled\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Mitigation; Clear CPU buffers; SMT vulnerable\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Mitigation; Enhanced IBRS\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI SW loop, KVM SW loop\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Mitigation; TSX disabled\nVulnerability Vmscape:                   Mitigation; IBPB before exit to userspace",
+    "memory": "total        used        free      shared  buff/cache   available\n内存：134788022272 48614014976 19290992640   111525888 66883014656 84662517760\n交换： 2147479552     1048576  2146430976",
+    "disk_bytes": "文件系统             1B的块         已用         可用 已用% 挂载点\n/dev/sda2      943412031488 677834387456 217578033152   76% /",
+    "disk_inodes": "文件系统         Inodes   已用I    可用I 已用I% 挂载点\n/dev/sda2      58687200 1620328 57066872     3% /",
+    "mount": "TARGET SOURCE    FSTYPE OPTIONS\n/      /dev/sda2 ext4   rw,relatime,errors=remount-ro",
+    "block_devices": "NAME   ROTA TYPE   SIZE MODEL\nloop0     0 loop     4K \nloop1     0 loop  74.3M \nloop2     0 loop    74M \nloop3     0 loop  66.8M \nloop4     0 loop  66.8M \nloop5     0 loop  50.1M \nloop6     0 loop   402M \nloop7     0 loop 531.4M \nloop8     0 loop 252.6M \nloop9     0 loop 606.1M \nloop10    0 loop   395M \nloop11    0 loop  91.7M \nloop12    0 loop  12.9M \nloop13    0 loop 531.5M \nloop14    0 loop  12.2M \nloop15    0 loop  49.3M \nloop16    0 loop   580K \nloop17    0 loop   828K \nloop18    0 loop 252.7M \nsda       0 disk 894.3G SAMSUNG MZ7L3960HCJR-00B7C",
+    "gpu": "NVIDIA L20, GPU-00257298-ba48-2525-27c3-ca8fb515d888, 46068 MiB, 535.309.01, 74, Enabled, Default",
+    "gpu_full": "Tue Jul 14 16:45:44 2026       \n+---------------------------------------------------------------------------------------+\n| NVIDIA-SMI 535.309.01             Driver Version: 535.309.01   CUDA Version: 12.2     |\n|-----------------------------------------+----------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |\n|                                         |                      |               MIG M. |\n|=========================================+======================+======================|\n|   0  NVIDIA L20                     Off | 00000000:18:00.0 Off |                    0 |\n| N/A   75C    P0             195W / 350W |  22403MiB / 46068MiB |    100%      Default |\n|                                         |                      |                  N/A |\n+-----------------------------------------+----------------------+----------------------+\n                                                                                         \n+---------------------------------------------------------------------------------------+\n| Processes:                                                                            |\n|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |\n|        ID   ID                                                             Usage      |\n|=======================================================================================|\n|    0   N/A  N/A      1388      G   /usr/lib/xorg/Xorg                            4MiB |\n|    0   N/A  N/A      4229      C   ./asr_server                               1218MiB |\n|    0   N/A  N/A      7641      C   /app/lib/ld-linux-x86-64.so.2               284MiB |\n|    0   N/A  N/A    123648      C   VLLM::EngineCore                          20880MiB |\n+---------------------------------------------------------------------------------------+",
+    "docker": "Docker version 29.4.0, build 9d7ad9f",
+    "podman": "NOT_FOUND",
+    "ulimit": "real-time non-blocking time  (microseconds, -R) unlimited\ncore file size              (blocks, -c) 0\ndata seg size               (kbytes, -d) unlimited\nscheduling priority                 (-e) 0\nfile size                   (blocks, -f) unlimited\npending signals                     (-i) 513837\nmax locked memory           (kbytes, -l) 16453616\nmax memory size             (kbytes, -m) unlimited\nopen files                          (-n) 1024\npipe size                (512 bytes, -p) 8\nPOSIX message queues         (bytes, -q) 819200\nreal-time priority                  (-r) 0\nstack size                  (kbytes, -s) 8192\ncpu time                   (seconds, -t) unlimited\nmax user processes                  (-u) 513837\nvirtual memory              (kbytes, -v) unlimited\nfile locks                          (-x) unlimited",
+    "clock": "Timezone=Asia/Shanghai\nLocalRTC=no\nNTPSynchronized=yes"
+  },
+  "probe_failures": {},
+  "disk_summary": {
+    "total_bytes": 943412031488,
+    "used_bytes": 677834387456,
+    "available_bytes": 217578033152,
+    "available_fraction": 0.23062885132896202
+  },
+  "g0_resource_gate": {
+    "status": "FAIL",
+    "reason": "workspace filesystem free fraction is below 25%"
+  },
+  "notes": [
+    "GPU identity is measured, not taken from the server nickname.",
+    "Logical truth/operational directories share one Unix account; container/ACL isolation is still pending."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "environment_id", "runtime_manifest_path", "runtime_manifest_sha256", "runtime_lock_path", "runtime_lock_sha256", "receipt_refs", "status", "blocker_code", "qualification_self_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "environment_id": {"$ref": "#/$defs/hash"},
+    "runtime_manifest_path": {"const": "runtime-manifest.json"},
+    "runtime_manifest_sha256": {"$ref": "#/$defs/hash"},
+    "runtime_lock_path": {"const": "runtime-lock.json"},
+    "runtime_lock_sha256": {"$ref": "#/$defs/hash"},
+    "receipt_refs": {"type": "array", "minItems": 7, "maxItems": 7, "items": {"type": "object", "additionalProperties": false, "required": ["kind", "path", "sha256"], "properties": {"kind": {"enum": ["pip_check", "unit", "property", "integration", "reproducibility", "schema", "artifact_hash"]}, "path": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/hash"}}}},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "blocker_code": {"type": ["string", "null"]},
+    "qualification_self_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

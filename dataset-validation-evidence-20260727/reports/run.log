@@ -1,0 +1,130 @@
+run_started=2026-07-27T14:55:00+08:00
+host=r4900g3-UniServer-R4900-G3
+user=r4900g3
+mount_source=192.168.11.2:/data4/share
+mount_type=nfs4
+start_free_bytes=7081623027712
+[2026-07-27T14:55:00+08:00] HASH /home/r4900g3/yhh/datasets/MIMII/6_dB_valve.zip
+[2026-07-27T14:55:44+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/MIMII/6_dB_valve.zip
+[2026-07-27T14:55:44+08:00] CRC /home/r4900g3/yhh/datasets/MIMII/6_dB_valve.zip
+[2026-07-27T14:58:00+08:00] EXTRACT /home/r4900g3/yhh/datasets/MIMII/6_dB_valve.zip
+{"root": "/share/data4/yhh-rfb/dataset-validation-20260727/extracted/MIMII", "file_count": 4170, "logical_bytes": 10675533600, "extensions": {".wav": 4170}, "top_level_file_counts": {"6_dB_valve": 4170}}
+[2026-07-27T15:08:02+08:00] HASH_EXTRACTED MIMII
+[2026-07-27T15:09:56+08:00] HASH /home/r4900g3/yhh/datasets/HA4M/IDU001V001.zip
+[2026-07-27T15:11:15+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HA4M/IDU001V001.zip
+[2026-07-27T15:11:15+08:00] CRC /home/r4900g3/yhh/datasets/HA4M/IDU001V001.zip
+[2026-07-27T15:14:39+08:00] HASH /home/r4900g3/yhh/datasets/HA4M/IDU001V002.zip
+[2026-07-27T15:16:20+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HA4M/IDU001V002.zip
+[2026-07-27T15:16:20+08:00] CRC /home/r4900g3/yhh/datasets/HA4M/IDU001V002.zip
+[2026-07-27T15:20:01+08:00] HASH /home/r4900g3/yhh/datasets/HA4M/IDU024V001.zip
+[2026-07-27T15:21:41+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HA4M/IDU024V001.zip
+[2026-07-27T15:21:42+08:00] CRC /home/r4900g3/yhh/datasets/HA4M/IDU024V001.zip
+[2026-07-27T15:26:11+08:00] EXTRACT /home/r4900g3/yhh/datasets/HA4M/IDU001V001.zip
+[2026-07-27T15:46:23+08:00] EXTRACT /home/r4900g3/yhh/datasets/HA4M/IDU001V002.zip
+[2026-07-27T16:07:06+08:00] EXTRACT /home/r4900g3/yhh/datasets/HA4M/IDU024V001.zip
+{"root": "/share/data4/yhh-rfb/dataset-validation-20260727/extracted/HA4M", "file_count": 51816, "logical_bytes": 60466797818, "extensions": {".db": 3, ".ply": 8635, ".png": 34540, ".txt": 8638}, "top_level_file_counts": {"IDU001V001": 14565, "IDU001V002": 15931, "IDU024V001": 21320}}
+[2026-07-27T16:36:46+08:00] HASH_EXTRACTED HA4M
+[2026-07-27T16:47:24+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-000.zip
+[2026-07-27T16:47:27+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-000.zip
+[2026-07-27T16:47:27+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-000.zip
+[2026-07-27T16:47:31+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-001.zip
+[2026-07-27T16:47:34+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-001.zip
+[2026-07-27T16:47:35+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-001.zip
+[2026-07-27T16:47:39+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-002.zip
+[2026-07-27T16:47:42+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-002.zip
+[2026-07-27T16:47:42+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-002.zip
+[2026-07-27T16:47:46+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-003.zip
+[2026-07-27T16:47:49+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-003.zip
+[2026-07-27T16:47:49+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-003.zip
+[2026-07-27T16:47:54+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-004.zip
+[2026-07-27T16:47:57+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-004.zip
+[2026-07-27T16:47:57+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-004.zip
+[2026-07-27T16:48:01+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-005.zip
+[2026-07-27T16:48:05+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-005.zip
+[2026-07-27T16:48:05+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-005.zip
+[2026-07-27T16:48:09+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-006.zip
+[2026-07-27T16:48:12+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-006.zip
+[2026-07-27T16:48:12+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-006.zip
+[2026-07-27T16:48:17+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-007.zip
+[2026-07-27T16:48:21+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-007.zip
+[2026-07-27T16:48:22+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-007.zip
+[2026-07-27T16:48:26+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-008.zip
+[2026-07-27T16:48:29+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-008.zip
+[2026-07-27T16:48:29+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-008.zip
+[2026-07-27T16:48:33+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-009.zip
+[2026-07-27T16:48:37+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-009.zip
+[2026-07-27T16:48:37+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-009.zip
+[2026-07-27T16:48:40+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-010.zip
+[2026-07-27T16:48:41+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-010.zip
+[2026-07-27T16:48:41+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-010.zip
+[2026-07-27T16:48:42+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-011.zip
+[2026-07-27T16:48:45+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-011.zip
+[2026-07-27T16:48:46+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-011.zip
+[2026-07-27T16:48:50+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-012.zip
+[2026-07-27T16:48:53+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-012.zip
+[2026-07-27T16:48:53+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-012.zip
+[2026-07-27T16:48:57+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-013.zip
+[2026-07-27T16:49:00+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-013.zip
+[2026-07-27T16:49:01+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-013.zip
+[2026-07-27T16:49:06+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-014.zip
+[2026-07-27T16:49:09+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-014.zip
+[2026-07-27T16:49:09+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-014.zip
+[2026-07-27T16:49:13+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-015.zip
+[2026-07-27T16:49:16+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-015.zip
+[2026-07-27T16:49:16+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-015.zip
+[2026-07-27T16:49:20+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-016.zip
+[2026-07-27T16:49:23+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-016.zip
+[2026-07-27T16:49:23+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-016.zip
+[2026-07-27T16:49:27+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-022.zip
+[2026-07-27T16:49:31+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-022.zip
+[2026-07-27T16:49:31+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-022.zip
+[2026-07-27T16:49:35+08:00] HASH /home/r4900g3/yhh/datasets/HM-SYNC/train-033.zip
+[2026-07-27T16:49:36+08:00] PATH_CHECK /home/r4900g3/yhh/datasets/HM-SYNC/train-033.zip
+[2026-07-27T16:49:36+08:00] CRC /home/r4900g3/yhh/datasets/HM-SYNC/train-033.zip
+[2026-07-27T16:49:38+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-000.zip
+[2026-07-27T16:51:53+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-001.zip
+[2026-07-27T16:54:21+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-002.zip
+[2026-07-27T16:56:45+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-003.zip
+[2026-07-27T16:59:15+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-004.zip
+[2026-07-27T17:01:53+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-005.zip
+[2026-07-27T17:04:32+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-006.zip
+[2026-07-27T17:07:04+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-007.zip
+[2026-07-27T17:09:34+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-008.zip
+[2026-07-27T17:12:02+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-009.zip
+[2026-07-27T17:14:19+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-010.zip
+[2026-07-27T17:14:59+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-011.zip
+[2026-07-27T17:17:22+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-012.zip
+[2026-07-27T17:19:56+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-013.zip
+[2026-07-27T17:22:11+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-014.zip
+[2026-07-27T17:24:29+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-015.zip
+[2026-07-27T17:26:31+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-016.zip
+[2026-07-27T17:28:50+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-022.zip
+[2026-07-27T17:31:05+08:00] EXTRACT /home/r4900g3/yhh/datasets/HM-SYNC/train-033.zip
+{"root": "/share/data4/yhh-rfb/dataset-validation-20260727/extracted/HM-SYNC", "file_count": 118209, "logical_bytes": 8682187748, "extensions": {".jsonl": 19, ".png": 118190}, "top_level_file_counts": {"train-000": 7221, "train-001": 6932, "train-002": 6716, "train-003": 7017, "train-004": 7127, "train-005": 7121, "train-006": 6764, "train-007": 6685, "train-008": 6542, "train-009": 6105, "train-010": 1855, "train-011": 6728, "train-012": 7510, "train-013": 6378, "train-014": 6386, "train-015": 5674, "train-016": 6316, "train-022": 6363, "train-033": 2769}}
+[2026-07-27T17:32:39+08:00] HASH_EXTRACTED HM-SYNC
+run_finished=2026-07-27T17:36:54+08:00
+== /share/data4/yhh-rfb/dataset-validation-20260727/reports/HA4M/status.txt ==
+dataset=HA4M
+status=STARTED
+started=2026-07-27T15:09:56+08:00
+status=PASS
+archive_count=3
+manifest_file_count=51816
+finished=2026-07-27T16:47:24+08:00
+== /share/data4/yhh-rfb/dataset-validation-20260727/reports/HM-SYNC/status.txt ==
+dataset=HM-SYNC
+status=STARTED
+started=2026-07-27T16:47:24+08:00
+status=PASS
+archive_count=19
+manifest_file_count=118209
+finished=2026-07-27T17:36:54+08:00
+== /share/data4/yhh-rfb/dataset-validation-20260727/reports/MIMII/status.txt ==
+dataset=MIMII
+status=STARTED
+started=2026-07-27T14:55:00+08:00
+status=PASS
+archive_count=1
+manifest_file_count=4170
+finished=2026-07-27T15:09:56+08:00
+./run-validation.sh: 行 194: $'\r': 未找到命令

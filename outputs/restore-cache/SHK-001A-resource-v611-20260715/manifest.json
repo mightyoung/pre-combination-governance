@@ -1,0 +1,80 @@
+{
+  "artifacts": [
+    {
+      "bytes": 96,
+      "file": "NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "records": 1,
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "bytes": 64000,
+      "file": "scorer_only_truth_store.jsonl",
+      "records": 28,
+      "sha256": "cb6458c59f6d167014cdfdcf337978c75cfcc1658262df8c3ea6371219a32b4b"
+    },
+    {
+      "bytes": 2655525,
+      "file": "method_visible_operational_payload.jsonl",
+      "records": 56,
+      "sha256": "e6a5aebb3b30bb1c6c501543914e79c321de2ff3c7bc33e171400a96f50e26db"
+    },
+    {
+      "bytes": 3690201,
+      "file": "arrival_manifest.jsonl",
+      "records": 112,
+      "sha256": "cb963d0c00d5431dc7356d06ab3f4c6a1535d462c89104a05850b2e34584c9e7"
+    },
+    {
+      "bytes": 52752,
+      "file": "run_ledger.jsonl",
+      "records": 112,
+      "sha256": "5b3964367fc08178f33e65f9f4a40bdbfccd092b7f8dca50b8a1369951e6c017"
+    },
+    {
+      "bytes": 945,
+      "file": "qa.json",
+      "records": 1,
+      "sha256": "f9f1f4fac3b33b595e5266bbce42aa1c575c4c4fde5dcd7353485f2895beb6da"
+    }
+  ],
+  "base_seed": 2026071501,
+  "claim_support": "none",
+  "confirmatory": false,
+  "design": {
+    "arrival_views_per_noise": 2,
+    "noise_views_per_physical": 2,
+    "physical_bundles": 28
+  },
+  "generated_at_utc": "2026-07-15T05:17:16.860607+00:00",
+  "isolation_contract": {
+    "arrival_changes_only": "arrival_manifest",
+    "arrival_manifest_hash_basis": [
+      "observation_semantic_sha256",
+      "t_arrive",
+      "arrival_rank"
+    ],
+    "forbidden_operational_payload_key_fragments": [
+      "label",
+      "fault",
+      "path",
+      "filename",
+      "simulationrun",
+      "attack",
+      "truth",
+      "future"
+    ],
+    "operational_payload_hash_basis": [
+      "source_id",
+      "t_gen",
+      "mass"
+    ],
+    "operational_payload_role": "method_visible",
+    "truth_hash_basis": [
+      "trajectory"
+    ],
+    "truth_store_role": "scorer_only"
+  },
+  "run_class": "G0_G2_SHAKEDOWN",
+  "schema_version": "rfb-shakedown-canary-1.0",
+  "status": "NON_CONFIRMATORY_DO_NOT_PROMOTE"
+}

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "subbudgetUsage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ephemeral_dataset",
+        "durable_result_staging",
+        "scratch_partial",
+        "retry_quarantine_wal",
+        "emergency_reserve"
+      ],
+      "properties": {
+        "ephemeral_dataset": {"type": "integer", "minimum": 0, "maximum": 16000000000},
+        "durable_result_staging": {"type": "integer", "minimum": 0, "maximum": 3000000000},
+        "scratch_partial": {"type": "integer", "minimum": 0, "maximum": 2000000000},
+        "retry_quarantine_wal": {"type": "integer", "minimum": 0, "maximum": 1000000000},
+        "emergency_reserve": {"const": 0}
+      }
+    },
+    "processTelemetry": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["owned_processes", "owned_gpu_processes"],
+      "properties": {
+        "owned_processes": {"type": "array"},
+        "owned_gpu_processes": {"type": "array", "maxItems": 0}
+      }
+    },
+    "telemetryItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "sampled_at"],
+      "properties": {
+        "state": {
+          "enum": [
+            "PLANNED",
+            "ADMITTED",
+            "MATERIALIZING",
+            "EXECUTING",
+            "RESULT_SEALED_LOCAL"
+          ]
+        },
+        "sampled_at": {"type": "number"},
+        "capacity_bytes": {"type": "integer", "minimum": 0},
+        "capacity_state": {"type": "string"},
+        "project_tree_allocated_bytes": {"type": "integer", "minimum": 0},
+        "filesystem_used_delta_bytes": {"type": "integer", "minimum": 0},
+        "owned_external_layers_bytes": {"type": "integer", "minimum": 0},
+        "open_deleted_bytes": {"type": "integer", "minimum": 0},
+        "planning_peak_bytes": {"type": "integer", "minimum": 0},
+        "subbudget_usage": {"$ref": "#/$defs/subbudgetUsage"},
+        "gpu_used": {"const": false},
+        "gpu_not_used": {"const": true},
+        "process_telemetry": {"$ref": "#/$defs/processTelemetry"},
+        "probe_id": {"type": "string", "minLength": 1},
+        "panel_closed": {"const": true},
+        "drain": {"type": "boolean"}
+      }
+    },
+    "terminalRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method_id",
+        "terminal_state",
+        "panel_closed",
+        "result_sha256",
+        "durable_manifest_sha256"
+      ],
+      "properties": {
+        "method_id": {
+          "enum": ["B0", "B1", "B2", "B3", "B4", "B5", "Proposed"]
+        },
+        "terminal_state": {"const": "SEALED"},
+        "panel_closed": {"const": true},
+        "result_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "durable_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "classification",
+    "terminal_state",
+    "live_gate_effect",
+    "regeneration_eligible",
+    "purge_eligible",
+    "method_ranking_emitted",
+    "panel_closed",
+    "contains_raw_dataset",
+    "gpu_not_used",
+    "c2_evidence_state",
+    "storage_disposition",
+    "planning_decision",
+    "manifest_sha256",
+    "telemetry",
+    "terminal_rows",
+    "capacity_transitions",
+    "report_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "c2-sizing-report.v1"},
+    "classification": {"const": "NONCONFIRMATORY_SIZING_ONLY"},
+    "terminal_state": {"const": "SIZING_REPORTED"},
+    "live_gate_effect": {"const": "NONE"},
+    "regeneration_eligible": {"const": false},
+    "purge_eligible": {"const": false},
+    "method_ranking_emitted": {"const": false},
+    "panel_closed": {"const": true},
+    "contains_raw_dataset": {"const": false},
+    "gpu_not_used": {"const": true},
+    "c2_evidence_state": {"const": "SIZING_REPORTED"},
+    "storage_disposition": {"const": "QUARANTINED_NO_DELETE"},
+    "planning_decision": {
+      "enum": [
+        "PENDING_C3_CALCULATION",
+        "BLOCKED_NO_CAPACITY",
+        "BLOCKED_SEGMENT_TOO_SMALL_FOR_REGENERATION"
+      ]
+    },
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "telemetry": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {"$ref": "#/$defs/telemetryItem"}
+    },
+    "terminal_rows": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {"$ref": "#/$defs/terminalRow"}
+    },
+    "capacity_transitions": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/telemetryItem"}
+    },
+    "report_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

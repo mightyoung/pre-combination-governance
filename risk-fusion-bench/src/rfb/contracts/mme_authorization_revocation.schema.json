@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "trust_epoch", "trust_root_sha256", "revocation_epoch", "previous_revocation_sha256", "published_at_utc", "next_update_utc", "revoked_key_ids", "revoked_request_ids", "revoked_signature_sha256", "signer_id", "signer_role", "key_id", "algorithm", "signature_b64"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "trust_epoch": {"type": "string", "minLength": 1}, "trust_root_sha256": {"$ref": "#/$defs/hash"}, "revocation_epoch": {"type": "integer", "minimum": 0}, "previous_revocation_sha256": {"$ref": "#/$defs/hash"},
+    "published_at_utc": {"type": "string", "format": "date-time"}, "next_update_utc": {"type": "string", "format": "date-time"}, "revoked_key_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "revoked_request_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/hash"}}, "revoked_signature_sha256": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/hash"}},
+    "signer_id": {"type": "string", "minLength": 1}, "signer_role": {"const": "TRUST_ADMIN"}, "key_id": {"type": "string", "minLength": 1}, "algorithm": {"const": "ED25519"}, "signature_b64": {"type": "string", "minLength": 1}
+  }, "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

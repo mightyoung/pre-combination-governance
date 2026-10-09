@@ -1,0 +1,603 @@
+{
+  "MIMII": {
+    "files": 4170,
+    "riff_wave_structurally_valid": 4170,
+    "errors": [],
+    "formats_tuple_tag_subformat_channels_rate_bits_align_riff_exact": {
+      "(65534, 1, 8, 16000, 16, 16, True)": 4170
+    },
+    "durations_seconds": {
+      "10.000000": 4170
+    },
+    "labels": {
+      "normal": 3691,
+      "abnormal": 479
+    },
+    "machine_ids": {
+      "id_04": 1120,
+      "id_06": 1112,
+      "id_00": 1110,
+      "id_02": 828
+    },
+    "stdlib_wave_note": "Python wave rejected format tag 65534; manual RIFF parser validates WAVE_FORMAT_EXTENSIBLE PCM."
+  },
+  "HA4M": {
+    "skeleton_files": 8635,
+    "valid_32_joint_14_column_skeleton_files": 8635,
+    "skeleton_errors": [],
+    "coordinate_adapter": "Columns X,Y,Z are positions with millimetre-scale values; HA4MLoader expects metres, so parser must select columns 3:6 ordered by JointID and divide by 1000.",
+    "labels": [
+      {
+        "package": "IDU001V001",
+        "rows": 2427,
+        "columns": [
+          3
+        ],
+        "column_unique_counts": [
+          2427,
+          13,
+          3
+        ],
+        "skeleton_files": 2427,
+        "row_count_matches_skeleton_files": true
+      },
+      {
+        "package": "IDU001V002",
+        "rows": 2655,
+        "columns": [
+          3
+        ],
+        "column_unique_counts": [
+          2655,
+          13,
+          3
+        ],
+        "skeleton_files": 2655,
+        "row_count_matches_skeleton_files": true
+      },
+      {
+        "package": "IDU024V001",
+        "rows": 3553,
+        "columns": [
+          3
+        ],
+        "column_unique_counts": [
+          3553,
+          13,
+          3
+        ],
+        "skeleton_files": 3553,
+        "row_count_matches_skeleton_files": true
+      }
+    ],
+    "package_modality_counts": {
+      "IDU001V001": {
+        "Infrared:.png": 2427,
+        "Skeletons:.txt": 2427,
+        "root:.png": 2427,
+        "Color:.png": 2427,
+        "root:.ply": 2427,
+        "Depth:.png": 2427,
+        "root:.txt": 1,
+        "Infrared:.db": 1,
+        "Color:.db": 1
+      },
+      "IDU001V002": {
+        "Infrared:.png": 2655,
+        "Skeletons:.txt": 2655,
+        "root:.png": 2655,
+        "Color:.png": 2655,
+        "root:.ply": 2655,
+        "Depth:.png": 2655,
+        "root:.txt": 1
+      },
+      "IDU024V001": {
+        "Infrared:.png": 3553,
+        "Skeletons:.txt": 3553,
+        "root:.png": 3553,
+        "Color:.png": 3553,
+        "root:.ply": 3553,
+        "Depth:.png": 3553,
+        "root:.txt": 1,
+        "Color:.db": 1
+      }
+    },
+    "frame_name_alignment": {
+      "IDU001V001": {
+        "skeleton": 2427,
+        "infrared_png_name_matches": 2427,
+        "depth_any_name_matches": 2427,
+        "skeleton_without_infrared_name_match": 0,
+        "skeleton_without_depth_name_match": 0
+      },
+      "IDU001V002": {
+        "skeleton": 2655,
+        "infrared_png_name_matches": 2655,
+        "depth_any_name_matches": 2655,
+        "skeleton_without_infrared_name_match": 0,
+        "skeleton_without_depth_name_match": 0
+      },
+      "IDU024V001": {
+        "skeleton": 3553,
+        "infrared_png_name_matches": 3553,
+        "depth_any_name_matches": 3553,
+        "skeleton_without_infrared_name_match": 0,
+        "skeleton_without_depth_name_match": 0
+      }
+    }
+  },
+  "HM-SYNC": {
+    "jsonl_files": 19,
+    "records": 118190,
+    "referenced_images_present": 118190,
+    "missing_image_examples": [],
+    "numeric_skeleton_records": 118190,
+    "nonnumeric_skeleton_examples": [],
+    "skeleton_shapes": {
+      "32x(3,)": 118190
+    },
+    "subjects": {
+      "0": 91865,
+      "2": 14607,
+      "1": 10951,
+      "3": 767
+    },
+    "views": {
+      "1": 77972,
+      "0": 40218
+    },
+    "actions": {
+      "refit_buildplate": 29556,
+      "adjusting_tool": 20233,
+      "using_flexpendant_mobile": 16279,
+      "using_flexpendant_mounted": 11009,
+      "walking": 9932,
+      "wiring": 6751,
+      "using_control_panel": 4848,
+      "observing": 4245,
+      "inspecting_buildplate": 3544,
+      "close_door": 3262,
+      "preparing_buildplate": 2588,
+      "open_door": 1253,
+      "toggle_lights": 1237,
+      "turning_gas_knobs": 1150,
+      "grinding_buildplate": 1113,
+      "donning_ppe": 1015,
+      "doffing_ppe": 175
+    },
+    "locations": {
+      "7": 36829,
+      "0": 32470,
+      "6": 25711,
+      "2": 12667,
+      "1": 4848,
+      "3": 4515,
+      "5": 1150
+    },
+    "file_prefix_by_view": {
+      "0": {
+        "outer_depths": 40218
+      },
+      "1": {
+        "inner_depths": 77972
+      }
+    },
+    "coverage": {
+      "subject_view_pairs": 8,
+      "subject_view_expected_cross_product": 8,
+      "action_view_pairs": 24,
+      "action_view_expected_cross_product": 34,
+      "subject_action_pairs": 36,
+      "subject_action_expected_cross_product": 68,
+      "subject_action_view_triples": 45,
+      "subject_action_view_expected_cross_product": 136,
+      "action_numbers": 611,
+      "action_numbers_with_both_views": 0
+    },
+    "per_shard": [
+      {
+        "path": "train-000/train-000/metadata.jsonl",
+        "records": 7220,
+        "subjects": [
+          0
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "close_door",
+          "observing",
+          "open_door",
+          "preparing_buildplate",
+          "toggle_lights",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted",
+          "walking",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-001/train-001/metadata.jsonl",
+        "records": 6931,
+        "subjects": [
+          0,
+          3
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "close_door",
+          "open_door",
+          "toggle_lights",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted"
+        ]
+      },
+      {
+        "path": "train-002/train-002/metadata.jsonl",
+        "records": 6715,
+        "subjects": [
+          0
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "close_door",
+          "open_door",
+          "toggle_lights",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-003/train-003/metadata.jsonl",
+        "records": 7016,
+        "subjects": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "close_door",
+          "observing",
+          "open_door",
+          "toggle_lights",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted",
+          "walking",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-004/train-004/metadata.jsonl",
+        "records": 7126,
+        "subjects": [
+          0,
+          2,
+          3
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "inspecting_buildplate",
+          "observing",
+          "turning_gas_knobs",
+          "using_control_panel",
+          "using_flexpendant_mounted",
+          "walking",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-005/train-005/metadata.jsonl",
+        "records": 7120,
+        "subjects": [
+          0
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "close_door",
+          "inspecting_buildplate",
+          "observing",
+          "preparing_buildplate",
+          "toggle_lights",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted",
+          "walking",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-006/train-006/metadata.jsonl",
+        "records": 6763,
+        "subjects": [
+          0
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "close_door",
+          "inspecting_buildplate",
+          "observing",
+          "open_door",
+          "preparing_buildplate",
+          "toggle_lights",
+          "turning_gas_knobs",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted",
+          "walking",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-007/train-007/metadata.jsonl",
+        "records": 6684,
+        "subjects": [
+          0
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "close_door",
+          "inspecting_buildplate",
+          "observing",
+          "open_door",
+          "preparing_buildplate",
+          "refit_buildplate",
+          "toggle_lights",
+          "turning_gas_knobs",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted",
+          "walking",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-008/train-008/metadata.jsonl",
+        "records": 6541,
+        "subjects": [
+          0,
+          2
+        ],
+        "views": [
+          1
+        ],
+        "actions": [
+          "refit_buildplate",
+          "using_flexpendant_mobile"
+        ]
+      },
+      {
+        "path": "train-009/train-009/metadata.jsonl",
+        "records": 6104,
+        "subjects": [
+          0,
+          2
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "doffing_ppe",
+          "donning_ppe",
+          "refit_buildplate",
+          "walking",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-010/train-010/metadata.jsonl",
+        "records": 1854,
+        "subjects": [
+          0
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "refit_buildplate",
+          "walking"
+        ]
+      },
+      {
+        "path": "train-011/train-011/metadata.jsonl",
+        "records": 6727,
+        "subjects": [
+          0
+        ],
+        "views": [
+          1
+        ],
+        "actions": [
+          "inspecting_buildplate",
+          "refit_buildplate"
+        ]
+      },
+      {
+        "path": "train-012/train-012/metadata.jsonl",
+        "records": 7509,
+        "subjects": [
+          0,
+          1
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "close_door",
+          "doffing_ppe",
+          "donning_ppe",
+          "grinding_buildplate",
+          "inspecting_buildplate",
+          "open_door",
+          "refit_buildplate",
+          "toggle_lights",
+          "turning_gas_knobs",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted",
+          "walking",
+          "wiring"
+        ]
+      },
+      {
+        "path": "train-013/train-013/metadata.jsonl",
+        "records": 6377,
+        "subjects": [
+          1,
+          3
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "close_door",
+          "grinding_buildplate",
+          "open_door",
+          "turning_gas_knobs",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted"
+        ]
+      },
+      {
+        "path": "train-014/train-014/metadata.jsonl",
+        "records": 6385,
+        "subjects": [
+          0,
+          1,
+          3
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "close_door",
+          "grinding_buildplate",
+          "open_door",
+          "preparing_buildplate",
+          "toggle_lights",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted"
+        ]
+      },
+      {
+        "path": "train-015/train-015/metadata.jsonl",
+        "records": 5673,
+        "subjects": [
+          0
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "preparing_buildplate",
+          "refit_buildplate",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted"
+        ]
+      },
+      {
+        "path": "train-016/train-016/metadata.jsonl",
+        "records": 6315,
+        "subjects": [
+          0
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "refit_buildplate",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted"
+        ]
+      },
+      {
+        "path": "train-022/train-022/metadata.jsonl",
+        "records": 6362,
+        "subjects": [
+          0,
+          1,
+          3
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "adjusting_tool",
+          "close_door",
+          "open_door",
+          "toggle_lights",
+          "turning_gas_knobs",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted"
+        ]
+      },
+      {
+        "path": "train-033/train-033/metadata.jsonl",
+        "records": 2768,
+        "subjects": [
+          0,
+          1
+        ],
+        "views": [
+          0,
+          1
+        ],
+        "actions": [
+          "inspecting_buildplate",
+          "toggle_lights",
+          "turning_gas_knobs",
+          "using_control_panel",
+          "using_flexpendant_mobile",
+          "using_flexpendant_mounted"
+        ]
+      }
+    ]
+  }
+}

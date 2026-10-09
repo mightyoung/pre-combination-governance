@@ -1,0 +1,735 @@
+{
+  "events": [
+    {
+      "event_hash": "996b71d731648ef8e3d40b10cd094d18bfc68cdd68618da3a31fabed14256600",
+      "payload": {
+        "event": "start"
+      },
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "sequence": 1,
+      "state": "RUNNING",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "6b9b3d9db38bf9a7f51dbd64cf24df9e8b7577206392480bd3bfe88e25d629d5",
+      "payload": {
+        "event": "row_recorded",
+        "row_id": "A0A4-freeze-fixture-bundle|B0|20260717",
+        "row_sha256": "4c6a5d0b757f1c0c5ce579dc9035d5370d0674c0572abbc29d00eb94d2f347ac"
+      },
+      "previous_hash": "996b71d731648ef8e3d40b10cd094d18bfc68cdd68618da3a31fabed14256600",
+      "sequence": 2,
+      "state": "RUNNING",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "2c5968cc347fed22542eb4bc0d4485eb58bfa2715a7b792a62fcb5b178619615",
+      "payload": {
+        "event": "row_recorded",
+        "row_id": "A0A4-freeze-fixture-bundle|B1|20260717",
+        "row_sha256": "538cee5b52d26c24af9b9b6e7c4949334fad24ce399d378e6c5c5948231e55f1"
+      },
+      "previous_hash": "6b9b3d9db38bf9a7f51dbd64cf24df9e8b7577206392480bd3bfe88e25d629d5",
+      "sequence": 3,
+      "state": "RUNNING",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "d2038802efed163c7b965ad9c6e262d13eb13efd854e30966a0ebb1062168838",
+      "payload": {
+        "event": "row_recorded",
+        "row_id": "A0A4-freeze-fixture-bundle|B2|20260717",
+        "row_sha256": "029c8d3817f7ca19dd8b888eed86dae15bc6ad36820fbf564bb9e9de01813d14"
+      },
+      "previous_hash": "2c5968cc347fed22542eb4bc0d4485eb58bfa2715a7b792a62fcb5b178619615",
+      "sequence": 4,
+      "state": "RUNNING",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "d2b6e60790e8e91f4b90b5f1a47fcb98069504b6fbb6ac203f7a3f6b5e4b3971",
+      "payload": {
+        "event": "row_recorded",
+        "row_id": "A0A4-freeze-fixture-bundle|B3|20260717",
+        "row_sha256": "20f78fd6d2e1d3af87f65b5ed056a979c6017f1b969fd26aa4503796f2b45e31"
+      },
+      "previous_hash": "d2038802efed163c7b965ad9c6e262d13eb13efd854e30966a0ebb1062168838",
+      "sequence": 5,
+      "state": "RUNNING",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "78d9c07735dfb1f7807b292eb1d27ae266453d17cd91657a16dfd44478078455",
+      "payload": {
+        "event": "row_recorded",
+        "row_id": "A0A4-freeze-fixture-bundle|B4|20260717",
+        "row_sha256": "9bab568ab6fd21c76416cf4926e0bd677e198f450f9600f459521d53279acfe7"
+      },
+      "previous_hash": "d2b6e60790e8e91f4b90b5f1a47fcb98069504b6fbb6ac203f7a3f6b5e4b3971",
+      "sequence": 6,
+      "state": "RUNNING",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "6e7eda809569b01e6a067dd45a508cfa6f36a7eba38e3d4a92de4753c4235858",
+      "payload": {
+        "event": "row_recorded",
+        "row_id": "A0A4-freeze-fixture-bundle|B5|20260717",
+        "row_sha256": "af051ff73fa4f311848a050454dae29c4a43a8c91dab184f394983336c8182c4"
+      },
+      "previous_hash": "78d9c07735dfb1f7807b292eb1d27ae266453d17cd91657a16dfd44478078455",
+      "sequence": 7,
+      "state": "RUNNING",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "b302629b6e730f19ab0c7e00bc80ba07f159e40b3c15c2f883552108434f3725",
+      "payload": {
+        "event": "row_recorded",
+        "row_id": "A0A4-freeze-fixture-bundle|Proposed|20260717",
+        "row_sha256": "70b162f63401288359ecf4e55ffb19134a901b1aa13cc9e67d69b723aaafed8f"
+      },
+      "previous_hash": "6e7eda809569b01e6a067dd45a508cfa6f36a7eba38e3d4a92de4753c4235858",
+      "sequence": 8,
+      "state": "RUNNING",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "f39fa59b720c0605b4f40567c4a7c5312d9a3e8cde9ece836f33020e877b428b",
+      "payload": {},
+      "previous_hash": "b302629b6e730f19ab0c7e00bc80ba07f159e40b3c15c2f883552108434f3725",
+      "sequence": 9,
+      "state": "SUCCEEDED",
+      "transaction_id": "A0A4-freeze-transaction"
+    },
+    {
+      "event_hash": "2308e8251484e90ed798e67f59534fe2016cf3a48ef29b858a5edfd37850b24d",
+      "payload": {
+        "row_count": 7,
+        "row_set_sha256": "95754f51bd4982bc0be4fd555bbee17ff65ef31078603af3a4cdfdb3766ca754"
+      },
+      "previous_hash": "f39fa59b720c0605b4f40567c4a7c5312d9a3e8cde9ece836f33020e877b428b",
+      "sequence": 10,
+      "state": "SEALED",
+      "transaction_id": "A0A4-freeze-transaction"
+    }
+  ],
+  "expected_rows": [
+    "A0A4-freeze-fixture-bundle|B0|20260717",
+    "A0A4-freeze-fixture-bundle|B1|20260717",
+    "A0A4-freeze-fixture-bundle|B2|20260717",
+    "A0A4-freeze-fixture-bundle|B3|20260717",
+    "A0A4-freeze-fixture-bundle|B4|20260717",
+    "A0A4-freeze-fixture-bundle|B5|20260717",
+    "A0A4-freeze-fixture-bundle|Proposed|20260717"
+  ],
+  "head_hash": "2308e8251484e90ed798e67f59534fe2016cf3a48ef29b858a5edfd37850b24d",
+  "ledger_sha256": "3a53a91ecefe26509c9f561593bf086aef7d2b61364bfed9925bd4bac8b0f475",
+  "rows": {
+    "A0A4-freeze-fixture-bundle|B0|20260717": {
+      "algorithm_seed": 20260717,
+      "bundle_id": "A0A4-freeze-fixture-bundle",
+      "method_id": "B0",
+      "metrics": {},
+      "output": {
+        "algorithm_seed": 20260717,
+        "audit": {
+          "canonical_roots": [
+            "r1",
+            "r2",
+            "r3"
+          ],
+          "duplicate_count": 0,
+          "eliminated_count": 0,
+          "rationale": "naive_normalized_conjunctive_binary_simple_support",
+          "rebuild_count": 0
+        },
+        "bundle_id": "A0A4-freeze-fixture-bundle",
+        "decision": {
+          "admissible_actions": [
+            "UNSAFE"
+          ],
+          "label": "UNSAFE"
+        },
+        "failure_code": null,
+        "formal_eligible": true,
+        "implementation_sha256": "f0edb227108d1a4ce7ec9b45e5b98dec8c6f488ae6d488da99c9380806ab06f7",
+        "implementation_version": "1.0.0",
+        "input_commitment_sha256": "2c5bf3e33ea19b4e31eec1c6eb0b6a1dd5af3df33c57a96799f75897f9b6d8fe",
+        "method_id": "B0",
+        "output_schema_sha256": "345f2aba9df158b26b26fb94bec78e21668590d50c220cfc540027b094ec1877",
+        "prediction": {
+          "active_root_count": 3,
+          "confidence": 1.0,
+          "evidence_count": 3,
+          "risk_interval": [
+            0.968,
+            0.968
+          ],
+          "risk_score": 0.968
+        },
+        "result": {
+          "audit": {
+            "canonical_roots": [
+              "r1",
+              "r2",
+              "r3"
+            ],
+            "duplicate_count": 0,
+            "eliminated_count": 0,
+            "rationale": "naive_normalized_conjunctive_binary_simple_support",
+            "rebuild_count": 0
+          },
+          "confidence": 1.0,
+          "decision": {
+            "admissible_actions": [
+              "UNSAFE"
+            ],
+            "label": "UNSAFE"
+          },
+          "evidence_count": 3,
+          "prediction": {
+            "active_root_count": 3,
+            "confidence": 1.0,
+            "evidence_count": 3,
+            "risk_interval": [
+              0.968,
+              0.968
+            ],
+            "risk_score": 0.968
+          },
+          "rationale": "naive_normalized_conjunctive_binary_simple_support",
+          "risk_score": 0.968
+        },
+        "result_sha256": "ccbc71f5a02fac015ffc88463209f12c425e6004df46dd41591b944549a99e94",
+        "schema_version": "1.0.0",
+        "scorer_binding": "preregistered_scorer_v1",
+        "scorer_id": "preregistered_scorer_v1",
+        "scorer_sha256": "3e44e771ea409499228912aa9ebec8b9e6922bf928fe7531ed99e88ab4e122f5",
+        "semantics_sha256": "17b58d83083b25b6f6c42fe620a22a9069e163e8c152f0a921e5acd44b035975",
+        "transaction_id": "A0A4-freeze-transaction",
+        "transaction_sha256": "1367d5a87b1c3da761a7a007a2f798d7172b77ddbdd34faac61e90e3ce7e62ea",
+        "valid": true
+      },
+      "output_sha256": "289b4c90b4637dde671734b38219d83c3bd1cc8167975048d0b57cf42dd9e8eb"
+    },
+    "A0A4-freeze-fixture-bundle|B1|20260717": {
+      "algorithm_seed": 20260717,
+      "bundle_id": "A0A4-freeze-fixture-bundle",
+      "method_id": "B1",
+      "metrics": {},
+      "output": {
+        "algorithm_seed": 20260717,
+        "audit": {
+          "canonical_roots": [
+            "r1",
+            "r2",
+            "r3"
+          ],
+          "duplicate_count": 0,
+          "eliminated_count": 0,
+          "rationale": "message_id_version_exactly_once",
+          "rebuild_count": 0
+        },
+        "bundle_id": "A0A4-freeze-fixture-bundle",
+        "decision": {
+          "admissible_actions": [
+            "UNSAFE"
+          ],
+          "label": "UNSAFE"
+        },
+        "failure_code": null,
+        "formal_eligible": true,
+        "implementation_sha256": "fbefbb5e5a695431af575e03dc44fdf3e163c1b4458c3b6f6a18be2b00748318",
+        "implementation_version": "1.0.0",
+        "input_commitment_sha256": "2c5bf3e33ea19b4e31eec1c6eb0b6a1dd5af3df33c57a96799f75897f9b6d8fe",
+        "method_id": "B1",
+        "output_schema_sha256": "345f2aba9df158b26b26fb94bec78e21668590d50c220cfc540027b094ec1877",
+        "prediction": {
+          "active_root_count": 3,
+          "confidence": 1.0,
+          "evidence_count": 3,
+          "risk_interval": [
+            0.968,
+            0.968
+          ],
+          "risk_score": 0.968
+        },
+        "result": {
+          "audit": {
+            "canonical_roots": [
+              "r1",
+              "r2",
+              "r3"
+            ],
+            "duplicate_count": 0,
+            "eliminated_count": 0,
+            "rationale": "message_id_version_exactly_once",
+            "rebuild_count": 0
+          },
+          "confidence": 1.0,
+          "decision": {
+            "admissible_actions": [
+              "UNSAFE"
+            ],
+            "label": "UNSAFE"
+          },
+          "evidence_count": 3,
+          "prediction": {
+            "active_root_count": 3,
+            "confidence": 1.0,
+            "evidence_count": 3,
+            "risk_interval": [
+              0.968,
+              0.968
+            ],
+            "risk_score": 0.968
+          },
+          "rationale": "message_id_version_exactly_once",
+          "risk_score": 0.968
+        },
+        "result_sha256": "1746e13024183e440c489539484b86bf7e709939060fcefad763ec427d00beb1",
+        "schema_version": "1.0.0",
+        "scorer_binding": "preregistered_scorer_v1",
+        "scorer_id": "preregistered_scorer_v1",
+        "scorer_sha256": "3e44e771ea409499228912aa9ebec8b9e6922bf928fe7531ed99e88ab4e122f5",
+        "semantics_sha256": "d7b31b06f7e363bc857e53af8c4db7a035947b8a9decd46e1dc2c1269f992219",
+        "transaction_id": "A0A4-freeze-transaction",
+        "transaction_sha256": "ee8301930daca1c5860b4ac20a3ea00fd6d78c8a528944932a8fadd57a26aa11",
+        "valid": true
+      },
+      "output_sha256": "0bcd40685d2e16b5e1880d24f85acc7d682328c87aa74b2b0443c6686f7c9e18"
+    },
+    "A0A4-freeze-fixture-bundle|B2|20260717": {
+      "algorithm_seed": 20260717,
+      "bundle_id": "A0A4-freeze-fixture-bundle",
+      "method_id": "B2",
+      "metrics": {},
+      "output": {
+        "algorithm_seed": 20260717,
+        "audit": {
+          "canonical_roots": [
+            "r2",
+            "r3"
+          ],
+          "duplicate_count": 0,
+          "eliminated_count": 1,
+          "rationale": "declared_lineage_transitive_ancestor_elimination",
+          "rebuild_count": 0
+        },
+        "bundle_id": "A0A4-freeze-fixture-bundle",
+        "decision": {
+          "admissible_actions": [
+            "UNSAFE"
+          ],
+          "label": "UNSAFE"
+        },
+        "failure_code": null,
+        "formal_eligible": true,
+        "implementation_sha256": "c3a0410469adcfac9808b31baf16c5834771bcf6790ac911317adeabb4627218",
+        "implementation_version": "1.0.0",
+        "input_commitment_sha256": "2c5bf3e33ea19b4e31eec1c6eb0b6a1dd5af3df33c57a96799f75897f9b6d8fe",
+        "method_id": "B2",
+        "output_schema_sha256": "345f2aba9df158b26b26fb94bec78e21668590d50c220cfc540027b094ec1877",
+        "prediction": {
+          "active_root_count": 2,
+          "confidence": 1.0,
+          "evidence_count": 2,
+          "risk_interval": [
+            0.84,
+            0.84
+          ],
+          "risk_score": 0.84
+        },
+        "result": {
+          "audit": {
+            "canonical_roots": [
+              "r2",
+              "r3"
+            ],
+            "duplicate_count": 0,
+            "eliminated_count": 1,
+            "rationale": "declared_lineage_transitive_ancestor_elimination",
+            "rebuild_count": 0
+          },
+          "confidence": 1.0,
+          "decision": {
+            "admissible_actions": [
+              "UNSAFE"
+            ],
+            "label": "UNSAFE"
+          },
+          "evidence_count": 2,
+          "prediction": {
+            "active_root_count": 2,
+            "confidence": 1.0,
+            "evidence_count": 2,
+            "risk_interval": [
+              0.84,
+              0.84
+            ],
+            "risk_score": 0.84
+          },
+          "rationale": "declared_lineage_transitive_ancestor_elimination",
+          "risk_score": 0.84
+        },
+        "result_sha256": "bb954d9a125a91c968dfe06110af981d89f31f25d7ed13696dbf831ee43810c7",
+        "schema_version": "1.0.0",
+        "scorer_binding": "preregistered_scorer_v1",
+        "scorer_id": "preregistered_scorer_v1",
+        "scorer_sha256": "3e44e771ea409499228912aa9ebec8b9e6922bf928fe7531ed99e88ab4e122f5",
+        "semantics_sha256": "6f0ce6f63fddc0ab39ccf9005b33c32eede15673d4f0e4fb9e40b370e3f30802",
+        "transaction_id": "A0A4-freeze-transaction",
+        "transaction_sha256": "44d772c5265e1aeb7dbb9ebd2a1500c539e51c5548a9b40eff0cef1306b49856",
+        "valid": true
+      },
+      "output_sha256": "a05e5e6599fec77ebe216c24485563704d0ef1646aaec28f1ab9d485ea48acb2"
+    },
+    "A0A4-freeze-fixture-bundle|B3|20260717": {
+      "algorithm_seed": 20260717,
+      "bundle_id": "A0A4-freeze-fixture-bundle",
+      "method_id": "B3",
+      "metrics": {},
+      "output": {
+        "algorithm_seed": 20260717,
+        "audit": {
+          "canonical_roots": [
+            "r1",
+            "r2",
+            "r3"
+          ],
+          "duplicate_count": 0,
+          "eliminated_count": 0,
+          "rationale": "denoeux_cautious_binary_simple_support_max_weight",
+          "rebuild_count": 0
+        },
+        "bundle_id": "A0A4-freeze-fixture-bundle",
+        "decision": {
+          "admissible_actions": [
+            "UNSAFE"
+          ],
+          "label": "UNSAFE"
+        },
+        "failure_code": null,
+        "formal_eligible": true,
+        "implementation_sha256": "19f38b0f7c05ed95a271ff35db0aa4242c77296a0f015a83be32503676312d20",
+        "implementation_version": "1.0.0",
+        "input_commitment_sha256": "2c5bf3e33ea19b4e31eec1c6eb0b6a1dd5af3df33c57a96799f75897f9b6d8fe",
+        "method_id": "B3",
+        "output_schema_sha256": "345f2aba9df158b26b26fb94bec78e21668590d50c220cfc540027b094ec1877",
+        "prediction": {
+          "active_root_count": 3,
+          "confidence": 1.0,
+          "evidence_count": 3,
+          "risk_interval": [
+            0.8,
+            0.8
+          ],
+          "risk_score": 0.8
+        },
+        "result": {
+          "audit": {
+            "canonical_roots": [
+              "r1",
+              "r2",
+              "r3"
+            ],
+            "duplicate_count": 0,
+            "eliminated_count": 0,
+            "rationale": "denoeux_cautious_binary_simple_support_max_weight",
+            "rebuild_count": 0
+          },
+          "confidence": 1.0,
+          "decision": {
+            "admissible_actions": [
+              "UNSAFE"
+            ],
+            "label": "UNSAFE"
+          },
+          "evidence_count": 3,
+          "prediction": {
+            "active_root_count": 3,
+            "confidence": 1.0,
+            "evidence_count": 3,
+            "risk_interval": [
+              0.8,
+              0.8
+            ],
+            "risk_score": 0.8
+          },
+          "rationale": "denoeux_cautious_binary_simple_support_max_weight",
+          "risk_score": 0.8
+        },
+        "result_sha256": "65b19be545149ca32cc938eaad80b0220bee4f61067732577e749ebca797c3ee",
+        "schema_version": "1.0.0",
+        "scorer_binding": "preregistered_scorer_v1",
+        "scorer_id": "preregistered_scorer_v1",
+        "scorer_sha256": "3e44e771ea409499228912aa9ebec8b9e6922bf928fe7531ed99e88ab4e122f5",
+        "semantics_sha256": "e4924b73d0de981e35679d200483054a0bf22495ab380d20ab5effeed90c44c4",
+        "transaction_id": "A0A4-freeze-transaction",
+        "transaction_sha256": "a05861533d78856423548d2ad5df6d71f93779936f606d337ebf7fbb8546a94a",
+        "valid": true
+      },
+      "output_sha256": "cd7bbab32223102a1aa67a8f497a7431bbfe27e3084a6b9a32fc2a948061b45e"
+    },
+    "A0A4-freeze-fixture-bundle|B4|20260717": {
+      "algorithm_seed": 20260717,
+      "bundle_id": "A0A4-freeze-fixture-bundle",
+      "method_id": "B4",
+      "metrics": {},
+      "output": {
+        "algorithm_seed": 20260717,
+        "audit": {
+          "canonical_roots": [
+            "r1",
+            "r2",
+            "r3"
+          ],
+          "duplicate_count": 0,
+          "eliminated_count": 0,
+          "rationale": "er_tld_family_strong_neighbor_rho_0.70_endpoints_independent_to_cautious",
+          "rebuild_count": 0
+        },
+        "bundle_id": "A0A4-freeze-fixture-bundle",
+        "decision": {
+          "admissible_actions": [
+            "UNSAFE"
+          ],
+          "label": "UNSAFE"
+        },
+        "failure_code": null,
+        "formal_eligible": true,
+        "implementation_sha256": "3905d7b2e5a8109af6ab964172f9f38e7c5bbc615bcbfa580ac4a9736cda456e",
+        "implementation_version": "1.0.0",
+        "input_commitment_sha256": "2c5bf3e33ea19b4e31eec1c6eb0b6a1dd5af3df33c57a96799f75897f9b6d8fe",
+        "method_id": "B4",
+        "output_schema_sha256": "345f2aba9df158b26b26fb94bec78e21668590d50c220cfc540027b094ec1877",
+        "prediction": {
+          "active_root_count": 3,
+          "confidence": 1.0,
+          "evidence_count": 3,
+          "risk_interval": [
+            0.85712,
+            0.85712
+          ],
+          "risk_score": 0.85712
+        },
+        "result": {
+          "audit": {
+            "canonical_roots": [
+              "r1",
+              "r2",
+              "r3"
+            ],
+            "duplicate_count": 0,
+            "eliminated_count": 0,
+            "rationale": "er_tld_family_strong_neighbor_rho_0.70_endpoints_independent_to_cautious",
+            "rebuild_count": 0
+          },
+          "confidence": 1.0,
+          "decision": {
+            "admissible_actions": [
+              "UNSAFE"
+            ],
+            "label": "UNSAFE"
+          },
+          "evidence_count": 3,
+          "prediction": {
+            "active_root_count": 3,
+            "confidence": 1.0,
+            "evidence_count": 3,
+            "risk_interval": [
+              0.85712,
+              0.85712
+            ],
+            "risk_score": 0.85712
+          },
+          "rationale": "er_tld_family_strong_neighbor_rho_0.70_endpoints_independent_to_cautious",
+          "risk_score": 0.85712
+        },
+        "result_sha256": "7f6d8823f92b968dcc2ebc36c2ab0b5de50fee391cadded46cd82c2ef22461b6",
+        "schema_version": "1.0.0",
+        "scorer_binding": "preregistered_scorer_v1",
+        "scorer_id": "preregistered_scorer_v1",
+        "scorer_sha256": "3e44e771ea409499228912aa9ebec8b9e6922bf928fe7531ed99e88ab4e122f5",
+        "semantics_sha256": "bdf4c4d29190e35d80f94bebe950e3194f774ae926615433572f1d638242f376",
+        "transaction_id": "A0A4-freeze-transaction",
+        "transaction_sha256": "0f290def964e5cb6e3abc3b5dee758a93447505f21232b6574471e8468dcf5a0",
+        "valid": true
+      },
+      "output_sha256": "3fbec7eaf35404491c91641f0064ee51f79895ad0ee62a79ef85be7e3dbd5786"
+    },
+    "A0A4-freeze-fixture-bundle|B5|20260717": {
+      "algorithm_seed": 20260717,
+      "bundle_id": "A0A4-freeze-fixture-bundle",
+      "method_id": "B5",
+      "metrics": {},
+      "output": {
+        "algorithm_seed": 20260717,
+        "audit": {
+          "canonical_roots": [
+            "r1",
+            "r2",
+            "r3"
+          ],
+          "duplicate_count": 0,
+          "eliminated_count": 0,
+          "rationale": "frechet_unknown_correlation_public_interval_upper_action",
+          "rebuild_count": 0
+        },
+        "bundle_id": "A0A4-freeze-fixture-bundle",
+        "decision": {
+          "admissible_actions": [
+            "UNSAFE"
+          ],
+          "label": "UNSAFE"
+        },
+        "failure_code": null,
+        "formal_eligible": true,
+        "implementation_sha256": "a8ed52ba3d764a461f8725b5b06b807926f8afd83abb89b39ef893bf54185fbb",
+        "implementation_version": "1.0.0",
+        "input_commitment_sha256": "2c5bf3e33ea19b4e31eec1c6eb0b6a1dd5af3df33c57a96799f75897f9b6d8fe",
+        "method_id": "B5",
+        "output_schema_sha256": "345f2aba9df158b26b26fb94bec78e21668590d50c220cfc540027b094ec1877",
+        "prediction": {
+          "active_root_count": 3,
+          "confidence": 0.8,
+          "evidence_count": 3,
+          "risk_interval": [
+            0.8,
+            1.0
+          ],
+          "risk_score": 1.0
+        },
+        "result": {
+          "audit": {
+            "canonical_roots": [
+              "r1",
+              "r2",
+              "r3"
+            ],
+            "duplicate_count": 0,
+            "eliminated_count": 0,
+            "rationale": "frechet_unknown_correlation_public_interval_upper_action",
+            "rebuild_count": 0
+          },
+          "confidence": 0.8,
+          "decision": {
+            "admissible_actions": [
+              "UNSAFE"
+            ],
+            "label": "UNSAFE"
+          },
+          "evidence_count": 3,
+          "prediction": {
+            "active_root_count": 3,
+            "confidence": 0.8,
+            "evidence_count": 3,
+            "risk_interval": [
+              0.8,
+              1.0
+            ],
+            "risk_score": 1.0
+          },
+          "rationale": "frechet_unknown_correlation_public_interval_upper_action",
+          "risk_score": 1.0
+        },
+        "result_sha256": "566ba8bd7b79bc62df0eb9c5242f1075fc2a1d65483fd3ae6ddc70535b1a619d",
+        "schema_version": "1.0.0",
+        "scorer_binding": "preregistered_scorer_v1",
+        "scorer_id": "preregistered_scorer_v1",
+        "scorer_sha256": "3e44e771ea409499228912aa9ebec8b9e6922bf928fe7531ed99e88ab4e122f5",
+        "semantics_sha256": "c4cf4e4d69747c5fa2002e9781e431a6414c808d1551867925b9e6d8d06feda1",
+        "transaction_id": "A0A4-freeze-transaction",
+        "transaction_sha256": "7a0bebf6418d98db26ffade5a4f35cc56cd00171fb81515fd61780ebb68f441c",
+        "valid": true
+      },
+      "output_sha256": "4e2ae9ed1736cc7a28d97f6ecf8dfe906d76e599dc66d7ea7fbbc83133913b1b"
+    },
+    "A0A4-freeze-fixture-bundle|Proposed|20260717": {
+      "algorithm_seed": 20260717,
+      "bundle_id": "A0A4-freeze-fixture-bundle",
+      "method_id": "Proposed",
+      "metrics": {},
+      "output": {
+        "algorithm_seed": 20260717,
+        "audit": {
+          "canonical_roots": [
+            "r1"
+          ],
+          "duplicate_count": 0,
+          "eliminated_count": 2,
+          "rationale": "lifecycle_consistent_canonical_root_rebuild",
+          "rebuild_count": 2
+        },
+        "bundle_id": "A0A4-freeze-fixture-bundle",
+        "decision": {
+          "admissible_actions": [
+            "UNSAFE"
+          ],
+          "label": "UNSAFE"
+        },
+        "failure_code": null,
+        "formal_eligible": true,
+        "implementation_sha256": "b64e658ec183ac1188d87c8af0e2f5dc51e44dd160d1261e57a4d5dbbdd3dc56",
+        "implementation_version": "1.0.0",
+        "input_commitment_sha256": "2c5bf3e33ea19b4e31eec1c6eb0b6a1dd5af3df33c57a96799f75897f9b6d8fe",
+        "method_id": "Proposed",
+        "output_schema_sha256": "345f2aba9df158b26b26fb94bec78e21668590d50c220cfc540027b094ec1877",
+        "prediction": {
+          "active_root_count": 1,
+          "confidence": 1.0,
+          "evidence_count": 2,
+          "risk_interval": [
+            0.8,
+            0.8
+          ],
+          "risk_score": 0.8
+        },
+        "result": {
+          "audit": {
+            "canonical_roots": [
+              "r1"
+            ],
+            "duplicate_count": 0,
+            "eliminated_count": 2,
+            "rationale": "lifecycle_consistent_canonical_root_rebuild",
+            "rebuild_count": 2
+          },
+          "confidence": 1.0,
+          "decision": {
+            "admissible_actions": [
+              "UNSAFE"
+            ],
+            "label": "UNSAFE"
+          },
+          "evidence_count": 2,
+          "prediction": {
+            "active_root_count": 1,
+            "confidence": 1.0,
+            "evidence_count": 2,
+            "risk_interval": [
+              0.8,
+              0.8
+            ],
+            "risk_score": 0.8
+          },
+          "rationale": "lifecycle_consistent_canonical_root_rebuild",
+          "risk_score": 0.8
+        },
+        "result_sha256": "13f964a822af414164c0ccbbf8ef34b5c1c5fdbe2808b77b4760c1eb78ec5d89",
+        "schema_version": "1.0.0",
+        "scorer_binding": "preregistered_scorer_v1",
+        "scorer_id": "preregistered_scorer_v1",
+        "scorer_sha256": "3e44e771ea409499228912aa9ebec8b9e6922bf928fe7531ed99e88ab4e122f5",
+        "semantics_sha256": "63e30629c65a156b6fd6d5d3fed00a66abbbc96ed6bba196c247319b0c790909",
+        "transaction_id": "A0A4-freeze-transaction",
+        "transaction_sha256": "2f585429945d164fa698996a5e8bc4b6becd72017efcec01aa20a3eaa7ed8031",
+        "valid": true
+      },
+      "output_sha256": "6b67b6f0a256a1f9ea49711a331a5374acc6cb8e0f13f51cd6607f2974a2a07e"
+    }
+  },
+  "schema_version": "1.0.0",
+  "transaction_id": "A0A4-freeze-transaction"
+}

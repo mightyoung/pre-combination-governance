@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1040" viewBox="0 0 1800 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Safety artifacts and runtime observations to provenance-constrained online evidence fusion</title>
+  <desc id="desc">Version 20 architecture showing the SafetyArtifactIR compiler, SourceAdapter calibration bridge, separate physical and lineage registries, setwise eligibility, root-global compilation, atomic governance, fail-closed actions, and controlled new-epoch feedback.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#285f9e"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b23a48"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#17324d" flood-opacity="0.16"/>
+    </filter>
+    <style>
+      .title { font: 700 34px "Segoe UI", Arial, sans-serif; fill:#17324d; }
+      .subtitle { font: 500 18px "Segoe UI", Arial, sans-serif; fill:#50677d; }
+      .h { font: 700 23px "Segoe UI", Arial, sans-serif; fill:#17324d; }
+      .sh { font: 700 18px "Segoe UI", Arial, sans-serif; fill:#17324d; }
+      .body { font: 500 17px "Segoe UI", Arial, sans-serif; fill:#263b4d; }
+      .small { font: 500 15px "Segoe UI", Arial, sans-serif; fill:#334e63; }
+      .tiny { font: 600 14px "Segoe UI", Arial, sans-serif; fill:#334e63; }
+      .mono { font: 600 15px Consolas, "Courier New", monospace; fill:#243b53; }
+      .box { stroke:#536b7a; stroke-width:2; rx:16; filter:url(#shadow); }
+      .subbox { stroke-width:1.6; rx:10; }
+      .flow { fill:none; stroke:#285f9e; stroke-width:3.2; marker-end:url(#arrow); }
+      .flowThin { fill:none; stroke:#285f9e; stroke-width:2.3; marker-end:url(#arrow); }
+      .control { fill:none; stroke:#6c4c9a; stroke-width:2.8; stroke-dasharray:10 7; marker-end:url(#arrow); }
+      .forbid { fill:none; stroke:#b23a48; stroke-width:2.5; stroke-dasharray:8 6; marker-end:url(#arrowRed); }
+      .divider { stroke:#78909c; stroke-width:1.4; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1800" height="1040" fill="#ffffff"/>
+  <text x="900" y="48" text-anchor="middle" class="title">Provenance-Constrained Pre-Combination Governance</text>
+  <text x="900" y="78" text-anchor="middle" class="subtitle">Design-time authorization + observation mapping + setwise eligibility + lifecycle contribution conservation</text>
+
+  <!-- Lane labels -->
+  <rect x="40" y="112" width="1718" height="316" rx="20" fill="#f4f8fb" stroke="#c9d7e2" stroke-width="1.5"/>
+  <rect x="40" y="446" width="1718" height="316" rx="20" fill="#fbfcfd" stroke="#c9d7e2" stroke-width="1.5"/>
+  <text x="58" y="137" class="tiny">DESIGN-TIME AUTHORIZATION LANE</text>
+  <text x="58" y="471" class="tiny">RUNTIME OBSERVATION AND DECISION LANE</text>
+
+  <!-- Design artifacts -->
+  <rect class="box" x="70" y="165" width="260" height="220" fill="#e9f0f7"/>
+  <text x="200" y="198" text-anchor="middle" class="h">Safety artifacts</text>
+  <line x1="92" y1="212" x2="308" y2="212" class="divider"/>
+  <text x="96" y="244" class="body">• HAZOP / deviation ontology</text>
+  <text x="96" y="276" class="body">• FTA / MCS structural support</text>
+  <text x="96" y="308" class="body">• Bow-Tie / LOPA barrier roles</text>
+  <text x="96" y="340" class="body">• CCF + admissible utility family</text>
+  <text x="96" y="372" class="small">Signed versions, scope and trace links</text>
+
+  <!-- SafetyArtifactIR -->
+  <rect class="box" x="385" y="155" width="300" height="240" fill="#dcefe8"/>
+  <text x="535" y="188" text-anchor="middle" class="h">SafetyArtifactIR compiler</text>
+  <line x1="407" y1="204" x2="663" y2="204" class="divider"/>
+  <text x="413" y="236" class="body">Typed permitted mappings</text>
+  <text x="413" y="266" class="body">Explicit forbidden inferences</text>
+  <text x="413" y="296" class="body">DynamicDemandGuard + TraceEdge</text>
+  <text x="413" y="326" class="body">Total input/output disposition</text>
+  <rect class="subbox" x="413" y="345" width="244" height="35" fill="#ffffff" stroke="#2f7d69"/>
+  <text x="535" y="368" text-anchor="middle" class="mono">INVALID → no runtime claim</text>
+
+  <!-- Runtime observations -->
+  <rect class="box" x="70" y="505" width="260" height="205" fill="#fff1dc"/>
+  <text x="200" y="538" text-anchor="middle" class="h">Raw observations</text>
+  <line x1="92" y1="552" x2="308" y2="552" class="divider"/>
+  <text x="96" y="585" class="body">• Sensors, alarms, maintenance</text>
+  <text x="96" y="617" class="body">• Human records, model outputs</text>
+  <text x="96" y="649" class="body">• Quality, lateness and context</text>
+  <text x="96" y="686" class="small">No BPA is trusted by default</text>
+
+  <!-- SourceAdapter -->
+  <rect class="box" x="385" y="485" width="300" height="245" fill="#ffead2"/>
+  <text x="535" y="518" text-anchor="middle" class="h">SourceAdapter bridge</text>
+  <line x1="407" y1="534" x2="663" y2="534" class="divider"/>
+  <text x="413" y="566" class="body">Typed focal-set schedule</text>
+  <text x="413" y="596" class="body">CalibrationCertificate + validity domain</text>
+  <text x="413" y="626" class="body">Missing / lateness / OOD / drift policy</text>
+  <text x="413" y="656" class="body">Schema, data, code and coupling hashes</text>
+  <rect class="subbox" x="407" y="677" width="256" height="39" fill="#fff7ed" stroke="#c56a1a"/>
+  <text x="535" y="702" text-anchor="middle" class="mono">MAPPING_UNKNOWN → ABSTAIN_MAPPING</text>
+
+  <!-- Registries and setwise eligibility -->
+  <rect class="box" x="740" y="155" width="390" height="575" fill="#e5f2f4"/>
+  <text x="935" y="188" text-anchor="middle" class="h">Separate proofs + setwise eligibility</text>
+  <rect class="subbox" x="770" y="218" width="330" height="95" fill="#ffffff" stroke="#277da1"/>
+  <text x="790" y="245" class="sh">PhysicalCouplingRegistry (PCR)</text>
+  <text x="790" y="273" class="small">Latent physical causes, CCF, process coupling</text>
+  <text x="790" y="296" class="small">Physical dependence ≠ observational duplication</text>
+  <rect class="subbox" x="770" y="330" width="330" height="105" fill="#ffffff" stroke="#277da1"/>
+  <text x="790" y="357" class="sh">ObservationLineageRegistry (OLR)</text>
+  <text x="790" y="385" class="small">Shared sensing, preprocessing, models and derivation</text>
+  <text x="790" y="408" class="small">Signed lineage + context-valid relation evidence</text>
+  <rect class="subbox" x="770" y="452" width="330" height="170" fill="#eef8f4" stroke="#2f7d69" stroke-width="2.2"/>
+  <text x="935" y="482" text-anchor="middle" class="sh">SetwiseEligibilityCertificate</text>
+  <text x="792" y="514" class="small">Full active-root generation graph</text>
+  <text x="792" y="542" class="small">Higher-order hyperedges + registry completeness</text>
+  <text x="792" y="570" class="small">Context, validity interval and signed decision</text>
+  <text x="935" y="604" text-anchor="middle" class="mono">ELIGIBLE / UNKNOWN / BLOCKED</text>
+  <rect class="subbox" x="770" y="642" width="330" height="62" fill="#fdecef" stroke="#b23a48"/>
+  <text x="935" y="668" text-anchor="middle" class="mono">missing / stale / unresolved</text>
+  <text x="935" y="691" text-anchor="middle" class="mono">→ ABSTAIN_RELATION + audit/latch</text>
+
+  <!-- Root-global compilation -->
+  <rect class="box" x="1180" y="155" width="275" height="240" fill="#e8e2f2"/>
+  <text x="1317" y="188" text-anchor="middle" class="h">Canonical root compilation</text>
+  <line x1="1202" y1="204" x2="1433" y2="204" class="divider"/>
+  <text x="1208" y="236" class="body">Identity / class / version closure</text>
+  <text x="1208" y="266" class="body">One root-global joint valuation</text>
+  <text x="1208" y="296" class="body">Shared-u within-root coupling</text>
+  <text x="1208" y="326" class="body">Read-only marginal views</text>
+  <rect class="subbox" x="1208" y="344" width="220" height="36" fill="#ffffff" stroke="#6c4c9a"/>
+  <text x="1318" y="368" text-anchor="middle" class="mono">RootClaimBundle: once only</text>
+
+  <!-- Governance state -->
+  <rect class="box" x="1180" y="475" width="275" height="235" fill="#e8e2f2"/>
+  <text x="1317" y="508" text-anchor="middle" class="h">Atomic governance</text>
+  <line x1="1202" y1="524" x2="1433" y2="524" class="divider"/>
+  <text x="1208" y="556" class="body">Budget → rate → joint gate</text>
+  <text x="1208" y="586" class="body">RootRegistry + ContributionLedger</text>
+  <text x="1208" y="616" class="body">Replay, merge, supersede, retire</text>
+  <text x="1208" y="646" class="body">Latch + full CAS read set</text>
+  <rect class="subbox" x="1208" y="665" width="220" height="31" fill="#ffffff" stroke="#6c4c9a"/>
+  <text x="1318" y="686" text-anchor="middle" class="mono">no partial belief commit</text>
+
+  <!-- Decision -->
+  <rect class="box" x="1510" y="278" width="220" height="330" fill="#f5e6d4"/>
+  <text x="1620" y="312" text-anchor="middle" class="h">Online decision</text>
+  <line x1="1532" y1="328" x2="1708" y2="328" class="divider"/>
+  <text x="1540" y="360" class="body">Belief state + robust utility</text>
+  <text x="1540" y="390" class="body">Barrier demand + action set</text>
+  <rect class="subbox" x="1540" y="414" width="160" height="40" fill="#e1f3e8" stroke="#2f7d69"/>
+  <text x="1620" y="440" text-anchor="middle" class="mono">SAFE_ELIGIBLE</text>
+  <rect class="subbox" x="1540" y="466" width="160" height="40" fill="#fff1dc" stroke="#c56a1a"/>
+  <text x="1620" y="492" text-anchor="middle" class="mono">PROBE / ESCALATE</text>
+  <rect class="subbox" x="1540" y="518" width="160" height="62" fill="#fdecef" stroke="#b23a48"/>
+  <text x="1620" y="543" text-anchor="middle" class="mono">fail-closed</text>
+  <text x="1620" y="566" text-anchor="middle" class="small">blocks SAFE, not SIS/ESD</text>
+
+  <!-- Main flow arrows -->
+  <path d="M330 275 H385" class="flow"/>
+  <path d="M330 607 H385" class="flow"/>
+  <path d="M685 275 H740" class="flow"/>
+  <path d="M685 607 H740" class="flow"/>
+  <path d="M1130 275 H1180" class="flow"/>
+  <path d="M1130 590 H1180" class="flow"/>
+  <path d="M1318 395 V475" class="flow"/>
+  <path d="M1455 590 H1482 V445 H1510" class="flow"/>
+
+  <!-- Controlled feedback -->
+  <rect x="350" y="805" width="1100" height="82" rx="16" fill="#f2eef8" stroke="#6c4c9a" stroke-width="2"/>
+  <text x="900" y="838" text-anchor="middle" class="sh">Audit diagnostics → Management of Change (MOC) → independent revalidation → new epoch only</text>
+  <text x="900" y="866" text-anchor="middle" class="small">Runtime feedback cannot rewrite historical provenance, calibration, eligibility or safety context in place.</text>
+  <path d="M1620 608 V775 H1435 V805" class="control"/>
+  <path d="M350 846 H220 V710" class="control"/>
+
+  <!-- Forbidden shortcuts -->
+  <rect x="70" y="925" width="1660" height="72" rx="14" fill="#fff7f7" stroke="#b23a48" stroke-width="1.8"/>
+  <text x="95" y="954" class="sh" fill="#8f2532">Forbidden shortcuts</text>
+  <text x="310" y="954" class="body">FTA/MCS ≠ demand time</text>
+  <text x="590" y="954" class="body">CCF β ≠ evidence weight</text>
+  <text x="900" y="954" class="body">provenance ≠ statistical independence</text>
+  <text x="1290" y="954" class="body">pairwise ELIGIBLE ≠ setwise ELIGIBLE</text>
+  <text x="900" y="983" text-anchor="middle" class="small" fill="#8f2532">Any unresolved bridge fails before conjunctive fusion and leaves an auditable, conservative state transition.</text>
+</svg>
