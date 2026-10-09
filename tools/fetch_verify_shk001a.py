@@ -16,7 +16,7 @@ USER = "r4900g3"
 EXPECTED_HOST_KEY_SHA256 = "eDfwLjrpTces2mQp4d+gKdg2i/4t7k7sLfF/nLtx1oA"
 REMOTE_ROOT = "/home/r4900g3/yhh/provenance-fusion/runs/shakedown/SHK-001A-resource-v611-20260715"
 LOCAL_ROOT = Path("outputs/restore-cache/SHK-001A-resource-v611-20260715")
-REPORT_PATH = Path("SHK001A-v6.11-本机恢复校验.json")
+REPORT_PATH = Path("记录/SHK001A-v6.11-本机恢复校验.json")
 
 
 def sha256_file(path: Path) -> str:

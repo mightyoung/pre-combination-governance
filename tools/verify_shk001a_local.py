@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path("outputs/restore-cache/SHK-001A-resource-v611-20260715")
-REPORT = Path("SHK001A-v6.11-本机恢复校验.json")
+REPORT = Path("记录/SHK001A-v6.11-本机恢复校验.json")
 
 
 def digest(path: Path) -> str:

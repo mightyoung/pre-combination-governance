@@ -9,23 +9,23 @@ from deliver_v20_v65 import citation_audit
 
 
 ROOT = Path(__file__).resolve().parent.parent
-STRUCTURE = ROOT / "v21-v6.8-DOCX结构与引用核验报告.json"
-REFERENCES = ROOT / "v21-参考文献外部元数据核验.json"
+STRUCTURE = ROOT / "记录" / "v21-v6.8-DOCX结构与引用核验报告.json"
+REFERENCES = ROOT / "记录" / "v21-参考文献外部元数据核验.json"
 RUN_RESULT = ROOT / "outputs" / "remote-shakedown" / "SHK-000-remote-20260714T0900Z" / "RUN_RESULT.v3.json"
 REMOTE_AUDIT = ROOT / "outputs" / "remote-shakedown" / "SHK-000-remote-20260714T0900Z" / "FINAL_REMOTE_AUDIT.json"
-OUT = ROOT / "v21-v6.8-最终只读验收.json"
+OUT = ROOT / "记录" / "v21-v6.8-最终只读验收.json"
 
 FILES = [
-    "00-论文-中文阅读稿v21-生命周期一致组合前治理与IF创新主线版.md",
-    "00-论文-中文阅读稿v21-生命周期一致组合前治理与IF创新主线版.docx",
-    "实验设计与执行计划v6.8-机制先行与表示中立验证蓝图.md",
-    "实验设计与执行计划v6.8-机制先行与表示中立验证蓝图.docx",
-    "研判报告二十四-报告二十三裁决与v21-Information-Fusion创新性论证.md",
-    "研判报告二十四-报告二十三裁决与v21-Information-Fusion创新性论证.docx",
-    "实验执行记录v6.7-SHK-000-远程资格启动.md",
-    "实验执行记录v6.7-SHK-000-远程资格启动.docx",
-    "v21-v6.8-DOCX结构与引用核验报告.json",
-    "v21-参考文献外部元数据核验.json",
+    "论文/00-论文-中文阅读稿v21-生命周期一致组合前治理与IF创新主线版.md",
+    "论文/00-论文-中文阅读稿v21-生命周期一致组合前治理与IF创新主线版.docx",
+    "实验治理/实验设计与执行计划v6.8-机制先行与表示中立验证蓝图.md",
+    "实验治理/实验设计与执行计划v6.8-机制先行与表示中立验证蓝图.docx",
+    "archive/研判报告/研判报告二十四-报告二十三裁决与v21-Information-Fusion创新性论证.md",
+    "archive/研判报告/研判报告二十四-报告二十三裁决与v21-Information-Fusion创新性论证.docx",
+    "记录/实验执行记录v6.7-SHK-000-远程资格启动.md",
+    "记录/实验执行记录v6.7-SHK-000-远程资格启动.docx",
+    "记录/v21-v6.8-DOCX结构与引用核验报告.json",
+    "记录/v21-参考文献外部元数据核验.json",
 ]
 
 WORD_STATS = {
@@ -51,7 +51,7 @@ def main() -> None:
     remote = json.loads(REMOTE_AUDIT.read_text(encoding="utf-8"))
     main_path = ROOT / FILES[0]
     main_text = main_path.read_text(encoding="utf-8")
-    shk_text = (ROOT / "实验执行记录v6.7-SHK-000-远程资格启动.md").read_text(encoding="utf-8")
+    shk_text = (ROOT / "记录" / "实验执行记录v6.7-SHK-000-远程资格启动.md").read_text(encoding="utf-8")
     citations = citation_audit(main_text)
 
     checks = {

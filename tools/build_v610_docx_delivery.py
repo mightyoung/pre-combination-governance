@@ -16,7 +16,7 @@ import build_v16_delivery as base  # noqa: E402
 from build_v201_docx_delivery import fenced_code_to_boxes, structural_check  # noqa: E402
 
 
-SOURCE = ROOT / "实验设计与执行计划v6.10-100GB分阶段执行版.md"
+SOURCE = ROOT / "实验治理" / "实验设计与执行计划v6.10-100GB分阶段执行版.md"
 TARGET = SOURCE.with_suffix(".docx")
 REPORT = ROOT / "v6.10-100GB分阶段计划交付与结构核验.json"
 
