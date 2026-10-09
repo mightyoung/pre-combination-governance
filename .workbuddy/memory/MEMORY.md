@@ -28,3 +28,10 @@
 - **ISO 10218-1:2025 / -2:2025 已发布；ISO/TS 15066:2016 协作应用条款已并入其中**（不再是独立文件）；ISO/AWI 15066-1 在研（2025-06 立项）将取代 TS 15066；(EU) 2023/1230 机械法规 2027-01-20 起适用，覆盖集成 AI/ML 的机械与网络安全。**2026-10-08 核查更正**：v21/v22 现稿未引用任何 ISO 标准（50 条参考文献均无）；过时引用仅存于 v12–v15.1 历史稿与 v11.1 旧配套件（v15.1 为最后含 TS 15066 的稿件，v16 起已移除）。修订期凡引入协作安全标准引用，一律直接引 ISO 10218-1/-2:2025 并注明 TS 15066:2016 并入史（详《修正执行记录-01-引用口径核查-20261008》）。
 - 行业媒体所传「ISO/TS 15066:2026 Annex C（±5N/<100ms）」未获 iso.org 确认，不得引用。
 - 关键 2025-2026 文献锚点：Blackwell 多智能体（arXiv 2605.06028）、PRIMEX-PEV（JAIF 20(2):152-171, 2025-12）、Fei et al. DST×安全 SLR（Neurocomputing 643:130419, 2025）、SCoRE（arXiv 2603.24704）、joint certificate（arXiv 2606.08517）、mTSBench（arXiv 2506.21550 v2）、ChatP&ID（AIChE J 72:e70540, 2026）。
+
+## 仓库与目录结构（2026-10-09 首次整理后）
+- 根目录已完成首次整理；方案与台账：《目录整理方案与清单-20261009.md》+ `archive/整理清单-20261009.csv`（309 行，可还原）。历史文件（论文 v3–v20.1 及补充材料、研判报告、旧实验计划/旧核验、一次性构建脚本等 243 条目）均在 `archive/` 七子目录；**archive/ 不入库（用户决定）**，只移未删。
+- `.gitignore` 已生效：忽略 `.env`（含服务器明文凭据，严禁入库）、`.omx/.codegraph/.integrations/academic-research-skills/.agents/.codex/.openscience-codex`（工具状态）、依赖缓存、`datasets/`、`related_work/`、`research/.backup-*`、临时派生与运行日志（证据日志定向放行）；`.workbuddy/memory/` 入库。
+- Git：已推送 **https://github.com/mightyoung/pre-combination-governance**（main；首次提交 `deda8f4`，597 文件；2026-10-09）。凭据：gh 设备码登录（mightyoung，token 在 Windows 凭据管理器）+ 仓库级 helper（`gh auth git-credential`）；本机对 GitHub 网络间歇不稳，push 失败可重试 2–6 次。文件夹改名放最后。user.name=yanghonghui。
+- ⚠️ 仓库当前为 **public（公开）**：`AGENTS.md` 等文件含内网主机信息（192.168.11.16:10022、用户名、主机指纹）。如需转私有：`gh repo edit mightyoung/pre-combination-governance --visibility private`（或告知处理）；如需脱敏需改写历史（force-push）。
+- 已删除且勿再堆积：`.codegraph` 索引（约 26 GB，可再生）；今后历史版本/旧报告一律先进 `archive/` 再决定去向。
