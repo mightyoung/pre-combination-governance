@@ -1,0 +1,25 @@
+{
+  "schema_version": "pcg-schedule.v1",
+  "streams": [
+    {
+      "N": 8,
+      "cell": "S2-N8",
+      "checkpoint_responses": 3,
+      "method": "ES-Rebuild",
+      "phase": "warmup",
+      "repeat": 0,
+      "sequence": "S2",
+      "stream_index": 1
+    },
+    {
+      "N": 8,
+      "cell": "S2-N8",
+      "checkpoint_responses": 3,
+      "method": "Proposed-current-stream",
+      "phase": "warmup",
+      "repeat": 0,
+      "sequence": "S2",
+      "stream_index": 2
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rfb.contracts/method_output.schema.json@1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "transaction_id", "transaction_sha256", "bundle_id",
+    "algorithm_seed", "method_id", "implementation_version",
+    "implementation_sha256", "semantics_sha256", "input_commitment_sha256",
+    "output_schema_sha256", "scorer_id", "scorer_binding", "scorer_sha256",
+    "formal_eligible", "valid", "failure_code", "prediction", "decision",
+    "audit", "result", "result_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "transaction_id": {"type": "string", "minLength": 1},
+    "transaction_sha256": {"$ref": "#/$defs/sha256"},
+    "bundle_id": {"type": "string", "minLength": 1},
+    "algorithm_seed": {"type": "integer", "minimum": 0},
+    "method_id": {"enum": ["B0", "B1", "B2", "B3", "B4", "B5", "Proposed"]},
+    "implementation_version": {"const": "1.0.0"},
+    "implementation_sha256": {"$ref": "#/$defs/sha256"},
+    "semantics_sha256": {"$ref": "#/$defs/sha256"},
+    "input_commitment_sha256": {"$ref": "#/$defs/sha256"},
+    "output_schema_sha256": {"$ref": "#/$defs/sha256"},
+    "scorer_id": {"const": "preregistered_scorer_v1"},
+    "scorer_binding": {"const": "preregistered_scorer_v1"},
+    "scorer_sha256": {"$ref": "#/$defs/sha256"},
+    "formal_eligible": {"type": "boolean"},
+    "valid": {"type": "boolean"},
+    "failure_code": {"enum": [null, "METHOD_INPUT_INVALID", "METHOD_EXECUTION_FAILED"]},
+    "prediction": {"$ref": "#/$defs/prediction"},
+    "decision": {"$ref": "#/$defs/decision"},
+    "audit": {"$ref": "#/$defs/audit"},
+    "result": {
+      "type": "object", "additionalProperties": false,
+      "required": ["risk_score", "confidence", "evidence_count", "rationale", "prediction", "decision", "audit"],
+      "properties": {
+        "risk_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidence_count": {"type": "integer", "minimum": 0},
+        "rationale": {"type": "string", "minLength": 1},
+        "prediction": {"$ref": "#/$defs/prediction"},
+        "decision": {"$ref": "#/$defs/decision"},
+        "audit": {"$ref": "#/$defs/audit"}
+      }
+    },
+    "result_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "prediction": {
+      "type": "object", "additionalProperties": false,
+      "required": ["risk_score", "risk_interval", "confidence", "evidence_count", "active_root_count"],
+      "properties": {
+        "risk_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "risk_interval": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": 0, "maximum": 1}},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidence_count": {"type": "integer", "minimum": 0},
+        "active_root_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "decision": {
+      "type": "object", "additionalProperties": false,
+      "required": ["label", "admissible_actions"],
+      "properties": {
+        "label": {"enum": ["SAFE", "REVIEW", "UNSAFE", "ABSTAIN"]},
+        "admissible_actions": {"type": "array", "uniqueItems": true, "minItems": 1, "items": {"enum": ["SAFE", "REVIEW", "UNSAFE"]}}
+      }
+    },
+    "audit": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rationale", "canonical_roots", "duplicate_count", "eliminated_count", "rebuild_count"],
+      "properties": {
+        "rationale": {"type": "string", "minLength": 1},
+        "canonical_roots": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "duplicate_count": {"type": "integer", "minimum": 0},
+        "eliminated_count": {"type": "integer", "minimum": 0},
+        "rebuild_count": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}
