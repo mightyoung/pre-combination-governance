@@ -39,7 +39,7 @@ def frames(raw,nonce):
             result.append(f)
     return result
 
-def validate(row,result,nonce):
+def validate(row,result,nonce,*,approved_run_id=None,approved_bindings=None):
     if row.get('implementation_status','') .startswith('BLOCKED_'):raise Blocked('QUALIFICATION_SLOT_NOT_IMPLEMENTED')
     f=frames(result['stdout'],nonce);events={x['event']:x for x in f}
     if 'ready' not in events or result['exit_code']!=row['exit'] or not result['cleanup']['cleanup_complete']:raise Blocked('SLOT_EXIT_READINESS_OR_CLEANUP_FAILED')
@@ -57,6 +57,16 @@ def validate(row,result,nonce):
         expected={13:'CPU_SECONDS_STOP',14:'SINGLE_RSS_BYTES_STOP',15:'OUTPUT_BYTES_STOP',16:'WALL_SECONDS_STOP'}[row['slot']]
         if expected not in result['stop_reasons']:raise Blocked('LOW_THRESHOLD_STOP_NOT_OBSERVED')
         if row['slot']==14 and 'AGGREGATE_RSS_BYTES_STOP' not in result['stop_reasons']:raise Blocked('AGGREGATE_RSS_NOT_OBSERVED')
+        if row['slot']==13:
+            from containment import require_approved_backend
+            from cpu_evidence import check_reaped_cpu_evidence
+            backend=require_approved_backend(approved_run_id=approved_run_id,approved_bindings=approved_bindings)
+            from auth import verify_signature
+            receipt=backend.authenticated_reaped_cpu_receipt(fixture_nonce=nonce,reaped_slot=12,current_slot=13)
+            evidence=verify_signature(receipt,backend.approved_guard_public_key)
+            summary=check_reaped_cpu_evidence(evidence,expected_scope_id=backend.scope_id,expected_child_identity=backend.previous_actor_identity,expected_fixture_nonce=nonce,expected_run_id=approved_run_id,expected_bindings=approved_bindings)
+            result['cpu_accounting_evidence_receipt']=receipt
+            result['cpu_accounting_consistency']=summary
     return f
 
 def run_all(ledger,lock,control,spec,bootstrap_common,approval,bindings,sign,fixture,nonce):
@@ -103,9 +113,8 @@ def run_all(ledger,lock,control,spec,bootstrap_common,approval,bindings,sign,fix
             finally:
                 os.close(fd)
                 if filter_fd is not None:os.close(filter_fd)
-            observed=validate(row,result,nonce)
+            observed=validate(row,result,nonce,approved_run_id=approval['run_id'],approved_bindings=bindings)
             if any((fixture/name).read_text()!=nonce for name in ('allowed.txt','outside.txt')):raise Blocked('SYNTHETIC_FIXTURE_CHANGED')
-            if row['slot']==13 and before['cpu_seconds']<=phase['cpu_seconds']:raise Blocked('CPU_CUMULATIVE_HISTORY_NOT_RETAINED')
             payload={'kind':'probe_receipt','run_id':approval['run_id'],'bindings':bindings,'slot':row['slot'],'status':'PASSED','covered_checks':row['checks'],'cleanup_complete':True,'observation':result,'actor_frames':observed,'origin_monotonic':ledger.origin,'deadline_monotonic':ledger.origin+120}
             receipt=sign(payload);ledger.record('probe-'+str(row['slot']).zfill(2)+'.json',receipt);documents.append(receipt);indices.append({'slot':row['slot'],'covered_checks':row['checks'],'sha256':digest(canonical(receipt))});covered.update(row['checks'])
         q=sign({'kind':'qualification','run_id':approval['run_id'],'bindings':bindings,'status':'PASSED','covered_checks':sorted(covered),'probe_receipts':indices,'origin_monotonic':ledger.origin,'deadline_monotonic':ledger.origin+120});ledger.record('qualification.json',q);return q,documents

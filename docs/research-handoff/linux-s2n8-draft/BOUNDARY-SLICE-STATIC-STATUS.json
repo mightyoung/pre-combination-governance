@@ -1,0 +1,55 @@
+{
+  "Actions_dispatches": 0,
+  "JSON_duplicate_and_nonfinite_checks": 8,
+  "actors": 0,
+  "all104_PR2_original_material_rows_preserved": true,
+  "all106_prior_package_files_byte_identical": true,
+  "approved_run_artifact_and_slot12_to13_CPU_evidence_checks_written": true,
+  "backend_delegated": false,
+  "backend_implemented": false,
+  "baseline_commit": "d8b4eeee960207ac25777d62fb21bd2669e538b8",
+  "changed_new_public_paths_before_status": [
+    "docs/research-handoff/linux-s2n8-draft/BOUNDARY-SLICE-STATIC-REVIEW.md",
+    "docs/research-handoff/linux-s2n8-draft/LINUX-EXISTING-BACKEND-CONTRACT.md",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/isolation.py",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/README.md",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/cpu_evidence.py",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/entry.py",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/launcher.py",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/probes.py",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/readiness.py",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/CONTROL-MANIFEST.json",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/containment.py",
+    "docs/research-handoff/linux-s2n8-draft/linux_control/tests/test_boundary_slice.py",
+    "docs/superpowers/plans/2026-10-10-pcg-linux-boundary-slice.md"
+  ],
+  "control_entries": 20,
+  "control_manifest_sha256": "a74b07c283321598c43d2b5df116e1534b3351b1f323150b01b98616953de66d",
+  "fixed_actor_slots": 16,
+  "independent_watchdog_implemented": false,
+  "installations": 0,
+  "main_merges": 0,
+  "new_boundary_test_methods": 23,
+  "new_python_AST_parses": 16,
+  "package_manifest_sha256": "2b67458dcc3841f47d6e0152da57de2b853f3b90aaa99068648e8920c58d6c51",
+  "permissions_or_keys_changed": false,
+  "runtime_target_whitelists": {
+    "RUNTIME_ALIAS_TARGETS": [
+      "/lib/x86_64-linux-gnu",
+      "/lib64/ld-linux-x86-64.so.2",
+      "/usr/lib/x86_64-linux-gnu"
+    ],
+    "RUNTIME_ROOT_TARGETS": [
+      "/opt/pcg-runtime/lib",
+      "/opt/pcg-runtime/python",
+      "/opt/pcg-runtime/site"
+    ]
+  },
+  "schema_meta_checks": 2,
+  "scientific_imports_or_workers": 0,
+  "source_block_and_backend_block_AST_confirmed": true,
+  "status": "STATIC_CHECKED_EXECUTION_BLOCKED",
+  "submitted_control_imports": 0,
+  "tests": "WRITTEN_NOT_RUN",
+  "unit_test_methods": 48
+}

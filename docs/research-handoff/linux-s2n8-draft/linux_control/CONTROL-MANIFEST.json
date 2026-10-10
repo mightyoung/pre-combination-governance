@@ -1,12 +1,12 @@
 {
-  "baseline_commit": "0b766c963f2da8c1edeece167e3062a72ab5ad74",
+  "baseline_commit": "d8b4eeee960207ac25777d62fb21bd2669e538b8",
   "execution_authorized": false,
-  "file_count": 17,
+  "file_count": 20,
   "files": [
     {
-      "bytes": 5064,
+      "bytes": 5905,
       "path": "README.md",
-      "sha256": "123794abfe71cc167a12b50758580b9d9142676d37e3b4e3a5efeda9b264aed0"
+      "sha256": "40e5bb35fb589d0570c2022d3acdc6c69e85c170dcb04448a3f4bc7786b860da"
     },
     {
       "bytes": 2587,
@@ -24,19 +24,29 @@
       "sha256": "71a60ead58ed4eb90a40f6e0ed4eeb1169cffd1d1bab657e8751090df76ce80b"
     },
     {
-      "bytes": 4162,
+      "bytes": 2294,
+      "path": "containment.py",
+      "sha256": "2adf889d9590e77a06e48dcb7c0094d7d2910d488fa05a163bd5eda508a70b47"
+    },
+    {
+      "bytes": 4329,
+      "path": "cpu_evidence.py",
+      "sha256": "4efa4960bed796e740d24faf49faec243a6a957cdf259ea64a4b39a18de4fdda"
+    },
+    {
+      "bytes": 4254,
       "path": "entry.py",
-      "sha256": "99b85c06e1417b920300b3f21640b9d500a2c0ffb62ab4559fc5b08b76114b1b"
+      "sha256": "e6170f6785d16a3793c98cfb48fee6b7b688a047fd34883aea51fe95e7419352"
     },
     {
-      "bytes": 2445,
+      "bytes": 4286,
       "path": "isolation.py",
-      "sha256": "04e4f3dec69933c44fcc0018bafd37da3914689c749839f6f64c3327076bd098"
+      "sha256": "2bd4b5e1f1bc7af6dd04a97e2b2c0e65eecdce1ea135a95a140d520f0b8d74fb"
     },
     {
-      "bytes": 8290,
+      "bytes": 8374,
       "path": "launcher.py",
-      "sha256": "01e2a114050e1b5bedfe459d953f2c628135468cce5ccf14be4b17e1fc7ba6e3"
+      "sha256": "dcca0fca876dca2fa6dfbf1738b3469ef97c79bcac4d2fe3963c63214fd26562"
     },
     {
       "bytes": 2515,
@@ -49,9 +59,9 @@
       "sha256": "aa26dfcf11e5734de971ec12b945f43c0c006b510b4e30478379de6b26fa56e1"
     },
     {
-      "bytes": 8723,
+      "bytes": 9568,
       "path": "probes.py",
-      "sha256": "8528749752c45ee16bed40cab07be7c9de9856f0750952146cc43a57ddd5b74e"
+      "sha256": "8919bcef5f000cfff390aaabfd5550df0bf6e84d53e417ea1a2247cff410c7fa"
     },
     {
       "bytes": 4627,
@@ -59,9 +69,9 @@
       "sha256": "1b5b3b1bad14c44601ea53fa5e26321a21f3f48dc66578b93704bc174a1c02eb"
     },
     {
-      "bytes": 685,
+      "bytes": 693,
       "path": "readiness.py",
-      "sha256": "ed62a4e438424da81048514004fe3b9abbd7f3c45b78c80e4c655a3312317046"
+      "sha256": "16f60a1b8dafa6fe82a3b33c45716d3b8756504fd0bba1fc82809c8d7732d669"
     },
     {
       "bytes": 494,
@@ -79,6 +89,11 @@
       "sha256": "8df2cda6ac8b339a7e3bb2711377fb9b99b578fd5a7a3637a0cbfc3fa5b77af2"
     },
     {
+      "bytes": 8417,
+      "path": "tests/test_boundary_slice.py",
+      "sha256": "0843fbfe341d8a3a5ef877b56496208fb2f877b0ebd49797525ed6655ff097a7"
+    },
+    {
       "bytes": 4703,
       "path": "tests/test_fail_closed.py",
       "sha256": "5522e3a4ec05e17735aaf51daab3c531ee065789464107d483322cc61ccba2eb"
@@ -90,9 +105,9 @@
     }
   ],
   "qualification_actors": 0,
-  "schema_version": "pcg-linux-control-static.v1",
+  "schema_version": "pcg-linux-control-static.v2",
   "scientific_workers": 0,
   "status": "BLOCKED_STATIC_ONLY",
   "tests": "WRITTEN_NOT_RUN",
-  "total_bytes_excluding_manifest": 69244
+  "total_bytes_excluding_manifest": 87995
 }

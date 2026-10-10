@@ -49,13 +49,15 @@ def scientific_batch(ledger,package,control,lock,spec,common,approval,bindings,s
 
 
 def main():
+    from readiness import require_hard_containment
+    try:require_hard_containment()
+    except Blocked as exc:
+        print(str(exc),file=sys.stderr);raise SystemExit(72)
     p=argparse.ArgumentParser();p.add_argument('--package',required=True);p.add_argument('--control-manifest-sha256',required=True);p.add_argument('--runtime-lock',required=True);p.add_argument('--signed-approval',required=True);p.add_argument('--session-key-fd',type=int,required=True);p.add_argument('--output-root',required=True);a=p.parse_args()
     control=Path(__file__).resolve().parent;package=Path(a.package).resolve();ledger=None;failure=None;stage='preflight';failure_code=0
     try:
         preflight_guard();control_hash,_=inventory(control,'CONTROL-MANIFEST.json')
         if control_hash!=a.control_manifest_sha256:raise Blocked('REVIEWED_CONTROL_DIGEST_MISMATCH')
-        from readiness import require_hard_containment
-        require_hard_containment()
         package_hash,_=inventory(package);stage='runtime';runtime_hash,lock=verify(a.runtime_lock,preflight_guard);preflight_guard();enable_locked_sites(lock)
         stage='approval';policy=loads((control/'policy.json').read_bytes());approval_envelope=loads(Path(a.signed_approval).read_bytes());plan_hash=digest(canonical(SLOTS))
         # Profile binds an approved output/run fixture location before actor creation.
