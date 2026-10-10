@@ -1,0 +1,19 @@
+{
+  "checkout_action_sha": "11d5960a326750d5838078e36cf38b85af677262",
+  "checkout_commit": "c4ead3f38f932d7a6eae684118ab2e1e6f710537",
+  "job_outer_timeout_minutes": 2,
+  "no_custom_secrets_or_uploads": true,
+  "package_manifest_sha256": "fa0dbdbd2eba2ae54750aaf9016f594a269bc331794e02068225f8dc406715eb",
+  "probes_or_workers": 0,
+  "qualified_linux": false,
+  "review_note": "Only static hash/JSON/AST inventory. These helper/job limits are not scientific-run authorization. Exact 120wall/60CPU scientific budget remains a future separate decision after new Linux adapter/runtime qualification. No dependency imports/install; no cache/artifact upload; default-branch registration not approved.",
+  "schema_version": "pcg-static-workflow-binding.v1",
+  "scientific_entrypoint": null,
+  "static_helper_RLIMIT_CPU_seconds": 10,
+  "static_helper_wall_timeout_seconds": 20,
+  "status": "DRAFT_REVIEW_ONLY_NOT_RUN",
+  "token_permissions": {
+    "contents": "read"
+  },
+  "workflow_only_event": "workflow_dispatch"
+}

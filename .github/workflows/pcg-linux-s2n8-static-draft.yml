@@ -1,0 +1,46 @@
+name: PCG Linux S2-N8 static draft inventory
+
+# Review-only. No probes, workers, dependency installation or Linux qualification.
+# Registration on the default branch and any manual run need separate approval.
+'on':
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pcg-s2n8-static-draft
+  cancel-in-progress: false
+
+jobs:
+  static-inventory-only:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Checkout exact statically reviewed package commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: c4ead3f38f932d7a6eae684118ab2e1e6f710537
+          persist-credentials: false
+          fetch-depth: 1
+          lfs: false
+          submodules: false
+          sparse-checkout: docs/research-handoff/linux-s2n8-draft
+      - name: Parse and verify allowlisted text without importing research
+        shell: bash --noprofile --norc -euo pipefail {0}
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+          PYTHONNOUSERSITE: '1'
+        run: |
+          ulimit -t 10
+          timeout --signal=TERM --kill-after=2s 20s python3 -I -B \
+            docs/research-handoff/linux-s2n8-draft/review_inventory.py \
+            --package docs/research-handoff/linux-s2n8-draft/package \
+            --manifest-sha256 fa0dbdbd2eba2ae54750aaf9016f594a269bc331794e02068225f8dc406715eb \
+            --summary "$GITHUB_STEP_SUMMARY"
+      - name: Preserve a failure summary without raw output or uploads
+        if: failure()
+        shell: bash --noprofile --norc -euo pipefail {0}
+        run: |
+          printf '%s\n' 'Static inventory failed or was interrupted. Linux qualification was NOT RUN. No scientific worker was launched by this workflow. Missing final inventory output is UNKNOWN, not PASS.' >> "$GITHUB_STEP_SUMMARY"
