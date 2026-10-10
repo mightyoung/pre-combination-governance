@@ -6,6 +6,10 @@ from model import Blocked,canonical,digest,inventory,loads
 
 
 def main():
+    from readiness import require_hard_containment
+    try:require_hard_containment()
+    except Blocked as exc:
+        print(str(exc),file=sys.stderr);raise SystemExit(72)
     p=argparse.ArgumentParser();p.add_argument('--bootstrap-fd',type=int,required=True);a=p.parse_args()
     with os.fdopen(a.bootstrap_fd,'rb') as f:raw=f.read(1048577)
     if len(raw)>1048576:raise Blocked('BOOTSTRAP_TOO_LARGE')
@@ -13,8 +17,6 @@ def main():
     control_hash,_=inventory(control,'CONTROL-MANIFEST.json')
     bindings=b['bindings']
     if control_hash!=bindings['control_manifest_sha256']:raise Blocked('CONTROL_BINDING_MISMATCH')
-    from readiness import require_hard_containment
-    require_hard_containment()
     from runtime import verify,enable_locked_sites
     runtime_hash,lock=verify(b['runtime_lock_path']);enable_locked_sites(lock)
     if runtime_hash!=bindings['runtime_binding_sha256']:raise Blocked('RUNTIME_BINDING_MISMATCH')
