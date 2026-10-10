@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "pcg-schedule.v1"
+    },
+    "streams": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "N": {
+            "const": 8
+          },
+          "cell": {
+            "const": "S2-N8"
+          },
+          "checkpoint_responses": {
+            "const": 3
+          },
+          "method": {
+            "enum": [
+              "Proposed-current-stream",
+              "ES-Rebuild"
+            ]
+          },
+          "phase": {
+            "const": "warmup"
+          },
+          "repeat": {
+            "const": 0
+          },
+          "sequence": {
+            "const": "S2"
+          },
+          "stream_index": {
+            "maximum": 2,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "stream_index",
+          "cell",
+          "sequence",
+          "N",
+          "method",
+          "phase",
+          "repeat",
+          "checkpoint_responses"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "streams"
+  ],
+  "type": "object"
+}

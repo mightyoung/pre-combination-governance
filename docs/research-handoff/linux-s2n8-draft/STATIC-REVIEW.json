@@ -1,0 +1,74 @@
+{
+  "candidate_revision_note": "Initial local candidate rejected because unused legacy final_run_receipt schema contained duplicate JSON keys; initial candidate preserved locally. Final candidate excludes unused legacy controller schemas, preserves science source and required method_output/input/sidecar/reference/response contracts unchanged.",
+  "checks": [
+    "JSON parse with no duplicate keys in final candidate",
+    "manifest/schema shape",
+    "input/sidecar/reference/schedule Draft202012 schema validation",
+    "87 Python source AST parses without import",
+    "all copied source/input files byte-identical to BUILD005-r2 donor",
+    "explicit public allowlist/no symlink/binary/private permit/runtime/log/.omx/data",
+    "source tree has no LICENSE grant; no new license or third-party package redistribution"
+  ],
+  "copied_scientific_hashes": [
+    {
+      "path": "inputs/S2-N8.public.json",
+      "sha256": "54458906c9522138661db8a03ba227b09ec78cb5bb4c1ab24e7c94fa647d7028"
+    },
+    {
+      "path": "inputs/S2-N8.sidecar.json",
+      "sha256": "8b3e69cfaed1490f1f009d7c3925be174288317c33efccf95d1cb6903ba4a145"
+    },
+    {
+      "path": "reference/S2-N8.reference.json",
+      "sha256": "d7942a91248723b8c12128738c82d850cbb7aa02c7c13719071d5c633eea03df"
+    },
+    {
+      "path": "tools/contracts.py",
+      "sha256": "e5648a696cf27f7b57aa7a80ec8bd7991dc0169d9c6cc871fca6085263b9dcfa"
+    },
+    {
+      "path": "tools/pcg_observer.py",
+      "sha256": "c15b3f5fa3a085b5f324f7b800d5302c2bae7bfb3d45d6fab0a4edbd2512c138"
+    },
+    {
+      "path": "tools/worker.py",
+      "sha256": "9526ad9af393fd69da8be51b2b88a6901942185028bf6e31ceba08967796f2c2"
+    },
+    {
+      "path": "vendor/observed/risk-fusion-bench/src/rfb/methods/lifecycle_engine.py",
+      "sha256": "f27127d80b47a4cb003d4802ce14754404584d0a819ab10dfda7671f37f8b517"
+    },
+    {
+      "path": "vendor/observed/risk-fusion-bench/src/rfb/research/mme_baselines.py",
+      "sha256": "4398b179007aa70dcb793267af9bb54793de99c1ad273929d2c47a7bab6a4c4c"
+    },
+    {
+      "path": "vendor/original/risk-fusion-bench/src/rfb/methods/lifecycle_engine.py",
+      "sha256": "ec56f9c0134c5dc9d751d81abd0b7968a4ed77165c99a864eef66a16daff1974"
+    },
+    {
+      "path": "vendor/original/risk-fusion-bench/src/rfb/research/mme_baselines.py",
+      "sha256": "6ef0f5c95bf194fe7b29fd0022b68c17c2c136697fea203cc9d38636e0ada4d0"
+    }
+  ],
+  "execution_authorized": false,
+  "linux_runtime_qualified": false,
+  "package_bytes": 1288208,
+  "package_files_including_manifest": 105,
+  "package_manifest_sha256": "fa0dbdbd2eba2ae54750aaf9016f594a269bc331794e02068225f8dc406715eb",
+  "qualification_actors": 0,
+  "schema_version": "pcg-static-review.v1",
+  "scientific_imports": 0,
+  "scientific_workers": 0,
+  "source_commit": "a21866022ba9ec08a1a5edf4a321718d633a2ab1",
+  "status": "STATIC_TEXT_SCOPE_REVIEW_ONLY",
+  "untested": [
+    "actual Linux dependency imports",
+    "dynamic import/resource completeness",
+    "namespace/seccomp/readonly/network/fork boundaries",
+    "CPU/RSS/output/deadline guards",
+    "process-group cleanup",
+    "worker semantics/timing",
+    "workflow execution"
+  ]
+}

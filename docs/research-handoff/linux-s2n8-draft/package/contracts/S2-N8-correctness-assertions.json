@@ -1,0 +1,104 @@
+{
+  "checkpoint_assertions": [
+    {
+      "ES_sorting_entries": 9,
+      "action_state": "REVIEW",
+      "active_count": 7,
+      "checkpoint_id": 1,
+      "duplicate_count": 0,
+      "expected_active_roots": [
+        "8fe7b73f464b01597857eb5f",
+        "99735e92b897a35c301b57c4",
+        "9d0ecfc8687e5b1897f3c7d1",
+        "a143e0b947f205f4a768cfd5",
+        "b87290480229f234ef96c2dd",
+        "bb380af7c13c0dea6164e237",
+        "c14ad3c881c7d49b5992a5cd"
+      ],
+      "failure_code": null,
+      "public_and_physical_lower_exact": {
+        "denominator": "1000000000000000000000",
+        "numerator": "6979034965020993001"
+      },
+      "retired_A_not_active_in_reference": true,
+      "risk_interval_upper": 1,
+      "status": "SUCCEEDED",
+      "warmup_history_evaluation_visits_per_method": 9
+    },
+    {
+      "ES_sorting_entries": 10,
+      "action_state": "REVIEW",
+      "active_count": 7,
+      "checkpoint_id": 2,
+      "duplicate_count": 1,
+      "expected_active_roots": [
+        "8fe7b73f464b01597857eb5f",
+        "99735e92b897a35c301b57c4",
+        "9d0ecfc8687e5b1897f3c7d1",
+        "a143e0b947f205f4a768cfd5",
+        "b87290480229f234ef96c2dd",
+        "bb380af7c13c0dea6164e237",
+        "c14ad3c881c7d49b5992a5cd"
+      ],
+      "failure_code": null,
+      "public_and_physical_lower_exact": {
+        "denominator": "1000000000000000000000",
+        "numerator": "6979034965020993001"
+      },
+      "retired_A_not_active_in_reference": true,
+      "risk_interval_upper": 1,
+      "status": "SUCCEEDED",
+      "warmup_history_evaluation_visits_per_method": 10
+    },
+    {
+      "ES_sorting_entries": 11,
+      "action_state": "ACT",
+      "active_count": 8,
+      "checkpoint_id": 3,
+      "duplicate_count": 1,
+      "expected_active_roots": [
+        "8fe7b73f464b01597857eb5f",
+        "99735e92b897a35c301b57c4",
+        "9d0ecfc8687e5b1897f3c7d1",
+        "a143e0b947f205f4a768cfd5",
+        "b87290480229f234ef96c2dd",
+        "bb380af7c13c0dea6164e237",
+        "c14ad3c881c7d49b5992a5cd",
+        "ed001fd07df08ab533ec7257"
+      ],
+      "failure_code": null,
+      "public_and_physical_lower_exact": {
+        "denominator": "5000000000000000000000",
+        "numerator": "4006979034965020993001"
+      },
+      "retired_A_not_active_in_reference": true,
+      "risk_interval_upper": 1,
+      "status": "SUCCEEDED",
+      "warmup_history_evaluation_visits_per_method": 11
+    }
+  ],
+  "claims_excluded": [
+    "performance superiority",
+    "blind confirmatory validation",
+    "D07 PASS",
+    "formal MME_v2"
+  ],
+  "created_date_utc": "2026-10-10",
+  "data_exposure": "existing public/sidecar/reference already viewed; development coverage, not holdout",
+  "exact_retry": {
+    "new_action_id_and_order": true,
+    "same_message_version_root_support_reliability_op_as_first_initial_action": true
+  },
+  "experiment_executed": false,
+  "initialization": {
+    "ES_history_and_sorting_visits": 0,
+    "Proposed_history_visits": 36,
+    "Proposed_revision_ledger_active_count": 8,
+    "history_length": 8
+  },
+  "input_sha256": "54458906c9522138661db8a03ba227b09ec78cb5bb4c1ab24e7c94fa647d7028",
+  "observability_limit": "worker science reports counts/BPA/risk/action, not root membership; retired root absence is independently checked in the frozen reference and inferred from the matching science for this specific input, not directly reported runtime root-state evidence",
+  "reference_sha256": "d7942a91248723b8c12128738c82d850cbb7aa02c7c13719071d5c633eea03df",
+  "schema_version": "pcg-s2n8-assertions.v0.1",
+  "tolerance": 1e-12
+}
