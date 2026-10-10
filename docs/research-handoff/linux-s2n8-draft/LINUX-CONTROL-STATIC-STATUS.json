@@ -1,0 +1,21 @@
+{
+  "JSON_duplicate_key_and_nonfinite_checks": 6,
+  "actors": 0,
+  "baseline_commit": "0b766c963f2da8c1edeece167e3062a72ab5ad74",
+  "baseline_package_rows_and_actual_bytes_verified": 104,
+  "baseline_scientific_and_data_bytes_modified": 0,
+  "control_imports": 0,
+  "control_manifest_sha256": "955bf9dbc22d245cf57d1e929c7f6f9a7d158cce36678e0aff86513219a8e500",
+  "hard_containment": "UNIMPLEMENTED_SOURCE_BLOCKED",
+  "new_execution_approval": false,
+  "new_installations": 0,
+  "new_python_AST_parses": 13,
+  "package_manifest_sha256": "2b67458dcc3841f47d6e0152da57de2b853f3b90aaa99068648e8920c58d6c51",
+  "schema_meta_validations": 2,
+  "scientific_workers": 0,
+  "sixteen_actor_descriptors": "WRITTEN_NOT_RUN",
+  "status": "STATIC_CHECKS_COMPLETED_EXECUTION_BLOCKED",
+  "unit_test_methods": 25,
+  "unit_tests": "NOT_RUN",
+  "workflow_dispatches": 0
+}

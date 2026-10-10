@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "bindings": {
+          "additionalProperties": false,
+          "properties": {
+            "control_manifest_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "package_manifest_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "probe_plan_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "profile_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "runtime_binding_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "package_manifest_sha256",
+            "control_manifest_sha256",
+            "runtime_binding_sha256",
+            "profile_sha256",
+            "probe_plan_sha256"
+          ],
+          "type": "object"
+        },
+        "covered_checks": {
+          "items": {
+            "enum": [
+              "read_positive",
+              "outside_read_denied",
+              "source_write_denied",
+              "outside_write_denied",
+              "symlink_escape_denied",
+              "loopback_live_positive",
+              "loopback_denied",
+              "fork_positive",
+              "fork_denied",
+              "term_resistant_child_cleanup",
+              "watchdog_group_cleanup",
+              "cpu_positive",
+              "cpu_aggregation",
+              "cpu_stop",
+              "single_rss_stop",
+              "aggregate_rss_stop",
+              "output_limit",
+              "global_deadline"
+            ]
+          },
+          "maxItems": 18,
+          "minItems": 18,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "deadline_monotonic": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "kind": {
+          "const": "qualification"
+        },
+        "origin_monotonic": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "probe_receipts": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "covered_checks": {
+                "items": {
+                  "enum": [
+                    "read_positive",
+                    "outside_read_denied",
+                    "source_write_denied",
+                    "outside_write_denied",
+                    "symlink_escape_denied",
+                    "loopback_live_positive",
+                    "loopback_denied",
+                    "fork_positive",
+                    "fork_denied",
+                    "term_resistant_child_cleanup",
+                    "watchdog_group_cleanup",
+                    "cpu_positive",
+                    "cpu_aggregation",
+                    "cpu_stop",
+                    "single_rss_stop",
+                    "aggregate_rss_stop",
+                    "output_limit",
+                    "global_deadline"
+                  ]
+                },
+                "maxItems": 2,
+                "minItems": 1,
+                "type": "array",
+                "uniqueItems": true
+              },
+              "sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "slot": {
+                "maximum": 16,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "slot",
+              "covered_checks",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "maxItems": 16,
+          "minItems": 16,
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z0-9_-]{1,64}$",
+          "type": "string"
+        },
+        "status": {
+          "const": "PASSED"
+        }
+      },
+      "required": [
+        "kind",
+        "run_id",
+        "bindings",
+        "status",
+        "covered_checks",
+        "probe_receipts",
+        "origin_monotonic",
+        "deadline_monotonic"
+      ],
+      "type": "object"
+    },
+    "signature": {
+      "maxLength": 88,
+      "minLength": 88,
+      "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "payload",
+    "signature"
+  ],
+  "title": "Signed Linux qualification envelope; static strings do not prove execution",
+  "type": "object"
+}

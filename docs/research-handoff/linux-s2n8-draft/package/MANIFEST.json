@@ -1,6 +1,6 @@
 {
   "execution_authorized": false,
-  "file_count": 104,
+  "file_count": 105,
   "files": [
     {
       "bytes": 631,
@@ -51,6 +51,16 @@
       },
       "role": "science_source_or_contract",
       "sha256": "aa7804f0c5fec89e2ca2c31b161e2b0ac63595c7d0a2ff67b2883aab0f3551de"
+    },
+    {
+      "bytes": 4627,
+      "path": "contracts/qualification.schema.json",
+      "provenance": {
+        "byte_identical": false,
+        "source": "new blocked Linux qualification envelope schema"
+      },
+      "role": "static_metadata",
+      "sha256": "1b5b3b1bad14c44601ea53fa5e26321a21f3f48dc66578b93704bc174a1c02eb"
     },
     {
       "bytes": 3518,
@@ -1048,5 +1058,5 @@
   "protocol_id": "PCG-LINUX-S2N8-PUBLIC-STATIC-DRAFT-20261010-v0.1",
   "schema_version": "pcg-public-static-package.v1",
   "source_commit": "a21866022ba9ec08a1a5edf4a321718d633a2ab1",
-  "total_bytes_excluding_manifest": 1253573
+  "total_bytes_excluding_manifest": 1258200
 }
