@@ -34,7 +34,7 @@ jobs:
           PYTHONNOUSERSITE: '1'
         run: |
           ulimit -t 10
-          timeout --signal=TERM --kill-after=2s 20s python3 -I -B \
+          timeout --signal=TERM --kill-after=2s 20s python3 -I -S -B \
             docs/research-handoff/linux-s2n8-draft/review_inventory.py \
             --package docs/research-handoff/linux-s2n8-draft/package \
             --manifest-sha256 fa0dbdbd2eba2ae54750aaf9016f594a269bc331794e02068225f8dc406715eb \

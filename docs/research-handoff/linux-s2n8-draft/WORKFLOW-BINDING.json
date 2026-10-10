@@ -9,8 +9,14 @@
   "review_note": "Only static hash/JSON/AST inventory. These helper/job limits are not scientific-run authorization. Exact 120wall/60CPU scientific budget remains a future separate decision after new Linux adapter/runtime qualification. No dependency imports/install; no cache/artifact upload; default-branch registration not approved.",
   "schema_version": "pcg-static-workflow-binding.v1",
   "scientific_entrypoint": null,
+  "site_hooks_enabled": false,
   "static_helper_RLIMIT_CPU_seconds": 10,
   "static_helper_wall_timeout_seconds": 20,
+  "static_python_flags": [
+    "-I",
+    "-S",
+    "-B"
+  ],
   "status": "DRAFT_REVIEW_ONLY_NOT_RUN",
   "token_permissions": {
     "contents": "read"
