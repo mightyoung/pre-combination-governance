@@ -1,0 +1,1 @@
+{"schema_version":"pcg-linux-trust-policy.v1","status":"UNPROVISIONED_BLOCKED","execution_authorized":false,"approval_public_key":null,"platform":"linux","architecture":"x86_64","trust_boundary":"Frozen/pinned control code and platform-issued signed approval; not protection against an arbitrary host owner manually invoking preserved raw worker source."}
