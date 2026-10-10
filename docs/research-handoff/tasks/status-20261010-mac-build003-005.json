@@ -1,0 +1,50 @@
+{
+  "as_of_date": "2026-10-10",
+  "attempts": [
+    {
+      "id": "BUILD003-attempt-001",
+      "receipt": "../receipts/BUILD003-attempt-001.json",
+      "status": "FAILED_PARTIAL_WORKER_WALL_STOP"
+    },
+    {
+      "id": "BUILD004-attempt-001",
+      "receipt": "../receipts/BUILD004-attempt-001.json",
+      "status": "COMPLETED_DEVELOPMENT_DIAGNOSTIC"
+    },
+    {
+      "id": "BUILD005-r2-attempt-001",
+      "receipt": "../receipts/BUILD005-r2-attempt-001.json",
+      "status": "BLOCKED_TOOL_SANDBOX_PROCESS_ENUMERATION_ATTEMPT_STOPPED"
+    }
+  ],
+  "execution_authorized": false,
+  "exposure": "all existing synthetic inputs/references and earlier results exposed; no holdout",
+  "formal_status": "FORMAL_EXPERIMENT_BLOCKED",
+  "historical_snapshot": "status-20261009.json describes its original publication; it is preserved, not current Mac execution state",
+  "history_preserved": true,
+  "limits_for_any_separately_approved_same_plan": {
+    "aggregate_RSS_bytes": 2147483648,
+    "checkpoint_responses": 6,
+    "output_bytes": 10485760,
+    "qualification_max_actors": 16,
+    "qualification_max_control_children": 2,
+    "qualifications_must_all_pass_first": true,
+    "research_workers": 2,
+    "retries": 0,
+    "shared_CPU_seconds": 60,
+    "shared_wall_seconds": 120,
+    "single_RSS_bytes": 536870912,
+    "worker_wall_seconds": 25
+  },
+  "next_action": "A new explicit once-only execution authorization and normal tool approval for Mac process enumeration/resource monitoring, controlled process/group stop/reap, and sandbox-exec Seatbelt qualification; retain the same frozen package/budget unless separately reviewed. No retry under the consumed permit. Do not weaken worker isolation, install dependencies or change proxy/security settings.",
+  "next_attempt_authorized": false,
+  "original_D07": "USER_CONFIRMED_NOT_EXECUTED",
+  "original_preregistration_v2_existence": "UNKNOWN_NOT_LOCATED",
+  "owner": "repository-maintainer",
+  "prior_public_handoff_commit": "71ed33a33e9bdcfae3bf8327d5d3f584c0767141",
+  "project_id": "pre-combination-governance",
+  "publication_boundary": "small sanitized summaries and artifact identities only; no host paths, private IDs, raw logs, media, datasets, ZIPs, credentials or live execution permits",
+  "schema_version": "pcg-public-progress.v1",
+  "source_commit": "a21866022ba9ec08a1a5edf4a321718d633a2ab1",
+  "status": "DEVELOPMENT_PARTIAL_EVIDENCE_LATEST_ATTEMPT_ENVIRONMENT_BLOCKED"
+}
