@@ -14,3 +14,5 @@ This directory exchanges reviewed text and artifact identities across research e
 ## Mac development progress — 2026-10-10
 
 See [BUILD003–BUILD005-r2 progress](progress/mac-build003-005-20261010.md), [current status](tasks/status-20261010-mac-build003-005.json), and sanitized attempt summaries under `receipts/`. Previous snapshots are preserved. Partial/completed developmental execution is distinct from formal admission; the latest S2-N8 attempt stopped before scientific workers because process enumeration was denied. Publication grants no execution authority.
+
+A separate [Linux migration and fresh qualification checklist](progress/linux-migration-qualification-20261010.md) records the dedicated-environment prerequisites. It is a static plan, not an execution permit. Mac timings and qualification receipts cannot establish Linux qualification or be pooled with Linux measurements.

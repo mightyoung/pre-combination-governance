@@ -36,7 +36,11 @@
     "single_RSS_bytes": 536870912,
     "worker_wall_seconds": 25
   },
-  "next_action": "A new explicit once-only execution authorization and normal tool approval for Mac process enumeration/resource monitoring, controlled process/group stop/reap, and sandbox-exec Seatbelt qualification; retain the same frozen package/budget unless separately reviewed. No retry under the consumed permit. Do not weaken worker isolation, install dependencies or change proxy/security settings.",
+  "linux_execution_authorized": false,
+  "linux_plan": "../progress/linux-migration-qualification-20261010.md",
+  "linux_plan_sha256": "a32d2012bcf60cfe6eacda98e60046d7da4197765af68da5c54eb7d206690553",
+  "linux_route": "STATIC_PREPARATION_APPROVED_DEDICATED_ENVIRONMENT_PENDING",
+  "next_action": "Create a dedicated research-three Linux cloud environment; only inventory existing dependencies/isolation/owned-process supervision. Prepare/review a new Linux derivative and approved artifact location. New platform qualification and exact once-only budget authorization precede computation. No Mac retry or budget expansion.",
   "next_attempt_authorized": false,
   "original_D07": "USER_CONFIRMED_NOT_EXECUTED",
   "original_preregistration_v2_existence": "UNKNOWN_NOT_LOCATED",
