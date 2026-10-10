@@ -1,0 +1,86 @@
+name: PCG read-only environment inventory
+run-name: PCG read-only environment inventory — one approved attempt
+"on":
+  workflow_dispatch:
+permissions: {}
+concurrency:
+  group: pcg-read-only-environment-inventory
+  cancel-in-progress: false
+jobs:
+  inventory:
+    if: github.repository == 'mightyoung/pre-combination-governance' && github.ref == 'refs/heads/main' && github.event.repository.private == false && github.run_number == 1 && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Read existing non-sensitive capabilities only
+        shell: bash
+        run: |
+          set -euo pipefail
+          ulimit -t 10
+          ulimit -v 131072
+          ulimit -c 0
+          timeout --signal=TERM --kill-after=2s 45s python3 -I -S -B - <<'PY'
+          import importlib.metadata as metadata
+          import json,os,pathlib,platform,resource,shutil,subprocess,sys,sysconfig
+
+          def small(path):
+              try:
+                  with open(path,'r',encoding='ascii') as f:return f.read(4096).strip()
+              except (OSError,UnicodeError):return None
+
+          def writable(path):
+              try:return os.access(path,os.W_OK,effective_ids=True)
+              except (OSError,NotImplementedError):return False
+
+          def version(tool):
+              path=shutil.which(tool)
+              if path is None:return {'present':False,'version':None}
+              try:
+                  p=subprocess.run([path,'--version'],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,timeout=2,env={'PATH':os.defpath,'LC_ALL':'C'},check=False)
+                  text=p.stdout[:1024].decode('ascii','replace').splitlines()
+                  return {'present':True,'version':text[0][:160] if text else None,'exit_code':p.returncode}
+              except subprocess.TimeoutExpired:return {'present':True,'version':None,'status':'VERSION_TIMEOUT'}
+              except OSError:return {'present':True,'version':None,'status':'VERSION_UNREADABLE'}
+
+          report={'scope':'READ_ONLY_ENVIRONMENT_INVENTORY_ONLY','research_execution':False,'qualification_execution':False,'installed_packages':False,'security_or_cgroup_changes':False,'platform':{'system':platform.system(),'architecture':platform.machine(),'python':platform.python_version(),'logical_CPUs':os.cpu_count()}}
+          report['tools']={name:version(name) for name in ('bwrap','unshare','systemd-run')}
+          report['namespace_descriptors']={name:os.path.exists('/proc/self/ns/'+name) for name in ('user','mnt','pid','net','cgroup')}
+          report['readonly_kernel_policy']={label:small(path) for label,path in {'max_user_namespaces':'/proc/sys/user/max_user_namespaces','unprivileged_userns_clone':'/proc/sys/kernel/unprivileged_userns_clone','apparmor_restrict_unprivileged_userns':'/proc/sys/kernel/apparmor_restrict_unprivileged_userns'}.items()}
+          status=small('/proc/self/status') or ''
+          report['current_process_security']={key:next((line.split(':',1)[1].strip() for line in status.splitlines() if line.startswith(key+':')),None) for key in ('NoNewPrivs','Seccomp')}
+          report['namespace_creation_and_denial_tests']='NOT_PERFORMED'
+          root=pathlib.Path('/sys/fs/cgroup');own=None
+          membership=small('/proc/self/cgroup')
+          if membership:
+              for line in membership.splitlines():
+                  if line.startswith('0::'):
+                      candidate=root/line.split('::',1)[1].lstrip('/')
+                      try:
+                          resolved=candidate.resolve()
+                          if resolved.is_relative_to(root.resolve()) and resolved.is_dir():own=resolved
+                      except OSError:pass
+          controllers=small(root/'cgroup.controllers')
+          cgroup={'v2_present':controllers is not None,'controllers':[s for s in (controllers or '').split() if s in ('cpu','memory','pids')],'current_scope_located':own is not None,'approved_dedicated_run_scope':'NOT_ESTABLISHED','scope_paths_or_process_ids_logged':False}
+          if own is not None:
+              cgroup['directory_writable']=writable(own)
+              cgroup['existing_files']={name:{'present':(own/name).exists(),'writable_access_flag':writable(own/name),'value':small(own/name) if name in ('cpu.max','memory.max','memory.high','pids.max') else None} for name in ('cgroup.procs','cgroup.kill','cgroup.subtree_control','cpu.max','cpu.stat','memory.max','memory.high','pids.max')}
+          report['cgroup']=cgroup
+          roots=[]
+          for path in (sysconfig.get_path('purelib'),sysconfig.get_path('platlib'),'/usr/lib/python3/dist-packages','/usr/local/lib/python'+str(sys.version_info.major)+'.'+str(sys.version_info.minor)+'/dist-packages'):
+              if path and path not in roots:roots.append(path)
+          wanted={'cryptography':'46.0.5','jsonschema':'4.26.0','psutil':'7.2.2'};found={};scanned=0
+          for distribution in metadata.distributions(path=roots):
+              scanned+=1
+              if scanned>2048:break
+              name=distribution.metadata.get('Name','').lower().replace('_','-')
+              if name in wanted and name not in found:found[name]=distribution.version
+          report['dependency_metadata_only']={name:{'present':name in found,'version':found.get(name),'draft_pin':pin,'pin_matches':found.get(name)==pin} for name,pin in wanted.items()}
+          report['dependency_import_tests']='NOT_PERFORMED'
+          report['draft_python_pin_matches']=platform.python_version()=='3.12.10'
+          report['existing_draft_runtime_layout']={name:os.path.exists('/opt/pcg-runtime/'+name) for name in ('python','site','lib')}
+          report['inventory_process_limits']={name:list(resource.getrlimit(getattr(resource,'RLIMIT_'+name))) for name in ('CPU','AS','FSIZE','NPROC','NOFILE')}
+          report['next_stage']={'status':'BLOCKED_PENDING_APPROVED_KERNEL_BACKEND_AND_QUALIFICATION','network_and_filesystem_isolation':'NOT_QUALIFIED','stable_descendant_ownership':'NOT_ESTABLISHED','hard_single_aggregate_memory':'NOT_ESTABLISHED','independent_preexec_watchdog':'NOT_ESTABLISHED','cumulative_CPU_enforcement':'NOT_ESTABLISHED','permission_flags_are_not_delegation':True}
+          print('PCG_INVENTORY_JSON_BEGIN')
+          print(json.dumps(report,sort_keys=True,separators=(',',':')))
+          print('PCG_INVENTORY_JSON_END')
+          PY
