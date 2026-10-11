@@ -3,7 +3,7 @@
   "artifact_set": "pre-combination-alert-governance-v1",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-alert-governance",
-  "source_commit": "b85dc332e03c129ccb324ca52c7bd55d2957235d",
+  "source_commit": "c23000c7f1f3172edbcc4cfd0b2a9e52b87a33db",
   "path_convention": "All file paths below are repository-relative POSIX paths rooted at a checkout of source_commit.",
   "mac_local_project_root": null,
   "mac_path_mapping": "Choose the Mac-local project root, then resolve only the listed repository-relative paths beneath it. No cloud-container absolute path is encoded here.",
@@ -14,13 +14,13 @@
   "files": [
     {
       "path": "docs/superpowers/plans/2026-10-11-precombination-alert-governance.md",
-      "bytes": 4003,
-      "sha256": "0bc1503a148f4199e9b75184fc9ea4040f6e4a180b82305ccfbc36314a56b183"
+      "bytes": 4767,
+      "sha256": "a9089faa711e3991bcc09dce9e9832e559671658e22c2fe03dc35f745c3b3946"
     },
     {
       "path": "research-three/alert-governance-v1/SPEC.md",
-      "bytes": 6228,
-      "sha256": "af009f5e431e744917b5c0454d79ca0b2050810bb27ce6511b68fda6150d99f8"
+      "bytes": 7151,
+      "sha256": "828b12e14924eede08a76a56e2f84bec576f20cc0a2939dd0d66e28c7ee361f0"
     },
     {
       "path": "research-three/alert-governance-v1/historical-baseline.json",
@@ -29,18 +29,18 @@
     },
     {
       "path": "research-three/alert-governance-v1/synthetic-evaluation.json",
-      "bytes": 6005,
-      "sha256": "464b13eed2c2ea54186355dc50abb6479ec4efa501a95470bd090134f0f7f0bd"
+      "bytes": 7508,
+      "sha256": "078fd4e399b5512dd67d1810cb4ea4707e8f7236bc5f967b66b9a306b6954ba4"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
-      "bytes": 32646,
-      "sha256": "d56ddf5bc5260075523ad44ad3a4f9574420ff02c5f6fc3aa5695a3a4c061b5e"
+      "bytes": 38947,
+      "sha256": "1ba47f343e03a105a5ec02d903739a70d262c3905350abdaaa58fcb1981d6251"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_governance.py",
-      "bytes": 25235,
-      "sha256": "5b08dfd4d958fe61b29cfa08d942ae7b3349dd4af0665241a93f2a66b6f1bd75"
+      "bytes": 33967,
+      "sha256": "e423e89bf9a2a23630fe07e85d5f343da8a450acf7e487f0daaefd06920ad0fb"
     }
   ]
 }
