@@ -4,22 +4,38 @@
 
 ## 固定来源与边界
 
-- 公开 V2 规格：`task/v2-public-spec-20261011`，提交
-  [`cc6d59b88bda73381fc09d9091a224ab4155891e`](https://github.com/mightyoung/pre-combination-governance/tree/cc6d59b88bda73381fc09d9091a224ab4155891e/research-three/v2-public-spec-20261011)。已读取目录内 7 个材料；`PUBLIC-MANIFEST.json` 列出的 6 个文件均通过字节数与 SHA-256 校验。
+- 本轮指定对齐依据是公开分支 `task/v2-public-spec-20261011` 的固定提交 [`cc6d59b88bda73381fc09d9091a224ab4155891e`](https://github.com/mightyoung/pre-combination-governance/tree/cc6d59b88bda73381fc09d9091a224ab4155891e/research-three/v2-public-spec-20261011)，目录 `research-three/v2-public-spec-20261011/`。清单版号为 `PUBLIC_SANITIZED_EDITION_V1`，规则版号为 `STUDY3_ALERT_BUSINESS_SPEC_V2_RESULT_INFORMED`，scope 是主业务规格、部分记录 schema 和指标定义。
+- 已逐一读取该目录 7 个文件：`README.md`、`REVISION.md`、`SPEC.md`、`business-spec.json`、`record-fields.schema.json`、`METRICS.md`、`PUBLIC-MANIFEST.json`。清单列出的前 6 个文件的字节数和 SHA-256 均已与固定提交逐项核对通过；清单自身明确不含 self-hash。
 - 对照实现：`task/research-three-alert-governance`，提交
   [`214197c0370dfd60d23786884bb7ff785d8a0092`](https://github.com/mightyoung/pre-combination-governance/tree/214197c0370dfd60d23786884bb7ff785d8a0092)。本对齐分支从该提交独立分出。
-- 公开 V2 包标明 `SPEC_ONLY_NOT_IMPLEMENTED_NOT_EVALUATED_NOT_EXECUTION_AUTHORIZATION`；其业务规格写明不授权未来实现、实验或部署。用户本轮授权了对齐与明确获准的内部改动，但没有授权运行旧试验、真实投递、Mac 清理资格验证或部署。
-- 矩阵中的“满足”仅表示当前纯软件数据/行为有明确证据；它不表示 V2 整体验收通过。部分 schema 只检查字段存在，不冻结类型、时钟格式、业务有效性或真实 SLO。
+- 公开版中的 `SPEC_ONLY_NOT_IMPLEMENTED_NOT_EVALUATED` 描述发布时状态；`business-spec.json` 另记录该发布本身不构成实现、评估或执行授权。本轮用户明确要求以此公开合同继续对齐，并授权只实现可确定的纯软件片段；这仍不代表生产部署、真实投递、旧试验重跑或 Mac 设备/清理验证已获准或完成。
+- 矩阵中的“满足”仅表示当前纯软件数据/行为有明确证据；它不表示 V2 整体验收通过。`record-fields.schema.json` 明确是 partial schema，只检查必需字段存在，不冻结字段类型、时钟格式、完整业务校验或真实 SLO。
 
-## 原始 Mac V2 规格缺口与最小材料请求
+## 公开版明确规定的合同
 
-当前 checkout 只有旧 V1 规格及公开的 V2 规格补充包，没有原始、完整的 Mac V2 规格及其全部引用附件。因此本矩阵只对照上述固定的公开 V2 revision，不推断原 Mac 试验规则。继续冻结实现合同所需的最小材料是：
+以下内容已能从上述公开版直接确定，不依赖私有 Mac 副本：
 
-1. 原始 Mac V2 规格包及其版本/manifest，连同规格中引用的全部 schema、指标定义和附录；只需规格材料，不需要物理试验原始 payload。
-2. 旧指标的精确定义，以及候选事件身份、真值标签、确证分母/排除项规则，用于保留旧失败并建立新旧可比性。
-3. 若希望按 V2 行为继续写代码，还需冻结通知/确认字段类型、枚举与空值语义，trigger-known/visible 时间来源和 SLO，证据资格门槛，以及同事件、分拆和多风险 flag 冲突规则。公开补充包尚未给出这些完整约束。
+- 三类触发常量、统一提醒类型 `PENDING_VERIFICATION_RISK_ALERT`，以及四个单独风险 flag 到应用等级的映射。
+- 合成处理里“立即”指已知触发首次出现的同一 processing prefix；不得用事后才知道的 source time 倒推触发。
+- 用户可见内容的最低信息、待核状态、稳定 `display_card_id`、独立候选事件节点、四种关联状态；UNKNOWN/CONFLICT 不能 union 已确证组。
+- 确认所需的五类高层证据门槛、风险升级与事件身份分离，以及相同未核区间的重复更新/新冲突等建立新更新记录的高层规则。
+- 18 个通知字段、9 个确认字段的名称，以及分别评价及时性、完整性、确证准确率/覆盖、错误合并/拆分、负担和控制器验收的指标族。
+- 旧严格失败保持原样；新旧口径分开，不以新规格追认旧轮通过。
 
-本轮可独立完成的公开规格对齐和纯软件合成可视化不依赖以上私有试验原件；完整 Mac V2 原规格到位前，具体 V2 payload 与生产侧行为仍不可验收。
+公开版足以支持本轮逐项对齐和确定性映射实现。完整私有 Mac V2 原文不是当前工作的一概前置；只有在用户希望还原公开版之外的私有原始规则时才需要对应的具体原文。
+
+## 公开版刻意留空或仍需业务选择的项
+
+| 未冻结项 | 公开版已给出的边界 | 仍缺的具体决定 |
+|---|---|---|
+| 同一提醒内多个风险 flag 的 severity 汇总 | 各单 flag 的 proposed severity 已列明 | 同时存在 `EXPOSURE_HIGH` 与未定冲突等多个 flag 时，选最高级、分开发送，还是其他规则；公开版未定义优先级 |
+| 通知/确认 schema 的字段类型 | 18/9 个必需字段名称固定；当前只校验字段存在 | 每个字段的数据类型、枚举全集、可空规则、ID 格式和版本演进规则 |
+| 生产时间语义和 SLO | 合成逻辑要求同 prefix；记录 `trigger_known_time`、`detected_at`、`emitted_at`、`visible_at`；`operational_delivery_SLO_ms` 明确为 null / 未指定 | 实际时钟源、格式/时区/可比性、真实可见回执来源、毫秒级目标值 |
+| 证据资格的机器判定 | 五类高层 gate 已列明：独立合格来源、资产/任务绑定、合法时间、有效边界/一致关系证据、解决重要冲突 | 来源资格与质量的可执行判据、允许的时间区间和边界校验细则 |
+| `dedup_episode_interval_key` | 同一未核区间的重复确认更新同卡；新冲突/新合格源/升级/新决定生成更新记录 | episode interval 的起止边界、key 组成、何时启动新 interval |
+| 可计算的确证评价集 | 指标要求独立评价真值、覆盖/弃权/隐藏机会分层，且不得把共享模板当独立样本 | 哪些真值来源合格、机会分母和标签裁决流程；当前没有可供本轮估算的独立数据集 |
+
+当前最关键的业务选择是多 flag 同时生效时的 severity 汇总，细节见文末建议问题。本轮新增映射函数只接受一个 flag；在此选择确认前不实现汇总规则。
 
 ## 逐项对齐
 
@@ -27,9 +43,12 @@
 |---|---|---|
 | 保留旧首报失败与旧指标，不用新口径追认通过 | 满足 | `historical-baseline.json` 保留 1,464 检查轮次失败及 20 条方法记录缺少确证新事件首报；明确这 20 条不是独立样本。没有旧原始 bundle，也未重跑。 |
 | 候选输入收到时生成软件提醒记录 | 满足 | `AlertLedger.add_candidate()` 在新增候选时立即生成 `PRECAUTIONARY` 记录；这只证明函数内生成，不证明触发识别、处理前缀或用户展示。 |
-| V2 的三类风险触发均进入待核提醒通道 | 不满足 | 当前覆盖候选到达和显式关联提议；没有活动风险判定、缺失/拒绝边界事件，也没有 V2 通知 `kind`。 |
+| V2 三种触发常量映射到指定通知 kind | 满足 | 新增 `rfb.research.alert_governance_v2.notification_kind_for_trigger()` 映射公开定义的三种触发；这不检测触发条件，也不表示运行时已生成或展示通知。 |
+| V2 的三类风险触发均进入待核提醒运行通道 | 不满足 | 现有 ledger 没有活动风险判定、缺失/拒绝边界事件的触发器，也没有 V2 通知 payload/发射流程；纯映射函数不能替代它们。 |
 | “立即”按首次已知触发的同一处理 prefix 生成 | 未知 | 当前有 `observed_at` 与 `alerted_at`，没有 prefix、`trigger_known_time` 或 `detected_at`。不能从源事件时间倒推当时已知。 |
-| V2 severity 与风险状态分开，按公开映射产生 WARNING/CRITICAL | 不满足 | 当前 `alert_level` 是 PRECAUTIONARY/CONFIRMED/ESCALATED 工作流阶段；没有独立 `severity` 字段。不能把旧 `danger_level` 或工作流阶段改名当作 V2 severity。 |
+| 公开版四种单 flag → proposed severity 映射 | 满足 | 新增 `severity_for_risk_flag()` 逐项实现 `business-spec.json` 中四个单 flag 映射；未知 flag 与多 flag 输入 fail closed。它不是 V2 通知字段或序列化器。 |
+| V2 通知 payload 将 severity 与风险/提醒阶段分开 | 不满足 | 当前 `alert_level` 是 PRECAUTIONARY/CONFIRMED/ESCALATED 工作流阶段；尚无 V2 payload 中独立的 `severity` 字段。不能把旧 `danger_level` 或工作流阶段改名当作 V2 severity。 |
+| 多个同时有效的 risk flag 如何汇总 severity | 未知 | 公开版只列单 flag 映射，没有优先级或拆分通知规则；等待业务选择。本轮 helper 不接受多 flag。 |
 | 待核提醒包含可读文本、理由、证据引用和软件生成时间 | 满足 | `AlertRecord.visible_text`、`rationale`、`evidence_refs`、`alerted_at` 已存在；真实展示时间仍缺失。 |
 | 文本包含 V2 要求的设备/任务/观测、未定原因、核查动作和稳定卡链接 | 不满足 | 候选输入只有 `source_id`、summary 和候选 ID；没有 observation/device/task 绑定、具体不确定原因字段或处置动作字段，文本也不证明卡片已展示给用户。 |
 | `display_card_id` 是展示连续性 ID，不代表物理事件相同 | 不满足 | 当前 SAME 关系将候选并入一个 canonical 卡；`card_for()` 返回该 canonical 卡。V2 要求把展示卡上下文与物理事件节点分开。 |
@@ -108,27 +127,17 @@
 4. 旧 Mac V3-RSS 1,464 检查结果保持 FAILED；本轮不读取原始 bundle、不重跑、
    不把 20 条方法记录当独立样本，也不声称已通过 Mac 清理或控制器资格。
 
-## 具体推荐
+## 后续实现建议与业务选择
 
-1. **先拆模型，再迁移业务流。** 新增版本化 V2 纯软件模块，分别保存
-   `DisplayCard`（展示上下文）、`Observation`、`CandidateEpisode` 与关系图。
-   同一卡可挂多个独立候选；UNKNOWN/CONFLICT 关系不得 union episode。保留 V1
-   scorer 与旧失败记录，避免“展示卡 = 物理事件”的兼容性假象。
-2. **先冻结 severity 冲突规则。** 对单一 flag 按公开映射使用 WARNING、CRITICAL
-   或 WARNING_RISK_UNRESOLVED。多个同时 flag 时，推荐
-   `CRITICAL > WARNING_RISK_UNRESOLVED > WARNING`，并保留完整 risk_state 与理由；
-   请先确认该组合优先级，再写入可见文本。
-3. **确认门控返回三态。** 将来源资格、质量、设备/任务、source/known time、
-   边界与冲突证据建成 typed evidence record。字段缺失或冲突未消解时返回
-   UNKNOWN/CONFLICT_PENDING；不以非空 evidence ref 代替资格审核。
-4. **冻结通知合同和时钟。** 为 18 个通知字段与 9 个确认字段补齐类型、空值、
-   枚举、时区和版本规则；定义 trigger_known_time 的确定方式、同 prefix 规则、
-   visible_at 回执来源及毫秒 SLO。没有 UI/投递回执时保持 UNKNOWN。
-5. **预注册去重和评价。** 由业务方确定 dedup key 的 asset/task/episode interval
-   范围以及重复提醒何时转为升级/更新；新指标分开报告准确率、覆盖、弃权、
-   未知比例、延迟和提醒负担，旧严格首报分数继续保留。
+1. **保留版本边界。** 本轮只新增 `alert_governance_v2.py` 中公开版已确定的触发-kind 与单 flag-severity 纯映射；旧 `AlertLedger`、旧评分器、旧失败基线未修改。V1 已有 pending、confirm、escalate、split 的纯软件链路，但其 SAME 合并的 canonical display card 与 V2 的 presentation/episode 分层仍有差异。
+2. **下一步可独立实现的合同部分。** 将 V2 展示卡上下文、候选 episode 节点、关联状态和不可变分拆引用建成独立模型；UNKNOWN/CONFLICT 不合并 episode；风险升级与事件身份分离。先用公开版明确行为写测试，不改写 V1 的卡语义，也不声称 V2 payload 合格。
+3. **尚需冻结后才实现的部分。** 多 flag severity 聚合、字段类型/空值、真实时钟和 visible_at 回执、SLO、证据资格的机器判据、dedup interval/key 算法，以及可评价真值/分母。没有这些选择时保留 UNKNOWN 或拒绝聚合，不用私有 Mac 原件作为笼统前置。
 
-本轮没有修改生产治理代码：V2 包显式为 SPEC_ONLY，且剩余代码差距依赖上述未
-冻结类型、时间、证据资格与事件/卡片业务规则。只对既有 V1 focused suite 做本地
-复验，并运行单条明确标记为合成的展示场景；未运行 1,464 旧试验、真实投递、模型
-服务或 Mac 资格/清理流程。
+### 请先讨论：多 flag severity 汇总
+
+公开版给出单 flag 等级，但未规定一个待核提醒同时含多个 flag 时如何定级。可选：
+
+- **A（推荐）：** 单条卡片提醒取最高优先级 `CRITICAL > WARNING_RISK_UNRESOLVED > WARNING`，同时保留全部 risk basis、冲突状态和不确定原因。这样不会让高等级依据被低等级提醒覆盖。
+- **B：** 每个风险依据分别产生提醒修订，使用各自公开的单 flag 等级；不设总优先级，但同一卡片可能出现并行提醒，需额外控制重复负担。
+
+我建议 A；该排序是建议，不是公开 V2 规则，也尚未编码。请先选 A 或 B；收到选择后再逐项讨论其他未冻结项。本轮没有运行 1,464 旧试验、真实投递、模型服务或 Mac 资格/清理流程。

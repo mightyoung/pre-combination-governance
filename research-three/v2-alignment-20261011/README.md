@@ -6,6 +6,7 @@
 - [visualization/synthetic-event-timeline.html](visualization/synthetic-event-timeline.html)：单文件、离线可打开的中文时间线和卡片演变图。
 - [visualization/synthetic-event-data.json](visualization/synthetic-event-data.json)：该次本地 ledger 运行的脱敏合成输入、状态快照、通知和关系历史。
 - [visualization/generate_synthetic_timeline.py](visualization/generate_synthetic_timeline.py)：复现数据与图的脚本。
+- 公开版已明确的 V2 纯映射：[alert_governance_v2.py](../../risk-fusion-bench/src/rfb/research/alert_governance_v2.py)，focused tests 在 [`test_alert_governance_v2.py`](../../risk-fusion-bench/tests/test_alert_governance_v2.py)。这些函数只映射三类触发到提醒 kind、四类单 risk flag 到 proposed severity；不定义多 flag 优先级或完整 payload。
 - [MAC_PERSISTENCE_MANIFEST.json](MAC_PERSISTENCE_MANIFEST.json)：本分支公开交付物的相对路径与校验值；Mac 根路径未指定。
 
 重生成时间线：
@@ -15,3 +16,5 @@ python research-three/v2-alignment-20261011/visualization/generate_synthetic_tim
 ```
 
 该命令只调用纯软件 `AlertLedger`，不连接模型、投递服务、设备或运行器。所有 evidence refs 均为 `synthetic://` 占位引用，没有原始物理证据正文。记录中的 SIMULATED 不表示任何用户实际看到提醒。
+
+V2 公开来源固定在 `task/v2-public-spec-20261011` commit `cc6d59b88bda73381fc09d9091a224ab4155891e`。完整原始 Mac V2 文档不是本轮公开合同对齐的前置；尚未冻结的具体选择列于 `ALIGNMENT.md`。
