@@ -344,10 +344,19 @@ class ObservableAssociationTests(unittest.TestCase):
             at_seconds=10,
         )
         pairs, proposals = run_arm(prefix, association.multi_evidence_rule)
+        baseline_pairs, baseline_proposals = run_arm(prefix, association.time_asset_rule)
 
         self.assertEqual(len(pairs), 1)
         self.assertEqual(proposals[0].action, association.ProposalAction.LINK_CANDIDATES)
         self.assertIn("CROSS_MODAL_SUPPORT", proposals[0].reason_codes)
+        self.assertEqual(baseline_pairs, pairs)
+        self.assertEqual(
+            baseline_proposals[0].action, association.ProposalAction.LINK_CANDIDATES
+        )
+        self.assertEqual(
+            baseline_proposals[0].reason_codes,
+            ("VERIFIED_ASSET_MATCH", "TIME_AND_POSITION_COMPATIBLE"),
+        )
 
     def test_persistent_sensor_world_with_forward_replay_late_arrival_and_flag_escalation(self):
         self.require_inference_api()
