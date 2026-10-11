@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "f816bda0543d6fd1d49c542b97fd927f40bef1fd",
+  "source_commit": "61d2fcd90b93f036084baa6f4a3f594485be479d",
   "path_convention": "All file paths below are repository-relative POSIX paths rooted at a checkout of source_commit.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. No cloud-workspace absolute path is encoded here.",
@@ -12,7 +12,7 @@
   "related_public_v2_spec_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
   "includes_original_mac_v2_spec": false,
   "includes_frozen_trial_raw_data": false,
-  "synthetic_visualization_only": true,
+  "run_artifacts_are_synthetic_only": true,
   "real_delivery_or_visibility_validation": "NOT_RUN",
   "mac_device_or_cleanup_validation": "NOT_RUN",
   "files": [
@@ -22,9 +22,14 @@
       "sha256": "6f51280be8e3c7fccab6bf425542f30e0d43157ebcb13789060ce2c865ffa244"
     },
     {
+      "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
+      "bytes": 4255,
+      "sha256": "98a1a5a296647d1ff4311d05d3370d7f65977ccf57cddcf6d2ae686d889ca20a"
+    },
+    {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 2010,
-      "sha256": "918441d38f80ec6470279b86437b8d7b1ba7d4cf4d37e17c6b9cccd4624c7493"
+      "bytes": 2879,
+      "sha256": "e1171e8687c1ce476431ce05201abd29c36c85730388913971963076d5de24f7"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py",
@@ -42,6 +47,21 @@
       "sha256": "07bd15542fb06f6835a3850af17debd485110cfe0e5e79a5afa1b1b1aea0f06a"
     },
     {
+      "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
+      "bytes": 17438,
+      "sha256": "296712ec734678dcdbcb163f3689ef67800cc0871872bcd4c681095ccda6c098"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/idempotency-layers-data.json",
+      "bytes": 3670,
+      "sha256": "1033f80909796aa77a40529a4e9169fd38b0099556ad7b00af63619472c65382"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/idempotency-layers-comparison.html",
+      "bytes": 6188,
+      "sha256": "5bf9eeb7c7f2d0753f0f9ae78bdfd635aa88beacb0613609c6141352a1a1d7a2"
+    },
+    {
       "path": "risk-fusion-bench/src/rfb/research/alert_governance_v2.py",
       "bytes": 1541,
       "sha256": "0eb852f16213484eeb4a1bf4aa8c7f4360865e3692d2f3d370ab15dd0985dbcd"
@@ -50,6 +70,11 @@
       "path": "risk-fusion-bench/tests/test_alert_governance_v2.py",
       "bytes": 1836,
       "sha256": "2baac1c13100ea51068bbf7ebe972414378bfe95904d147655cd39fa35a4e65e"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_alert_governance_idempotency.py",
+      "bytes": 5946,
+      "sha256": "e1e9297c80ea5556385bd0f3f9a7c6b17b93ced4dda760369ebf8f8e0deca257"
     }
   ]
 }
