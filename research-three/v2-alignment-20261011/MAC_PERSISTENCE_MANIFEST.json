@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "f27f65f9d586d661a5a2687264136c1095e0af68",
+  "source_commit": "846b5b26745b311b2313156f74a4281c798e3b92",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -47,8 +47,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 9300,
-      "sha256": "b0b2639b9761c4a511cdb61eb0d10454da3a70495e10ea6ca1c756fdee30cfe7"
+      "bytes": 11220,
+      "sha256": "1bf5724b1f5a44225c93b63af94467e6dd078889a3ce30495b2f963d724e525c"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -59,6 +59,11 @@
       "path": "research-three/v2-alignment-20261011/visualization/generate_notification_coalescing_experiment.py",
       "bytes": 1538,
       "sha256": "123ab998ed9b034fb67944b240e6c6b20e1b1155813c1a123d3cb4a12d2e600f"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py",
+      "bytes": 26747,
+      "sha256": "48aee0f1ef365bc7c4a9a25d581339c9a2fd4d6528310db03507dabad6c6662a"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py",
@@ -84,6 +89,26 @@
       "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment.html",
       "bytes": 409379,
       "sha256": "ec045099a555dccbd56fcaefb81c30118dbc4ae6c7e494d28f1ba0d85d995dac"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples-input.json",
+      "bytes": 13356,
+      "sha256": "63a015d1db572fb71c3c58962cbbe0ba6a7b037d2d5e0ff6186005107b7930d7"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples-manifest.json",
+      "bytes": 1633,
+      "sha256": "42a4c11bfade7ea41439e621fb95c82a3b4c32e760492a06a30e82ccac929608"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples.html",
+      "bytes": 21797,
+      "sha256": "dd2b6c690fbe64d992c308973255ba68850d59cb975b36340ba134994d6d74ea"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples.json",
+      "bytes": 164440,
+      "sha256": "9d7802a3ddf580a2c2b278128a15eee5d6c93f95a4938b3b998a1f27ab8b5d54"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-data.json",
@@ -181,5 +206,28 @@
   "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; full candidate pair, card-specific resolved episodes, association IDs/states, and resolved-state action times are fail-closed across history; no history is marked NO_LEDGER_HISTORY_TO_COMPARE; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance.",
   "identity_ledger_alignment_scope": "Across history, every ASSOCIATION_PENDING revision must carry the full pending pair; every resolved-state revision must match the externally supplied resolved state and card episodes; identity-transition detected_at cannot precede identity_evidence_known_at and resolved revision received_at cannot precede resolved_at. trigger_known_time and earlier pending revisions are preserved. Latest revision must reference identity association ID/state.",
   "temporal_identity_alignment_scope": "Synthetic-only chronology validation: resolved-state revisions require received_at >= external resolved_at; identity-transition actions with detected_at require detected_at >= identity_evidence_known_at. Audit shows evidence-known, resolved, earliest relevant receipt, and earliest transition-detected times. No real clock provenance or delivery is validated.",
-  "frozen_prefix_integration_scope": "Two complete synthetic trajectories with a common prefix and distinct future suffixes are passed in full to freeze_visible_prefix at the same as_of; frozen prefix, pending action-ledger input, and card preview match. A later as_of exposes the divergent future values."
+  "frozen_prefix_integration_scope": "Two complete synthetic trajectories with a common prefix and distinct future suffixes are passed in full to freeze_visible_prefix at the same as_of; frozen prefix, pending action-ledger input, and card preview match. A later as_of exposes the divergent future values.",
+  "synthetic_event_card_examples": {
+    "scope_tags": [
+      "C0",
+      "I0",
+      "M0"
+    ],
+    "classification": "SYNTHETIC",
+    "identity_results": "EXTERNALLY_SUPPLIED_SYNTHETIC_INPUT",
+    "delivery_status": "NOT_DELIVERED",
+    "business_acceptance": "NOT_EVALUATED",
+    "generation_command": "python research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py",
+    "case_list": [
+      "repeat_same_alarm",
+      "risk_escalation_same_card",
+      "pending_pair_resolves_same",
+      "pending_pair_resolves_different"
+    ],
+    "output_sha256": {
+      "synthetic-event-card-examples.html": "dd2b6c690fbe64d992c308973255ba68850d59cb975b36340ba134994d6d74ea",
+      "synthetic-event-card-examples.json": "9d7802a3ddf580a2c2b278128a15eee5d6c93f95a4938b3b998a1f27ab8b5d54"
+    },
+    "mac_device_or_cleanup_validation": "NOT_RUN"
+  }
 }
