@@ -1,0 +1,46 @@
+{
+  "manifest_version": "mac-persistence-v1",
+  "artifact_set": "pre-combination-alert-governance-v1",
+  "source_repository": "https://github.com/mightyoung/pre-combination-governance",
+  "branch": "task/research-three-alert-governance",
+  "source_commit": "1380f3cdc07443147fa50cdd726cf08f88fbb982",
+  "path_convention": "All file paths below are repository-relative POSIX paths rooted at a checkout of source_commit.",
+  "mac_local_project_root": null,
+  "mac_path_mapping": "Choose the Mac-local project root, then resolve only the listed repository-relative paths beneath it. No cloud-container absolute path is encoded here.",
+  "sha256_scope": "Listed deliverables only; the manifest does not hash itself.",
+  "includes_mac_v2_originals": false,
+  "includes_frozen_trial_raw_data": false,
+  "mac_device_validation": "NOT_RUN",
+  "files": [
+    {
+      "path": "docs/superpowers/plans/2026-10-11-precombination-alert-governance.md",
+      "bytes": 4003,
+      "sha256": "0bc1503a148f4199e9b75184fc9ea4040f6e4a180b82305ccfbc36314a56b183"
+    },
+    {
+      "path": "research-three/alert-governance-v1/SPEC.md",
+      "bytes": 5297,
+      "sha256": "f831be673ecfae415c645cd4c624fc9cee56f70d6d6dd2a59938c3fde875da9d"
+    },
+    {
+      "path": "research-three/alert-governance-v1/historical-baseline.json",
+      "bytes": 1151,
+      "sha256": "5ba968272973da7a66f3b8d4779a0952d602993ef745060373c0b74398766bb7"
+    },
+    {
+      "path": "research-three/alert-governance-v1/synthetic-evaluation.json",
+      "bytes": 3905,
+      "sha256": "c2bb1cfb2aabc743fc2c008b30eef1ee861c9caef3d0a465d4108ae0b0dfa2b8"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
+      "bytes": 27575,
+      "sha256": "0a18981d63af88ba8e0dcb8dd590f903e24a9ea93547e836bf27fcc5a1258ec6"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_alert_governance.py",
+      "bytes": 11965,
+      "sha256": "49e69a38f592a8118a77089fe0ef89d8770e504b4e036fae47701895af65c8ce"
+    }
+  ]
+}
