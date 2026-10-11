@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import unittest
-from dataclasses import fields
+from dataclasses import fields, replace
 from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
@@ -338,6 +338,69 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
         )
         with self.assertRaises(ValueError):
             evaluation.score_world(truncated_steps, world.scorer_only)
+
+    def test_registered_dev_sidecar_cannot_redefine_its_cutoff_schedule(self):
+        require_api(self)
+        plan = evaluation.get_split_plan("development")
+        world = evaluation.generate_synthetic_world(
+            seed=plan.seed,
+            world_index=0,
+            stratum=evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,
+            split_name="development",
+        )
+        self.assertEqual(len(world.scorer_only.registered_cutoffs), 6)
+
+        with self.assertRaisesRegex(ValueError, "fixed seed-derived cutoff schedule"):
+            replace(
+                world.scorer_only,
+                registered_cutoffs=(world.scorer_only.evaluation_cutoff,),
+            )
+
+    def test_score_world_rechecks_registered_schedule_independently(self):
+        require_api(self)
+        plan = evaluation.get_split_plan("development")
+        world = evaluation.generate_synthetic_world(
+            seed=plan.seed,
+            world_index=0,
+            stratum=evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,
+            split_name="development",
+        )
+        terminal = world.scorer_only.evaluation_cutoff
+        truncated_steps = tuple(
+            step for step in evaluation.run_two_methods(world.observable)
+            if step.cutoff == terminal
+        )
+        corrupted_sidecar = object.__new__(evaluation.ScorerSidecar)
+        for field in fields(world.scorer_only):
+            object.__setattr__(
+                corrupted_sidecar, field.name, getattr(world.scorer_only, field.name)
+            )
+        object.__setattr__(corrupted_sidecar, "registered_cutoffs", (terminal,))
+
+        with self.assertRaisesRegex(ValueError, "fixed seed-derived cutoff schedule"):
+            evaluation.score_world(truncated_steps, corrupted_sidecar)
+
+    def test_aggregation_rejects_registered_dev_schedule_rewrite(self):
+        require_api(self)
+        plan = evaluation.get_split_plan("development")
+        world = evaluation.generate_synthetic_world(
+            seed=plan.seed,
+            world_index=0,
+            stratum=evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,
+            split_name="development",
+        )
+        score = evaluation.score_world(
+            evaluation.run_two_methods(world.observable), world.scorer_only
+        )
+        terminal = world.scorer_only.evaluation_cutoff
+        rewritten_score = dict(
+            score,
+            registered_cutoffs=(terminal,),
+            scored_cutoffs=(terminal,),
+        )
+
+        with self.assertRaisesRegex(ValueError, "fixed seed-derived cutoff schedule"):
+            evaluation.aggregate_world_scores((rewritten_score,))
 
     def test_score_world_rejects_nine_cutoffs_even_when_arms_match(self):
         require_api(self)

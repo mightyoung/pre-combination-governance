@@ -254,6 +254,13 @@ class ScorerSidecar:
                 context="scorer sidecar",
             ),
         )
+        _validate_registered_world_schedule(
+            self.split_name,
+            self.world_group_id,
+            self.stratum,
+            self.registered_cutoffs,
+            context="scorer sidecar",
+        )
         if not isinstance(self.escalation_opportunities, tuple) or any(
             not isinstance(item, AlertEscalationOpportunity)
             for item in self.escalation_opportunities
@@ -357,18 +364,83 @@ def _world_token(
     return hashlib.sha256(material.encode("utf-8")).hexdigest()
 
 
-def _registered_formal_worlds(split_name: str) -> dict[str, SyntheticStratum]:
-    """Map every fixed formal ID to its registered stratum without generating data."""
+def _seed_derived_cutoffs(
+    split_name: str,
+    seed: int,
+    world_index: int,
+    stratum: SyntheticStratum,
+) -> tuple[str, ...]:
+    """Reproduce the fixed generator's received-time cutoffs from registered inputs."""
+    token = _world_token(split_name, seed, world_index, stratum)
+    rng = random.Random(int(token[:16], 16))
+    event_a_second = 5 + rng.randrange(0, 3)
+    if stratum is SyntheticStratum.RECOVERY_THEN_NEW_EVENT:
+        event_b_first = 60 + rng.randrange(0, 4)
+    else:
+        event_b_first = 20 + rng.randrange(0, 8)
+    event_b_second = event_b_first + 5 + rng.randrange(0, 3)
+
+    received_seconds = {
+        0,
+        event_a_second + 8,
+        event_b_first + 4,
+        event_b_second + 10,
+        _RISK_UPGRADE_SECONDS,
+        _EVALUATION_CUTOFF_SECONDS,
+    }
+    if stratum is SyntheticStratum.RECOVERY_THEN_NEW_EVENT:
+        received_seconds.add(30)
+    if stratum is SyntheticStratum.DEPENDENT_REPLAY_UNKNOWN:
+        received_seconds.add(_REPLAY_RECEIVED_SECONDS)
+    return tuple(_stamp(seconds) for seconds in sorted(received_seconds))
+
+
+def _registered_formal_world_schedules(
+    split_name: str,
+) -> dict[str, tuple[SyntheticStratum, tuple[str, ...]]]:
+    """Bind every registered formal world ID to its generator-derived schedule."""
     plan = get_split_plan(split_name)
     strata = tuple(SyntheticStratum)
     return {
-        _world_group_id(split_name, plan.seed, world_index, stratum): stratum
+        _world_group_id(split_name, plan.seed, world_index, stratum): (
+            stratum,
+            _seed_derived_cutoffs(split_name, plan.seed, world_index, stratum),
+        )
         for stratum_index, stratum in enumerate(strata)
         for world_index in range(
             stratum_index * plan.worlds_per_stratum,
             (stratum_index + 1) * plan.worlds_per_stratum,
         )
     }
+
+
+def _registered_formal_worlds(split_name: str) -> dict[str, SyntheticStratum]:
+    """Map every fixed formal ID to its registered stratum without generating data."""
+    return {
+        world_id: registration[0]
+        for world_id, registration in _registered_formal_world_schedules(split_name).items()
+    }
+
+
+def _validate_registered_world_schedule(
+    split_name: str,
+    world_group_id: str,
+    stratum: SyntheticStratum | str,
+    registered_cutoffs: Sequence[str],
+    *,
+    context: str,
+) -> None:
+    if split_name not in {"development", "heldout"}:
+        return
+    try:
+        selected_stratum = SyntheticStratum(stratum)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{context} must carry a registered formal stratum") from exc
+    registration = _registered_formal_world_schedules(split_name).get(world_group_id)
+    if registration is None or registration[0] is not selected_stratum:
+        raise ValueError(f"{context} world ID and stratum must match the fixed seed registration")
+    if tuple(registered_cutoffs) != registration[1]:
+        raise ValueError(f"{context} must match the fixed seed-derived cutoff schedule")
 
 
 def generate_protocol_split(
@@ -513,6 +585,13 @@ def generate_synthetic_world(
             key=lambda value: _parse_timestamp(value, "cutoff"),
         )
     )
+    expected_cutoffs = _seed_derived_cutoffs(
+        split_name, seed, world_index, selected_stratum
+    )
+    if cutoffs != expected_cutoffs:
+        raise RuntimeError(
+            "synthetic generator cutoffs diverged from the fixed seed-derived schedule"
+        )
     observable = ObservableTrajectory(records=tuple(records), cutoffs=cutoffs)
 
     root_by_observation = {spec.observation_id: spec.root_id for spec in specs}
@@ -644,6 +723,13 @@ def score_world(
     """Score frozen pair proposals against a separate scorer-only sidecar."""
     if not isinstance(scorer_only, ScorerSidecar):
         raise TypeError("scorer_only must be a ScorerSidecar")
+    _validate_registered_world_schedule(
+        scorer_only.split_name,
+        scorer_only.world_group_id,
+        scorer_only.stratum,
+        scorer_only.registered_cutoffs,
+        context="scorer sidecar",
+    )
     validated_steps = _validate_steps(steps, scorer_only)
     scored_cutoffs = tuple(
         step.cutoff for step in validated_steps if step.method == "TIME_ASSET_RULE"
@@ -822,12 +908,21 @@ def aggregate_world_scores(world_scores: Sequence[Mapping[str, object]]) -> dict
         raise ValueError("each world score must carry a registered split_name")
     if len(set(split_names)) != 1:
         raise ValueError("development, held-out, and contract worlds cannot be aggregated together")
+    split_name = split_names[0]
     for world in world_scores:
         registered_cutoffs = _normalize_registered_cutoffs(
             world.get("registered_cutoffs"),
             world.get("evaluation_cutoff"),
             context="world score registered schedule",
         )
+        if split_name in {"development", "heldout"}:
+            _validate_registered_world_schedule(
+                split_name,
+                world.get("world_group_id"),
+                world.get("stratum"),
+                registered_cutoffs,
+                context="world score registered schedule",
+            )
         scored_cutoffs = _normalize_registered_cutoffs(
             world.get("scored_cutoffs"),
             world.get("evaluation_cutoff"),
@@ -835,7 +930,6 @@ def aggregate_world_scores(world_scores: Sequence[Mapping[str, object]]) -> dict
         )
         if scored_cutoffs != registered_cutoffs:
             raise ValueError("world score must include the complete registered cutoff trace")
-    split_name = split_names[0]
     if split_name in {"development", "heldout"}:
         plan = get_split_plan(split_name)
         if len(world_scores) != plan.world_budget:
