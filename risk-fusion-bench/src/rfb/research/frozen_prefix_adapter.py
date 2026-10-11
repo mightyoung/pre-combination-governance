@@ -106,9 +106,24 @@ class FrozenVisiblePrefix:
     _fields: tuple[PrefixFieldFact, ...]
 
     def __post_init__(self) -> None:
-        _parse_timestamp(self.as_of, "as_of")
+        cutoff = _parse_timestamp(self.as_of, "as_of")
         if not isinstance(self._fields, tuple):
             raise ValueError("frozen fields must be a tuple")
+        names: set[str] = set()
+        for fact in self._fields:
+            if not isinstance(fact, PrefixFieldFact):
+                raise ValueError("frozen fields must contain only PrefixFieldFact values")
+            if _parse_timestamp(fact.earliest_known_at, "earliest_known_at") > cutoff:
+                raise ValueError(f"field {fact.name} is known after as_of")
+            if fact.name in names:
+                raise ValueError(f"duplicate prefix field: {fact.name}")
+            names.add(fact.name)
+        object.__setattr__(
+            self, "as_of", cutoff.isoformat().replace("+00:00", "Z")
+        )
+        object.__setattr__(
+            self, "_fields", tuple(sorted(self._fields, key=lambda fact: fact.name))
+        )
 
     def value(self, name: str) -> Any:
         """Return one visible value or raise ``KeyError`` if it is not yet known."""

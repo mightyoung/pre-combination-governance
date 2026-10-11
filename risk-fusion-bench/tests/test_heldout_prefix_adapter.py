@@ -16,11 +16,13 @@ from rfb.research.alert_action_experiment import (
 try:
     from rfb.research.frozen_prefix_adapter import (
         PREFIX_PROVENANCE_FIELDS,
+        FrozenVisiblePrefix,
         PrefixFieldFact,
         freeze_visible_prefix,
     )
 except ImportError:
     PREFIX_PROVENANCE_FIELDS = None
+    FrozenVisiblePrefix = None
     PrefixFieldFact = None
     freeze_visible_prefix = None
 
@@ -278,6 +280,36 @@ class FrozenPrefixAdapterTests(unittest.TestCase):
         )
         with self.assertRaisesRegex(ValueError, "ambiguous same-time facts"):
             freeze_visible_prefix(facts, as_of=stamp(0))
+
+    def test_public_prefix_constructor_rejects_future_fact(self):
+        self.require_adapter()
+        future_fact = PrefixFieldFact(
+            "risk_flags",
+            ("EXPOSURE_HIGH",),
+            "upstream:risk:v1",
+            stamp(1),
+        )
+        with self.assertRaisesRegex(ValueError, "after as_of"):
+            FrozenVisiblePrefix(as_of=stamp(0), _fields=(future_fact,))
+
+    def test_public_prefix_constructor_rejects_duplicate_field_versions(self):
+        self.require_adapter()
+        pending_fact = PrefixFieldFact(
+            "association_state",
+            "UNKNOWN_PENDING",
+            "upstream:identity:v1",
+            stamp(0),
+        )
+        confirmed_fact = PrefixFieldFact(
+            "association_state",
+            "DIFFERENT_CONFIRMED",
+            "upstream:identity:v1",
+            stamp(1),
+        )
+        with self.assertRaisesRegex(ValueError, "duplicate prefix field"):
+            FrozenVisiblePrefix(
+                as_of=stamp(1), _fields=(pending_fact, confirmed_fact)
+            )
 
     def test_adapter_requires_generator_and_earliest_known_time_for_lineage_fields(self):
         self.require_adapter()

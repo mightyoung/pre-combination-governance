@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "a5ffea228e3f54edfcc06b404cf743c35b9e8055",
+  "source_commit": "52048917c9ceea043c7c594843f2c0406841a8cc",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
-      "bytes": 16095,
-      "sha256": "04e09f1767491e154ace23a43ee2277ce4327b41f5abe86ac5e3f8eaa39ec693"
+      "bytes": 16219,
+      "sha256": "9edcab9ef528747439dc344263dec72c53b76bb01ee5f55c18b81999add2239c"
     },
     {
       "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
@@ -42,13 +42,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/IMPLEMENTATION_REVIEW_CLOSURE_20261011.md",
-      "bytes": 2724,
-      "sha256": "7f5e37498eeb5976a025d30989dee9dab9bb05ac65be27a758241790c0eefda4"
+      "bytes": 2761,
+      "sha256": "df974bbf4f719d1a538bd5350bdbe43e24c4bcf7a40ac4985946bd29e530e308"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 8321,
-      "sha256": "05cbb2d25ce254a823ecb2480696c382a66b44147e6178ad3e7dcee3662a065e"
+      "bytes": 8324,
+      "sha256": "05c0637dffb56a8808e817ef3ddd650bda285bc26d2c1160f6cf416ac1b58186"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -127,8 +127,8 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/frozen_prefix_adapter.py",
-      "bytes": 6353,
-      "sha256": "ebf22736a82971f38f7b62df4b055101362a074d3c9697a2132c525ff311f106"
+      "bytes": 7107,
+      "sha256": "e17c912709c5e7934ee6168aae5bda80bb24415c9176d85a2f8c11243009f0fe"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
@@ -162,8 +162,8 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_heldout_prefix_adapter.py",
-      "bytes": 11123,
-      "sha256": "096b12fd73e86e965b8c89b2550e29e946ee8c88c7e419ddc09ad48f53a51010"
+      "bytes": 12232,
+      "sha256": "e5759fbeefc8776441922abdbe833b32fdb5a29af2f0a41c0fb9673663f7ecff"
     }
   ],
   "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
@@ -172,5 +172,5 @@
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11",
   "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
   "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
-  "focused_local_validation": "PASS; 10 synthetic-only unittest cases across test_heldout_prefix_adapter and test_event_card_resolution; old 1464-check trial not run."
+  "focused_local_validation": "PASS; 12 synthetic-only unittest cases across test_heldout_prefix_adapter and test_event_card_resolution, including direct FrozenVisiblePrefix constructor invariant checks; old 1464-check trial not run."
 }
