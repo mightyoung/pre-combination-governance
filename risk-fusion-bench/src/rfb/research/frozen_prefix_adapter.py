@@ -63,11 +63,22 @@ def _parse_timestamp(value: str, label: str) -> datetime:
 
 
 def _is_immutable_value(value: Any) -> bool:
-    if value is None or isinstance(value, (str, int, float, bool)):
+    if value is None or type(value) in (str, int, float, bool):
         return True
-    if isinstance(value, tuple):
+    if type(value) is tuple:
         return all(_is_immutable_value(item) for item in value)
     return False
+
+
+def _typed_value_equal(first: Any, second: Any) -> bool:
+    """Compare immutable field values recursively without Python's coercive equality."""
+    if type(first) is not type(second):
+        return False
+    if isinstance(first, tuple):
+        return len(first) == len(second) and all(
+            _typed_value_equal(left, right) for left, right in zip(first, second)
+        )
+    return first == second
 
 
 @dataclass(frozen=True, slots=True)
@@ -159,6 +170,9 @@ def freeze_visible_prefix(
     Future facts are excluded before field selection. If two distinct values for
     one field have the same earliest-known timestamp, the adapter fails closed
     rather than inventing a tie-breaker or merging potentially distinct events.
+    Duplicate values are equivalent only when their types and values match
+    recursively; for example, ``True`` differs from ``1`` and ``1`` differs
+    from ``1.0``, including when these values appear inside tuples.
     """
     cutoff = _parse_timestamp(as_of, "as_of")
     if not isinstance(facts, (tuple, list)):
@@ -179,8 +193,9 @@ def freeze_visible_prefix(
         if len(latest) > 1:
             first = latest[0]
             if any(
-                (fact.value, fact.producer, fact.evidence_refs)
-                != (first.value, first.producer, first.evidence_refs)
+                not _typed_value_equal(fact.value, first.value)
+                or fact.producer != first.producer
+                or fact.evidence_refs != first.evidence_refs
                 for fact in latest[1:]
             ):
                 raise ValueError(f"ambiguous same-time facts for field: {name}")

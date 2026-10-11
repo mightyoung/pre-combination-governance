@@ -286,6 +286,33 @@ class FrozenPrefixAdapterTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "ambiguous same-time facts"):
             freeze_visible_prefix(facts, as_of=stamp(0))
 
+    def test_same_time_duplicate_values_require_recursive_type_sensitive_equality(self):
+        self.require_adapter()
+        value_pairs = (
+            (True, 1),
+            (1, 1.0),
+            (("outer", (True,)), ("outer", (1,))),
+        )
+        for first_value, second_value in value_pairs:
+            first = PrefixFieldFact(
+                "typed_value",
+                first_value,
+                "upstream:typed:v1",
+                stamp(0),
+                ("LINEAGE-TYPED-1",),
+            )
+            second = PrefixFieldFact(
+                "typed_value",
+                second_value,
+                "upstream:typed:v1",
+                stamp(0),
+                ("LINEAGE-TYPED-1",),
+            )
+            for ordered_facts in ((first, second), (second, first)):
+                with self.subTest(values=(first_value, second_value), order=ordered_facts):
+                    with self.assertRaisesRegex(ValueError, "ambiguous same-time facts"):
+                        freeze_visible_prefix(ordered_facts, as_of=stamp(0))
+
     def test_equivalent_utc_duplicates_serialize_identically_in_any_input_order(self):
         self.require_adapter()
         at_z = PrefixFieldFact(

@@ -36,7 +36,7 @@ python research-three/v2-alignment-20261011/visualization/generate_notification_
 
 动作对照中的 0 秒与 5 秒窗口、批次 ID、同卡/同类/同阶段/关联状态/实验 interval key 和候选 episode 重叠规则都只是实验参数，未获业务冻结。`display_card_id` 是展示连续性标识，不代表物理事件等价；候选 episode 作为独立节点保留，UNKNOWN 关联不会因同卡而被合并，CONFLICT_PENDING 状态变化会独立记录。每条唯一输入先追加独立卡片修订；合并仅改变合成提醒动作数。真实送达状态为 `NOT_DELIVERED`，实际可见时间未知；提醒及时性、内容完整性、事件确证准确性分别报告。该候选不改动 V1 `AlertLedger` 默认行为，也不测模型调用节省量或真实事件确证准确率。
 
-2026-10-11 结果驱动协议修订要求 held-out 阶段先固定共同可见前缀，再单独比较动作策略；错误拆分按物理事件身份簇评分，错误确认不结束未决计时，截止未解按阶段右删失。三类结果是提醒及时性、完整卡片内容完整性、事件确证准确性，各自报告。协议与真实轨迹的本地可得性盘点见 [HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md](HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md)。前缀适配器与待确认关系转移共十三项 focused unittest 已在本地运行通过；不代表 held-out、Mac、真实送达或用户可见性已验证。
+2026-10-11 结果驱动协议修订要求 held-out 阶段先固定共同可见前缀，再单独比较动作策略；错误拆分按物理事件身份簇评分，错误确认不结束未决计时，截止未解按阶段右删失。三类结果是提醒及时性、完整卡片内容完整性、事件确证准确性，各自报告。协议与真实轨迹的本地可得性盘点见 [HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md](HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md)。前缀适配器与待确认关系转移共十四项 focused unittest 已在本地运行通过，包含类型敏感等价测试；不代表 held-out、Mac、真实送达或用户可见性已验证。
 
 内容预览覆盖单风险标记的公开 severity 映射；多 flag 输入的 `severity` 保持空值并记为待决，不作优先级排序。由于当前接口不支持 `task_ids`，预览会明确显示“任务：当前接口不支持绑定”。新加的 split transition 只产生软件身份记录与 reciprocal history links；它尚未接入内容预览或用户可见卡片系统。精确重放保留原内容的处理时间，并在独立审计字段记录新的重放到达时间。`risk_basis_ids` 与关联状态只反映 synthetic 输入映射，证据资格和消息模板语义尚未验证。18 个公开 V2 必填字段逐条报告存在/未知状态；这项检查属于 partial field-presence audit，不是 V2 业务验收。
 
