@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "e668d34b3669d03dd9f0049c0cab2c159ed9419f",
+  "source_commit": "460a89ba9c998fb2cceab389c1415485c8fd3990",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
-      "bytes": 25551,
-      "sha256": "37f0accda03a65ee01cd40dc58b2ee93c35cdfc0d9b956de10ce71e2907907e9"
+      "bytes": 27576,
+      "sha256": "e60b515f4787fcf58f86341b8e50b195b592422726aef27e0fb7c6dfc6fed7ab"
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
@@ -52,8 +52,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 15157,
-      "sha256": "63b4cc5fea16a5daa636719f271049bf8d6705df51b3123b179ec8c7ee119bb7"
+      "bytes": 15556,
+      "sha256": "8ff5480b19841187f875ad527f2be0dfadd8084cd21f5efefc54e9fa1278ae1a"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -212,18 +212,18 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md",
-      "bytes": 13014,
-      "sha256": "9208eed485d1810165e3cd4ebdbe8c8f9d57e5da56419604a3d3f99bd662a263"
+      "bytes": 14902,
+      "sha256": "6d1bae57201b52ca6a98ccfb515c2fa6412b0020dc86c0536121f93a17c0d968"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/observable_association_evaluation.py",
-      "bytes": 51754,
-      "sha256": "2239b2012af69ecc9b07134dbf325cdfe21659f08e05ace5d2099a0ba11dadb1"
+      "bytes": 56103,
+      "sha256": "6a8984be864ebe2cebbf49d13f4725e405fa5ee3a8a9e922dc400bdaa1b09ec2"
     },
     {
       "path": "risk-fusion-bench/tests/test_observable_association_evaluation.py",
-      "bytes": 15668,
-      "sha256": "3f948ba95670370b9757793b500904a348c8a7d373227c56b94d382e72926289"
+      "bytes": 20918,
+      "sha256": "bb902afb747da7b88f9f3a3b8e63bc054ee472f9e3bd6128ae0ea6ebcdee28d2"
     }
   ],
   "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
@@ -284,7 +284,7 @@
   },
   "finite_synthetic_evaluation": {
     "status": "REVIEW_DRAFT",
-    "code_commit": "e668d34b3669d03dd9f0049c0cab2c159ed9419f",
+    "code_commit": "460a89ba9c998fb2cceab389c1415485c8fd3990",
     "development_plan": {
       "seed": 2026101101,
       "worlds": 12,
@@ -303,6 +303,23 @@
     "unknown_scoring": "IN_COVERAGE_DENOMINATOR; EXCLUDED_FROM_FALSE_MERGE_FALSE_SPLIT_AND_DELAY",
     "alert_escalation": "SEPARATE_ACTION_TRACE; DEFAULT_NOT_EVALUATED_WHEN_ABSENT",
     "heldout_blinding": "PUBLIC_DETERMINISTIC_SEED; PROCEDURAL_RESERVE_NOT_CRYPTOGRAPHICALLY_BLIND",
-    "efficacy_claim": "NONE"
+    "efficacy_claim": "NONE",
+    "formal_aggregation": "REQUIRES_FULL_REGISTERED_BUDGET_BALANCED_STRATA_AND_EXACT_SEED_DERIVED_WORLD_IDS",
+    "formal_world_budgets": {
+      "development": 12,
+      "heldout": 24
+    },
+    "worlds_per_stratum": {
+      "development": 3,
+      "heldout": 6
+    },
+    "max_unique_abnormal_observation_ids_per_world": 4,
+    "unknown_action_counts": [
+      "LINK_CANDIDATES",
+      "RETAIN_SEPARATELY",
+      "ABSTAIN"
+    ],
+    "metric_denominator_revision": "FALSE_MERGE_DIFFERENT_CLASS; FALSE_SPLIT_SAME_CLASS; COVERAGE_FULL_SIX_PAIR_UNIVERSE",
+    "seed_id_integrity": "GENERATION_SIDECAR_AND_AGGREGATOR_ENFORCE_REGISTERED_SEED_INDEX_STRATUM_ID_MAPPING; NOT_CRYPTOGRAPHIC_SCORE_PAYLOAD_ATTESTATION"
   }
 }
