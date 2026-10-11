@@ -1,0 +1,285 @@
+{
+  "classification": "SYNTHETIC",
+  "scope_tags": ["C0", "I0", "M0"],
+  "identity_input_provenance": "EXTERNALLY_SUPPLIED_SYNTHETIC_SCENARIO",
+  "delivery_status": "NOT_DELIVERED",
+  "business_acceptance": "NOT_EVALUATED",
+  "ledger_configuration": {
+    "mode": "CARD_COALESCE",
+    "merge_window_seconds": 5,
+    "parameter_status": "EXPERIMENT_INPUT_NOT_FROZEN"
+  },
+  "clock_timezone": "UTC",
+  "scenarios": [
+    {
+      "scenario_id": "repeat_same_alarm",
+      "title": "同一报警重复到达",
+      "purpose": "用同一 intent_id 和相同语义重复调用；观察已测 ledger 的精确重放去重结果。",
+      "identity": {
+        "association_id": "ASSOC-REPLAY-A-B",
+        "display_card_id": "CARD-REPLAY-A",
+        "candidate_episode_ids": ["EP-REPLAY-A", "EP-REPLAY-B"],
+        "association_state": "UNKNOWN_PENDING",
+        "pending_at": "2026-10-11T10:00:00Z",
+        "evidence_refs": ["synthetic://event-card/replay/pending-association"]
+      },
+      "actions": [
+        {
+          "apply_at": "2026-10-11T10:00:00Z",
+          "label": "首条待核报警写入卡片",
+          "intent": {
+            "intent_id": "INTENT-REPLAY-001",
+            "display_card_id": "CARD-REPLAY-A",
+            "kind": "ASSOCIATION_PENDING",
+            "risk_stage": "PRECAUTIONARY",
+            "observation_ids": ["OBS-REPLAY-A", "OBS-REPLAY-B"],
+            "source_ids": ["DEVICE-REPLAY-A", "DEVICE-REPLAY-B"],
+            "candidate_episode_ids": ["EP-REPLAY-A", "EP-REPLAY-B"],
+            "association_ids": ["ASSOC-REPLAY-A-B"],
+            "evidence_refs": ["synthetic://event-card/replay/alarm-A"],
+            "risk_flags": ["EXPOSURE"],
+            "risk_basis_ids": ["synthetic://event-card/replay/risk-A"],
+            "source_times": ["2026-10-11T09:59:57Z"],
+            "observed_at_times": ["2026-10-11T09:59:59Z"],
+            "experiment_batch_id": "SYNTH-CARD-EXAMPLES-REPLAY",
+            "association_state": "UNKNOWN_PENDING",
+            "dedup_episode_interval_key": "SYNTH-REPLAY-INTERVAL-A-B",
+            "trigger_known_time": "2026-10-11T10:00:00Z",
+            "detected_at": "2026-10-11T10:00:00Z"
+          }
+        },
+        {
+          "apply_at": "2026-10-11T10:00:02Z",
+          "label": "相同报警再次到达（精确重放）",
+          "intent_ref": "INTENT-REPLAY-001"
+        }
+      ]
+    },
+    {
+      "scenario_id": "risk_escalation_same_card",
+      "title": "风险升级，沿用同一展示卡",
+      "purpose": "在未决身份保持不变时，记录高等级风险升级；展示稳定卡修订和保护动作。",
+      "identity": {
+        "association_id": "ASSOC-RISK-A-B",
+        "display_card_id": "CARD-RISK-A",
+        "candidate_episode_ids": ["EP-RISK-A", "EP-RISK-B"],
+        "association_state": "UNKNOWN_PENDING",
+        "pending_at": "2026-10-11T10:01:00Z",
+        "evidence_refs": ["synthetic://event-card/risk/pending-association"]
+      },
+      "actions": [
+        {
+          "apply_at": "2026-10-11T10:01:00Z",
+          "label": "初始暴露风险提醒",
+          "intent": {
+            "intent_id": "INTENT-RISK-001",
+            "display_card_id": "CARD-RISK-A",
+            "kind": "ASSOCIATION_PENDING",
+            "risk_stage": "PRECAUTIONARY",
+            "observation_ids": ["OBS-RISK-A", "OBS-RISK-B"],
+            "source_ids": ["DEVICE-RISK-A", "DEVICE-RISK-B"],
+            "candidate_episode_ids": ["EP-RISK-A", "EP-RISK-B"],
+            "association_ids": ["ASSOC-RISK-A-B"],
+            "evidence_refs": ["synthetic://event-card/risk/initial-observation"],
+            "risk_flags": ["EXPOSURE"],
+            "risk_basis_ids": ["synthetic://event-card/risk/exposure"],
+            "source_times": ["2026-10-11T10:00:57Z"],
+            "observed_at_times": ["2026-10-11T10:00:59Z"],
+            "experiment_batch_id": "SYNTH-CARD-EXAMPLES-RISK",
+            "association_state": "UNKNOWN_PENDING",
+            "dedup_episode_interval_key": "SYNTH-RISK-INTERVAL-A-B",
+            "trigger_known_time": "2026-10-11T10:01:00Z",
+            "detected_at": "2026-10-11T10:01:00Z"
+          }
+        },
+        {
+          "apply_at": "2026-10-11T10:01:05Z",
+          "label": "高等级风险证据到达并触发升级",
+          "intent": {
+            "intent_id": "INTENT-RISK-002",
+            "display_card_id": "CARD-RISK-A",
+            "kind": "RISK_ESCALATION",
+            "risk_stage": "ESCALATED",
+            "observation_ids": ["OBS-RISK-A", "OBS-RISK-B"],
+            "source_ids": ["DEVICE-RISK-A", "DEVICE-RISK-B"],
+            "candidate_episode_ids": ["EP-RISK-A", "EP-RISK-B"],
+            "association_ids": ["ASSOC-RISK-A-B"],
+            "evidence_refs": ["synthetic://event-card/risk/escalation-review"],
+            "risk_flags": ["EXPOSURE_HIGH"],
+            "risk_basis_ids": ["synthetic://event-card/risk/exposure-high"],
+            "source_times": ["2026-10-11T10:01:03Z"],
+            "observed_at_times": ["2026-10-11T10:01:04Z"],
+            "experiment_batch_id": "SYNTH-CARD-EXAMPLES-RISK",
+            "association_state": "UNKNOWN_PENDING",
+            "dedup_episode_interval_key": "SYNTH-RISK-INTERVAL-A-B",
+            "trigger_known_time": "2026-10-11T10:01:03Z",
+            "detected_at": "2026-10-11T10:01:04Z"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "pending_pair_resolves_same",
+      "title": "待确认的两个 episode，外部结论 SAME",
+      "purpose": "保留两个候选 episode 直到外部给定身份材料可用；然后在原卡上确认 SAME。",
+      "identity": {
+        "association_id": "ASSOC-SAME-A-B",
+        "display_card_id": "CARD-SAME-A",
+        "candidate_episode_ids": ["EP-SAME-A", "EP-SAME-B"],
+        "association_state": "UNKNOWN_PENDING",
+        "pending_at": "2026-10-11T10:02:00Z",
+        "evidence_refs": ["synthetic://event-card/same/pending-association"],
+        "resolution": {
+          "association_state": "SAME_CONFIRMED",
+          "identity_evidence_known_at": "2026-10-11T10:02:06Z",
+          "resolved_at": "2026-10-11T10:02:08Z",
+          "evidence_refs": ["synthetic://event-card/same/external-identity-evidence"]
+        }
+      },
+      "actions": [
+        {
+          "apply_at": "2026-10-11T10:02:00Z",
+          "label": "首条待核关联提醒；episode 保持独立",
+          "intent": {
+            "intent_id": "INTENT-SAME-001",
+            "display_card_id": "CARD-SAME-A",
+            "kind": "ASSOCIATION_PENDING",
+            "risk_stage": "PRECAUTIONARY",
+            "observation_ids": ["OBS-SAME-A", "OBS-SAME-B"],
+            "source_ids": ["DEVICE-SAME-A", "DEVICE-SAME-B"],
+            "candidate_episode_ids": ["EP-SAME-A", "EP-SAME-B"],
+            "association_ids": ["ASSOC-SAME-A-B"],
+            "evidence_refs": ["synthetic://event-card/same/observation-A", "synthetic://event-card/same/observation-B"],
+            "risk_flags": ["EXPOSURE"],
+            "risk_basis_ids": ["synthetic://event-card/same/risk-A"],
+            "source_times": ["2026-10-11T10:01:57Z", "2026-10-11T10:01:58Z"],
+            "observed_at_times": ["2026-10-11T10:01:59Z", "2026-10-11T10:01:59Z"],
+            "experiment_batch_id": "SYNTH-CARD-EXAMPLES-SAME",
+            "association_state": "UNKNOWN_PENDING",
+            "dedup_episode_interval_key": "SYNTH-SAME-INTERVAL-A-B",
+            "trigger_known_time": "2026-10-11T10:02:00Z",
+            "detected_at": "2026-10-11T10:02:00Z"
+          }
+        },
+        {
+          "apply_at": "2026-10-11T10:02:08Z",
+          "label": "外部身份结论写入卡片修订",
+          "intent": {
+            "intent_id": "INTENT-SAME-002",
+            "display_card_id": "CARD-SAME-A",
+            "kind": "ASSOCIATION_CONFIRMED",
+            "risk_stage": "PRECAUTIONARY",
+            "observation_ids": ["OBS-SAME-A", "OBS-SAME-B"],
+            "source_ids": ["DEVICE-SAME-A", "DEVICE-SAME-B"],
+            "candidate_episode_ids": ["EP-SAME-A", "EP-SAME-B"],
+            "association_ids": ["ASSOC-SAME-A-B"],
+            "evidence_refs": ["synthetic://event-card/same/external-identity-evidence"],
+            "risk_flags": ["EXPOSURE"],
+            "risk_basis_ids": ["synthetic://event-card/same/risk-A"],
+            "source_times": ["2026-10-11T10:01:57Z", "2026-10-11T10:01:58Z"],
+            "observed_at_times": ["2026-10-11T10:01:59Z", "2026-10-11T10:01:59Z"],
+            "experiment_batch_id": "SYNTH-CARD-EXAMPLES-SAME",
+            "association_state": "SAME_CONFIRMED",
+            "dedup_episode_interval_key": "SYNTH-SAME-INTERVAL-A-B",
+            "trigger_known_time": "2026-10-11T10:02:00Z",
+            "detected_at": "2026-10-11T10:02:06Z"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "pending_pair_resolves_different",
+      "title": "待确认的两个 episode，外部结论 DIFFERENT",
+      "purpose": "待确认期间保留两个 episode；外部结论 DIFFERENT 后分成两张稳定卡并互链历史。",
+      "identity": {
+        "association_id": "ASSOC-DIFF-A-B",
+        "display_card_id": "CARD-DIFF-A",
+        "candidate_episode_ids": ["EP-DIFF-A", "EP-DIFF-B"],
+        "association_state": "UNKNOWN_PENDING",
+        "pending_at": "2026-10-11T10:03:00Z",
+        "evidence_refs": ["synthetic://event-card/different/pending-association"],
+        "resolution": {
+          "association_state": "DIFFERENT_CONFIRMED",
+          "identity_evidence_known_at": "2026-10-11T10:03:06Z",
+          "resolved_at": "2026-10-11T10:03:08Z",
+          "evidence_refs": ["synthetic://event-card/different/external-identity-evidence"],
+          "new_display_card_id": "CARD-DIFF-B"
+        }
+      },
+      "actions": [
+        {
+          "apply_at": "2026-10-11T10:03:00Z",
+          "label": "待确认卡同时保留两个候选 episode",
+          "intent": {
+            "intent_id": "INTENT-DIFF-001",
+            "display_card_id": "CARD-DIFF-A",
+            "kind": "ASSOCIATION_PENDING",
+            "risk_stage": "PRECAUTIONARY",
+            "observation_ids": ["OBS-DIFF-A", "OBS-DIFF-B"],
+            "source_ids": ["DEVICE-DIFF-A", "DEVICE-DIFF-B"],
+            "candidate_episode_ids": ["EP-DIFF-A", "EP-DIFF-B"],
+            "association_ids": ["ASSOC-DIFF-A-B"],
+            "evidence_refs": ["synthetic://event-card/different/observation-A", "synthetic://event-card/different/observation-B"],
+            "risk_flags": ["EXPOSURE"],
+            "risk_basis_ids": ["synthetic://event-card/different/risk-A"],
+            "source_times": ["2026-10-11T10:02:57Z", "2026-10-11T10:02:58Z"],
+            "observed_at_times": ["2026-10-11T10:02:59Z", "2026-10-11T10:02:59Z"],
+            "experiment_batch_id": "SYNTH-CARD-EXAMPLES-DIFFERENT",
+            "association_state": "UNKNOWN_PENDING",
+            "dedup_episode_interval_key": "SYNTH-DIFFERENT-INTERVAL-A-B",
+            "trigger_known_time": "2026-10-11T10:03:00Z",
+            "detected_at": "2026-10-11T10:03:00Z"
+          }
+        },
+        {
+          "apply_at": "2026-10-11T10:03:08Z",
+          "label": "外部结论 DIFFERENT：保留 A 卡并拆分到新卡",
+          "intent": {
+            "intent_id": "INTENT-DIFF-002A",
+            "display_card_id": "CARD-DIFF-A",
+            "kind": "EVENT_SPLIT",
+            "risk_stage": "PRECAUTIONARY",
+            "observation_ids": ["OBS-DIFF-A"],
+            "source_ids": ["DEVICE-DIFF-A"],
+            "candidate_episode_ids": ["EP-DIFF-A"],
+            "association_ids": ["ASSOC-DIFF-A-B"],
+            "evidence_refs": ["synthetic://event-card/different/external-identity-evidence"],
+            "risk_flags": ["EXPOSURE"],
+            "risk_basis_ids": ["synthetic://event-card/different/risk-A"],
+            "source_times": ["2026-10-11T10:02:57Z"],
+            "observed_at_times": ["2026-10-11T10:02:59Z"],
+            "experiment_batch_id": "SYNTH-CARD-EXAMPLES-DIFFERENT",
+            "association_state": "DIFFERENT_CONFIRMED",
+            "dedup_episode_interval_key": "SYNTH-DIFFERENT-INTERVAL-A-B",
+            "trigger_known_time": "2026-10-11T10:03:00Z",
+            "detected_at": "2026-10-11T10:03:06Z"
+          }
+        },
+        {
+          "apply_at": "2026-10-11T10:03:09Z",
+          "label": "同一外部结论在 B 卡保留第二个 episode",
+          "intent": {
+            "intent_id": "INTENT-DIFF-002B",
+            "display_card_id": "CARD-DIFF-B",
+            "kind": "DISTINCT_EVENT_ALERT",
+            "risk_stage": "PRECAUTIONARY",
+            "observation_ids": ["OBS-DIFF-B"],
+            "source_ids": ["DEVICE-DIFF-B"],
+            "candidate_episode_ids": ["EP-DIFF-B"],
+            "association_ids": ["ASSOC-DIFF-A-B"],
+            "evidence_refs": ["synthetic://event-card/different/external-identity-evidence"],
+            "risk_flags": ["EXPOSURE"],
+            "risk_basis_ids": ["synthetic://event-card/different/risk-B"],
+            "source_times": ["2026-10-11T10:02:58Z"],
+            "observed_at_times": ["2026-10-11T10:02:59Z"],
+            "experiment_batch_id": "SYNTH-CARD-EXAMPLES-DIFFERENT",
+            "association_state": "DIFFERENT_CONFIRMED",
+            "dedup_episode_interval_key": "SYNTH-DIFFERENT-INTERVAL-A-B",
+            "trigger_known_time": "2026-10-11T10:03:00Z",
+            "detected_at": "2026-10-11T10:03:06Z"
+          }
+        }
+      ]
+    }
+  ]
+}

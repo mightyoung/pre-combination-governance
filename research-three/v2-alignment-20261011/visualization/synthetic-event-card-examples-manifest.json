@@ -1,0 +1,31 @@
+{
+  "business_acceptance": "NOT_EVALUATED",
+  "classification": "SYNTHETIC",
+  "command": "python research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py",
+  "delivery_status": "NOT_DELIVERED",
+  "generator": {
+    "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py",
+    "sha256": "48aee0f1ef365bc7c4a9a25d581339c9a2fd4d6528310db03507dabad6c6662a"
+  },
+  "input": {
+    "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples-input.json",
+    "sha256": "63a015d1db572fb71c3c58962cbbe0ba6a7b037d2d5e0ff6186005107b7930d7"
+  },
+  "manifest_self_hash": "OMITTED_BY_DESIGN",
+  "outputs": {
+    "synthetic-event-card-examples.html": "dd2b6c690fbe64d992c308973255ba68850d59cb975b36340ba134994d6d74ea",
+    "synthetic-event-card-examples.json": "9d7802a3ddf580a2c2b278128a15eee5d6c93f95a4938b3b998a1f27ab8b5d54"
+  },
+  "scope_tags": [
+    "C0",
+    "I0",
+    "M0"
+  ],
+  "source_commit": "22b5f0404d27b9c4631def21d96dfef068afc016",
+  "tested_implementation_sha256": {
+    "risk-fusion-bench/src/rfb/research/alert_action_experiment.py": "c08deb6f25bb160b03eab01e7a5422ff86e687af725ba69ca816351043724fba",
+    "risk-fusion-bench/src/rfb/research/alert_governance_v2.py": "0eb852f16213484eeb4a1bf4aa8c7f4360865e3692d2f3d370ab15dd0985dbcd",
+    "risk-fusion-bench/src/rfb/research/alert_notification_preview.py": "b7c4515df5861b3c0b8978f0f2ee6dd3e9f885787c5e727a09b0c896161d0b36",
+    "risk-fusion-bench/src/rfb/research/event_card_resolution.py": "57bd61160a59384251ecdc53c9adcc86f663c82e14ce00bc1261eec995374436"
+  }
+}

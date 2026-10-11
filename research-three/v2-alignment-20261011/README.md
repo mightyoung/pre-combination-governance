@@ -13,6 +13,11 @@
 - [visualization/notification-coalescing-experiment.html](visualization/notification-coalescing-experiment.html)：23 条顺序合成动作输入在逐关联提醒与同卡合并策略下的离线对照，附 episode/time 证据与公开 V2 字段审计。
 - [visualization/notification-coalescing-experiment-data.json](visualization/notification-coalescing-experiment-data.json)：全部输入修订、提醒动作、回放结果、保留字段与未知项。19 条来自 AlertLedger 合成过渡，4 条是显式边界探针；不构成 23 个独立样本。
 - [visualization/generate_notification_coalescing_experiment.py](visualization/generate_notification_coalescing_experiment.py)：重建该对照与 HTML；下层实验候选在 [`alert_action_experiment.py`](../../risk-fusion-bench/src/rfb/research/alert_action_experiment.py) 与 [`alert_action_experiment_scenarios.py`](../../risk-fusion-bench/src/rfb/research/alert_action_experiment_scenarios.py)。
+- [visualization/synthetic-event-card-examples.html](visualization/synthetic-event-card-examples.html)：四个合成场景的离线卡片示例，覆盖同一报警精确重放、同卡风险升级、两个待确认 episode 最终外部确认为 SAME 或 DIFFERENT。
+- [visualization/synthetic-event-card-examples.json](visualization/synthetic-event-card-examples.json)：由动作账本、身份解析和完整卡片预览实现实际生成的机器可读结果，含每次调用返回值及 source / observed / trigger-known / detected / received / identity-evidence-known / resolved 时间。
+- [visualization/synthetic-event-card-examples-input.json](visualization/synthetic-event-card-examples-input.json)：可复现的显式合成输入；SAME/DIFFERENT 均是外部给定的合成身份结果。
+- [visualization/generate_synthetic_event_card_examples.py](visualization/generate_synthetic_event_card_examples.py)：调用已测试的纯软件实现生成 JSON 和独立离线 HTML，并对重放、升级、时间对齐和分拆互链执行生成期断言。
+- [visualization/synthetic-event-card-examples-manifest.json](visualization/synthetic-event-card-examples-manifest.json)：生成命令、输入/生成器/实现源码哈希，以及 JSON/HTML 输出哈希。
 - [`alert_notification_preview.py`](../../risk-fusion-bench/src/rfb/research/alert_notification_preview.py)：依据公开 V2 固定字段构造内容预览并逐字段审计；预览未发送，schema 只验证字段存在性。
 - 新增预览测试：[test_alert_notification_preview.py](../../risk-fusion-bench/tests/test_alert_notification_preview.py)。
 - [HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md](HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md)：下一轮独立 held-out 时序研究的非执行协议草案。
@@ -31,7 +36,10 @@
 python research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py
 PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py
 python research-three/v2-alignment-20261011/visualization/generate_notification_coalescing_experiment.py
+python research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py
 ```
+
+事件卡示例由 `synthetic-event-card-examples-input.json` 驱动，使用实际 ledger/card preview 返回值生成；同一报警的第二次调用记录为精确重放，没有新增卡片修订或提醒动作。SAME/DIFFERENT 只来自合成输入中的外部身份结论，卡片与提醒始终标记 `NOT_DELIVERED`，`emitted_at` / `visible_at` 为空，业务验收与身份真值仍为 `NOT_EVALUATED`。本展示沿用范围标记 C0/I0/M0；manifest 固定输入与输出 SHA-256。此示例无需完整 Mac V2 私有规格。
 
 上述生成脚本只构造本地合成输入并运行内存台账/对照逻辑，不连接模型、网络服务、投递适配器、设备或运行器。所有 evidence refs 均为 `synthetic://` 占位引用，没有原始物理证据正文。动作对照为每种窗口/策略输出 23 条语义修订的增量内容预览和一条精确重放审计；这些修订不是累积后的整张可见卡，历史引用被保留也不等于完整卡已展示给用户。内容标记 `PREVIEW_ONLY`，投递状态标记 `NOT_DELIVERED`。`emitted_at` 为空且未实际产生，`visible_at` 为空且未运行。当前接口不支持 `task_ids` 绑定。
 
