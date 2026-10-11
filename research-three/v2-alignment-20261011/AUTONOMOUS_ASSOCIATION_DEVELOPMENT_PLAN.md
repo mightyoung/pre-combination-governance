@@ -128,7 +128,7 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - [x] Record exact command, test count, actual failures observed during RED, final result, source/input hashes, and deviations here.
 - [x] Verify every listed manifest file hash and `git diff --check`; commit only this independent research branch.
 - [x] Initial independent research branch push was read back at `02d40d0f9583ffc0ca4da4066d208d4c6299627b`.
-- [ ] Push the I1 fix and refreshed evidence/manifest, then read back the final remote SHA.
+- [x] Push the I1 fix and refreshed evidence/manifest, then read back the final remote SHA.
 - [x] Request an independent review of the plan, code, and test evidence before reporting completion. Fix important findings test-first.
 
 ### Execution Evidence (2026-10-11)
@@ -144,7 +144,8 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - Follow-up I1 reproduction: from a valid `as_of=12:00:20` prefix, `dataclasses.replace(prefix, as_of=12:00:00)` retained records received/known at 12:00:10 and 12:00:11; the candidate builder returned a pair and both rules returned `LINK_CANDIDATES`. Root cause: `FrozenObservablePrefix` had no construction invariant or consumption revalidation, and `FrozenObservation` did not retain ID availability times.
 - I1 RED command ran four targeted tests. It failed with seven expected failures: two direct-prefix cases did not raise `ValueError`, the ID-time test showed `FrozenObservation` lacked ID availability fields, `replace` did not raise, and candidate generation plus both rules accepted the invalid prefix. No unrelated test or trial was run.
 - I1 fix retains ID actual/earliest-known times in `FrozenObservation` (legacy manual construction defaults them conservatively to receipt time), validates ID/receipt/field visibility when prefixes are constructed or replaced, and revalidates on `observation()`, candidate generation, and rule consumption. The targeted four tests then passed; final `tests.test_observable_association` run: **20 passed**; existing ledger regression command: **29 passed**; `git diff --check` passed.
-- The I1 RED command and root-cause reproduction are recorded above; implementation and regression tests are committed as `29095d8e127c99dd9d397a3e70b3a85a1325d0d5`. The exact `replace(..., as_of=12:00:00)` reproduction now raises `ValueError: observation ID was not known by prefix as_of` instead of returning linked proposals.
+- Independent review found no important implementation issue and noted one nonblocking positive-path coverage gap. Commit `4ae8a475cd0dd0462406c8f2fd6582b110ccf5fd` closes it: `test_late_source_fact_is_hidden_until_received` now asserts that the factory preserves both ID availability times and that a later valid `as_of` replacement keeps the same observations and ID-known time. The targeted test passed; the full focused commands still pass at 20 association tests and 29 ledger tests.
+- The I1 RED command and root-cause reproduction are recorded above; implementation and regression tests are committed as `29095d8e127c99dd9d397a3e70b3a85a1325d0d5`, with the positive-path assertions in `4ae8a475cd0dd0462406c8f2fd6582b110ccf5fd`. The exact `replace(..., as_of=12:00:00)` reproduction now raises `ValueError: observation ID was not known by prefix as_of` instead of returning linked proposals.
 - I1 validation remains synthetic-only. It did not run the 1,464-check trial, Mac/device validation, blind evaluation, broad suite, transport, model/network, or executor paths.
 
 ## Verification Commands
