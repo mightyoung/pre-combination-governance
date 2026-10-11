@@ -1,0 +1,55 @@
+{
+  "artifact_kind": "PUBLIC_SOURCE_FETCH_REQUEST",
+  "synthetic": false,
+  "status": "NO_LIVE_CAP_PAYLOAD_RETRIEVED_IN_THIS_ENVIRONMENT",
+  "scope": "Request one authentic CAP Alert plus at least one linked Update or Cancel for a read-only message-series/card-history check.",
+  "public_urls": {
+    "updates": "https://api.weather.gov/alerts?status=actual&message_type=Update&limit=10",
+    "cancellations": "https://api.weather.gov/alerts?status=actual&message_type=Cancel&limit=10",
+    "fallback_actual_alerts": "https://api.weather.gov/alerts?status=actual&limit=100",
+    "openapi": "https://api.weather.gov/openapi.json",
+    "atom_feed": "https://alerts.weather.gov/cap/us.php?x=0",
+    "specific_alert_template": "https://api.weather.gov/alerts/{alert-id}"
+  },
+  "request_guidance": {
+    "accept": "application/cap+xml for CAP v1.2 product; default alert indexes use JSON-LD",
+    "user_agent": "NWS API docs require an identifying User-Agent for application requests",
+    "rate_limit_guidance": "NWS docs recommend no more frequent than one request every 30 seconds; no polling loop requested",
+    "raw_body_sha256": "Compute only from exact source bytes actually returned; do not hash rendered/reconstructed text"
+  },
+  "required_message_series": [
+    "one original Alert",
+    "one Update or Cancel whose references explicitly name its predecessor",
+    "all messages named in references, when retrievable; at least one prior message is mandatory"
+  ],
+  "required_json_ld_fields": [
+    "@id", "id", "sent", "messageType", "references", "status", "event", "severity", "urgency", "certainty", "headline", "description", "sender", "senderName", "effective", "onset", "expires", "ends", "areaDesc"
+  ],
+  "required_cap_xml_fields": [
+    "identifier", "sender", "sent", "status", "msgType", "references", "source", "scope", "info.event", "info.severity", "info.urgency", "info.certainty", "info.headline", "info.description", "info.effective", "info.onset", "info.expires", "info.area"
+  ],
+  "required_capture_metadata": [
+    "exact requested URL", "exact returned URL", "available response headers (Date, ETag, Last-Modified, Content-Type)", "local observation/receipt time if actually exposed", "raw body SHA-256 only when raw bytes are available"
+  ],
+  "claim_limits": {
+    "source_declared_message_relation": "May be established by an Update/Cancel reference to a named earlier CAP message, subject to preserving both records.",
+    "source_independence": "UNKNOWN without attributable independent acquisition paths and appropriate receipts/logs; multiple versions/references are not independent sources.",
+    "physical_event_identity_accuracy": "NOT_SCORED_UNIDENTIFIABLE without independent physical-event adjudication.",
+    "delivery_latency": "UNKNOWN without receiver-side capture time; CAP sent is not received.",
+    "industrial_safety_effect": "Not established by weather CAP data."
+  },
+  "observed_access_failures": [
+    {
+      "url": "https://api.weather.gov/alerts?status=actual&message_type=Update&limit=5",
+      "result": "Browser connector said URL was not accessible via this tool."
+    },
+    {
+      "url": "https://api.weather.gov/openapi.json",
+      "result": "Browser connector rejected application/vnd.oai.openapi+json as unsupported content type."
+    },
+    {
+      "url": "https://alerts.weather.gov/cap/us.php?x=0",
+      "result": "Browser connector returned HTTP 502 Bad Gateway."
+    }
+  ]
+}
