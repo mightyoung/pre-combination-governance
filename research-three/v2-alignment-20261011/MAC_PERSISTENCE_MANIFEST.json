@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "47b0a3d67576f0c8b9a8a6959078d524324b7f2a",
+  "source_commit": "701f5e8546c8ebb4fdb0d3d1919c719cdc0474cd",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
