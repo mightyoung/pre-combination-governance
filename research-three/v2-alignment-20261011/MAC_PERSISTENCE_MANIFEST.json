@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "b6808a6f9867a52aecd9ad08855eee1104817dfc",
+  "source_commit": "9d71fa121acb179bbfe0d1db6994a6ddbddafee2",
   "path_convention": "All file paths below are repository-relative POSIX paths rooted at source_commit. No cloud-workspace absolute path is encoded here.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -13,7 +13,7 @@
   "includes_original_mac_v2_spec": false,
   "includes_frozen_trial_raw_data": false,
   "run_artifacts_are_synthetic_only": true,
-  "notification_coalescing_policy": "Experiment only; window, batch, and key are not frozen or production defaults.",
+  "notification_coalescing_policy": "Experiment only; windows, batch, association-state/episode interval key, and overlap rule are not frozen or production defaults.",
   "multi_flag_severity_priority": "UNDECIDED",
   "legacy_metric_status": "NOT_RECONSTRUCTED",
   "real_delivery_or_visibility_validation": "NOT_RUN; synthetic reminder actions are marked NOT_DELIVERED.",
@@ -32,13 +32,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
-      "bytes": 6067,
-      "sha256": "78f671e20b4ad377ec1b6033dee73400810302cf35eb5699db7068bcabce6d24"
+      "bytes": 7125,
+      "sha256": "aca590a71d734c02a2a0a38b19160a74223621e18aba4e1d1ce65a0612be467a"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 4569,
-      "sha256": "bd5338d7012a139ddda10e3cd1cd85b2473d5dae033a1461c0f8b4ab35b0c2c7"
+      "bytes": 5272,
+      "sha256": "f00db94517ce8a8dc438777e924ce99a0e4e86b076a7647edd3aa9f6e7add1fe"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py",
@@ -77,13 +77,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment-data.json",
-      "bytes": 244360,
-      "sha256": "ecde8934a42864f32bfcf75ae35c203d242d5aa9ec4d12526bf7edf1641f306f"
+      "bytes": 344460,
+      "sha256": "3415491661be2174beef18fff3288369567369a65a7877cff26d01804c613b68"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment.html",
-      "bytes": 25457,
-      "sha256": "f51bb78f91da55bbf4a997f648bf7c2d586c4d48286f3f41afd538425c36df00"
+      "bytes": 41262,
+      "sha256": "6194019d9febda7178a33789a4383217d377e185e78b2832f6bf9524f5af6689"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
@@ -97,13 +97,13 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
-      "bytes": 14587,
-      "sha256": "4485fdc9047b81329730d225f6bbc7c8150f264d1d407eee6a604ccfcafc8bea"
+      "bytes": 16320,
+      "sha256": "1fb93af3b2499e5f179f17750151b0c58bcf6ba823d65016d2708add19153ef7"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment_scenarios.py",
-      "bytes": 36950,
-      "sha256": "05fa361cb9b0b03f98113a362a4f99f85eac19f9326ba345389a0f2f9523d249"
+      "bytes": 52168,
+      "sha256": "5c10538edcef27c1ca3cbec68980acafe86a181db2c48552573bcacbb64075d4"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_governance_v2.py",
@@ -117,13 +117,13 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
-      "bytes": 11139,
-      "sha256": "2dad44f30f1a421ab85222215d4b253f4f0dca14805568e46a2962da095d5623"
+      "bytes": 18737,
+      "sha256": "10ddc0bdb0269cb3b5fa21fc1640c491ab3075301312c9a1fb6d22bcfaa535e9"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py",
-      "bytes": 6749,
-      "sha256": "d8eb63f99c36f7daaae4e630b3d081ceb0bf927d6272145265c294561bcdbc04"
+      "bytes": 10629,
+      "sha256": "190d6056d6b567fd516ce7a0e556f6f34318a3d0f7ea71183b6bca06a0c46eae"
     }
   ]
 }
