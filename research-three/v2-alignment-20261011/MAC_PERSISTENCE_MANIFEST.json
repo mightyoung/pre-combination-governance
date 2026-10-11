@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "4ae8a475cd0dd0462406c8f2fd6582b110ccf5fd",
+  "source_commit": "e668d34b3669d03dd9f0049c0cab2c159ed9419f",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
-      "bytes": 21620,
-      "sha256": "affa33fabe64e3bbba0cf839a947c3bf8ef0150cc93975772f983164c113f700"
+      "bytes": 25551,
+      "sha256": "37f0accda03a65ee01cd40dc58b2ee93c35cdfc0d9b956de10ce71e2907907e9"
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
@@ -52,8 +52,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 14161,
-      "sha256": "e3d613445d7834c2219a0ee48d89d30ec2a07ca3acad8211ff4ea4149f55e2bb"
+      "bytes": 15157,
+      "sha256": "63b4cc5fea16a5daa636719f271049bf8d6705df51b3123b179ec8c7ee119bb7"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -209,12 +209,27 @@
       "path": "risk-fusion-bench/tests/test_observable_association.py",
       "bytes": 35492,
       "sha256": "691615d6a49e566209a5e939c1c257e7a091e02bd8aa0b55dd18a0a424bda08c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md",
+      "bytes": 13014,
+      "sha256": "9208eed485d1810165e3cd4ebdbe8c8f9d57e5da56419604a3d3f99bd662a263"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/observable_association_evaluation.py",
+      "bytes": 51754,
+      "sha256": "2239b2012af69ecc9b07134dbf325cdfe21659f08e05ace5d2099a0ba11dadb1"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_observable_association_evaluation.py",
+      "bytes": 15668,
+      "sha256": "3f948ba95670370b9757793b500904a348c8a7d373227c56b94d382e72926289"
     }
   ],
   "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
   "task_ids_interface": "UNSUPPORTED_BY_CURRENT_INTERFACE",
   "content_preview_scope": "INCREMENTAL_CONTENT_ONLY; NOT_A_FULL_VISIBLE_CARD_RENDER; HISTORY_PRESERVATION_DOES_NOT_PROVE_FULL_CARD_VISIBILITY",
-  "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11",
+  "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11_WITH_FINITE_EVALUATION_REVIEW_DRAFT",
   "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
   "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
   "focused_local_validation": "PASS; 20 observable-only association synthetic unit tests and 29 focused alert-ledger/reminder regression tests. I1 regression coverage rejects future observation-ID, receipt, and field-known times at direct prefix construction and dataclasses.replace, and revalidates candidate/rule consumers; it also asserts factory preservation of ID availability times and a valid later cutoff. Existing prefix invariance, identifier bijection, replay/lineage, late-arrival, asset/recovery, scorer-contract, and pending-ledger coverage remains passing. No efficacy estimate, old 1464-check trial rerun, Mac/device validation, or real delivery.",
@@ -266,5 +281,28 @@
     "synthetic_parameters_are_production_thresholds": false,
     "mac_device_or_cleanup_validation": "NOT_RUN",
     "prefix_time_boundary": "DIRECT_CONSTRUCTION_AND_REPLACE_VALIDATE_ID_RECEIPT_AND_FIELD_TIMES; CANDIDATE_AND_RULE_CONSUMERS_REVALIDATE"
+  },
+  "finite_synthetic_evaluation": {
+    "status": "REVIEW_DRAFT",
+    "code_commit": "e668d34b3669d03dd9f0049c0cab2c159ed9419f",
+    "development_plan": {
+      "seed": 2026101101,
+      "worlds": 12,
+      "generated": false
+    },
+    "heldout_plan": {
+      "seed": 2026101102,
+      "worlds": 24,
+      "generated": false
+    },
+    "formal_worlds_scored": false,
+    "hyperparameter_search_configs_per_method": 0,
+    "synthetic_contract_test_methods": 7,
+    "combined_focused_tests_passed": 27,
+    "candidate_universe": "ALL_SIX_UNORDERED_PAIRS_AMONG_FOUR_ABNORMAL_OBSERVATION_IDS",
+    "unknown_scoring": "IN_COVERAGE_DENOMINATOR; EXCLUDED_FROM_FALSE_MERGE_FALSE_SPLIT_AND_DELAY",
+    "alert_escalation": "SEPARATE_ACTION_TRACE; DEFAULT_NOT_EVALUATED_WHEN_ABSENT",
+    "heldout_blinding": "PUBLIC_DETERMINISTIC_SEED; PROCEDURAL_RESERVE_NOT_CRYPTOGRAPHICALLY_BLIND",
+    "efficacy_claim": "NONE"
   }
 }

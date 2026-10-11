@@ -96,6 +96,17 @@ class ObservableTrajectory:
             raise ValueError("cutoffs must be unique and sorted")
         if len(self.records) > _MAX_OBSERVATIONS_PER_WORLD:
             raise ValueError("world exceeds the registered record budget")
+        abnormal_observation_ids = {
+            record.observation_id
+            for record in self.records
+            if any(
+                field.name == "risk_flag"
+                and field.value in {"EXPOSURE", "EXPOSURE_HIGH"}
+                for field in record.fields
+            )
+        }
+        if len(abnormal_observation_ids) != 4:
+            raise ValueError("world must contain exactly four unique abnormal observation IDs")
         if len(self.cutoffs) > _MAX_CUTOFFS_PER_WORLD:
             raise ValueError("world exceeds the registered cutoff budget")
 
@@ -607,6 +618,13 @@ def score_world(
             is not association.ProposalAction.ABSTAIN
             for row in unknown_rows
         )
+        unknown_action_counts = {
+            action.value: sum(
+                final_actions.get(row.pair, association.ProposalAction.ABSTAIN) is action
+                for row in unknown_rows
+            )
+            for action in association.ProposalAction
+        }
         candidate_generation_recall_count = sum(
             any(row.pair in step.candidate_pairs for step in method_steps)
             for row in same_rows
@@ -632,6 +650,7 @@ def score_world(
             "coverage_denominator": len(scorer_only.pair_truths),
             "coverage": _safe_rate(coverage_count, len(scorer_only.pair_truths)),
             "non_abstaining_unknown_count": non_abstaining_unknown_count,
+            "unknown_action_counts": unknown_action_counts,
             "candidate_generation_recall_count": candidate_generation_recall_count,
             "candidate_generation_recall_denominator": len(same_rows),
             "candidate_generation_recall": _safe_rate(
@@ -713,7 +732,7 @@ def score_alert_escalation_misses(
 
 
 def aggregate_world_scores(world_scores: Sequence[Mapping[str, object]]) -> dict[str, object]:
-    """Aggregate world-level rates with equal world weight and no pseudo-replication."""
+    """Aggregate equally weighted worlds without allowing partial formal splits."""
     if not isinstance(world_scores, (tuple, list)) or any(
         not isinstance(item, Mapping) for item in world_scores
     ):
@@ -734,6 +753,24 @@ def aggregate_world_scores(world_scores: Sequence[Mapping[str, object]]) -> dict
         raise ValueError("each world score must carry a registered split_name")
     if len(set(split_names)) != 1:
         raise ValueError("development, held-out, and contract worlds cannot be aggregated together")
+    split_name = split_names[0]
+    if split_name in {"development", "heldout"}:
+        plan = get_split_plan(split_name)
+        if len(world_scores) != plan.world_budget:
+            raise ValueError("formal aggregation requires the complete registered split budget")
+        expected_strata = {
+            stratum.value: plan.worlds_per_stratum for stratum in SyntheticStratum
+        }
+        observed_strata: dict[str, int] = {}
+        for world in world_scores:
+            stratum = world.get("stratum")
+            if not isinstance(stratum, str) or stratum not in expected_strata:
+                raise ValueError("formal world score must carry a registered stratum")
+            observed_strata[stratum] = observed_strata.get(stratum, 0) + 1
+            if world.get("evaluation_cutoff") != _stamp(_EVALUATION_CUTOFF_SECONDS):
+                raise ValueError("formal worlds must share the registered evaluation cutoff")
+        if observed_strata != expected_strata:
+            raise ValueError("formal aggregation requires the registered balanced stratum allocation")
 
     methods = ("TIME_ASSET_RULE", "MULTI_EVIDENCE_RULE")
     aggregated: dict[str, object] = {}

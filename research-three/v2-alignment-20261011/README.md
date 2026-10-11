@@ -25,6 +25,8 @@
 - [`observable_association.py`](../../risk-fusion-bench/src/rfb/research/observable_association.py)：只接收逐字段可用时间的观测；实现时间/资产规则基线、多证据规则、共享候选集及输出冻结。D-S 只定义同一 `AssociationMethod` 调用接口，不执行。
 - [test_observable_association.py](../../risk-fusion-bench/tests/test_observable_association.py)：覆盖时序/未来前缀、ID 双射、转发重放、迟到输入、风险单 flag 升级、相邻资产、恢复再发、账本待确认衔接和测试专用评分器分母。
 - [IMPLEMENTATION_REVIEW_CLOSURE_20261011.md](IMPLEMENTATION_REVIEW_CLOSURE_20261011.md)：区分交接中转述的独立审查结果与本环境新运行的 focused 检查；保留旧失败与提交轨迹。
+- [FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md](FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md)：固定 world 分组、开发/预留 held-out 预算、候选全集、UNKNOWN 分母、计时/删失、升级漏报与停止条件；当前是审阅稿，未运行正式 split。
+- [`observable_association_evaluation.py`](../../risk-fusion-bench/src/rfb/research/observable_association_evaluation.py) 与 [test_observable_association_evaluation.py](../../risk-fusion-bench/tests/test_observable_association_evaluation.py)：离线合成 world 合同、共享候选/双规则冻结运行、pair 与延迟评分、独立升级评分；truth 保存在 scorer sidecar，held-out 生成需显式审阅门禁，本轮没有生成正式 split。
 - [`frozen_prefix_adapter.py`](../../risk-fusion-bench/src/rfb/research/frozen_prefix_adapter.py) 与 [test_heldout_prefix_adapter.py](../../risk-fusion-bench/tests/test_heldout_prefix_adapter.py)：最小不可变可见前缀适配器及合成泄漏/ID 同构/字段边界测试。两个策略臂共享同一物化前缀；这不实现或评价端到端事件确证。
 - [`event_card_resolution.py`](../../risk-fusion-bench/src/rfb/research/event_card_resolution.py) 与 [test_event_card_resolution.py](../../risk-fusion-bench/tests/test_event_card_resolution.py)：待确认双 episode 关系的纯函数转移；身份确证后保留或拆分展示卡，并记录时间、证据引用和双向历史链接。函数不判断真值或投递提醒。
 - [`build_event_card_preview`](../../risk-fusion-bench/src/rfb/research/alert_notification_preview.py) 与 [test_event_card_integration.py](../../risk-fusion-bench/tests/test_event_card_integration.py)：把外部身份结果与动作台账修订聚合为完整的合成卡片预览，保留当前内容、全部修订、关系链接和重放审计；会拒绝身份 episode、association ID、历史候选对、确证后分卡 episode、确证时间与修订动作时间、冲突确证状态或最新关联状态不一致的组合；正式发送保持 `NOT_DELIVERED`。该集成测试也让完整的不同未来后缀通过 frozen-prefix adapter，并核对同一 `as_of` 下的台账/卡片结果一致。
@@ -60,11 +62,13 @@ V2 公开来源固定在 `task/v2-public-spec-20261011` commit `cc6d59b88bda7338
 
 时间/资产基线和多证据规则对同一前缀、同一候选对集合运行。单一高风险 flag 和同源重放不增加独立源数；相邻但已核验的不同资产保持分开；可见恢复边界阻止跨恢复关联。规则只产出 `LINK_CANDIDATES`、`RETAIN_SEPARATELY` 或 `ABSTAIN`。只有候选链接调用现有 `AlertLedger.propose_association()`，结果保持 `PENDING`；不自动确证身份，不改提醒策略。配置中的时间、位置和值误差参数只服务于合成测试，不是生产阈值。
 
-测试专用 scorer 在算法输出序列化并哈希后才读取独立 world 分组、关系真值和首次充分证据时间。误合率与误拆率都使用预先固定的非重放候选全集作分母，未决单列并报告覆盖率；全拒判的覆盖率为零。该 scorer 测试只核对记分合同，不产生算法效能估计。本轮新规则 20 项单元测试和现有提醒/关联账本 29 项相关回归测试分别通过；I1 用例覆盖直接构造、截止时间替换、消费入口重验、ID 可用/可知时间保留与更晚合法冻结。该计数不与之前的 59 项结果累加，也没有运行正式盲测、大规模参数扫描、旧 1,464 检查试验、Mac 或真实通知。
+原 scorer 测试在算法输出序列化并哈希后才读取独立 world 分组、关系真值和首次充分证据时间。新增有限评价 scorer 仍保持该隔离；误合率、误拆率、覆盖率和决策延迟分别计分，UNKNOWN 计入 coverage 分母但不进入错误/延迟分母。新协议的四类 strata、12 个 development worlds、24 个预留 held-out worlds 和零参数搜索预算见草案。当前 7 项评价合同测试与 20 项关联规则测试共 27 项 focused unittest 通过；正式 development/held-out split 均未生成或评分。此前 I1 本地记录为 20 项关联规则及 29 项提醒/关联账本测试通过；本轮未重跑账本回归。没有运行大规模参数扫描、旧 1,464 检查试验、Mac 或真实通知。
 
 从 `risk-fusion-bench/` 重跑：
 
 ```sh
 PYTHONPATH=src python -m unittest -v tests.test_observable_association
+PYTHONPATH=src python -m unittest -v tests.test_observable_association_evaluation
+PYTHONPATH=src python -m unittest -v tests.test_observable_association tests.test_observable_association_evaluation
 PYTHONPATH=src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency
 ```

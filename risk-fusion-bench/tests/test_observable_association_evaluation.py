@@ -231,7 +231,23 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
         self.assertEqual(baseline["coverage_denominator"], 6)
         self.assertEqual(baseline["non_abstaining_unknown_count"], 1)
         self.assertEqual(
+            baseline["unknown_action_counts"],
+            {
+                association.ProposalAction.LINK_CANDIDATES.value: 1,
+                association.ProposalAction.RETAIN_SEPARATELY.value: 0,
+                association.ProposalAction.ABSTAIN.value: 0,
+            },
+        )
+        self.assertEqual(
             scored["methods"]["MULTI_EVIDENCE_RULE"]["coverage_count"], 0
+        )
+        self.assertEqual(
+            scored["methods"]["MULTI_EVIDENCE_RULE"]["unknown_action_counts"],
+            {
+                association.ProposalAction.LINK_CANDIDATES.value: 0,
+                association.ProposalAction.RETAIN_SEPARATELY.value: 0,
+                association.ProposalAction.ABSTAIN.value: 1,
+            },
         )
 
         with self.assertRaises(ValueError):
@@ -257,6 +273,25 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
                 self.assertLessEqual(len(world.observable.cutoffs), 8)
                 self.assertEqual(len(world.scorer_only.pair_truths), 6)
                 self.assertEqual(len(evaluation.run_two_methods(world.observable)), 2 * len(world.observable.cutoffs))
+
+        replay_world = evaluation.generate_synthetic_world(
+            seed=9917,
+            world_index=99,
+            stratum=evaluation.SyntheticStratum.DEPENDENT_REPLAY_UNKNOWN,
+        )
+        known_record = replay_world.observable.records[0]
+        extra_abnormal_record = association.ObservationRecord(
+            observation_id="OBS-EXTRA-ABNORMAL",
+            id_actual_available_at=known_record.id_actual_available_at,
+            id_earliest_known_at=known_record.id_earliest_known_at,
+            received_at=known_record.received_at,
+            fields=known_record.fields,
+        )
+        with self.assertRaises(ValueError):
+            evaluation.ObservableTrajectory(
+                records=replay_world.observable.records + (extra_abnormal_record,),
+                cutoffs=replay_world.observable.cutoffs,
+            )
 
     def test_wrong_early_decision_does_not_end_valid_decision_time(self):
         require_api(self)
@@ -359,6 +394,45 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
         )
         with self.assertRaises(ValueError):
             evaluation.aggregate_world_scores((development_score, heldout_score))
+        with self.assertRaises(ValueError):
+            evaluation.aggregate_world_scores((development_score,))
+        with self.assertRaises(ValueError):
+            evaluation.aggregate_world_scores((heldout_score,))
+
+        balanced_strata = tuple(
+            stratum
+            for stratum in evaluation.SyntheticStratum
+            for _ in range(3)
+        )
+        balanced_development_scores = tuple(
+            dict(
+                score,
+                split_name="development",
+                world_group_id=f"WORLD-DEV-{index}",
+                stratum=stratum.value,
+            )
+            for index, stratum in enumerate(balanced_strata)
+        )
+        balanced_aggregate = evaluation.aggregate_world_scores(balanced_development_scores)
+        self.assertEqual(balanced_aggregate["independent_world_count"], 12)
+
+        unbalanced_strata = (
+            (evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,) * 4
+            + (evaluation.SyntheticStratum.ADJACENT_DISTINCT_ASSETS,) * 2
+            + (evaluation.SyntheticStratum.RECOVERY_THEN_NEW_EVENT,) * 3
+            + (evaluation.SyntheticStratum.DEPENDENT_REPLAY_UNKNOWN,) * 3
+        )
+        unbalanced_development_scores = tuple(
+            dict(
+                score,
+                split_name="development",
+                world_group_id=f"WORLD-UNBALANCED-{index}",
+                stratum=stratum.value,
+            )
+            for index, stratum in enumerate(unbalanced_strata)
+        )
+        with self.assertRaises(ValueError):
+            evaluation.aggregate_world_scores(unbalanced_development_scores)
 
 
 if __name__ == "__main__":

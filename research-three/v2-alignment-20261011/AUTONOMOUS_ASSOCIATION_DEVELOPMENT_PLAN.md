@@ -162,3 +162,25 @@ The second command is the existing reminder/association characterization boundar
 ## Formal Evaluation Gate
 
 This stage does not estimate efficacy. Before a blinded evaluation, submit the independent-world generation procedure, seed policy, sample/budget, candidate-universe rules, rule parameters, scorer contract, and stopping/holdout split to the parent for review. Keep scorer truth and first-sufficient-evidence records sealed until each method's canonical output is hashed. Do not change the existing reminder policy after observing new rule outputs.
+
+## Subsequent task: finite synthetic evaluation contract (2026-10-11)
+
+### Outcome
+
+- Added [`FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md`](FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md) as `REVIEW_DRAFT`; it freezes four strata, 12 development worlds, 24 reserved held-out worlds, public deterministic seeds, zero hyperparameter-search slots per arm, a fixed six-pair universe, UNKNOWN treatment, time-to-correct-decision/right-censoring, separate alert escalation scoring, and whole-run stop conditions.
+- Added `risk-fusion-bench/src/rfb/research/observable_association_evaluation.py`, a standard-library-only generator/scorer contract. Each cutoff materializes one visible prefix and candidate set shared by both fixed rule arms; outputs are frozen before the scorer sidecar is read. Formal split sidecars must include all six pairs among four abnormal observation IDs and the registered UNKNOWN count. World aggregation rejects duplicate world groups and mixed splits.
+- Added `risk-fusion-bench/tests/test_observable_association_evaluation.py` with seven test methods. Tests use only single-world `contract_test` fixtures and assert deterministic generation, label isolation, late-known facts, replay/root behavior, fixed denominators, timing/censoring, separate alert escalation, split gates, and the formal scorer/aggregation guards.
+- Linked the protocol and implementation from the research README. The Mac persistence manifest is refreshed after code review and commit, with local-relative paths and SHA-256/byte-size entries; it intentionally does not conflate cloud paths with a Mac checkout root.
+
+### Test-first evidence and execution boundary
+
+- Initial RED: six evaluation tests failed because the requested module did not exist. Adding the late-known-fact contract produced its expected RED before implementation; the separate alert-action input assertion also first failed because `score_world` did not yet accept an alert trace.
+- After the first implementation, two additional negative assertions exposed missing fail-closed checks: a manually incomplete formal split could shrink the fixed pair denominator, and aggregation could mix development with held-out scores. Both failed before the guards were added and passed afterward.
+- Final focused command from `risk-fusion-bench/`: `PYTHONPATH=src python -m unittest -v tests.test_observable_association_evaluation` — **7 test methods passed**.
+- Final combined command: `PYTHONPATH=src python -m unittest -v tests.test_observable_association tests.test_observable_association_evaluation` — **27 tests passed** (20 existing association tests + 7 evaluation contract tests).
+- `tests.test_alert_governance tests.test_alert_governance_idempotency` were not rerun in this stage because no ledger code changed; the prior 29-test pass remains historical evidence. The user-provided independent retest summary for commit `dadffcd…` (20 association + 29 ledger, plus 10 negative cases) remains labeled as a handoff summary, not a current-session run.
+- No registered 12-world development or 24-world held-out split was generated or scored; no parameter search, Mac/device/real-delivery validation, original 1,464-check trial, model/network call, or untrusted payload/runner qualification occurred. Public seeds mean the reserved held-out split is procedural rather than cryptographically blind. The earlier Mac V3-RSS whole-trial failure and its denominator limitation remain unchanged in the protocol's historical evidence section.
+
+### Review gate
+
+Submit this protocol and implementation for independent review before any formal split generation. Review must address scorer denominators, truth isolation, candidate parity, world independence, timing/censoring, stop conditions, and whether the declared budgets match the code. Any fix requires a focused RED-to-GREEN test and a new reviewed protocol/code SHA before held-out data is generated or scored.
