@@ -1,0 +1,22 @@
+{
+  "base_branch": "task/research-three-v2-alignment-20261011",
+  "base_commit": "94f2fbc88fab98f56521f7bed919cb8cfd821b95",
+  "execution_started": false,
+  "freeze_record_excludes_itself": true,
+  "freeze_record_version": "protocol-freeze-v1",
+  "freeze_status": "FROZEN_BEFORE_EXECUTION",
+  "frozen_at_utc": "2026-10-11T16:30:52Z",
+  "frozen_original_configuration_sha256": "8cb45203d70180fed60b8a84be64d84d4b5bd1e39538b01e56b8b556c5b0e01a",
+  "heldout_accessed": false,
+  "method_calls_made": 0,
+  "method_source_matches_commit_c34d97e": true,
+  "method_source_path": "risk-fusion-bench/src/rfb/research/observable_association.py",
+  "method_source_sha256": "d6fbebee538cf9ad68b35076b995f5f1bf962efc27350e098c2dfea655c27afe",
+  "model_or_network_used": false,
+  "notification_or_device_used": false,
+  "previous_development_attempt_02_manifest_sha256": "ff5411c0c498e1316255e673f2bbe9c5684a05c844ecff353f812b42f124b60d",
+  "protocol_id": "same-root-vs-event-identity-2x2-v1.0.0",
+  "protocol_sha256": "694b002cc7073b867bdd01982be94cb020c53d5ed576a83592e4dfaec64ae97c",
+  "randomness_used": false,
+  "scorer_only_predeclaration_sha256": "7bb7476ff568dfee1de55144f7130c717286a983a273830ff56ed3a8b91eaa60"
+}

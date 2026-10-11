@@ -1,0 +1,95 @@
+{
+  "artifact_version": "2x2-scorer-only-predeclaration-v1",
+  "truth_generation_basis": {
+    "basis_id": "synthetic_event_registry_v1",
+    "relation_rule": "SAME iff both observation IDs map to the same predeclared synthetic event key; otherwise DIFFERENT",
+    "assigned_before_method_execution": true,
+    "derived_from_method_features_or_outputs": false,
+    "real_truth_claim": false
+  },
+  "source_dependence_basis": {
+    "basis_id": "synthetic_source_family_graph_v1",
+    "independence_rule": "Two observations count as source-independent only when their predeclared source-family IDs differ and the fixture declares no shared ancestor; root-string count alone is not independence.",
+    "assigned_before_method_execution": true,
+    "visible_to_methods": false
+  },
+  "identifiability_policy": {
+    "status": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+    "criterion": "Opposite-label cases with byte-identical canonical method-input templates are not scored for truth accuracy.",
+    "pairs": [
+      ["R1-SAME", "R1-DIFF"],
+      ["R2-SAME", "R2-DIFF"]
+    ],
+    "visible_input_hash_confirmation_required": true
+  },
+  "cases": [
+    {
+      "case_id": "R1-SAME",
+      "method_input_template": "V1_ONE_ROOT",
+      "observation_event_keys": {
+        "OBS-PILOT-A": "EVENT-ONE-A",
+        "OBS-PILOT-B": "EVENT-ONE-A"
+      },
+      "event_relation": "SAME",
+      "acquisition_root_relation": "SAME_ROOT_ID",
+      "source_family_by_observation": {
+        "OBS-PILOT-A": "FAMILY-ONE-STREAM",
+        "OBS-PILOT-B": "FAMILY-ONE-STREAM"
+      },
+      "source_dependence": "SHARED_SOURCE_FAMILY",
+      "identifiability": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+      "counterfactual_clone": "R1-DIFF"
+    },
+    {
+      "case_id": "R1-DIFF",
+      "method_input_template": "V1_ONE_ROOT",
+      "observation_event_keys": {
+        "OBS-PILOT-A": "EVENT-ONE-A",
+        "OBS-PILOT-B": "EVENT-ONE-B"
+      },
+      "event_relation": "DIFFERENT",
+      "acquisition_root_relation": "SAME_ROOT_ID",
+      "source_family_by_observation": {
+        "OBS-PILOT-A": "FAMILY-ONE-STREAM",
+        "OBS-PILOT-B": "FAMILY-ONE-STREAM"
+      },
+      "source_dependence": "SHARED_SOURCE_FAMILY",
+      "identifiability": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+      "counterfactual_clone": "R1-SAME"
+    },
+    {
+      "case_id": "R2-SAME",
+      "method_input_template": "V2_TWO_ROOT_IDS",
+      "observation_event_keys": {
+        "OBS-PILOT-A": "EVENT-TWO-A",
+        "OBS-PILOT-B": "EVENT-TWO-A"
+      },
+      "event_relation": "SAME",
+      "acquisition_root_relation": "DISTINCT_ROOT_IDS",
+      "source_family_by_observation": {
+        "OBS-PILOT-A": "FAMILY-TWO-A",
+        "OBS-PILOT-B": "FAMILY-TWO-B"
+      },
+      "source_dependence": "DISJOINT_SOURCE_FAMILIES",
+      "identifiability": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+      "counterfactual_clone": "R2-DIFF"
+    },
+    {
+      "case_id": "R2-DIFF",
+      "method_input_template": "V2_TWO_ROOT_IDS",
+      "observation_event_keys": {
+        "OBS-PILOT-A": "EVENT-TWO-A",
+        "OBS-PILOT-B": "EVENT-TWO-B"
+      },
+      "event_relation": "DIFFERENT",
+      "acquisition_root_relation": "DISTINCT_ROOT_IDS",
+      "source_family_by_observation": {
+        "OBS-PILOT-A": "FAMILY-TWO-COMMON",
+        "OBS-PILOT-B": "FAMILY-TWO-COMMON"
+      },
+      "source_dependence": "SHARED_UPSTREAM_SOURCE_FAMILY",
+      "identifiability": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+      "counterfactual_clone": "R2-SAME"
+    }
+  ]
+}
