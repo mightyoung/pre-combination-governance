@@ -42,14 +42,14 @@ No raw payload was copied or published. The normalized sample contains only one 
 
 ## Next bounded observation
 
-Obtain one locally saved USGS detail JSON or NWS CAP message, with the collector’s actual UTC receipt time and a SHA-256 over the exact saved bytes. Preserve the source URL, retrieval time, response headers where available, and any native message/product references. Then inspect at least one explicit revision/forwarding relation and its raw evidence. If the sample still has no receiver receipt or two-sided hop record, keep lineage as `UNKNOWN` and stop before a method prototype.
+Obtain one locally saved USGS detail JSON or NWS CAP message, with the collector’s actual UTC receipt time and a SHA-256 over the exact saved bytes when available. Preserve the source URL, retrieval time, response headers where available, and any native message/product references. A real source-declared message revision (for example, CAP `Update`/`Cancel` plus its `<references>` chain) is enough to start a narrow read-only card-version, exact-replay, and risk-field mapping prototype. If receiver time is missing, delivery latency remains `UNKNOWN`; if two-sided hop records are missing, transport lineage and source independence remain `UNKNOWN`. Those missing receipts do not block the card lifecycle prototype.
 
-Before any association prototype, answer:
+Before making stronger claims, answer:
 
-1. Can the source provide a stable native record/event identifier and the actual bytes or an independently verifiable digest?
-2. Is there an explicit parent/reference relation, or sender/receiver/broker receipt pair with timestamps and cursor/offset?
-3. What bounded export window or sequence range supports a completeness claim?
-4. What independent evidence adjudicates same-event versus different-event status? If unavailable, retain `NOT_SCORED_UNIDENTIFIABLE`.
+1. For message-version history, does the source expose stable native message IDs and an explicit revision/reference relation? For byte-exact replay deduplication, are the original bytes or a source-supported digest available?
+2. For receipt/latency claims, is there a client-side receive timestamp? For verified transport lineage/independence, are there attributed sender/receiver/broker receipts with timestamps and cursor/offset?
+3. What bounded export window or sequence range supports a completeness claim? This is required for completeness, not for a bounded one-series card-version prototype.
+4. What independent evidence adjudicates same-event versus different-event status? If unavailable, retain `NOT_SCORED_UNIDENTIFIABLE` while continuing non-identity card lifecycle work.
 
 The existing four-case minimum and scorer-sidecar separation in [`SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md`](../../SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md) remain the gate for a future distinguishability study. This audit does not revise prior synthetic metrics, the recorded 1,464-check failure, or any historical Mac status.
 
