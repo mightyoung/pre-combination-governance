@@ -73,7 +73,9 @@ held-out 采样框应覆盖以下模式；它们只描述抽样维度，不成�
 
 本地最小适配器位于 [`frozen_prefix_adapter.py`](../../risk-fusion-bench/src/rfb/research/frozen_prefix_adapter.py)，用例位于 [`test_heldout_prefix_adapter.py`](../../risk-fusion-bench/tests/test_heldout_prefix_adapter.py)。`PrefixFieldFact` 记录字段值、声明的 producer、`earliest_known_at` 与 evidence refs，并将时间字符串规范为 UTC `Z`；`freeze_visible_prefix` 只选 `as_of` 时刻可见的最新字段版本。同字段、同一 UTC 时刻的重复事实只有在值按递归、类型敏感规则完全一致且来源元数据相同时才去重；例如 `True`/`1`、`1`/`1.0` 及嵌套 tuple 中的对应值均视为冲突。该规则保持输入顺序无关；值或来源元数据冲突仍失败关闭，不做数值类型合并。`FrozenVisiblePrefix` 数据类型自身也拒绝晚于 `as_of` 的字段和重复字段，避免直接构造绕过过滤。它不验证 producer 的真实性、推断身份、定义业务阈值或读取 scorer 真值。适配器只提供阶段一的数据边界；端到端事件识别与确证仍未实现或评价。
 
-纯软件身份转移函数位于 [`event_card_resolution.py`](../../risk-fusion-bench/src/rfb/research/event_card_resolution.py)，focused 用例位于 [`test_event_card_resolution.py`](../../risk-fusion-bench/tests/test_event_card_resolution.py)。它把外部提供且带证据时间的 `DIFFERENT_CONFIRMED` 映射为原卡/新卡两个身份记录和双向历史链接；新卡 ID 必须由调用方稳定提供。`UNKNOWN_PENDING` / `CONFLICT_PENDING` 期间只保留两个候选 episode，不做身份合并；`SAME_CONFIRMED` 才在现有卡保留两个 episode 引用。函数不推断确证、不产生用户文案或执行投递。提醒动作台账仍未接入这个身份转移结果，完整卡片渲染与真实用户可见性仍待实现和评价。
+纯软件身份转移函数位于 [`event_card_resolution.py`](../../risk-fusion-bench/src/rfb/research/event_card_resolution.py)，focused 用例位于 [`test_event_card_resolution.py`](../../risk-fusion-bench/tests/test_event_card_resolution.py)。它把外部提供且带证据时间的 `DIFFERENT_CONFIRMED` 映射为原卡/新卡两个身份记录和双向历史链接；新卡 ID 必须由调用方稳定提供。`UNKNOWN_PENDING` / `CONFLICT_PENDING` 期间只保留两个候选 episode，不做身份合并；`SAME_CONFIRMED` 才在现有卡保留两个 episode 引用。函数不推断确证、不产生用户文案或执行投递。
+
+[`build_event_card_preview`](../../risk-fusion-bench/src/rfb/research/alert_notification_preview.py) 将外部身份结果、`ReminderActionLedger` 中的全部卡片修订与各修订的公开 V2 通知内容预览汇总成合成完整卡片视图，包含事件 episode、候选、历史卡链接、当前通知内容、修订历史与重放审计。公共 V2 record schema 仍只有字段存在性要求，没有冻结卡片聚合类型合同；该视图标记 `SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY`、`business_acceptance=NOT_EVALUATED`、`NOT_DELIVERED`，不代表实际 UI、投递或真实事件确证。小型集成夹具位于 [`test_event_card_integration.py`](../../risk-fusion-bench/tests/test_event_card_integration.py)；同一待核前缀分别接入外部给定的 SAME 与 DIFFERENT 后续，另检查重复回放不增发动作、单 flag 升级再次提醒。接口不支持 `task_ids` 重绑定，本轮没有假设该语义。
 
 对同一前缀替换任意未来后缀，两个策略臂的冻结输入与策略形状都应保持一致。对所有随机 ID 做一致重命名，策略输出的计数、状态与关系结构应保持同构，仅相应 ID 改变。ID 同构只检查策略对标识符不敏感，不说明事件关系正确。适配器测试输入是显式合成值，不纳入数据集、独立样本分母或效果估计。
 
@@ -107,6 +109,10 @@ held-out 采样框应覆盖以下模式；它们只描述抽样维度，不成�
 | `task_ids` 重绑定场景 | 当前输入/预览接口不支持 `task_ids` 绑定 | 暂不可评价，不得伪造 task ID |
 
 仓库中的 [`研究方向调研-G1-G8/dataset.md`](../../研究方向调研-G1-G8/dataset.md) 记录了候选数据集官方渠道与获取/许可状态，其中注明尚未下载；该候选清单不证明其中存在本研究所需的真实事件边界、原始来源时间或最早可知时间标签。进入 held-out 前，须取得可合法使用的逐事件轨迹、原始来源与 `known_time` 证据、事件簇裁决依据、切分清单及数据版本哈希。若完整 Mac V2 私有规格要参与合同核验，仍需提供主规格、字段/schema、指标定义和版本/修订清单；本分支不推断这些缺失内容。
+
+### 独立复核摘要与边界（用户转述）
+
+用户转述的最后一轮独立验证报告：14 项 focused tests 原样通过；类型敏感同刻重复事实对 `True`/`1`、`1`/`1.0` 与深层 tuple 的 16 种正反组合均拒绝；12 组合法重复/等价 UTC 时刻的哈希稳定；对 `dataclasses.replace` 将前缀时间提前的构造路径拒绝。范围标记为 `C0/I0/M0`，其报告中没有提供标记释义或原始日志，因此本协议只保存摘要，不复制日志，也不扩大为真实事件确证准确度、内容完整性或提醒及时性验收。
 
 ### 下一阶段入口
 

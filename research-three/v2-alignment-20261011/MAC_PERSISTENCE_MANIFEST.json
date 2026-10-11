@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
-      "bytes": 16548,
-      "sha256": "071c87ddf9423b50bc19ce851e9d444d63e0bf332c5ca63e14ede0105127a1f7"
+      "bytes": 17967,
+      "sha256": "16fdf43ee366e174b2aef832f7169433f2d7b2a37079b631dfd33a154ffc0520"
     },
     {
       "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
@@ -42,13 +42,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/IMPLEMENTATION_REVIEW_CLOSURE_20261011.md",
-      "bytes": 3904,
-      "sha256": "4e8833c6a6097ce58c97e66bf49e013a876a60f51c86b10bb67be5fcc41968eb"
+      "bytes": 5040,
+      "sha256": "b70faad36053b1b353cc3c7b509e0da1b5c8a31c9bc82210884d0022da89f2c0"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 8357,
-      "sha256": "637f6999cafbb414068326c063e7a1d2160ece721a18e20065e5cb377b50be8d"
+      "bytes": 8775,
+      "sha256": "bc533c1987530806c77b5f3c08a172098cb0df75ce8534b3046c82179b54acd6"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -117,8 +117,8 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
-      "bytes": 11991,
-      "sha256": "3d7a85f13b206f74fa707c9c4e64aa96cc8d5e721344647e9c2cdd40c36e8961"
+      "bytes": 21017,
+      "sha256": "c0ba8d9f76fc0a89293230f02cef9d6ea0901595a8fdb2d3f6dade8608f1022b"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
@@ -156,6 +156,11 @@
       "sha256": "bad77dbcb75f87cfb5ab93771be275ed2b4861b2bdbcbc6ae65f7383d1cd4f6e"
     },
     {
+      "path": "risk-fusion-bench/tests/test_event_card_integration.py",
+      "bytes": 10147,
+      "sha256": "54a0a6beebcc60b400259e3638040c6cff0f30045f8c79dec7d4a9b5d8daa417"
+    },
+    {
       "path": "risk-fusion-bench/tests/test_event_card_resolution.py",
       "bytes": 5038,
       "sha256": "ad86e2857b05ce203b92aa407dc35bef6b71a9b9004cb90e54d0251bc9d949f9"
@@ -172,5 +177,6 @@
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11",
   "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
   "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
-  "focused_local_validation": "PASS; 14 synthetic-only unittest cases across test_heldout_prefix_adapter and test_event_card_resolution, covering recursive type-sensitive same-time value equivalence (bool/int, int/float, nested tuples) and fail-closed conflicts; old 1464-check trial not run."
+  "focused_local_validation": "PASS; 54 related pure-software unittest cases across event-card integration, notification preview, identity resolution, action ledger, frozen-prefix adapter, public V2 mapping/idempotency, and synthetic action scenarios. Includes externally supplied SAME/DIFFERENT forks, duplicate replay without new action/revision, severity-upgrade reminder, and typed duplicate-equivalence checks. Synthetic-only; old 1464-check trial not rerun; Mac not validated.",
+  "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance."
 }

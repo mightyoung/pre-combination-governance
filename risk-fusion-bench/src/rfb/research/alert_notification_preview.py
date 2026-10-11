@@ -9,8 +9,18 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import Any
 
-from .alert_action_experiment import ActionIntent
+from .alert_action_experiment import (
+    ActionIntent,
+    ApplyStatus,
+    CardRevision,
+    ReminderActionLedger,
+)
 from .alert_governance_v2 import severity_for_risk_flag
+from .event_card_resolution import (
+    AssociationResolution,
+    EventDisplayCard,
+    PendingAssociation,
+)
 
 
 PUBLIC_V2_SPEC_COMMIT = "cc6d59b88bda73381fc09d9091a224ab4155891e"
@@ -219,6 +229,217 @@ def build_notification_content_preview(
     }
     preview["field_audit"] = audit_notification_preview(preview)
     return preview
+
+
+def _intent_from_card_revision(revision: CardRevision) -> ActionIntent:
+    return ActionIntent(
+        intent_id=revision.intent_id,
+        display_card_id=revision.display_card_id,
+        kind=revision.kind,
+        risk_stage=revision.risk_stage,
+        received_at=revision.received_at,
+        observation_ids=revision.observation_ids,
+        source_ids=revision.source_ids,
+        candidate_episode_ids=revision.candidate_episode_ids,
+        association_ids=revision.association_ids,
+        evidence_refs=revision.evidence_refs,
+        risk_flags=revision.risk_flags,
+        risk_basis_ids=revision.risk_basis_ids,
+        source_times=revision.source_times,
+        observed_at_times=revision.observed_at_times,
+        experiment_batch_id=revision.experiment_batch_id,
+        association_state=revision.association_state,
+        dedup_episode_interval_key=revision.dedup_episode_interval_key,
+        trigger_known_time=revision.trigger_known_time,
+        detected_at=revision.detected_at,
+    )
+
+
+def _identity_card_details(
+    identity: PendingAssociation | AssociationResolution,
+    card_id: str,
+) -> tuple[list[str], list[str], list[str], str, dict[str, Any]]:
+    if isinstance(identity, PendingAssociation):
+        if card_id != identity.display_card_id:
+            raise ValueError("pending association belongs to a different display card")
+        return (
+            [],
+            list(identity.candidate_episode_ids),
+            [],
+            identity.association_state,
+            {
+                "association_id": identity.association_id,
+                "association_state": identity.association_state,
+                "state_source": "EXTERNALLY_SUPPLIED_PENDING_STATE",
+                "pending_at": identity.pending_at,
+                "evidence_refs": list(identity.evidence_refs),
+                "identity_truth": "NOT_EVALUATED",
+            },
+        )
+
+    if not isinstance(identity, AssociationResolution):
+        raise TypeError("identity must be PendingAssociation or AssociationResolution")
+    card = next(
+        (item for item in identity.display_cards if item.card_id == card_id), None
+    )
+    if card is None:
+        raise ValueError("display card is not part of the association resolution")
+    pair_episode_ids = list(
+        dict.fromkeys(
+            episode_id
+            for item in identity.display_cards
+            for episode_id in item.episode_ids
+        )
+    )
+    return (
+        list(card.episode_ids),
+        pair_episode_ids,
+        list(card.history_link_card_ids),
+        identity.association_state,
+        {
+            "association_id": identity.association_id,
+            "association_state": identity.association_state,
+            "reason_code": identity.reason_code,
+            "state_source": "EXTERNALLY_SUPPLIED_RESOLUTION",
+            "pending_at": identity.pending_at,
+            "identity_evidence_known_at": identity.identity_evidence_known_at,
+            "resolved_at": identity.resolved_at,
+            "evidence_refs": list(identity.evidence_refs),
+            "identity_truth": "NOT_EVALUATED",
+        },
+    )
+
+
+def build_event_card_preview(
+    identity: PendingAssociation | AssociationResolution,
+    *,
+    card_id: str,
+    ledger: ReminderActionLedger,
+) -> dict[str, Any]:
+    """Aggregate a full synthetic card preview from identity and ledger history.
+
+    The identity state is supplied by the caller. This function renders no real
+    event truth or delivery receipt; each in-memory revision uses the public
+    notification preview and remains marked NOT_DELIVERED.
+    """
+    if not isinstance(ledger, ReminderActionLedger):
+        raise TypeError("ledger must be a ReminderActionLedger")
+    event_episode_ids, association_episode_ids, history_links, association_state, identity_record = (
+        _identity_card_details(identity, card_id)
+    )
+
+    revisions = ledger.card_revisions_for(card_id)
+    notification_by_intent = {
+        revision.intent_id: notification
+        for notification in ledger.notifications
+        for revision in notification.updates
+    }
+    decision_by_intent = {
+        decision.intent_id: decision
+        for decision in ledger.decisions
+        if decision.status is not ApplyStatus.DUPLICATE_REPLAY
+    }
+
+    revision_previews: list[dict[str, Any]] = []
+    for index, revision in enumerate(revisions):
+        decision = decision_by_intent.get(revision.intent_id)
+        notification = notification_by_intent.get(revision.intent_id)
+        if decision is None or notification is None:
+            raise ValueError("card revision is missing its action decision or notification")
+        intent = _intent_from_card_revision(revision)
+        previous = revisions[index - 1] if index else None
+        trace = {
+            "intent_id": revision.intent_id,
+            "action_kind": revision.kind.value,
+            "decision_status": decision.status.value,
+            "decision_reason": decision.decision_reason,
+            "notification_id": notification.experiment_notification_id,
+            "display_card_id": card_id,
+            "content_revision": revision.revision,
+            "previous_content_revision": previous.revision if previous else None,
+            "previous_intent_id": previous.intent_id if previous else None,
+            "association_state": revision.association_state,
+            "candidate_episode_ids": list(revision.candidate_episode_ids),
+            "evidence_refs": list(revision.evidence_refs),
+            "source_times": list(revision.source_times),
+            "observed_at_times": list(revision.observed_at_times),
+            "trigger_known_time": revision.trigger_known_time,
+            "detected_at": revision.detected_at,
+            "received_at_processing_time": revision.received_at,
+            "provenance": "SYNTHETIC_ACTION_LEDGER_REVISION",
+        }
+        revision_previews.append(
+            build_notification_content_preview(
+                intent,
+                notification_id=notification.experiment_notification_id,
+                content_revision=revision.revision,
+                decision_status=decision.status.value,
+                revision_trace=trace,
+            )
+        )
+
+    revision_intent_ids = {revision.intent_id for revision in revisions}
+    replay_attempts = [
+        {
+            "intent_id": decision.intent_id,
+            "status": decision.status.value,
+            "decision_reason": decision.decision_reason,
+            "notification_id": decision.experiment_notification_id,
+            "new_revision_created": False,
+            "new_notification_created": False,
+            "delivery_status": "NOT_DELIVERED",
+        }
+        for decision in ledger.decisions
+        if decision.status is ApplyStatus.DUPLICATE_REPLAY
+        and decision.intent_id in revision_intent_ids
+    ]
+
+    current_content = revision_previews[-1] if revision_previews else None
+    candidate_episode_ids = (
+        current_content["candidate_episode_ids"]
+        if current_content is not None
+        else association_episode_ids
+    )
+    card_notifications = tuple(
+        notification
+        for notification in ledger.notifications
+        if notification.display_card_id == card_id
+    )
+    all_required_fields_present = bool(revision_previews) and all(
+        preview["field_audit"]["all_required_fields_present"]
+        for preview in revision_previews
+    )
+    return {
+        "preview_status": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY",
+        "card_content_scope": "ALL_LEDGER_REVISIONS_PLUS_IDENTITY_LINKS",
+        "delivery_status": "NOT_DELIVERED",
+        "emitted_at": None,
+        "visible_at": None,
+        "display_card_id": card_id,
+        "event_episode_ids": event_episode_ids,
+        "candidate_episode_ids": candidate_episode_ids,
+        "association_context_episode_ids": association_episode_ids,
+        "association_state": association_state,
+        "history_link_card_ids": history_links,
+        "identity_resolution": identity_record,
+        "content_revision_count": len(revisions),
+        "notification_action_count": len(card_notifications),
+        "notification_ids": [
+            notification.experiment_notification_id for notification in card_notifications
+        ],
+        "revision_history": revision_previews,
+        "current_content": current_content,
+        "replay_attempts": replay_attempts,
+        "replay_attempt_count": len(replay_attempts),
+        "card_preview_audit": {
+            "all_required_fields_present": all_required_fields_present,
+            "revision_count": len(revision_previews),
+            "business_acceptance": "NOT_EVALUATED",
+            "identity_truth": "NOT_EVALUATED",
+            "delivery_evidence": "NOT_RUN",
+        },
+        "business_acceptance": "NOT_EVALUATED",
+    }
 
 
 def audit_notification_preview(preview: Mapping[str, Any]) -> dict[str, Any]:
