@@ -2,7 +2,7 @@
   "manifest_version": "research-artifact-manifest-v1",
   "artifact_set": "real-source-observability-audit-usgs-summary-20261011",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "1789d54f863bd1eecf8736a973212c2920d250b6",
+  "source_commit": "ed0b972c67f8e3d4250c21ff2c728687c090e990",
   "scope": "One real public USGS GeoJSON feature and its read-only field audit; no lineage/association prototype or raw feed body.",
   "sha256_scope": "All listed deliverables; manifest does not hash itself.",
   "contains_raw_payload": false,
@@ -33,8 +33,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_SOURCE_AUDIT.md",
-      "bytes": 6220,
-      "sha256": "a285d94081ffebfd2664fad2b50a9ebc0c2228fd3ae20111ed64aa2195397a6f"
+      "bytes": 6770,
+      "sha256": "bebdb8ea2b074fd5778e8c873e34ac3f86361fe03fead214ba2f8b0752d68d29"
     }
   ]
 }
