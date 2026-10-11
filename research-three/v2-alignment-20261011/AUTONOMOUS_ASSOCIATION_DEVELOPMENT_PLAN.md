@@ -137,6 +137,7 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - `git diff --check`: passed. No formal/blinded scoring run, broad suite, old 1,464-check trial, Mac/device test, transport or executor probe, model/network call, payment, install, or credential access was used.
 - Synthetic test inputs are constructed in `risk-fusion-bench/tests/test_observable_association.py`; they are not measurements or production thresholds. Source/test SHA-256 values and the exact persisted artifact list are bound in `MAC_PERSISTENCE_MANIFEST.json` after final code review.
 - Deviation: the two extra boundary characterization tests were added after the original implementation was green to make unknown dependencies and changed-content replay rejection explicit. They passed without code changes; they are not part of the recorded RED stage.
+- Independent review of code commit `27ceb16110d31c1e194c4328b684cb65dd0ab681` found no important implementation correctness issue. It identified that the baseline lacked a positive-link assertion; commit `72944b6fcbb57719b32f3377de12f1f2bdb7574c` adds that assertion to the existing cross-modal test, and the focused 16-test suite passes. The review also noted that the manifest was absent from the reviewed code commit; the separate manifest commit `fc9d6e31af40783248ba9b15805137516fbdeda9` added it and verified all 38 listed file hashes. This review scope does not claim efficacy; the scorer remains a fixed-pair denominator/abstention contract check only.
 
 ## Verification Commands
 

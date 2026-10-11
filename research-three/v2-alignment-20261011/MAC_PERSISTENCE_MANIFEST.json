@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "27ceb16110d31c1e194c4328b684cb65dd0ab681",
+  "source_commit": "72944b6fcbb57719b32f3377de12f1f2bdb7574c",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
-      "bytes": 17980,
-      "sha256": "0f27a8607a0872232e9a13d49cd82667087df7d1f1ab8da034430409ba61ee01"
+      "bytes": 18642,
+      "sha256": "49ca60701b647297416fb35e9096a39e4021ea62d0d01ef51b11e159b3ac1956"
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
@@ -207,8 +207,8 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_observable_association.py",
-      "bytes": 29920,
-      "sha256": "ce1498c59d0677a88eba078b273541617b3f3c16c114ac910049af2bd74aeccd"
+      "bytes": 30333,
+      "sha256": "6486978518303ca01a8c17774461e644e99e5c7f03f8f75290a60608fec93fe4"
     }
   ],
   "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
