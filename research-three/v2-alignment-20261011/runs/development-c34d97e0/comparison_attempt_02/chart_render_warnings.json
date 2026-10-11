@@ -1,0 +1,12 @@
+{
+  "artifact_version": "chart-render-warnings-v1",
+  "warnings": [
+    {
+      "phase": "chart_render",
+      "message": "Fontconfig error: No writable cache directories",
+      "severity": "NONFATAL",
+      "effect": "Renderer exited successfully; both PNGs were produced and visually inspected.",
+      "interpretation": "This warning does not change method outputs or scores. Rendering performance was not benchmarked."
+    }
+  ]
+}

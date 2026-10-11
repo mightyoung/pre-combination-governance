@@ -1,0 +1,76 @@
+{
+  "aggregation_version": "observable-association-world-macro-v1",
+  "alert_escalation": {
+    "evaluable_world_count": 0,
+    "pooled_denominator": 0,
+    "pooled_miss_rate": null,
+    "pooled_missed_count": null,
+    "status": "NOT_EVALUATED",
+    "world_macro_miss_rate": null
+  },
+  "independent_world_count": 12,
+  "methods": {
+    "MULTI_EVIDENCE_RULE": {
+      "candidate_generation_recall": {
+        "pooled_denominator": 24,
+        "pooled_descriptive_rate": 1.0,
+        "pooled_numerator": 24,
+        "world_macro": 1.0,
+        "worlds_evaluable": 12
+      },
+      "coverage": {
+        "pooled_denominator": 72,
+        "pooled_descriptive_rate": 0.7916666666666666,
+        "pooled_numerator": 57,
+        "world_macro": 0.7916666666666666,
+        "worlds_evaluable": 12
+      },
+      "false_merge_rate": {
+        "pooled_denominator": 45,
+        "pooled_descriptive_rate": 0.0,
+        "pooled_numerator": 0,
+        "world_macro": 0.0,
+        "worlds_evaluable": 12
+      },
+      "false_split_rate": {
+        "pooled_denominator": 24,
+        "pooled_descriptive_rate": 0.0,
+        "pooled_numerator": 0,
+        "world_macro": 0.0,
+        "worlds_evaluable": 12
+      },
+      "independent_world_count": 12
+    },
+    "TIME_ASSET_RULE": {
+      "candidate_generation_recall": {
+        "pooled_denominator": 24,
+        "pooled_descriptive_rate": 1.0,
+        "pooled_numerator": 24,
+        "world_macro": 1.0,
+        "worlds_evaluable": 12
+      },
+      "coverage": {
+        "pooled_denominator": 72,
+        "pooled_descriptive_rate": 0.8333333333333334,
+        "pooled_numerator": 60,
+        "world_macro": 0.8333333333333334,
+        "worlds_evaluable": 12
+      },
+      "false_merge_rate": {
+        "pooled_denominator": 45,
+        "pooled_descriptive_rate": 0.0,
+        "pooled_numerator": 0,
+        "world_macro": 0.0,
+        "worlds_evaluable": 12
+      },
+      "false_split_rate": {
+        "pooled_denominator": 24,
+        "pooled_descriptive_rate": 0.0,
+        "pooled_numerator": 0,
+        "world_macro": 0.0,
+        "worlds_evaluable": 12
+      },
+      "independent_world_count": 12
+    }
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "alert_escalation": {
+    "delays_seconds": [],
+    "denominator": 0,
+    "miss_rate": null,
+    "missed_count": null,
+    "status": "NOT_EVALUATED"
+  },
+  "evaluation_cutoff": "2026-10-11T12:02:00Z",
+  "independent_world_count": 1,
+  "methods": {
+    "MULTI_EVIDENCE_RULE": {
+      "candidate_generation_recall": 1.0,
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage": 1.0,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "decision_timing": [
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:07Z",
+          "first_decision_at": "2026-10-11T12:01:07Z",
+          "label": "DIFFERENT",
+          "pair": {
+            "left_observation_id": "OBS-3293d2f64888d69647da",
+            "right_observation_id": "OBS-5840d8065d27209e61d2"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:07Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:00:15Z",
+          "first_decision_at": "2026-10-11T12:00:15Z",
+          "label": "SAME",
+          "pair": {
+            "left_observation_id": "OBS-3293d2f64888d69647da",
+            "right_observation_id": "OBS-bd69a9097e4a556938a4"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:00:15Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:18Z",
+          "first_decision_at": "2026-10-11T12:01:18Z",
+          "label": "DIFFERENT",
+          "pair": {
+            "left_observation_id": "OBS-3293d2f64888d69647da",
+            "right_observation_id": "OBS-f61c46f460be44e0c4e6"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:18Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:07Z",
+          "first_decision_at": "2026-10-11T12:01:07Z",
+          "label": "DIFFERENT",
+          "pair": {
+            "left_observation_id": "OBS-5840d8065d27209e61d2",
+            "right_observation_id": "OBS-bd69a9097e4a556938a4"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:07Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:18Z",
+          "first_decision_at": "2026-10-11T12:01:18Z",
+          "label": "SAME",
+          "pair": {
+            "left_observation_id": "OBS-5840d8065d27209e61d2",
+            "right_observation_id": "OBS-f61c46f460be44e0c4e6"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:18Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:18Z",
+          "first_decision_at": "2026-10-11T12:01:18Z",
+          "label": "DIFFERENT",
+          "pair": {
+            "left_observation_id": "OBS-bd69a9097e4a556938a4",
+            "right_observation_id": "OBS-f61c46f460be44e0c4e6"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:18Z"
+        }
+      ],
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_merge_rate": 0.0,
+      "false_split_count": 0,
+      "false_split_rate": 0.0,
+      "fixed_pair_denominator": 6,
+      "metric_interpretation": "PENDING_PROPOSAL_PROXY_NOT_FINAL_EVENT_IDENTITY",
+      "non_abstaining_unknown_count": 0,
+      "same_pair_denominator": 2,
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0
+    },
+    "TIME_ASSET_RULE": {
+      "candidate_generation_recall": 1.0,
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage": 1.0,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "decision_timing": [
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:07Z",
+          "first_decision_at": "2026-10-11T12:01:07Z",
+          "label": "DIFFERENT",
+          "pair": {
+            "left_observation_id": "OBS-3293d2f64888d69647da",
+            "right_observation_id": "OBS-5840d8065d27209e61d2"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:07Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:00:15Z",
+          "first_decision_at": "2026-10-11T12:00:15Z",
+          "label": "SAME",
+          "pair": {
+            "left_observation_id": "OBS-3293d2f64888d69647da",
+            "right_observation_id": "OBS-bd69a9097e4a556938a4"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:00:15Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:18Z",
+          "first_decision_at": "2026-10-11T12:01:18Z",
+          "label": "DIFFERENT",
+          "pair": {
+            "left_observation_id": "OBS-3293d2f64888d69647da",
+            "right_observation_id": "OBS-f61c46f460be44e0c4e6"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:18Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:07Z",
+          "first_decision_at": "2026-10-11T12:01:07Z",
+          "label": "DIFFERENT",
+          "pair": {
+            "left_observation_id": "OBS-5840d8065d27209e61d2",
+            "right_observation_id": "OBS-bd69a9097e4a556938a4"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:07Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:18Z",
+          "first_decision_at": "2026-10-11T12:01:18Z",
+          "label": "SAME",
+          "pair": {
+            "left_observation_id": "OBS-5840d8065d27209e61d2",
+            "right_observation_id": "OBS-f61c46f460be44e0c4e6"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:18Z"
+        },
+        {
+          "censor_stage": null,
+          "duration_seconds": 0,
+          "event_observed": true,
+          "first_candidate_at": "2026-10-11T12:01:18Z",
+          "first_decision_at": "2026-10-11T12:01:18Z",
+          "label": "DIFFERENT",
+          "pair": {
+            "left_observation_id": "OBS-bd69a9097e4a556938a4",
+            "right_observation_id": "OBS-f61c46f460be44e0c4e6"
+          },
+          "status": "VALID_DECISION_OBSERVED",
+          "valid_decision_at": "2026-10-11T12:01:18Z"
+        }
+      ],
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_merge_rate": 0.0,
+      "false_split_count": 0,
+      "false_split_rate": 0.0,
+      "fixed_pair_denominator": 6,
+      "metric_interpretation": "PENDING_PROPOSAL_PROXY_NOT_FINAL_EVENT_IDENTITY",
+      "non_abstaining_unknown_count": 0,
+      "same_pair_denominator": 2,
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0
+    }
+  },
+  "registered_cutoffs": [
+    "2026-10-11T12:00:00Z",
+    "2026-10-11T12:00:15Z",
+    "2026-10-11T12:00:30Z",
+    "2026-10-11T12:01:07Z",
+    "2026-10-11T12:01:18Z",
+    "2026-10-11T12:01:30Z",
+    "2026-10-11T12:02:00Z"
+  ],
+  "score_version": "observable-association-finite-score-v1",
+  "scored_cutoffs": [
+    "2026-10-11T12:00:00Z",
+    "2026-10-11T12:00:15Z",
+    "2026-10-11T12:00:30Z",
+    "2026-10-11T12:01:07Z",
+    "2026-10-11T12:01:18Z",
+    "2026-10-11T12:01:30Z",
+    "2026-10-11T12:02:00Z"
+  ],
+  "split_name": "development",
+  "stratum": "recovery_then_new_event",
+  "world_group_id": "WG-a8385c229a9ada05428efcc9"
+}

@@ -1,0 +1,184 @@
+[
+  {
+    "candidate_pair_count": 0,
+    "candidate_pairs": [],
+    "cutoff": "2026-10-11T12:00:00Z",
+    "input_prefix_sha256": "6eee34d7dbe23bdbde712ee68885b43b65a243eff651c785d4c3b1c4312fd5fd",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/00_TIME_ASSET_RULE.json",
+    "output_sha256": "6ec318561448098c69771e45b649a1c658479c42f486462e3bfbf184fa018422"
+  },
+  {
+    "candidate_pair_count": 0,
+    "candidate_pairs": [],
+    "cutoff": "2026-10-11T12:00:00Z",
+    "input_prefix_sha256": "6eee34d7dbe23bdbde712ee68885b43b65a243eff651c785d4c3b1c4312fd5fd",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/01_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "6ec318561448098c69771e45b649a1c658479c42f486462e3bfbf184fa018422"
+  },
+  {
+    "candidate_pair_count": 1,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:14Z",
+    "input_prefix_sha256": "06d3733fe764a42bbd48066b9f4a8da17c3b2789604889460625f20e7e58c555",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/02_TIME_ASSET_RULE.json",
+    "output_sha256": "eb6a08243fcdd6595a21ac4863b631ebdf9089bea6656d17e4ecfd6cec42b6a5"
+  },
+  {
+    "candidate_pair_count": 1,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:14Z",
+    "input_prefix_sha256": "06d3733fe764a42bbd48066b9f4a8da17c3b2789604889460625f20e7e58c555",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/03_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "4c212665d4e9e42b78d54d01bf1aa1f436b35966a29d48423014c750db626b8b"
+  },
+  {
+    "candidate_pair_count": 1,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:25Z",
+    "input_prefix_sha256": "c1b4824d7df1714c12bb541e483561c970d27ec485c25365c167987d56e4b480",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/04_TIME_ASSET_RULE.json",
+    "output_sha256": "0b030b1a915861e5a71e0984afe1dff527e6684c6e92adbe8d299f487a272e33"
+  },
+  {
+    "candidate_pair_count": 1,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:25Z",
+    "input_prefix_sha256": "c1b4824d7df1714c12bb541e483561c970d27ec485c25365c167987d56e4b480",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/05_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "659d7459e5ec2149b1a71ce48e5ecf8f4d9a8ed6f0401f8cbbb2cc894b534a0b"
+  },
+  {
+    "candidate_pair_count": 2,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-bd31c2eb451361ec7276",
+        "right_observation_id": "OBS-dc5ba7b36d442591594c"
+      },
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:37Z",
+    "input_prefix_sha256": "06ab789879b9fcae5270f52382074878b3cf183c861e06849b8d7fad2139600b",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/06_TIME_ASSET_RULE.json",
+    "output_sha256": "64817b9a10198f581e1f42e0eedbe6150aaf8d6b719ce15344d0f87c71242402"
+  },
+  {
+    "candidate_pair_count": 2,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-bd31c2eb451361ec7276",
+        "right_observation_id": "OBS-dc5ba7b36d442591594c"
+      },
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:37Z",
+    "input_prefix_sha256": "06ab789879b9fcae5270f52382074878b3cf183c861e06849b8d7fad2139600b",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/07_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "c43c1c97a93068b3568864477594f90e81da49ee8a77494b56dd9804d80f1a31"
+  },
+  {
+    "candidate_pair_count": 2,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-bd31c2eb451361ec7276",
+        "right_observation_id": "OBS-dc5ba7b36d442591594c"
+      },
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:01:30Z",
+    "input_prefix_sha256": "be2504e52bf1b42106a39094bc1236ef940f0514a0449f9dcf9cd74d7c3806b0",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/08_TIME_ASSET_RULE.json",
+    "output_sha256": "9c43b4235eb791dd1a47f6a8b11b866d426c228f2ee30e46c9d8e4967526c3ab"
+  },
+  {
+    "candidate_pair_count": 2,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-bd31c2eb451361ec7276",
+        "right_observation_id": "OBS-dc5ba7b36d442591594c"
+      },
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:01:30Z",
+    "input_prefix_sha256": "be2504e52bf1b42106a39094bc1236ef940f0514a0449f9dcf9cd74d7c3806b0",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/09_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "43c47d186293d851828ebb008190ee76a9a5779ec13a9fcdff3334e81eff1382"
+  },
+  {
+    "candidate_pair_count": 2,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-bd31c2eb451361ec7276",
+        "right_observation_id": "OBS-dc5ba7b36d442591594c"
+      },
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:02:00Z",
+    "input_prefix_sha256": "fd26572424863703364befab89471c0f21cd6fcbc4f34fa9498f02dc612872ab",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/10_TIME_ASSET_RULE.json",
+    "output_sha256": "b8aedc10a3545b2ca9ace18faccfd24c0a233b2f4205af415cd7b630d0c8a358"
+  },
+  {
+    "candidate_pair_count": 2,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-bd31c2eb451361ec7276",
+        "right_observation_id": "OBS-dc5ba7b36d442591594c"
+      },
+      {
+        "left_observation_id": "OBS-be0f3e5260aee5f6766a",
+        "right_observation_id": "OBS-f9509a18d0953e1bb2e1"
+      }
+    ],
+    "cutoff": "2026-10-11T12:02:00Z",
+    "input_prefix_sha256": "fd26572424863703364befab89471c0f21cd6fcbc4f34fa9498f02dc612872ab",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7692b483181342df1fce2bd7/11_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "f0b0ac08b85c55dae82d433fcd69abb5ef9fe637d67c8add6ab1c50f47a74ddd"
+  }
+]

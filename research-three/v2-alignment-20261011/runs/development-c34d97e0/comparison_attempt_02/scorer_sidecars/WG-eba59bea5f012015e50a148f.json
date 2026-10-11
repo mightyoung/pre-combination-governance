@@ -1,0 +1,73 @@
+{
+  "escalation_opportunities": [
+    {
+      "evaluation_cutoff": "2026-10-11T12:02:00Z",
+      "observation_id": "OBS-147ee14bb8e1202b634e",
+      "required_severity": "CRITICAL",
+      "risk_flag_known_at": "2026-10-11T12:01:30Z"
+    }
+  ],
+  "evaluation_cutoff": "2026-10-11T12:02:00Z",
+  "pair_truths": [
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:01:05Z",
+      "label": "DIFFERENT",
+      "pair": {
+        "left_observation_id": "OBS-147ee14bb8e1202b634e",
+        "right_observation_id": "OBS-1ede6d661ab38b157fce"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:01:17Z",
+      "label": "DIFFERENT",
+      "pair": {
+        "left_observation_id": "OBS-147ee14bb8e1202b634e",
+        "right_observation_id": "OBS-5266ae4b2d2b2d5a450e"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:00:13Z",
+      "label": "SAME",
+      "pair": {
+        "left_observation_id": "OBS-147ee14bb8e1202b634e",
+        "right_observation_id": "OBS-93b8ff5815ee694d313d"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:01:17Z",
+      "label": "SAME",
+      "pair": {
+        "left_observation_id": "OBS-1ede6d661ab38b157fce",
+        "right_observation_id": "OBS-5266ae4b2d2b2d5a450e"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:01:05Z",
+      "label": "DIFFERENT",
+      "pair": {
+        "left_observation_id": "OBS-1ede6d661ab38b157fce",
+        "right_observation_id": "OBS-93b8ff5815ee694d313d"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:01:17Z",
+      "label": "DIFFERENT",
+      "pair": {
+        "left_observation_id": "OBS-5266ae4b2d2b2d5a450e",
+        "right_observation_id": "OBS-93b8ff5815ee694d313d"
+      }
+    }
+  ],
+  "registered_cutoffs": [
+    "2026-10-11T12:00:00Z",
+    "2026-10-11T12:00:13Z",
+    "2026-10-11T12:00:30Z",
+    "2026-10-11T12:01:05Z",
+    "2026-10-11T12:01:17Z",
+    "2026-10-11T12:01:30Z",
+    "2026-10-11T12:02:00Z"
+  ],
+  "split_name": "development",
+  "stratum": "recovery_then_new_event",
+  "world_group_id": "WG-eba59bea5f012015e50a148f"
+}

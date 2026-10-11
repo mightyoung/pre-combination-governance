@@ -1,0 +1,7 @@
+2026-10-11T16:04:35.258Z SAVED_INPUTS_REUSED worlds=12 generator_invoked=false prior_manifest_sha=aa43cf0f174ce5cd2bb379c39682da47e5da695677a4dd68df3917c1d76e7c13
+2026-10-11T16:04:35.258Z CORRECTED_PREFLIGHT_PASS strata={'independent_same_event': 3, 'adjacent_distinct_assets': 3, 'recovery_then_new_event': 3, 'dependent_replay_unknown': 3} candidate_traces_match_attempt_01=true
+2026-10-11T16:04:35.492Z METHODS_FROZEN_AND_SAVED outputs=156
+2026-10-11T16:04:35.512Z SCORING_PASS worlds=12 seconds=0.019439
+2026-10-11T16:04:37.859Z RUN_COMPLETE status=PASS_SYNTHETIC_DEVELOPMENT_ONLY generator_invoked=false
+2026-10-11T16:04:37.871337+00:00 MANIFEST_WRITTEN files=218 status=PASS_SYNTHETIC_DEVELOPMENT_ONLY
+POST_RUN_ARTIFACT_REVIEW chart_render_warning="Fontconfig error: No writable cache directories" renderer_exit=0 png_count=2 visually_inspected=true evaluation_rerun=false

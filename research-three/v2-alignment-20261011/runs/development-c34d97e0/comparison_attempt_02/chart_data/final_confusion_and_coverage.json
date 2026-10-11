@@ -1,0 +1,103 @@
+{
+  "actions": [
+    "LINK_CANDIDATES",
+    "RETAIN_SEPARATELY",
+    "ABSTAIN"
+  ],
+  "coverage": {
+    "MULTI_EVIDENCE_RULE": {
+      "count": 57,
+      "denominator": 72,
+      "pooled_descriptive_rate": 0.7916666666666666,
+      "world_macro_rate": 0.7916666666666666,
+      "worlds_evaluable": 12
+    },
+    "TIME_ASSET_RULE": {
+      "count": 60,
+      "denominator": 72,
+      "pooled_descriptive_rate": 0.8333333333333334,
+      "world_macro_rate": 0.8333333333333334,
+      "worlds_evaluable": 12
+    }
+  },
+  "fixed_pair_rows_per_method": 72,
+  "independent_world_count": 12,
+  "methods": {
+    "MULTI_EVIDENCE_RULE": {
+      "actions": [
+        "LINK_CANDIDATES",
+        "RETAIN_SEPARATELY",
+        "ABSTAIN"
+      ],
+      "counts": [
+        [
+          21,
+          0,
+          3
+        ],
+        [
+          0,
+          33,
+          12
+        ],
+        [
+          0,
+          3,
+          0
+        ]
+      ],
+      "row_denominators": {
+        "DIFFERENT": 45,
+        "SAME": 24,
+        "UNKNOWN": 3
+      },
+      "total_pair_rows": 72,
+      "truth_labels": [
+        "SAME",
+        "DIFFERENT",
+        "UNKNOWN"
+      ]
+    },
+    "TIME_ASSET_RULE": {
+      "actions": [
+        "LINK_CANDIDATES",
+        "RETAIN_SEPARATELY",
+        "ABSTAIN"
+      ],
+      "counts": [
+        [
+          24,
+          0,
+          0
+        ],
+        [
+          0,
+          33,
+          12
+        ],
+        [
+          0,
+          3,
+          0
+        ]
+      ],
+      "row_denominators": {
+        "DIFFERENT": 45,
+        "SAME": 24,
+        "UNKNOWN": 3
+      },
+      "total_pair_rows": 72,
+      "truth_labels": [
+        "SAME",
+        "DIFFERENT",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "scope": "SYNTHETIC_DEVELOPMENT",
+  "truth_labels": [
+    "SAME",
+    "DIFFERENT",
+    "UNKNOWN"
+  ]
+}

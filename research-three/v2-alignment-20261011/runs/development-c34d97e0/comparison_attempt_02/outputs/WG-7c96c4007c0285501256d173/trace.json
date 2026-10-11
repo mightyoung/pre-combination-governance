@@ -1,0 +1,296 @@
+[
+  {
+    "candidate_pair_count": 0,
+    "candidate_pairs": [],
+    "cutoff": "2026-10-11T12:00:00Z",
+    "input_prefix_sha256": "3b88ced12174aaf5dcf2f141e06c6e4445e9a9fe0a40ee41c14cd1d7c8c99d41",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/00_TIME_ASSET_RULE.json",
+    "output_sha256": "6ec318561448098c69771e45b649a1c658479c42f486462e3bfbf184fa018422"
+  },
+  {
+    "candidate_pair_count": 0,
+    "candidate_pairs": [],
+    "cutoff": "2026-10-11T12:00:00Z",
+    "input_prefix_sha256": "3b88ced12174aaf5dcf2f141e06c6e4445e9a9fe0a40ee41c14cd1d7c8c99d41",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/01_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "6ec318561448098c69771e45b649a1c658479c42f486462e3bfbf184fa018422"
+  },
+  {
+    "candidate_pair_count": 1,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:14Z",
+    "input_prefix_sha256": "d06330ae229d3cbf308b6c04ba1f1a3c8aee05f2466966d67b67da41efd67260",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/02_TIME_ASSET_RULE.json",
+    "output_sha256": "58bc68b335d4112d2dfab85aeb8d8cb0c4de600e68bc46c7b69a850cf9d40a61"
+  },
+  {
+    "candidate_pair_count": 1,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:14Z",
+    "input_prefix_sha256": "d06330ae229d3cbf308b6c04ba1f1a3c8aee05f2466966d67b67da41efd67260",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/03_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "e1a0cc0b4a4d293cdc1cfe0a509e40fdb8eec2969279c93adbe30049e350214d"
+  },
+  {
+    "candidate_pair_count": 3,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-3dcae30369003257423e"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:30Z",
+    "input_prefix_sha256": "f1b518c28e857e4c780cf097e045d4b14edceac87ab374ba944d0511b46f5922",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/04_TIME_ASSET_RULE.json",
+    "output_sha256": "5da33a0ca12c0b60c9671ff0a31692382418455010bb5d7386753e732e8feafa"
+  },
+  {
+    "candidate_pair_count": 3,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-3dcae30369003257423e"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:30Z",
+    "input_prefix_sha256": "f1b518c28e857e4c780cf097e045d4b14edceac87ab374ba944d0511b46f5922",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/05_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "47e1b0b5670d16e484db99eca546c6072b4c7e4ac2db471774991a14f7cbce07"
+  },
+  {
+    "candidate_pair_count": 6,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-3dcae30369003257423e"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:42Z",
+    "input_prefix_sha256": "7379fcfbaefad2298d82da83922ef6705ef321aedbe5a9b5c703c6a199d031e9",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/06_TIME_ASSET_RULE.json",
+    "output_sha256": "f3d87ec72868880e76073e1d9277945e854bb67a434e114f6a32ce04d763d6c2"
+  },
+  {
+    "candidate_pair_count": 6,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-3dcae30369003257423e"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      }
+    ],
+    "cutoff": "2026-10-11T12:00:42Z",
+    "input_prefix_sha256": "7379fcfbaefad2298d82da83922ef6705ef321aedbe5a9b5c703c6a199d031e9",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/07_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "2a9d3e5c99427872b9c0402c9095d84bb9d4cd6280432a0fe0efac104738bbb5"
+  },
+  {
+    "candidate_pair_count": 6,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-3dcae30369003257423e"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      }
+    ],
+    "cutoff": "2026-10-11T12:01:30Z",
+    "input_prefix_sha256": "12c30733ac41b0375d48301438ff08cf775e04b740b08bcb4a38731dca2ac291",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/08_TIME_ASSET_RULE.json",
+    "output_sha256": "93da741e5169312df818dc449b6c4c67084a178840fa62ec7ab64c1df2fdc2a7"
+  },
+  {
+    "candidate_pair_count": 6,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-3dcae30369003257423e"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      }
+    ],
+    "cutoff": "2026-10-11T12:01:30Z",
+    "input_prefix_sha256": "12c30733ac41b0375d48301438ff08cf775e04b740b08bcb4a38731dca2ac291",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/09_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "36427157395a1a1643c1926c68e9f44c4a9f28c175ae89527317c40dee90dd10"
+  },
+  {
+    "candidate_pair_count": 6,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-3dcae30369003257423e"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      }
+    ],
+    "cutoff": "2026-10-11T12:02:00Z",
+    "input_prefix_sha256": "487dc228e20f8e89215a70013265d11beaf0772b64ce5c8e1376eaa7fd4089dc",
+    "method": "TIME_ASSET_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/10_TIME_ASSET_RULE.json",
+    "output_sha256": "52c605cbcfd456f91d69ac5b46f67637dc48debb6d04f9b9370100896b3f6dfa"
+  },
+  {
+    "candidate_pair_count": 6,
+    "candidate_pairs": [
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-3dcae30369003257423e"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-0e7e411de58308d6737b",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6"
+      },
+      {
+        "left_observation_id": "OBS-3dcae30369003257423e",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      },
+      {
+        "left_observation_id": "OBS-4c1bc4bd4ecbcaa6aac6",
+        "right_observation_id": "OBS-77133b71cee672cf824b"
+      }
+    ],
+    "cutoff": "2026-10-11T12:02:00Z",
+    "input_prefix_sha256": "487dc228e20f8e89215a70013265d11beaf0772b64ce5c8e1376eaa7fd4089dc",
+    "method": "MULTI_EVIDENCE_RULE",
+    "output_path": "outputs/WG-7c96c4007c0285501256d173/11_MULTI_EVIDENCE_RULE.json",
+    "output_sha256": "4250aa72ddeed5c4d130acbd0ee4965bce83a3b2131760c9dbe3acd5df7260fe"
+  }
+]

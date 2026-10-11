@@ -1,0 +1,10 @@
+{
+  "comparison_attempt_02_failures": [],
+  "preserved_attempt_01": {
+    "failure_artifact": "../failures.json",
+    "failure_count": 2,
+    "manifest_sha256": "aa43cf0f174ce5cd2bb379c39682da47e5da695677a4dd68df3917c1d76e7c13",
+    "preflight_audit": "../preflight_audit.json",
+    "status": "INVALID_RUN"
+  }
+}

@@ -1,0 +1,1155 @@
+{
+  "aggregate_world_scores_output": {
+    "aggregation_version": "observable-association-world-macro-v1",
+    "alert_escalation": {
+      "evaluable_world_count": 0,
+      "pooled_denominator": 0,
+      "pooled_miss_rate": null,
+      "pooled_missed_count": null,
+      "status": "NOT_EVALUATED",
+      "world_macro_miss_rate": null
+    },
+    "independent_world_count": 12,
+    "methods": {
+      "MULTI_EVIDENCE_RULE": {
+        "candidate_generation_recall": {
+          "pooled_denominator": 24,
+          "pooled_descriptive_rate": 1.0,
+          "pooled_numerator": 24,
+          "world_macro": 1.0,
+          "worlds_evaluable": 12
+        },
+        "coverage": {
+          "pooled_denominator": 72,
+          "pooled_descriptive_rate": 0.7916666666666666,
+          "pooled_numerator": 57,
+          "world_macro": 0.7916666666666666,
+          "worlds_evaluable": 12
+        },
+        "false_merge_rate": {
+          "pooled_denominator": 45,
+          "pooled_descriptive_rate": 0.0,
+          "pooled_numerator": 0,
+          "world_macro": 0.0,
+          "worlds_evaluable": 12
+        },
+        "false_split_rate": {
+          "pooled_denominator": 24,
+          "pooled_descriptive_rate": 0.0,
+          "pooled_numerator": 0,
+          "world_macro": 0.0,
+          "worlds_evaluable": 12
+        },
+        "independent_world_count": 12
+      },
+      "TIME_ASSET_RULE": {
+        "candidate_generation_recall": {
+          "pooled_denominator": 24,
+          "pooled_descriptive_rate": 1.0,
+          "pooled_numerator": 24,
+          "world_macro": 1.0,
+          "worlds_evaluable": 12
+        },
+        "coverage": {
+          "pooled_denominator": 72,
+          "pooled_descriptive_rate": 0.8333333333333334,
+          "pooled_numerator": 60,
+          "world_macro": 0.8333333333333334,
+          "worlds_evaluable": 12
+        },
+        "false_merge_rate": {
+          "pooled_denominator": 45,
+          "pooled_descriptive_rate": 0.0,
+          "pooled_numerator": 0,
+          "world_macro": 0.0,
+          "worlds_evaluable": 12
+        },
+        "false_split_rate": {
+          "pooled_denominator": 24,
+          "pooled_descriptive_rate": 0.0,
+          "pooled_numerator": 0,
+          "world_macro": 0.0,
+          "worlds_evaluable": 12
+        },
+        "independent_world_count": 12
+      }
+    }
+  },
+  "classification_and_coverage": {
+    "MULTI_EVIDENCE_RULE": {
+      "candidate_generation_recall": {
+        "count": 24,
+        "denominator": 24,
+        "world_macro_rate": 1.0,
+        "worlds_evaluable": 12
+      },
+      "coverage": {
+        "count": 57,
+        "denominator": 72,
+        "pooled_descriptive_rate": 0.7916666666666666,
+        "world_macro_rate": 0.7916666666666666,
+        "worlds_evaluable": 12
+      },
+      "false_merge": {
+        "count": 0,
+        "denominator": 45,
+        "pooled_descriptive_rate": 0.0,
+        "world_macro_rate": 0.0,
+        "worlds_evaluable": 12
+      },
+      "false_split": {
+        "count": 0,
+        "denominator": 24,
+        "pooled_descriptive_rate": 0.0,
+        "world_macro_rate": 0.0,
+        "worlds_evaluable": 12
+      },
+      "fixed_pair_denominator": 72,
+      "independent_world_count": 12,
+      "unknown": {
+        "action_counts": {
+          "ABSTAIN": 0,
+          "LINK_CANDIDATES": 0,
+          "RETAIN_SEPARATELY": 3
+        },
+        "pair_count": 3
+      }
+    },
+    "TIME_ASSET_RULE": {
+      "candidate_generation_recall": {
+        "count": 24,
+        "denominator": 24,
+        "world_macro_rate": 1.0,
+        "worlds_evaluable": 12
+      },
+      "coverage": {
+        "count": 60,
+        "denominator": 72,
+        "pooled_descriptive_rate": 0.8333333333333334,
+        "world_macro_rate": 0.8333333333333334,
+        "worlds_evaluable": 12
+      },
+      "false_merge": {
+        "count": 0,
+        "denominator": 45,
+        "pooled_descriptive_rate": 0.0,
+        "world_macro_rate": 0.0,
+        "worlds_evaluable": 12
+      },
+      "false_split": {
+        "count": 0,
+        "denominator": 24,
+        "pooled_descriptive_rate": 0.0,
+        "world_macro_rate": 0.0,
+        "worlds_evaluable": 12
+      },
+      "fixed_pair_denominator": 72,
+      "independent_world_count": 12,
+      "unknown": {
+        "action_counts": {
+          "ABSTAIN": 0,
+          "LINK_CANDIDATES": 0,
+          "RETAIN_SEPARATELY": 3
+        },
+        "pair_count": 3
+      }
+    }
+  },
+  "compute_cost": {
+    "MULTI_EVIDENCE_RULE": {
+      "distinct_world_pair_candidates_ever_seen": 60,
+      "invocation_budget_used_fraction": 0.421875,
+      "max_invocation_budget_per_arm": 576,
+      "measured_rule_function_call_count": 243,
+      "measured_rule_function_time_median_us": 121.135,
+      "measured_rule_function_time_ns": 77064455,
+      "measured_rule_function_time_seconds": 0.077064455,
+      "registered_cutoff_outputs": 78,
+      "repeated_prefix_invocations": 183,
+      "rule_function_invocations": 243,
+      "timing_note": "LOCAL_DESCRIPTIVE_WALL_TIME_INCLUDES_WRAPPER_INSTRUMENTATION; NOT_A_PERFORMANCE_BENCHMARK"
+    },
+    "TIME_ASSET_RULE": {
+      "distinct_world_pair_candidates_ever_seen": 60,
+      "invocation_budget_used_fraction": 0.421875,
+      "max_invocation_budget_per_arm": 576,
+      "measured_rule_function_call_count": 243,
+      "measured_rule_function_time_median_us": 115.511,
+      "measured_rule_function_time_ns": 55923703,
+      "measured_rule_function_time_seconds": 0.055923703,
+      "registered_cutoff_outputs": 78,
+      "repeated_prefix_invocations": 183,
+      "rule_function_invocations": 243,
+      "timing_note": "LOCAL_DESCRIPTIVE_WALL_TIME_INCLUDES_WRAPPER_INSTRUMENTATION; NOT_A_PERFORMANCE_BENCHMARK"
+    }
+  },
+  "confusion_matrices": {
+    "MULTI_EVIDENCE_RULE": {
+      "actions": [
+        "LINK_CANDIDATES",
+        "RETAIN_SEPARATELY",
+        "ABSTAIN"
+      ],
+      "counts": [
+        [
+          21,
+          0,
+          3
+        ],
+        [
+          0,
+          33,
+          12
+        ],
+        [
+          0,
+          3,
+          0
+        ]
+      ],
+      "row_denominators": {
+        "DIFFERENT": 45,
+        "SAME": 24,
+        "UNKNOWN": 3
+      },
+      "total_pair_rows": 72,
+      "truth_labels": [
+        "SAME",
+        "DIFFERENT",
+        "UNKNOWN"
+      ]
+    },
+    "TIME_ASSET_RULE": {
+      "actions": [
+        "LINK_CANDIDATES",
+        "RETAIN_SEPARATELY",
+        "ABSTAIN"
+      ],
+      "counts": [
+        [
+          24,
+          0,
+          0
+        ],
+        [
+          0,
+          33,
+          12
+        ],
+        [
+          0,
+          3,
+          0
+        ]
+      ],
+      "row_denominators": {
+        "DIFFERENT": 45,
+        "SAME": 24,
+        "UNKNOWN": 3
+      },
+      "total_pair_rows": 72,
+      "truth_labels": [
+        "SAME",
+        "DIFFERENT",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "delay_and_censoring": {
+    "MULTI_EVIDENCE_RULE": {
+      "after_evidence_censor_duration_seconds": {
+        "count": 12,
+        "max_seconds": 95.0,
+        "mean_seconds": 86.0,
+        "median_seconds": 86.5,
+        "min_seconds": 79.0,
+        "raw_seconds": [
+          79.0,
+          90.0,
+          79.0,
+          90.0,
+          83.0,
+          83.0,
+          95.0,
+          95.0,
+          90.0,
+          79.0,
+          90.0,
+          79.0
+        ]
+      },
+      "before_evidence_censor_duration_seconds": {
+        "count": 3,
+        "max_seconds": 107.0,
+        "mean_seconds": 106.0,
+        "median_seconds": 106.0,
+        "min_seconds": 105.0,
+        "raw_seconds": [
+          107.0,
+          105.0,
+          106.0
+        ]
+      },
+      "delay_interpretation": "DESCRIPTIVE_CONDITIONAL_ON_SUFFICIENT_EVIDENCE; CENSORED_ROWS_RETAINED; NO_SURVIVAL_MODEL",
+      "evidence_after_eligible_pair_count": 66,
+      "observed_delay_seconds": {
+        "count": 54,
+        "max_seconds": 0.0,
+        "mean_seconds": 0.0,
+        "median_seconds": 0.0,
+        "min_seconds": 0.0,
+        "raw_seconds": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "right_censored_after_sufficient_evidence_count": 12,
+      "right_censored_before_sufficient_evidence_count": 3,
+      "timing_status_counts": {
+        "RIGHT_CENSORED_AFTER_SUFFICIENT_EVIDENCE": 12,
+        "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE": 3,
+        "UNKNOWN_EXCLUDED": 3,
+        "VALID_DECISION_OBSERVED": 54
+      },
+      "unknown_excluded_count": 3,
+      "valid_decision_observed_count": 54
+    },
+    "TIME_ASSET_RULE": {
+      "after_evidence_censor_duration_seconds": {
+        "count": 12,
+        "max_seconds": 95.0,
+        "mean_seconds": 86.0,
+        "median_seconds": 86.5,
+        "min_seconds": 79.0,
+        "raw_seconds": [
+          79.0,
+          90.0,
+          79.0,
+          90.0,
+          83.0,
+          83.0,
+          95.0,
+          95.0,
+          90.0,
+          79.0,
+          90.0,
+          79.0
+        ]
+      },
+      "before_evidence_censor_duration_seconds": {
+        "count": 3,
+        "max_seconds": 107.0,
+        "mean_seconds": 106.0,
+        "median_seconds": 106.0,
+        "min_seconds": 105.0,
+        "raw_seconds": [
+          107.0,
+          105.0,
+          106.0
+        ]
+      },
+      "delay_interpretation": "DESCRIPTIVE_CONDITIONAL_ON_SUFFICIENT_EVIDENCE; CENSORED_ROWS_RETAINED; NO_SURVIVAL_MODEL",
+      "evidence_after_eligible_pair_count": 66,
+      "observed_delay_seconds": {
+        "count": 54,
+        "max_seconds": 0.0,
+        "mean_seconds": 0.0,
+        "median_seconds": 0.0,
+        "min_seconds": 0.0,
+        "raw_seconds": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "right_censored_after_sufficient_evidence_count": 12,
+      "right_censored_before_sufficient_evidence_count": 3,
+      "timing_status_counts": {
+        "RIGHT_CENSORED_AFTER_SUFFICIENT_EVIDENCE": 12,
+        "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE": 3,
+        "UNKNOWN_EXCLUDED": 3,
+        "VALID_DECISION_OBSERVED": 54
+      },
+      "unknown_excluded_count": 3,
+      "valid_decision_observed_count": 54
+    }
+  },
+  "interpretation_scope": "SYNTHETIC_DEVELOPMENT_ONLY; POOLED_PAIR_COUNTS_ARE_DESCRIPTIVE; NO_INDEPENDENCE_ASSUMPTION_FOR_PAIRS_PREFIXES_OR_METHOD_ARMS",
+  "per_stratum": {
+    "MULTI_EVIDENCE_RULE": {
+      "adjacent_distinct_assets": {
+        "coverage": {
+          "count": 18,
+          "denominator": 18
+        },
+        "false_merge": {
+          "count": 0,
+          "denominator": 12
+        },
+        "false_split": {
+          "count": 0,
+          "denominator": 6
+        },
+        "world_count": 3
+      },
+      "dependent_replay_unknown": {
+        "coverage": {
+          "count": 15,
+          "denominator": 18
+        },
+        "false_merge": {
+          "count": 0,
+          "denominator": 9
+        },
+        "false_split": {
+          "count": 0,
+          "denominator": 6
+        },
+        "world_count": 3
+      },
+      "independent_same_event": {
+        "coverage": {
+          "count": 6,
+          "denominator": 18
+        },
+        "false_merge": {
+          "count": 0,
+          "denominator": 12
+        },
+        "false_split": {
+          "count": 0,
+          "denominator": 6
+        },
+        "world_count": 3
+      },
+      "recovery_then_new_event": {
+        "coverage": {
+          "count": 18,
+          "denominator": 18
+        },
+        "false_merge": {
+          "count": 0,
+          "denominator": 12
+        },
+        "false_split": {
+          "count": 0,
+          "denominator": 6
+        },
+        "world_count": 3
+      }
+    },
+    "TIME_ASSET_RULE": {
+      "adjacent_distinct_assets": {
+        "coverage": {
+          "count": 18,
+          "denominator": 18
+        },
+        "false_merge": {
+          "count": 0,
+          "denominator": 12
+        },
+        "false_split": {
+          "count": 0,
+          "denominator": 6
+        },
+        "world_count": 3
+      },
+      "dependent_replay_unknown": {
+        "coverage": {
+          "count": 18,
+          "denominator": 18
+        },
+        "false_merge": {
+          "count": 0,
+          "denominator": 9
+        },
+        "false_split": {
+          "count": 0,
+          "denominator": 6
+        },
+        "world_count": 3
+      },
+      "independent_same_event": {
+        "coverage": {
+          "count": 6,
+          "denominator": 18
+        },
+        "false_merge": {
+          "count": 0,
+          "denominator": 12
+        },
+        "false_split": {
+          "count": 0,
+          "denominator": 6
+        },
+        "world_count": 3
+      },
+      "recovery_then_new_event": {
+        "coverage": {
+          "count": 18,
+          "denominator": 18
+        },
+        "false_merge": {
+          "count": 0,
+          "denominator": 12
+        },
+        "false_split": {
+          "count": 0,
+          "denominator": 6
+        },
+        "world_count": 3
+      }
+    }
+  },
+  "per_world": [
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 3,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "dependent_replay_unknown",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE": 1,
+        "UNKNOWN_EXCLUDED": 1,
+        "VALID_DECISION_OBSERVED": 4
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 1
+      },
+      "unknown_pair_count": 1,
+      "world_group_id": "WG-49ad405b4355e37ee62ef70a"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "adjacent_distinct_assets",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-58ba77e1f1a2db0b9611c54c"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 2,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "independent_same_event",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_AFTER_SUFFICIENT_EVIDENCE": 4,
+        "VALID_DECISION_OBSERVED": 2
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-5c1af47b255628b6eb6f7a2f"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 2,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "independent_same_event",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_AFTER_SUFFICIENT_EVIDENCE": 4,
+        "VALID_DECISION_OBSERVED": 2
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-7692b483181342df1fce2bd7"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "adjacent_distinct_assets",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-7c96c4007c0285501256d173"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "recovery_then_new_event",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-7e59547c9c91fb5ee50e6032"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 3,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "dependent_replay_unknown",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE": 1,
+        "UNKNOWN_EXCLUDED": 1,
+        "VALID_DECISION_OBSERVED": 4
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 1
+      },
+      "unknown_pair_count": 1,
+      "world_group_id": "WG-a03b8a911c21fb790b2b6910"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "recovery_then_new_event",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-a8385c229a9ada05428efcc9"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 2,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "independent_same_event",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_AFTER_SUFFICIENT_EVIDENCE": 4,
+        "VALID_DECISION_OBSERVED": 2
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-b8cbed4d478eebcd441f277a"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 3,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "dependent_replay_unknown",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE": 1,
+        "UNKNOWN_EXCLUDED": 1,
+        "VALID_DECISION_OBSERVED": 4
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 1
+      },
+      "unknown_pair_count": 1,
+      "world_group_id": "WG-c6351b2c67706558c964473e"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "adjacent_distinct_assets",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-c8988d8015e832a05d54a745"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "TIME_ASSET_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "recovery_then_new_event",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-eba59bea5f012015e50a148f"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 5,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 3,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "dependent_replay_unknown",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE": 1,
+        "UNKNOWN_EXCLUDED": 1,
+        "VALID_DECISION_OBSERVED": 4
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 1
+      },
+      "unknown_pair_count": 1,
+      "world_group_id": "WG-49ad405b4355e37ee62ef70a"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "adjacent_distinct_assets",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-58ba77e1f1a2db0b9611c54c"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 2,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "independent_same_event",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_AFTER_SUFFICIENT_EVIDENCE": 4,
+        "VALID_DECISION_OBSERVED": 2
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-5c1af47b255628b6eb6f7a2f"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 2,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "independent_same_event",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_AFTER_SUFFICIENT_EVIDENCE": 4,
+        "VALID_DECISION_OBSERVED": 2
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-7692b483181342df1fce2bd7"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "adjacent_distinct_assets",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-7c96c4007c0285501256d173"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "recovery_then_new_event",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-7e59547c9c91fb5ee50e6032"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 5,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 3,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "dependent_replay_unknown",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE": 1,
+        "UNKNOWN_EXCLUDED": 1,
+        "VALID_DECISION_OBSERVED": 4
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 1
+      },
+      "unknown_pair_count": 1,
+      "world_group_id": "WG-a03b8a911c21fb790b2b6910"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "recovery_then_new_event",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-a8385c229a9ada05428efcc9"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 2,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "independent_same_event",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_AFTER_SUFFICIENT_EVIDENCE": 4,
+        "VALID_DECISION_OBSERVED": 2
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-b8cbed4d478eebcd441f277a"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 5,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 3,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "dependent_replay_unknown",
+      "timing_status_counts": {
+        "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE": 1,
+        "UNKNOWN_EXCLUDED": 1,
+        "VALID_DECISION_OBSERVED": 4
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 1
+      },
+      "unknown_pair_count": 1,
+      "world_group_id": "WG-c6351b2c67706558c964473e"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "adjacent_distinct_assets",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-c8988d8015e832a05d54a745"
+    },
+    {
+      "candidate_generation_recall_count": 2,
+      "candidate_generation_recall_denominator": 2,
+      "coverage_count": 6,
+      "coverage_denominator": 6,
+      "different_pair_denominator": 4,
+      "false_merge_count": 0,
+      "false_split_count": 0,
+      "method": "MULTI_EVIDENCE_RULE",
+      "same_pair_denominator": 2,
+      "stratum": "recovery_then_new_event",
+      "timing_status_counts": {
+        "VALID_DECISION_OBSERVED": 6
+      },
+      "unknown_action_counts": {
+        "ABSTAIN": 0,
+        "LINK_CANDIDATES": 0,
+        "RETAIN_SEPARATELY": 0
+      },
+      "unknown_pair_count": 0,
+      "world_group_id": "WG-eba59bea5f012015e50a148f"
+    }
+  ]
+}

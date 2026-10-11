@@ -1,0 +1,72 @@
+{
+  "escalation_opportunities": [
+    {
+      "evaluation_cutoff": "2026-10-11T12:02:00Z",
+      "observation_id": "OBS-be582184afe2a3559fb1",
+      "required_severity": "CRITICAL",
+      "risk_flag_known_at": "2026-10-11T12:01:30Z"
+    }
+  ],
+  "evaluation_cutoff": "2026-10-11T12:02:00Z",
+  "pair_truths": [
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:00:36Z",
+      "label": "DIFFERENT",
+      "pair": {
+        "left_observation_id": "OBS-57ea1bf2c71bb3c8d9d2",
+        "right_observation_id": "OBS-80fb852e14843712ba22"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:00:24Z",
+      "label": "DIFFERENT",
+      "pair": {
+        "left_observation_id": "OBS-57ea1bf2c71bb3c8d9d2",
+        "right_observation_id": "OBS-a7d67d68eebc6bc8e984"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:00:14Z",
+      "label": "SAME",
+      "pair": {
+        "left_observation_id": "OBS-57ea1bf2c71bb3c8d9d2",
+        "right_observation_id": "OBS-be582184afe2a3559fb1"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:00:36Z",
+      "label": "SAME",
+      "pair": {
+        "left_observation_id": "OBS-80fb852e14843712ba22",
+        "right_observation_id": "OBS-a7d67d68eebc6bc8e984"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:00:36Z",
+      "label": "DIFFERENT",
+      "pair": {
+        "left_observation_id": "OBS-80fb852e14843712ba22",
+        "right_observation_id": "OBS-be582184afe2a3559fb1"
+      }
+    },
+    {
+      "first_sufficient_evidence_at": "2026-10-11T12:00:24Z",
+      "label": "DIFFERENT",
+      "pair": {
+        "left_observation_id": "OBS-a7d67d68eebc6bc8e984",
+        "right_observation_id": "OBS-be582184afe2a3559fb1"
+      }
+    }
+  ],
+  "registered_cutoffs": [
+    "2026-10-11T12:00:00Z",
+    "2026-10-11T12:00:14Z",
+    "2026-10-11T12:00:24Z",
+    "2026-10-11T12:00:36Z",
+    "2026-10-11T12:01:30Z",
+    "2026-10-11T12:02:00Z"
+  ],
+  "split_name": "development",
+  "stratum": "adjacent_distinct_assets",
+  "world_group_id": "WG-58ba77e1f1a2db0b9611c54c"
+}

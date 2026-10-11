@@ -1,0 +1,6 @@
+{
+  "artifact_write_seconds_before_final_manifest": 0.006877882,
+  "generation_wall_seconds": 0.030353128,
+  "preflight_wall_seconds": 0.111216343,
+  "script_elapsed_seconds_before_final_manifest": 0.166184745
+}

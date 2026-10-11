@@ -1,0 +1,112 @@
+{
+  "actions": [
+    {
+      "action": "NOT_CANDIDATE",
+      "candidate_at_cutoff": false,
+      "cutoff": "2026-10-11T12:00:00Z",
+      "input_prefix_sha256": "6eee34d7dbe23bdbde712ee68885b43b65a243eff651c785d4c3b1c4312fd5fd",
+      "method": "TIME_ASSET_RULE"
+    },
+    {
+      "action": "NOT_CANDIDATE",
+      "candidate_at_cutoff": false,
+      "cutoff": "2026-10-11T12:00:14Z",
+      "input_prefix_sha256": "06d3733fe764a42bbd48066b9f4a8da17c3b2789604889460625f20e7e58c555",
+      "method": "TIME_ASSET_RULE"
+    },
+    {
+      "action": "NOT_CANDIDATE",
+      "candidate_at_cutoff": false,
+      "cutoff": "2026-10-11T12:00:25Z",
+      "input_prefix_sha256": "c1b4824d7df1714c12bb541e483561c970d27ec485c25365c167987d56e4b480",
+      "method": "TIME_ASSET_RULE"
+    },
+    {
+      "action": "LINK_CANDIDATES",
+      "candidate_at_cutoff": true,
+      "cutoff": "2026-10-11T12:00:37Z",
+      "input_prefix_sha256": "06ab789879b9fcae5270f52382074878b3cf183c861e06849b8d7fad2139600b",
+      "method": "TIME_ASSET_RULE"
+    },
+    {
+      "action": "LINK_CANDIDATES",
+      "candidate_at_cutoff": true,
+      "cutoff": "2026-10-11T12:01:30Z",
+      "input_prefix_sha256": "be2504e52bf1b42106a39094bc1236ef940f0514a0449f9dcf9cd74d7c3806b0",
+      "method": "TIME_ASSET_RULE"
+    },
+    {
+      "action": "LINK_CANDIDATES",
+      "candidate_at_cutoff": true,
+      "cutoff": "2026-10-11T12:02:00Z",
+      "input_prefix_sha256": "fd26572424863703364befab89471c0f21cd6fcbc4f34fa9498f02dc612872ab",
+      "method": "TIME_ASSET_RULE"
+    },
+    {
+      "action": "NOT_CANDIDATE",
+      "candidate_at_cutoff": false,
+      "cutoff": "2026-10-11T12:00:00Z",
+      "input_prefix_sha256": "6eee34d7dbe23bdbde712ee68885b43b65a243eff651c785d4c3b1c4312fd5fd",
+      "method": "MULTI_EVIDENCE_RULE"
+    },
+    {
+      "action": "NOT_CANDIDATE",
+      "candidate_at_cutoff": false,
+      "cutoff": "2026-10-11T12:00:14Z",
+      "input_prefix_sha256": "06d3733fe764a42bbd48066b9f4a8da17c3b2789604889460625f20e7e58c555",
+      "method": "MULTI_EVIDENCE_RULE"
+    },
+    {
+      "action": "NOT_CANDIDATE",
+      "candidate_at_cutoff": false,
+      "cutoff": "2026-10-11T12:00:25Z",
+      "input_prefix_sha256": "c1b4824d7df1714c12bb541e483561c970d27ec485c25365c167987d56e4b480",
+      "method": "MULTI_EVIDENCE_RULE"
+    },
+    {
+      "action": "LINK_CANDIDATES",
+      "candidate_at_cutoff": true,
+      "cutoff": "2026-10-11T12:00:37Z",
+      "input_prefix_sha256": "06ab789879b9fcae5270f52382074878b3cf183c861e06849b8d7fad2139600b",
+      "method": "MULTI_EVIDENCE_RULE"
+    },
+    {
+      "action": "LINK_CANDIDATES",
+      "candidate_at_cutoff": true,
+      "cutoff": "2026-10-11T12:01:30Z",
+      "input_prefix_sha256": "be2504e52bf1b42106a39094bc1236ef940f0514a0449f9dcf9cd74d7c3806b0",
+      "method": "MULTI_EVIDENCE_RULE"
+    },
+    {
+      "action": "LINK_CANDIDATES",
+      "candidate_at_cutoff": true,
+      "cutoff": "2026-10-11T12:02:00Z",
+      "input_prefix_sha256": "fd26572424863703364befab89471c0f21cd6fcbc4f34fa9498f02dc612872ab",
+      "method": "MULTI_EVIDENCE_RULE"
+    }
+  ],
+  "first_received_at_by_observation": {
+    "OBS-bd31c2eb451361ec7276": "2026-10-11T12:00:37Z",
+    "OBS-be0f3e5260aee5f6766a": "2026-10-11T12:00:14Z",
+    "OBS-dc5ba7b36d442591594c": "2026-10-11T12:00:25Z",
+    "OBS-f9509a18d0953e1bb2e1": "2026-10-11T12:00:00Z"
+  },
+  "first_sufficient_evidence_at": "2026-10-11T12:00:37Z",
+  "label": "SAME",
+  "pair": {
+    "left_observation_id": "OBS-bd31c2eb451361ec7276",
+    "right_observation_id": "OBS-dc5ba7b36d442591594c"
+  },
+  "registered_cutoffs": [
+    "2026-10-11T12:00:00Z",
+    "2026-10-11T12:00:14Z",
+    "2026-10-11T12:00:25Z",
+    "2026-10-11T12:00:37Z",
+    "2026-10-11T12:01:30Z",
+    "2026-10-11T12:02:00Z"
+  ],
+  "scope": "SYNTHETIC_DEVELOPMENT",
+  "stratum": "independent_same_event",
+  "world_group_id": "WG-7692b483181342df1fce2bd7",
+  "world_index": 0
+}
