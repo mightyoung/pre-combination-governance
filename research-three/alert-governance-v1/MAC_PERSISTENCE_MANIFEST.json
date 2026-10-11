@@ -3,7 +3,7 @@
   "artifact_set": "pre-combination-alert-governance-v1",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-alert-governance",
-  "source_commit": "1380f3cdc07443147fa50cdd726cf08f88fbb982",
+  "source_commit": "b85dc332e03c129ccb324ca52c7bd55d2957235d",
   "path_convention": "All file paths below are repository-relative POSIX paths rooted at a checkout of source_commit.",
   "mac_local_project_root": null,
   "mac_path_mapping": "Choose the Mac-local project root, then resolve only the listed repository-relative paths beneath it. No cloud-container absolute path is encoded here.",
@@ -19,8 +19,8 @@
     },
     {
       "path": "research-three/alert-governance-v1/SPEC.md",
-      "bytes": 5297,
-      "sha256": "f831be673ecfae415c645cd4c624fc9cee56f70d6d6dd2a59938c3fde875da9d"
+      "bytes": 6228,
+      "sha256": "af009f5e431e744917b5c0454d79ca0b2050810bb27ce6511b68fda6150d99f8"
     },
     {
       "path": "research-three/alert-governance-v1/historical-baseline.json",
@@ -29,18 +29,18 @@
     },
     {
       "path": "research-three/alert-governance-v1/synthetic-evaluation.json",
-      "bytes": 3905,
-      "sha256": "c2bb1cfb2aabc743fc2c008b30eef1ee861c9caef3d0a465d4108ae0b0dfa2b8"
+      "bytes": 6005,
+      "sha256": "464b13eed2c2ea54186355dc50abb6479ec4efa501a95470bd090134f0f7f0bd"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
-      "bytes": 27575,
-      "sha256": "0a18981d63af88ba8e0dcb8dd590f903e24a9ea93547e836bf27fcc5a1258ec6"
+      "bytes": 32646,
+      "sha256": "d56ddf5bc5260075523ad44ad3a4f9574420ff02c5f6fc3aa5695a3a4c061b5e"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_governance.py",
-      "bytes": 11965,
-      "sha256": "49e69a38f592a8118a77089fe0ef89d8770e504b4e036fae47701895af65c8ce"
+      "bytes": 25235,
+      "sha256": "5b08dfd4d958fe61b29cfa08d942ae7b3349dd4af0665241a93f2a66b6f1bd75"
     }
   ]
 }
