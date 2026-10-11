@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "e3d5c7f0aabcbf81b86f62734a3ad4308a9e6b39",
+  "source_commit": "08136dbd3e3a9feab17c48ce4df847eeba9388f1",
   "path_convention": "All file paths below are repository-relative POSIX paths rooted at source_commit. No cloud-workspace absolute path is encoded here.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -27,18 +27,18 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/ALIGNMENT.md",
-      "bytes": 16650,
-      "sha256": "6f51280be8e3c7fccab6bf425542f30e0d43157ebcb13789060ce2c865ffa244"
+      "bytes": 16982,
+      "sha256": "bcc6e461849f2e0dad953d0bd12b1aa57e7435154649cd2785a17394de91d768"
     },
     {
       "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
-      "bytes": 7388,
-      "sha256": "2f274ea826b570f4bb147637b0d5a35aab8ca1a6407faf53ec04c98fe558ecfd"
+      "bytes": 7883,
+      "sha256": "690142359a1d217c4d6f940f961762269147d82b6d1ee5cf5cce3279a9255ea0"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 6301,
-      "sha256": "834be3fc9bd0b3a22f8b186745a8af3cb81b1cc1612c34edac624e2bdc573bac"
+      "bytes": 6725,
+      "sha256": "84eb50407db7581a9a5faef98db5b864396d5352d07ccd7143e5d354cf0ae7ea"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py",
@@ -77,13 +77,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment-data.json",
-      "bytes": 1358071,
-      "sha256": "d2763069fc5506a50fe7e8af0a1d3433edb8c376785e16cda77eb74ab3060547"
+      "bytes": 1360755,
+      "sha256": "19572c4a0234bc47725626f7dd77e726c7c2f3e38c7223279723f52c13e92fa3"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment.html",
-      "bytes": 406322,
-      "sha256": "6442d2fe386d905bf540c80b56bc4832b7a0ea74f7cbeb6f197e5f3fe8efe8f0"
+      "bytes": 409379,
+      "sha256": "ec045099a555dccbd56fcaefb81c30118dbc4ae6c7e494d28f1ba0d85d995dac"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
@@ -97,13 +97,13 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
-      "bytes": 16604,
-      "sha256": "36632ca81f0520065909fd1efb525b19fd7dff9ef078d9b94b404ccdc4c93abf"
+      "bytes": 17797,
+      "sha256": "c08deb6f25bb160b03eab01e7a5422ff86e687af725ba69ca816351043724fba"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment_scenarios.py",
-      "bytes": 64928,
-      "sha256": "867b79af2274d212e19024c2dd084f3c9861d88aa477d49567b4f19ceb31ebea"
+      "bytes": 65794,
+      "sha256": "6a09355e03ff88045fbb2822c299e19de958dc1ed6e2da40b7bf7ce6ae4a9a30"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_governance_v2.py",
@@ -117,24 +117,31 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
-      "bytes": 19088,
-      "sha256": "eaf9fd7a8638f076524b9e4220e13d07400a284937e7c9605ea104f350f01bea"
+      "bytes": 22183,
+      "sha256": "887a4a7ddca4d9bacbb9962f700c8031e295bb32de641d2c3b619b5d5662ad2d"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py",
-      "bytes": 16670,
-      "sha256": "c0f251a57c8195c23d97e33271b420e7cad0d57a8e2d4ef1bfe2a1d6cb53df9d"
+      "bytes": 19523,
+      "sha256": "9ff465faec3ddee6f31cc12fa9a133c44c9b8843c94595138ec1119a134d6ce4"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
-      "bytes": 11972,
-      "sha256": "91a5e050f0e0e1d41ab1440e5cb0c0b41305d859e57ece985e774bc1e751409d"
+      "bytes": 11991,
+      "sha256": "3d7a85f13b206f74fa707c9c4e64aa96cc8d5e721344647e9c2cdd40c36e8961"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_notification_preview.py",
-      "bytes": 4670,
-      "sha256": "9017e51e0d9d17861e234f0f551a17ece96a6832cbe2165cca84a4e209822901"
+      "bytes": 4853,
+      "sha256": "bad77dbcb75f87cfb5ab93771be275ed2b4861b2bdbcbc6ae65f7383d1cd4f6e"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
+      "bytes": 7098,
+      "sha256": "8923c9e72f5e379c66b5173537e77b7a54aa35fe2ce00c647cf125324418a713"
     }
   ],
-  "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated."
+  "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
+  "task_ids_interface": "UNSUPPORTED_BY_CURRENT_INTERFACE",
+  "content_preview_scope": "INCREMENTAL_CONTENT_ONLY; NOT_A_FULL_VISIBLE_CARD_RENDER; HISTORY_PRESERVATION_DOES_NOT_PROVE_FULL_CARD_VISIBILITY"
 }
