@@ -126,7 +126,7 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - [x] Run only the new inference unit tests and directly relevant pure-software ledger tests; no executor probes or the complete unrelated research suite were run.
 - [x] Record exact command, test count, actual failures observed during RED, final result, source/input hashes, and deviations here.
 - [x] Verify every listed manifest file hash and `git diff --check`; commit only this independent research branch.
-- [ ] Push this independent research branch and read back its remote SHA.
+- [x] Push this independent research branch and read back its remote SHA (`02d40d0f9583ffc0ca4da4066d208d4c6299627b`; the final evidence-recording commit below is pushed separately).
 - [x] Request an independent review of the plan, code, and test evidence before reporting completion. Fix important findings test-first.
 
 ### Execution Evidence (2026-10-11)
