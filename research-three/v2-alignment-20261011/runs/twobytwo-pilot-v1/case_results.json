@@ -1,0 +1,259 @@
+{
+  "all_truth_pairs_scored": false,
+  "artifact_version": "2x2-cpu-pilot-case-results-v1",
+  "case_count": 4,
+  "case_failures": [],
+  "case_results": [
+    {
+      "case_id": "R1-DIFF",
+      "clone_input_bytes_equal": true,
+      "counterfactual_clone": "R1-SAME",
+      "event_relation_from_predeclared_registry": "DIFFERENT",
+      "identifiability": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+      "method_input_sha256": "abdbee07e9589958df142748d7d40d5d15c220b341c68784aa4a845f976fa8f0",
+      "methods": {
+        "MULTI_EVIDENCE_RULE": {
+          "action": "ABSTAIN",
+          "evidence_refs": [
+            "synthetic://observable/OBS-PILOT-A",
+            "synthetic://observable/OBS-PILOT-B"
+          ],
+          "independent_lineage_root_count": 1,
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        "TIME_ASSET_RULE": {
+          "action": "LINK_CANDIDATES",
+          "evidence_refs": [
+            "synthetic://observable/OBS-PILOT-A",
+            "synthetic://observable/OBS-PILOT-B"
+          ],
+          "independent_lineage_root_count": 1,
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        }
+      },
+      "source_family_relation_from_predeclared_graph": "SHARED_SOURCE_FAMILY",
+      "template": "V1_ONE_ROOT",
+      "truth_scoring_status": "NOT_SCORED_UNIDENTIFIABLE",
+      "visible_root_id_count": 1
+    },
+    {
+      "case_id": "R1-SAME",
+      "clone_input_bytes_equal": true,
+      "counterfactual_clone": "R1-DIFF",
+      "event_relation_from_predeclared_registry": "SAME",
+      "identifiability": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+      "method_input_sha256": "abdbee07e9589958df142748d7d40d5d15c220b341c68784aa4a845f976fa8f0",
+      "methods": {
+        "MULTI_EVIDENCE_RULE": {
+          "action": "ABSTAIN",
+          "evidence_refs": [
+            "synthetic://observable/OBS-PILOT-A",
+            "synthetic://observable/OBS-PILOT-B"
+          ],
+          "independent_lineage_root_count": 1,
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        "TIME_ASSET_RULE": {
+          "action": "LINK_CANDIDATES",
+          "evidence_refs": [
+            "synthetic://observable/OBS-PILOT-A",
+            "synthetic://observable/OBS-PILOT-B"
+          ],
+          "independent_lineage_root_count": 1,
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        }
+      },
+      "source_family_relation_from_predeclared_graph": "SHARED_SOURCE_FAMILY",
+      "template": "V1_ONE_ROOT",
+      "truth_scoring_status": "NOT_SCORED_UNIDENTIFIABLE",
+      "visible_root_id_count": 1
+    },
+    {
+      "case_id": "R2-DIFF",
+      "clone_input_bytes_equal": true,
+      "counterfactual_clone": "R2-SAME",
+      "event_relation_from_predeclared_registry": "DIFFERENT",
+      "identifiability": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+      "method_input_sha256": "c49917eceea9b15b406a070e7c323ff5143dc3acc60fa846b9ac4bab5f46ebad",
+      "methods": {
+        "MULTI_EVIDENCE_RULE": {
+          "action": "LINK_CANDIDATES",
+          "evidence_refs": [
+            "synthetic://observable/OBS-PILOT-A",
+            "synthetic://observable/OBS-PILOT-B"
+          ],
+          "independent_lineage_root_count": 2,
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE",
+            "CROSS_MODAL_SUPPORT",
+            "QUALITY_CALIBRATION_VALID",
+            "INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        "TIME_ASSET_RULE": {
+          "action": "LINK_CANDIDATES",
+          "evidence_refs": [
+            "synthetic://observable/OBS-PILOT-A",
+            "synthetic://observable/OBS-PILOT-B"
+          ],
+          "independent_lineage_root_count": 2,
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        }
+      },
+      "source_family_relation_from_predeclared_graph": "SHARED_UPSTREAM_SOURCE_FAMILY",
+      "template": "V2_TWO_ROOT_IDS",
+      "truth_scoring_status": "NOT_SCORED_UNIDENTIFIABLE",
+      "visible_root_id_count": 2
+    },
+    {
+      "case_id": "R2-SAME",
+      "clone_input_bytes_equal": true,
+      "counterfactual_clone": "R2-DIFF",
+      "event_relation_from_predeclared_registry": "SAME",
+      "identifiability": "UNIDENTIFIABLE_FROM_METHOD_INPUTS",
+      "method_input_sha256": "c49917eceea9b15b406a070e7c323ff5143dc3acc60fa846b9ac4bab5f46ebad",
+      "methods": {
+        "MULTI_EVIDENCE_RULE": {
+          "action": "LINK_CANDIDATES",
+          "evidence_refs": [
+            "synthetic://observable/OBS-PILOT-A",
+            "synthetic://observable/OBS-PILOT-B"
+          ],
+          "independent_lineage_root_count": 2,
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE",
+            "CROSS_MODAL_SUPPORT",
+            "QUALITY_CALIBRATION_VALID",
+            "INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        "TIME_ASSET_RULE": {
+          "action": "LINK_CANDIDATES",
+          "evidence_refs": [
+            "synthetic://observable/OBS-PILOT-A",
+            "synthetic://observable/OBS-PILOT-B"
+          ],
+          "independent_lineage_root_count": 2,
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        }
+      },
+      "source_family_relation_from_predeclared_graph": "DISJOINT_SOURCE_FAMILIES",
+      "template": "V2_TWO_ROOT_IDS",
+      "truth_scoring_status": "NOT_SCORED_UNIDENTIFIABLE",
+      "visible_root_id_count": 2
+    }
+  ],
+  "classification": "SYNTHETIC_DEVELOPMENT_PILOT_ONLY",
+  "failure_analysis": [
+    "R1-SAME and R1-DIFF have identical method-visible bytes, so the same-root input cannot distinguish event identity.",
+    "With one root ID, MULTI_EVIDENCE_RULE abstains because it counts root strings; this does not establish that the two observations are the same event.",
+    "R2-SAME and R2-DIFF also have identical method-visible bytes. Both rules link candidates from that input, including the scorer-only shared-upstream-family assignment.",
+    "MULTI_EVIDENCE_RULE reports two independent acquisition roots for R2 based on distinct root IDs. The scorer-only graph shows that this does not authenticate independent source evidence.",
+    "The hidden labels were generated from a predeclared event registry and source-family graph independent of rule code. Because opposite labels are byte-identical per root-count row, no truth-accuracy, false-merge, false-split, or superiority rate is computed."
+  ],
+  "formal_effect_evaluation": false,
+  "heldout": false,
+  "identifiability_hash_checks": {
+    "R1-SAME/R1-DIFF": true,
+    "R2-SAME/R2-DIFF": true
+  },
+  "method_input_sha256_by_template": {
+    "V1_ONE_ROOT": "abdbee07e9589958df142748d7d40d5d15c220b341c68784aa4a845f976fa8f0",
+    "V2_TWO_ROOT_IDS": "c49917eceea9b15b406a070e7c323ff5143dc3acc60fa846b9ac4bab5f46ebad"
+  },
+  "method_output_sha256_by_template_and_rule": {
+    "V1_ONE_ROOT": {
+      "MULTI_EVIDENCE_RULE": "d882e5e5cc93b10f41e6699ceb2f11de0773cda7f7f4f28d1c076659d1b8c4ae",
+      "TIME_ASSET_RULE": "c1560272c8bb8f07c38accf887d360c24230337f70b54113411ff1b654bd3fdf"
+    },
+    "V2_TWO_ROOT_IDS": {
+      "MULTI_EVIDENCE_RULE": "d5c014186fc6e68f49796956367a415316ce05f3d1640adf5245ac971a63a033",
+      "TIME_ASSET_RULE": "9c43686b018624d51a63b6eeb112a9e29b167e0d0dc89e7cef4d91be63396ba6"
+    }
+  },
+  "model_network_device_or_notification_used": false,
+  "outputs_frozen_sha256": "282a7542bff473b9d35038b2b7060ebd3bedc00f513a29a83e5814c23e2c6984",
+  "prior_attempt_02_integrity": {
+    "failures": [],
+    "files_checked": 219,
+    "manifest_sha256": "ff5411c0c498e1316255e673f2bbe9c5684a05c844ecff353f812b42f124b60d",
+    "status": "PASS"
+  },
+  "protocol_expectation_checks": [
+    {
+      "action_expected": "LINK_CANDIDATES",
+      "action_observed": "LINK_CANDIDATES",
+      "method": "TIME_ASSET_RULE",
+      "reason_expected": null,
+      "reasons_observed": [
+        "VERIFIED_ASSET_MATCH",
+        "TIME_AND_POSITION_COMPATIBLE"
+      ],
+      "status": "PASS",
+      "template": "V1_ONE_ROOT"
+    },
+    {
+      "action_expected": "ABSTAIN",
+      "action_observed": "ABSTAIN",
+      "method": "MULTI_EVIDENCE_RULE",
+      "reason_expected": "NO_INDEPENDENT_ACQUISITION_ROOTS",
+      "reasons_observed": [
+        "NO_INDEPENDENT_ACQUISITION_ROOTS"
+      ],
+      "status": "PASS",
+      "template": "V1_ONE_ROOT"
+    },
+    {
+      "action_expected": "LINK_CANDIDATES",
+      "action_observed": "LINK_CANDIDATES",
+      "method": "TIME_ASSET_RULE",
+      "reason_expected": null,
+      "reasons_observed": [
+        "VERIFIED_ASSET_MATCH",
+        "TIME_AND_POSITION_COMPATIBLE"
+      ],
+      "status": "PASS",
+      "template": "V2_TWO_ROOT_IDS"
+    },
+    {
+      "action_expected": "LINK_CANDIDATES",
+      "action_observed": "LINK_CANDIDATES",
+      "method": "MULTI_EVIDENCE_RULE",
+      "reason_expected": "INDEPENDENT_ACQUISITION_ROOTS",
+      "reasons_observed": [
+        "VERIFIED_ASSET_MATCH",
+        "TIME_AND_POSITION_COMPATIBLE",
+        "CROSS_MODAL_SUPPORT",
+        "QUALITY_CALIBRATION_VALID",
+        "INDEPENDENT_ACQUISITION_ROOTS"
+      ],
+      "status": "PASS",
+      "template": "V2_TWO_ROOT_IDS"
+    }
+  ],
+  "protocol_id": "same-root-vs-event-identity-2x2-v1.0.0",
+  "protocol_sha256": "694b002cc7073b867bdd01982be94cb020c53d5ed576a83592e4dfaec64ae97c",
+  "rule_invocations": 4,
+  "scorer_only_predeclaration_sha256": "7bb7476ff568dfee1de55144f7130c717286a983a273830ff56ed3a8b91eaa60",
+  "scorer_sidecar_opened_after_outputs_frozen": true,
+  "scorer_sidecar_opened_at_utc": "2026-10-11T16:36:19.277917Z",
+  "unique_method_input_count": 2
+}

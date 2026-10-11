@@ -1,0 +1,189 @@
+{
+  "as_of": "2026-10-11T12:02:00Z",
+  "observations": [
+    {
+      "fields": [
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "acquisition_lineage",
+          "value": [
+            "ROOT-TWO-A-01",
+            "NODE-A"
+          ]
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "asset_binding_status",
+          "value": "VERIFIED"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "asset_id",
+          "value": "ASSET-PILOT-01"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "calibration_status",
+          "value": "CURRENT"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "modality",
+          "value": "TEMPERATURE"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "position_error_m",
+          "value": 0.25
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "position_m",
+          "value": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "quality_status",
+          "value": "GOOD"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "risk_flag",
+          "value": "EXPOSURE"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "source_time",
+          "value": "2026-10-11T12:00:00Z"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "unit",
+          "value": "degC"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "value",
+          "value": 79.95
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:00Z",
+          "earliest_known_at": "2026-10-11T12:00:00Z",
+          "name": "value_error",
+          "value": 0.5
+        }
+      ],
+      "id_actual_available_at": "2026-10-11T12:00:00Z",
+      "id_earliest_known_at": "2026-10-11T12:00:00Z",
+      "observation_id": "OBS-PILOT-A",
+      "received_at": "2026-10-11T12:00:00Z"
+    },
+    {
+      "fields": [
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "acquisition_lineage",
+          "value": [
+            "ROOT-TWO-B-01",
+            "NODE-B"
+          ]
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "asset_binding_status",
+          "value": "VERIFIED"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "asset_id",
+          "value": "ASSET-PILOT-01"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "calibration_status",
+          "value": "CURRENT"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "modality",
+          "value": "THERMAL_IMAGE"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "position_error_m",
+          "value": 0.25
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "position_m",
+          "value": [
+            0.1,
+            0.0
+          ]
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "quality_status",
+          "value": "GOOD"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "risk_flag",
+          "value": "EXPOSURE"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "source_time",
+          "value": "2026-10-11T12:00:05Z"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "unit",
+          "value": "degC"
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "value",
+          "value": 80.2
+        },
+        {
+          "actual_available_at": "2026-10-11T12:00:05Z",
+          "earliest_known_at": "2026-10-11T12:00:05Z",
+          "name": "value_error",
+          "value": 0.5
+        }
+      ],
+      "id_actual_available_at": "2026-10-11T12:00:05Z",
+      "id_earliest_known_at": "2026-10-11T12:00:05Z",
+      "observation_id": "OBS-PILOT-B",
+      "received_at": "2026-10-11T12:00:05Z"
+    }
+  ]
+}

@@ -1,334 +1,434 @@
 {
-  "manifest_version": "mac-persistence-v1",
   "artifact_set": "research-three-v2-alignment-20261011",
-  "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "d0f7f2f3f07d1eb01a0fdf8f401a85005250eed9",
-  "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
-  "mac_local_project_root": null,
-  "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
-  "sha256_scope": "Listed deliverables only; this manifest does not hash itself.",
-  "related_public_v2_spec_branch": "task/v2-public-spec-20261011",
-  "related_public_v2_spec_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
-  "includes_original_mac_v2_spec": false,
-  "includes_frozen_trial_raw_data": false,
-  "run_artifacts_are_synthetic_only": true,
-  "notification_coalescing_policy": "Experiment only; windows, batch, association-state/episode interval key, and overlap rule are not frozen or production defaults.",
-  "multi_flag_severity_priority": "UNDECIDED",
-  "legacy_metric_status": "NOT_RECONSTRUCTED",
-  "real_delivery_or_visibility_validation": "NOT_RUN; synthetic reminder actions are marked NOT_DELIVERED.",
-  "mac_device_or_cleanup_validation": "NOT_RUN",
-  "old_1464_check_trial_rerun": false,
+  "content_preview_scope": "INCREMENTAL_CONTENT_ONLY; NOT_A_FULL_VISIBLE_CARD_RENDER; HISTORY_PRESERVATION_DOES_NOT_PROVE_FULL_CARD_VISIBILITY",
+  "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; full candidate pair, card-specific resolved episodes, association IDs/states, and resolved-state action times are fail-closed across history; no history is marked NO_LEDGER_HISTORY_TO_COMPARE; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance.",
   "files": [
     {
-      "path": "research-three/alert-governance-v1/historical-baseline.json",
       "bytes": 1151,
+      "path": "research-three/alert-governance-v1/historical-baseline.json",
       "sha256": "5ba968272973da7a66f3b8d4779a0952d602993ef745060373c0b74398766bb7"
     },
     {
-      "path": "research-three/v2-alignment-20261011/ALIGNMENT.md",
       "bytes": 16982,
+      "path": "research-three/v2-alignment-20261011/ALIGNMENT.md",
       "sha256": "bcc6e461849f2e0dad953d0bd12b1aa57e7435154649cd2785a17394de91d768"
     },
     {
-      "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
       "bytes": 29826,
+      "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
       "sha256": "11d3e0505aad3b0760b3652aa34dff01d87a43be3b141fb6c36c27503b476c2a"
     },
     {
-      "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
-      "bytes": 19376,
-      "sha256": "8a37ecbffc74eb0457c014aa2338b7e7d906a0447d4e5dbc33ff18de1bb1e133"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
-      "bytes": 7883,
-      "sha256": "690142359a1d217c4d6f940f961762269147d82b6d1ee5cf5cce3279a9255ea0"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/IMPLEMENTATION_REVIEW_CLOSURE_20261011.md",
-      "bytes": 8593,
-      "sha256": "f0aad2195aa9e1c3ae3c84d3331a6b95b23dfe87ecb7ae95819cc28d46b58883"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 16271,
-      "sha256": "24c8b5393a54b9155be847b2b08e47c58b892929996ff0d2208604bc089a86f6"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
-      "bytes": 17438,
-      "sha256": "296712ec734678dcdbcb163f3689ef67800cc0871872bcd4c681095ccda6c098"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/generate_notification_coalescing_experiment.py",
-      "bytes": 1538,
-      "sha256": "123ab998ed9b034fb67944b240e6c6b20e1b1155813c1a123d3cb4a12d2e600f"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py",
-      "bytes": 26747,
-      "sha256": "48aee0f1ef365bc7c4a9a25d581339c9a2fd4d6528310db03507dabad6c6662a"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py",
-      "bytes": 19153,
-      "sha256": "261449a4aae431f40c40cfa4a9a9172a94a01a66d4a2dab64cdf5a8d9d941a20"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/idempotency-layers-comparison.html",
-      "bytes": 6188,
-      "sha256": "5bf9eeb7c7f2d0753f0f9ae78bdfd635aa88beacb0613609c6141352a1a1d7a2"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/idempotency-layers-data.json",
-      "bytes": 3670,
-      "sha256": "1033f80909796aa77a40529a4e9169fd38b0099556ad7b00af63619472c65382"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment-data.json",
-      "bytes": 1360755,
-      "sha256": "19572c4a0234bc47725626f7dd77e726c7c2f3e38c7223279723f52c13e92fa3"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment.html",
-      "bytes": 409379,
-      "sha256": "ec045099a555dccbd56fcaefb81c30118dbc4ae6c7e494d28f1ba0d85d995dac"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples-input.json",
-      "bytes": 13356,
-      "sha256": "63a015d1db572fb71c3c58962cbbe0ba6a7b037d2d5e0ff6186005107b7930d7"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples-manifest.json",
-      "bytes": 1633,
-      "sha256": "42a4c11bfade7ea41439e621fb95c82a3b4c32e760492a06a30e82ccac929608"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples.html",
-      "bytes": 21797,
-      "sha256": "dd2b6c690fbe64d992c308973255ba68850d59cb975b36340ba134994d6d74ea"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples.json",
-      "bytes": 164440,
-      "sha256": "9d7802a3ddf580a2c2b278128a15eee5d6c93f95a4938b3b998a1f27ab8b5d54"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-data.json",
-      "bytes": 29684,
-      "sha256": "ebddc5500973873f189491a8f419a6b024a8b14b9b4874989361583025f3dba8"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-timeline.html",
-      "bytes": 11170,
-      "sha256": "07bd15542fb06f6835a3850af17debd485110cfe0e5e79a5afa1b1b1aea0f06a"
-    },
-    {
-      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
-      "bytes": 17797,
-      "sha256": "c08deb6f25bb160b03eab01e7a5422ff86e687af725ba69ca816351043724fba"
-    },
-    {
-      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment_scenarios.py",
-      "bytes": 65794,
-      "sha256": "6a09355e03ff88045fbb2822c299e19de958dc1ed6e2da40b7bf7ce6ae4a9a30"
-    },
-    {
-      "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
-      "bytes": 38947,
-      "sha256": "1ba47f343e03a105a5ec02d903739a70d262c3905350abdaaa58fcb1981d6251"
-    },
-    {
-      "path": "risk-fusion-bench/src/rfb/research/alert_governance_v2.py",
-      "bytes": 1541,
-      "sha256": "0eb852f16213484eeb4a1bf4aa8c7f4360865e3692d2f3d370ab15dd0985dbcd"
-    },
-    {
-      "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
-      "bytes": 28713,
-      "sha256": "b7c4515df5861b3c0b8978f0f2ee6dd3e9f885787c5e727a09b0c896161d0b36"
-    },
-    {
-      "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
-      "bytes": 7512,
-      "sha256": "57bd61160a59384251ecdc53c9adcc86f663c82e14ce00bc1261eec995374436"
-    },
-    {
-      "path": "risk-fusion-bench/src/rfb/research/frozen_prefix_adapter.py",
-      "bytes": 8062,
-      "sha256": "cde2f80cf33e3bfb2a0394a6540074b7631caccc57dacd360ac2e3cc99908dff"
-    },
-    {
-      "path": "risk-fusion-bench/src/rfb/research/observable_association.py",
-      "bytes": 35702,
-      "sha256": "d6fbebee538cf9ad68b35076b995f5f1bf962efc27350e098c2dfea655c27afe"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
-      "bytes": 22183,
-      "sha256": "887a4a7ddca4d9bacbb9962f700c8031e295bb32de641d2c3b619b5d5662ad2d"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py",
-      "bytes": 19523,
-      "sha256": "9ff465faec3ddee6f31cc12fa9a133c44c9b8843c94595138ec1119a134d6ce4"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_alert_governance_idempotency.py",
-      "bytes": 5946,
-      "sha256": "e1e9297c80ea5556385bd0f3f9a7c6b17b93ced4dda760369ebf8f8e0deca257"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_alert_governance_v2.py",
-      "bytes": 1836,
-      "sha256": "2baac1c13100ea51068bbf7ebe972414378bfe95904d147655cd39fa35a4e65e"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_alert_notification_preview.py",
-      "bytes": 4853,
-      "sha256": "bad77dbcb75f87cfb5ab93771be275ed2b4861b2bdbcbc6ae65f7383d1cd4f6e"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_event_card_integration.py",
-      "bytes": 22870,
-      "sha256": "2db2ed4616f0849353fd8e37ffdfa9b73dea3fd440770691e10d30fdd199935d"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_event_card_resolution.py",
-      "bytes": 5038,
-      "sha256": "ad86e2857b05ce203b92aa407dc35bef6b71a9b9004cb90e54d0251bc9d949f9"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_heldout_prefix_adapter.py",
-      "bytes": 14687,
-      "sha256": "e9cefcce0b30b4c8d728d5472d5966d7f94273802ab4685f67285f76c092446f"
-    },
-    {
-      "path": "risk-fusion-bench/tests/test_observable_association.py",
-      "bytes": 35492,
-      "sha256": "691615d6a49e566209a5e939c1c257e7a091e02bd8aa0b55dd18a0a424bda08c"
-    },
-    {
-      "path": "research-three/v2-alignment-20261011/FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md",
       "bytes": 17625,
+      "path": "research-three/v2-alignment-20261011/FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md",
       "sha256": "20fd3b5a33f9e4a9abd7c5a22dd96be226234a9fb6409a685af8cfb2996742e0"
     },
     {
-      "path": "risk-fusion-bench/src/rfb/research/observable_association_evaluation.py",
+      "bytes": 19376,
+      "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
+      "sha256": "8a37ecbffc74eb0457c014aa2338b7e7d906a0447d4e5dbc33ff18de1bb1e133"
+    },
+    {
+      "bytes": 7883,
+      "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
+      "sha256": "690142359a1d217c4d6f940f961762269147d82b6d1ee5cf5cce3279a9255ea0"
+    },
+    {
+      "bytes": 8593,
+      "path": "research-three/v2-alignment-20261011/IMPLEMENTATION_REVIEW_CLOSURE_20261011.md",
+      "sha256": "f0aad2195aa9e1c3ae3c84d3331a6b95b23dfe87ecb7ae95819cc28d46b58883"
+    },
+    {
+      "bytes": 18020,
+      "path": "research-three/v2-alignment-20261011/README.md",
+      "sha256": "9552bb266f8cbce8d9d791b9b99c6a68ee8de8148983ae6b28067a93fa984818"
+    },
+    {
+      "bytes": 1711,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/INPUT_FREEZE_RECORD.json",
+      "sha256": "4140c22152656afc735c6f7174a00f0c1b3c76598c444938a65dec3afa69855a"
+    },
+    {
+      "bytes": 1902,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/OUTPUTS_FROZEN.json",
+      "sha256": "282a7542bff473b9d35038b2b7060ebd3bedc00f513a29a83e5814c23e2c6984"
+    },
+    {
+      "bytes": 8459,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/PROTOCOL.md",
+      "sha256": "694b002cc7073b867bdd01982be94cb020c53d5ed576a83592e4dfaec64ae97c"
+    },
+    {
+      "bytes": 1208,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/PROTOCOL_FREEZE_RECORD.json",
+      "sha256": "d9a9bd50f61807e3bef87f11c0bbebf7c8c5b732f22d82f73829579ae343ca57"
+    },
+    {
+      "bytes": 4836,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/REPORT.md",
+      "sha256": "9caef9c463311efacc126ed094e25a2dbe2183b0c46143428bc07f8a5759ec36"
+    },
+    {
+      "bytes": 4284,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/RUN_MANIFEST.json",
+      "sha256": "227934e5aa6195bd1b91f289edd1953d44181d7855eb05c1eab4e0b0a6108903"
+    },
+    {
+      "bytes": 3484,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/SCORER_ONLY_PREDECLARATION.json",
+      "sha256": "7bb7476ff568dfee1de55144f7130c717286a983a273830ff56ed3a8b91eaa60"
+    },
+    {
+      "bytes": 9872,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/case_results.json",
+      "sha256": "9a52474686c5fa80b5d04ba943e16882d2321920557d9e3e6afc60c31c9b1f5e"
+    },
+    {
+      "bytes": 5805,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/method_inputs/V1_ONE_ROOT.json",
+      "sha256": "abdbee07e9589958df142748d7d40d5d15c220b341c68784aa4a845f976fa8f0"
+    },
+    {
+      "bytes": 5809,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/method_inputs/V2_TWO_ROOT_IDS.json",
+      "sha256": "c49917eceea9b15b406a070e7c323ff5143dc3acc60fa846b9ac4bab5f46ebad"
+    },
+    {
+      "bytes": 409,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/outputs/V1_ONE_ROOT/MULTI_EVIDENCE_RULE.json",
+      "sha256": "d882e5e5cc93b10f41e6699ceb2f11de0773cda7f7f4f28d1c076659d1b8c4ae"
+    },
+    {
+      "bytes": 432,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/outputs/V1_ONE_ROOT/TIME_ASSET_RULE.json",
+      "sha256": "c1560272c8bb8f07c38accf887d360c24230337f70b54113411ff1b654bd3fdf"
+    },
+    {
+      "bytes": 518,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/outputs/V2_TWO_ROOT_IDS/MULTI_EVIDENCE_RULE.json",
+      "sha256": "d5c014186fc6e68f49796956367a415316ce05f3d1640adf5245ac971a63a033"
+    },
+    {
+      "bytes": 432,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/outputs/V2_TWO_ROOT_IDS/TIME_ASSET_RULE.json",
+      "sha256": "9c43686b018624d51a63b6eeb112a9e29b167e0d0dc89e7cef4d91be63396ba6"
+    },
+    {
+      "bytes": 5751,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/prepare_inputs.py",
+      "sha256": "aef81c7d9614a2bb332d09a8b9282405cc2b8440a07a103023b1d6b809f6f5a2"
+    },
+    {
+      "bytes": 592,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/run.log.txt",
+      "sha256": "d0b455b105260b5a53e210951fd356bdc204bb55fe788d18dfac244d4ad885a8"
+    },
+    {
+      "bytes": 26926,
+      "path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/run_pilot.py",
+      "sha256": "f88db0d9e8520e592cdeca36296bda9cbe890606e5a29e0929063f8292ef687e"
+    },
+    {
+      "bytes": 17438,
+      "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
+      "sha256": "296712ec734678dcdbcb163f3689ef67800cc0871872bcd4c681095ccda6c098"
+    },
+    {
+      "bytes": 1538,
+      "path": "research-three/v2-alignment-20261011/visualization/generate_notification_coalescing_experiment.py",
+      "sha256": "123ab998ed9b034fb67944b240e6c6b20e1b1155813c1a123d3cb4a12d2e600f"
+    },
+    {
+      "bytes": 26747,
+      "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py",
+      "sha256": "48aee0f1ef365bc7c4a9a25d581339c9a2fd4d6528310db03507dabad6c6662a"
+    },
+    {
+      "bytes": 19153,
+      "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py",
+      "sha256": "261449a4aae431f40c40cfa4a9a9172a94a01a66d4a2dab64cdf5a8d9d941a20"
+    },
+    {
+      "bytes": 6188,
+      "path": "research-three/v2-alignment-20261011/visualization/idempotency-layers-comparison.html",
+      "sha256": "5bf9eeb7c7f2d0753f0f9ae78bdfd635aa88beacb0613609c6141352a1a1d7a2"
+    },
+    {
+      "bytes": 3670,
+      "path": "research-three/v2-alignment-20261011/visualization/idempotency-layers-data.json",
+      "sha256": "1033f80909796aa77a40529a4e9169fd38b0099556ad7b00af63619472c65382"
+    },
+    {
+      "bytes": 1360755,
+      "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment-data.json",
+      "sha256": "19572c4a0234bc47725626f7dd77e726c7c2f3e38c7223279723f52c13e92fa3"
+    },
+    {
+      "bytes": 409379,
+      "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment.html",
+      "sha256": "ec045099a555dccbd56fcaefb81c30118dbc4ae6c7e494d28f1ba0d85d995dac"
+    },
+    {
+      "bytes": 13356,
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples-input.json",
+      "sha256": "63a015d1db572fb71c3c58962cbbe0ba6a7b037d2d5e0ff6186005107b7930d7"
+    },
+    {
+      "bytes": 1633,
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples-manifest.json",
+      "sha256": "42a4c11bfade7ea41439e621fb95c82a3b4c32e760492a06a30e82ccac929608"
+    },
+    {
+      "bytes": 21797,
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples.html",
+      "sha256": "dd2b6c690fbe64d992c308973255ba68850d59cb975b36340ba134994d6d74ea"
+    },
+    {
+      "bytes": 164440,
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-card-examples.json",
+      "sha256": "9d7802a3ddf580a2c2b278128a15eee5d6c93f95a4938b3b998a1f27ab8b5d54"
+    },
+    {
+      "bytes": 29684,
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-data.json",
+      "sha256": "ebddc5500973873f189491a8f419a6b024a8b14b9b4874989361583025f3dba8"
+    },
+    {
+      "bytes": 11170,
+      "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-timeline.html",
+      "sha256": "07bd15542fb06f6835a3850af17debd485110cfe0e5e79a5afa1b1b1aea0f06a"
+    },
+    {
+      "bytes": 17797,
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
+      "sha256": "c08deb6f25bb160b03eab01e7a5422ff86e687af725ba69ca816351043724fba"
+    },
+    {
+      "bytes": 65794,
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment_scenarios.py",
+      "sha256": "6a09355e03ff88045fbb2822c299e19de958dc1ed6e2da40b7bf7ce6ae4a9a30"
+    },
+    {
+      "bytes": 38947,
+      "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
+      "sha256": "1ba47f343e03a105a5ec02d903739a70d262c3905350abdaaa58fcb1981d6251"
+    },
+    {
+      "bytes": 1541,
+      "path": "risk-fusion-bench/src/rfb/research/alert_governance_v2.py",
+      "sha256": "0eb852f16213484eeb4a1bf4aa8c7f4360865e3692d2f3d370ab15dd0985dbcd"
+    },
+    {
+      "bytes": 28713,
+      "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
+      "sha256": "b7c4515df5861b3c0b8978f0f2ee6dd3e9f885787c5e727a09b0c896161d0b36"
+    },
+    {
+      "bytes": 7512,
+      "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
+      "sha256": "57bd61160a59384251ecdc53c9adcc86f663c82e14ce00bc1261eec995374436"
+    },
+    {
+      "bytes": 8062,
+      "path": "risk-fusion-bench/src/rfb/research/frozen_prefix_adapter.py",
+      "sha256": "cde2f80cf33e3bfb2a0394a6540074b7631caccc57dacd360ac2e3cc99908dff"
+    },
+    {
+      "bytes": 35702,
+      "path": "risk-fusion-bench/src/rfb/research/observable_association.py",
+      "sha256": "d6fbebee538cf9ad68b35076b995f5f1bf962efc27350e098c2dfea655c27afe"
+    },
+    {
       "bytes": 62431,
+      "path": "risk-fusion-bench/src/rfb/research/observable_association_evaluation.py",
       "sha256": "18435761e8c85f92c3baef4f522a91c4a6a80b9bf74a8722496f4a458e0ded86"
     },
     {
-      "path": "risk-fusion-bench/tests/test_observable_association_evaluation.py",
+      "bytes": 22183,
+      "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
+      "sha256": "887a4a7ddca4d9bacbb9962f700c8031e295bb32de641d2c3b619b5d5662ad2d"
+    },
+    {
+      "bytes": 19523,
+      "path": "risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py",
+      "sha256": "9ff465faec3ddee6f31cc12fa9a133c44c9b8843c94595138ec1119a134d6ce4"
+    },
+    {
+      "bytes": 5946,
+      "path": "risk-fusion-bench/tests/test_alert_governance_idempotency.py",
+      "sha256": "e1e9297c80ea5556385bd0f3f9a7c6b17b93ced4dda760369ebf8f8e0deca257"
+    },
+    {
+      "bytes": 1836,
+      "path": "risk-fusion-bench/tests/test_alert_governance_v2.py",
+      "sha256": "2baac1c13100ea51068bbf7ebe972414378bfe95904d147655cd39fa35a4e65e"
+    },
+    {
+      "bytes": 4853,
+      "path": "risk-fusion-bench/tests/test_alert_notification_preview.py",
+      "sha256": "bad77dbcb75f87cfb5ab93771be275ed2b4861b2bdbcbc6ae65f7383d1cd4f6e"
+    },
+    {
+      "bytes": 22870,
+      "path": "risk-fusion-bench/tests/test_event_card_integration.py",
+      "sha256": "2db2ed4616f0849353fd8e37ffdfa9b73dea3fd440770691e10d30fdd199935d"
+    },
+    {
+      "bytes": 5038,
+      "path": "risk-fusion-bench/tests/test_event_card_resolution.py",
+      "sha256": "ad86e2857b05ce203b92aa407dc35bef6b71a9b9004cb90e54d0251bc9d949f9"
+    },
+    {
+      "bytes": 14687,
+      "path": "risk-fusion-bench/tests/test_heldout_prefix_adapter.py",
+      "sha256": "e9cefcce0b30b4c8d728d5472d5966d7f94273802ab4685f67285f76c092446f"
+    },
+    {
+      "bytes": 35492,
+      "path": "risk-fusion-bench/tests/test_observable_association.py",
+      "sha256": "691615d6a49e566209a5e939c1c257e7a091e02bd8aa0b55dd18a0a424bda08c"
+    },
+    {
       "bytes": 29780,
+      "path": "risk-fusion-bench/tests/test_observable_association_evaluation.py",
       "sha256": "5ad6c86b5d6d0df88262c9b4fdda0ebcbed39417600271eb6ca36de47e23ca44"
     }
   ],
-  "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
-  "task_ids_interface": "UNSUPPORTED_BY_CURRENT_INTERFACE",
-  "content_preview_scope": "INCREMENTAL_CONTENT_ONLY; NOT_A_FULL_VISIBLE_CARD_RENDER; HISTORY_PRESERVATION_DOES_NOT_PROVE_FULL_CARD_VISIBILITY",
-  "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11_WITH_FINITE_EVALUATION_REVIEW_DRAFT",
-  "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
-  "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
-  "focused_local_validation": "PASS; 20 observable-only association synthetic unit tests and 29 focused alert-ledger/reminder regression tests. I1 regression coverage rejects future observation-ID, receipt, and field-known times at direct prefix construction and dataclasses.replace, and revalidates candidate/rule consumers; it also asserts factory preservation of ID availability times and a valid later cutoff. Existing prefix invariance, identifier bijection, replay/lineage, late-arrival, asset/recovery, scorer-contract, and pending-ledger coverage remains passing. No efficacy estimate, old 1464-check trial rerun, Mac/device validation, or real delivery.",
-  "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; full candidate pair, card-specific resolved episodes, association IDs/states, and resolved-state action times are fail-closed across history; no history is marked NO_LEDGER_HISTORY_TO_COMPARE; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance.",
-  "identity_ledger_alignment_scope": "Across history, every ASSOCIATION_PENDING revision must carry the full pending pair; every resolved-state revision must match the externally supplied resolved state and card episodes; identity-transition detected_at cannot precede identity_evidence_known_at and resolved revision received_at cannot precede resolved_at. trigger_known_time and earlier pending revisions are preserved. Latest revision must reference identity association ID/state.",
-  "temporal_identity_alignment_scope": "Synthetic-only chronology validation: resolved-state revisions require received_at >= external resolved_at; identity-transition actions with detected_at require detected_at >= identity_evidence_known_at. Audit shows evidence-known, resolved, earliest relevant receipt, and earliest transition-detected times. No real clock provenance or delivery is validated.",
-  "frozen_prefix_integration_scope": "Two complete synthetic trajectories with a common prefix and distinct future suffixes are passed in full to freeze_visible_prefix at the same as_of; frozen prefix, pending action-ledger input, and card preview match. A later as_of exposes the divergent future values.",
-  "synthetic_event_card_examples": {
-    "scope_tags": [
-      "C0",
-      "I0",
-      "M0"
-    ],
-    "classification": "SYNTHETIC",
-    "identity_results": "EXTERNALLY_SUPPLIED_SYNTHETIC_INPUT",
-    "delivery_status": "NOT_DELIVERED",
-    "business_acceptance": "NOT_EVALUATED",
-    "generation_command": "python research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py",
-    "case_list": [
-      "repeat_same_alarm",
-      "risk_escalation_same_card",
-      "pending_pair_resolves_same",
-      "pending_pair_resolves_different"
-    ],
-    "output_sha256": {
-      "synthetic-event-card-examples.html": "dd2b6c690fbe64d992c308973255ba68850d59cb975b36340ba134994d6d74ea",
-      "synthetic-event-card-examples.json": "9d7802a3ddf580a2c2b278128a15eee5d6c93f95a4938b3b998a1f27ab8b5d54"
-    },
-    "mac_device_or_cleanup_validation": "NOT_RUN"
-  },
-  "observable_association_scope": {
-    "classification": "SYNTHETIC_DEVELOPMENT_ONLY",
-    "methods": [
-      "time_asset_rule",
-      "multi_evidence_rule"
-    ],
-    "shared_candidate_universe": true,
-    "dempster_shafer": "INTERFACE_ONLY_NOT_IMPLEMENTED_OR_RUN",
-    "ledger_handoff": "LINK_PROPOSAL_CREATES_PENDING_ASSOCIATION_ONLY; NO_IDENTITY_CONFIRMATION",
-    "inference_truth_access": false,
-    "scorer_reads_truth_only_after_output_freeze": true,
-    "formal_efficacy_estimated": false,
-    "new_unit_test_count": 20,
-    "direct_ledger_regression_test_count": 29,
-    "test_commands_from_risk_fusion_bench": [
-      "PYTHONPATH=src python -m unittest -v tests.test_observable_association",
-      "PYTHONPATH=src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency"
-    ],
-    "synthetic_parameters_are_production_thresholds": false,
-    "mac_device_or_cleanup_validation": "NOT_RUN",
-    "prefix_time_boundary": "DIRECT_CONSTRUCTION_AND_REPLACE_VALIDATE_ID_RECEIPT_AND_FIELD_TIMES; CANDIDATE_AND_RULE_CONSUMERS_REVALIDATE"
-  },
   "finite_synthetic_evaluation": {
-    "status": "REVIEW_DRAFT",
-    "code_commit": "d0f7f2f3f07d1eb01a0fdf8f401a85005250eed9",
-    "development_plan": {
-      "seed": 2026101101,
-      "worlds": 12,
-      "generated": false
-    },
-    "heldout_plan": {
-      "seed": 2026101102,
-      "worlds": 24,
-      "generated": false
-    },
-    "formal_worlds_scored": false,
-    "hyperparameter_search_configs_per_method": 0,
-    "synthetic_contract_test_methods": 14,
-    "combined_focused_tests_passed": 34,
-    "candidate_universe": "ALL_SIX_UNORDERED_PAIRS_AMONG_FOUR_ABNORMAL_OBSERVATION_IDS",
-    "unknown_scoring": "IN_COVERAGE_DENOMINATOR; EXCLUDED_FROM_FALSE_MERGE_FALSE_SPLIT_AND_DELAY",
     "alert_escalation": "SEPARATE_ACTION_TRACE; DEFAULT_NOT_EVALUATED_WHEN_ABSENT",
-    "heldout_blinding": "PUBLIC_DETERMINISTIC_SEED; PROCEDURAL_RESERVE_NOT_CRYPTOGRAPHICALLY_BLIND",
+    "candidate_universe": "ALL_SIX_UNORDERED_PAIRS_AMONG_FOUR_ABNORMAL_OBSERVATION_IDS",
+    "code_commit": "d0f7f2f3f07d1eb01a0fdf8f401a85005250eed9",
+    "combined_focused_tests_passed": 34,
+    "cutoff_trace_integrity": "FIXED_GENERATOR_PLUS_REGISTERED_SEED_INDEX_STRATUM_DERIVE_EXPECTED; SIDECAR_CLAIM_CHECKED_AT_CONSTRUCTION_AND_DIRECT_SCORE; AGGREGATOR_CHECKS_REGISTERED_EXPECTED_AND_REGISTERED_EQUALS_SCORED; BOTH_METHOD_ARMS_EXACT",
+    "decision_delay_scope": "SAME_REQUIRES_INDEPENDENT_LINEAGE_ROOTS_FOR_SUFFICIENT_EVIDENCE; SHARED_ROOT_SAME_RIGHT_CENSORED_BEFORE_EVIDENCE",
+    "development_plan": {
+      "generated": false,
+      "seed": 2026101101,
+      "worlds": 12
+    },
     "efficacy_claim": "NONE",
     "formal_aggregation": "REQUIRES_FULL_REGISTERED_BUDGET_BALANCED_STRATA_EXACT_SEED_IDS_AND_CUTOFF_TRACE",
     "formal_world_budgets": {
       "development": 12,
       "heldout": 24
     },
-    "worlds_per_stratum": {
-      "development": 3,
-      "heldout": 6
+    "formal_worlds_scored": false,
+    "heldout_blinding": "PUBLIC_DETERMINISTIC_SEED; PROCEDURAL_RESERVE_NOT_CRYPTOGRAPHICALLY_BLIND",
+    "heldout_plan": {
+      "generated": false,
+      "seed": 2026101102,
+      "worlds": 24
     },
+    "hyperparameter_search_configs_per_method": 0,
+    "interpretation": "FINITE_SCRIPTED_DEVELOPMENT_COMPARISON_ONLY; NO_GENERAL_EFFICACY_OR_SUPERIORITY_CLAIM",
+    "max_cutoffs_per_world": 8,
     "max_unique_abnormal_observation_ids_per_world": 4,
+    "metric_denominator_revision": "FALSE_MERGE_DIFFERENT_CLASS; FALSE_SPLIT_SAME_CLASS; COVERAGE_FULL_SIX_PAIR_UNIVERSE",
+    "proposal_output_contract": "EVERY_CANDIDATE_HAS_EXACTLY_ONE_EXPLICIT_ACTION; MISSING_PROPOSAL_INVALID; NON_CANDIDATE_FIXED_PAIRS_SCORE_AS_ABSTAIN",
+    "registered_cutoff_schedule_integrity": "WORLD_ID_AND_STRATUM_MAP_TO_FIXED_SEED_INDEX_SCHEDULE; NO_CRYPTOGRAPHIC_ATTESTATION; FORMAL_SPLITS_ONLY",
+    "replay_compute_scope": "NEW_RECEIVED_TIME_CUTOFF_CAN_ADD_CALLS; UNIQUE_PAIR_DENOMINATOR_UNCHANGED; REVIEW_REPORTED_TRACE_CALLS_44_TO_56",
+    "reported_cutoff_reproduction": "USER_REPORTED_7_TO_1_PREFIX_REDUCTION_ACCEPTED; DELAYS_0_TO_83_96S; PRE_EVIDENCE_CENSORING_105_TO_0S; NOT_RERUN_LOCALLY",
+    "seed_id_integrity": "GENERATION_SIDECAR_AND_AGGREGATOR_ENFORCE_REGISTERED_SEED_INDEX_STRATUM_ID_MAPPING; NOT_CRYPTOGRAPHIC_SCORE_PAYLOAD_ATTESTATION",
+    "status": "REVIEW_DRAFT",
+    "synthetic_contract_test_methods": 14,
     "unknown_action_counts": [
       "LINK_CANDIDATES",
       "RETAIN_SEPARATELY",
       "ABSTAIN"
     ],
-    "metric_denominator_revision": "FALSE_MERGE_DIFFERENT_CLASS; FALSE_SPLIT_SAME_CLASS; COVERAGE_FULL_SIX_PAIR_UNIVERSE",
-    "seed_id_integrity": "GENERATION_SIDECAR_AND_AGGREGATOR_ENFORCE_REGISTERED_SEED_INDEX_STRATUM_ID_MAPPING; NOT_CRYPTOGRAPHIC_SCORE_PAYLOAD_ATTESTATION",
-    "cutoff_trace_integrity": "FIXED_GENERATOR_PLUS_REGISTERED_SEED_INDEX_STRATUM_DERIVE_EXPECTED; SIDECAR_CLAIM_CHECKED_AT_CONSTRUCTION_AND_DIRECT_SCORE; AGGREGATOR_CHECKS_REGISTERED_EXPECTED_AND_REGISTERED_EQUALS_SCORED; BOTH_METHOD_ARMS_EXACT",
-    "max_cutoffs_per_world": 8,
-    "proposal_output_contract": "EVERY_CANDIDATE_HAS_EXACTLY_ONE_EXPLICIT_ACTION; MISSING_PROPOSAL_INVALID; NON_CANDIDATE_FIXED_PAIRS_SCORE_AS_ABSTAIN",
-    "replay_compute_scope": "NEW_RECEIVED_TIME_CUTOFF_CAN_ADD_CALLS; UNIQUE_PAIR_DENOMINATOR_UNCHANGED; REVIEW_REPORTED_TRACE_CALLS_44_TO_56",
-    "decision_delay_scope": "SAME_REQUIRES_INDEPENDENT_LINEAGE_ROOTS_FOR_SUFFICIENT_EVIDENCE; SHARED_ROOT_SAME_RIGHT_CENSORED_BEFORE_EVIDENCE",
     "unknown_scope": "ARTIFICIALLY_MASKED_LABEL_ON_KNOWN_SYNTHETIC_RELATION; DENOMINATOR_TEST_ONLY",
-    "interpretation": "FINITE_SCRIPTED_DEVELOPMENT_COMPARISON_ONLY; NO_GENERAL_EFFICACY_OR_SUPERIORITY_CLAIM",
-    "reported_cutoff_reproduction": "USER_REPORTED_7_TO_1_PREFIX_REDUCTION_ACCEPTED; DELAYS_0_TO_83_96S; PRE_EVIDENCE_CENSORING_105_TO_0S; NOT_RERUN_LOCALLY",
-    "registered_cutoff_schedule_integrity": "WORLD_ID_AND_STRATUM_MAP_TO_FIXED_SEED_INDEX_SCHEDULE; NO_CRYPTOGRAPHIC_ATTESTATION; FORMAL_SPLITS_ONLY"
+    "unknown_scoring": "IN_COVERAGE_DENOMINATOR; EXCLUDED_FROM_FALSE_MERGE_FALSE_SPLIT_AND_DELAY",
+    "worlds_per_stratum": {
+      "development": 3,
+      "heldout": 6
+    }
+  },
+  "focused_local_validation": "PASS; 20 observable-only association synthetic unit tests and 29 focused alert-ledger/reminder regression tests. I1 regression coverage rejects future observation-ID, receipt, and field-known times at direct prefix construction and dataclasses.replace, and revalidates candidate/rule consumers; it also asserts factory preservation of ID availability times and a valid later cutoff. Existing prefix invariance, identifier bijection, replay/lineage, late-arrival, asset/recovery, scorer-contract, and pending-ledger coverage remains passing. No efficacy estimate, old 1464-check trial rerun, Mac/device validation, or real delivery.",
+  "frozen_prefix_integration_scope": "Two complete synthetic trajectories with a common prefix and distinct future suffixes are passed in full to freeze_visible_prefix at the same as_of; frozen prefix, pending action-ledger input, and card preview match. A later as_of exposes the divergent future values.",
+  "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
+  "identity_ledger_alignment_scope": "Across history, every ASSOCIATION_PENDING revision must carry the full pending pair; every resolved-state revision must match the externally supplied resolved state and card episodes; identity-transition detected_at cannot precede identity_evidence_known_at and resolved revision received_at cannot precede resolved_at. trigger_known_time and earlier pending revisions are preserved. Latest revision must reference identity association ID/state.",
+  "includes_frozen_trial_raw_data": false,
+  "includes_original_mac_v2_spec": false,
+  "legacy_metric_status": "NOT_RECONSTRUCTED",
+  "mac_device_or_cleanup_validation": "NOT_RUN",
+  "mac_local_project_root": null,
+  "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
+  "manifest_version": "mac-persistence-v1",
+  "multi_flag_severity_priority": "UNDECIDED",
+  "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
+  "notification_coalescing_policy": "Experiment only; windows, batch, association-state/episode interval key, and overlap rule are not frozen or production defaults.",
+  "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
+  "observable_association_scope": {
+    "classification": "SYNTHETIC_DEVELOPMENT_ONLY",
+    "dempster_shafer": "INTERFACE_ONLY_NOT_IMPLEMENTED_OR_RUN",
+    "direct_ledger_regression_test_count": 29,
+    "formal_efficacy_estimated": false,
+    "inference_truth_access": false,
+    "ledger_handoff": "LINK_PROPOSAL_CREATES_PENDING_ASSOCIATION_ONLY; NO_IDENTITY_CONFIRMATION",
+    "mac_device_or_cleanup_validation": "NOT_RUN",
+    "methods": [
+      "time_asset_rule",
+      "multi_evidence_rule"
+    ],
+    "new_unit_test_count": 20,
+    "prefix_time_boundary": "DIRECT_CONSTRUCTION_AND_REPLACE_VALIDATE_ID_RECEIPT_AND_FIELD_TIMES; CANDIDATE_AND_RULE_CONSUMERS_REVALIDATE",
+    "scorer_reads_truth_only_after_output_freeze": true,
+    "shared_candidate_universe": true,
+    "synthetic_parameters_are_production_thresholds": false,
+    "test_commands_from_risk_fusion_bench": [
+      "PYTHONPATH=src python -m unittest -v tests.test_observable_association",
+      "PYTHONPATH=src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency"
+    ]
+  },
+  "old_1464_check_trial_rerun": false,
+  "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
+  "real_delivery_or_visibility_validation": "NOT_RUN; synthetic reminder actions are marked NOT_DELIVERED.",
+  "related_public_v2_spec_branch": "task/v2-public-spec-20261011",
+  "related_public_v2_spec_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
+  "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11_WITH_FINITE_EVALUATION_REVIEW_DRAFT",
+  "run_artifacts_are_synthetic_only": true,
+  "sha256_scope": "Listed deliverables only; this manifest does not hash itself.",
+  "source_commit": "c607f46c62ffb5ae113dad2ec8722074fdc95132",
+  "source_repository": "https://github.com/mightyoung/pre-combination-governance",
+  "synthetic_event_card_examples": {
+    "business_acceptance": "NOT_EVALUATED",
+    "case_list": [
+      "repeat_same_alarm",
+      "risk_escalation_same_card",
+      "pending_pair_resolves_same",
+      "pending_pair_resolves_different"
+    ],
+    "classification": "SYNTHETIC",
+    "delivery_status": "NOT_DELIVERED",
+    "generation_command": "python research-three/v2-alignment-20261011/visualization/generate_synthetic_event_card_examples.py",
+    "identity_results": "EXTERNALLY_SUPPLIED_SYNTHETIC_INPUT",
+    "mac_device_or_cleanup_validation": "NOT_RUN",
+    "output_sha256": {
+      "synthetic-event-card-examples.html": "dd2b6c690fbe64d992c308973255ba68850d59cb975b36340ba134994d6d74ea",
+      "synthetic-event-card-examples.json": "9d7802a3ddf580a2c2b278128a15eee5d6c93f95a4938b3b998a1f27ab8b5d54"
+    },
+    "scope_tags": [
+      "C0",
+      "I0",
+      "M0"
+    ]
+  },
+  "task_ids_interface": "UNSUPPORTED_BY_CURRENT_INTERFACE",
+  "temporal_identity_alignment_scope": "Synthetic-only chronology validation: resolved-state revisions require received_at >= external resolved_at; identity-transition actions with detected_at require detected_at >= identity_evidence_known_at. Audit shows evidence-known, resolved, earliest relevant receipt, and earliest transition-detected times. No real clock provenance or delivery is validated.",
+  "two_by_two_identity_observability_pilot": {
+    "cloud_absolute_paths_included": false,
+    "heldout_or_formal_effect_evaluation": false,
+    "method_calls": 4,
+    "old_1464_check_trial_rerun": false,
+    "opposite_label_input_pairs": "BYTE_IDENTICAL; ALL FOUR CASES NOT_SCORED_UNIDENTIFIABLE",
+    "outputs_frozen_sha256": "282a7542bff473b9d35038b2b7060ebd3bedc00f513a29a83e5814c23e2c6984",
+    "prior_comparison_attempt_02_integrity": "PASS; 219 FILES MATCHED ORIGINAL MANIFEST",
+    "protocol_id": "same-root-vs-event-identity-2x2-v1.0.0",
+    "results_path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/REPORT.md",
+    "run_manifest_path": "research-three/v2-alignment-20261011/runs/twobytwo-pilot-v1/RUN_MANIFEST.json",
+    "run_manifest_sha256": "227934e5aa6195bd1b91f289edd1953d44181d7855eb05c1eab4e0b0a6108903",
+    "status": "COMPLETED_SYNTHETIC_DEVELOPMENT_PILOT",
+    "unique_method_inputs": 2
   }
 }

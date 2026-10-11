@@ -1,0 +1,116 @@
+{
+  "artifact_version": "2x2-cpu-pilot-run-manifest-v1",
+  "branch_at_execution": "task/research-three-v2-alignment-20261011",
+  "candidate_pair_count_by_template": {
+    "V1_ONE_ROOT": 1,
+    "V2_TWO_ROOT_IDS": 1
+  },
+  "case_count": 4,
+  "case_failures": [],
+  "case_labels_scored": 0,
+  "classification": "SYNTHETIC_DEVELOPMENT_PILOT_ONLY",
+  "elapsed_process_ns_through_output_freeze": 5110527,
+  "files": [
+    {
+      "bytes": 1711,
+      "path": "INPUT_FREEZE_RECORD.json",
+      "sha256": "4140c22152656afc735c6f7174a00f0c1b3c76598c444938a65dec3afa69855a"
+    },
+    {
+      "bytes": 1902,
+      "path": "OUTPUTS_FROZEN.json",
+      "sha256": "282a7542bff473b9d35038b2b7060ebd3bedc00f513a29a83e5814c23e2c6984"
+    },
+    {
+      "bytes": 8459,
+      "path": "PROTOCOL.md",
+      "sha256": "694b002cc7073b867bdd01982be94cb020c53d5ed576a83592e4dfaec64ae97c"
+    },
+    {
+      "bytes": 1208,
+      "path": "PROTOCOL_FREEZE_RECORD.json",
+      "sha256": "d9a9bd50f61807e3bef87f11c0bbebf7c8c5b732f22d82f73829579ae343ca57"
+    },
+    {
+      "bytes": 4836,
+      "path": "REPORT.md",
+      "sha256": "9caef9c463311efacc126ed094e25a2dbe2183b0c46143428bc07f8a5759ec36"
+    },
+    {
+      "bytes": 3484,
+      "path": "SCORER_ONLY_PREDECLARATION.json",
+      "sha256": "7bb7476ff568dfee1de55144f7130c717286a983a273830ff56ed3a8b91eaa60"
+    },
+    {
+      "bytes": 9872,
+      "path": "case_results.json",
+      "sha256": "9a52474686c5fa80b5d04ba943e16882d2321920557d9e3e6afc60c31c9b1f5e"
+    },
+    {
+      "bytes": 5805,
+      "path": "method_inputs/V1_ONE_ROOT.json",
+      "sha256": "abdbee07e9589958df142748d7d40d5d15c220b341c68784aa4a845f976fa8f0"
+    },
+    {
+      "bytes": 5809,
+      "path": "method_inputs/V2_TWO_ROOT_IDS.json",
+      "sha256": "c49917eceea9b15b406a070e7c323ff5143dc3acc60fa846b9ac4bab5f46ebad"
+    },
+    {
+      "bytes": 409,
+      "path": "outputs/V1_ONE_ROOT/MULTI_EVIDENCE_RULE.json",
+      "sha256": "d882e5e5cc93b10f41e6699ceb2f11de0773cda7f7f4f28d1c076659d1b8c4ae"
+    },
+    {
+      "bytes": 432,
+      "path": "outputs/V1_ONE_ROOT/TIME_ASSET_RULE.json",
+      "sha256": "c1560272c8bb8f07c38accf887d360c24230337f70b54113411ff1b654bd3fdf"
+    },
+    {
+      "bytes": 518,
+      "path": "outputs/V2_TWO_ROOT_IDS/MULTI_EVIDENCE_RULE.json",
+      "sha256": "d5c014186fc6e68f49796956367a415316ce05f3d1640adf5245ac971a63a033"
+    },
+    {
+      "bytes": 432,
+      "path": "outputs/V2_TWO_ROOT_IDS/TIME_ASSET_RULE.json",
+      "sha256": "9c43686b018624d51a63b6eeb112a9e29b167e0d0dc89e7cef4d91be63396ba6"
+    },
+    {
+      "bytes": 5751,
+      "path": "prepare_inputs.py",
+      "sha256": "aef81c7d9614a2bb332d09a8b9282405cc2b8440a07a103023b1d6b809f6f5a2"
+    },
+    {
+      "bytes": 592,
+      "path": "run.log.txt",
+      "sha256": "d0b455b105260b5a53e210951fd356bdc204bb55fe788d18dfac244d4ad885a8"
+    },
+    {
+      "bytes": 26926,
+      "path": "run_pilot.py",
+      "sha256": "f88db0d9e8520e592cdeca36296bda9cbe890606e5a29e0929063f8292ef687e"
+    }
+  ],
+  "input_freeze_record_sha256": "4140c22152656afc735c6f7174a00f0c1b3c76598c444938a65dec3afa69855a",
+  "manifest_excludes_itself": true,
+  "method_calls_made": 4,
+  "method_source_sha256": "d6fbebee538cf9ad68b35076b995f5f1bf962efc27350e098c2dfea655c27afe",
+  "original_configuration_sha256": "8cb45203d70180fed60b8a84be64d84d4b5bd1e39538b01e56b8b556c5b0e01a",
+  "outputs_frozen_before_scorer_open": true,
+  "outputs_frozen_sha256": "282a7542bff473b9d35038b2b7060ebd3bedc00f513a29a83e5814c23e2c6984",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "prior_attempt_02_integrity": {
+    "failures": [],
+    "files_checked": 219,
+    "status": "PASS"
+  },
+  "prior_attempt_02_manifest_sha256": "ff5411c0c498e1316255e673f2bbe9c5684a05c844ecff353f812b42f124b60d",
+  "protocol_freeze_record_sha256": "d9a9bd50f61807e3bef87f11c0bbebf7c8c5b732f22d82f73829579ae343ca57",
+  "protocol_id": "same-root-vs-event-identity-2x2-v1.0.0",
+  "protocol_sha256": "694b002cc7073b867bdd01982be94cb020c53d5ed576a83592e4dfaec64ae97c",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "scorer_only_predeclaration_sha256": "7bb7476ff568dfee1de55144f7130c717286a983a273830ff56ed3a8b91eaa60",
+  "scorer_sidecar_opened_at_utc": "2026-10-11T16:36:19.277917Z",
+  "unique_method_inputs": 2
+}

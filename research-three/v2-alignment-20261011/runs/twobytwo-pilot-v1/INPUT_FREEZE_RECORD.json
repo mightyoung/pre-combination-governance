@@ -1,0 +1,53 @@
+{
+  "artifact_version": "2x2-method-input-freeze-v1",
+  "execution_started": false,
+  "generated_at_utc": "2026-10-11T16:35:14Z",
+  "hidden_fields_excluded": [
+    "case_id",
+    "event_key",
+    "event_relation",
+    "source_family",
+    "source_dependence",
+    "root_relation_label",
+    "identifiability_label"
+  ],
+  "method_calls_made": 0,
+  "method_input_schema": "as_of plus ObservationRecord values and allowlisted KnownField values only",
+  "method_source_path": "risk-fusion-bench/src/rfb/research/observable_association.py",
+  "method_source_sha256": "d6fbebee538cf9ad68b35076b995f5f1bf962efc27350e098c2dfea655c27afe",
+  "original_configuration_sha256": "8cb45203d70180fed60b8a84be64d84d4b5bd1e39538b01e56b8b556c5b0e01a",
+  "protocol_id": "same-root-vs-event-identity-2x2-v1.0.0",
+  "protocol_sha256": "694b002cc7073b867bdd01982be94cb020c53d5ed576a83592e4dfaec64ae97c",
+  "scorer_only_predeclaration_sha256_from_protocol_freeze": "7bb7476ff568dfee1de55144f7130c717286a983a273830ff56ed3a8b91eaa60",
+  "template_clone_pairs": [
+    {
+      "cases": [
+        "R1-SAME",
+        "R1-DIFF"
+      ],
+      "template": "V1_ONE_ROOT"
+    },
+    {
+      "cases": [
+        "R2-SAME",
+        "R2-DIFF"
+      ],
+      "template": "V2_TWO_ROOT_IDS"
+    }
+  ],
+  "template_count": 2,
+  "templates": [
+    {
+      "bytes": 5805,
+      "path": "method_inputs/V1_ONE_ROOT.json",
+      "sha256": "abdbee07e9589958df142748d7d40d5d15c220b341c68784aa4a845f976fa8f0",
+      "template": "V1_ONE_ROOT"
+    },
+    {
+      "bytes": 5809,
+      "path": "method_inputs/V2_TWO_ROOT_IDS.json",
+      "sha256": "c49917eceea9b15b406a070e7c323ff5143dc3acc60fa846b9ac4bab5f46ebad",
+      "template": "V2_TWO_ROOT_IDS"
+    }
+  ]
+}
