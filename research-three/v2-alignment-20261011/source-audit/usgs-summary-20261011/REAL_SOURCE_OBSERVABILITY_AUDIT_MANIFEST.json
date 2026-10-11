@@ -1,0 +1,40 @@
+{
+  "manifest_version": "research-artifact-manifest-v1",
+  "artifact_set": "real-source-observability-audit-usgs-summary-20261011",
+  "branch": "task/research-three-v2-alignment-20261011",
+  "source_commit": "1789d54f863bd1eecf8736a973212c2920d250b6",
+  "scope": "One real public USGS GeoJSON feature and its read-only field audit; no lineage/association prototype or raw feed body.",
+  "sha256_scope": "All listed deliverables; manifest does not hash itself.",
+  "contains_raw_payload": false,
+  "license_note": "USGS copyright guidance identifies USGS-authored/produced data as U.S. public domain and requests attribution; per-product contributor terms were not individually verified. No raw response is redistributed.",
+  "mac_local_project_root": null,
+  "mac_status": "PREPARED_IN_REPOSITORY; NOT_STORED_ON_MAC; MAC_OFFLINE",
+  "path_convention": "Repository-relative POSIX paths; resolve only beneath the Mac checkout root, never against cloud absolute paths.",
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
+      "bytes": 34804,
+      "sha256": "2d40a4fc0e26b94053dfffbabc0437101d67e746b4a6209a349f50a1d7112969"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/README.md",
+      "bytes": 20710,
+      "sha256": "1b001aefdc3119e0b2850774e490171327886ffb476eed3e3efc5bae0e0c42db"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+      "bytes": 2537,
+      "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.svg",
+      "bytes": 4840,
+      "sha256": "c113e9508edffff6ff3fab11ee571ae23122b45ac5942334cfd2eb2093fb2b0c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_SOURCE_AUDIT.md",
+      "bytes": 6220,
+      "sha256": "a285d94081ffebfd2664fad2b50a9ebc0c2228fd3ae20111ed64aa2195397a6f"
+    }
+  ]
+}
