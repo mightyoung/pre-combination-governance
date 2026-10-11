@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>合成事件卡演变时间线</title>
+<style>
+:root { color-scheme: light; --ink:#182230; --muted:#536273; --line:#d6dee8; --blue:#245b8f; --teal:#17786d; --amber:#a85c00; --red:#a3372d; --paper:#f7f9fc; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.55 system-ui,"Noto Sans CJK SC","Microsoft YaHei",sans-serif; }
+main { max-width:1200px; margin:0 auto; padding:28px 24px 44px; }
+h1 { margin:0 0 8px; font-size:28px; } h2 { margin:28px 0 12px; font-size:20px; }
+.banner { display:flex; align-items:center; gap:12px; padding:14px 16px; border:1px solid #e3ad68; border-left:6px solid var(--amber); border-radius:9px; background:#fff5e8; font-weight:650; }
+.banner b { color:#8d4600; } .sub { color:var(--muted); margin:0 0 18px; }
+.overview { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:18px 0; }
+.overview div { padding:13px 15px; background:#fff; border:1px solid var(--line); border-radius:9px; }
+.overview strong { display:block; font-size:12px; color:var(--muted); text-transform:uppercase; }
+.cards-evolution { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.stage { border:1px solid var(--line); border-radius:11px; background:#fff; padding:15px; min-height:188px; }
+.stage h3 { margin:0 0 6px; font-size:16px; } .stage p { margin:0 0 12px; color:var(--muted); font-size:13px; }
+.card-box { border:1px solid #cad6e3; border-radius:8px; padding:10px 11px; margin:8px 0; background:#f9fbfd; font-size:12px; overflow-wrap:anywhere; }
+.card-title { font-weight:700; color:var(--blue); } .card-id { font-family:ui-monospace,monospace; color:#314a62; }
+.timeline { position:relative; margin-left:6px; padding-left:26px; border-left:2px solid var(--line); }
+.timeline-item { position:relative; margin:0 0 18px; padding:0 0 3px 6px; }
+.dot { position:absolute; width:12px; height:12px; left:-33px; top:6px; border-radius:50%; background:var(--teal); border:2px solid white; box-shadow:0 0 0 1px var(--teal); }
+.time { color:var(--blue); font-weight:700; font-variant-numeric:tabular-nums; } .action { font-weight:650; }
+.meta,.evidence { font-size:12px; color:var(--muted); overflow-wrap:anywhere; } .evidence { font-family:ui-monospace,monospace; }
+.table-wrap { overflow-x:auto; background:#fff; border:1px solid var(--line); border-radius:9px; }
+table { width:100%; border-collapse:collapse; font-size:12px; } th,td { text-align:left; padding:9px 10px; border-bottom:1px solid #e7edf3; vertical-align:top; } th { color:#344456; background:#f1f5f9; }
+.badge { display:inline-block; padding:2px 7px; border-radius:999px; color:#0d6259; background:#e3f5f1; font-weight:700; }
+.caveat { padding:14px 16px; border:1px solid #e4b1ac; border-radius:9px; background:#fff3f1; }
+code { font-family:ui-monospace,monospace; }
+@media(max-width:800px) { .overview,.cards-evolution { grid-template-columns:1fr; } main { padding:20px 14px; } h1 { font-size:23px; } }
+</style>
+</head>
+<body><main>
+<h1>合成事件：提醒与事件卡演变</h1>
+<p class="sub">场景 SYNTH-V2-ALIGN-001 · 当前 V1.2 纯软件账本输出 · 时间为合成测试时钟</p>
+<div class="banner"><span>⚠</span><span><b>合成开发测试</b>：通知状态为 SIMULATED；没有外部投递、真实展示或 delivered_at 回执。</span></div>
+<div class="overview">
+  <div><strong>身份历史</strong>PENDING → CONFIRMED_SAME_EVENT → SPLIT_TO_DISTINCT</div>
+  <div><strong>风险提醒阶段</strong>PRECAUTIONARY → CONFIRMED → ESCALATED</div>
+  <div><strong>交付边界</strong>SIMULATED · visible_at 未知 · delivered_at 未记录</div>
+</div>
+<h2>展示卡演变</h2>
+<div class="cards-evolution">
+  <section class="stage"><h3>① 待核：两张卡</h3><p>身份关联尚未确认；各自保留候选与来源。</p><div class="card-box"><div class="card-title">穩定展示卡</div><div class="card-id">CARD-391185b45e7…</div><div>身份：PENDING_VERIFICATION</div><div>提醒：PRECAUTIONARY</div><div>候选：synthetic-observation-b</div></div><div class="card-box"><div class="card-title">穩定展示卡</div><div class="card-id">CARD-b19f89176d1…</div><div>身份：PENDING_VERIFICATION</div><div>提醒：PRECAUTIONARY</div><div>候选：synthetic-observation-a</div></div></section>
+  <section class="stage"><h3>② 暂确认 SAME：合并视图</h3><p>当前实现将 SAME 组件指向最早稳定卡；此设计与 V2 的“展示卡不等于物理事件”仍有差距。</p><div class="card-box"><div class="card-title">歷史別名</div><div class="card-id">CARD-391185b45e7…</div><div>身份：MERGED_ALIAS</div><div>提醒：PRECAUTIONARY</div><div>候选：synthetic-observation-b</div></div><div class="card-box"><div class="card-title">穩定展示卡</div><div class="card-id">CARD-b19f89176d1…</div><div>身份：CONFIRMED_SAME_EVENT</div><div>提醒：CONFIRMED</div><div>候选：synthetic-observation-a, synthetic-observation-b</div></div></section>
+  <section class="stage"><h3>③ 矛盾证据后拆分</h3><p>原始卡 ID 恢复；提醒阶段仍为 ESCALATED。</p><div class="card-box"><div class="card-title">穩定展示卡</div><div class="card-id">CARD-391185b45e7…</div><div>身份：CONFIRMED_DISTINCT</div><div>提醒：ESCALATED</div><div>候选：synthetic-observation-b</div></div><div class="card-box"><div class="card-title">穩定展示卡</div><div class="card-id">CARD-b19f89176d1…</div><div>身份：CONFIRMED_DISTINCT</div><div>提醒：ESCALATED</div><div>候选：synthetic-observation-a</div></div><p>最终 2 张原始稳定卡；分拆关系的 canonical_card_id 为空</p></section>
+</div>
+<h2>事件时间线与证据引用</h2>
+<div class="timeline"><article class="timeline-item"><span class="dot"></span><div class="time">08:00:03 UTC</div><div class="action">收到候选 A；生成首条待核实风险提醒</div><div class="meta">关联：— · 新提醒：CARD-b19f89176d1…</div><div class="evidence">证据：synthetic://v2-alignment/observation-A</div></article><article class="timeline-item"><span class="dot"></span><div class="time">08:00:05 UTC</div><div class="action">收到候选 B；保留第二张独立稳定卡</div><div class="meta">关联：— · 新提醒：CARD-391185b45e7…</div><div class="evidence">证据：synthetic://v2-alignment/observation-B</div></article><article class="timeline-item"><span class="dot"></span><div class="time">08:00:06 UTC</div><div class="action">关联出现冲突；状态 PENDING，两张卡不合并</div><div class="meta">关联：PENDING · 新提醒：CARD-b19f89176d1…、CARD-391185b45e7…</div><div class="evidence">证据：synthetic://v2-alignment/ambiguous-identity-evidence</div></article><article class="timeline-item"><span class="dot"></span><div class="time">08:00:07 UTC</div><div class="action">风险证据确认；提醒阶段 CONFIRMED，身份仍待核</div><div class="meta">关联：PENDING · 新提醒：CARD-b19f89176d1…</div><div class="evidence">证据：synthetic://v2-alignment/risk-review-evidence-ref</div></article><article class="timeline-item"><span class="dot"></span><div class="time">08:00:08 UTC</div><div class="action">身份复核暂确认 SAME；当前实现合并到最早稳定卡</div><div class="meta">关联：CONFIRMED_SAME_EVENT · 新提醒：CARD-391185b45e7…、CARD-b19f89176d1…</div><div class="evidence">证据：synthetic://v2-alignment/identity-review-same</div></article><article class="timeline-item"><span class="dot"></span><div class="time">08:00:09 UTC</div><div class="action">风险加重；提醒阶段 ESCALATED</div><div class="meta">关联：CONFIRMED_SAME_EVENT · 新提醒：CARD-b19f89176d1…</div><div class="evidence">证据：synthetic://v2-alignment/risk-escalation</div></article><article class="timeline-item"><span class="dot"></span><div class="time">08:00:10 UTC</div><div class="action">矛盾证据支持分拆；恢复两个原始卡 ID</div><div class="meta">关联：SPLIT_TO_DISTINCT · 新提醒：CARD-391185b45e7…、CARD-b19f89176d1…</div><div class="evidence">证据：synthetic://v2-alignment/contradictory-identity-evidence</div></article></div>
+<h2>本次账本生成的通知记录</h2>
+<div class="table-wrap"><table><thead><tr><th>通知修订</th><th>稳定卡</th><th>提醒阶段</th><th>身份状态</th><th>记录状态</th><th>真实展示回执</th></tr></thead><tbody><tr><td>CARD-b19f89176d1…</td><td>CARD-b19f89176d1…</td><td>PRECAUTIONARY</td><td>PENDING_VERIFICATION</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-391185b45e7…</td><td>CARD-391185b45e7…</td><td>PRECAUTIONARY</td><td>PENDING_VERIFICATION</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-b19f89176d1…</td><td>CARD-b19f89176d1…</td><td>PRECAUTIONARY</td><td>ASSOCIATION_PENDING</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-391185b45e7…</td><td>CARD-391185b45e7…</td><td>PRECAUTIONARY</td><td>ASSOCIATION_PENDING</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-b19f89176d1…</td><td>CARD-b19f89176d1…</td><td>CONFIRMED</td><td>PENDING_VERIFICATION</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-391185b45e7…</td><td>CARD-391185b45e7…</td><td>PRECAUTIONARY</td><td>MERGED_ALIAS</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-b19f89176d1…</td><td>CARD-b19f89176d1…</td><td>CONFIRMED</td><td>CONFIRMED_SAME_EVENT</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-b19f89176d1…</td><td>CARD-b19f89176d1…</td><td>ESCALATED</td><td>CONFIRMED_SAME_EVENT</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-391185b45e7…</td><td>CARD-391185b45e7…</td><td>ESCALATED</td><td>CONFIRMED_DISTINCT</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr><tr><td>CARD-b19f89176d1…</td><td>CARD-b19f89176d1…</td><td>ESCALATED</td><td>CONFIRMED_DISTINCT</td><td><span class="badge">SIMULATED</span></td><td>未记录（无真实回执）</td></tr></tbody></table></div>
+<h2>具体失败/未知</h2>
+<div class="caveat"><b>V2 对齐尚未通过。</b>当前记录有 alerted_at，但没有 trigger_known_time、detected_at 或 visible_at；公开 V2 也未冻结真实毫秒 SLO。图中的“确认/升级/拆分”只表示本地合成状态转换，evidence_refs 是合成引用而非独立合格真值。该运行不能证明用户已看到提醒、物理事件判断正确、旧 1,464 检查通过或 Mac 清理资格通过。</div>
+<p class="sub">数据文件与生成脚本随本 HTML 一起提供，可离线打开和复核。没有外部字体、脚本或网络依赖。</p>
+</main></body></html>

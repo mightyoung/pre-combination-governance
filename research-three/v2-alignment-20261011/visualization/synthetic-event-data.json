@@ -1,0 +1,679 @@
+{
+  "scenario_id": "SYNTH-V2-ALIGN-001",
+  "classification": "SYNTHETIC_DEVELOPMENT_TEST_ONLY",
+  "source_commits": {
+    "comparison_implementation": "214197c0370dfd60d23786884bb7ff785d8a0092",
+    "v2_public_spec": "cc6d59b88bda73381fc09d9091a224ab4155891e"
+  },
+  "execution_boundary": {
+    "software_ledger_only": true,
+    "model_service_called": false,
+    "delivery_adapter_called": false,
+    "delivery_status": "SIMULATED",
+    "delivered_at": null,
+    "visible_at": null,
+    "frozen_1464_trial_rerun": false,
+    "mac_device_or_cleanup_validation": "NOT_RUN",
+    "independent_ground_truth": "NOT_PROVIDED"
+  },
+  "synthetic_inputs": [
+    {
+      "candidate_id": "synthetic-observation-a",
+      "source_id": "synthetic-sensor-A",
+      "risk_flag": "EXPOSURE",
+      "event_time": "2026-10-11T08:00:00Z",
+      "observed_at": "2026-10-11T08:00:01Z",
+      "evidence_refs": [
+        "synthetic://v2-alignment/observation-A"
+      ]
+    },
+    {
+      "candidate_id": "synthetic-observation-b",
+      "source_id": "synthetic-sensor-B",
+      "risk_flag": "EXPOSURE",
+      "event_time": "2026-10-11T08:00:02Z",
+      "observed_at": "2026-10-11T08:00:04Z",
+      "evidence_refs": [
+        "synthetic://v2-alignment/observation-B"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "at": "2026-10-11T08:00:03Z",
+      "action": "收到候选 A；生成首条待核实风险提醒",
+      "evidence_refs": [
+        "synthetic://v2-alignment/observation-A"
+      ],
+      "new_alert_ids": [
+        "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0001"
+      ],
+      "association": null,
+      "cards": [
+        {
+          "card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "candidate_ids": [
+            "synthetic-observation-a"
+          ],
+          "identity_status": "PENDING_VERIFICATION",
+          "alert_stage": "PRECAUTIONARY",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:03Z",
+          "updated_at": "2026-10-11T08:00:03Z",
+          "latest_alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0001"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-11T08:00:05Z",
+      "action": "收到候选 B；保留第二张独立稳定卡",
+      "evidence_refs": [
+        "synthetic://v2-alignment/observation-B"
+      ],
+      "new_alert_ids": [
+        "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0001"
+      ],
+      "association": null,
+      "cards": [
+        {
+          "card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+          "candidate_ids": [
+            "synthetic-observation-b"
+          ],
+          "identity_status": "PENDING_VERIFICATION",
+          "alert_stage": "PRECAUTIONARY",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:05Z",
+          "updated_at": "2026-10-11T08:00:05Z",
+          "latest_alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0001"
+        },
+        {
+          "card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "candidate_ids": [
+            "synthetic-observation-a"
+          ],
+          "identity_status": "PENDING_VERIFICATION",
+          "alert_stage": "PRECAUTIONARY",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:03Z",
+          "updated_at": "2026-10-11T08:00:03Z",
+          "latest_alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0001"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-11T08:00:06Z",
+      "action": "关联出现冲突；状态 PENDING，两张卡不合并",
+      "evidence_refs": [
+        "synthetic://v2-alignment/ambiguous-identity-evidence"
+      ],
+      "new_alert_ids": [
+        "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0002",
+        "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0002"
+      ],
+      "association": {
+        "association_id": "ASSOC-a6b26604e6b0de8a680b9dec46b43d866ec63a6ef669e1a3e19abc10a2ff0482",
+        "status": "PENDING",
+        "canonical_card_id": null,
+        "history": [
+          "PENDING"
+        ]
+      },
+      "cards": [
+        {
+          "card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+          "candidate_ids": [
+            "synthetic-observation-b"
+          ],
+          "identity_status": "PENDING_VERIFICATION",
+          "alert_stage": "PRECAUTIONARY",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:05Z",
+          "updated_at": "2026-10-11T08:00:06Z",
+          "latest_alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0002"
+        },
+        {
+          "card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "candidate_ids": [
+            "synthetic-observation-a"
+          ],
+          "identity_status": "PENDING_VERIFICATION",
+          "alert_stage": "PRECAUTIONARY",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:03Z",
+          "updated_at": "2026-10-11T08:00:06Z",
+          "latest_alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0002"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-11T08:00:07Z",
+      "action": "风险证据确认；提醒阶段 CONFIRMED，身份仍待核",
+      "evidence_refs": [
+        "synthetic://v2-alignment/risk-review-evidence-ref"
+      ],
+      "new_alert_ids": [
+        "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0003"
+      ],
+      "association": {
+        "association_id": "ASSOC-a6b26604e6b0de8a680b9dec46b43d866ec63a6ef669e1a3e19abc10a2ff0482",
+        "status": "PENDING",
+        "canonical_card_id": null,
+        "history": [
+          "PENDING"
+        ]
+      },
+      "cards": [
+        {
+          "card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+          "candidate_ids": [
+            "synthetic-observation-b"
+          ],
+          "identity_status": "PENDING_VERIFICATION",
+          "alert_stage": "PRECAUTIONARY",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:05Z",
+          "updated_at": "2026-10-11T08:00:06Z",
+          "latest_alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0002"
+        },
+        {
+          "card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "candidate_ids": [
+            "synthetic-observation-a"
+          ],
+          "identity_status": "PENDING_VERIFICATION",
+          "alert_stage": "CONFIRMED",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:03Z",
+          "updated_at": "2026-10-11T08:00:07Z",
+          "latest_alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0003"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-11T08:00:08Z",
+      "action": "身份复核暂确认 SAME；当前实现合并到最早稳定卡",
+      "evidence_refs": [
+        "synthetic://v2-alignment/identity-review-same"
+      ],
+      "new_alert_ids": [
+        "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0003",
+        "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0004"
+      ],
+      "association": {
+        "association_id": "ASSOC-a6b26604e6b0de8a680b9dec46b43d866ec63a6ef669e1a3e19abc10a2ff0482",
+        "status": "CONFIRMED_SAME_EVENT",
+        "canonical_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+        "history": [
+          "PENDING",
+          "CONFIRMED_SAME_EVENT"
+        ]
+      },
+      "cards": [
+        {
+          "card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+          "candidate_ids": [
+            "synthetic-observation-b"
+          ],
+          "identity_status": "MERGED_ALIAS",
+          "alert_stage": "PRECAUTIONARY",
+          "merged_into_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "created_at": "2026-10-11T08:00:05Z",
+          "updated_at": "2026-10-11T08:00:08Z",
+          "latest_alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0003"
+        },
+        {
+          "card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "candidate_ids": [
+            "synthetic-observation-a",
+            "synthetic-observation-b"
+          ],
+          "identity_status": "CONFIRMED_SAME_EVENT",
+          "alert_stage": "CONFIRMED",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:03Z",
+          "updated_at": "2026-10-11T08:00:08Z",
+          "latest_alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0004"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-11T08:00:09Z",
+      "action": "风险加重；提醒阶段 ESCALATED",
+      "evidence_refs": [
+        "synthetic://v2-alignment/risk-escalation"
+      ],
+      "new_alert_ids": [
+        "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0005"
+      ],
+      "association": {
+        "association_id": "ASSOC-a6b26604e6b0de8a680b9dec46b43d866ec63a6ef669e1a3e19abc10a2ff0482",
+        "status": "CONFIRMED_SAME_EVENT",
+        "canonical_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+        "history": [
+          "PENDING",
+          "CONFIRMED_SAME_EVENT"
+        ]
+      },
+      "cards": [
+        {
+          "card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+          "candidate_ids": [
+            "synthetic-observation-b"
+          ],
+          "identity_status": "MERGED_ALIAS",
+          "alert_stage": "ESCALATED",
+          "merged_into_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "created_at": "2026-10-11T08:00:05Z",
+          "updated_at": "2026-10-11T08:00:08Z",
+          "latest_alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0003"
+        },
+        {
+          "card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "candidate_ids": [
+            "synthetic-observation-a",
+            "synthetic-observation-b"
+          ],
+          "identity_status": "CONFIRMED_SAME_EVENT",
+          "alert_stage": "ESCALATED",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:03Z",
+          "updated_at": "2026-10-11T08:00:09Z",
+          "latest_alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0005"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-11T08:00:10Z",
+      "action": "矛盾证据支持分拆；恢复两个原始卡 ID",
+      "evidence_refs": [
+        "synthetic://v2-alignment/contradictory-identity-evidence"
+      ],
+      "new_alert_ids": [
+        "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0004",
+        "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0006"
+      ],
+      "association": {
+        "association_id": "ASSOC-a6b26604e6b0de8a680b9dec46b43d866ec63a6ef669e1a3e19abc10a2ff0482",
+        "status": "SPLIT_TO_DISTINCT",
+        "canonical_card_id": null,
+        "history": [
+          "PENDING",
+          "CONFIRMED_SAME_EVENT",
+          "SPLIT_TO_DISTINCT"
+        ]
+      },
+      "cards": [
+        {
+          "card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+          "candidate_ids": [
+            "synthetic-observation-b"
+          ],
+          "identity_status": "CONFIRMED_DISTINCT",
+          "alert_stage": "ESCALATED",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:05Z",
+          "updated_at": "2026-10-11T08:00:10Z",
+          "latest_alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0004"
+        },
+        {
+          "card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+          "candidate_ids": [
+            "synthetic-observation-a"
+          ],
+          "identity_status": "CONFIRMED_DISTINCT",
+          "alert_stage": "ESCALATED",
+          "merged_into_card_id": null,
+          "created_at": "2026-10-11T08:00:03Z",
+          "updated_at": "2026-10-11T08:00:10Z",
+          "latest_alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0006"
+        }
+      ]
+    }
+  ],
+  "associations": [
+    {
+      "association_id": "ASSOC-a6b26604e6b0de8a680b9dec46b43d866ec63a6ef669e1a3e19abc10a2ff0482",
+      "candidate_ids": [
+        "synthetic-observation-a",
+        "synthetic-observation-b"
+      ],
+      "status": "SPLIT_TO_DISTINCT",
+      "canonical_card_id": null,
+      "evidence_refs": [
+        "synthetic://v2-alignment/contradictory-identity-evidence"
+      ],
+      "history": [
+        {
+          "status": "PENDING",
+          "at": "2026-10-11T08:00:06Z",
+          "evidence_refs": [
+            "synthetic://v2-alignment/ambiguous-identity-evidence"
+          ]
+        },
+        {
+          "status": "CONFIRMED_SAME_EVENT",
+          "at": "2026-10-11T08:00:08Z",
+          "evidence_refs": [
+            "synthetic://v2-alignment/identity-review-same"
+          ]
+        },
+        {
+          "status": "SPLIT_TO_DISTINCT",
+          "at": "2026-10-11T08:00:10Z",
+          "evidence_refs": [
+            "synthetic://v2-alignment/contradictory-identity-evidence"
+          ]
+        }
+      ]
+    }
+  ],
+  "final_cards": [
+    {
+      "card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+      "candidate_ids": [
+        "synthetic-observation-b"
+      ],
+      "identity_status": "CONFIRMED_DISTINCT",
+      "alert_stage": "ESCALATED",
+      "merged_into_card_id": null,
+      "created_at": "2026-10-11T08:00:05Z",
+      "updated_at": "2026-10-11T08:00:10Z",
+      "latest_alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0004"
+    },
+    {
+      "card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+      "candidate_ids": [
+        "synthetic-observation-a"
+      ],
+      "identity_status": "CONFIRMED_DISTINCT",
+      "alert_stage": "ESCALATED",
+      "merged_into_card_id": null,
+      "created_at": "2026-10-11T08:00:03Z",
+      "updated_at": "2026-10-11T08:00:10Z",
+      "latest_alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0006"
+    }
+  ],
+  "notifications": [
+    {
+      "alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0001",
+      "display_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+      "revision": 1,
+      "candidate_ids": [
+        "synthetic-observation-a"
+      ],
+      "source_ids": [
+        "synthetic-sensor-A"
+      ],
+      "alert_stage": "PRECAUTIONARY",
+      "identity_status": "PENDING_VERIFICATION",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "待核实风险提醒：合成观测 A：风险暴露信号；状态=PENDING_VERIFICATION；来源=synthetic-sensor-A；风险标记=EXPOSURE；理由=收到候选风险标记 EXPOSURE；事件身份待核实。；证据=synthetic://v2-alignment/observation-A；事件时间=2026-10-11T08:00:00Z；首次观测=2026-10-11T08:00:01Z；提醒生成=2026-10-11T08:00:03Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "收到候选风险标记 EXPOSURE；事件身份待核实。",
+      "reason_codes": [
+        "CANDIDATE_RISK_FLAG",
+        "EVENT_IDENTITY_PENDING"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/observation-A"
+      ],
+      "event_time": "2026-10-11T08:00:00Z",
+      "observed_at": "2026-10-11T08:00:01Z",
+      "software_emitted_at": "2026-10-11T08:00:03Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0001",
+      "display_card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+      "revision": 1,
+      "candidate_ids": [
+        "synthetic-observation-b"
+      ],
+      "source_ids": [
+        "synthetic-sensor-B"
+      ],
+      "alert_stage": "PRECAUTIONARY",
+      "identity_status": "PENDING_VERIFICATION",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "待核实风险提醒：合成观测 B：风险暴露信号；状态=PENDING_VERIFICATION；来源=synthetic-sensor-B；风险标记=EXPOSURE；理由=收到候选风险标记 EXPOSURE；事件身份待核实。；证据=synthetic://v2-alignment/observation-B；事件时间=2026-10-11T08:00:02Z；首次观测=2026-10-11T08:00:04Z；提醒生成=2026-10-11T08:00:05Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "收到候选风险标记 EXPOSURE；事件身份待核实。",
+      "reason_codes": [
+        "CANDIDATE_RISK_FLAG",
+        "EVENT_IDENTITY_PENDING"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/observation-B"
+      ],
+      "event_time": "2026-10-11T08:00:02Z",
+      "observed_at": "2026-10-11T08:00:04Z",
+      "software_emitted_at": "2026-10-11T08:00:05Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0002",
+      "display_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+      "revision": 2,
+      "candidate_ids": [
+        "synthetic-observation-a"
+      ],
+      "source_ids": [
+        "synthetic-sensor-A"
+      ],
+      "alert_stage": "PRECAUTIONARY",
+      "identity_status": "ASSOCIATION_PENDING",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "待核实风险提醒：合成观测 A：风险暴露信号；状态=ASSOCIATION_PENDING；来源=synthetic-sensor-A；风险标记=EXPOSURE；理由=关联待核实：合成证据对两条观测是否属于同一物理事件存在冲突；身份待核。；两张候选卡继续独立显示。；证据=synthetic://v2-alignment/observation-B, synthetic://v2-alignment/observation-A, synthetic://v2-alignment/ambiguous-identity-evidence；事件时间=2026-10-11T08:00:00Z；首次观测=2026-10-11T08:00:01Z；提醒生成=2026-10-11T08:00:06Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "关联待核实：合成证据对两条观测是否属于同一物理事件存在冲突；身份待核。；两张候选卡继续独立显示。",
+      "reason_codes": [
+        "IDENTITY_LINK_PENDING"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/observation-B",
+        "synthetic://v2-alignment/observation-A",
+        "synthetic://v2-alignment/ambiguous-identity-evidence"
+      ],
+      "event_time": "2026-10-11T08:00:00Z",
+      "observed_at": "2026-10-11T08:00:01Z",
+      "software_emitted_at": "2026-10-11T08:00:06Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0002",
+      "display_card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+      "revision": 2,
+      "candidate_ids": [
+        "synthetic-observation-b"
+      ],
+      "source_ids": [
+        "synthetic-sensor-B"
+      ],
+      "alert_stage": "PRECAUTIONARY",
+      "identity_status": "ASSOCIATION_PENDING",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "待核实风险提醒：合成观测 B：风险暴露信号；状态=ASSOCIATION_PENDING；来源=synthetic-sensor-B；风险标记=EXPOSURE；理由=关联待核实：合成证据对两条观测是否属于同一物理事件存在冲突；身份待核。；两张候选卡继续独立显示。；证据=synthetic://v2-alignment/observation-B, synthetic://v2-alignment/observation-A, synthetic://v2-alignment/ambiguous-identity-evidence；事件时间=2026-10-11T08:00:02Z；首次观测=2026-10-11T08:00:04Z；提醒生成=2026-10-11T08:00:06Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "关联待核实：合成证据对两条观测是否属于同一物理事件存在冲突；身份待核。；两张候选卡继续独立显示。",
+      "reason_codes": [
+        "IDENTITY_LINK_PENDING"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/observation-B",
+        "synthetic://v2-alignment/observation-A",
+        "synthetic://v2-alignment/ambiguous-identity-evidence"
+      ],
+      "event_time": "2026-10-11T08:00:02Z",
+      "observed_at": "2026-10-11T08:00:04Z",
+      "software_emitted_at": "2026-10-11T08:00:06Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0003",
+      "display_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+      "revision": 3,
+      "candidate_ids": [
+        "synthetic-observation-a"
+      ],
+      "source_ids": [
+        "synthetic-sensor-A"
+      ],
+      "alert_stage": "CONFIRMED",
+      "identity_status": "PENDING_VERIFICATION",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "已确认风险提醒：合成观测 A：风险暴露信号；状态=PENDING_VERIFICATION；来源=synthetic-sensor-A；风险标记=EXPOSURE；理由=合成审核证据确认风险条件；事件身份仍待核。；证据=synthetic://v2-alignment/risk-review-evidence-ref；事件时间=2026-10-11T08:00:00Z；首次观测=2026-10-11T08:00:01Z；提醒生成=2026-10-11T08:00:07Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "合成审核证据确认风险条件；事件身份仍待核。",
+      "reason_codes": [
+        "EVIDENCE_BASED_RISK_CONFIRMATION"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/risk-review-evidence-ref"
+      ],
+      "event_time": "2026-10-11T08:00:00Z",
+      "observed_at": "2026-10-11T08:00:01Z",
+      "software_emitted_at": "2026-10-11T08:00:07Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0003",
+      "display_card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+      "revision": 3,
+      "candidate_ids": [
+        "synthetic-observation-b"
+      ],
+      "source_ids": [
+        "synthetic-sensor-B"
+      ],
+      "alert_stage": "PRECAUTIONARY",
+      "identity_status": "MERGED_ALIAS",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "待核实风险提醒：合成观测 B：风险暴露信号；状态=MERGED_ALIAS；来源=synthetic-sensor-B；风险标记=EXPOSURE；理由=证据支持两条候选记录属于同一事件；持续使用原稳定卡。；证据=synthetic://v2-alignment/identity-review-same；事件时间=2026-10-11T08:00:02Z；首次观测=2026-10-11T08:00:04Z；提醒生成=2026-10-11T08:00:08Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "证据支持两条候选记录属于同一事件；持续使用原稳定卡。",
+      "reason_codes": [
+        "EVENT_LINK_CONFIRMED_SAME_EVENT"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/identity-review-same"
+      ],
+      "event_time": "2026-10-11T08:00:02Z",
+      "observed_at": "2026-10-11T08:00:04Z",
+      "software_emitted_at": "2026-10-11T08:00:08Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0004",
+      "display_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+      "revision": 4,
+      "candidate_ids": [
+        "synthetic-observation-a",
+        "synthetic-observation-b"
+      ],
+      "source_ids": [
+        "synthetic-sensor-A",
+        "synthetic-sensor-B"
+      ],
+      "alert_stage": "CONFIRMED",
+      "identity_status": "CONFIRMED_SAME_EVENT",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "已确认风险提醒：合成观测 A：风险暴露信号 / 合成观测 B：风险暴露信号；状态=CONFIRMED_SAME_EVENT；来源=synthetic-sensor-A,synthetic-sensor-B；风险标记=EXPOSURE；理由=证据支持两条候选记录属于同一事件；持续使用原稳定卡。；证据=synthetic://v2-alignment/identity-review-same；事件时间=2026-10-11T08:00:00Z；首次观测=2026-10-11T08:00:01Z；提醒生成=2026-10-11T08:00:08Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "证据支持两条候选记录属于同一事件；持续使用原稳定卡。",
+      "reason_codes": [
+        "EVENT_LINK_CONFIRMED_SAME_EVENT"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/identity-review-same"
+      ],
+      "event_time": "2026-10-11T08:00:00Z",
+      "observed_at": "2026-10-11T08:00:01Z",
+      "software_emitted_at": "2026-10-11T08:00:08Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0005",
+      "display_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+      "revision": 5,
+      "candidate_ids": [
+        "synthetic-observation-a",
+        "synthetic-observation-b"
+      ],
+      "source_ids": [
+        "synthetic-sensor-A",
+        "synthetic-sensor-B"
+      ],
+      "alert_stage": "ESCALATED",
+      "identity_status": "CONFIRMED_SAME_EVENT",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "已升级风险提醒：合成观测 A：风险暴露信号 / 合成观测 B：风险暴露信号；状态=CONFIRMED_SAME_EVENT；来源=synthetic-sensor-A,synthetic-sensor-B；风险标记=EXPOSURE；理由=合成复核证据显示风险加重，独立升级提醒。；证据=synthetic://v2-alignment/risk-escalation；事件时间=2026-10-11T08:00:00Z；首次观测=2026-10-11T08:00:01Z；提醒生成=2026-10-11T08:00:09Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "合成复核证据显示风险加重，独立升级提醒。",
+      "reason_codes": [
+        "EVIDENCE_BASED_ESCALATION"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/risk-escalation"
+      ],
+      "event_time": "2026-10-11T08:00:00Z",
+      "observed_at": "2026-10-11T08:00:01Z",
+      "software_emitted_at": "2026-10-11T08:00:09Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab-R0004",
+      "display_card_id": "CARD-391185b45e74242a9f1d272fe8df79e951b1163dc4f402417a60c0d3e78fddab",
+      "revision": 4,
+      "candidate_ids": [
+        "synthetic-observation-b"
+      ],
+      "source_ids": [
+        "synthetic-sensor-B"
+      ],
+      "alert_stage": "ESCALATED",
+      "identity_status": "CONFIRMED_DISTINCT",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "已升级风险提醒：合成观测 B：风险暴露信号；状态=CONFIRMED_DISTINCT；来源=synthetic-sensor-B；风险标记=EXPOSURE；理由=后续合成证据与 SAME 决定矛盾；分拆并保留历史卡 ID。；证据=synthetic://v2-alignment/contradictory-identity-evidence；事件时间=2026-10-11T08:00:02Z；首次观测=2026-10-11T08:00:04Z；提醒生成=2026-10-11T08:00:10Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "后续合成证据与 SAME 决定矛盾；分拆并保留历史卡 ID。",
+      "reason_codes": [
+        "EVENT_LINK_SPLIT_TO_DISTINCT"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/contradictory-identity-evidence"
+      ],
+      "event_time": "2026-10-11T08:00:02Z",
+      "observed_at": "2026-10-11T08:00:04Z",
+      "software_emitted_at": "2026-10-11T08:00:10Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "alert_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b-R0006",
+      "display_card_id": "CARD-b19f89176d1245af0e73ea7ce1be5aa7db9eb2620d0bfb6ef454ee4e2302fe3b",
+      "revision": 6,
+      "candidate_ids": [
+        "synthetic-observation-a"
+      ],
+      "source_ids": [
+        "synthetic-sensor-A"
+      ],
+      "alert_stage": "ESCALATED",
+      "identity_status": "CONFIRMED_DISTINCT",
+      "risk_flags": "EXPOSURE",
+      "visible_text": "已升级风险提醒：合成观测 A：风险暴露信号；状态=CONFIRMED_DISTINCT；来源=synthetic-sensor-A；风险标记=EXPOSURE；理由=后续合成证据与 SAME 决定矛盾；分拆并保留历史卡 ID。；证据=synthetic://v2-alignment/contradictory-identity-evidence；事件时间=2026-10-11T08:00:00Z；首次观测=2026-10-11T08:00:01Z；提醒生成=2026-10-11T08:00:10Z；送达状态=SIMULATED；送达时间=未记录。",
+      "rationale": "后续合成证据与 SAME 决定矛盾；分拆并保留历史卡 ID。",
+      "reason_codes": [
+        "EVENT_LINK_SPLIT_TO_DISTINCT"
+      ],
+      "evidence_refs": [
+        "synthetic://v2-alignment/contradictory-identity-evidence"
+      ],
+      "event_time": "2026-10-11T08:00:00Z",
+      "observed_at": "2026-10-11T08:00:01Z",
+      "software_emitted_at": "2026-10-11T08:00:10Z",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    }
+  ]
+}
