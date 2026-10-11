@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "evaluation_spec": "alert-governance-eval-v1.0.0",
+  "classification": "SYNTHETIC_DEVELOPMENT_ONLY",
+  "generated_on_utc": "2026-10-11",
+  "synthetic_inputs_only": true,
+  "execution": {
+    "unit_test_command": "PYTHONPATH=src python -m unittest -v tests.test_alert_governance",
+    "unit_tests_passed": 10,
+    "unit_tests_failed": 0,
+    "model_service_called": false,
+    "network_service_called": false,
+    "frozen_1464_check_trial_rerun": false,
+    "mac_device_validation": "NOT_RUN",
+    "actual_delivery": "NOT_ATTEMPTED"
+  },
+  "scenario_checks": [
+    {
+      "scenario": "S1_FIRST_ALERT",
+      "result": "PASS",
+      "stable_card_id": "CARD-2a4092e69d8b54c06e6afff50d6a61de1e93ad37a79455d84b026120ce8c43ef",
+      "source_ids": [
+        "sensor-S1-candidate"
+      ],
+      "alert_level": "PRECAUTIONARY",
+      "delivery_status": "SIMULATED",
+      "delivered_at": null
+    },
+    {
+      "scenario": "S2_PENDING_ASSOCIATION",
+      "result": "PASS",
+      "association_status": "PENDING",
+      "two_independent_card_ids_retained": true,
+      "card_ids": [
+        "CARD-f78f8714f20f96efd2ae3e1b8f6b922e9b06c971e68c90d496132ad32143fdce",
+        "CARD-b63a0543da3214cf9e31b0bcbb481b9047050938857984685b94ac8fcbc397c5"
+      ]
+    },
+    {
+      "scenario": "S3_CONFIRMED_SAME_EVENT",
+      "result": "PASS",
+      "canonical_card_id": "CARD-23dbda8f2a88a0e4eee192fb32e245591364911e108d819a155fa06aa47c3dd6",
+      "first_card_id_unchanged": true,
+      "alias_card_id_retained": true
+    },
+    {
+      "scenario": "S4_CONFIRMED_DISTINCT_EVENTS",
+      "result": "PASS",
+      "two_card_ids_retained": true
+    },
+    {
+      "scenario": "S5_LATER_SPLIT",
+      "result": "PASS",
+      "association_status": "SPLIT_TO_DISTINCT",
+      "original_ids_restored": true,
+      "history": [
+        "PENDING",
+        "CONFIRMED_SAME_EVENT",
+        "SPLIT_TO_DISTINCT"
+      ]
+    }
+  ],
+  "metric_examples": {
+    "alert_timeliness": {
+      "threshold_interpretation": "The 30-second threshold is an illustrative synthetic fixture only, not an operational SLA or a Mac V2 value.",
+      "alert_id": "CARD-2a4092e69d8b54c06e6afff50d6a61de1e93ad37a79455d84b026120ce8c43ef-R0001",
+      "delivery_status": "SIMULATED",
+      "emission_latency_seconds": 2.0,
+      "emission_timeliness_status": "TIMELY",
+      "configured_deadline_seconds": 30,
+      "delivery_latency_seconds": null,
+      "delivery_timeliness_status": "UNSCORABLE_NO_DELIVERY_RECEIPT"
+    },
+    "content_completeness": {
+      "alert_id": "CARD-2a4092e69d8b54c06e6afff50d6a61de1e93ad37a79455d84b026120ce8c43ef-R0001",
+      "complete": true,
+      "complete_field_count": 12,
+      "required_field_count": 12,
+      "completeness_ratio": 1.0,
+      "missing_fields": [],
+      "delivery_status": "SIMULATED"
+    },
+    "event_confirmation_accuracy": {
+      "pair_count": 3,
+      "decided_pair_count": 2,
+      "undecided_pair_count": 1,
+      "correct_decisions": 1,
+      "incorrect_decisions": 1,
+      "accuracy": 0.5,
+      "status": "SCORED",
+      "pairs": [
+        {
+          "association_id": "synthetic-pair-1",
+          "predicted_relation": "SAME_EVENT",
+          "true_relation": "SAME_EVENT",
+          "status": "CORRECT"
+        },
+        {
+          "association_id": "synthetic-pair-2",
+          "predicted_relation": "SAME_EVENT",
+          "true_relation": "DISTINCT_EVENTS",
+          "status": "INCORRECT"
+        },
+        {
+          "association_id": "synthetic-pair-3",
+          "predicted_relation": "PENDING",
+          "true_relation": "SAME_EVENT",
+          "status": "UNDECIDED"
+        }
+      ]
+    }
+  },
+  "independent_observation_count": 0,
+  "statistical_inference_performed": false,
+  "historical_result": {
+    "record": "historical-baseline.json",
+    "status": "FAILED_PRESERVED_NOT_RERUN",
+    "legacy_metric_reconstructed": false
+  }
+}

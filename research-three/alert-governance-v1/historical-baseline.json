@@ -1,0 +1,26 @@
+{
+  "record_kind": "supplied_historical_failure_summary",
+  "source": "user-provided delegated handoff summary",
+  "trial": "Mac V3-RSS single trial",
+  "checks_executed": 1464,
+  "execution_finished": true,
+  "round_status": "FAILED",
+  "failure_summary": "In five synthetic scenes across four methods, each of the 20 method records lacked a confirmed new-event first report.",
+  "method_records": 20,
+  "method_records_are_independent_samples": false,
+  "existing_internal_review": {
+    "risk_flag": "EXPOSURE",
+    "user_facing_alert_level": null,
+    "user_facing_text": null,
+    "delivery_time": null,
+    "stable_display_card_id": null
+  },
+  "legacy_metric": {
+    "status": "NOT_RECONSTRUCTED",
+    "exact_definition_found_in_checkout": false,
+    "original_value_or_formula": null,
+    "handling": "Preserve the prior failed result and original metric outside this new specification; do not overwrite, infer, or rerun it."
+  },
+  "rerun_in_this_cloud_worktree": false,
+  "note": "The complete Mac V2 specification was not present in the checkout. This record preserves only facts supplied in the handoff and is not a raw trial artifact."
+}
