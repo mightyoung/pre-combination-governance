@@ -1,0 +1,48 @@
+{
+  "artifact_sha256": {
+    "contract_module": "4860cedb7559aef82e6db658d66f43533dc2dc4b841bbc39fb90e9c496f792a0",
+    "test_module": "76a103dcd29feae88fb8b1f30801cb65a0a0398b7233238fd58d40796b30d291",
+    "unchanged_observable_association_baseline": "d6fbebee538cf9ad68b35076b995f5f1bf962efc27350e098c2dfea655c27afe"
+  },
+  "artifact_version": "source-lineage-contract-test-results-v1",
+  "baseline_integrity": {
+    "observable_association_matches_frozen_pilot_source": true,
+    "pilot_outputs_frozen_sha256": "282a7542bff473b9d35038b2b7060ebd3bedc00f513a29a83e5814c23e2c6984",
+    "pilot_run_manifest_sha256": "227934e5aa6195bd1b91f289edd1953d44181d7855eb05c1eab4e0b0a6108903",
+    "prior_attempt_02_integrity": {
+      "failures": [],
+      "files_checked": 219,
+      "status": "PASS"
+    },
+    "prior_attempt_02_manifest_sha256": "ff5411c0c498e1316255e673f2bbe9c5684a05c844ecff353f812b42f124b60d"
+  },
+  "classification": "C0/I0/M0_PURE_CPU_CONTRACT_TEST_ONLY",
+  "completed_at_utc": "2026-10-11T16:51:43Z",
+  "contract_version": "source-lineage-contract-v1",
+  "green_result": {
+    "status": "PASS",
+    "tests_failed": 0,
+    "tests_passed": 13
+  },
+  "runtime": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  },
+  "scope": {
+    "association_rule_integration": false,
+    "event_identity_accuracy_evaluated": false,
+    "future_2x2_protocol_executed": false,
+    "heldout_accessed": false,
+    "model_network_device_notification_or_paid_service_used": false,
+    "new_association_rule_implemented": false,
+    "scorer_hidden_source_family_passed_to_contract": false,
+    "statistical_independence_claimed": false
+  },
+  "tdd_red_first": {
+    "failure_cause": "Each setUp assertion reported that versioned source-lineage contract v1 was not implemented.",
+    "status": "EXPECTED_FAILURE_BEFORE_IMPLEMENTATION",
+    "tests_failed": 13
+  },
+  "test_command": "PYTHONPATH=src python -m unittest -v tests.test_source_lineage_contract_v1",
+  "test_count": 13
+}

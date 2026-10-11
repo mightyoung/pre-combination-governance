@@ -73,6 +73,12 @@ PYTHONPATH=src python -m unittest -v tests.test_observable_association tests.tes
 PYTHONPATH=src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency
 ```
 
+## Observable source-lineage contract v1
+
+The new additive pure-function contract is documented in [SOURCE_LINEAGE_CONTRACT_V1.md](SOURCE_LINEAGE_CONTRACT_V1.md) and implemented in [`source_lineage_contract_v1.py`](../../risk-fusion-bench/src/rfb/research/source_lineage_contract_v1.py). It keeps declared root-ID strings separate from evidence-backed upstream edges. Shared known ancestors can support evidence grouping or discounting; a complete graph with no shared known ancestor still does not prove statistical independence. Missing, stale, future-known, unverified, conflicting, incomplete, or cyclic claims remain explicitly unknown/invalid. No event identity or hidden scorer `source_family` enters the contract.
+
+The versioned contract suite is [test_source_lineage_contract_v1.py](../../risk-fusion-bench/tests/test_source_lineage_contract_v1.py). Its 13 tests were written first and observed failing while the module was absent, then passed after the minimal implementation. The old association rules and frozen 2×2 outputs remain unchanged. A follow-on [2×2 lineage comparison protocol](SOURCE_LINEAGE_2X2_PROTOCOL_DRAFT.md) is a draft only; it has not been executed and makes no efficacy claim.
+
 ## 2×2 identity-observability CPU pilot
 
 The frozen protocol and scorer-only predeclaration are in [runs/twobytwo-pilot-v1/PROTOCOL.md](runs/twobytwo-pilot-v1/PROTOCOL.md) and [SCORER_ONLY_PREDECLARATION.json](runs/twobytwo-pilot-v1/SCORER_ONLY_PREDECLARATION.json). The pilot ran the two existing association rules four times across two literal method-visible inputs. The recorded outputs, input-clone checks, case decisions, hashes, and prior-run integrity check are in [REPORT.md](runs/twobytwo-pilot-v1/REPORT.md), [case_results.json](runs/twobytwo-pilot-v1/case_results.json), and [RUN_MANIFEST.json](runs/twobytwo-pilot-v1/RUN_MANIFEST.json).
