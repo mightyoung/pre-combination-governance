@@ -389,7 +389,7 @@
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11_WITH_FINITE_EVALUATION_REVIEW_DRAFT",
   "run_artifacts_are_synthetic_only": true,
   "sha256_scope": "Listed deliverables only; this manifest does not hash itself.",
-  "source_commit": "c607f46c62ffb5ae113dad2ec8722074fdc95132",
+  "source_commit": "2a3092ad81d058316196a8d11342ade104555309",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "synthetic_event_card_examples": {
     "business_acceptance": "NOT_EVALUATED",
