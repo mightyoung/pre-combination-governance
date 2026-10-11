@@ -91,7 +91,10 @@ class PrefixFieldFact:
             raise ValueError("field values must be immutable JSON-like scalars or tuples")
         if self.name == "kind" and self.value in _FORBIDDEN_ACTION_KINDS:
             raise ValueError("kind must be an observable alert kind, not an action label")
-        _parse_timestamp(self.earliest_known_at, "earliest_known_at")
+        known_at = _parse_timestamp(self.earliest_known_at, "earliest_known_at")
+        object.__setattr__(
+            self, "earliest_known_at", known_at.isoformat().replace("+00:00", "Z")
+        )
         if not isinstance(self.evidence_refs, tuple) or any(
             not isinstance(ref, str) or not ref.strip() for ref in self.evidence_refs
         ):
@@ -181,6 +184,8 @@ def freeze_visible_prefix(
                 for fact in latest[1:]
             ):
                 raise ValueError(f"ambiguous same-time facts for field: {name}")
+            # PrefixFieldFact canonicalizes UTC text, so equivalent duplicate
+            # facts are identical in the audit record regardless of input order.
         selected.append(latest[0])
 
     selected.sort(key=lambda fact: fact.name)

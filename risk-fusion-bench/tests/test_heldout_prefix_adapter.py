@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
+import hashlib
+import json
 import unittest
 
 from rfb.research.alert_action_experiment import (
@@ -275,11 +277,51 @@ class FrozenPrefixAdapterTests(unittest.TestCase):
                 "association_state", "UNKNOWN_PENDING", "upstream:a:v1", stamp(0)
             ),
             PrefixFieldFact(
-                "association_state", "DIFFERENT_CONFIRMED", "upstream:b:v1", stamp(0)
+                "association_state",
+                "DIFFERENT_CONFIRMED",
+                "upstream:b:v1",
+                "2026-10-11T10:00:00+02:00",
             ),
         )
         with self.assertRaisesRegex(ValueError, "ambiguous same-time facts"):
             freeze_visible_prefix(facts, as_of=stamp(0))
+
+    def test_equivalent_utc_duplicates_serialize_identically_in_any_input_order(self):
+        self.require_adapter()
+        at_z = PrefixFieldFact(
+            "risk_flags",
+            ("EXPOSURE",),
+            "upstream:risk:v1",
+            "2026-10-11T08:00:00Z",
+            ("LINEAGE-RISK-1",),
+        )
+        at_offset = PrefixFieldFact(
+            "risk_flags",
+            ("EXPOSURE",),
+            "upstream:risk:v1",
+            "2026-10-11T10:00:00+02:00",
+            ("LINEAGE-RISK-1",),
+        )
+
+        first = freeze_visible_prefix(
+            (at_z, at_offset), as_of="2026-10-11T08:00:00Z"
+        ).as_record()
+        reversed_input = freeze_visible_prefix(
+            (at_offset, at_z), as_of="2026-10-11T10:00:00+02:00"
+        ).as_record()
+        first_hash = hashlib.sha256(
+            json.dumps(first, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+        reversed_hash = hashlib.sha256(
+            json.dumps(reversed_input, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+
+        self.assertEqual(first, reversed_input)
+        self.assertEqual(first_hash, reversed_hash)
+        self.assertEqual(
+            first["fields"]["risk_flags"]["earliest_known_at"],
+            "2026-10-11T08:00:00Z",
+        )
 
     def test_public_prefix_constructor_rejects_future_fact(self):
         self.require_adapter()
