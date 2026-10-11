@@ -1,0 +1,87 @@
+{
+  "schema": "STUDY3_ALERT_BUSINESS_SPEC_V2_RESULT_INFORMED",
+  "status": "SPEC_ONLY_NOT_IMPLEMENTED_NOT_EVALUATED_NOT_EXECUTION_AUTHORIZATION",
+  "origin": "post-result business objective revision; accepted by user; cannot retroactively rescue V3 first-alert or controller failure",
+  "triggers": [
+    "ACTIVE_RISK_RELEVANT_EVIDENCE_CONFLICT",
+    "UNCONFIRMED_EVENT_ASSOCIATION_WITH_ACTIVE_RISK",
+    "MISSING_OR_REJECTED_BOUNDARY_WITH_ACTIVE_RISK"
+  ],
+  "notification_kind": "PENDING_VERIFICATION_RISK_ALERT",
+  "severity_proposed": {
+    "EXPOSURE": "WARNING",
+    "CONFLICT_REVIEW": "WARNING",
+    "UNRESOLVED_RISK_RELEVANT_CONFLICT": "WARNING_RISK_UNRESOLVED",
+    "EXPOSURE_HIGH": "CRITICAL"
+  },
+  "severity_semantics": "application priorities only, not a calibrated real-world harm probability",
+  "immediacy": {
+    "synthetic_logic": "emit in same processing prefix as known trigger",
+    "operational_delivery_SLO_ms": null,
+    "SLO_status": "not specified/calibrated; cannot claim real-time deadline met"
+  },
+  "card_identity": {
+    "stable_display_card_id": "presentation continuity ID, not physical event equivalence",
+    "retain_alarm_observation_nodes": true,
+    "candidate_episode_ids": "independent pending nodes, no confirmed global episodeID until evidence supports",
+    "association_states": [
+      "SAME_CONFIRMED",
+      "DIFFERENT_CONFIRMED",
+      "UNKNOWN_PENDING",
+      "CONFLICT_PENDING"
+    ],
+    "same_card_does_not_imply_same_event": true,
+    "future_qualified_different_or_new_boundary": "split/link independent episode card with immutable parent references; retain original history",
+    "unknown_associations_must_not_union_confirmed_groups": true
+  },
+  "confirmation_gates": [
+    "qualified independent source/provenance",
+    "valid asset/task and event binding",
+    "causal known/physical time interval",
+    "current admissible boundary or consistent relation evidence",
+    "all material conflict resolved; old UNKNOWN interval not bridged by generic VALID"
+  ],
+  "notification_required_fields": [
+    "notification_id",
+    "kind",
+    "severity",
+    "risk_state",
+    "risk_basis_ids",
+    "uncertainty_reason",
+    "affected_observation_ids",
+    "display_card_id",
+    "candidate_episode_ids",
+    "association_state",
+    "user_visible_message",
+    "suggested_verification_action",
+    "trigger_known_time",
+    "detected_at",
+    "emitted_at",
+    "visible_at",
+    "content_revision",
+    "dedup_episode_interval_key"
+  ],
+  "confirmation_required_fields": [
+    "decision_id",
+    "action_confirm_new_or_continuation_or_split",
+    "bound_observation_ids",
+    "confirmed_episode_ids",
+    "qualified_evidence_ids",
+    "source_times",
+    "known_times",
+    "supersedes_refs",
+    "display_card_link_refs"
+  ],
+  "realization_and_execution_authorized": false,
+  "old_package_mutation_allowed": false,
+  "metric_families": [
+    "producer_trigger_and_emission",
+    "user_visible_pending_risk_reminder_timeliness_and_completeness",
+    "confirmed_event_correctness_and_coverage",
+    "stable_card_and_nonblind_association",
+    "repeat_burden",
+    "controller_resource_acceptance"
+  ],
+  "comparison_policy": "legacy strict metric preserved; v2 metrics separate exploratory retrospective mapping; fresh independent cases required before performance claims",
+  "public_edition": "PUBLIC_SANITIZED_EDITION_V1"
+}

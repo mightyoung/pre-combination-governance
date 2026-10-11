@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Partial field-presence contract derived from V2; field types, timestamp formats, deployment SLO and full semantic validation are not frozen. Validation here does not establish business acceptance.",
+  "$defs": {
+    "notification": {
+      "type": "object",
+      "required": [
+        "notification_id",
+        "kind",
+        "severity",
+        "risk_state",
+        "risk_basis_ids",
+        "uncertainty_reason",
+        "affected_observation_ids",
+        "display_card_id",
+        "candidate_episode_ids",
+        "association_state",
+        "user_visible_message",
+        "suggested_verification_action",
+        "trigger_known_time",
+        "detected_at",
+        "emitted_at",
+        "visible_at",
+        "content_revision",
+        "dedup_episode_interval_key"
+      ],
+      "properties": {
+        "notification_id": {},
+        "kind": {},
+        "severity": {},
+        "risk_state": {},
+        "risk_basis_ids": {},
+        "uncertainty_reason": {},
+        "affected_observation_ids": {},
+        "display_card_id": {},
+        "candidate_episode_ids": {},
+        "association_state": {},
+        "user_visible_message": {},
+        "suggested_verification_action": {},
+        "trigger_known_time": {},
+        "detected_at": {},
+        "emitted_at": {},
+        "visible_at": {},
+        "content_revision": {},
+        "dedup_episode_interval_key": {}
+      },
+      "additionalProperties": true
+    },
+    "confirmation": {
+      "type": "object",
+      "required": [
+        "decision_id",
+        "action_confirm_new_or_continuation_or_split",
+        "bound_observation_ids",
+        "confirmed_episode_ids",
+        "qualified_evidence_ids",
+        "source_times",
+        "known_times",
+        "supersedes_refs",
+        "display_card_link_refs"
+      ],
+      "properties": {
+        "decision_id": {},
+        "action_confirm_new_or_continuation_or_split": {},
+        "bound_observation_ids": {},
+        "confirmed_episode_ids": {},
+        "qualified_evidence_ids": {},
+        "source_times": {},
+        "known_times": {},
+        "supersedes_refs": {},
+        "display_card_link_refs": {}
+      },
+      "additionalProperties": true
+    }
+  }
+}

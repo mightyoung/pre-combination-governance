@@ -1,0 +1,41 @@
+{
+  "version": "PUBLIC_SANITIZED_EDITION_V1",
+  "rule_version": "STUDY3_ALERT_BUSINESS_SPEC_V2_RESULT_INFORMED",
+  "scope": "main business specification, partial record schema, metric definitions",
+  "raw_data_included": false,
+  "execution_performed": false,
+  "private_originals": "retained unchanged locally",
+  "manifest_self_hash": "excluded",
+  "files": [
+    {
+      "path": "research-three/v2-public-spec-20261011/METRICS.md",
+      "bytes": 2739,
+      "sha256": "87e2bc87401fdfccffa10132873d6cc840cdb01ba1dce38562e7ac566ea7961d"
+    },
+    {
+      "path": "research-three/v2-public-spec-20261011/README.md",
+      "bytes": 1191,
+      "sha256": "5afe7226a4b4e3e6448509ff415168d11cb6447d64d25e3d8728ec32229effb9"
+    },
+    {
+      "path": "research-three/v2-public-spec-20261011/REVISION.md",
+      "bytes": 813,
+      "sha256": "14dd8595059a9c81d73127459d2d28b65cfe03cf357063da4cdd65bf97e6db6c"
+    },
+    {
+      "path": "research-three/v2-public-spec-20261011/SPEC.md",
+      "bytes": 3801,
+      "sha256": "fc5504ddacde405ba8978a810f8367835e97e358d6412c651e647ce0cc150dc6"
+    },
+    {
+      "path": "research-three/v2-public-spec-20261011/business-spec.json",
+      "bytes": 3378,
+      "sha256": "6348bdbbebf9a7740e791abb090d0a73c40060eecf5592d9de6e9089778b3899"
+    },
+    {
+      "path": "research-three/v2-public-spec-20261011/record-fields.schema.json",
+      "bytes": 2271,
+      "sha256": "f54cb9e00f11367630e9c263ec2dea448c9dc5a763882da394358b5883707028"
+    }
+  ]
+}
