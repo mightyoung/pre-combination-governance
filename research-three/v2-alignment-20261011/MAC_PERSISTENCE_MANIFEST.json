@@ -15,9 +15,9 @@
       "sha256": "bcc6e461849f2e0dad953d0bd12b1aa57e7435154649cd2785a17394de91d768"
     },
     {
-      "bytes": 29826,
       "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
-      "sha256": "11d3e0505aad3b0760b3652aa34dff01d87a43be3b141fb6c36c27503b476c2a"
+      "bytes": 32055,
+      "sha256": "095486833792728b07f796d87eb3f4fd4c9fbb72fdf4cd22603119b93d56b3c3"
     },
     {
       "bytes": 17625,
@@ -48,6 +48,11 @@
       "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_2X2_PROTOCOL_DRAFT.md",
       "bytes": 6015,
       "sha256": "516b13b3337fb50d0894dd5984d3ef236055b8c0e21044be1d6e5209ca65cc0e"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md",
+      "bytes": 4920,
+      "sha256": "2833a106d88f227e240e8e263ed5561a46daf324a7ebac1dd670fddfb575974b"
     },
     {
       "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_CONTRACT_TEST_RESULTS.json",
@@ -419,7 +424,7 @@
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11_WITH_FINITE_EVALUATION_REVIEW_DRAFT",
   "run_artifacts_are_synthetic_only": true,
   "sha256_scope": "Listed deliverables only; this manifest does not hash itself.",
-  "source_commit": "398b75f66f55af6d5e37d85f3e1af53a3d75f4b1",
+  "source_commit": "7c586eb94c60871546fbb5a789333c9957aecb9e",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "synthetic_event_card_examples": {
     "business_acceptance": "NOT_EVALUATED",
@@ -493,5 +498,14 @@
     "frozen_pilot_outputs_changed": false,
     "old_1464_check_trial_rerun": false,
     "Mac_accessed": false
+  },
+  "source_lineage_observation_design": {
+    "status": "DESIGN_ONLY_WAITING_FOR_PARENT_SOURCE_SELECTION",
+    "note_path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md",
+    "handoff_path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
+    "new_contract_or_experiment_run": false,
+    "hidden_source_family_used_as_method_observation": false,
+    "private_mac_v2_spec_required_for_this_design": false,
+    "next_gate": "Parent selects a concrete source and confirms which observation/log fields are available."
   }
 }
