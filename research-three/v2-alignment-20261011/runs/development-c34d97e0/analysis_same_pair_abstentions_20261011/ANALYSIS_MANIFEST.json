@@ -1,0 +1,52 @@
+{
+  "analysis_scope": "READ_ONLY; NO GENERATOR_METHOD_SCORER_OR_NEW_EVALUATION_RUN",
+  "artifact_version": "same-pair-abstention-analysis-v1",
+  "branch": "task/research-three-v2-alignment-20261011",
+  "classification": "SYNTHETIC_DEVELOPMENT_POSTHOC_ANALYSIS_ONLY",
+  "configuration_sha256": "8cb45203d70180fed60b8a84be64d84d4b5bd1e39538b01e56b8b556c5b0e01a",
+  "delay_summaries_equal": true,
+  "files": [
+    {
+      "bytes": 2108,
+      "path": "research-three/v2-alignment-20261011/runs/development-c34d97e0/analysis_same_pair_abstentions_20261011/CORRECTION_RECORD.md",
+      "sha256": "eea1947c7af82979d62d596ba0d2aa7a62b1f73624f6fd3f5862c66222ae9f19"
+    },
+    {
+      "bytes": 10645,
+      "path": "research-three/v2-alignment-20261011/runs/development-c34d97e0/analysis_same_pair_abstentions_20261011/REPORT_V2.md",
+      "sha256": "1e77ca278b08c23f77f5171bf486b76945afbb6852f9be81f5c909189e6a3758"
+    },
+    {
+      "bytes": 20984,
+      "path": "research-three/v2-alignment-20261011/runs/development-c34d97e0/analysis_same_pair_abstentions_20261011/build_analysis.py",
+      "sha256": "61007e252199a2f986027f76b8e9fdc5b90f3e5700989995f4a9faddb8c8fc15"
+    },
+    {
+      "bytes": 162573,
+      "path": "research-three/v2-alignment-20261011/runs/development-c34d97e0/analysis_same_pair_abstentions_20261011/c1_timeline.png",
+      "sha256": "87bffd427776dca6af2f4191a750a784e18ce31cdb4ec03bfc4a4b29a5b8b736"
+    },
+    {
+      "bytes": 162539,
+      "path": "research-three/v2-alignment-20261011/runs/development-c34d97e0/analysis_same_pair_abstentions_20261011/c2_timeline.png",
+      "sha256": "c4f91e1868801b23311f979d283fc991bb7d6f398f23572c3c5af440e23a00ca"
+    },
+    {
+      "bytes": 163000,
+      "path": "research-three/v2-alignment-20261011/runs/development-c34d97e0/analysis_same_pair_abstentions_20261011/c3_timeline.png",
+      "sha256": "dfc632f882445be84b2fe9a876b3a40170ae11e40c303823d58a64fb84012b72"
+    },
+    {
+      "bytes": 68904,
+      "path": "research-three/v2-alignment-20261011/runs/development-c34d97e0/analysis_same_pair_abstentions_20261011/case_analysis_data.json",
+      "sha256": "571292826546f5df0f28b527f928ae180025bfe25ddac3a3fd7f768bf8d592fe"
+    }
+  ],
+  "final_action_disagreements": 3,
+  "historical_attempt_02_report_sha256": "78952f10eb9e77e477d1cfaed4a414c0d304fc1459695043dcc67a38d34da79f",
+  "manifest_excludes_itself": true,
+  "original_outputs_metrics_parameters_and_historical_report_modified": false,
+  "saved_input_and_sidecar_byte_matches_attempt_01_to_02": 24,
+  "source_code_commit": "c34d97e0101554a362e927ed9e3ff239cedc319e",
+  "source_run_manifest_sha256": "ff5411c0c498e1316255e673f2bbe9c5684a05c844ecff353f812b42f124b60d"
+}

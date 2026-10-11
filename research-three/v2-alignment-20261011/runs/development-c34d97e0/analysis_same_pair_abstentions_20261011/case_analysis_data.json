@@ -1,0 +1,1946 @@
+{
+  "artifact_version": "same-pair-abstention-posthoc-analysis-v1",
+  "cases": [
+    {
+      "analysis_only_scorer_truth": {
+        "first_sufficient_evidence_at": null,
+        "label": "SAME",
+        "visibility": "SCORER_ONLY; NOT PROVIDED TO METHODS"
+      },
+      "case_id": "C1",
+      "method_trace": [
+        {
+          "action": "NOT_CANDIDATE",
+          "candidate_visible": false,
+          "cutoff": "2026-10-11T12:00:00Z",
+          "decided_at": null,
+          "independent_lineage_root_count": null,
+          "input_prefix_sha256": "cac7b4ded9a5b10b2e1b637299ac2f3848cffc2f614e8b666fc5235ff461c33d",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": []
+        },
+        {
+          "action": "NOT_CANDIDATE",
+          "candidate_visible": false,
+          "cutoff": "2026-10-11T12:00:00Z",
+          "decided_at": null,
+          "independent_lineage_root_count": null,
+          "input_prefix_sha256": "cac7b4ded9a5b10b2e1b637299ac2f3848cffc2f614e8b666fc5235ff461c33d",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": []
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:13Z",
+          "decided_at": "2026-10-11T12:00:13Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "e5693b670b8b3045fef42e71e1922564912fa9e0cc40fe3ff4f0e74a6ef48c2c",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:13Z",
+          "decided_at": "2026-10-11T12:00:13Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "e5693b670b8b3045fef42e71e1922564912fa9e0cc40fe3ff4f0e74a6ef48c2c",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:24Z",
+          "decided_at": "2026-10-11T12:00:24Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "f78777428fb0a9bdfc9c9402a48cd76b107ceb440c8120af2ab3e591456448e0",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:24Z",
+          "decided_at": "2026-10-11T12:00:24Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "f78777428fb0a9bdfc9c9402a48cd76b107ceb440c8120af2ab3e591456448e0",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:37Z",
+          "decided_at": "2026-10-11T12:00:37Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "c87a4a0b23e143f4a9ffbcbed7c1a3ad49b26b93d5bc6028583fa731105b4919",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:37Z",
+          "decided_at": "2026-10-11T12:00:37Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "c87a4a0b23e143f4a9ffbcbed7c1a3ad49b26b93d5bc6028583fa731105b4919",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:30Z",
+          "decided_at": "2026-10-11T12:01:30Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "7e82647211be46ee6dc26880fe9ec6b24549d359a3aaf2a28d428dc3caabbf28",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:30Z",
+          "decided_at": "2026-10-11T12:01:30Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "7e82647211be46ee6dc26880fe9ec6b24549d359a3aaf2a28d428dc3caabbf28",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:40Z",
+          "decided_at": "2026-10-11T12:01:40Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "cf3fe728537d352f9bca7109e8efce60adb1015dc0117d0d0dc0df3fe047daea",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:40Z",
+          "decided_at": "2026-10-11T12:01:40Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "cf3fe728537d352f9bca7109e8efce60adb1015dc0117d0d0dc0df3fe047daea",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:02:00Z",
+          "decided_at": "2026-10-11T12:02:00Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "2605e193da14ba819c7f00d1b07673594698ff85b9f143a444f774674a91f01b",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:02:00Z",
+          "decided_at": "2026-10-11T12:02:00Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "2605e193da14ba819c7f00d1b07673594698ff85b9f143a444f774674a91f01b",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        }
+      ],
+      "pair": [
+        "OBS-91964e41ff8667328399",
+        "OBS-b8987acd3368ef907868"
+      ],
+      "stratum": "dependent_replay_unknown",
+      "visible_input": {
+        "base_record_facts": [
+          {
+            "acquisition_lineage": [
+              "ROOT-98f66c61551a05cea7ec",
+              "EDGE"
+            ],
+            "asset_binding_status": "VERIFIED",
+            "asset_id": "ASSET-a4b725e769ab69de3da0",
+            "calibration_status": "CURRENT",
+            "modality": "TEMPERATURE",
+            "observation_id": "OBS-91964e41ff8667328399",
+            "position_error_m": 0.25,
+            "position_m": [
+              0.0,
+              0.0
+            ],
+            "quality_status": "GOOD",
+            "received_at": "2026-10-11T12:00:00Z",
+            "risk_flag": "EXPOSURE",
+            "source_time": "2026-10-11T12:00:00Z",
+            "unit": "degC",
+            "value": 79.95021050652838,
+            "value_error": 0.5
+          },
+          {
+            "acquisition_lineage": [
+              "ROOT-98f66c61551a05cea7ec",
+              "EDGE"
+            ],
+            "asset_binding_status": "VERIFIED",
+            "asset_id": "ASSET-a4b725e769ab69de3da0",
+            "calibration_status": "CURRENT",
+            "modality": "THERMAL_IMAGE",
+            "observation_id": "OBS-b8987acd3368ef907868",
+            "position_error_m": 0.25,
+            "position_m": [
+              0.1,
+              0.0
+            ],
+            "quality_status": "GOOD",
+            "received_at": "2026-10-11T12:00:13Z",
+            "risk_flag": "EXPOSURE",
+            "source_time": "2026-10-11T12:00:05Z",
+            "unit": "degC",
+            "value": 80.37723704175427,
+            "value_error": 0.5
+          }
+        ],
+        "distinct_acquisition_root_count": 1,
+        "distinct_acquisition_roots": [
+          "ROOT-98f66c61551a05cea7ec"
+        ],
+        "first_pair_candidate_cutoff": "2026-10-11T12:00:13Z",
+        "position_distance_m": 0.1,
+        "records": [
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-98f66c61551a05cea7ec",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_id",
+                "value": "ASSET-a4b725e769ab69de3da0"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "modality",
+                "value": "TEMPERATURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_m",
+                "value": [
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:00Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value",
+                "value": 79.95021050652838
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-91964e41ff8667328399",
+            "received_at": "2026-10-11T12:00:00Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:01:30Z",
+                "earliest_known_at": "2026-10-11T12:01:30Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE_HIGH"
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-91964e41ff8667328399",
+            "received_at": "2026-10-11T12:01:30Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-98f66c61551a05cea7ec",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_id",
+                "value": "ASSET-a4b725e769ab69de3da0"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "modality",
+                "value": "TEMPERATURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_m",
+                "value": [
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:00Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value",
+                "value": 79.95021050652838
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-91964e41ff8667328399",
+            "received_at": "2026-10-11T12:01:40Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-98f66c61551a05cea7ec",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "asset_id",
+                "value": "ASSET-a4b725e769ab69de3da0"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "modality",
+                "value": "THERMAL_IMAGE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "position_m",
+                "value": [
+                  0.1,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:05Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "value",
+                "value": 80.37723704175427
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:05Z",
+                "earliest_known_at": "2026-10-11T12:00:13Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:05Z",
+            "id_earliest_known_at": "2026-10-11T12:00:13Z",
+            "observation_id": "OBS-b8987acd3368ef907868",
+            "received_at": "2026-10-11T12:00:13Z"
+          }
+        ],
+        "registered_cutoffs": [
+          "2026-10-11T12:00:00Z",
+          "2026-10-11T12:00:13Z",
+          "2026-10-11T12:00:24Z",
+          "2026-10-11T12:00:37Z",
+          "2026-10-11T12:01:30Z",
+          "2026-10-11T12:01:40Z",
+          "2026-10-11T12:02:00Z"
+        ],
+        "same_id_updates": [
+          {
+            "elapsed_seconds": 90.0,
+            "field_names": [
+              "risk_flag"
+            ],
+            "label": "same-ID field update: risk_flag=EXPOSURE_HIGH",
+            "observation_id": "OBS-91964e41ff8667328399",
+            "received_at": "2026-10-11T12:01:30Z"
+          },
+          {
+            "elapsed_seconds": 100.0,
+            "field_names": [
+              "acquisition_lineage",
+              "asset_binding_status",
+              "asset_id",
+              "calibration_status",
+              "modality",
+              "position_error_m",
+              "position_m",
+              "quality_status",
+              "risk_flag",
+              "source_time",
+              "unit",
+              "value",
+              "value_error"
+            ],
+            "label": "same-ID repeated base payload (EXPOSURE)",
+            "observation_id": "OBS-91964e41ff8667328399",
+            "received_at": "2026-10-11T12:01:40Z"
+          }
+        ],
+        "source_time_gap_seconds": 5.0,
+        "value_difference": 0.42702653522589173,
+        "value_difference_allowance": 3.5
+      },
+      "world_group_id": "WG-49ad405b4355e37ee62ef70a"
+    },
+    {
+      "analysis_only_scorer_truth": {
+        "first_sufficient_evidence_at": null,
+        "label": "SAME",
+        "visibility": "SCORER_ONLY; NOT PROVIDED TO METHODS"
+      },
+      "case_id": "C2",
+      "method_trace": [
+        {
+          "action": "NOT_CANDIDATE",
+          "candidate_visible": false,
+          "cutoff": "2026-10-11T12:00:00Z",
+          "decided_at": null,
+          "independent_lineage_root_count": null,
+          "input_prefix_sha256": "e2920b013ab64d1f3b820534a1aee2b34975d1008ab5f22f4a1d01f5a92b6cae",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": []
+        },
+        {
+          "action": "NOT_CANDIDATE",
+          "candidate_visible": false,
+          "cutoff": "2026-10-11T12:00:00Z",
+          "decided_at": null,
+          "independent_lineage_root_count": null,
+          "input_prefix_sha256": "e2920b013ab64d1f3b820534a1aee2b34975d1008ab5f22f4a1d01f5a92b6cae",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": []
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:15Z",
+          "decided_at": "2026-10-11T12:00:15Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "c926f06551c9ff43ef9456c950c02ea83537e6132de4db7af7d125e94adb770f",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:15Z",
+          "decided_at": "2026-10-11T12:00:15Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "c926f06551c9ff43ef9456c950c02ea83537e6132de4db7af7d125e94adb770f",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:26Z",
+          "decided_at": "2026-10-11T12:00:26Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "00a31ff15cebb5ed19297c199193e80fb6e44d04ce07d5e5800f7ae90e0f2dcb",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:26Z",
+          "decided_at": "2026-10-11T12:00:26Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "00a31ff15cebb5ed19297c199193e80fb6e44d04ce07d5e5800f7ae90e0f2dcb",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:39Z",
+          "decided_at": "2026-10-11T12:00:39Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "6011d5c14b446cdd5a32229aa2fb974095e78cca312569a600451d9e65673b78",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:39Z",
+          "decided_at": "2026-10-11T12:00:39Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "6011d5c14b446cdd5a32229aa2fb974095e78cca312569a600451d9e65673b78",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:30Z",
+          "decided_at": "2026-10-11T12:01:30Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "ad90e20d46249c959b48f9f950d64a2b029661e97a09f6fc8a32bb299f965630",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:30Z",
+          "decided_at": "2026-10-11T12:01:30Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "ad90e20d46249c959b48f9f950d64a2b029661e97a09f6fc8a32bb299f965630",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:40Z",
+          "decided_at": "2026-10-11T12:01:40Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "1626b62571b6e0a60e94cc41b2005eb91004ed84d714e1ba6030c80aec796d27",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:40Z",
+          "decided_at": "2026-10-11T12:01:40Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "1626b62571b6e0a60e94cc41b2005eb91004ed84d714e1ba6030c80aec796d27",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:02:00Z",
+          "decided_at": "2026-10-11T12:02:00Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "8919cae1b7a06ea2b073d2f416de1196c5a54afd3c1162a6878ef5aee4839a42",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:02:00Z",
+          "decided_at": "2026-10-11T12:02:00Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "8919cae1b7a06ea2b073d2f416de1196c5a54afd3c1162a6878ef5aee4839a42",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        }
+      ],
+      "pair": [
+        "OBS-10083c5e213e53917142",
+        "OBS-f6107c823fc32e05c1f1"
+      ],
+      "stratum": "dependent_replay_unknown",
+      "visible_input": {
+        "base_record_facts": [
+          {
+            "acquisition_lineage": [
+              "ROOT-3d9b9754a3851c275c0b",
+              "EDGE"
+            ],
+            "asset_binding_status": "VERIFIED",
+            "asset_id": "ASSET-e049e3802b7c5e601d89",
+            "calibration_status": "CURRENT",
+            "modality": "THERMAL_IMAGE",
+            "observation_id": "OBS-10083c5e213e53917142",
+            "position_error_m": 0.25,
+            "position_m": [
+              0.1,
+              0.0
+            ],
+            "quality_status": "GOOD",
+            "received_at": "2026-10-11T12:00:15Z",
+            "risk_flag": "EXPOSURE",
+            "source_time": "2026-10-11T12:00:07Z",
+            "unit": "degC",
+            "value": 80.29172697617894,
+            "value_error": 0.5
+          },
+          {
+            "acquisition_lineage": [
+              "ROOT-3d9b9754a3851c275c0b",
+              "EDGE"
+            ],
+            "asset_binding_status": "VERIFIED",
+            "asset_id": "ASSET-e049e3802b7c5e601d89",
+            "calibration_status": "CURRENT",
+            "modality": "TEMPERATURE",
+            "observation_id": "OBS-f6107c823fc32e05c1f1",
+            "position_error_m": 0.25,
+            "position_m": [
+              0.0,
+              0.0
+            ],
+            "quality_status": "GOOD",
+            "received_at": "2026-10-11T12:00:00Z",
+            "risk_flag": "EXPOSURE",
+            "source_time": "2026-10-11T12:00:00Z",
+            "unit": "degC",
+            "value": 79.93664875487266,
+            "value_error": 0.5
+          }
+        ],
+        "distinct_acquisition_root_count": 1,
+        "distinct_acquisition_roots": [
+          "ROOT-3d9b9754a3851c275c0b"
+        ],
+        "first_pair_candidate_cutoff": "2026-10-11T12:00:15Z",
+        "position_distance_m": 0.1,
+        "records": [
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-3d9b9754a3851c275c0b",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "asset_id",
+                "value": "ASSET-e049e3802b7c5e601d89"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "modality",
+                "value": "THERMAL_IMAGE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "position_m",
+                "value": [
+                  0.1,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:07Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "value",
+                "value": 80.29172697617894
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:07Z",
+                "earliest_known_at": "2026-10-11T12:00:15Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:07Z",
+            "id_earliest_known_at": "2026-10-11T12:00:15Z",
+            "observation_id": "OBS-10083c5e213e53917142",
+            "received_at": "2026-10-11T12:00:15Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-3d9b9754a3851c275c0b",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_id",
+                "value": "ASSET-e049e3802b7c5e601d89"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "modality",
+                "value": "TEMPERATURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_m",
+                "value": [
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:00Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value",
+                "value": 79.93664875487266
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-f6107c823fc32e05c1f1",
+            "received_at": "2026-10-11T12:00:00Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:01:30Z",
+                "earliest_known_at": "2026-10-11T12:01:30Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE_HIGH"
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-f6107c823fc32e05c1f1",
+            "received_at": "2026-10-11T12:01:30Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-3d9b9754a3851c275c0b",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_id",
+                "value": "ASSET-e049e3802b7c5e601d89"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "modality",
+                "value": "TEMPERATURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_m",
+                "value": [
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:00Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value",
+                "value": 79.93664875487266
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-f6107c823fc32e05c1f1",
+            "received_at": "2026-10-11T12:01:40Z"
+          }
+        ],
+        "registered_cutoffs": [
+          "2026-10-11T12:00:00Z",
+          "2026-10-11T12:00:15Z",
+          "2026-10-11T12:00:26Z",
+          "2026-10-11T12:00:39Z",
+          "2026-10-11T12:01:30Z",
+          "2026-10-11T12:01:40Z",
+          "2026-10-11T12:02:00Z"
+        ],
+        "same_id_updates": [
+          {
+            "elapsed_seconds": 90.0,
+            "field_names": [
+              "risk_flag"
+            ],
+            "label": "same-ID field update: risk_flag=EXPOSURE_HIGH",
+            "observation_id": "OBS-f6107c823fc32e05c1f1",
+            "received_at": "2026-10-11T12:01:30Z"
+          },
+          {
+            "elapsed_seconds": 100.0,
+            "field_names": [
+              "acquisition_lineage",
+              "asset_binding_status",
+              "asset_id",
+              "calibration_status",
+              "modality",
+              "position_error_m",
+              "position_m",
+              "quality_status",
+              "risk_flag",
+              "source_time",
+              "unit",
+              "value",
+              "value_error"
+            ],
+            "label": "same-ID repeated base payload (EXPOSURE)",
+            "observation_id": "OBS-f6107c823fc32e05c1f1",
+            "received_at": "2026-10-11T12:01:40Z"
+          }
+        ],
+        "source_time_gap_seconds": 7.0,
+        "value_difference": 0.35507822130627176,
+        "value_difference_allowance": 3.5
+      },
+      "world_group_id": "WG-a03b8a911c21fb790b2b6910"
+    },
+    {
+      "analysis_only_scorer_truth": {
+        "first_sufficient_evidence_at": null,
+        "label": "SAME",
+        "visibility": "SCORER_ONLY; NOT PROVIDED TO METHODS"
+      },
+      "case_id": "C3",
+      "method_trace": [
+        {
+          "action": "NOT_CANDIDATE",
+          "candidate_visible": false,
+          "cutoff": "2026-10-11T12:00:00Z",
+          "decided_at": null,
+          "independent_lineage_root_count": null,
+          "input_prefix_sha256": "1c73602ea3f9998d6deaf7792b7e796e7ff7742522fbbdd4b3eb8f56f214a2dc",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": []
+        },
+        {
+          "action": "NOT_CANDIDATE",
+          "candidate_visible": false,
+          "cutoff": "2026-10-11T12:00:00Z",
+          "decided_at": null,
+          "independent_lineage_root_count": null,
+          "input_prefix_sha256": "1c73602ea3f9998d6deaf7792b7e796e7ff7742522fbbdd4b3eb8f56f214a2dc",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": []
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:14Z",
+          "decided_at": "2026-10-11T12:00:14Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "bcacfc374b66ca1f629d2b2503391edb1e36da4b07c51f781b68ce58f01e6fe0",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:14Z",
+          "decided_at": "2026-10-11T12:00:14Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "bcacfc374b66ca1f629d2b2503391edb1e36da4b07c51f781b68ce58f01e6fe0",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:30Z",
+          "decided_at": "2026-10-11T12:00:30Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "a166f714bf6c5cf4a55ebf8bf6e0bea079d50e23ac546e8fc7dfb3cb4f168802",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:30Z",
+          "decided_at": "2026-10-11T12:00:30Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "a166f714bf6c5cf4a55ebf8bf6e0bea079d50e23ac546e8fc7dfb3cb4f168802",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:41Z",
+          "decided_at": "2026-10-11T12:00:41Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "3f4d39a709a0a3372ac37f1404c17841026532edf996f15af1acfe5c5ce2acca",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:00:41Z",
+          "decided_at": "2026-10-11T12:00:41Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "3f4d39a709a0a3372ac37f1404c17841026532edf996f15af1acfe5c5ce2acca",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:30Z",
+          "decided_at": "2026-10-11T12:01:30Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "0edb8da108fe529984d36279263edce7e9875109028bc81ce6cb238ac124f3f2",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:30Z",
+          "decided_at": "2026-10-11T12:01:30Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "0edb8da108fe529984d36279263edce7e9875109028bc81ce6cb238ac124f3f2",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:40Z",
+          "decided_at": "2026-10-11T12:01:40Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "4536f5975baea4b5cbc22403768a20cbb3a9f394e0dcc22020461ca462c84f51",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:01:40Z",
+          "decided_at": "2026-10-11T12:01:40Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "4536f5975baea4b5cbc22403768a20cbb3a9f394e0dcc22020461ca462c84f51",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        },
+        {
+          "action": "LINK_CANDIDATES",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:02:00Z",
+          "decided_at": "2026-10-11T12:02:00Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "3a4ac88e04a6326f85fca848d4a60ab29a1551c8fd8dc8bd1c4f0f0912cfbab3",
+          "method": "TIME_ASSET_RULE",
+          "reason_codes": [
+            "VERIFIED_ASSET_MATCH",
+            "TIME_AND_POSITION_COMPATIBLE"
+          ]
+        },
+        {
+          "action": "ABSTAIN",
+          "candidate_visible": true,
+          "cutoff": "2026-10-11T12:02:00Z",
+          "decided_at": "2026-10-11T12:02:00Z",
+          "independent_lineage_root_count": 1,
+          "input_prefix_sha256": "3a4ac88e04a6326f85fca848d4a60ab29a1551c8fd8dc8bd1c4f0f0912cfbab3",
+          "method": "MULTI_EVIDENCE_RULE",
+          "reason_codes": [
+            "NO_INDEPENDENT_ACQUISITION_ROOTS"
+          ]
+        }
+      ],
+      "pair": [
+        "OBS-0cd8d85f9e6d947750ef",
+        "OBS-f32de63fdc9bb280df1b"
+      ],
+      "stratum": "dependent_replay_unknown",
+      "visible_input": {
+        "base_record_facts": [
+          {
+            "acquisition_lineage": [
+              "ROOT-98a252e45d6a8b2e250f",
+              "EDGE"
+            ],
+            "asset_binding_status": "VERIFIED",
+            "asset_id": "ASSET-536525780aa151e606a7",
+            "calibration_status": "CURRENT",
+            "modality": "THERMAL_IMAGE",
+            "observation_id": "OBS-0cd8d85f9e6d947750ef",
+            "position_error_m": 0.25,
+            "position_m": [
+              0.1,
+              0.0
+            ],
+            "quality_status": "GOOD",
+            "received_at": "2026-10-11T12:00:14Z",
+            "risk_flag": "EXPOSURE",
+            "source_time": "2026-10-11T12:00:06Z",
+            "unit": "degC",
+            "value": 80.6684359866537,
+            "value_error": 0.5
+          },
+          {
+            "acquisition_lineage": [
+              "ROOT-98a252e45d6a8b2e250f",
+              "EDGE"
+            ],
+            "asset_binding_status": "VERIFIED",
+            "asset_id": "ASSET-536525780aa151e606a7",
+            "calibration_status": "CURRENT",
+            "modality": "TEMPERATURE",
+            "observation_id": "OBS-f32de63fdc9bb280df1b",
+            "position_error_m": 0.25,
+            "position_m": [
+              0.0,
+              0.0
+            ],
+            "quality_status": "GOOD",
+            "received_at": "2026-10-11T12:00:00Z",
+            "risk_flag": "EXPOSURE",
+            "source_time": "2026-10-11T12:00:00Z",
+            "unit": "degC",
+            "value": 79.76851733081931,
+            "value_error": 0.5
+          }
+        ],
+        "distinct_acquisition_root_count": 1,
+        "distinct_acquisition_roots": [
+          "ROOT-98a252e45d6a8b2e250f"
+        ],
+        "first_pair_candidate_cutoff": "2026-10-11T12:00:14Z",
+        "position_distance_m": 0.1,
+        "records": [
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-98a252e45d6a8b2e250f",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "asset_id",
+                "value": "ASSET-536525780aa151e606a7"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "modality",
+                "value": "THERMAL_IMAGE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "position_m",
+                "value": [
+                  0.1,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:06Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "value",
+                "value": 80.6684359866537
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:06Z",
+                "earliest_known_at": "2026-10-11T12:00:14Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:06Z",
+            "id_earliest_known_at": "2026-10-11T12:00:14Z",
+            "observation_id": "OBS-0cd8d85f9e6d947750ef",
+            "received_at": "2026-10-11T12:00:14Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-98a252e45d6a8b2e250f",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_id",
+                "value": "ASSET-536525780aa151e606a7"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "modality",
+                "value": "TEMPERATURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_m",
+                "value": [
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:00Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value",
+                "value": 79.76851733081931
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-f32de63fdc9bb280df1b",
+            "received_at": "2026-10-11T12:00:00Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:01:30Z",
+                "earliest_known_at": "2026-10-11T12:01:30Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE_HIGH"
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-f32de63fdc9bb280df1b",
+            "received_at": "2026-10-11T12:01:30Z"
+          },
+          {
+            "fields": [
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "acquisition_lineage",
+                "value": [
+                  "ROOT-98a252e45d6a8b2e250f",
+                  "EDGE"
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_binding_status",
+                "value": "VERIFIED"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "asset_id",
+                "value": "ASSET-536525780aa151e606a7"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "calibration_status",
+                "value": "CURRENT"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "modality",
+                "value": "TEMPERATURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_error_m",
+                "value": 0.25
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "position_m",
+                "value": [
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "quality_status",
+                "value": "GOOD"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "risk_flag",
+                "value": "EXPOSURE"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "source_time",
+                "value": "2026-10-11T12:00:00Z"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "unit",
+                "value": "degC"
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value",
+                "value": 79.76851733081931
+              },
+              {
+                "actual_available_at": "2026-10-11T12:00:00Z",
+                "earliest_known_at": "2026-10-11T12:00:00Z",
+                "name": "value_error",
+                "value": 0.5
+              }
+            ],
+            "id_actual_available_at": "2026-10-11T12:00:00Z",
+            "id_earliest_known_at": "2026-10-11T12:00:00Z",
+            "observation_id": "OBS-f32de63fdc9bb280df1b",
+            "received_at": "2026-10-11T12:01:40Z"
+          }
+        ],
+        "registered_cutoffs": [
+          "2026-10-11T12:00:00Z",
+          "2026-10-11T12:00:14Z",
+          "2026-10-11T12:00:30Z",
+          "2026-10-11T12:00:41Z",
+          "2026-10-11T12:01:30Z",
+          "2026-10-11T12:01:40Z",
+          "2026-10-11T12:02:00Z"
+        ],
+        "same_id_updates": [
+          {
+            "elapsed_seconds": 90.0,
+            "field_names": [
+              "risk_flag"
+            ],
+            "label": "same-ID field update: risk_flag=EXPOSURE_HIGH",
+            "observation_id": "OBS-f32de63fdc9bb280df1b",
+            "received_at": "2026-10-11T12:01:30Z"
+          },
+          {
+            "elapsed_seconds": 100.0,
+            "field_names": [
+              "acquisition_lineage",
+              "asset_binding_status",
+              "asset_id",
+              "calibration_status",
+              "modality",
+              "position_error_m",
+              "position_m",
+              "quality_status",
+              "risk_flag",
+              "source_time",
+              "unit",
+              "value",
+              "value_error"
+            ],
+            "label": "same-ID repeated base payload (EXPOSURE)",
+            "observation_id": "OBS-f32de63fdc9bb280df1b",
+            "received_at": "2026-10-11T12:01:40Z"
+          }
+        ],
+        "source_time_gap_seconds": 6.0,
+        "value_difference": 0.8999186558343979,
+        "value_difference_allowance": 3.5
+      },
+      "world_group_id": "WG-c6351b2c67706558c964473e"
+    }
+  ],
+  "global_trace_crosscheck": {
+    "delay_summaries": {
+      "MULTI_EVIDENCE_RULE": {
+        "observed_delay_seconds": {
+          "count": 54,
+          "max_seconds": 0.0,
+          "mean_seconds": 0.0,
+          "median_seconds": 0.0,
+          "min_seconds": 0.0,
+          "raw_seconds": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "right_censored_after_sufficient_evidence_count": 12,
+        "right_censored_before_sufficient_evidence_count": 3,
+        "unknown_excluded_count": 3,
+        "valid_decision_observed_count": 54
+      },
+      "TIME_ASSET_RULE": {
+        "observed_delay_seconds": {
+          "count": 54,
+          "max_seconds": 0.0,
+          "mean_seconds": 0.0,
+          "median_seconds": 0.0,
+          "min_seconds": 0.0,
+          "raw_seconds": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "right_censored_after_sufficient_evidence_count": 12,
+        "right_censored_before_sufficient_evidence_count": 3,
+        "unknown_excluded_count": 3,
+        "valid_decision_observed_count": 54
+      }
+    },
+    "delay_summary_and_censoring_counts_equal": true,
+    "disagreements": [
+      {
+        "multi_evidence_action": "ABSTAIN",
+        "multi_evidence_reason_codes": [
+          "NO_INDEPENDENT_ACQUISITION_ROOTS"
+        ],
+        "pair": [
+          "OBS-91964e41ff8667328399",
+          "OBS-b8987acd3368ef907868"
+        ],
+        "scorer_only_first_sufficient_evidence_at": null,
+        "scorer_only_label": "SAME",
+        "stratum": "dependent_replay_unknown",
+        "time_asset_action": "LINK_CANDIDATES",
+        "time_asset_reason_codes": [
+          "VERIFIED_ASSET_MATCH",
+          "TIME_AND_POSITION_COMPATIBLE"
+        ],
+        "world_group_id": "WG-49ad405b4355e37ee62ef70a"
+      },
+      {
+        "multi_evidence_action": "ABSTAIN",
+        "multi_evidence_reason_codes": [
+          "NO_INDEPENDENT_ACQUISITION_ROOTS"
+        ],
+        "pair": [
+          "OBS-10083c5e213e53917142",
+          "OBS-f6107c823fc32e05c1f1"
+        ],
+        "scorer_only_first_sufficient_evidence_at": null,
+        "scorer_only_label": "SAME",
+        "stratum": "dependent_replay_unknown",
+        "time_asset_action": "LINK_CANDIDATES",
+        "time_asset_reason_codes": [
+          "VERIFIED_ASSET_MATCH",
+          "TIME_AND_POSITION_COMPATIBLE"
+        ],
+        "world_group_id": "WG-a03b8a911c21fb790b2b6910"
+      },
+      {
+        "multi_evidence_action": "ABSTAIN",
+        "multi_evidence_reason_codes": [
+          "NO_INDEPENDENT_ACQUISITION_ROOTS"
+        ],
+        "pair": [
+          "OBS-0cd8d85f9e6d947750ef",
+          "OBS-f32de63fdc9bb280df1b"
+        ],
+        "scorer_only_first_sufficient_evidence_at": null,
+        "scorer_only_label": "SAME",
+        "stratum": "dependent_replay_unknown",
+        "time_asset_action": "LINK_CANDIDATES",
+        "time_asset_reason_codes": [
+          "VERIFIED_ASSET_MATCH",
+          "TIME_AND_POSITION_COMPATIBLE"
+        ],
+        "world_group_id": "WG-c6351b2c67706558c964473e"
+      }
+    ],
+    "final_cutoff_action_disagreement_count": 3,
+    "scored_pair_rows": 72,
+    "source": "saved_metrics_outputs_and_scorer_sidecars_only"
+  },
+  "run_scope": "READ_ONLY_DEVELOPMENT_ATTEMPT_02; NO_GENERATOR_METHOD_OR_SCORER_CALLS",
+  "source_attempt_manifest_sha256": "ff5411c0c498e1316255e673f2bbe9c5684a05c844ecff353f812b42f124b60d"
+}
