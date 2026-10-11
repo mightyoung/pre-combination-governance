@@ -18,9 +18,22 @@
 
 ## 未冻结规则与最小例子
 
-最小反例是稳定卡 `CARD-A` 在同一待核期间先后触达 `A-B` 与 `A-C` 两个候选关系。若动作层按“卡 + 通知类型 + episode interval”合并，会生成一个持续更新的提醒；若按 association ID 分开，会保留两条提醒更新。当前实现选择的是后一种软件行为，但**这不等于已获业务批准**。去重 key、episode interval 起止和负担/漏报权衡待用户决定。
+最小反例是稳定卡 `CARD-A` 在同一待核期间先后触达 `A-B` 与 `A-C` 两个候选关系。若动作层按 association ID 分开，会保留每个关联的提醒动作；若同卡同类待核提醒合并，应当仍保留各自的语义修订和 association/evidence refs。V1 `AlertLedger` 默认仍按关联产生动作；本轮候选只在独立内存实验层比较，不更改该默认行为。
 
-建议把动作处理做成卡片级幂等 upsert：在用户冻结 interval 语义后，同卡同类待核动作更新同一提醒内容修订，并累积所有 association/evidence refs；风险升级和新合格风险源仍须产生可追溯的新修订。该建议不在本轮实现，也不据此估算省下的模型调用或通知数量。
+## 独立提醒动作对照（2026-10-11）
+
+新增 [提醒动作对照 HTML](visualization/notification-coalescing-experiment.html) 与 [机器可读结果](visualization/notification-coalescing-experiment-data.json)，由 [生成脚本](visualization/generate_notification_coalescing_experiment.py) 使用现有 `AlertLedger` 合成过渡构造同一组输入，再依次运行 `PER_ASSOCIATION` 与 `CARD_COALESCE`。输入共有 19 条唯一动作，含 A-B/A-C 重叠关系、互补来源、升级、反证、A-B 确认后拆分、独立事件卡、相同时间与越窗边界、来源时间倒序、精确重放和旧内容刷新时间的冲突重放。
+
+| 实验窗口 | 逐关联提醒动作 | 同卡合并动作 | 语义卡片修订（两策略） | 合并进已有提醒的待核更新 | 漏掉的重要更新 |
+|---:|---:|---:|---:|---:|---:|
+| 0 秒 | 19 | 18 | 19 / 19 | 1 | 0 |
+| 5 秒 | 19 | 17 | 19 / 19 | 2 | 0 |
+
+5 秒策略合并的两个待核更新分别发生在同一处理时刻（0 秒差）和包含边界（5 秒差）；6 秒差的 A-F 更新在同一卡、同类、同阶段、同批次键下另发动作。所有 19 条唯一语义输入都产生独立卡片修订；合并只更改重复提醒动作数。关联 ID、观测 ID、候选 episode ID、来源、source time、observed_at 和证据引用均保留。精确重放不刷新原修订，改写旧记录 `observed_at` 的同 ID 重放被冲突拒绝。
+
+以上窗口与批次值、`display_card_id + action_kind + risk_stage + experiment_batch_id` 键是便于复现的实验参数，不是冻结建议或生产规则。动作结果是 `NOT_DELIVERED`；内存中卡片修订延迟模拟为 0 秒，但实际送达与用户可见时间未知。及时性、内容完整性、事件确证准确性分别报告；本合成输入只检查语义内容完整性，不能测真实事件确证准确率，亦不估模型调用节省量。来源可信度/统计独立性不评估，多 flag severity 优先级保持未决。
+
+测试：`risk-fusion-bench/tests/test_alert_action_experiment.py`、`risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py`。复现命令见 [README](README.md)。
 
 ## 相邻系统设计依据
 
