@@ -46,9 +46,9 @@ Create `risk-fusion-bench/src/rfb/research/observable_association.py` with these
 - `ObservationRecord(observation_id: str, id_actual_available_at: str, id_earliest_known_at: str, received_at: str, fields: tuple[KnownField, ...])` contains no scenario or identity metadata. The same observation ID may have repeated identical records from forwarding/replay and a later `risk_flag` fact; incompatible immutable measurement content raises `ValueError`.
 - `FrozenObservation(observation_id: str, received_at: str, fields: tuple[KnownField, ...])` contains only field values visible at a requested cutoff, with the latest non-conflicting known value per field.
 - `FrozenObservablePrefix(as_of: str, observations: tuple[FrozenObservation, ...])` is the only inference input.
-- `InferenceConfig` holds only clearly labeled synthetic-development values: `candidate_pair_window_seconds=120`, `same_asset_candidate_horizon_seconds=600`, `candidate_radius_m=8.0`, and `value_tolerance_c=2.5`.
+- `InferenceConfig` holds only clearly labeled synthetic-development values: `candidate_pair_window_seconds=120`, `same_asset_candidate_horizon_seconds=600`, `candidate_radius_m=8.0`, `position_margin_m=1.0`, and `value_tolerance_c=2.5`.
 - `CandidatePair(left_observation_id: str, right_observation_id: str)` and `ProposalAction` (`LINK_CANDIDATES`, `RETAIN_SEPARATELY`, `ABSTAIN`) contain no event/episode/card/association identifier or truth field.
-- `AssociationProposal(method: str, pair: CandidatePair, action: ProposalAction, reason_codes: tuple[str, ...], evidence_refs: tuple[str, ...], decided_at: str)` is a frozen, explainable output.
+- `AssociationProposal(method: str, pair: CandidatePair, action: ProposalAction, reason_codes: tuple[str, ...], evidence_refs: tuple[str, ...], independent_lineage_root_count: int, decided_at: str)` is a frozen, explainable output.
 - `AssociationMethod` protocol defines `decide(prefix, pair, config) -> AssociationProposal`; the two rule functions implement this contract. The protocol is the only Dempster-Shafer deliverable.
 - `freeze_observable_prefix(records, *, as_of) -> FrozenObservablePrefix` filters by ID/field earliest-known time and record receipt, merges later field facts by known time, deduplicates exact replay by observation ID/content, and rejects conflicting immutable content or ambiguous same-time values.
 - `build_candidate_universe(prefix, *, config) -> tuple[CandidatePair, ...]` builds one deterministic pair set from known abnormal observations using time/position proximity or a common verified asset inside the synthetic horizon. It does not consult rule outputs or scorer truth.
@@ -78,10 +78,10 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - Consumes: no existing prefix adapter; tests construct only `KnownField` and `ObservationRecord` values.
 - Produces: `freeze_observable_prefix(records, *, as_of)` and the immutable prefix types used by both inference arms.
 
-- [ ] Write `test_rejects_forbidden_fields_and_metadata`, `test_rejects_earliest_known_before_actual_availability`, and `test_late_source_fact_is_hidden_until_received` first.
-- [ ] Run those tests and confirm they fail because the new observable boundary is absent.
-- [ ] Implement only allowlist validation, timestamp checks, prefix filtering, replay deduplication, and conflict rejection.
-- [ ] Run the three tests; expect all to pass.
+- [x] Write `test_rejects_forbidden_fields_and_metadata`, `test_rejects_earliest_known_before_actual_availability`, and `test_late_source_fact_is_hidden_until_received` first.
+- [x] Run those tests and confirm they fail because the new observable boundary is absent.
+- [x] Implement only allowlist validation, timestamp checks, prefix filtering, replay deduplication, and conflict rejection.
+- [x] Run the three tests; all pass.
 
 ### Task 2: Shared candidate universe and deterministic rule arms
 
@@ -93,10 +93,10 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - Consumes: `FrozenObservablePrefix` from Task 1.
 - Produces: `InferenceConfig`, `CandidatePair`, `ProposalAction`, `AssociationProposal`, `AssociationMethod`, `build_candidate_universe`, `time_asset_rule`, and `multi_evidence_rule`.
 
-- [ ] Add failing tests `test_same_cutoff_output_is_independent_of_future_suffix`, `test_opaque_identifier_bijection_preserves_normalized_proposals`, `test_duplicate_forwarding_does_not_increase_lineage_support`, `test_persistent_cross_modal_same_asset_becomes_link_candidate`, `test_single_source_risk_flag_escalation_does_not_add_support`, `test_adjacent_verified_assets_are_retained_separately`, `test_recovery_boundary_retains_reappearing_anomaly_separately`, and `test_methods_share_exact_candidate_universe`.
-- [ ] Run each new behavior test and confirm the failure is due to missing inference behavior.
-- [ ] Implement one candidate universe shared by both rules; implement the baseline hard guards and the multi-evidence requirements from Interface Decisions. Keep synthetic values in `InferenceConfig` and label them non-production.
-- [ ] Run the new rule tests; expect identical prefixes/results at one cutoff, stable normalized results after identifier bijection, no replay reinforcement, no adjacent-asset link, and no link across recovery.
+- [x] Add failing tests `test_same_cutoff_output_is_independent_of_future_suffix`, `test_opaque_identifier_bijection_preserves_normalized_proposals`, `test_duplicate_forwarding_does_not_increase_lineage_support`, `test_persistent_cross_modal_same_asset_becomes_link_candidate`, `test_single_source_risk_flag_escalation_does_not_add_support`, `test_adjacent_verified_assets_are_retained_separately`, `test_recovery_boundary_retains_reappearing_anomaly_separately`, and `test_methods_share_exact_candidate_universe`.
+- [x] Run each new behavior test and confirm the failure is due to missing inference behavior.
+- [x] Implement one candidate universe shared by both rules; implement the baseline hard guards and the multi-evidence requirements from Interface Decisions. Keep synthetic values in `InferenceConfig` and label them non-production.
+- [x] Run the new rule tests; identical prefixes/results at one cutoff, stable normalized results after identifier bijection, no replay reinforcement, no adjacent-asset link, and no link across recovery pass.
 
 ### Task 3: Frozen output, scoring boundary, and existing-ledger handoff
 
@@ -109,11 +109,11 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - Consumes: immutable `AssociationProposal` values and the existing `AlertLedger` API.
 - Produces: `freeze_proposals()` and `apply_proposal_to_alert_ledger()`; no production scorer and no reminder-policy changes.
 
-- [ ] Add failing tests `test_link_proposal_only_creates_pending_alert_ledger_association` and `test_frozen_output_scorer_uses_full_universe_denominators`.
-- [ ] In test-only scorer fixtures, keep `world_group`, pair truth, and `first_sufficient_evidence_at` separate from observable records. Freeze/hash rule output before calling the scorer.
-- [ ] Confirm both false-merge and false-split denominators use the full pre-fixed non-replay pair universe, unresolved count is separate, and an all-abstain output has zero coverage.
-- [ ] Implement the minimal ledger adapter; a link proposal may create a `PENDING` association only. Retain and abstain proposals must not mutate the ledger.
-- [ ] Run the new tests and the relevant existing ledger characterization tests; expect no confirmed identity state and no change to reminder behavior.
+- [x] Add failing tests `test_link_proposal_only_creates_pending_alert_ledger_association` and `test_frozen_output_scorer_uses_full_universe_denominators`.
+- [x] In test-only scorer fixtures, keep `world_group`, pair truth, and `first_sufficient_evidence_at` separate from observable records. Freeze/hash rule output before calling the scorer.
+- [x] Confirm both false-merge and false-split denominators use the full pre-fixed non-replay pair universe, unresolved count is separate, and an all-abstain output has zero coverage.
+- [x] Implement the minimal ledger adapter; a link proposal may create a `PENDING` association only. Retain and abstain proposals do not mutate the ledger.
+- [x] Run the new tests and the relevant existing ledger characterization tests; no confirmed identity state or reminder behavior changes are observed.
 
 ### Task 4: Documentation, bounded verification, and independent review
 
@@ -122,19 +122,29 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - Modify: `research-three/v2-alignment-20261011/MAC_PERSISTENCE_MANIFEST.json`
 - Modify: this plan with actual execution evidence and artifact hashes.
 
-- [ ] Add the module, test command, synthetic-only limits, and no-formal-study boundary to the README.
-- [ ] Run only the new inference unit tests and directly relevant pure-software ledger tests; do not run executor probes or the complete unrelated research suite.
-- [ ] Record exact command, test count, actual failures observed during RED, final result, source/input hashes, and any deviations here.
+- [x] Add the module, test command, synthetic-only limits, and no-formal-study boundary to the README.
+- [x] Run only the new inference unit tests and directly relevant pure-software ledger tests; no executor probes or the complete unrelated research suite were run.
+- [x] Record exact command, test count, actual failures observed during RED, final result, source/input hashes, and deviations here.
 - [ ] Verify every listed manifest file hash and `git diff --check`; commit and push only this independent research branch.
 - [ ] Request an independent review of the plan, code, and test evidence before reporting completion. Fix any important finding test-first.
 
+### Execution Evidence (2026-10-11)
+
+- Initial loader invocation from the repository root used module-qualified `tests.*` names and failed with `ModuleNotFoundError: No module named 'tests'` (three unittest loader errors). The commands were corrected to run with working directory `risk-fusion-bench/`; all final commands below use that directory.
+- Test-first RED evidence before `observable_association.py` existed: the three boundary tests failed at the guard assertion because the observable API was absent. Before inference implementation was complete, one inference API test failed at the corresponding missing-API guard. These were expected development failures; the full traceback was not preserved in the handoff. No RED result is claimed for the two audit-only characterization tests added after implementation: `test_uncertain_asset_binding_and_degraded_quality_abstain` and `test_changed_measurement_under_same_observation_id_fails_closed`.
+- Final command `PYTHONPATH=src python -m unittest -v tests.test_observable_association` from `risk-fusion-bench/`: **16 passed**. This includes both synthetic world families, prefix/ID invariants, exact forwarding replay, late arrival, same-lineage risk escalation, adjacent verified assets, unverified asset abstention, degraded-quality abstention, recovery/reappearance, immutable-content conflict rejection, shared candidate set, output freeze/scorer contract, and pending-only ledger handoff.
+- Final command `PYTHONPATH=src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency` from `risk-fusion-bench/`: **29 passed**. Existing stable-card, pending identity, resolution/split, escalation, idempotency, and emission-versus-delivery characterization tests pass unchanged.
+- `git diff --check`: passed. No formal/blinded scoring run, broad suite, old 1,464-check trial, Mac/device test, transport or executor probe, model/network call, payment, install, or credential access was used.
+- Synthetic test inputs are constructed in `risk-fusion-bench/tests/test_observable_association.py`; they are not measurements or production thresholds. Source/test SHA-256 values and the exact persisted artifact list are bound in `MAC_PERSISTENCE_MANIFEST.json` after final code review.
+- Deviation: the two extra boundary characterization tests were added after the original implementation was green to make unknown dependencies and changed-content replay rejection explicit. They passed without code changes; they are not part of the recorded RED stage.
+
 ## Verification Commands
 
-Run from the repository root:
+Run from `risk-fusion-bench/`:
 
 ```sh
-PYTHONPATH=risk-fusion-bench/src python -m unittest -v tests.test_observable_association
-PYTHONPATH=risk-fusion-bench/src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency
+PYTHONPATH=src python -m unittest -v tests.test_observable_association
+PYTHONPATH=src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency
 ```
 
 The second command is the existing reminder/association characterization boundary; it does not run the old frozen experiment or any device/transport path.

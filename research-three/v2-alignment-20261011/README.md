@@ -21,6 +21,9 @@
 - [`alert_notification_preview.py`](../../risk-fusion-bench/src/rfb/research/alert_notification_preview.py)：依据公开 V2 固定字段构造内容预览并逐字段审计；预览未发送，schema 只验证字段存在性。
 - 新增预览测试：[test_alert_notification_preview.py](../../risk-fusion-bench/tests/test_alert_notification_preview.py)。
 - [HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md](HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md)：下一轮独立 held-out 时序研究的非执行协议草案。
+- [AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md](AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md)：观测白名单、两条规则、测试边界和盲测前需 Parent 审核的冻结项。
+- [`observable_association.py`](../../risk-fusion-bench/src/rfb/research/observable_association.py)：只接收逐字段可用时间的观测；实现时间/资产规则基线、多证据规则、共享候选集及输出冻结。D-S 只定义同一 `AssociationMethod` 调用接口，不执行。
+- [test_observable_association.py](../../risk-fusion-bench/tests/test_observable_association.py)：覆盖时序/未来前缀、ID 双射、转发重放、迟到输入、风险单 flag 升级、相邻资产、恢复再发、账本待确认衔接和测试专用评分器分母。
 - [IMPLEMENTATION_REVIEW_CLOSURE_20261011.md](IMPLEMENTATION_REVIEW_CLOSURE_20261011.md)：区分交接中转述的独立审查结果与本环境新运行的 focused 检查；保留旧失败与提交轨迹。
 - [`frozen_prefix_adapter.py`](../../risk-fusion-bench/src/rfb/research/frozen_prefix_adapter.py) 与 [test_heldout_prefix_adapter.py](../../risk-fusion-bench/tests/test_heldout_prefix_adapter.py)：最小不可变可见前缀适配器及合成泄漏/ID 同构/字段边界测试。两个策略臂共享同一物化前缀；这不实现或评价端到端事件确证。
 - [`event_card_resolution.py`](../../risk-fusion-bench/src/rfb/research/event_card_resolution.py) 与 [test_event_card_resolution.py](../../risk-fusion-bench/tests/test_event_card_resolution.py)：待确认双 episode 关系的纯函数转移；身份确证后保留或拆分展示卡，并记录时间、证据引用和双向历史链接。函数不判断真值或投递提醒。
@@ -50,3 +53,18 @@ python research-three/v2-alignment-20261011/visualization/generate_synthetic_eve
 内容预览覆盖单风险标记的公开 severity 映射；多 flag 输入的 `severity` 保持空值并记为待决，不作优先级排序。由于当前接口不支持 `task_ids`，预览会明确显示“任务：当前接口不支持绑定”。新增完整卡片预览聚合外部给定的 SAME/DIFFERENT 身份结果、动作台账修订、18 字段通知内容与双向历史链接；它会拒绝 ledger episode、association ID、历史完整待核候选对、确证后分卡 episode、身份确证时间早于证据时间、修订时间早于确证时间或冲突确证状态的组合，是合成软件视图，不代表已接入真实 UI 或事件真值。精确重放不增加动作或卡片修订；单 flag 升级产生独立提醒预览。`risk_basis_ids` 与关联状态只反映 synthetic 输入映射，证据资格和消息模板语义尚未验证。字段审计仍是 partial field-presence，不构成 V2 业务验收。
 
 V2 公开来源固定在 `task/v2-public-spec-20261011` commit `cc6d59b88bda73381fc09d9091a224ab4155891e`。原始 Mac V2 包未纳入本分支；若要逐条核对其私有合同，请提供对应版本的主规格、字段/schema、指标定义，以及版本/修订清单。缺少这些文件不妨碍当前公开规格下的独立合成工作；不会据此猜测私有规则。
+
+## 自主关联规则开发验证
+
+此小阶段只运行合成单元场景，不是盲测或效能比较。算法只读取 `observation_id`、资产绑定、数值/单位/误差、位置、质量/校准、源时/到达时、风险 flag、采集谱系和逐字段可用时间；`earliest_known_at` 早于 `actual_available_at` 的字段拒绝进入。场景/world 标签、未来终点、隐藏真值、event/episode/card/association ID 和身份结论都不进入算法。
+
+时间/资产基线和多证据规则对同一前缀、同一候选对集合运行。单一高风险 flag 和同源重放不增加独立源数；相邻但已核验的不同资产保持分开；可见恢复边界阻止跨恢复关联。规则只产出 `LINK_CANDIDATES`、`RETAIN_SEPARATELY` 或 `ABSTAIN`。只有候选链接调用现有 `AlertLedger.propose_association()`，结果保持 `PENDING`；不自动确证身份，不改提醒策略。配置中的时间、位置和值误差参数只服务于合成测试，不是生产阈值。
+
+测试专用 scorer 在算法输出序列化并哈希后才读取独立 world 分组、关系真值和首次充分证据时间。误合率与误拆率都使用预先固定的非重放候选全集作分母，未决单列并报告覆盖率；全拒判的覆盖率为零。该 scorer 测试只核对记分合同，不产生算法效能估计。本轮新规则 16 项单元测试和现有提醒/关联账本 29 项相关回归测试分别通过；其中两项额外审计用例专门覆盖未知资产/降级质量拒判与同 ID 测量冲突关闭。这不是对之前 59 项结果的累计，也没有运行正式盲测、大规模参数扫描、旧 1,464 检查试验、Mac 或真实通知。
+
+从 `risk-fusion-bench/` 重跑：
+
+```sh
+PYTHONPATH=src python -m unittest -v tests.test_observable_association
+PYTHONPATH=src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency
+```
