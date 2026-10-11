@@ -233,6 +233,111 @@ class SourceLineageContractV1Tests(unittest.TestCase):
         self.assertEqual(result.status, contract.SourceDependenceStatus.UNKNOWN)
         self.assertIn("EVIDENCE_NOT_YET_KNOWN", result.reason_codes)
 
+    def test_subsecond_future_edge_evidence_is_unknown_at_whole_second_cutoff(self):
+        left, right = shared_pair()
+        future = replace(
+            left.edges[0],
+            evidence=replace(
+                left.edges[0].evidence,
+                earliest_known_at="2026-10-11T12:00:00.500000Z",
+            ),
+        )
+        left = replace(left, edges=(future,) + left.edges[1:])
+
+        result = contract.assess_source_lineage(
+            left, right, as_of="2026-10-11T12:00:00Z"
+        )
+
+        self.assertEqual(result.status, contract.SourceDependenceStatus.UNKNOWN)
+        self.assertIn("EVIDENCE_NOT_YET_KNOWN", result.reason_codes)
+
+    def test_subsecond_future_node_evidence_is_unknown_at_whole_second_cutoff(self):
+        left, right = shared_pair()
+        future = replace(
+            left.nodes[1],
+            evidence=replace(
+                left.nodes[1].evidence,
+                earliest_known_at="2026-10-11T12:00:00.500000Z",
+            ),
+        )
+        left = replace(left, nodes=(left.nodes[0], future) + left.nodes[2:])
+
+        result = contract.assess_source_lineage(
+            left, right, as_of="2026-10-11T12:00:00Z"
+        )
+
+        self.assertEqual(result.status, contract.SourceDependenceStatus.UNKNOWN)
+        self.assertIn("EVIDENCE_NOT_YET_KNOWN", result.reason_codes)
+
+    def test_subsecond_future_completeness_evidence_is_unknown_at_whole_second_cutoff(self):
+        left, right = shared_pair()
+        left = replace(
+            left,
+            completeness_evidence=replace(
+                left.completeness_evidence,
+                earliest_known_at="2026-10-11T12:00:00.500000Z",
+            ),
+        )
+
+        result = contract.assess_source_lineage(
+            left, right, as_of="2026-10-11T12:00:00Z"
+        )
+
+        self.assertEqual(result.status, contract.SourceDependenceStatus.UNKNOWN)
+        self.assertIn("EVIDENCE_NOT_YET_KNOWN", result.reason_codes)
+
+    def test_whole_second_evidence_is_not_future_of_subsecond_cutoff(self):
+        left, right = shared_pair()
+
+        result = contract.assess_source_lineage(
+            left, right, as_of="2026-10-11T12:00:00.500000Z"
+        )
+
+        self.assertEqual(
+            result.status, contract.SourceDependenceStatus.SHARED_KNOWN_ANCESTOR
+        )
+        self.assertNotIn("EVIDENCE_NOT_YET_KNOWN", result.reason_codes)
+
+    def test_equivalent_timestamp_offsets_at_same_instant_are_not_future(self):
+        left, right = shared_pair()
+        node_claim = replace(
+            left.nodes[1],
+            evidence=replace(
+                left.nodes[1].evidence,
+                earliest_known_at="2026-10-11T14:00:00+02:00",
+            ),
+        )
+        left = replace(left, nodes=(left.nodes[0], node_claim) + left.nodes[2:])
+
+        result = contract.assess_source_lineage(
+            left, right, as_of="2026-10-11T12:00:00Z"
+        )
+
+        self.assertEqual(
+            result.status, contract.SourceDependenceStatus.SHARED_KNOWN_ANCESTOR
+        )
+        self.assertNotIn("EVIDENCE_NOT_YET_KNOWN", result.reason_codes)
+
+    def test_valid_until_is_inclusive_at_same_instant_across_offsets(self):
+        left, right = shared_pair()
+        edge_claim = replace(
+            left.edges[0],
+            evidence=replace(
+                left.edges[0].evidence,
+                valid_until="2026-10-11T14:00:10+02:00",
+            ),
+        )
+        left = replace(left, edges=(edge_claim,) + left.edges[1:])
+
+        result = contract.assess_source_lineage(
+            left, right, as_of="2026-10-11T12:00:10Z"
+        )
+
+        self.assertEqual(
+            result.status, contract.SourceDependenceStatus.SHARED_KNOWN_ANCESTOR
+        )
+        self.assertNotIn("STALE_EVIDENCE", result.reason_codes)
+
     def test_unverified_or_conflicting_claim_is_unknown(self):
         left, right = shared_pair()
         unverified = replace(

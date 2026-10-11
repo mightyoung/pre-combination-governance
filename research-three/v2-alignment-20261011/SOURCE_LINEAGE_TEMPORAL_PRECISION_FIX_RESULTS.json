@@ -1,0 +1,61 @@
+{
+  "artifact_version": "source-lineage-temporal-precision-fix-results-v1",
+  "classification": "C0/I0/M0_PURE_CPU_CONTRACT_TEST_ONLY",
+  "completed_at_utc": "2026-10-11T17:00:00Z",
+  "contract_version": "source-lineage-contract-v1",
+  "finding": "Lexicographic comparison of normalized UTC timestamp strings misordered whole-second and fractional-second instants.",
+  "fix": "_validate_evidence parses earliest_known_at and valid_until as timezone-aware UTC datetimes before comparison with as_of.",
+  "red_first": {
+    "status": "EXPECTED_FAILURE_BEFORE_FIX",
+    "tests_run": 19,
+    "tests_passed": 15,
+    "tests_failed": 4,
+    "failing_regressions": [
+      "test_subsecond_future_edge_evidence_is_unknown_at_whole_second_cutoff",
+      "test_subsecond_future_node_evidence_is_unknown_at_whole_second_cutoff",
+      "test_subsecond_future_completeness_evidence_is_unknown_at_whole_second_cutoff",
+      "test_whole_second_evidence_is_not_future_of_subsecond_cutoff"
+    ]
+  },
+  "green": {
+    "status": "PASS",
+    "tests_run": 19,
+    "tests_passed": 19,
+    "tests_failed": 0
+  },
+  "additional_boundary_tests": [
+    {
+      "test": "test_equivalent_timestamp_offsets_at_same_instant_are_not_future",
+      "status": "PASS"
+    },
+    {
+      "test": "test_valid_until_is_inclusive_at_same_instant_across_offsets",
+      "status": "PASS"
+    }
+  ],
+  "test_command": "PYTHONPATH=src python -m unittest -v tests.test_source_lineage_contract_v1",
+  "runtime": {
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41"
+  },
+  "artifact_sha256": {
+    "contract_module": "ca58668d724c3b547de01dbcf3b6e0460adbdf1cf72ae54bd94515d5ac3bac26",
+    "test_module": "70e4d49fe50701f74a2fbb198d971a04cd76a69d3c0246954821095a98ac78cd",
+    "prior_contract_test_results_13_case_record": "dec0e6926bebf860025469d93853533e9a2f9229eedc6c975d6284eac9182175"
+  },
+  "baseline_integrity": {
+    "observable_association_source_sha256": "d6fbebee538cf9ad68b35076b995f5f1bf962efc27350e098c2dfea655c27afe",
+    "pilot_outputs_frozen_sha256": "282a7542bff473b9d35038b2b7060ebd3bedc00f513a29a83e5814c23e2c6984",
+    "pilot_run_manifest_sha256": "227934e5aa6195bd1b91f289edd1953d44181d7855eb05c1eab4e0b0a6108903",
+    "old_association_rules_or_frozen_outputs_changed": false
+  },
+  "scope": {
+    "old_1464_check_trial_rerun": false,
+    "association_rules_changed": false,
+    "frozen_pilot_outputs_changed": false,
+    "Mac_accessed": false,
+    "heldout_accessed": false,
+    "model_or_notification_used": false,
+    "network_or_paid_service_used_for_contract_test": false
+  }
+}

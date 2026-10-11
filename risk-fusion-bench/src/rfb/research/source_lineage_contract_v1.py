@@ -222,12 +222,15 @@ def _validate_evidence(
 ) -> tuple[str, ...]:
     reasons: set[str] = set()
     for claim in evidence:
-        if claim.earliest_known_at > _format_timestamp(as_of):
+        earliest_known_at = _timestamp(
+            claim.earliest_known_at, "earliest_known_at"
+        )
+        if earliest_known_at > as_of:
             reasons.add("EVIDENCE_NOT_YET_KNOWN")
-        if claim.valid_until is not None and _timestamp(
-            claim.valid_until, "valid_until"
-        ) < as_of:
-            reasons.add("STALE_EVIDENCE")
+        if claim.valid_until is not None:
+            valid_until = _timestamp(claim.valid_until, "valid_until")
+            if valid_until < as_of:
+                reasons.add("STALE_EVIDENCE")
         if claim.trust_status == LineageTrustStatus.UNVERIFIED:
             reasons.add("UNVERIFIED_EVIDENCE")
         elif claim.trust_status == LineageTrustStatus.CONFLICTING:

@@ -33,6 +33,8 @@ Hidden `source_family`, event, episode, card, and scorer labels are not contract
 
 Exact duplicate node and edge assertions with the same IDs and contents are idempotently collapsed. Conflicting contents under one ID fail closed. The contract rejects malformed timestamps and missing evidence source references. Evidence known after `as_of` is not used; expired evidence is reported stale.
 
+Timestamp ordering compares parsed, timezone-aware instants normalized to UTC, not ISO timestamp strings. Evidence known exactly at `as_of` is eligible; sub-second evidence after the cutoff remains unknown even when both values fall in the same displayed second. Equivalent offset spellings of the same instant compare equal. `valid_until` is inclusive at equality and is stale only when it precedes `as_of`.
+
 ## Pure CPU verification
 
 Run from `risk-fusion-bench/`:
@@ -41,6 +43,6 @@ Run from `risk-fusion-bench/`:
 PYTHONPATH=src python -m unittest -v tests.test_source_lineage_contract_v1
 ```
 
-The tests cover root-ID-only unknowns, a shared multi-hop ancestor, complete observed graphs with no shared ancestor, same-root declarations without event claims, exact replay deduplication, conflicting edge IDs, stale/future/unverified/conflicting evidence, cycles, missing nodes, timestamp ordering, and rejection of scorer-only `source_family` input.
+The tests cover root-ID-only unknowns, a shared multi-hop ancestor, complete observed graphs with no shared ancestor, same-root declarations without event claims, exact replay deduplication, conflicting edge IDs, stale/future/unverified/conflicting evidence, cycles, missing nodes, timestamp ordering including sub-second boundaries and equivalent offsets, and rejection of scorer-only `source_family` input. The current focused suite has 19 tests; its precision-fix red/green record is `SOURCE_LINEAGE_TEMPORAL_PRECISION_FIX_RESULTS.json`.
 
 This module is a contract prototype. It does not claim that provenance graph completeness or source assertions are reliable in production, and it does not demonstrate improved association accuracy.
