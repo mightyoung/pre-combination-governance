@@ -73,7 +73,7 @@ held-out 采样框应覆盖以下模式；它们只描述抽样维度，不成�
 
 本地最小适配器位于 [`frozen_prefix_adapter.py`](../../risk-fusion-bench/src/rfb/research/frozen_prefix_adapter.py)，用例位于 [`test_heldout_prefix_adapter.py`](../../risk-fusion-bench/tests/test_heldout_prefix_adapter.py)。`PrefixFieldFact` 记录字段值、声明的 producer、`earliest_known_at` 与 evidence refs；`freeze_visible_prefix` 只选 `as_of` 时刻可见的最新字段版本，同时间冲突值会失败关闭。它不验证 producer 的真实性、推断身份、定义业务阈值或读取 scorer 真值。适配器只提供阶段一的数据边界；端到端事件识别与确证仍未实现或评价。
 
-当前动作台账可将 `EVENT_SPLIT` 作为不可合并的重要动作单独记录，也可按稳定展示卡记录修订；这不等于已实现由确证关系创建新事件卡并维护双向历史链接。新卡与原卡的历史关系合同仍是后续实现和完整内容检查的待办项。
+纯软件身份转移函数位于 [`event_card_resolution.py`](../../risk-fusion-bench/src/rfb/research/event_card_resolution.py)，focused 用例位于 [`test_event_card_resolution.py`](../../risk-fusion-bench/tests/test_event_card_resolution.py)。它把外部提供且带证据时间的 `DIFFERENT_CONFIRMED` 映射为原卡/新卡两个身份记录和双向历史链接；新卡 ID 必须由调用方稳定提供。`UNKNOWN_PENDING` / `CONFLICT_PENDING` 期间只保留两个候选 episode，不做身份合并；`SAME_CONFIRMED` 才在现有卡保留两个 episode 引用。函数不推断确证、不产生用户文案或执行投递。提醒动作台账仍未接入这个身份转移结果，完整卡片渲染与真实用户可见性仍待实现和评价。
 
 对同一前缀替换任意未来后缀，两个策略臂的冻结输入与策略形状都应保持一致。对所有随机 ID 做一致重命名，策略输出的计数、状态与关系结构应保持同构，仅相应 ID 改变。ID 同构只检查策略对标识符不敏感，不说明事件关系正确。适配器测试输入是显式合成值，不纳入数据集、独立样本分母或效果估计。
 

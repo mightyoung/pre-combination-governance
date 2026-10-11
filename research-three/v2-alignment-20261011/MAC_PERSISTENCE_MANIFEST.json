@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "801a729f17cba1ddddd05a11fae22300d2ca8466",
+  "source_commit": "7271a953ef41ccb267cbe5966bfd7897edd81834",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
-      "bytes": 15630,
-      "sha256": "703c35d1a31c47b2ab6c3ae7effd71cb2a2904946054370afc4f6087371ba291"
+      "bytes": 16095,
+      "sha256": "04e09f1767491e154ace23a43ee2277ce4327b41f5abe86ac5e3f8eaa39ec693"
     },
     {
       "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
@@ -42,13 +42,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/IMPLEMENTATION_REVIEW_CLOSURE_20261011.md",
-      "bytes": 2550,
-      "sha256": "002003311ca497a10229289e486885fb75374f32cc543e809b98f67e693f2f0e"
+      "bytes": 2724,
+      "sha256": "7f5e37498eeb5976a025d30989dee9dab9bb05ac65be27a758241790c0eefda4"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 7906,
-      "sha256": "e901115611949c46bd2d0453dcec670cd485991f30d92ded99cdf8089be66b43"
+      "bytes": 8321,
+      "sha256": "05cbb2d25ce254a823ecb2480696c382a66b44147e6178ad3e7dcee3662a065e"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -121,6 +121,11 @@
       "sha256": "3d7a85f13b206f74fa707c9c4e64aa96cc8d5e721344647e9c2cdd40c36e8961"
     },
     {
+      "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
+      "bytes": 7512,
+      "sha256": "57bd61160a59384251ecdc53c9adcc86f663c82e14ce00bc1261eec995374436"
+    },
+    {
       "path": "risk-fusion-bench/src/rfb/research/frozen_prefix_adapter.py",
       "bytes": 6353,
       "sha256": "ebf22736a82971f38f7b62df4b055101362a074d3c9697a2132c525ff311f106"
@@ -151,6 +156,11 @@
       "sha256": "bad77dbcb75f87cfb5ab93771be275ed2b4861b2bdbcbc6ae65f7383d1cd4f6e"
     },
     {
+      "path": "risk-fusion-bench/tests/test_event_card_resolution.py",
+      "bytes": 5038,
+      "sha256": "ad86e2857b05ce203b92aa407dc35bef6b71a9b9004cb90e54d0251bc9d949f9"
+    },
+    {
       "path": "risk-fusion-bench/tests/test_heldout_prefix_adapter.py",
       "bytes": 11123,
       "sha256": "096b12fd73e86e965b8c89b2550e29e946ee8c88c7e419ddc09ad48f53a51010"
@@ -160,7 +170,7 @@
   "task_ids_interface": "UNSUPPORTED_BY_CURRENT_INTERFACE",
   "content_preview_scope": "INCREMENTAL_CONTENT_ONLY; NOT_A_FULL_VISIBLE_CARD_RENDER; HISTORY_PRESERVATION_DOES_NOT_PROVE_FULL_CARD_VISIBILITY",
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11",
-  "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary for shared policy inputs; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
+  "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
   "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
-  "focused_local_validation": "PASS; 5 synthetic-only unittest cases in tests.test_heldout_prefix_adapter; old 1464-check trial not run."
+  "focused_local_validation": "PASS; 10 synthetic-only unittest cases across test_heldout_prefix_adapter and test_event_card_resolution; old 1464-check trial not run."
 }
