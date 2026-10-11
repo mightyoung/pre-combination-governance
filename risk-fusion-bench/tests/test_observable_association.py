@@ -206,6 +206,140 @@ class ObservableAssociationTests(unittest.TestCase):
         self.assertEqual(visible.value("source_time"), stamp(5))
         self.assertEqual(visible.received_at, stamp(90))
 
+    def test_direct_prefix_rejects_future_arrival_and_field_facts(self):
+        self.require_api()
+        late_arrival = record(
+            "OBS-DIRECT-LATE-ARRIVAL",
+            source_seconds=0,
+            received_seconds=10,
+            known_seconds=0,
+        )
+        late_fact = record(
+            "OBS-DIRECT-LATE-FACT",
+            source_seconds=0,
+            received_seconds=0,
+            known_seconds=11,
+        )
+
+        observations = (
+            association.FrozenObservation(
+                observation_id=late_arrival.observation_id,
+                received_at=late_arrival.received_at,
+                fields=late_arrival.fields,
+                id_actual_available_at=stamp(0),
+                id_earliest_known_at=stamp(0),
+            ),
+            association.FrozenObservation(
+                observation_id=late_fact.observation_id,
+                received_at=late_fact.received_at,
+                fields=late_fact.fields,
+                id_actual_available_at=stamp(0),
+                id_earliest_known_at=stamp(0),
+            ),
+        )
+        for observation in observations:
+            with self.subTest(observation=observation.observation_id):
+                with self.assertRaises(ValueError):
+                    association.FrozenObservablePrefix(stamp(0), (observation,))
+
+    def test_direct_prefix_preserves_and_checks_observation_id_availability(self):
+        self.require_api()
+        source = record(
+            "OBS-ID-KNOWN-LATE",
+            source_seconds=0,
+            received_seconds=0,
+            known_seconds=0,
+        )
+        frozen = None
+        try:
+            frozen = association.FrozenObservation(
+                observation_id=source.observation_id,
+                received_at=source.received_at,
+                fields=source.fields,
+                id_actual_available_at=stamp(0),
+                id_earliest_known_at=stamp(11),
+            )
+        except TypeError as exc:
+            self.fail(
+                "FrozenObservation must preserve observation ID availability: "
+                f"{exc}"
+            )
+
+        with self.assertRaisesRegex(ValueError, "observation ID"):
+            association.FrozenObservablePrefix(stamp(0), (frozen,))
+
+    def test_replace_cannot_move_prefix_before_known_or_received_facts(self):
+        self.require_api()
+        later = freeze(
+            (
+                record(
+                    "OBS-REPLACE-TEMP",
+                    source_seconds=0,
+                    received_seconds=10,
+                    known_seconds=10,
+                    lineage_root="ROOT-TEMP",
+                ),
+                record(
+                    "OBS-REPLACE-THERM",
+                    source_seconds=1,
+                    received_seconds=11,
+                    known_seconds=11,
+                    modality="THERMAL_IMAGE",
+                    value=81.0,
+                    lineage_root="ROOT-THERM",
+                ),
+            ),
+            at_seconds=20,
+        )
+
+        with self.assertRaises(ValueError):
+            replace(later, as_of=stamp(0))
+
+    def test_candidate_and_rule_consumers_revalidate_prefix_visibility(self):
+        self.require_inference_api()
+        records = (
+            record(
+                "OBS-CONSUMER-TEMP",
+                source_seconds=0,
+                received_seconds=10,
+                known_seconds=10,
+                lineage_root="ROOT-TEMP",
+            ),
+            record(
+                "OBS-CONSUMER-THERM",
+                source_seconds=1,
+                received_seconds=11,
+                known_seconds=11,
+                modality="THERMAL_IMAGE",
+                value=81.0,
+                lineage_root="ROOT-THERM",
+            ),
+        )
+        config = association.InferenceConfig()
+
+        def make_invalid_prefix():
+            prefix = freeze(records, at_seconds=20)
+            pairs = association.build_candidate_universe(prefix, config=config)
+            self.assertEqual(len(pairs), 1)
+            object.__setattr__(prefix, "as_of", stamp(0))
+            return prefix, pairs[0]
+
+        consumers = (
+            lambda prefix, _pair: association.build_candidate_universe(
+                prefix, config=config
+            ),
+            lambda prefix, pair: association.time_asset_rule(
+                prefix, pair, config=config
+            ),
+            lambda prefix, pair: association.multi_evidence_rule(
+                prefix, pair, config=config
+            ),
+        )
+        for index, consume in enumerate(consumers):
+            prefix, pair = make_invalid_prefix()
+            with self.subTest(consumer=index), self.assertRaises(ValueError):
+                consume(prefix, pair)
+
     def test_same_cutoff_output_is_independent_of_future_suffix(self):
         self.require_inference_api()
         common = (

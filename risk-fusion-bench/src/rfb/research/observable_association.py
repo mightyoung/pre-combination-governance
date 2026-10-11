@@ -166,6 +166,37 @@ class FrozenObservation:
     observation_id: str
     received_at: str
     fields: tuple[KnownField, ...]
+    id_actual_available_at: str | None = None
+    id_earliest_known_at: str | None = None
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.observation_id, str) or not self.observation_id.strip():
+            raise ValueError("observation_id must be a non-empty opaque ID")
+        received = _timestamp(self.received_at, "received_at")
+        if not isinstance(self.fields, tuple) or any(
+            not isinstance(field, KnownField) for field in self.fields
+        ):
+            raise ValueError("fields must be a tuple of KnownField values")
+        names = [field.name for field in self.fields]
+        if len(names) != len(set(names)):
+            raise ValueError("one frozen observation cannot repeat a field name")
+
+        id_actual = self.id_actual_available_at
+        id_known = self.id_earliest_known_at
+        if id_actual is None and id_known is None:
+            # A manually constructed observation without ID provenance is only
+            # considered known when it has arrived; this is conservative.
+            id_actual = id_known = _format_timestamp(received)
+        elif id_actual is None or id_known is None:
+            raise ValueError("observation ID availability times must be supplied together")
+        actual = _timestamp(id_actual, "id_actual_available_at")
+        known = _timestamp(id_known, "id_earliest_known_at")
+        if known < actual:
+            raise ValueError("observation ID earliest-known time precedes availability")
+
+        object.__setattr__(self, "received_at", _format_timestamp(received))
+        object.__setattr__(self, "id_actual_available_at", _format_timestamp(actual))
+        object.__setattr__(self, "id_earliest_known_at", _format_timestamp(known))
 
     def value(self, name: str) -> Any:
         for field in self.fields:
@@ -184,7 +215,53 @@ class FrozenObservablePrefix:
     as_of: str
     observations: tuple[FrozenObservation, ...]
 
+    def __post_init__(self) -> None:
+        cutoff = _timestamp(self.as_of, "as_of")
+        object.__setattr__(self, "as_of", _format_timestamp(cutoff))
+        self.validate_visibility()
+
+    def validate_visibility(self) -> None:
+        """Reject future facts even when a prefix was built or changed directly."""
+        cutoff = _timestamp(self.as_of, "as_of")
+        if not isinstance(self.observations, tuple) or any(
+            not isinstance(item, FrozenObservation) for item in self.observations
+        ):
+            raise ValueError("observations must be a tuple of FrozenObservation values")
+
+        seen_ids: set[str] = set()
+        for observation in self.observations:
+            if observation.observation_id in seen_ids:
+                raise ValueError("observable prefix cannot repeat an observation ID")
+            seen_ids.add(observation.observation_id)
+
+            id_actual = _timestamp(
+                observation.id_actual_available_at, "id_actual_available_at"
+            )
+            id_known = _timestamp(
+                observation.id_earliest_known_at, "id_earliest_known_at"
+            )
+            if id_known < id_actual:
+                raise ValueError("observation ID earliest-known time precedes availability")
+            if id_known > cutoff:
+                raise ValueError("observation ID was not known by prefix as_of")
+
+            received = _timestamp(observation.received_at, "received_at")
+            if received > cutoff:
+                raise ValueError("observation arrived after prefix as_of")
+            if not isinstance(observation.fields, tuple) or any(
+                not isinstance(field, KnownField) for field in observation.fields
+            ):
+                raise ValueError("fields must be a tuple of KnownField values")
+            for field in observation.fields:
+                actual = _timestamp(field.actual_available_at, "actual_available_at")
+                known = _timestamp(field.earliest_known_at, "earliest_known_at")
+                if known < actual:
+                    raise ValueError("field earliest-known time precedes actual availability")
+                if known > cutoff:
+                    raise ValueError("field was not known by prefix as_of")
+
     def observation(self, observation_id: str) -> FrozenObservation:
+        self.validate_visibility()
         for observation in self.observations:
             if observation.observation_id == observation_id:
                 return observation
@@ -272,6 +349,11 @@ def _merge_observation_records(
         observation_id=observation_id,
         received_at=received_at,
         fields=tuple(sorted(merged, key=lambda fact: fact.name)),
+        id_actual_available_at=next(iter(actual_id_times)),
+        id_earliest_known_at=min(
+            (record.id_earliest_known_at for record in visible_records),
+            key=lambda value: _timestamp(value, "id_earliest_known_at"),
+        ),
     )
 
 
@@ -616,6 +698,7 @@ def build_candidate_universe(
     """Build one pair set from observable time/position/asset proximity only."""
     if not isinstance(prefix, FrozenObservablePrefix):
         raise TypeError("prefix must be a FrozenObservablePrefix")
+    prefix.validate_visibility()
     if not isinstance(config, InferenceConfig):
         raise TypeError("config must be an InferenceConfig")
     candidates = [
