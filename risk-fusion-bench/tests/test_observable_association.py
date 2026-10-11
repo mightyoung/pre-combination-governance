@@ -205,6 +205,15 @@ class ObservableAssociationTests(unittest.TestCase):
         visible = after_arrival.observations[0]
         self.assertEqual(visible.value("source_time"), stamp(5))
         self.assertEqual(visible.received_at, stamp(90))
+        self.assertEqual(visible.id_actual_available_at, stamp(5))
+        self.assertEqual(visible.id_earliest_known_at, stamp(90))
+
+        deeper_freeze = replace(after_arrival, as_of=stamp(120))
+        self.assertEqual(deeper_freeze.observations, after_arrival.observations)
+        self.assertEqual(
+            deeper_freeze.observation("OBS-LATE-THERMAL").id_earliest_known_at,
+            stamp(90),
+        )
 
     def test_direct_prefix_rejects_future_arrival_and_field_facts(self):
         self.require_api()
