@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>合成去重分层反例</title><style>
+:root{--ink:#182b3c;--muted:#52667a;--line:#d9e2ec;--blue:#eaf3fb;--green:#e8f5ee;--amber:#fff3da;--red:#fce8e6;--paper:#f7f9fc}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1120px;margin:0 auto;padding:32px 22px 48px}h1{font-size:30px;line-height:1.15;margin:8px 0}h2{font-size:20px;margin:0 0 12px}p{margin:8px 0;color:var(--muted)}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#2563a5;font-weight:700}.sub{font-size:15px;max-width:850px}
+.layers{display:grid;grid-template-columns:1fr 22px 1fr 22px 1fr;gap:8px;margin:22px 0}
+.layer,.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 2px 8px #14283b0b}
+.layer{min-height:120px}.layer b{display:block;font-size:17px;margin:4px 0}.layer.obs{border-top:5px solid #4386c6}.layer.match{border-top:5px solid #d9941e}.layer.action{border-top:5px solid #bb4d47}
+.arrow{color:#8ba0b3;font-size:22px;text-align:center;padding-top:25px}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:10px 9px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{background:#f0f5fa;color:#354b60;font-size:12px}
+.pill{display:inline-block;border-radius:99px;padding:2px 8px;font-size:12px;background:var(--blue);color:#24527a;font-weight:700}.fail{background:var(--red);color:#8c2925}.pass{background:var(--green);color:#256342}.unknown{background:var(--amber);color:#82530a}
+.callout{border-left:4px solid #d9941e;background:var(--amber);padding:12px 14px;border-radius:8px;margin:14px 0}.danger{border-left-color:#b8443e;background:var(--red)}
+.code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}.footer{font-size:13px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px}
+@media(max-width:760px){.layers,.grid{grid-template-columns:1fr}.arrow{padding:0;transform:rotate(90deg)}main{padding:20px 14px}table{font-size:13px}th,td{padding:8px 6px}}
+</style></head><body><main>
+<div class="eyebrow">合成字符化 · SYNTH-IDEMPOTENCY-LAYERS-001</div>
+<h1>输入去重，不等于动作去重</h1>
+<p class="sub">同一原始观测重放可在观测层幂等；不同观测仍须保留；匹配关系有自己的 ID；多个不同关系还可能触发同一卡片的重复提醒动作。以下只刻画本地软件 ledger。</p>
+<div class="layers">
+ <section class="layer obs"><span class="pill pass">现有边界可测</span><b>① 观测层</b><p>同一 candidate_id 与相同内容重放不增记录；更改旧 observed_at 会被拒绝。</p></section>
+ <div class="arrow">→</div>
+ <section class="layer match"><span class="pill unknown">匹配关系单独计</span><b>② 匹配层</b><p>同一 A-B 关系重放不新发；A-B 与 A-C 是不同关系，不能只按输入去重抹掉。</p></section>
+ <div class="arrow">→</div>
+ <section class="layer action"><span class="pill fail">当前未保证</span><b>③ 通知动作层</b><p>两个不同待核关系都触达卡 A 时，会产生两次同类更新；当前没有 action-level dedup key。</p></section>
+</div>
+<section class="panel"><h2>受控反例对照</h2><table><thead><tr><th>扰动</th><th>层</th><th>合成输入</th><th>实际 ledger 结果</th></tr></thead><tbody><tr><td>精确观测重放</td><td>观测层</td><td>1 个 candidate 原样再到达</td><td>candidate/card/evidence/alert 计数不变</td></tr>
+<tr><td>旧记录刷新时间</td><td>观测层</td><td>同一 candidate_id 把 observed_at 从 2026-10-11T08:00:01Z 改成 2026-10-11T09:00:00Z</td><td>REJECTED；旧 observed_at 保留。当前 CandidateEvent 没有 validity 字段。</td></tr>
+<tr><td>互补设备观测</td><td>观测层 → 匹配层</td><td>device-a, device-b 的两个不同 candidate</td><td>PENDING；仍保留 2 张卡和两个节点</td></tr>
+<tr><td>同一匹配对重放</td><td>匹配层</td><td>A-B 同一 association 再提议一次</td><td>alert 数 5 → 5；没有新动作</td></tr>
+<tr><td>重叠匹配对</td><td>匹配层 → 动作层</td><td>A-B 与 A-C 是不同 association，但都触达卡 A</td><td>卡 A 收到 2 条同类待核提醒更新；动作层无独立去重策略</td></tr></tbody></table></section>
+<div class="grid" style="margin-top:14px">
+ <section class="panel"><h2>互补观测没有被事件级去重删除</h2><p>两个 source_id / candidate_id 不同，处于待核关系时仍保留两个节点和展示卡。这里仅证明 source_id 与内容可追溯；不据此声称来源可信或统计独立。</p><ul class="code"><li>synthetic://obs/a</li><li>synthetic://obs/b-complementary</li></ul><p>关系状态：<span class="pill ">PENDING</span> · 候选节点数：2</p></section>
+ <section class="panel"><h2>旧失败记录保持不变</h2><p>1,464 项检查 · <span class="pill fail">FAILED</span> · 20 条方法记录（非独立样本）</p><p>In five synthetic scenes across four methods, each of the 20 method records lacked a confirmed new-event first report.</p><p>本次未重跑旧试验。</p></section>
+</div>
+<div class="callout danger"><b>受控边界：</b> stale replay 状态 <span class="pill pass">REJECTED</span>；old observed_at=2026-10-11T08:00:01Z，没有被改成现在。CandidateEvent 没有 validity 字段，因此本例只能证明时间不被刷新，不能声称已验证 validity/TTL。</div>
+<div class="callout"><b>未冻结决策：</b>不同匹配对产生的同类提醒是否应合并成一次卡片更新，取决于 action key 与 episode interval 规则。本例不选 key、不定窗口，也不评价模型调用节省、用户负担效果或真实投递。</div>
+<p class="footer">本文件无外部资源依赖。证据引用为 synthetic:// 占位；通知状态 SIMULATED，delivered_at=null。模型服务、投递适配器和 Mac 测试均未运行。</p>
+</main></body></html>

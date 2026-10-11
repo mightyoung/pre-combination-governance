@@ -1,0 +1,121 @@
+{
+  "scenario_id": "SYNTH-IDEMPOTENCY-LAYERS-001",
+  "classification": "SYNTHETIC_CHARACTERIZATION_ONLY",
+  "source_commit": "016c81094e041cc2a496267dfb9682a5ca83603e",
+  "execution_boundary": {
+    "model_service_called": false,
+    "delivery_adapter_called": false,
+    "delivery_status": "SIMULATED",
+    "delivered_at": null,
+    "independent_source_qualification": "NOT_EVALUATED",
+    "key_interval_or_credibility_threshold_frozen": false,
+    "old_1464_trial_rerun": false
+  },
+  "observation_layer": {
+    "exact_replay_input_observations": 2,
+    "before": {
+      "candidate_ids": [
+        "obs-a"
+      ],
+      "card_count": 1,
+      "alert_count": 1,
+      "evidence_refs": [
+        "synthetic://obs/a"
+      ],
+      "observed_at": "2026-10-11T08:00:01Z"
+    },
+    "after": {
+      "candidate_ids": [
+        "obs-a"
+      ],
+      "card_count": 1,
+      "alert_count": 1,
+      "evidence_refs": [
+        "synthetic://obs/a"
+      ],
+      "observed_at": "2026-10-11T08:00:01Z"
+    },
+    "idempotent_for_exact_candidate_record": true,
+    "stale_replay": {
+      "candidate_id": "obs-a",
+      "old_observed_at": "2026-10-11T08:00:01Z",
+      "replayed_observed_at": "2026-10-11T09:00:00Z",
+      "status": "REJECTED",
+      "error": "candidate_id already exists with different content",
+      "ledger_observed_at_after_rejection": "2026-10-11T08:00:01Z",
+      "validity_field_exists_in_candidate_contract": false
+    },
+    "complementary_device_observations": {
+      "association_status": "PENDING",
+      "candidate_ids_retained": [
+        "obs-a",
+        "obs-b"
+      ],
+      "distinct_display_card_count_while_pending": 2,
+      "source_ids_retained": [
+        "device-a",
+        "device-b"
+      ],
+      "evidence_refs_retained": [
+        "synthetic://obs/a",
+        "synthetic://obs/b-complementary"
+      ],
+      "source_ids_prove_trustworthy_independence": false
+    }
+  },
+  "match_layer": {
+    "same_pair_association_id": "ASSOC-c62fffb8c76162dd71e0bd6b56ddba3aa25da7e699677463bb34e60441c7b903",
+    "same_pair_replay_association_count": 1,
+    "association_count_after_overlapping_pair": 2,
+    "alerts_before_same_pair_replay": 5,
+    "alerts_after_same_pair_replay": 5,
+    "same_pair_replay_emitted_new_alert": false,
+    "overlapping_pairs": [
+      [
+        "match-a",
+        "match-b"
+      ],
+      [
+        "match-a",
+        "match-c"
+      ]
+    ],
+    "second_association_id": "ASSOC-d2ddc9c36495c7c85870213d7202c1781e54bc212ccac233e077c9df27debbe9",
+    "same_card_pending_action_count_after_overlap": 2,
+    "action_reason_codes": [
+      [
+        "IDENTITY_LINK_PENDING"
+      ],
+      [
+        "IDENTITY_LINK_PENDING"
+      ]
+    ],
+    "action_evidence_refs": [
+      [
+        "synthetic://obs/match-b",
+        "synthetic://obs/match-a",
+        "synthetic://match/a-b"
+      ],
+      [
+        "synthetic://obs/match-c",
+        "synthetic://obs/match-a",
+        "synthetic://match/a-c"
+      ]
+    ]
+  },
+  "action_layer": {
+    "status": "NO_ACTION_LEVEL_DEDUP_POLICY_IN_CURRENT_LEDGER",
+    "same_match_replay_is_suppressed": true,
+    "overlapping_distinct_matches_repeat_same_action_class": true,
+    "episode_interval_key_defined": false,
+    "conclusion": "Input replay idempotency does not establish match or notification-action idempotency."
+  },
+  "historical_baseline": {
+    "checks_executed": 1464,
+    "round_status": "FAILED",
+    "method_records": 20,
+    "method_records_are_independent_samples": false,
+    "failure_summary": "In five synthetic scenes across four methods, each of the 20 method records lacked a confirmed new-event first report.",
+    "rerun_this_time": false
+  }
+}
