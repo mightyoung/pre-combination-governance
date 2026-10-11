@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "460a89ba9c998fb2cceab389c1415485c8fd3990",
+  "source_commit": "4dda5814e4090df4a3936128b1440569ec049649",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
-      "bytes": 27576,
-      "sha256": "e60b515f4787fcf58f86341b8e50b195b592422726aef27e0fb7c6dfc6fed7ab"
+      "bytes": 29826,
+      "sha256": "11d3e0505aad3b0760b3652aa34dff01d87a43be3b141fb6c36c27503b476c2a"
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
@@ -52,8 +52,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 15556,
-      "sha256": "8ff5480b19841187f875ad527f2be0dfadd8084cd21f5efefc54e9fa1278ae1a"
+      "bytes": 16271,
+      "sha256": "24c8b5393a54b9155be847b2b08e47c58b892929996ff0d2208604bc089a86f6"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -212,18 +212,18 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/FINITE_SYNTHETIC_EVALUATION_PROTOCOL_DRAFT.md",
-      "bytes": 14902,
-      "sha256": "6d1bae57201b52ca6a98ccfb515c2fa6412b0020dc86c0536121f93a17c0d968"
+      "bytes": 17625,
+      "sha256": "20fd3b5a33f9e4a9abd7c5a22dd96be226234a9fb6409a685af8cfb2996742e0"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/observable_association_evaluation.py",
-      "bytes": 56103,
-      "sha256": "6a8984be864ebe2cebbf49d13f4725e405fa5ee3a8a9e922dc400bdaa1b09ec2"
+      "bytes": 58999,
+      "sha256": "9ab79ea394d520fa6d401c82fb83ae3fb09b2b4b16caa9db36d638017126bf9e"
     },
     {
       "path": "risk-fusion-bench/tests/test_observable_association_evaluation.py",
-      "bytes": 20918,
-      "sha256": "bb902afb747da7b88f9f3a3b8e63bc054ee472f9e3bd6128ae0ea6ebcdee28d2"
+      "bytes": 27128,
+      "sha256": "d5a9538bc352c7e53766b1b1f4d79f9e71cb859aa9d335cec8dac58864352d10"
     }
   ],
   "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
@@ -284,7 +284,7 @@
   },
   "finite_synthetic_evaluation": {
     "status": "REVIEW_DRAFT",
-    "code_commit": "460a89ba9c998fb2cceab389c1415485c8fd3990",
+    "code_commit": "4dda5814e4090df4a3936128b1440569ec049649",
     "development_plan": {
       "seed": 2026101101,
       "worlds": 12,
@@ -297,14 +297,14 @@
     },
     "formal_worlds_scored": false,
     "hyperparameter_search_configs_per_method": 0,
-    "synthetic_contract_test_methods": 7,
-    "combined_focused_tests_passed": 27,
+    "synthetic_contract_test_methods": 11,
+    "combined_focused_tests_passed": 31,
     "candidate_universe": "ALL_SIX_UNORDERED_PAIRS_AMONG_FOUR_ABNORMAL_OBSERVATION_IDS",
     "unknown_scoring": "IN_COVERAGE_DENOMINATOR; EXCLUDED_FROM_FALSE_MERGE_FALSE_SPLIT_AND_DELAY",
     "alert_escalation": "SEPARATE_ACTION_TRACE; DEFAULT_NOT_EVALUATED_WHEN_ABSENT",
     "heldout_blinding": "PUBLIC_DETERMINISTIC_SEED; PROCEDURAL_RESERVE_NOT_CRYPTOGRAPHICALLY_BLIND",
     "efficacy_claim": "NONE",
-    "formal_aggregation": "REQUIRES_FULL_REGISTERED_BUDGET_BALANCED_STRATA_AND_EXACT_SEED_DERIVED_WORLD_IDS",
+    "formal_aggregation": "REQUIRES_FULL_REGISTERED_BUDGET_BALANCED_STRATA_EXACT_SEED_IDS_AND_CUTOFF_TRACE",
     "formal_world_budgets": {
       "development": 12,
       "heldout": 24
@@ -320,6 +320,14 @@
       "ABSTAIN"
     ],
     "metric_denominator_revision": "FALSE_MERGE_DIFFERENT_CLASS; FALSE_SPLIT_SAME_CLASS; COVERAGE_FULL_SIX_PAIR_UNIVERSE",
-    "seed_id_integrity": "GENERATION_SIDECAR_AND_AGGREGATOR_ENFORCE_REGISTERED_SEED_INDEX_STRATUM_ID_MAPPING; NOT_CRYPTOGRAPHIC_SCORE_PAYLOAD_ATTESTATION"
+    "seed_id_integrity": "GENERATION_SIDECAR_AND_AGGREGATOR_ENFORCE_REGISTERED_SEED_INDEX_STRATUM_ID_MAPPING; NOT_CRYPTOGRAPHIC_SCORE_PAYLOAD_ATTESTATION",
+    "cutoff_trace_integrity": "SIDECAR_REGISTERS_FULL_SCHEDULE; BOTH_ARMS_MUST_MATCH_EXACTLY; WORLD_SCORE_CARRIES_REGISTERED_AND_SCORED_TRACES; AGGREGATOR_CHECKS_EQUALITY",
+    "max_cutoffs_per_world": 8,
+    "proposal_output_contract": "EVERY_CANDIDATE_HAS_EXACTLY_ONE_EXPLICIT_ACTION; MISSING_PROPOSAL_INVALID; NON_CANDIDATE_FIXED_PAIRS_SCORE_AS_ABSTAIN",
+    "replay_compute_scope": "NEW_RECEIVED_TIME_CUTOFF_CAN_ADD_CALLS; UNIQUE_PAIR_DENOMINATOR_UNCHANGED; REVIEW_REPORTED_TRACE_CALLS_44_TO_56",
+    "decision_delay_scope": "SAME_REQUIRES_INDEPENDENT_LINEAGE_ROOTS_FOR_SUFFICIENT_EVIDENCE; SHARED_ROOT_SAME_RIGHT_CENSORED_BEFORE_EVIDENCE",
+    "unknown_scope": "ARTIFICIALLY_MASKED_LABEL_ON_KNOWN_SYNTHETIC_RELATION; DENOMINATOR_TEST_ONLY",
+    "interpretation": "FINITE_SCRIPTED_DEVELOPMENT_COMPARISON_ONLY; NO_GENERAL_EFFICACY_OR_SUPERIORITY_CLAIM",
+    "reported_cutoff_reproduction": "USER_REPORTED_7_TO_1_PREFIX_REDUCTION_ACCEPTED; DELAYS_0_TO_83_96S; PRE_EVIDENCE_CENSORING_105_TO_0S; NOT_RERUN_LOCALLY"
   }
 }
