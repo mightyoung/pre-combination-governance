@@ -45,6 +45,9 @@ _PROTECTED_ACTIONS = frozenset(
     }
 )
 _RISK_STAGES = frozenset({"PRECAUTIONARY", "CONFIRMED", "ESCALATED"})
+_ASSOCIATION_STATES = frozenset(
+    {"SAME_CONFIRMED", "DIFFERENT_CONFIRMED", "UNKNOWN_PENDING", "CONFLICT_PENDING"}
+)
 
 
 def _parse_utc(value: str, label: str) -> datetime:
@@ -88,6 +91,10 @@ class ActionIntent:
     source_times: tuple[str, ...]
     observed_at_times: tuple[str, ...]
     experiment_batch_id: str
+    association_state: str
+    dedup_episode_interval_key: str
+    trigger_known_time: str | None = None
+    detected_at: str | None = None
 
     def __post_init__(self) -> None:
         for label in ("intent_id", "display_card_id", "risk_stage", "experiment_batch_id"):
@@ -100,7 +107,15 @@ class ActionIntent:
             raise ValueError("kind must be a known experiment ActionKind") from exc
         if self.risk_stage not in _RISK_STAGES:
             raise ValueError("risk_stage must use an existing alert stage")
+        if self.association_state not in _ASSOCIATION_STATES:
+            raise ValueError("association_state must use a V2 association state")
+        if not isinstance(self.dedup_episode_interval_key, str) or not self.dedup_episode_interval_key.strip():
+            raise ValueError("dedup_episode_interval_key must be an explicit experiment value")
         _parse_utc(self.received_at, "received_at")
+        for label in ("trigger_known_time", "detected_at"):
+            value = getattr(self, label)
+            if value is not None:
+                _parse_utc(value, label)
         for label in (
             "observation_ids",
             "source_ids",
@@ -140,6 +155,10 @@ class CardRevision:
     source_times: tuple[str, ...]
     observed_at_times: tuple[str, ...]
     experiment_batch_id: str
+    association_state: str
+    dedup_episode_interval_key: str
+    trigger_known_time: str | None
+    detected_at: str | None
     simulated_card_update_delay_seconds: float
 
     @classmethod
@@ -159,6 +178,10 @@ class CardRevision:
             source_times=intent.source_times,
             observed_at_times=intent.observed_at_times,
             experiment_batch_id=intent.experiment_batch_id,
+            association_state=intent.association_state,
+            dedup_episode_interval_key=intent.dedup_episode_interval_key,
+            trigger_known_time=intent.trigger_known_time,
+            detected_at=intent.detected_at,
             simulated_card_update_delay_seconds=0.0,
         )
 
@@ -172,6 +195,8 @@ class ActionNotification:
     kind: ActionKind
     risk_stage: str
     experiment_batch_id: str
+    association_state: str
+    dedup_episode_interval_key: str
     first_received_at: str
     latest_received_at: str
     updates: tuple[CardRevision, ...]
@@ -287,6 +312,8 @@ class ReminderActionLedger:
                 kind=intent.kind,
                 risk_stage=intent.risk_stage,
                 experiment_batch_id=intent.experiment_batch_id,
+                association_state=intent.association_state,
+                dedup_episode_interval_key=intent.dedup_episode_interval_key,
                 first_received_at=intent.received_at,
                 latest_received_at=intent.received_at,
                 updates=(card_revision,),
@@ -299,7 +326,7 @@ class ReminderActionLedger:
             elif intent.kind in _PROTECTED_ACTIONS:
                 decision_reason = "PROTECTED_ACTION_KIND"
             elif intent.kind is ActionKind.ASSOCIATION_PENDING:
-                decision_reason = "NO_SAME_CARD_KIND_STAGE_BATCH_WITHIN_WINDOW"
+                decision_reason = "NO_MATCHING_EPISODE_INTERVAL_KEY_WITHIN_WINDOW"
             else:
                 decision_reason = "NO_COALESCING_RULE_FOR_ACTION_KIND"
         else:
@@ -322,7 +349,7 @@ class ReminderActionLedger:
             self._notifications[target_index] = notification
             notification_id = notification.experiment_notification_id
             status = ApplyStatus.COALESCED
-            decision_reason = "SAME_CARD_KIND_STAGE_BATCH_WITHIN_WINDOW"
+            decision_reason = "SAME_CARD_EPISODE_INTERVAL_KEY_WITHIN_WINDOW"
 
         decision = ApplyDecision(
             intent_id=intent.intent_id,
@@ -356,8 +383,14 @@ class ReminderActionLedger:
                 notification.display_card_id != intent.display_card_id
                 or notification.kind is not intent.kind
                 or notification.risk_stage != intent.risk_stage
+                or notification.association_state != intent.association_state
                 or notification.experiment_batch_id != intent.experiment_batch_id
+                or notification.dedup_episode_interval_key
+                != intent.dedup_episode_interval_key
             ):
+                continue
+            first_episode_ids = set(notification.updates[0].candidate_episode_ids)
+            if not first_episode_ids.intersection(intent.candidate_episode_ids):
                 continue
             elapsed = (received - _parse_utc(notification.first_received_at, "first_received_at")).total_seconds()
             if 0 <= elapsed <= self.merge_window_seconds:

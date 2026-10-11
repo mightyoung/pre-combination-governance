@@ -10,8 +10,8 @@
 - [visualization/idempotency-layers-comparison.html](visualization/idempotency-layers-comparison.html)：观测 / 匹配 / 通知动作层对照的离线 HTML。
 - [visualization/idempotency-layers-data.json](visualization/idempotency-layers-data.json)：该受控反例的机器可读结果；历史失败只引用既有摘要，不重跑。
 - [visualization/generate_idempotency_layers.py](visualization/generate_idempotency_layers.py)：复现 idempotency layer 对照。
-- [visualization/notification-coalescing-experiment.html](visualization/notification-coalescing-experiment.html)：同一合成动作流在逐关联提醒与同卡合并策略下的离线对照。
-- [visualization/notification-coalescing-experiment-data.json](visualization/notification-coalescing-experiment-data.json)：全部输入修订、提醒动作、回放结果、保留字段与未知项。
+- [visualization/notification-coalescing-experiment.html](visualization/notification-coalescing-experiment.html)：23 条顺序合成动作输入在逐关联提醒与同卡合并策略下的离线对照，附 episode/time 证据与公开 V2 字段审计。
+- [visualization/notification-coalescing-experiment-data.json](visualization/notification-coalescing-experiment-data.json)：全部输入修订、提醒动作、回放结果、保留字段与未知项。19 条来自 AlertLedger 合成过渡，4 条是显式边界探针；不构成 23 个独立样本。
 - [visualization/generate_notification_coalescing_experiment.py](visualization/generate_notification_coalescing_experiment.py)：重建该对照与 HTML；下层实验候选在 [`alert_action_experiment.py`](../../risk-fusion-bench/src/rfb/research/alert_action_experiment.py) 与 [`alert_action_experiment_scenarios.py`](../../risk-fusion-bench/src/rfb/research/alert_action_experiment_scenarios.py)。
 - 字符化边界测试：[test_alert_governance_idempotency.py](../../risk-fusion-bench/tests/test_alert_governance_idempotency.py)。
 - 新增隔离候选测试：[test_alert_action_experiment.py](../../risk-fusion-bench/tests/test_alert_action_experiment.py) 与 [test_alert_action_experiment_scenarios.py](../../risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py)。
@@ -26,8 +26,8 @@ PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/vis
 python research-three/v2-alignment-20261011/visualization/generate_notification_coalescing_experiment.py
 ```
 
-上述生成脚本只构造本地合成输入并运行内存台账/对照逻辑，不连接模型、网络服务、投递适配器、设备或运行器。所有 evidence refs 均为 `synthetic://` 占位引用，没有原始物理证据正文。旧输出中的 SIMULATED 不表示用户实际看到提醒；新动作对照显式标记为 `NOT_DELIVERED`。
+上述生成脚本只构造本地合成输入并运行内存台账/对照逻辑，不连接模型、网络服务、投递适配器、设备或运行器。所有 evidence refs 均为 `synthetic://` 占位引用，没有原始物理证据正文。旧输出中的 SIMULATED 不表示用户实际看到提醒；新动作对照显式标记为 `NOT_DELIVERED`，且没有生成用户可见消息或真实 `emitted_at` / `visible_at` 回执。
 
-动作对照中的 0 秒与 5 秒窗口、批次 ID、同卡/同类/同阶段合并键都只是实验参数，未获业务冻结。每条唯一输入先追加独立卡片修订；合并策略只减少重复提醒动作。运行结果将送达状态记为 `NOT_DELIVERED`，实际可见时间为未知；不会据此估算模型调用节省量或真实事件确证准确率。该候选不改动 V1 `AlertLedger` 默认行为。
+动作对照中的 0 秒与 5 秒窗口、批次 ID、同卡/同类/同阶段/关联状态/实验 interval key 和候选 episode 重叠规则都只是实验参数，未获业务冻结。`display_card_id` 是展示连续性标识，不代表物理事件等价；候选 episode 作为独立节点保留，UNKNOWN 关联不会因同卡而被合并，CONFLICT_PENDING 状态变化会独立记录。每条唯一输入先追加独立卡片修订；合并仅改变合成提醒动作数。真实送达状态为 `NOT_DELIVERED`，实际可见时间未知；提醒及时性、内容完整性、事件确证准确性分别报告。该候选不改动 V1 `AlertLedger` 默认行为，也不测模型调用节省量或真实事件确证准确率。
 
-V2 公开来源固定在 `task/v2-public-spec-20261011` commit `cc6d59b88bda73381fc09d9091a224ab4155891e`。完整原始 Mac V2 文档不是本轮公开合同对齐的前置；尚未冻结的具体选择列于 `ALIGNMENT.md`。
+V2 公开来源固定在 `task/v2-public-spec-20261011` commit `cc6d59b88bda73381fc09d9091a224ab4155891e`。原始 Mac V2 包未纳入本分支；若要逐条核对其私有合同，请提供对应版本的主规格、字段/schema、指标定义，以及版本/修订清单。缺少这些文件不妨碍当前公开规格下的独立合成工作；不会据此猜测私有规则。

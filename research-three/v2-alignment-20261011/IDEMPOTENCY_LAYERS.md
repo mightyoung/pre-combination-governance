@@ -2,7 +2,7 @@
 
 ## 范围
 
-这是对现有 `AlertLedger` 的纯软件合成字符化检查，不是生产策略、用户效果或传输保证。复用的标识是 `CandidateEvent.candidate_id`、`source_id`、`evidence_refs` 和稳定 `association_id`；没有新增 dedup key、interval 或来源可信阈值。
+这是对现有 `AlertLedger` 和一个隔离提醒动作候选的纯软件合成检查，不是生产策略、用户效果或传输保证。V1 ledger 本身未增加 dedup key、interval 或来源可信阈值；提醒动作候选显式接收实验专用 `dedup_episode_interval_key` 与候选 episode IDs，二者的正式语义仍未冻结。
 
 ## 本地反例结果
 
@@ -22,16 +22,16 @@
 
 ## 独立提醒动作对照（2026-10-11）
 
-新增 [提醒动作对照 HTML](visualization/notification-coalescing-experiment.html) 与 [机器可读结果](visualization/notification-coalescing-experiment-data.json)，由 [生成脚本](visualization/generate_notification_coalescing_experiment.py) 使用现有 `AlertLedger` 合成过渡构造同一组输入，再依次运行 `PER_ASSOCIATION` 与 `CARD_COALESCE`。输入共有 19 条唯一动作，含 A-B/A-C 重叠关系、互补来源、升级、反证、A-B 确认后拆分、独立事件卡、相同时间与越窗边界、来源时间倒序、精确重放和旧内容刷新时间的冲突重放。
+新增 [提醒动作对照 HTML](visualization/notification-coalescing-experiment.html) 与 [机器可读结果](visualization/notification-coalescing-experiment-data.json)，由 [生成脚本](visualization/generate_notification_coalescing_experiment.py) 使用相同输入依次运行 `PER_ASSOCIATION` 与 `CARD_COALESCE`。输入含 19 条 AlertLedger 合成过渡动作，以及 4 条明确标为边界探针的手工合成动作，总计 23 条顺序记录，不是独立样本。场景覆盖 A-B/A-C 重叠关系、窗口内升级、同卡冲突待核、反证、确认后拆分、独立事件卡、窗口边界、跨卡相同候选、同卡不同候选 episode、来源时间倒序、迟到旧观测、精确重放和冲突重放。
 
 | 实验窗口 | 逐关联提醒动作 | 同卡合并动作 | 语义卡片修订（两策略） | 合并进已有提醒的待核更新 | 漏掉的重要更新 |
 |---:|---:|---:|---:|---:|---:|
-| 0 秒 | 19 | 18 | 19 / 19 | 1 | 0 |
-| 5 秒 | 19 | 17 | 19 / 19 | 2 | 0 |
+| 0 秒 | 23 | 22 | 23 / 23 | 1 | 0 |
+| 5 秒 | 23 | 21 | 23 / 23 | 2 | 0 |
 
-5 秒策略合并的两个待核更新分别发生在同一处理时刻（0 秒差）和包含边界（5 秒差）；6 秒差的 A-F 更新在同一卡、同类、同阶段、同批次键下另发动作。所有 19 条唯一语义输入都产生独立卡片修订；合并只更改重复提醒动作数。关联 ID、观测 ID、候选 episode ID、来源、source time、observed_at 和证据引用均保留。精确重放不刷新原修订，改写旧记录 `observed_at` 的同 ID 重放被冲突拒绝。
+5 秒策略合并的两个待核更新分别发生在同一处理时刻（0 秒差）和 5 秒包含边界；越窗更新距首条提醒 6 秒，另发动作。跨 episode 探针与 A-B 提醒共享显示卡和实验 interval key，但候选 episode IDs 不重叠，故另发动作；跨卡探针即使候选 ID 与 interval key 相同也另发动作。22 条唯一语义输入均产生独立卡片修订，合并只改变实验提醒动作数。关联 ID、观测 ID、候选 episode ID、来源、`source_time`、`observed_at` 和证据引用均保留。精确重放不刷新原修订，改写旧记录 `observed_at` 的同 ID 重放被冲突拒绝。
 
-以上窗口与批次值、`display_card_id + action_kind + risk_stage + experiment_batch_id` 键是便于复现的实验参数，不是冻结建议或生产规则。动作结果是 `NOT_DELIVERED`；内存中卡片修订延迟模拟为 0 秒，但实际送达与用户可见时间未知。及时性、内容完整性、事件确证准确性分别报告；本合成输入只检查语义内容完整性，不能测真实事件确证准确率，亦不估模型调用节省量。来源可信度/统计独立性不评估，多 flag severity 优先级保持未决。
+合并候选的实验条件为相同 `display_card_id + action_kind + risk_stage + association_state + experiment_batch_id + dedup_episode_interval_key`，并与该提醒组首条修订至少共享一个 `candidate_episode_id`；窗口按首条 `received_at` 计算且含边界。`UNKNOWN_PENDING` 与 `CONFLICT_PENDING` 作为不同动作状态；冲突更新不并入一般待核动作。该规则以及 0/5 秒窗口均不是冻结建议或生产规则。稳定显示卡只表示展示上下文，不证明事件等价；UNKNOWN 关联和候选节点不被 union。提醒动作结果是 `NOT_DELIVERED`；内存卡片修订延迟为实验模拟 0 秒，实际 `emitted_at` 与 `visible_at` 未生成/未知。输入中的 `trigger_known_time` 与 `detected_at` 是合成字段，不是运行时外部时间证据；迟到旧观测另将 `source_time`、`observed_at`、`trigger_known_time`、`detected_at`、`received_at` 设为不同值，未以处理时间替换观测时间。提醒及时性、内容完整性、事件确证准确性分别报告；本合成输入只检查语义内容完整性，不能测真实事件确证准确率，亦不估模型调用节省量。来源可信度/统计独立性不评估，多 flag severity 优先级保持未决；用户可见消息未生成。
 
 测试：`risk-fusion-bench/tests/test_alert_action_experiment.py`、`risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py`。复现命令见 [README](README.md)。
 

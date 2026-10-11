@@ -12,6 +12,8 @@ class ReminderActionScenarioTests(unittest.TestCase):
     def test_same_action_stream_runs_through_both_policies_and_retains_revisions(self):
         result = build_comparison()
         intents = result["input"]["action_intents"]
+        self.assertEqual(len(intents), 23)
+        self.assertFalse(result["input"]["input_records_are_independent_samples"])
         expected_ids = {row["intent_id"] for row in intents}
         expected_evidence = {
             ref for row in intents for ref in row["evidence_refs"]
@@ -70,11 +72,17 @@ class ReminderActionScenarioTests(unittest.TestCase):
             "stale_replay",
             "complementary_sources",
             "risk_escalation",
+            "risk_escalation_inside_window",
+            "conflict_pending_update",
             "counterevidence",
             "association_split",
+            "pending_merge_then_counter_and_split",
             "distinct_event",
             "cross_window",
+            "cross_card_duplicate",
+            "cross_episode_duplicate",
             "out_of_order_source_time",
+            "late_old_observation",
         ):
             self.assertIn(name, cases)
 
@@ -102,7 +110,7 @@ class ReminderActionScenarioTests(unittest.TestCase):
         self.assertEqual(outside_decision["status"], "EMITTED")
         self.assertEqual(
             outside_decision["decision_reason"],
-            "NO_SAME_CARD_KIND_STAGE_BATCH_WITHIN_WINDOW",
+            "NO_MATCHING_EPISODE_INTERVAL_KEY_WITHIN_WINDOW",
         )
         self.assertEqual(cases["cross_window"]["boundary_seconds"], 5)
         self.assertLess(
@@ -124,6 +132,72 @@ class ReminderActionScenarioTests(unittest.TestCase):
             result["execution_boundary"]["actual_delivery_or_visibility"], "UNKNOWN_NOT_RUN"
         )
 
+    def test_v2_episode_and_time_boundaries_are_auditable_for_both_policies(self):
+        result = build_comparison()
+        cases = result["forced_cases"]
+        window = result["window_results"][1]
+        candidate = window["card_coalesce"]
+        decisions = {row["intent_id"]: row for row in candidate["decisions"]}
+
+        self.assertEqual(
+            decisions[cases["risk_escalation_inside_window"]["intent_id"]]["status"],
+            "EMITTED",
+        )
+        self.assertEqual(
+            decisions[cases["risk_escalation_inside_window"]["intent_id"]]["decision_reason"],
+            "PROTECTED_ACTION_KIND",
+        )
+        conflict = cases["conflict_pending_update"]
+        self.assertEqual(
+            decisions[conflict["intent_id"]]["status"],
+            "EMITTED",
+        )
+        self.assertEqual(
+            decisions[conflict["intent_id"]]["decision_reason"],
+            "NO_MATCHING_EPISODE_INTERVAL_KEY_WITHIN_WINDOW",
+        )
+        self.assertNotEqual(
+            decisions[cases["cross_card_duplicate"]["intent_ids"][0]]["experiment_notification_id"],
+            decisions[cases["cross_card_duplicate"]["intent_ids"][1]]["experiment_notification_id"],
+        )
+        self.assertEqual(
+            decisions[cases["cross_episode_duplicate"]["intent_id"]]["status"],
+            "EMITTED",
+        )
+
+        late = cases["late_old_observation"]
+        self.assertLess(late["source_time"], late["observed_at"])
+        self.assertLess(late["observed_at"], late["trigger_known_time"])
+        self.assertLess(late["trigger_known_time"], late["detected_at"])
+        self.assertLess(late["detected_at"], late["processing_received_at"])
+        self.assertEqual(late["observed_at"], late["card_revision_observed_at"])
+        self.assertNotEqual(late["card_revision_observed_at"], late["processing_received_at"])
+
+        for policy_name in ("per_association", "card_coalesce"):
+            policy = window[policy_name]
+            intent_ids = {
+                row["intent_id"] for row in policy["card_revisions"]
+            }
+            self.assertEqual(intent_ids, {row["intent_id"] for row in result["input"]["action_intents"]})
+            self.assertEqual(policy["missed_important_update_ids"], [])
+            late_revision = next(
+                row for row in policy["card_revisions"]
+                if row["intent_id"] == late["intent_id"]
+            )
+            self.assertEqual(late_revision["source_times"][0], late["source_time"])
+            self.assertEqual(late_revision["observed_at_times"][0], late["observed_at"])
+            self.assertEqual(late_revision["trigger_known_time"], late["trigger_known_time"])
+            self.assertEqual(late_revision["detected_at"], late["detected_at"])
+            self.assertEqual(late_revision["received_at"], late["processing_received_at"])
+
+        self.assertEqual(
+            result["v2_contract_audit"]["dedup_episode_interval_key"],
+            "EXPERIMENT_INPUT_NOT_FROZEN",
+        )
+        self.assertEqual(
+            result["v2_contract_audit"]["user_visible_message"], "NOT_GENERATED"
+        )
+
     def test_historical_failed_baseline_is_carried_forward_without_reconstruction(self):
         result = build_comparison()
         baseline = result["historical_baseline"]
@@ -143,7 +217,14 @@ class ReminderActionScenarioTests(unittest.TestCase):
         self.assertIn("NOT_DELIVERED", rendered)
         self.assertIn("1464", rendered)
         self.assertIn("CARD_COALESCE", rendered)
-        self.assertIn("SAME_CARD_KIND_STAGE_BATCH_WITHIN_WINDOW", rendered)
+        self.assertIn("SAME_CARD_EPISODE_INTERVAL_KEY_WITHIN_WINDOW", rendered)
+        self.assertIn("same_card_is_event_equivalence", rendered)
+        self.assertIn("EXPERIMENT_INPUT_NOT_FROZEN", rendered)
+        self.assertIn("trigger_known_time", rendered)
+        self.assertIn("detected_at", rendered)
+        self.assertIn("visible_at", rendered)
+        self.assertIn("NOT_GENERATED", rendered)
+        self.assertIn("CONFLICT_PENDING", rendered)
         self.assertNotIn("https://", rendered)
 
 

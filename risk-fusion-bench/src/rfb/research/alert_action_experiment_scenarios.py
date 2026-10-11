@@ -63,6 +63,11 @@ def _to_intent(
 ) -> ActionIntent:
     candidate_ids = association_candidate_ids or alert.candidate_ids
     association_ids = (association_id,) if association_id else ()
+    association_state = {
+        ActionKind.ASSOCIATION_CONFIRMED: "SAME_CONFIRMED",
+        ActionKind.COUNTER_EVIDENCE: "DIFFERENT_CONFIRMED",
+        ActionKind.EVENT_SPLIT: "DIFFERENT_CONFIRMED",
+    }.get(kind, "UNKNOWN_PENDING")
     return ActionIntent(
         intent_id=f"intent-{alert.alert_id}-{kind.value}",
         display_card_id=alert.card_id,
@@ -77,6 +82,10 @@ def _to_intent(
         source_times=tuple(candidates[item].event_time for item in candidate_ids),
         observed_at_times=tuple(candidates[item].observed_at for item in candidate_ids),
         experiment_batch_id=_BATCH_ID,
+        association_state=association_state,
+        dedup_episode_interval_key=f"SYNTH-INTERVAL-{alert.card_id}-{association_state}",
+        trigger_known_time=alert.alerted_at,
+        detected_at=alert.alerted_at,
     )
 
 
@@ -119,6 +128,46 @@ def _alert_intents(
         )
         for alert in alerts
     ]
+
+
+def _synthetic_pending_intent(
+    *,
+    intent_id: str,
+    display_card_id: str,
+    received_seconds: float,
+    observation_ids: tuple[str, ...],
+    source_ids: tuple[str, ...],
+    candidate_episode_ids: tuple[str, ...],
+    association_id: str,
+    evidence_ref: str,
+    source_seconds: float,
+    observed_seconds: float,
+    trigger_known_seconds: float,
+    detected_seconds: float,
+    dedup_episode_interval_key: str,
+    risk_stage: str = "PRECAUTIONARY",
+    association_state: str = "UNKNOWN_PENDING",
+) -> ActionIntent:
+    """Create an explicit boundary probe without inventing an AlertLedger edge."""
+    return ActionIntent(
+        intent_id=intent_id,
+        display_card_id=display_card_id,
+        kind=ActionKind.ASSOCIATION_PENDING,
+        risk_stage=risk_stage,
+        received_at=_stamp(received_seconds),
+        observation_ids=observation_ids,
+        source_ids=source_ids,
+        candidate_episode_ids=candidate_episode_ids,
+        association_ids=(association_id,),
+        evidence_refs=(evidence_ref,),
+        source_times=(_stamp(source_seconds),),
+        observed_at_times=(_stamp(observed_seconds),),
+        experiment_batch_id=_BATCH_ID,
+        association_state=association_state,
+        dedup_episode_interval_key=dedup_episode_interval_key,
+        trigger_known_time=_stamp(trigger_known_seconds),
+        detected_at=_stamp(detected_seconds),
+    )
 
 
 def _add_pending_pair(
@@ -165,6 +214,10 @@ def _serialize_intent(intent: ActionIntent) -> dict[str, Any]:
         "source_times": list(intent.source_times),
         "observed_at_times": list(intent.observed_at_times),
         "experiment_batch_id": intent.experiment_batch_id,
+        "association_state": intent.association_state,
+        "dedup_episode_interval_key": intent.dedup_episode_interval_key,
+        "trigger_known_time": intent.trigger_known_time,
+        "detected_at": intent.detected_at,
     }
 
 
@@ -184,6 +237,10 @@ def _serialize_revision(revision: Any) -> dict[str, Any]:
         "source_times": list(revision.source_times),
         "observed_at_times": list(revision.observed_at_times),
         "experiment_batch_id": revision.experiment_batch_id,
+        "association_state": revision.association_state,
+        "dedup_episode_interval_key": revision.dedup_episode_interval_key,
+        "trigger_known_time": revision.trigger_known_time,
+        "detected_at": revision.detected_at,
         "simulated_card_update_delay_seconds": revision.simulated_card_update_delay_seconds,
     }
 
@@ -228,6 +285,8 @@ def _run_policy(
             "kind": item.kind.value,
             "risk_stage": item.risk_stage,
             "experiment_batch_id": item.experiment_batch_id,
+            "association_state": item.association_state,
+            "dedup_episode_interval_key": item.dedup_episode_interval_key,
             "first_received_at": item.first_received_at,
             "latest_received_at": item.latest_received_at,
             "content_revision_count": item.content_revision_count,
@@ -511,6 +570,88 @@ def build_comparison() -> dict[str, Any]:
         received_seconds=21,
     )
 
+    pending_a_card = cards["candidate-A"]
+    a_pending_ab = next(
+        intent
+        for intent in intents
+        if intent.display_card_id == pending_a_card
+        and association_ab in intent.association_ids
+        and intent.kind is ActionKind.ASSOCIATION_PENDING
+    )
+    cross_episode_duplicate = _synthetic_pending_intent(
+        intent_id="intent-cross-episode-same-card",
+        display_card_id=pending_a_card,
+        received_seconds=10.5,
+        observation_ids=("observation-G", "observation-H"),
+        source_ids=("device-G", "device-H"),
+        candidate_episode_ids=("episode-G", "episode-H"),
+        association_id="ASSOC-CROSS-EPISODE-G-H",
+        evidence_ref="synthetic://association/cross-episode-G-H",
+        source_seconds=2,
+        observed_seconds=9,
+        trigger_known_seconds=10,
+        detected_seconds=10.25,
+        dedup_episode_interval_key=a_pending_ab.dedup_episode_interval_key,
+        risk_stage=a_pending_ab.risk_stage,
+    )
+    cross_card_duplicate = _synthetic_pending_intent(
+        intent_id="intent-cross-card-same-episode",
+        display_card_id="CARD-CROSS-CARD",
+        received_seconds=10.5,
+        observation_ids=a_pending_ab.observation_ids,
+        source_ids=a_pending_ab.source_ids,
+        candidate_episode_ids=a_pending_ab.candidate_episode_ids,
+        association_id=association_ab,
+        evidence_ref=a_pending_ab.evidence_refs[0],
+        source_seconds=0,
+        observed_seconds=2,
+        trigger_known_seconds=10,
+        detected_seconds=10.25,
+        dedup_episode_interval_key=a_pending_ab.dedup_episode_interval_key,
+        risk_stage=a_pending_ab.risk_stage,
+    )
+    conflict_pending_update = _synthetic_pending_intent(
+        intent_id="intent-conflict-pending-same-card",
+        display_card_id=pending_a_card,
+        received_seconds=10.5,
+        observation_ids=a_pending_ab.observation_ids,
+        source_ids=a_pending_ab.source_ids,
+        candidate_episode_ids=a_pending_ab.candidate_episode_ids,
+        association_id="ASSOC-CONFLICT-AB",
+        evidence_ref="synthetic://association/conflict-A-B",
+        source_seconds=0,
+        observed_seconds=9,
+        trigger_known_seconds=10,
+        detected_seconds=10.25,
+        dedup_episode_interval_key=a_pending_ab.dedup_episode_interval_key,
+        risk_stage=a_pending_ab.risk_stage,
+        association_state="CONFLICT_PENDING",
+    )
+    late_old_observation = _synthetic_pending_intent(
+        intent_id="intent-late-old-observation",
+        display_card_id=pending_a_card,
+        received_seconds=24,
+        observation_ids=("observation-late-old",),
+        source_ids=("device-late-old",),
+        candidate_episode_ids=("episode-late-old",),
+        association_id="ASSOC-LATE-OLD",
+        evidence_ref="synthetic://observation/late-old-source",
+        source_seconds=1,
+        observed_seconds=18,
+        trigger_known_seconds=20,
+        detected_seconds=22,
+        dedup_episode_interval_key="SYNTHETIC-INTERVAL-LATE-OLD",
+        risk_stage="ESCALATED",
+    )
+    intents.extend(
+        (
+            cross_episode_duplicate,
+            cross_card_duplicate,
+            conflict_pending_update,
+            late_old_observation,
+        )
+    )
+
     intents_tuple = tuple(intents)
     sorted_intents = tuple(
         sorted(
@@ -547,14 +688,6 @@ def build_comparison() -> dict[str, Any]:
             }
         )
 
-    pending_a_card = cards["candidate-A"]
-    a_pending_ab = next(
-        intent
-        for intent in sorted_intents
-        if intent.display_card_id == pending_a_card
-        and association_ab in intent.association_ids
-        and intent.kind is ActionKind.ASSOCIATION_PENDING
-    )
     a_pending_ae = next(
         intent
         for intent in sorted_intents
@@ -569,6 +702,37 @@ def build_comparison() -> dict[str, Any]:
         and association_af in intent.association_ids
         and intent.kind is ActionKind.ASSOCIATION_PENDING
     )
+    a_pending_ac = next(
+        intent
+        for intent in sorted_intents
+        if intent.display_card_id == pending_a_card
+        and association_ac in intent.association_ids
+        and intent.kind is ActionKind.ASSOCIATION_PENDING
+    )
+    a_escalation = next(
+        intent
+        for intent in sorted_intents
+        if intent.display_card_id == pending_a_card
+        and intent.kind is ActionKind.RISK_ESCALATION
+    )
+    a_counterevidence = next(
+        intent
+        for intent in sorted_intents
+        if intent.display_card_id == pending_a_card
+        and intent.kind is ActionKind.COUNTER_EVIDENCE
+        and association_ac in intent.association_ids
+    )
+    a_split = next(
+        intent
+        for intent in sorted_intents
+        if intent.display_card_id == pending_a_card
+        and intent.kind is ActionKind.EVENT_SPLIT
+        and association_ab in intent.association_ids
+    )
+    candidate_decisions = {
+        row["intent_id"]: row
+        for row in window_results[1]["card_coalesce"]["decisions"]
+    }
 
     baseline_path = _ROOT / "research-three/alert-governance-v1/historical-baseline.json"
     history = json.loads(baseline_path.read_text(encoding="utf-8"))
@@ -585,17 +749,28 @@ def build_comparison() -> dict[str, Any]:
                 "display_card_id",
                 "action_kind",
                 "existing_risk_stage",
+                "association_state",
                 "experiment_batch_id",
+                "dedup_episode_interval_key",
+                "overlap_with_first_update_candidate_episode_ids",
             ],
             "window_clock": "Synthetic processing/received_at; source_time and observed_at remain separate.",
             "batch_id": _BATCH_ID,
             "policy_approval_status": "EXPERIMENT_ONLY_NOT_FROZEN",
             "one_alert_per_association_policy": "One notification action for each association update on each affected display card.",
-            "card_coalescing_policy": "Append each semantic update to the stable card revision immediately; coalesce only repeated ASSOCIATION_PENDING reminder action within the explicit key/window.",
+            "card_coalescing_policy": "Append each semantic update to the stable card revision immediately; coalesce only repeated ASSOCIATION_PENDING reminders with the same association state, explicit experiment interval key, and at least one shared candidate episode in the inclusive window.",
         },
         "input": {
-            "producer": "Existing in-memory AlertLedger synthetic candidate and association transitions.",
+            "producer": "19 action intents from in-memory AlertLedger synthetic transitions plus 4 explicit hand-constructed boundary probes.",
             "unique_action_count": action_count,
+            "input_records_are_independent_samples": False,
+            "input_interpretation": "Sequential synthetic action intents; action count is not a statistical sample size.",
+            "synthetic_boundary_probe_intent_ids": [
+                cross_episode_duplicate.intent_id,
+                cross_card_duplicate.intent_id,
+                conflict_pending_update.intent_id,
+                late_old_observation.intent_id,
+            ],
             "action_intents": [_serialize_intent(intent) for intent in sorted_intents],
             "source_candidate_ids": sorted(candidates),
             "stable_card_ids_by_candidate": dict(sorted(cards.items())),
@@ -644,6 +819,26 @@ def build_comparison() -> dict[str, Any]:
                 ],
                 "risk_stage": "ESCALATED",
             },
+            "risk_escalation_inside_window": {
+                "intent_id": a_escalation.intent_id,
+                "preceding_pending_intent_id": a_pending_ab.intent_id,
+                "elapsed_processing_seconds": 1,
+                "tested_windows_seconds": [0, 5],
+                "candidate_status_at_5s": candidate_decisions[a_escalation.intent_id]["status"],
+                "candidate_reason_at_5s": candidate_decisions[a_escalation.intent_id]["decision_reason"],
+                "independent_action_required_by_candidate": True,
+            },
+            "conflict_pending_update": {
+                "intent_id": conflict_pending_update.intent_id,
+                "preceding_pending_intent_id": a_pending_ab.intent_id,
+                "same_display_card": True,
+                "same_candidate_episode_ids": True,
+                "same_dedup_episode_interval_key": True,
+                "association_state_change": "UNKNOWN_PENDING -> CONFLICT_PENDING",
+                "candidate_status_at_5s": candidate_decisions[conflict_pending_update.intent_id]["status"],
+                "candidate_reason_at_5s": candidate_decisions[conflict_pending_update.intent_id]["decision_reason"],
+                "separate_conflict_update_required_by_candidate": True,
+            },
             "counterevidence": {
                 "action_kind": ActionKind.COUNTER_EVIDENCE.value,
                 "association_id": association_ac,
@@ -653,6 +848,18 @@ def build_comparison() -> dict[str, Any]:
                 "action_kind": ActionKind.EVENT_SPLIT.value,
                 "association_id": association_ab,
                 "transition": "CONFIRMED_SAME_EVENT -> SPLIT_TO_DISTINCT",
+            },
+            "pending_merge_then_counter_and_split": {
+                "pending_intent_ids": [a_pending_ab.intent_id, a_pending_ac.intent_id],
+                "pending_notification_ids_at_5s": [
+                    candidate_decisions[a_pending_ab.intent_id]["experiment_notification_id"],
+                    candidate_decisions[a_pending_ac.intent_id]["experiment_notification_id"],
+                ],
+                "counterevidence_intent_id": a_counterevidence.intent_id,
+                "counterevidence_status": candidate_decisions[a_counterevidence.intent_id]["status"],
+                "split_intent_id": a_split.intent_id,
+                "split_status": candidate_decisions[a_split.intent_id]["status"],
+                "all_semantic_revisions_retained": True,
             },
             "distinct_event": {
                 "action_kind": ActionKind.DISTINCT_EVENT_ALERT.value,
@@ -670,6 +877,25 @@ def build_comparison() -> dict[str, Any]:
                 "same_display_card_kind_and_batch": True,
                 "window_anchor": "first action; later in-place updates do not extend the window",
             },
+            "cross_card_duplicate": {
+                "intent_ids": [a_pending_ab.intent_id, cross_card_duplicate.intent_id],
+                "display_card_ids": [a_pending_ab.display_card_id, cross_card_duplicate.display_card_id],
+                "same_candidate_episode_ids": True,
+                "same_dedup_episode_interval_key": True,
+                "candidate_notification_ids": [
+                    candidate_decisions[a_pending_ab.intent_id]["experiment_notification_id"],
+                    candidate_decisions[cross_card_duplicate.intent_id]["experiment_notification_id"],
+                ],
+            },
+            "cross_episode_duplicate": {
+                "intent_id": cross_episode_duplicate.intent_id,
+                "display_card_id": cross_episode_duplicate.display_card_id,
+                "same_dedup_episode_interval_key_as_A_pending": True,
+                "candidate_episode_ids": list(cross_episode_duplicate.candidate_episode_ids),
+                "candidate_status_at_5s": candidate_decisions[cross_episode_duplicate.intent_id]["status"],
+                "candidate_reason_at_5s": candidate_decisions[cross_episode_duplicate.intent_id]["decision_reason"],
+                "separate_action_expected": True,
+            },
             "out_of_order_source_time": {
                 "processing_order_intent_ids": [
                     a_pending_ae.intent_id,
@@ -681,7 +907,19 @@ def build_comparison() -> dict[str, Any]:
                 ],
                 "source_time_moves_backward": True,
             },
-            "same_card_event_ids": {
+            "late_old_observation": {
+                "intent_id": late_old_observation.intent_id,
+                "source_time": late_old_observation.source_times[0],
+                "observed_at": late_old_observation.observed_at_times[0],
+                "trigger_known_time": late_old_observation.trigger_known_time,
+                "detected_at": late_old_observation.detected_at,
+                "processing_received_at": late_old_observation.received_at,
+                "card_revision_observed_at": late_old_observation.observed_at_times[0],
+                "source_is_older_than_observation": True,
+                "processing_time_used_as_observed_at": False,
+                "candidate_status_at_5s": candidate_decisions[late_old_observation.intent_id]["status"],
+            },
+            "same_card_association_ids": {
                 "candidate-A": sorted(
                     {
                         association_ab,
@@ -694,10 +932,34 @@ def build_comparison() -> dict[str, Any]:
             },
         },
         "window_results": window_results,
+        "v2_contract_audit": {
+            "source_spec_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
+            "status": "PARTIAL_SYNTHETIC_FIELD_TRACE_NOT_BUSINESS_PASS",
+            "stable_display_card_id": "PRESENT_SYNTHETIC_CONTINUITY_ID",
+            "same_card_is_event_equivalence": False,
+            "candidate_episode_ids": "PRESENT_AS_SEPARATE_NODES; NEVER_UNIONED_BY_CARD_COALESCING",
+            "association_state": "PRESENT_USING_PUBLIC_ENUM_VALUES",
+            "dedup_episode_interval_key": "EXPERIMENT_INPUT_NOT_FROZEN",
+            "notification_id": "EXPERIMENT_LOCAL_ID_ONLY",
+            "kind": "PRESENT_AS_EXPERIMENT_ACTION_KIND",
+            "severity": "NOT_MAPPED_FROM_RISK_STAGE",
+            "risk_state": "NOT_FULLY_MAPPED",
+            "risk_basis_ids": "SYNTHETIC_EVIDENCE_REFS_ONLY",
+            "uncertainty_reason": "NOT_GENERATED_AS_USER_FACING_FIELD",
+            "affected_observation_ids": "PRESENT_SYNTHETIC_IDS",
+            "user_visible_message": "NOT_GENERATED",
+            "suggested_verification_action": "NOT_GENERATED",
+            "trigger_known_time": "SYNTHETIC_INPUT_PRESENT; NOT_EXTERNAL_RECEIPT",
+            "detected_at": "SYNTHETIC_INPUT_PRESENT; NOT_RUNTIME_TRACE",
+            "emitted_at": "NOT_ACTUALLY_EMITTED",
+            "visible_at": "UNKNOWN_NOT_RUN",
+            "content_revision": "PRESENT_AS_IN_MEMORY_CARD_REVISION",
+        },
         "evaluation": {
             "reminder_action_timeliness": {
                 "status": "SOFTWARE_SIMULATION_ONLY",
                 "card_revision_delay_seconds": 0,
+                "late_old_observation_processing_lag_seconds": 4,
                 "actual_visible_or_delivery_time": "UNKNOWN_NOT_RUN",
                 "deadline_threshold": "NOT_SET",
             },
@@ -709,6 +971,9 @@ def build_comparison() -> dict[str, Any]:
                 ),
                 "association_ids_retained_count": len(
                     window_results[-1]["card_coalesce"]["association_ids_retained"]
+                ),
+                "candidate_episode_ids_retained_count": len(
+                    window_results[-1]["card_coalesce"]["candidate_episode_ids_retained"]
                 ),
                 "model_calls_saved": "NOT_MEASURED",
             },
@@ -764,17 +1029,23 @@ def render_html(result: dict[str, Any]) -> str:
             "</tr>"
         )
 
+    revision_by_intent = {
+        row["intent_id"]: row["revision"]
+        for row in result["window_results"][-1]["card_coalesce"]["card_revisions"]
+    }
     action_rows = []
     for intent in result["input"]["action_intents"]:
         action_rows.append(
             "<tr>"
             f"<td>{esc(intent['received_at'])}</td>"
-            f"<td><code>{esc(intent['display_card_id'])}</code></td>"
-            f"<td>{esc(intent['kind'])}<br><small>{esc(intent['risk_stage'])}</small></td>"
-            f"<td>{esc(intent['association_ids']) or '—'}</td>"
+            f"<td><code>{esc(intent['display_card_id'])}</code><br><small>修订 {esc(revision_by_intent[intent['intent_id']])}</small></td>"
+            f"<td>{esc(intent['kind'])}<br><small>{esc(intent['risk_stage'])} / {esc(intent['association_state'])}</small></td>"
+            f"<td>{esc(intent['candidate_episode_ids'])}</td>"
+            f"<td><code>{esc(intent['dedup_episode_interval_key'])}</code></td>"
             f"<td>{esc(intent['observation_ids'])}<br><small>{esc(intent['source_ids'])}</small></td>"
-            f"<td>{esc(intent['evidence_refs'])}</td>"
-            f"<td>{esc(intent['source_times'])}<br><small>observed: {esc(intent['observed_at_times'])}</small></td>"
+            f"<td>{esc(intent['evidence_refs'])}<br><small>source_time: {esc(intent['source_times'])}</small></td>"
+            f"<td>{esc(intent['observed_at_times'])}</td>"
+            f"<td>trigger_known_time: {esc(intent['trigger_known_time'])}<br>detected_at: {esc(intent['detected_at'])}<br>received_at: {esc(intent['received_at'])}</td>"
             "</tr>"
         )
 
@@ -805,11 +1076,17 @@ def render_html(result: dict[str, Any]) -> str:
         "stale_replay": "旧内容改写时间后重放",
         "complementary_sources": "互补来源 A-B / A-C",
         "risk_escalation": "风险升级",
+        "risk_escalation_inside_window": "窗口内风险升级",
+        "conflict_pending_update": "待核状态升级为冲突",
         "counterevidence": "反证：A-C 确认不同事件",
         "association_split": "A-B 关系拆分",
+        "pending_merge_then_counter_and_split": "待核更新后反证与拆分",
         "distinct_event": "独立事件卡 Z",
         "cross_window": "窗口边界与越窗",
+        "cross_card_duplicate": "跨显示卡的相同候选",
+        "cross_episode_duplicate": "同卡上的不同候选 episode",
         "out_of_order_source_time": "处理顺序与来源时间倒序",
+        "late_old_observation": "迟到的旧观测与分立时间",
     }
     case_rows = []
     for name, title in case_titles.items():
@@ -819,6 +1096,15 @@ def render_html(result: dict[str, Any]) -> str:
             f"<th>{esc(title)}</th>"
             f"<td><code>{esc(name)}</code></td>"
             f"<td>{esc(json.dumps(case, ensure_ascii=False, sort_keys=True))}</td>"
+            "</tr>"
+        )
+
+    v2_audit_rows = []
+    for field, status in result["v2_contract_audit"].items():
+        v2_audit_rows.append(
+            "<tr>"
+            f"<th><code>{esc(field)}</code></th>"
+            f"<td>{esc(status)}</td>"
             "</tr>"
         )
 
@@ -843,30 +1129,33 @@ code {{ font-size:12px; overflow-wrap:anywhere; }} .boundary {{ background:#eff8
 </head>
 <body><main>
 <span class="tag">{esc(result['classification'])}</span>
-<h1>待核提醒动作：逐关联发送 vs 同卡合并修订</h1>
-<p>同一组由现有纯软件 AlertLedger 产生的合成提醒输入分别运行两种策略。窗口为明确实验参数，结果不构成业务策略批准。</p>
+<h1>待核提醒动作：逐关联动作 vs 同卡合并修订</h1>
+<p>{esc(result['input']['unique_action_count'])} 条按处理顺序排列的合成动作输入分别运行两种策略：其中 19 条来自内存 AlertLedger 合成过渡，4 条是明示的边界探针。两种策略使用完全相同的输入；这些记录不是独立统计样本。窗口是实验参数，不构成业务批准。</p>
 <div class="banner"><strong>历史失败保持原样：</strong>Mac V3-RSS 已完成 1,464 项检查，整轮 <b>{esc(baseline['round_status'])}</b>。五个合成场景中，四种方法的 20 条方法记录均缺少确证新事件首报；这 20 条不是独立样本。本次未重跑，也未重构旧指标。</div>
 <section class="panel"><h2>对照结果</h2>
 <div class="scroll"><table><thead><tr><th>窗口</th><th>PER_ASSOCIATION 提醒动作数</th><th>CARD_COALESCE 提醒动作数</th><th>语义卡片修订数（逐关联 / 合并）</th><th>合并进已有提醒的更新数</th><th>未表示的重要更新</th></tr></thead><tbody>{''.join(summary_rows)}</tbody></table></div>
-<p class="muted">重要提醒类（确认、升级、反证、拆分、独立事件）始终生成单独动作。合并策略只合并同卡、同类、同阶段、同批次的待核提醒；每条输入先写入独立卡片修订。</p></section>
+<p class="muted">重要提醒类（确认、升级、反证、拆分、独立事件）始终生成单独动作。待核提醒只在相同显示卡、动作类型、风险阶段、批次、实验区间键，且与该提醒组首条修订至少共享一个候选 episode 时才可能合并；每条输入先写入独立卡片修订。</p></section>
 <section class="panel"><h2>CARD_COALESCE / 5 秒：逐条决策与时间证据</h2>
 <div class="scroll"><table><thead><tr><th>处理时间</th><th>卡片</th><th>动作</th><th>结果</th><th>解释码</th><th>已过窗口 / 窗口值</th></tr></thead><tbody>{''.join(decision_rows)}</tbody></table></div>
-<p class="muted">`received_at` 决定窗口位置；source time 和 observed_at 作为卡片修订的证据字段单独保留。冲突重放拒绝结果见强制场景表。</p></section>
+<p class="muted">窗口按合成 received_at 与该提醒组首次 received_at 计算，含边界等号；卡片更新不会延长窗口。source_time、observed_at、trigger_known_time、detected_at 与 received_at 分别列入输入记录。</p></section>
 <section class="panel"><h2>窗口和身份规则</h2>
 <div class="grid">
 <div class="metric"><strong>窗口计算</strong><span>以合成处理时间 received_at 计时；采用首条提醒时间作为锚点，边界包含等号。窗口外的新提醒可开启下一条动作。</span></div>
-<div class="metric"><strong>语义证据</strong><span>每条唯一动作输入都保留 observation、source、episode、association、证据引用、source_time 与 observed_at。</span></div>
+<div class="metric"><strong>稳定卡与候选事件</strong><span>display_card_id 维持界面连续性；它本身不确立事件等价。候选 episode 独立保留，未知关联不会合并候选节点。冲突待核与一般待核作为不同状态处理。</span></div>
 <div class="metric"><strong>送达与可见</strong><span>软件记录状态为 NOT_DELIVERED；动作及卡片修订仅在内存中模拟。实际送达时间与用户可见时间均为 UNKNOWN。模型调用节省量未测。</span></div>
 </div></section>
 <section class="panel"><h2>强制场景</h2><div class="scroll"><table><thead><tr><th>场景</th><th>键</th><th>输入和判定</th></tr></thead><tbody>{''.join(case_rows)}</tbody></table></div></section>
-<section class="panel"><h2>被比较的同一提醒输入（{len(result['input']['action_intents'])} 条唯一语义动作）</h2>
-<div class="scroll"><table><thead><tr><th>处理时间</th><th>显示卡</th><th>动作 / 阶段</th><th>关联</th><th>观测 / 来源</th><th>证据引用</th><th>来源时间 / 观测时间</th></tr></thead><tbody>{''.join(action_rows)}</tbody></table></div></section>
+<section class="panel"><h2>被比较的同一提醒输入（{len(result['input']['action_intents'])} 条顺序动作，不作独立样本）</h2>
+<div class="scroll"><table><thead><tr><th>处理 received_at</th><th>稳定显示卡 / 修订</th><th>动作 / 阶段 / 关联状态</th><th>候选 episode 节点</th><th>实验区间键</th><th>观测 / 来源</th><th>证据 / source_time</th><th>observed_at</th><th>trigger_known_time / detected_at / received_at</th></tr></thead><tbody>{''.join(action_rows)}</tbody></table></div></section>
+<section class="panel"><h2>公开 V2 字段审计：部分合成跟踪</h2>
+<p class="muted">逐字段对照固定公开规格提交 <code>{esc(result['v2_contract_audit']['source_spec_commit'])}</code>。这些状态表示字段跟踪，不代表业务通过。</p>
+<div class="scroll"><table><thead><tr><th>V2 字段 / 边界</th><th>本次证据</th></tr></thead><tbody>{''.join(v2_audit_rows)}</tbody></table></div></section>
 <section class="panel"><h2>三项评价分别报告</h2>
 <div class="grid">
 <div class="metric"><strong>提醒及时性：仅模拟</strong><span>卡片修订在代码内同步写入，模拟延迟为 0 秒；没有外部送达回执，也未设正式时限。</span></div>
 <div class="metric"><strong>内容完整性：对输入核对</strong><span>所有唯一语义更新均有卡片修订；证据与关联引用按输入保留。完整性不等于用户界面显示成功。</span></div>
 <div class="metric"><strong>事件确证准确性：未评估</strong><span>同/不同事件转换由合成场景指定，不能据此估计真实事件身份准确率。</span></div>
 </div><p class="boundary"><b>尚未决定：</b>官方合并键、窗口长度、多 flag severity 优先级、来源可信阈值、提醒是否真实送达，以及 Mac 上的 ESRCH / EPERM 原因。</p></section>
-<p class="foot">实验参数：窗口 {esc(result['experiment_parameters']['window_values_seconds'])} 秒；批次 {esc(result['experiment_parameters']['batch_id'])}。多 flag severity 保持未决。未调用模型、网络服务或投递适配器。关联证据/设备名称均为 synthetic:// 占位内容。生成修订 {esc(result.get('source_revision', 'not-recorded'))}。</p>
+<p class="foot">实验参数：窗口 {esc(result['experiment_parameters']['window_values_seconds'])} 秒；批次 {esc(result['experiment_parameters']['batch_id'])}。dedup_episode_interval_key 的正式语义未冻结。多 flag severity 保持未决；用户可见消息未生成。未调用模型、网络服务或投递适配器。关联证据/设备名称均为 synthetic:// 占位内容。生成修订 {esc(result.get('source_revision', 'not-recorded'))}。</p>
 </main></body></html>
 """
