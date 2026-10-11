@@ -86,3 +86,12 @@ The frozen protocol and scorer-only predeclaration are in [runs/twobytwo-pilot-v
 Results are synthetic development evidence only: both opposite-label pairs have byte-identical method inputs, so all four cases are `NOT_SCORED_UNIDENTIFIABLE`. `MULTI_EVIDENCE_RULE` abstained at one root ID and proposed links at two root IDs; the two-root reason code reflects root-string count and did not authenticate independent source evidence. No truth-accuracy, false-merge, false-split, or superiority rate is claimed. The 219 files in the prior `comparison_attempt_02` run matched its saved manifest; the earlier failed 1,464-check trial was not rerun. The pre-run code and inputs are committed separately from the method outputs so the frozen execution sequence remains reviewable.
 
 The inputs and results are repository-relative. For Mac persistence, use the local checkout root with [MAC_PERSISTENCE_MANIFEST.json](MAC_PERSISTENCE_MANIFEST.json); do not resolve cloud absolute paths on the Mac. The original Mac V2 package is absent. Exact private-contract reconciliation still needs its main specification, field/schema definitions, metric definitions, and version/revision manifest.
+
+
+## Real public-source observability audit
+
+- [USGS real-feed read-only field audit](source-audit/usgs-summary-20261011/REAL_SOURCE_AUDIT.md): one browser-observed GeoJSON feature, exact source-provided event/update/feed timestamps, retrieval limits, license scope, and the reason lineage remains `UNKNOWN`.
+- [Normalized real public-feed sample](source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json) and [user-readable SVG field map](source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.svg). This is a real public-source sample, not synthetic data; the normalized extract does not contain the full feed or raw payload.
+- [Real-source audit persistence manifest](source-audit/usgs-summary-20261011/REAL_SOURCE_OBSERVABILITY_AUDIT_MANIFEST.json): repository-relative hashes for this audit, its sample/visualization, and the changed handoff/README. It is separate from the historical run-only Mac manifest and does not claim the files have been copied to a Mac.
+
+The sample is sufficient for a read-only field audit, but it has no collector receipt time, raw-body digest, or verified forwarding edge. No source-lineage or association prototype was run.

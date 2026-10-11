@@ -1,0 +1,57 @@
+{
+  "artifact_kind": "REAL_PUBLIC_FEED_SAMPLE",
+  "synthetic": false,
+  "source": {
+    "name": "USGS past-day earthquake GeoJSON summary feed",
+    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",
+    "schema_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php",
+    "license_status": "USGS states its authored/produced data and information are U.S. public domain and requests attribution; individual third-party product terms are not separately verified in this sample. No raw response is redistributed.",
+    "observation_channel": "browser-rendered official feed result",
+    "observed_date_utc": "2026-10-11",
+    "exact_local_capture_time_utc": null,
+    "http_status": null,
+    "response_headers": null,
+    "raw_response_sha256": null,
+    "raw_bytes_saved": false,
+    "unknown_reason": "The browser-rendered result exposed parsed content but not local receipt time, response headers, or original bytes; direct shell retrieval was blocked by the environment network tunnel."
+  },
+  "feed_metadata": {
+    "generated_epoch_ms": 1791762287000,
+    "generated_utc": "2026-10-11T23:44:47.000Z",
+    "count": 178,
+    "api": "2.7.0"
+  },
+  "feature": {
+    "id": "ci41346535",
+    "properties": {
+      "mag": 2.52,
+      "place": "34 km WNW of Desert Center, CA",
+      "time_epoch_ms": 1791754093930,
+      "time_utc": "2026-10-11T21:28:13.930Z",
+      "updated_epoch_ms": 1791758365040,
+      "updated_utc": "2026-10-11T22:39:25.040Z",
+      "net": "ci",
+      "code": "41346535",
+      "ids_raw": ",ci41346535,us6000u1mg,",
+      "sources_raw": ",ci,us,",
+      "types_raw": ",nearby-cities,origin,phase-data,scitech-link,",
+      "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci41346535.geojson"
+    },
+    "geometry": null,
+    "geometry_note": "Not retained in this normalized extract; not needed for this field audit."
+  },
+  "audit_interpretation": {
+    "event_origin_time_available": true,
+    "catalog_updated_time_available": true,
+    "feed_generated_time_available": true,
+    "local_sensor_acquisition_time_available": false,
+    "local_receiver_time_available": false,
+    "directional_forwarding_receipt_available": false,
+    "transform_input_output_digest_available": false,
+    "two_sided_hop_receipt_available": false,
+    "catalog_id_and_source_lists_prove_independence": false,
+    "lineage_status": "UNKNOWN",
+    "eligible_for_read_only_field_audit": true,
+    "eligible_for_lineage_or_event_association_prototype": false
+  }
+}

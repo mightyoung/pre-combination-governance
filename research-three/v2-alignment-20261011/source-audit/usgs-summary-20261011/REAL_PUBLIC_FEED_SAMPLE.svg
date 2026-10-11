@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">USGS real public feed sample: timestamps and unknown lineage</title>
+  <desc id="desc">A field audit of USGS feature ci41346535. Three source-provided timestamps are shown in chronological order. A line connects the timestamp markers for readability only, not as a transfer edge. Catalog IDs and source labels are listed separately. Receiver time, raw payload hash, forwarding receipts, and source independence are unknown.</desc>
+  <rect width="1200" height="760" fill="#f5f7fb"/>
+  <text x="52" y="62" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#162238">USGS 真实公开 feed 样本：字段可见，谱系仍未知</text>
+  <text x="52" y="98" font-family="Arial, sans-serif" font-size="16" fill="#4e5d73">Past-day GeoJSON · feature ci41346535 · read-only field audit · not synthetic</text>
+  <rect x="52" y="127" width="1096" height="274" rx="16" fill="#ffffff" stroke="#d5ddea"/>
+  <text x="82" y="166" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#162238">Source-provided time fields (chronology only — not a transfer trace)</text>
+  <line x1="156" y1="259" x2="1045" y2="259" stroke="#99a9bf" stroke-width="3"/>
+  <circle cx="190" cy="259" r="13" fill="#2877b8"/>
+  <circle cx="596" cy="259" r="13" fill="#8b5bb5"/>
+  <circle cx="1000" cy="259" r="13" fill="#11826b"/>
+  <text x="112" y="218" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#2877b8">EVENT ORIGIN</text>
+  <text x="518" y="218" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#8b5bb5">CATALOG UPDATE</text>
+  <text x="929" y="218" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#11826b">FEED GENERATION</text>
+  <text x="103" y="300" font-family="Arial, sans-serif" font-size="16" fill="#162238">2026-10-11</text>
+  <text x="103" y="324" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#162238">21:28:13.930Z</text>
+  <text x="509" y="300" font-family="Arial, sans-serif" font-size="16" fill="#162238">2026-10-11</text>
+  <text x="509" y="324" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#162238">22:39:25.040Z</text>
+  <text x="911" y="300" font-family="Arial, sans-serif" font-size="16" fill="#162238">2026-10-11</text>
+  <text x="911" y="324" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#162238">23:44:47.000Z</text>
+  <text x="82" y="372" font-family="Arial, sans-serif" font-size="14" fill="#5a6a80">Feed says count=178, api=2.7.0. No exact local capture/receipt instant was available.</text>
+  <rect x="52" y="424" width="500" height="144" rx="16" fill="#ffffff" stroke="#d5ddea"/>
+  <text x="82" y="465" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#162238">Catalog lists</text>
+  <text x="82" y="501" font-family="Arial, sans-serif" font-size="15" fill="#4e5d73">ids: ci41346535 · us6000u1mg</text>
+  <text x="82" y="531" font-family="Arial, sans-serif" font-size="15" fill="#4e5d73">sources: ci · us</text>
+  <text x="82" y="556" font-family="Arial, sans-serif" font-size="13" fill="#a34d25">Lists do not establish direction or independence.</text>
+  <rect x="578" y="424" width="570" height="144" rx="16" fill="#fff9ec" stroke="#e3c782"/>
+  <text x="608" y="465" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#6b4c00">Missing for lineage proof</text>
+  <text x="608" y="501" font-family="Arial, sans-serif" font-size="15" fill="#4e5d73">No receiver time · no saved response bytes/hash</text>
+  <text x="608" y="531" font-family="Arial, sans-serif" font-size="15" fill="#4e5d73">No sender/receiver hop receipt · no transform digest</text>
+  <text x="608" y="556" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#a34d25">Lineage / source independence: UNKNOWN</text>
+  <rect x="52" y="592" width="1096" height="112" rx="16" fill="#e9f0f8" stroke="#c8d6e6"/>
+  <text x="82" y="633" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#162238">Decision</text>
+  <text x="82" y="665" font-family="Arial, sans-serif" font-size="15" fill="#35465e">Enough for a small read-only field audit. Not enough for a lineage/association prototype. Obtain exact payload bytes, actual collector receipt time,</text>
+  <text x="82" y="688" font-family="Arial, sans-serif" font-size="15" fill="#35465e">and an explicit reference or two-sided hop record before modeling dependencies.</text>
+  <text x="52" y="738" font-family="Arial, sans-serif" font-size="12" fill="#68778c">USGS reports U.S. public-domain data; attribution requested. Timeline line is visual ordering only, never a causal or forwarding edge.</text>
+</svg>

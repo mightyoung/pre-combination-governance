@@ -206,3 +206,19 @@ Submit this protocol and implementation for independent review before any formal
 The next open design item is a short inventory of source-side, forwarding, and transform-run observations, their verification limits, and the minimum distinguishable development examples. See [`SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md`](SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md). It asks which real connector can provide raw record references/hashes, per-hop receipts, transform/config digests, bounded completeness evidence, and independent event adjudication. A hidden `source_family` label is never a method observation.
 
 Do not build fixtures or run another contract/association experiment until the parent selects a concrete observation source and confirms which of those fields are available. This handoff can proceed without the private Mac V2 package; missing package contents are not a blocker for selecting or assessing these independent source observations.
+
+
+## Follow-up: real public-source observability audit (2026-10-11)
+
+A bounded read-only audit used one actual row observed in the official USGS past-day GeoJSON feed. The saved normalized extract is explicitly marked `REAL_PUBLIC_FEED_SAMPLE`; its event-origin (`time`), catalog-update (`updated`), and feed-generation (`metadata.generated`) timestamps are preserved with their raw epoch milliseconds. The separate SVG labels their sequence as chronology only. USGS documents the summary schema and a one-minute update cadence; USGS copyright guidance says USGS-authored/produced material is public domain and requests attribution. Contributor/product-level rights were not individually checked, and no full raw response was copied or published.
+
+The sample provides no local acquisition/receiver time, raw response hash, two-sided forwarding receipt, broker offset, or transform input/output digest. `ids` and `sources` are catalog lists, not directional edges and not evidence of independent sources. The linked detail feed was not retrievable from this environment. NWS CAP `references` remains a plausible candidate for an explicit update chain, but no live CAP payload was acquired. The HTTP failures were in this environment's network tunnel/browser access path and do not establish source unavailability.
+
+This fulfills a small read-only **field audit only**. It does not satisfy the requested real acquisition/lineage observability prerequisites, and no lineage/association prototype, synthetic fixture, protocol test, model/network service call, or old Mac/frozen trial was run. Prior synthetic scores, the recorded failed 1,464-check trial, and Mac status remain unchanged. Full findings, the normalized sample, and a user-readable diagram are linked from the [research README](README.md) and bound in `source-audit/usgs-summary-20261011/REAL_SOURCE_OBSERVABILITY_AUDIT_MANIFEST.json`.
+
+### Next executable observation
+
+1. Through a permitted public-source retrieval path, save one exact USGS detail payload or NWS CAP message and record the local collector UTC receipt time, source URL, response headers when available, and SHA-256 of the saved bytes. Preserve only licensed/public fields needed for review.
+2. Inspect actual product/reference fields for an explicit revision or lineage relation; do not promote ID or source-name differences to independence.
+3. If available, collect both sides of a forwarding/broker handoff and a bounded cursor/offset interval that can support a completeness check. Otherwise record missingness as `UNKNOWN`.
+4. Obtain an independent same-event/different-event adjudication source and keep it in a scorer-only sidecar. Without it, retain `NOT_SCORED_UNIDENTIFIABLE` and do not run method comparisons.
