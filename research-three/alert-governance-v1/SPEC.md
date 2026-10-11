@@ -2,6 +2,7 @@
 
 **Status:** independent synthetic software specification; not a reconstruction
 of Mac V2.
+**Revision:** 1.1.0, updated after the audit of commit `5ced262`.
 
 ## Historical result retained
 
@@ -23,26 +24,36 @@ file and the event identity/ground-truth rules.
 ## Software contract
 
 1. A candidate event gets an independent `candidate_id` and a deterministic
-   `CARD-<sha256>` display-card ID. Replaying identical candidate input is
-   idempotent. Changes in alert text or revisions do not change the card ID.
+   `CARD-<sha256>` display-card ID. Replaying identical candidate input in the
+   same ledger is idempotent. Changes in alert text or revisions do not change
+   the card ID.
 2. On receipt, the ledger emits a precautionary risk alert with the internal
    risk flag, user-readable text, rationale, reason codes, evidence references,
    event time, observation time, alert-generation time, and delivery status.
 3. An uncertain identity link is `PENDING`. It does not merge or delete cards.
    The relationship stores its rationale, evidence references, times, and
    transition history.
-4. A same-event decision requires evidence references. It updates the earliest
-   stable card, records the other stable card as an alias, and points subsequent
-   lookups at the canonical card. A distinct-event decision retains both cards.
-   A later evidence-backed split restores both original IDs and appends history.
-5. Evidence-backed escalation changes the alert stage and creates a new alert
-   revision on the same stable card. No severity threshold is inferred. The
-   module requires references and records the rationale; whether evidence is
-   sufficient remains an explicit caller/reviewer decision because the Mac V2
-   evidence policy is unavailable.
+4. A same-event decision requires evidence references. The ledger treats
+   confirmed same-event relations as graph edges, recomputes connected
+   components, and uses the earliest stable card as canonical. Alias lookups
+   follow the full chain and fail closed on a cycle. Splitting an edge removes
+   only that relation and recomputes components, so other confirmed links and
+   all original card IDs remain. A distinct-event decision retains both cards.
+5. Alert stage and event-identity status are independent. The alert stage is
+   monotonic (`PRECAUTIONARY` < `CONFIRMED` < `ESCALATED`) across identity
+   proposals, confirmations, and splits. An evidence-backed escalation creates
+   a new alert revision on the same stable card. No hazard-severity threshold
+   is inferred. The module records evidence references and rationale; whether
+   evidence is sufficient remains an explicit caller/reviewer decision because
+   the Mac V2 evidence policy is unavailable.
 6. The ledger has no delivery adapter. It can report only `SIMULATED` or
    `NOT_DELIVERED`, always with `delivered_at = null`. It cannot create a
    delivered receipt.
+7. Timestamps are ordered as parsed UTC instants, including sub-second
+   precision. Association resolution and splitting preflight the transition
+   time against both the association and every affected card before changing
+   state. A stale transition fails without partial card, association, or alert
+   updates.
 
 `PRECAUTIONARY`, `CONFIRMED`, and `ESCALATED` describe alert workflow stages;
 they are not a hazard-severity scale. Severity categories and thresholds remain
@@ -69,17 +80,19 @@ The denominator is the 12 fields `card_id`, `source_ids`, `alert_level`,
 `verification_state`, `visible_text`, `rationale`, `reason_codes`,
 `evidence_refs`, `event_time`, `observed_at`, `alerted_at`, and
 `delivery_status`. A field counts as complete only when populated; source,
-evidence, and reason lists must be non-empty. The result returns the numerator,
-denominator, missing field names, and ratio.
+evidence, and reason lists must be non-empty. Null values count as missing. The
+result returns the numerator, denominator, missing field names, and ratio.
 
 ### Event confirmation accuracy
 
-For synthetic or later ground-truthed candidate pairs, accuracy is
+For synthetic or later ground-truthed candidate pairs, predictions come from
+the actual `AlertLedger.associations` state; callers provide only truth labels
+keyed by association IDs in that ledger. Unknown IDs are rejected. Accuracy is
 `correct resolved relation decisions / all resolved relation decisions`.
 `PENDING` pairs are reported as undecided and excluded from that accuracy
-denominator. Pair count, decided count, undecided count, and per-pair outcomes
-remain visible. This is identity-link accuracy, not a claim of overall hazard
-detection accuracy.
+denominator. Pair count, decided/undecided counts, unlabeled count, ledger
+status, and per-pair outcomes remain visible. This is identity-link accuracy,
+not a claim of overall hazard detection accuracy.
 
 ## Development-only validation
 

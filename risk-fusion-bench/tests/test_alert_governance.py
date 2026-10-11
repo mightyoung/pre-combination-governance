@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+from datetime import datetime
 import unittest
 
 from rfb.research.alert_governance import (
     AlertLedger,
     CandidateEvent,
     DeliveryStatus,
-    EventConfirmationResult,
     RelationDecision,
     score_alert_content_completeness,
     score_alert_timeliness,
@@ -16,16 +17,47 @@ from rfb.research.alert_governance import (
 )
 
 
-def candidate(candidate_id: str, *, summary: str | None = None) -> CandidateEvent:
+def candidate(
+    candidate_id: str,
+    *,
+    summary: str | None = None,
+    event_time: str = "2026-10-11T08:00:00Z",
+    observed_at: str = "2026-10-11T08:00:01Z",
+) -> CandidateEvent:
     return CandidateEvent(
         candidate_id=candidate_id,
-        event_time="2026-10-11T08:00:00Z",
-        observed_at="2026-10-11T08:00:01Z",
+        event_time=event_time,
+        observed_at=observed_at,
         summary=summary or f"Synthetic risk candidate {candidate_id}",
         source_id=f"sensor-{candidate_id}",
         evidence_refs=(f"synthetic://evidence/{candidate_id}",),
         risk_flag="EXPOSURE",
     )
+
+
+def propose_pair(
+    ledger: AlertLedger,
+    left: str,
+    right: str,
+    *,
+    at: str = "2026-10-11T08:00:05Z",
+):
+    ledger.add_candidate(candidate(left), alerted_at="2026-10-11T08:00:03Z")
+    ledger.add_candidate(candidate(right), alerted_at="2026-10-11T08:00:04Z")
+    return ledger.propose_association(
+        left,
+        right,
+        at=at,
+        rationale="Synthetic identity conflict.",
+    )
+
+
+def ledger_snapshot(ledger: AlertLedger):
+    return ledger.cards, ledger.associations, ledger.alerts
+
+
+def latest_alert_for(ledger: AlertLedger, card_id: str):
+    return next(alert for alert in reversed(ledger.alerts) if alert.card_id == card_id)
 
 
 class AlertGovernanceTests(unittest.TestCase):
@@ -263,12 +295,30 @@ class AlertGovernanceTests(unittest.TestCase):
 
 
     def test_event_confirmation_accuracy_excludes_pending_pairs_from_accuracy(self):
+        ledger = AlertLedger()
+        first = propose_pair(ledger, "pair-1-left", "pair-1-right")
+        second = propose_pair(ledger, "pair-2-left", "pair-2-right")
+        third = propose_pair(ledger, "pair-3-left", "pair-3-right")
+        ledger.resolve_association(
+            first.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:10Z",
+            evidence_refs=("synthetic://truth/pair-1",),
+        )
+        ledger.resolve_association(
+            second.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:10Z",
+            evidence_refs=("synthetic://truth/pair-2",),
+        )
+
         result = score_event_confirmation_accuracy(
-            (
-                EventConfirmationResult("pair-1", "SAME_EVENT", "SAME_EVENT"),
-                EventConfirmationResult("pair-2", "SAME_EVENT", "DISTINCT_EVENTS"),
-                EventConfirmationResult("pair-3", "PENDING", "SAME_EVENT"),
-            )
+            ledger,
+            {
+                first.association_id: "SAME_EVENT",
+                second.association_id: "DISTINCT_EVENTS",
+                third.association_id: "SAME_EVENT",
+            },
         )
 
         self.assertEqual(result["pair_count"], 3)
@@ -276,6 +326,294 @@ class AlertGovernanceTests(unittest.TestCase):
         self.assertEqual(result["undecided_pair_count"], 1)
         self.assertEqual(result["correct_decisions"], 1)
         self.assertEqual(result["accuracy"], 0.5)
+
+    def test_event_confirmation_accuracy_rejects_truth_for_unknown_ledger_pair(self):
+        with self.assertRaisesRegex(ValueError, "unknown"):
+            score_event_confirmation_accuracy(
+                AlertLedger(), {"not-in-ledger": "SAME_EVENT"}
+            )
+
+    def test_overlapping_same_event_links_and_old_edge_split_preserve_all_members(self):
+        ledger = AlertLedger()
+        cards = {
+            key: ledger.add_candidate(
+                candidate(key),
+                alerted_at=f"2026-10-11T08:00:0{index + 3}Z",
+            )
+            for index, key in enumerate(("overlap-a", "overlap-b", "overlap-c"))
+        }
+        ab = ledger.propose_association(
+            "overlap-a",
+            "overlap-b",
+            at="2026-10-11T08:00:06Z",
+            rationale="Synthetic overlapping link AB.",
+        )
+        bc = ledger.propose_association(
+            "overlap-b",
+            "overlap-c",
+            at="2026-10-11T08:00:07Z",
+            rationale="Synthetic overlapping link BC.",
+        )
+        ledger.resolve_association(
+            ab.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:10Z",
+            evidence_refs=("synthetic://overlap/ab",),
+        )
+        ledger.resolve_association(
+            bc.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:11Z",
+            evidence_refs=("synthetic://overlap/bc",),
+        )
+
+        self.assertEqual(
+            {ledger.card_for(key).card_id for key in cards},
+            {cards["overlap-a"].card_id},
+        )
+        self.assertEqual(
+            ledger.card_for("overlap-a").candidate_ids,
+            ("overlap-a", "overlap-b", "overlap-c"),
+        )
+        split = ledger.split_association(
+            ab.association_id,
+            at="2026-10-11T08:00:12Z",
+            rationale="Synthetic later evidence splits AB; BC remains confirmed.",
+            evidence_refs=("synthetic://overlap/split-ab",),
+        )
+
+        self.assertEqual(split.status, "SPLIT_TO_DISTINCT")
+        self.assertEqual(ledger.association(bc.association_id).status, "CONFIRMED_SAME_EVENT")
+        self.assertEqual(ledger.card_for("overlap-a").card_id, cards["overlap-a"].card_id)
+        self.assertEqual(ledger.card_for("overlap-b").card_id, cards["overlap-b"].card_id)
+        self.assertEqual(ledger.card_for("overlap-c").card_id, cards["overlap-b"].card_id)
+        active_members = [
+            member
+            for card in ledger.cards
+            if card.merged_into_card_id is None
+            for member in card.candidate_ids
+        ]
+        self.assertCountEqual(active_members, ["overlap-a", "overlap-b", "overlap-c"])
+        for card in ledger.cards:
+            latest = latest_alert_for(ledger, card.card_id)
+            self.assertGreaterEqual(
+                datetime.fromisoformat(card.updated_at.replace("Z", "+00:00")),
+                datetime.fromisoformat(latest.alerted_at.replace("Z", "+00:00")),
+            )
+
+    def test_non_monotonic_resolve_is_rejected_atomically_after_escalation(self):
+        ledger = AlertLedger()
+        association = propose_pair(ledger, "time-a", "time-b")
+        card_a = ledger.card_for("time-a")
+        ledger.escalate_card(
+            card_a.card_id,
+            at="2026-10-11T08:00:20Z",
+            rationale="Synthetic escalation after review.",
+            evidence_refs=("synthetic://time/escalation",),
+        )
+        before = ledger_snapshot(ledger)
+
+        with self.assertRaisesRegex(ValueError, "time|precede|monotonic"):
+            ledger.resolve_association(
+                association.association_id,
+                decision=RelationDecision.SAME_EVENT,
+                at="2026-10-11T08:00:10Z",
+                evidence_refs=("synthetic://time/resolve",),
+            )
+
+        self.assertEqual(ledger_snapshot(ledger), before)
+
+    def test_non_monotonic_split_is_rejected_atomically_after_escalation(self):
+        ledger = AlertLedger()
+        association = propose_pair(ledger, "split-time-a", "split-time-b")
+        ledger.resolve_association(
+            association.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:10Z",
+            evidence_refs=("synthetic://time/same",),
+        )
+        canonical = ledger.card_for("split-time-a")
+        ledger.escalate_card(
+            canonical.card_id,
+            at="2026-10-11T08:00:20Z",
+            rationale="Synthetic escalation after merge.",
+            evidence_refs=("synthetic://time/escalation",),
+        )
+        before = ledger_snapshot(ledger)
+
+        with self.assertRaisesRegex(ValueError, "time|precede|monotonic"):
+            ledger.split_association(
+                association.association_id,
+                at="2026-10-11T08:00:15Z",
+                rationale="Synthetic earlier split.",
+                evidence_refs=("synthetic://time/split",),
+            )
+
+        self.assertEqual(ledger_snapshot(ledger), before)
+
+    def test_identity_updates_do_not_downgrade_an_escalated_alert(self):
+        ledger = AlertLedger()
+        card = ledger.add_candidate(candidate("stage-a"), alerted_at="2026-10-11T08:00:03Z")
+        ledger.add_candidate(candidate("stage-b"), alerted_at="2026-10-11T08:00:04Z")
+        ledger.escalate_card(
+            card.card_id,
+            at="2026-10-11T08:00:05Z",
+            rationale="Synthetic escalation before identity review.",
+            evidence_refs=("synthetic://stage/escalation",),
+        )
+        association = ledger.propose_association(
+            "stage-a",
+            "stage-b",
+            at="2026-10-11T08:00:06Z",
+            rationale="Synthetic identity review.",
+        )
+        self.assertEqual(ledger.card_for("stage-a").alert_level, "ESCALATED")
+        self.assertEqual(ledger.card_for("stage-a").status, "PENDING_VERIFICATION")
+
+        ledger.resolve_association(
+            association.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:07Z",
+            evidence_refs=("synthetic://stage/same-event",),
+        )
+        self.assertEqual(ledger.card_for("stage-a").alert_level, "ESCALATED")
+        ledger.split_association(
+            association.association_id,
+            at="2026-10-11T08:00:08Z",
+            rationale="Synthetic evidence later separates the events.",
+            evidence_refs=("synthetic://stage/split",),
+        )
+        self.assertEqual(ledger.card_for("stage-a").alert_level, "ESCALATED")
+
+    def test_multilevel_alias_resolution_and_escalation_reach_final_canonical_card(self):
+        ledger = AlertLedger()
+        card_c = ledger.add_candidate(candidate("alias-c"), alerted_at="2026-10-11T08:00:03Z")
+        ledger.add_candidate(candidate("alias-a"), alerted_at="2026-10-11T08:00:04Z")
+        card_b = ledger.add_candidate(candidate("alias-b"), alerted_at="2026-10-11T08:00:05Z")
+        ab = ledger.propose_association(
+            "alias-a", "alias-b", at="2026-10-11T08:00:06Z", rationale="Synthetic AB."
+        )
+        ledger.resolve_association(
+            ab.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:08Z",
+            evidence_refs=("synthetic://alias/ab",),
+        )
+        ac = ledger.propose_association(
+            "alias-a", "alias-c", at="2026-10-11T08:00:09Z", rationale="Synthetic AC."
+        )
+        ledger.resolve_association(
+            ac.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:10Z",
+            evidence_refs=("synthetic://alias/ac",),
+        )
+
+        # Reproduce a legacy alias chain left by sequential pairwise merging.
+        ledger._cards[card_b.card_id] = replace(
+            ledger.get_card(card_b.card_id), merged_into_card_id=ledger.card_for("alias-a").card_id
+        )
+
+        self.assertEqual(ledger.card_for("alias-b").card_id, card_c.card_id)
+        escalated = ledger.escalate_card(
+            card_b.card_id,
+            at="2026-10-11T08:00:11Z",
+            rationale="Synthetic escalation through an alias chain.",
+            evidence_refs=("synthetic://alias/escalation",),
+        )
+        self.assertEqual(escalated.card_id, card_c.card_id)
+        self.assertEqual(ledger.alerts[-1].card_id, card_c.card_id)
+
+    def test_alias_cycle_fails_closed_in_canonical_resolver(self):
+        ledger = AlertLedger()
+        card_a = ledger.add_candidate(candidate("cycle-a"), alerted_at="2026-10-11T08:00:03Z")
+        card_b = ledger.add_candidate(candidate("cycle-b"), alerted_at="2026-10-11T08:00:04Z")
+        ledger._cards[card_a.card_id] = replace(
+            ledger.get_card(card_a.card_id), merged_into_card_id=card_b.card_id
+        )
+        ledger._cards[card_b.card_id] = replace(
+            ledger.get_card(card_b.card_id), merged_into_card_id=card_a.card_id
+        )
+
+        with self.assertRaisesRegex(ValueError, "cycle"):
+            ledger.card_for("cycle-a")
+
+    def test_microsecond_timestamps_are_ordered_by_time_not_text(self):
+        ledger = AlertLedger()
+        ledger.add_candidate(
+            candidate(
+                "micro-a",
+                event_time="2026-10-11T08:00:00Z",
+                observed_at="2026-10-11T08:00:00Z",
+            ),
+            alerted_at="2026-10-11T08:00:00.100000Z",
+        )
+        ledger.add_candidate(
+            candidate(
+                "micro-b",
+                event_time="2026-10-11T08:00:00.500000Z",
+                observed_at="2026-10-11T08:00:00.500000Z",
+            ),
+            alerted_at="2026-10-11T08:00:00.600000Z",
+        )
+        association = ledger.propose_association(
+            "micro-a",
+            "micro-b",
+            at="2026-10-11T08:00:00.700000Z",
+            rationale="Synthetic microsecond ordering.",
+        )
+
+        ledger.resolve_association(
+            association.association_id,
+            decision=RelationDecision.SAME_EVENT,
+            at="2026-10-11T08:00:01Z",
+            evidence_refs=("synthetic://microseconds/same",),
+        )
+
+        self.assertEqual(ledger.alerts[-1].event_time, "2026-10-11T08:00:00Z")
+        self.assertEqual(ledger.alerts[-1].observed_at, "2026-10-11T08:00:00Z")
+
+    def test_content_completeness_reports_each_of_12_missing_fields(self):
+        ledger = AlertLedger()
+        ledger.add_candidate(candidate("content-a"), alerted_at="2026-10-11T08:00:03Z")
+        alert = ledger.alerts[-1]
+        missing_values = {
+            "card_id": "",
+            "source_ids": (),
+            "alert_level": "",
+            "verification_state": "",
+            "visible_text": "",
+            "rationale": "",
+            "reason_codes": (),
+            "evidence_refs": (),
+            "event_time": "",
+            "observed_at": "",
+            "alerted_at": "",
+            "delivery_status": None,
+        }
+
+        for field, empty_value in missing_values.items():
+            with self.subTest(field=field):
+                result = score_alert_content_completeness(
+                    replace(alert, **{field: empty_value})
+                )
+                self.assertFalse(result["complete"])
+                self.assertEqual(result["missing_fields"], [field])
+                self.assertEqual(result["complete_field_count"], 11)
+
+    def test_same_ledger_candidate_replay_is_idempotent(self):
+        ledger = AlertLedger()
+        first = ledger.add_candidate(
+            candidate("replay-a"), alerted_at="2026-10-11T08:00:03Z"
+        )
+        alerts_before = ledger.alerts
+
+        replayed = ledger.add_candidate(
+            candidate("replay-a"), alerted_at="2026-10-11T08:00:04Z"
+        )
+
+        self.assertEqual(replayed.card_id, first.card_id)
+        self.assertEqual(ledger.alerts, alerts_before)
 
 
 if __name__ == "__main__":

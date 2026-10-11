@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "evaluation_spec": "alert-governance-eval-v1.0.0",
+  "evaluation_spec": "alert-governance-eval-v1.1.0",
   "classification": "SYNTHETIC_DEVELOPMENT_ONLY",
   "generated_on_utc": "2026-10-11",
   "synthetic_inputs_only": true,
   "execution": {
     "unit_test_command": "PYTHONPATH=src python -m unittest -v tests.test_alert_governance",
-    "unit_tests_passed": 10,
+    "unit_tests_passed": 20,
     "unit_tests_failed": 0,
     "model_service_called": false,
     "network_service_called": false,
@@ -58,6 +58,53 @@
         "CONFIRMED_SAME_EVENT",
         "SPLIT_TO_DISTINCT"
       ]
+    },
+    {
+      "scenario": "S6_OVERLAPPING_LINKS_AND_EDGE_SPLIT",
+      "result": "PASS",
+      "synthetic_candidates": 3,
+      "same_event_edges_before_split": 2,
+      "same_event_edges_after_split": 1,
+      "all_original_candidate_members_preserved_once": true,
+      "remaining_bc_link_keeps_b_and_c_together": true
+    },
+    {
+      "scenario": "S7_STALE_TRANSITION_ATOMICITY",
+      "result": "PASS",
+      "resolve_after_card_update_rejected_without_state_change": true,
+      "split_after_card_update_rejected_without_state_change": true
+    },
+    {
+      "scenario": "S8_ALERT_STAGE_PRESERVED_ACROSS_IDENTITY_CHANGES",
+      "result": "PASS",
+      "escalated_stage_preserved_after_pending_link_confirmation_and_split": true,
+      "identity_status_remains_separate_from_alert_stage": true
+    },
+    {
+      "scenario": "S9_CHAINED_ALIAS_RESOLUTION",
+      "result": "PASS",
+      "synthetic_legacy_alias_chain": "B->A->C",
+      "lookup_and_escalation_resolve_to": "C",
+      "cycle_fails_closed": true
+    },
+    {
+      "scenario": "S10_SUBSECOND_TIMESTAMP_ORDERING",
+      "result": "PASS",
+      "timestamp_order_uses_parsed_utc_instants": true,
+      "microsecond_boundary_checked": true
+    },
+    {
+      "scenario": "S11_CONTENT_COMPLETENESS_NULL_HANDLING",
+      "result": "PASS",
+      "required_field_count": 12,
+      "each_empty_or_null_field_reported_missing": true
+    },
+    {
+      "scenario": "S12_LEDGER_BACKED_EVENT_ACCURACY",
+      "result": "PASS",
+      "predictions_derived_from_actual_ledger_association_states": true,
+      "truth_for_unknown_association_rejected": true,
+      "pending_pairs_excluded_from_accuracy_denominator": true
     }
   ],
   "metric_examples": {
@@ -81,7 +128,10 @@
       "delivery_status": "SIMULATED"
     },
     "event_confirmation_accuracy": {
+      "prediction_source": "AlertLedger.associations",
+      "association_count": 3,
       "pair_count": 3,
+      "unlabeled_pair_count": 0,
       "decided_pair_count": 2,
       "undecided_pair_count": 1,
       "correct_decisions": 1,
@@ -90,19 +140,22 @@
       "status": "SCORED",
       "pairs": [
         {
-          "association_id": "synthetic-pair-1",
-          "predicted_relation": "SAME_EVENT",
-          "true_relation": "SAME_EVENT",
-          "status": "CORRECT"
-        },
-        {
-          "association_id": "synthetic-pair-2",
+          "association_id": "ASSOC-0b555b9fd6a1c7f0efe4e716a111dfd435bf6b42ca9b4eb7c1d76f8f62ab28a3",
+          "ledger_status": "CONFIRMED_SAME_EVENT",
           "predicted_relation": "SAME_EVENT",
           "true_relation": "DISTINCT_EVENTS",
           "status": "INCORRECT"
         },
         {
-          "association_id": "synthetic-pair-3",
+          "association_id": "ASSOC-cd5de8b275cf6a66d0022b913ef89b92b118e616de60a80ed92a6500db429b6c",
+          "ledger_status": "CONFIRMED_SAME_EVENT",
+          "predicted_relation": "SAME_EVENT",
+          "true_relation": "SAME_EVENT",
+          "status": "CORRECT"
+        },
+        {
+          "association_id": "ASSOC-f9bc8cc72544050d9f0edb0a021adc9d54c66bb192782484c910270984350001",
+          "ledger_status": "PENDING",
           "predicted_relation": "PENDING",
           "true_relation": "SAME_EVENT",
           "status": "UNDECIDED"
