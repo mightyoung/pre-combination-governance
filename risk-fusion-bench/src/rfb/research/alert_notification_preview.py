@@ -7,6 +7,7 @@ notification, establish evidence qualification, or validate real event truth.
 from __future__ import annotations
 
 from collections.abc import Mapping
+from datetime import datetime, timezone
 from typing import Any
 
 from .alert_action_experiment import (
@@ -45,6 +46,24 @@ PUBLIC_V2_NOTIFICATION_REQUIRED_FIELDS = (
     "content_revision",
     "dedup_episode_interval_key",
 )
+
+
+def _parse_alignment_time(value: str, label: str) -> datetime:
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{label} must be an ISO-8601 timestamp with UTC offset")
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(
+            f"{label} must be an ISO-8601 timestamp with UTC offset"
+        ) from exc
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        raise ValueError(f"{label} must include a UTC offset")
+    return parsed.astimezone(timezone.utc)
+
+
+def _format_alignment_time(value: datetime) -> str:
+    return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
 _ASSOCIATION_REASON = {
     "UNKNOWN_PENDING": (
@@ -319,6 +338,48 @@ def _validate_identity_ledger_alignment(
     association_state: str,
     revisions: tuple[CardRevision, ...],
 ) -> dict[str, Any]:
+    evidence_known_at = identity_record.get("identity_evidence_known_at")
+    identity_resolved_at = identity_record.get("resolved_at")
+    is_resolved_identity = association_state in {
+        "SAME_CONFIRMED",
+        "DIFFERENT_CONFIRMED",
+    }
+    evidence_known_time = (
+        _parse_alignment_time(evidence_known_at, "identity_evidence_known_at")
+        if is_resolved_identity
+        else None
+    )
+    identity_resolved_time = (
+        _parse_alignment_time(identity_resolved_at, "resolved_at")
+        if is_resolved_identity
+        else None
+    )
+    if (
+        evidence_known_time is not None
+        and identity_resolved_time is not None
+        and identity_resolved_time < evidence_known_time
+    ):
+        raise ValueError("identity resolution precedes identity evidence availability")
+
+    temporal_alignment = {
+        "status": (
+            "NO_RESOLVED_ACTION_TO_COMPARE"
+            if is_resolved_identity
+            else "NOT_APPLICABLE_TO_PENDING_IDENTITY"
+        ),
+        "identity_evidence_known_at": (
+            _format_alignment_time(evidence_known_time)
+            if evidence_known_time is not None
+            else None
+        ),
+        "identity_resolved_at": (
+            _format_alignment_time(identity_resolved_time)
+            if identity_resolved_time is not None
+            else None
+        ),
+        "earliest_resolved_revision_received_at": None,
+        "earliest_identity_transition_detected_at": None,
+    }
     if not revisions:
         return {
             "status": "NO_LEDGER_HISTORY_TO_COMPARE",
@@ -327,6 +388,7 @@ def _validate_identity_ledger_alignment(
             "latest_revision_association_state": None,
             "expected_event_episode_ids": list(event_episode_ids),
             "latest_revision_candidate_episode_ids": [],
+            "temporal_alignment": temporal_alignment,
         }
 
     expected_episode_ids = set(association_episode_ids)
@@ -338,6 +400,8 @@ def _validate_identity_ledger_alignment(
         ActionKind.EVENT_SPLIT,
         ActionKind.DISTINCT_EVENT_ALERT,
     }
+    resolved_revision_received_times: list[datetime] = []
+    identity_transition_detected_times: list[datetime] = []
     for revision in revisions:
         unexpected_episode_ids = set(revision.candidate_episode_ids) - expected_episode_ids
         if unexpected_episode_ids:
@@ -369,6 +433,26 @@ def _validate_identity_ledger_alignment(
                 raise ValueError(
                     "identity transition candidate episodes do not match resolved card episodes"
                 )
+            received_time = _parse_alignment_time(
+                revision.received_at, "resolved_revision_received_at"
+            )
+            if received_time < identity_resolved_time:
+                raise ValueError(
+                    "resolved card revision precedes identity resolution"
+                )
+            resolved_revision_received_times.append(received_time)
+            if (
+                revision.kind in identity_transition_kinds
+                and revision.detected_at is not None
+            ):
+                detected_time = _parse_alignment_time(
+                    revision.detected_at, "identity_transition_detected_at"
+                )
+                if detected_time < evidence_known_time:
+                    raise ValueError(
+                        "identity transition detected before identity evidence was known"
+                    )
+                identity_transition_detected_times.append(detected_time)
 
     latest_revision = revisions[-1]
     association_id = identity_record["association_id"]
@@ -380,6 +464,16 @@ def _validate_identity_ledger_alignment(
         raise ValueError(
             "latest ledger revision association state does not match the supplied identity state"
         )
+    if is_resolved_identity:
+        temporal_alignment["status"] = "ALIGNED"
+        if resolved_revision_received_times:
+            temporal_alignment["earliest_resolved_revision_received_at"] = (
+                _format_alignment_time(min(resolved_revision_received_times))
+            )
+        if identity_transition_detected_times:
+            temporal_alignment["earliest_identity_transition_detected_at"] = (
+                _format_alignment_time(min(identity_transition_detected_times))
+            )
     return {
         "status": "MATCHED_LEDGER_HISTORY",
         "association_id": association_id,
@@ -387,6 +481,7 @@ def _validate_identity_ledger_alignment(
         "latest_revision_association_state": latest_revision.association_state,
         "expected_event_episode_ids": list(event_episode_ids),
         "latest_revision_candidate_episode_ids": list(latest_revision.candidate_episode_ids),
+        "temporal_alignment": temporal_alignment,
     }
 
 

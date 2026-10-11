@@ -17,6 +17,7 @@ from rfb.research.event_card_resolution import (
     PendingAssociation,
     resolve_pending_association,
 )
+from rfb.research.frozen_prefix_adapter import PrefixFieldFact, freeze_visible_prefix
 try:
     from rfb.research.alert_notification_preview import build_event_card_preview
 except ImportError:
@@ -41,6 +42,7 @@ def make_intent(
     episodes: tuple[str, ...] = EPISODES,
     risk_flags: tuple[str, ...] = ("EXPOSURE",),
     received_seconds: int = 0,
+    detected_seconds: int = 0,
 ) -> ActionIntent:
     return ActionIntent(
         intent_id=intent_id,
@@ -61,7 +63,7 @@ def make_intent(
         association_state=state,
         dedup_episode_interval_key="SYNTH-INTERVAL-A-B",
         trigger_known_time=stamp(0),
-        detected_at=stamp(0),
+        detected_at=stamp(detected_seconds),
     )
 
 
@@ -80,12 +82,119 @@ def pending_association() -> PendingAssociation:
     )
 
 
+def prefix_facts(
+    *, association_state: str, risk_flags: tuple[str, ...], known_seconds: int
+) -> tuple[PrefixFieldFact, ...]:
+    values = {
+        "display_card_id": "CARD-A",
+        "candidate_episode_ids": EPISODES,
+        "association_ids": (ASSOCIATION_ID,),
+        "risk_stage": "PRECAUTIONARY",
+        "risk_flags": risk_flags,
+        "risk_basis_ids": ("synthetic://risk/prefix",),
+        "observation_ids": ("OBS-EP-A", "OBS-EP-B"),
+        "source_ids": ("DEVICE-EP-A", "DEVICE-EP-B"),
+        "evidence_refs": ("synthetic://evidence/prefix",),
+        "source_times": (stamp(0),),
+        "observed_at_times": (stamp(0),),
+        "experiment_batch_id": "SYNTH-BATCH-FROZEN-PREFIX",
+        "association_state": association_state,
+        "dedup_episode_interval_key": "SYNTH-INTERVAL-A-B",
+        "trigger_known_time": stamp(0),
+        "detected_at": stamp(known_seconds),
+    }
+    known_at = stamp(known_seconds)
+    return tuple(
+        PrefixFieldFact(
+            name=name,
+            value=value,
+            producer=f"synthetic-upstream:{name}:v1",
+            earliest_known_at=known_at,
+            evidence_refs=(f"synthetic://prefix/{name}/{known_seconds}",),
+        )
+        for name, value in values.items()
+    )
+
+
+def intent_from_frozen_prefix(prefix, *, intent_id: str) -> ActionIntent:
+    return ActionIntent(
+        intent_id=intent_id,
+        display_card_id=prefix.value("display_card_id"),
+        kind=ActionKind.ASSOCIATION_PENDING,
+        risk_stage=prefix.value("risk_stage"),
+        received_at=prefix.as_of,
+        observation_ids=prefix.value("observation_ids"),
+        source_ids=prefix.value("source_ids"),
+        candidate_episode_ids=prefix.value("candidate_episode_ids"),
+        association_ids=prefix.value("association_ids"),
+        evidence_refs=prefix.value("evidence_refs"),
+        risk_flags=prefix.value("risk_flags"),
+        risk_basis_ids=prefix.value("risk_basis_ids"),
+        source_times=prefix.value("source_times"),
+        observed_at_times=prefix.value("observed_at_times"),
+        experiment_batch_id=prefix.value("experiment_batch_id"),
+        association_state=prefix.value("association_state"),
+        dedup_episode_interval_key=prefix.value("dedup_episode_interval_key"),
+        trigger_known_time=prefix.value("trigger_known_time"),
+        detected_at=prefix.value("detected_at"),
+    )
+
+
 class EventCardIntegrationTests(unittest.TestCase):
     def require_preview_builder(self):
         self.assertIsNotNone(
             build_event_card_preview,
             "the complete event-card preview is not connected to the action ledger",
         )
+
+    def test_complete_future_suffixes_freeze_to_the_same_card_preview_at_one_as_of(self):
+        self.require_preview_builder()
+        common_prefix = prefix_facts(
+            association_state="UNKNOWN_PENDING",
+            risk_flags=("EXPOSURE",),
+            known_seconds=0,
+        )
+        future_same = prefix_facts(
+            association_state="SAME_CONFIRMED",
+            risk_flags=("EXPOSURE_HIGH",),
+            known_seconds=2,
+        )
+        future_different = prefix_facts(
+            association_state="DIFFERENT_CONFIRMED",
+            risk_flags=("EXPOSURE", "CONFLICT_REVIEW"),
+            known_seconds=2,
+        )
+        self.assertNotEqual(future_same, future_different)
+
+        same_prefix = freeze_visible_prefix(
+            common_prefix + future_same, as_of=stamp(1)
+        )
+        different_prefix = freeze_visible_prefix(
+            common_prefix + future_different, as_of=stamp(1)
+        )
+        self.assertEqual(same_prefix.as_record(), different_prefix.as_record())
+        self.assertNotEqual(
+            freeze_visible_prefix(common_prefix + future_same, as_of=stamp(3)).as_record(),
+            freeze_visible_prefix(common_prefix + future_different, as_of=stamp(3)).as_record(),
+        )
+
+        same_ledger = new_ledger()
+        different_ledger = new_ledger()
+        same_ledger.apply(
+            intent_from_frozen_prefix(same_prefix, intent_id="frozen-prefix-pending")
+        )
+        different_ledger.apply(
+            intent_from_frozen_prefix(different_prefix, intent_id="frozen-prefix-pending")
+        )
+        same_preview = build_event_card_preview(
+            pending_association(), card_id="CARD-A", ledger=same_ledger
+        )
+        different_preview = build_event_card_preview(
+            pending_association(), card_id="CARD-A", ledger=different_ledger
+        )
+        self.assertEqual(same_preview, different_preview)
+        self.assertEqual(same_preview["association_state"], "UNKNOWN_PENDING")
+        self.assertEqual(same_preview["candidate_episode_ids"], list(EPISODES))
 
     def test_identical_prefix_forks_to_external_same_merge_and_different_split(self):
         self.require_preview_builder()
@@ -130,6 +239,7 @@ class EventCardIntegrationTests(unittest.TestCase):
             kind=ActionKind.ASSOCIATION_CONFIRMED,
             state="SAME_CONFIRMED",
             received_seconds=3,
+            detected_seconds=2,
         )
         same_ledger.apply(same_confirmation)
         same_card = build_event_card_preview(
@@ -142,9 +252,30 @@ class EventCardIntegrationTests(unittest.TestCase):
             same_card["identity_ledger_alignment"]["status"],
             "MATCHED_LEDGER_HISTORY",
         )
+        same_temporal_alignment = same_card["identity_ledger_alignment"][
+            "temporal_alignment"
+        ]
+        self.assertEqual(same_temporal_alignment["status"], "ALIGNED")
+        self.assertEqual(
+            same_temporal_alignment["identity_evidence_known_at"], stamp(2)
+        )
+        self.assertEqual(same_temporal_alignment["identity_resolved_at"], stamp(3))
+        self.assertEqual(
+            same_temporal_alignment["earliest_resolved_revision_received_at"],
+            stamp(3),
+        )
+        self.assertEqual(
+            same_temporal_alignment["earliest_identity_transition_detected_at"],
+            stamp(2),
+        )
         self.assertEqual(same_card["history_link_card_ids"], [])
         self.assertEqual(same_card["content_revision_count"], 2)
         self.assertEqual(len(same_card["revision_history"]), 2)
+        self.assertEqual(
+            same_card["revision_history"][0]["association_state"],
+            "UNKNOWN_PENDING",
+        )
+        self.assertEqual(same_card["current_content"]["trigger_known_time"], stamp(0))
         self.assertEqual(
             same_card["identity_resolution"]["state_source"],
             "EXTERNALLY_SUPPLIED_RESOLUTION",
@@ -173,6 +304,7 @@ class EventCardIntegrationTests(unittest.TestCase):
             state="DIFFERENT_CONFIRMED",
             episodes=("EP-A",),
             received_seconds=3,
+            detected_seconds=2,
         )
         new_event_alert = make_intent(
             "new-event-alert",
@@ -181,6 +313,7 @@ class EventCardIntegrationTests(unittest.TestCase):
             state="DIFFERENT_CONFIRMED",
             episodes=("EP-B",),
             received_seconds=3,
+            detected_seconds=2,
         )
         different_ledger.apply(split_update)
         different_ledger.apply(new_event_alert)
@@ -205,6 +338,10 @@ class EventCardIntegrationTests(unittest.TestCase):
             self.assertEqual(
                 card_preview["identity_ledger_alignment"]["status"],
                 "MATCHED_LEDGER_HISTORY",
+            )
+            self.assertEqual(
+                card_preview["identity_ledger_alignment"]["temporal_alignment"]["status"],
+                "ALIGNED",
             )
             self.assertTrue(card_preview["card_preview_audit"]["all_required_fields_present"])
             self.assertTrue(
@@ -332,6 +469,8 @@ class EventCardIntegrationTests(unittest.TestCase):
                 kind=ActionKind.DISTINCT_EVENT_ALERT,
                 state="DIFFERENT_CONFIRMED",
                 episodes=("EP-A",),
+                received_seconds=3,
+                detected_seconds=2,
             )
         )
         with self.assertRaisesRegex(ValueError, "resolved card episodes"):
@@ -349,6 +488,7 @@ class EventCardIntegrationTests(unittest.TestCase):
                 kind=ActionKind.RISK_ESCALATION,
                 state="DIFFERENT_CONFIRMED",
                 episodes=("EP-A",),
+                received_seconds=3,
             )
         )
         invalid_resolved_history_ledger.apply(
@@ -358,7 +498,8 @@ class EventCardIntegrationTests(unittest.TestCase):
                 kind=ActionKind.DISTINCT_EVENT_ALERT,
                 state="DIFFERENT_CONFIRMED",
                 episodes=("EP-B",),
-                received_seconds=1,
+                received_seconds=4,
+                detected_seconds=2,
             )
         )
         with self.assertRaisesRegex(ValueError, "resolved card episodes"):
@@ -367,6 +508,54 @@ class EventCardIntegrationTests(unittest.TestCase):
                 card_id="CARD-B",
                 ledger=invalid_resolved_history_ledger,
             )
+
+    def test_rejects_confirmation_revision_before_identity_resolution_time(self):
+        self.require_preview_builder()
+        pending = pending_association()
+        resolution = resolve_pending_association(
+            pending,
+            association_state="SAME_CONFIRMED",
+            identity_evidence_known_at=stamp(2),
+            resolved_at=stamp(3),
+            evidence_refs=("synthetic://identity/SAME/A-B",),
+        )
+        ledger = new_ledger()
+        ledger.apply(make_intent("pending-before-identity", received_seconds=0))
+        early_confirmation = make_intent(
+            "early-same-confirmation",
+            kind=ActionKind.ASSOCIATION_CONFIRMED,
+            state="SAME_CONFIRMED",
+            received_seconds=1,
+            detected_seconds=1,
+        )
+        ledger.apply(early_confirmation)
+
+        with self.assertRaisesRegex(ValueError, "precedes identity resolution"):
+            build_event_card_preview(resolution, card_id="CARD-A", ledger=ledger)
+
+    def test_rejects_confirmation_detection_before_identity_evidence_is_known(self):
+        self.require_preview_builder()
+        pending = pending_association()
+        resolution = resolve_pending_association(
+            pending,
+            association_state="SAME_CONFIRMED",
+            identity_evidence_known_at=stamp(2),
+            resolved_at=stamp(3),
+            evidence_refs=("synthetic://identity/SAME/A-B",),
+        )
+        ledger = new_ledger()
+        ledger.apply(make_intent("pending-before-identity", received_seconds=0))
+        late_confirmation = make_intent(
+            "late-same-confirmation-with-early-detection",
+            kind=ActionKind.ASSOCIATION_CONFIRMED,
+            state="SAME_CONFIRMED",
+            received_seconds=3,
+            detected_seconds=1,
+        )
+        ledger.apply(late_confirmation)
+
+        with self.assertRaisesRegex(ValueError, "detected before identity evidence"):
+            build_event_card_preview(resolution, card_id="CARD-A", ledger=ledger)
 
 
 if __name__ == "__main__":

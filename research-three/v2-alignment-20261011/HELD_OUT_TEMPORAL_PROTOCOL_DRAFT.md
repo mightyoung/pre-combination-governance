@@ -77,6 +77,10 @@ held-out 采样框应覆盖以下模式；它们只描述抽样维度，不成�
 
 [`build_event_card_preview`](../../risk-fusion-bench/src/rfb/research/alert_notification_preview.py) 将外部身份结果、`ReminderActionLedger` 中的全部卡片修订与各修订的公开 V2 通知内容预览汇总成合成完整卡片视图，包含事件 episode、候选、历史卡链接、当前通知内容、修订历史与重放审计。它会失败关闭拒绝 ledger episode 与身份 episode 不匹配、无关联 ID 引用或最新修订状态与外部身份状态不一致的输入；历史中的每条 `ASSOCIATION_PENDING` 都必须保留完整待核候选对，确证状态下的修订与身份转移必须匹配该展示卡的 episode，也拒绝历史中冲突的确证状态。没有修订可比较时明确标记 `NO_LEDGER_HISTORY_TO_COMPARE`。公共 V2 record schema 仍只有字段存在性要求，没有冻结卡片聚合类型合同；该视图标记 `SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY`、`business_acceptance=NOT_EVALUATED`、`NOT_DELIVERED`，不代表实际 UI、投递或真实事件确证。小型集成夹具位于 [`test_event_card_integration.py`](../../risk-fusion-bench/tests/test_event_card_integration.py)；同一待核前缀分别接入外部给定的 SAME 与 DIFFERENT 后续，另检查重复回放不增发动作、单 flag 升级再次提醒和身份/ledger 不一致拒绝。接口不支持 `task_ids` 重绑定，本轮没有假设该语义。
 
+身份/ledger 对齐另核对身份时间证据：包含 `SAME_CONFIRMED` / `DIFFERENT_CONFIRMED` 的修订处理时间不得早于外部 `resolved_at`；身份转移动作的 `detected_at` 不得早于 `identity_evidence_known_at`。若这些时间倒置则失败关闭。历史待核修订仍保留原状态，原始 `trigger_known_time` 也按输入保留，不以最终确证回写过去。审计输出列出身份证据时间、确证时间以及最早相关修订/转移动作时间。本项是合成时态一致性检查，不验证真实业务时间源或事实真值。
+
+同文件集成测试还把两组完整的合成未来轨迹（SAME 与 DIFFERENT 状态及不同风险后缀）原样交给 `freeze_visible_prefix`；同一 `as_of` 的物化前缀、后续提醒动作和完整卡片预览一致，而较晚 `as_of` 结果分化。该测试覆盖适配器到台账/卡片预览的输入边界，不把任何未来事实纳入早期前缀。
+
 对同一前缀替换任意未来后缀，两个策略臂的冻结输入与策略形状都应保持一致。对所有随机 ID 做一致重命名，策略输出的计数、状态与关系结构应保持同构，仅相应 ID 改变。ID 同构只检查策略对标识符不敏感，不说明事件关系正确。适配器测试输入是显式合成值，不纳入数据集、独立样本分母或效果估计。
 
 ### 拆分、确认与未决时间的评分

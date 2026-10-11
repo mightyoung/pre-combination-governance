@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
-      "bytes": 18420,
-      "sha256": "df01bbe280946adc438de41714d593f5c02e7039657fed7a309a8cb118bca359"
+      "bytes": 19376,
+      "sha256": "8a37ecbffc74eb0457c014aa2338b7e7d906a0447d4e5dbc33ff18de1bb1e133"
     },
     {
       "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
@@ -42,13 +42,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/IMPLEMENTATION_REVIEW_CLOSURE_20261011.md",
-      "bytes": 7037,
-      "sha256": "a9e2424c3f1b506e5427840a8593940c68c6a2fd848aace6835e24a9c658461f"
+      "bytes": 8593,
+      "sha256": "f0aad2195aa9e1c3ae3c84d3331a6b95b23dfe87ecb7ae95819cc28d46b58883"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 9097,
-      "sha256": "54b8099cb87a257d7ea6fd65d08e113f013a57dbb6fcedd45f79f8053597b2e8"
+      "bytes": 9300,
+      "sha256": "b0b2639b9761c4a511cdb61eb0d10454da3a70495e10ea6ca1c756fdee30cfe7"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -117,8 +117,8 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
-      "bytes": 24781,
-      "sha256": "203e016c28de7c73e805c48d30f6c0274fe842838031a1294825664770c35807"
+      "bytes": 28713,
+      "sha256": "b7c4515df5861b3c0b8978f0f2ee6dd3e9f885787c5e727a09b0c896161d0b36"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
@@ -157,8 +157,8 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_event_card_integration.py",
-      "bytes": 14977,
-      "sha256": "d31db404e9ae14de689995d8597a457543444ef440bcd4ab8be04705a462843c"
+      "bytes": 22870,
+      "sha256": "2db2ed4616f0849353fd8e37ffdfa9b73dea3fd440770691e10d30fdd199935d"
     },
     {
       "path": "risk-fusion-bench/tests/test_event_card_resolution.py",
@@ -177,7 +177,9 @@
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11",
   "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
   "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
-  "focused_local_validation": "PASS; 56 related pure-software unittest cases across event-card integration, notification preview, identity resolution, action ledger, frozen-prefix adapter, public V2 mapping/idempotency, and synthetic action scenarios. Includes externally supplied SAME/DIFFERENT forks, duplicate replay without new action/revision, severity-upgrade reminder, fail-closed episode/association/state/history consistency checks, no-history status, and typed duplicate-equivalence checks. Synthetic-only; old 1464-check trial not rerun; Mac not validated.",
-  "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; full candidate pair, card-specific resolved episodes, latest association IDs, and association states are fail-closed across history; no history is marked NO_LEDGER_HISTORY_TO_COMPARE; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance.",
-  "identity_ledger_alignment_scope": "Across history, every ASSOCIATION_PENDING revision must carry the full pending pair; every resolved-state revision must match the externally supplied resolved state and stay within that display card event episodes; identity-transition actions require exact episode match. Latest revision must reference the identity association ID/state. No history is explicitly unverified."
+  "focused_local_validation": "PASS; 59 related pure-software unittest cases; 21 across frozen-prefix adapter, identity transition, and event-card integration modules, including 7 event-card integration tests. Covers externally supplied SAME/DIFFERENT, full divergent future suffixes frozen at one as_of, temporal identity/revision alignment, preserved pending history/trigger_known_time, duplicate replay, severity upgrade, fail-closed identity/history checks, and typed duplicate-equivalence. Synthetic-only; old 1464-check trial not rerun; Mac not validated.",
+  "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; full candidate pair, card-specific resolved episodes, association IDs/states, and resolved-state action times are fail-closed across history; no history is marked NO_LEDGER_HISTORY_TO_COMPARE; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance.",
+  "identity_ledger_alignment_scope": "Across history, every ASSOCIATION_PENDING revision must carry the full pending pair; every resolved-state revision must match the externally supplied resolved state and card episodes; identity-transition detected_at cannot precede identity_evidence_known_at and resolved revision received_at cannot precede resolved_at. trigger_known_time and earlier pending revisions are preserved. Latest revision must reference identity association ID/state.",
+  "temporal_identity_alignment_scope": "Synthetic-only chronology validation: resolved-state revisions require received_at >= external resolved_at; identity-transition actions with detected_at require detected_at >= identity_evidence_known_at. Audit shows evidence-known, resolved, earliest relevant receipt, and earliest transition-detected times. No real clock provenance or delivery is validated.",
+  "frozen_prefix_integration_scope": "Two complete synthetic trajectories with a common prefix and distinct future suffixes are passed in full to freeze_visible_prefix at the same as_of; frozen prefix, pending action-ledger input, and card preview match. A later as_of exposes the divergent future values."
 }
