@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
-      "bytes": 17967,
-      "sha256": "16fdf43ee366e174b2aef832f7169433f2d7b2a37079b631dfd33a154ffc0520"
+      "bytes": 18420,
+      "sha256": "df01bbe280946adc438de41714d593f5c02e7039657fed7a309a8cb118bca359"
     },
     {
       "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
@@ -42,13 +42,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/IMPLEMENTATION_REVIEW_CLOSURE_20261011.md",
-      "bytes": 5040,
-      "sha256": "b70faad36053b1b353cc3c7b509e0da1b5c8a31c9bc82210884d0022da89f2c0"
+      "bytes": 7037,
+      "sha256": "a9e2424c3f1b506e5427840a8593940c68c6a2fd848aace6835e24a9c658461f"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 8775,
-      "sha256": "bc533c1987530806c77b5f3c08a172098cb0df75ce8534b3046c82179b54acd6"
+      "bytes": 9097,
+      "sha256": "54b8099cb87a257d7ea6fd65d08e113f013a57dbb6fcedd45f79f8053597b2e8"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -117,8 +117,8 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
-      "bytes": 21017,
-      "sha256": "c0ba8d9f76fc0a89293230f02cef9d6ea0901595a8fdb2d3f6dade8608f1022b"
+      "bytes": 24781,
+      "sha256": "203e016c28de7c73e805c48d30f6c0274fe842838031a1294825664770c35807"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
@@ -157,8 +157,8 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_event_card_integration.py",
-      "bytes": 10147,
-      "sha256": "54a0a6beebcc60b400259e3638040c6cff0f30045f8c79dec7d4a9b5d8daa417"
+      "bytes": 14977,
+      "sha256": "d31db404e9ae14de689995d8597a457543444ef440bcd4ab8be04705a462843c"
     },
     {
       "path": "risk-fusion-bench/tests/test_event_card_resolution.py",
@@ -177,6 +177,7 @@
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11",
   "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
   "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
-  "focused_local_validation": "PASS; 54 related pure-software unittest cases across event-card integration, notification preview, identity resolution, action ledger, frozen-prefix adapter, public V2 mapping/idempotency, and synthetic action scenarios. Includes externally supplied SAME/DIFFERENT forks, duplicate replay without new action/revision, severity-upgrade reminder, and typed duplicate-equivalence checks. Synthetic-only; old 1464-check trial not rerun; Mac not validated.",
-  "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance."
+  "focused_local_validation": "PASS; 56 related pure-software unittest cases across event-card integration, notification preview, identity resolution, action ledger, frozen-prefix adapter, public V2 mapping/idempotency, and synthetic action scenarios. Includes externally supplied SAME/DIFFERENT forks, duplicate replay without new action/revision, severity-upgrade reminder, fail-closed episode/association/state/history consistency checks, no-history status, and typed duplicate-equivalence checks. Synthetic-only; old 1464-check trial not rerun; Mac not validated.",
+  "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; full candidate pair, card-specific resolved episodes, latest association IDs, and association states are fail-closed across history; no history is marked NO_LEDGER_HISTORY_TO_COMPARE; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance.",
+  "identity_ledger_alignment_scope": "Across history, every ASSOCIATION_PENDING revision must carry the full pending pair; every resolved-state revision must match the externally supplied resolved state and stay within that display card event episodes; identity-transition actions require exact episode match. Latest revision must reference the identity association ID/state. No history is explicitly unverified."
 }

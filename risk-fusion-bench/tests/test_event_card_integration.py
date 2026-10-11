@@ -106,6 +106,17 @@ class EventCardIntegrationTests(unittest.TestCase):
         self.assertEqual(same_prefix_preview["delivery_status"], "NOT_DELIVERED")
         self.assertEqual(same_prefix_preview["event_episode_ids"], [])
         self.assertEqual(same_prefix_preview["candidate_episode_ids"], list(EPISODES))
+        self.assertEqual(
+            same_prefix_preview["identity_ledger_alignment"]["status"],
+            "MATCHED_LEDGER_HISTORY",
+        )
+        empty_history_preview = build_event_card_preview(
+            pending, card_id="CARD-A", ledger=new_ledger()
+        )
+        self.assertEqual(
+            empty_history_preview["identity_ledger_alignment"]["status"],
+            "NO_LEDGER_HISTORY_TO_COMPARE",
+        )
 
         same_resolution = resolve_pending_association(
             pending,
@@ -127,6 +138,10 @@ class EventCardIntegrationTests(unittest.TestCase):
 
         self.assertEqual(same_card["association_state"], "SAME_CONFIRMED")
         self.assertEqual(same_card["event_episode_ids"], list(EPISODES))
+        self.assertEqual(
+            same_card["identity_ledger_alignment"]["status"],
+            "MATCHED_LEDGER_HISTORY",
+        )
         self.assertEqual(same_card["history_link_card_ids"], [])
         self.assertEqual(same_card["content_revision_count"], 2)
         self.assertEqual(len(same_card["revision_history"]), 2)
@@ -156,6 +171,7 @@ class EventCardIntegrationTests(unittest.TestCase):
             "different-split",
             kind=ActionKind.EVENT_SPLIT,
             state="DIFFERENT_CONFIRMED",
+            episodes=("EP-A",),
             received_seconds=3,
         )
         new_event_alert = make_intent(
@@ -186,6 +202,10 @@ class EventCardIntegrationTests(unittest.TestCase):
             "EXTERNALLY_SUPPLIED_RESOLUTION",
         )
         for card_preview in (old_card, new_card):
+            self.assertEqual(
+                card_preview["identity_ledger_alignment"]["status"],
+                "MATCHED_LEDGER_HISTORY",
+            )
             self.assertTrue(card_preview["card_preview_audit"]["all_required_fields_present"])
             self.assertTrue(
                 all(
@@ -243,6 +263,110 @@ class EventCardIntegrationTests(unittest.TestCase):
         self.assertEqual(preview["replay_attempt_count"], 1)
         self.assertFalse(preview["replay_attempts"][0]["new_notification_created"])
         self.assertFalse(preview["replay_attempts"][0]["new_revision_created"])
+
+    def test_rejects_identity_episode_or_association_mismatch_with_ledger(self):
+        self.require_preview_builder()
+        pending = pending_association()
+        ledger = new_ledger()
+        ledger.apply(make_intent("identity-mismatch-prefix"))
+
+        other_episodes = replace(
+            pending, candidate_episode_ids=("EP-X", "EP-Y")
+        )
+        with self.assertRaisesRegex(ValueError, "candidate episodes"):
+            build_event_card_preview(other_episodes, card_id="CARD-A", ledger=ledger)
+
+        other_association = replace(pending, association_id="ASSOC-OTHER")
+        with self.assertRaisesRegex(ValueError, "association ID"):
+            build_event_card_preview(other_association, card_id="CARD-A", ledger=ledger)
+
+        partial_pending_ledger = new_ledger()
+        partial_pending_ledger.apply(
+            make_intent("partial-pending-episodes", episodes=("EP-A",))
+        )
+        with self.assertRaisesRegex(ValueError, "pending candidate episodes"):
+            build_event_card_preview(
+                pending, card_id="CARD-A", ledger=partial_pending_ledger
+            )
+
+        incomplete_history_ledger = new_ledger()
+        incomplete_history_ledger.apply(
+            make_intent("partial-pending-history", episodes=("EP-A",))
+        )
+        incomplete_history_ledger.apply(
+            make_intent(
+                "later-pending-risk-update",
+                kind=ActionKind.RISK_ESCALATION,
+                received_seconds=1,
+            )
+        )
+        with self.assertRaisesRegex(ValueError, "pending candidate episodes"):
+            build_event_card_preview(
+                pending, card_id="CARD-A", ledger=incomplete_history_ledger
+            )
+
+    def test_rejects_resolved_identity_ahead_of_latest_ledger_revision(self):
+        self.require_preview_builder()
+        pending = pending_association()
+        ledger = new_ledger()
+        ledger.apply(make_intent("unresolved-ledger-prefix"))
+        different_resolution = resolve_pending_association(
+            pending,
+            association_state="DIFFERENT_CONFIRMED",
+            identity_evidence_known_at=stamp(2),
+            resolved_at=stamp(3),
+            evidence_refs=("synthetic://identity/DIFFERENT/A-B",),
+            new_display_card_id="CARD-B",
+        )
+
+        with self.assertRaisesRegex(ValueError, "latest ledger revision"):
+            build_event_card_preview(
+                different_resolution, card_id="CARD-A", ledger=ledger
+            )
+
+        wrong_card_episode_ledger = new_ledger()
+        wrong_card_episode_ledger.apply(
+            make_intent(
+                "wrong-episode-on-card-b",
+                card_id="CARD-B",
+                kind=ActionKind.DISTINCT_EVENT_ALERT,
+                state="DIFFERENT_CONFIRMED",
+                episodes=("EP-A",),
+            )
+        )
+        with self.assertRaisesRegex(ValueError, "resolved card episodes"):
+            build_event_card_preview(
+                different_resolution,
+                card_id="CARD-B",
+                ledger=wrong_card_episode_ledger,
+            )
+
+        invalid_resolved_history_ledger = new_ledger()
+        invalid_resolved_history_ledger.apply(
+            make_intent(
+                "wrong-card-history-episode",
+                card_id="CARD-B",
+                kind=ActionKind.RISK_ESCALATION,
+                state="DIFFERENT_CONFIRMED",
+                episodes=("EP-A",),
+            )
+        )
+        invalid_resolved_history_ledger.apply(
+            make_intent(
+                "valid-card-b-alert-after-invalid-history",
+                card_id="CARD-B",
+                kind=ActionKind.DISTINCT_EVENT_ALERT,
+                state="DIFFERENT_CONFIRMED",
+                episodes=("EP-B",),
+                received_seconds=1,
+            )
+        )
+        with self.assertRaisesRegex(ValueError, "resolved card episodes"):
+            build_event_card_preview(
+                different_resolution,
+                card_id="CARD-B",
+                ledger=invalid_resolved_history_ledger,
+            )
 
 
 if __name__ == "__main__":

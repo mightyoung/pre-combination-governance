@@ -11,6 +11,7 @@ from typing import Any
 
 from .alert_action_experiment import (
     ActionIntent,
+    ActionKind,
     ApplyStatus,
     CardRevision,
     ReminderActionLedger,
@@ -310,6 +311,85 @@ def _identity_card_details(
     )
 
 
+def _validate_identity_ledger_alignment(
+    identity_record: Mapping[str, Any],
+    *,
+    event_episode_ids: list[str],
+    association_episode_ids: list[str],
+    association_state: str,
+    revisions: tuple[CardRevision, ...],
+) -> dict[str, Any]:
+    if not revisions:
+        return {
+            "status": "NO_LEDGER_HISTORY_TO_COMPARE",
+            "association_id": identity_record["association_id"],
+            "matched_revision_count": 0,
+            "latest_revision_association_state": None,
+            "expected_event_episode_ids": list(event_episode_ids),
+            "latest_revision_candidate_episode_ids": [],
+        }
+
+    expected_episode_ids = set(association_episode_ids)
+    expected_card_episode_ids = set(event_episode_ids)
+    pending_states = {"UNKNOWN_PENDING", "CONFLICT_PENDING"}
+    resolved_states = {"SAME_CONFIRMED", "DIFFERENT_CONFIRMED"}
+    identity_transition_kinds = {
+        ActionKind.ASSOCIATION_CONFIRMED,
+        ActionKind.EVENT_SPLIT,
+        ActionKind.DISTINCT_EVENT_ALERT,
+    }
+    for revision in revisions:
+        unexpected_episode_ids = set(revision.candidate_episode_ids) - expected_episode_ids
+        if unexpected_episode_ids:
+            raise ValueError(
+                "card ledger candidate episodes do not match the supplied identity association"
+            )
+        revision_candidate_ids = set(revision.candidate_episode_ids)
+        if (
+            revision.association_state in pending_states
+            and revision.kind is ActionKind.ASSOCIATION_PENDING
+            and revision_candidate_ids != expected_episode_ids
+        ):
+            raise ValueError(
+                "pending candidate episodes do not match the supplied identity association"
+            )
+        if revision.association_state in resolved_states:
+            if revision.association_state != association_state:
+                raise ValueError(
+                    "ledger revision contains a different resolved association state"
+                )
+            if not revision_candidate_ids.issubset(expected_card_episode_ids):
+                raise ValueError(
+                    "ledger revision candidate episodes do not match resolved card episodes"
+                )
+            if (
+                revision.kind in identity_transition_kinds
+                and revision_candidate_ids != expected_card_episode_ids
+            ):
+                raise ValueError(
+                    "identity transition candidate episodes do not match resolved card episodes"
+                )
+
+    latest_revision = revisions[-1]
+    association_id = identity_record["association_id"]
+    if association_id not in latest_revision.association_ids:
+        raise ValueError(
+            "latest ledger revision does not reference the supplied identity association ID"
+        )
+    if latest_revision.association_state != association_state:
+        raise ValueError(
+            "latest ledger revision association state does not match the supplied identity state"
+        )
+    return {
+        "status": "MATCHED_LEDGER_HISTORY",
+        "association_id": association_id,
+        "matched_revision_count": len(revisions),
+        "latest_revision_association_state": latest_revision.association_state,
+        "expected_event_episode_ids": list(event_episode_ids),
+        "latest_revision_candidate_episode_ids": list(latest_revision.candidate_episode_ids),
+    }
+
+
 def build_event_card_preview(
     identity: PendingAssociation | AssociationResolution,
     *,
@@ -329,6 +409,13 @@ def build_event_card_preview(
     )
 
     revisions = ledger.card_revisions_for(card_id)
+    identity_ledger_alignment = _validate_identity_ledger_alignment(
+        identity_record,
+        event_episode_ids=event_episode_ids,
+        association_episode_ids=association_episode_ids,
+        association_state=association_state,
+        revisions=revisions,
+    )
     notification_by_intent = {
         revision.intent_id: notification
         for notification in ledger.notifications
@@ -396,9 +483,9 @@ def build_event_card_preview(
 
     current_content = revision_previews[-1] if revision_previews else None
     candidate_episode_ids = (
-        current_content["candidate_episode_ids"]
-        if current_content is not None
-        else association_episode_ids
+        association_episode_ids
+        if association_state in {"UNKNOWN_PENDING", "CONFLICT_PENDING"}
+        else []
     )
     card_notifications = tuple(
         notification
@@ -422,6 +509,7 @@ def build_event_card_preview(
         "association_state": association_state,
         "history_link_card_ids": history_links,
         "identity_resolution": identity_record,
+        "identity_ledger_alignment": identity_ledger_alignment,
         "content_revision_count": len(revisions),
         "notification_action_count": len(card_notifications),
         "notification_ids": [
