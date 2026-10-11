@@ -1,12 +1,12 @@
 {
-  "schema_version": "1.0.0",
-  "evaluation_spec": "alert-governance-eval-v1.1.0",
+  "schema_version": "1.1.0",
+  "evaluation_spec": "alert-governance-eval-v1.2.0",
   "classification": "SYNTHETIC_DEVELOPMENT_ONLY",
   "generated_on_utc": "2026-10-11",
   "synthetic_inputs_only": true,
   "execution": {
     "unit_test_command": "PYTHONPATH=src python -m unittest -v tests.test_alert_governance",
-    "unit_tests_passed": 20,
+    "unit_tests_passed": 25,
     "unit_tests_failed": 0,
     "model_service_called": false,
     "network_service_called": false,
@@ -66,7 +66,8 @@
       "same_event_edges_before_split": 2,
       "same_event_edges_after_split": 1,
       "all_original_candidate_members_preserved_once": true,
-      "remaining_bc_link_keeps_b_and_c_together": true
+      "remaining_bc_link_keeps_b_and_c_together": true,
+      "remaining_link_canonical_card_refreshed_after_split": true
     },
     {
       "scenario": "S7_STALE_TRANSITION_ATOMICITY",
@@ -105,6 +106,36 @@
       "predictions_derived_from_actual_ledger_association_states": true,
       "truth_for_unknown_association_rejected": true,
       "pending_pairs_excluded_from_accuracy_denominator": true
+    },
+    {
+      "scenario": "S13_DISTINCT_CONSTRAINT_ORDERING",
+      "result": "PASS",
+      "same_path_then_distinct_decision_rejected_atomically": true,
+      "distinct_then_same_path_bridge_rejected_atomically": true,
+      "rejected_pair_remains_pending_for_scoring": true,
+      "component_relation_reported_separately_from_pending_prediction": true
+    },
+    {
+      "scenario": "S14_REDUNDANT_TRIANGLE_SPLIT",
+      "result": "PASS",
+      "split_rejected_when_other_same_event_paths_keep_endpoints_connected": true,
+      "ledger_state_and_alert_history_unchanged": true,
+      "same_event_status_and_component_membership_remain_consistent": true
+    },
+    {
+      "scenario": "S15_EVIDENCE_BASED_RISK_CONFIRMATION",
+      "result": "PASS",
+      "identity_confirmation_does_not_advance_risk_alert_stage": true,
+      "identity_confirmation_keeps_precautionary_text": true,
+      "separate_risk_confirmation_requires_evidence": true,
+      "confirmed_stage_preserves_identity_status": true,
+      "confirmation_does_not_downgrade_escalated_stage": true
+    },
+    {
+      "scenario": "S16_CURRENT_RELATION_CANONICAL_POINTER",
+      "result": "PASS",
+      "remaining_same_event_relation_points_to_current_component_card": true,
+      "split_relation_has_no_canonical_card": true
     }
   ],
   "metric_examples": {
@@ -142,6 +173,7 @@
         {
           "association_id": "ASSOC-0b555b9fd6a1c7f0efe4e716a111dfd435bf6b42ca9b4eb7c1d76f8f62ab28a3",
           "ledger_status": "CONFIRMED_SAME_EVENT",
+          "component_relation": "SAME_EVENT",
           "predicted_relation": "SAME_EVENT",
           "true_relation": "DISTINCT_EVENTS",
           "status": "INCORRECT"
@@ -149,6 +181,7 @@
         {
           "association_id": "ASSOC-cd5de8b275cf6a66d0022b913ef89b92b118e616de60a80ed92a6500db429b6c",
           "ledger_status": "CONFIRMED_SAME_EVENT",
+          "component_relation": "SAME_EVENT",
           "predicted_relation": "SAME_EVENT",
           "true_relation": "SAME_EVENT",
           "status": "CORRECT"
@@ -156,6 +189,7 @@
         {
           "association_id": "ASSOC-f9bc8cc72544050d9f0edb0a021adc9d54c66bb192782484c910270984350001",
           "ledger_status": "PENDING",
+          "component_relation": "DISTINCT_EVENTS",
           "predicted_relation": "PENDING",
           "true_relation": "SAME_EVENT",
           "status": "UNDECIDED"

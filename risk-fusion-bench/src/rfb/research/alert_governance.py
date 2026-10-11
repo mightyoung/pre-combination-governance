@@ -332,6 +332,7 @@ class AlertLedger:
         at_value = _timestamp(at, "at")
         affected_card_ids = self._affected_card_ids(association)
         self._preflight_association_time(at_value, association, affected_card_ids)
+        self._preflight_identity_decision(association, decision)
 
         new_status = (
             "CONFIRMED_SAME_EVENT"
@@ -389,6 +390,21 @@ class AlertLedger:
         at_value = _timestamp(at, "at")
         affected_card_ids = self._affected_card_ids(association)
         self._preflight_association_time(at_value, association, affected_card_ids)
+        components_without_edge = self._identity_components(
+            excluding_association_id=association_id
+        )
+        component_by_card = {
+            card_id: component
+            for component in components_without_edge
+            for card_id in component
+        }
+        left_card_id = self._origin_card_by_candidate[association.candidate_ids[0]]
+        right_card_id = self._origin_card_by_candidate[association.candidate_ids[1]]
+        if component_by_card[left_card_id] == component_by_card[right_card_id]:
+            raise ValueError(
+                "cannot split edge while another confirmed same-event path keeps "
+                "candidates connected"
+            )
         updated = replace(
             association,
             status="SPLIT_TO_DISTINCT",
@@ -439,6 +455,42 @@ class AlertLedger:
             verification_state=card.status,
             rationale=rationale,
             reason_codes=("EVIDENCE_BASED_ESCALATION",),
+            evidence_refs=refs,
+        )
+        return self._cards[card.card_id]
+
+    def confirm_risk_alert(
+        self,
+        card_id: str,
+        *,
+        at: str | datetime,
+        rationale: str,
+        evidence_refs: Iterable[str],
+    ) -> DisplayCard:
+        """Advance the risk-alert stage without changing event identity."""
+        refs = _refs(evidence_refs)
+        if not refs:
+            raise ValueError("evidence references are required to confirm a risk alert")
+        if not isinstance(rationale, str) or not rationale.strip():
+            raise ValueError("rationale must be non-empty")
+        canonical_card_id = self._canonical_card_id(card_id)
+        card_ids = self._component_card_ids(canonical_card_id)
+        at_value = _timestamp(at, "at")
+        self._preflight_card_times(at_value, card_ids, "risk confirmation")
+        for member_card_id in card_ids:
+            self._base_alert_levels[member_card_id] = _highest_alert_level(
+                self._base_alert_levels[member_card_id], "CONFIRMED"
+            )
+        self._rebuild_components()
+        card = self.get_card(canonical_card_id)
+        self._emit_alert(
+            card.card_id,
+            card.candidate_ids,
+            at=at_value,
+            alert_level="CONFIRMED",
+            verification_state=card.status,
+            rationale=rationale,
+            reason_codes=("EVIDENCE_BASED_RISK_CONFIRMATION",),
             evidence_refs=refs,
         )
         return self._cards[card.card_id]
@@ -535,7 +587,9 @@ class AlertLedger:
             raise ValueError("transition time precedes association update")
         self._preflight_card_times(at, card_ids, "association transition")
 
-    def _identity_components(self) -> tuple[tuple[str, ...], ...]:
+    def _identity_components(
+        self, *, excluding_association_id: str | None = None
+    ) -> tuple[tuple[str, ...], ...]:
         parent = {card_id: card_id for card_id in self._cards}
 
         def find(card_id: str) -> str:
@@ -550,11 +604,24 @@ class AlertLedger:
                 parent[max(left_root, right_root)] = min(left_root, right_root)
 
         for association in self._associations.values():
+            if association.association_id == excluding_association_id:
+                continue
             if association.status != "CONFIRMED_SAME_EVENT":
                 continue
             left = self._origin_card_by_candidate[association.candidate_ids[0]]
             right = self._origin_card_by_candidate[association.candidate_ids[1]]
             union(left, right)
+
+        for association in self._associations.values():
+            if association.status not in {"CONFIRMED_DISTINCT", "SPLIT_TO_DISTINCT"}:
+                continue
+            left = self._origin_card_by_candidate[association.candidate_ids[0]]
+            right = self._origin_card_by_candidate[association.candidate_ids[1]]
+            if find(left) == find(right):
+                raise ValueError(
+                    "ledger conflict: distinct relation is connected by a "
+                    "confirmed same-event path"
+                )
 
         groups: dict[str, list[str]] = {}
         for card_id in self._cards:
@@ -610,6 +677,62 @@ class AlertLedger:
                         alert_level=self._base_alert_levels[card_id],
                         merged_into_card_id=canonical,
                     )
+        for association in tuple(self._associations.values()):
+            if association.status != "CONFIRMED_SAME_EVENT":
+                continue
+            origin_card_id = self._origin_card_by_candidate[
+                association.candidate_ids[0]
+            ]
+            canonical_card_id = self._canonical_card_id(origin_card_id)
+            if association.canonical_card_id != canonical_card_id:
+                self._associations[association.association_id] = replace(
+                    association, canonical_card_id=canonical_card_id
+                )
+
+    def _preflight_identity_decision(
+        self, association: EventAssociation, decision: RelationDecision
+    ) -> None:
+        components = self._identity_components()
+        component_by_card = {
+            card_id: component
+            for component in components
+            for card_id in component
+        }
+        left_card_id = self._origin_card_by_candidate[association.candidate_ids[0]]
+        right_card_id = self._origin_card_by_candidate[association.candidate_ids[1]]
+        left_component = component_by_card[left_card_id]
+        right_component = component_by_card[right_card_id]
+
+        if decision is RelationDecision.DISTINCT_EVENTS:
+            if left_component == right_component:
+                raise ValueError(
+                    "distinct relation conflicts with an existing confirmed "
+                    "same-event path"
+                )
+            return
+
+        if left_component == right_component:
+            return
+        for constraint in self._associations.values():
+            if constraint.status not in {"CONFIRMED_DISTINCT", "SPLIT_TO_DISTINCT"}:
+                continue
+            constraint_left = self._origin_card_by_candidate[
+                constraint.candidate_ids[0]
+            ]
+            constraint_right = self._origin_card_by_candidate[
+                constraint.candidate_ids[1]
+            ]
+            if (
+                component_by_card[constraint_left] == left_component
+                and component_by_card[constraint_right] == right_component
+            ) or (
+                component_by_card[constraint_left] == right_component
+                and component_by_card[constraint_right] == left_component
+            ):
+                raise ValueError(
+                    "same-event relation conflicts with an existing confirmed "
+                    "distinct constraint"
+                )
 
     def _emit_association_alerts(
         self,
@@ -804,6 +927,11 @@ def score_event_confirmation_accuracy(
     unknown = set(true_relations) - set(associations)
     if unknown:
         raise ValueError(f"truth labels reference unknown ledger associations: {sorted(unknown)}")
+    component_by_card = {
+        card_id: component
+        for component in ledger._identity_components()
+        for card_id in component
+    }
 
     scored_rows: list[dict[str, str]] = []
     correct = 0
@@ -817,11 +945,22 @@ def score_event_confirmation_accuracy(
             RelationDecision.DISTINCT_EVENTS.value,
         }:
             raise ValueError("truth relation must be SAME_EVENT or DISTINCT_EVENTS")
+        left_card_id = ledger._origin_card_by_candidate[association.candidate_ids[0]]
+        right_card_id = ledger._origin_card_by_candidate[association.candidate_ids[1]]
+        component_relation = (
+            RelationDecision.SAME_EVENT.value
+            if component_by_card[left_card_id] == component_by_card[right_card_id]
+            else RelationDecision.DISTINCT_EVENTS.value
+        )
         if association.status == "PENDING":
             predicted = "PENDING"
         elif association.status == "CONFIRMED_SAME_EVENT":
+            if component_relation != RelationDecision.SAME_EVENT.value:
+                raise ValueError("ledger conflict: same-event status disagrees with components")
             predicted = RelationDecision.SAME_EVENT.value
         elif association.status in {"CONFIRMED_DISTINCT", "SPLIT_TO_DISTINCT"}:
+            if component_relation != RelationDecision.DISTINCT_EVENTS.value:
+                raise ValueError("ledger conflict: distinct status disagrees with components")
             predicted = RelationDecision.DISTINCT_EVENTS.value
         else:
             raise ValueError(f"unsupported ledger association state: {association.status}")
@@ -836,6 +975,7 @@ def score_event_confirmation_accuracy(
             {
                 "association_id": association.association_id,
                 "ledger_status": association.status,
+                "component_relation": component_relation,
                 "predicted_relation": predicted,
                 "true_relation": truth,
                 "status": status,

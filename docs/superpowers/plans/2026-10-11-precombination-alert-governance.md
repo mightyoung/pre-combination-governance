@@ -37,6 +37,19 @@ outputs are kept separate from the historical result.
 - Do not invent safety thresholds or claim device, Mac, model-service, network,
   or end-to-end delivery validation.
 
+## Audit refinements
+
+- Treat confirmed-distinct and split relations as negative identity constraints.
+  Reject contradictory same-event or distinct-event transitions before writing
+  any association, card, or alert state. Accept a split only when removing that
+  edge disconnects its endpoints; retain alternate same-event paths.
+- Keep risk-alert stage separate from event identity. A same-event decision
+  does not confirm risk. Advance to `CONFIRMED` only through an independent,
+  evidence-backed risk-confirmation operation; never lower `ESCALATED`.
+- Recompute `canonical_card_id` for every active same-event relation whenever
+  component topology changes, and expose both current component relation and
+  pending/decided status to event-accuracy scoring.
+
 ## Planned files
 
 - `risk-fusion-bench/src/rfb/research/alert_governance.py`: immutable records,
