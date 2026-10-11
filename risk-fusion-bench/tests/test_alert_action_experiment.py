@@ -57,6 +57,8 @@ def pending(
         or ("episode-shared-card-a", f"episode-{association_id}"),
         association_ids=(association_id,),
         evidence_refs=(f"synthetic://association/{association_id}",),
+        risk_flags=("EXPOSURE",),
+        risk_basis_ids=(f"synthetic://risk/{association_id}",),
         experiment_batch_id=batch_id,
         association_state=association_state,
         dedup_episode_interval_key=interval_key,
@@ -88,6 +90,8 @@ def protected(
         candidate_episode_ids=("episode-a", "episode-b"),
         association_ids=(f"association-{intent_id}",),
         evidence_refs=(f"synthetic://evidence/{intent_id}",),
+        risk_flags=("EXPOSURE",),
+        risk_basis_ids=(f"synthetic://risk/{intent_id}",),
         experiment_batch_id="BATCH-1",
         association_state=(
             "DIFFERENT_CONFIRMED"
@@ -328,6 +332,8 @@ class ReminderActionExperimentTests(unittest.TestCase):
         for name in (
             "dedup_episode_interval_key",
             "association_state",
+            "risk_flags",
+            "risk_basis_ids",
             "trigger_known_time",
             "detected_at",
         ):
@@ -419,6 +425,8 @@ class ReminderActionExperimentTests(unittest.TestCase):
             candidate_episode_ids=("episode-a", "episode-b"),
             association_ids=("assoc-ab",),
             evidence_refs=("synthetic://confirmation/ab",),
+            risk_flags=("EXPOSURE",),
+            risk_basis_ids=("synthetic://risk/confirmation-ab",),
             source_times=(stamp(0),),
             observed_at_times=(stamp(0),),
             experiment_batch_id="BATCH-1",

@@ -29,9 +29,9 @@
 | 0 秒 | 23 | 22 | 23 / 23 | 1 | 0 |
 | 5 秒 | 23 | 21 | 23 / 23 | 2 | 0 |
 
-5 秒策略合并的两个待核更新分别发生在同一处理时刻（0 秒差）和 5 秒包含边界；越窗更新距首条提醒 6 秒，另发动作。跨 episode 探针与 A-B 提醒共享显示卡和实验 interval key，但候选 episode IDs 不重叠，故另发动作；跨卡探针即使候选 ID 与 interval key 相同也另发动作。22 条唯一语义输入均产生独立卡片修订，合并只改变实验提醒动作数。关联 ID、观测 ID、候选 episode ID、来源、`source_time`、`observed_at` 和证据引用均保留。精确重放不刷新原修订，改写旧记录 `observed_at` 的同 ID 重放被冲突拒绝。
+5 秒策略合并的两个待核更新分别发生在同一处理时刻（0 秒差）和 5 秒包含边界；越窗更新距首条提醒 6 秒，另发动作。跨 episode 探针与 A-B 提醒共享显示卡和实验 interval key，但候选 episode IDs 不重叠，故另发动作；跨卡探针即使候选 ID 与 interval key 相同也另发动作。23 条唯一语义输入均产生独立卡片修订，合并只改变合成提醒动作数。关联 ID、观测 ID、候选 episode ID、风险标记、风险依据 ID、来源、`source_time`、`observed_at` 和证据引用均保留。精确重放不刷新原修订，改写旧记录 `observed_at` 的同 ID 重放被冲突拒绝。
 
-合并候选的实验条件为相同 `display_card_id + action_kind + risk_stage + association_state + experiment_batch_id + dedup_episode_interval_key`，并与该提醒组首条修订至少共享一个 `candidate_episode_id`；窗口按首条 `received_at` 计算且含边界。`UNKNOWN_PENDING` 与 `CONFLICT_PENDING` 作为不同动作状态；冲突更新不并入一般待核动作。该规则以及 0/5 秒窗口均不是冻结建议或生产规则。稳定显示卡只表示展示上下文，不证明事件等价；UNKNOWN 关联和候选节点不被 union。提醒动作结果是 `NOT_DELIVERED`；内存卡片修订延迟为实验模拟 0 秒，实际 `emitted_at` 与 `visible_at` 未生成/未知。输入中的 `trigger_known_time` 与 `detected_at` 是合成字段，不是运行时外部时间证据；迟到旧观测另将 `source_time`、`observed_at`、`trigger_known_time`、`detected_at`、`received_at` 设为不同值，未以处理时间替换观测时间。提醒及时性、内容完整性、事件确证准确性分别报告；本合成输入只检查语义内容完整性，不能测真实事件确证准确率，亦不估模型调用节省量。来源可信度/统计独立性不评估，多 flag severity 优先级保持未决；用户可见消息未生成。
+合并候选的实验条件为相同 `display_card_id + action_kind + risk_stage + association_state + experiment_batch_id + dedup_episode_interval_key`，并与该提醒组首条修订至少共享一个 `candidate_episode_id`；窗口按首条 `received_at` 计算且含边界。`UNKNOWN_PENDING` 与 `CONFLICT_PENDING` 作为不同动作状态；冲突更新不并入一般待核动作。该规则以及 0/5 秒窗口均不是冻结建议或生产规则。稳定显示卡只表示展示上下文，不证明事件等价；UNKNOWN 关联和候选节点不被 union。内容预览对每个窗口/策略变体输出 23 条语义修订和一条精确重放审计；每条都列出公开 V2 的 18 个必填字段状态与修订追溯。精确重放复用原修订，旧内容冲突重放没有内容预览。所有内容标记 `PREVIEW_ONLY`，动作标记 `NOT_DELIVERED`；实际 `emitted_at` 未产生、`visible_at` 未运行。输入中的 `trigger_known_time` 与 `detected_at` 是合成字段，不是运行时外部时间证据；迟到旧观测另将 `source_time`、`observed_at`、`trigger_known_time`、`detected_at`、`received_at` 设为不同值，未以处理时间替换观测时间。单 flag severity 使用公开映射，多 flag severity 置空待定、不排序。提醒及时性、内容完整性、事件确证准确性分别报告；本合成输入只检查语义内容完整性，不能测真实事件确证准确率，亦不估模型调用节省量。来源可信度/统计独立性不评估。
 
 测试：`risk-fusion-bench/tests/test_alert_action_experiment.py`、`risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py`。复现命令见 [README](README.md)。
 

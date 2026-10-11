@@ -195,8 +195,121 @@ class ReminderActionScenarioTests(unittest.TestCase):
             "EXPERIMENT_INPUT_NOT_FROZEN",
         )
         self.assertEqual(
-            result["v2_contract_audit"]["user_visible_message"], "NOT_GENERATED"
+            result["v2_contract_audit"]["user_visible_message"],
+            "PREVIEW_ONLY_NOT_DELIVERED",
         )
+        self.assertEqual(
+            result["v2_contract_audit"]["suggested_verification_action"],
+            "PREVIEW_ONLY_NOT_PROCEDURE_VALIDATION",
+        )
+
+    def test_notification_previews_cover_same_stream_and_all_required_fields(self):
+        result = build_comparison()
+        expected_intent_ids = {
+            row["intent_id"] for row in result["input"]["action_intents"]
+        }
+
+        for window in result["window_results"]:
+            previews_by_policy = {}
+            for policy_name in ("per_association", "card_coalesce"):
+                policy = window[policy_name]
+                previews = policy["notification_content_previews"]
+                previews_by_policy[policy_name] = {
+                    row["revision_trace"]["intent_id"]: row
+                    for row in previews
+                    if row["preview_status"] != "DUPLICATE_REPLAY_IGNORED"
+                }
+                with self.subTest(window=window["window_seconds"], policy=policy_name):
+                    self.assertEqual(len(previews), len(expected_intent_ids) + 1)
+                    semantic_previews = [
+                        row for row in previews
+                        if row["preview_status"] != "DUPLICATE_REPLAY_IGNORED"
+                    ]
+                    self.assertEqual(
+                        {row["revision_trace"]["intent_id"] for row in semantic_previews},
+                        expected_intent_ids,
+                    )
+                    self.assertEqual(
+                        sum(row["preview_status"] == "DUPLICATE_REPLAY_IGNORED" for row in previews),
+                        1,
+                    )
+                    self.assertEqual(
+                        len({row["preview_id"] for row in previews}), len(previews)
+                    )
+                    self.assertEqual(
+                        {row["revision_trace"]["action_kind"] for row in semantic_previews},
+                        {row["kind"] for row in result["input"]["action_intents"]},
+                    )
+                    self.assertEqual(
+                        {row["association_state"] for row in semantic_previews},
+                        {row["association_state"] for row in result["input"]["action_intents"]},
+                    )
+                    duplicate_preview = next(
+                        row for row in previews
+                        if row["preview_status"] == "DUPLICATE_REPLAY_IGNORED"
+                    )
+                    self.assertFalse(
+                        duplicate_preview["revision_trace"]["new_revision_created"]
+                    )
+                    for preview in previews:
+                        self.assertEqual(preview["field_audit"]["missing_fields"], [])
+                        self.assertEqual(
+                            preview["field_audit"]["business_acceptance"],
+                            "NOT_EVALUATED",
+                        )
+                        self.assertEqual(preview["delivery_status"], "NOT_DELIVERED")
+                        self.assertEqual(preview["emission_status"], "NOT_EMITTED_SIMULATION_ONLY")
+                        self.assertIsNone(preview["emitted_at"])
+                        self.assertIsNone(preview["visible_at"])
+                        self.assertTrue(preview["user_visible_message"])
+                    action_kinds = {
+                        row["revision_trace"]["action_kind"] for row in semantic_previews
+                    }
+                    self.assertTrue(
+                        {"RISK_ESCALATION", "COUNTER_EVIDENCE", "EVENT_SPLIT"}
+                        <= action_kinds
+                    )
+                    self.assertTrue(
+                        {"UNKNOWN_PENDING", "CONFLICT_PENDING"}
+                        <= {row["association_state"] for row in semantic_previews}
+                    )
+            for intent_id in expected_intent_ids:
+                per_association = previews_by_policy["per_association"][intent_id]
+                card_coalesce = previews_by_policy["card_coalesce"][intent_id]
+                for field in (
+                    "kind",
+                    "severity",
+                    "risk_state",
+                    "risk_basis_ids",
+                    "uncertainty_reason",
+                    "affected_observation_ids",
+                    "display_card_id",
+                    "candidate_episode_ids",
+                    "association_state",
+                    "user_visible_message",
+                    "suggested_verification_action",
+                    "trigger_known_time",
+                    "detected_at",
+                    "emitted_at",
+                    "visible_at",
+                    "content_revision",
+                    "dedup_episode_interval_key",
+                ):
+                    self.assertEqual(
+                        per_association[field], card_coalesce[field],
+                        msg=f"window={window['window_seconds']} intent={intent_id} field={field}",
+                    )
+            for policy_name in ("per_association", "card_coalesce"):
+                split_previews = [
+                    row
+                    for row in window[policy_name]["notification_content_previews"]
+                    if row["revision_trace"]["action_kind"] == "EVENT_SPLIT"
+                ]
+                self.assertTrue(split_previews)
+                for preview in split_previews:
+                    self.assertIn("独立事件卡", preview["user_visible_message"])
+                    self.assertIn("未实际创建事件卡", preview["user_visible_message"])
+                    self.assertIn("历史链接", preview["user_visible_message"])
 
     def test_historical_failed_baseline_is_carried_forward_without_reconstruction(self):
         result = build_comparison()
@@ -223,8 +336,12 @@ class ReminderActionScenarioTests(unittest.TestCase):
         self.assertIn("trigger_known_time", rendered)
         self.assertIn("detected_at", rendered)
         self.assertIn("visible_at", rendered)
-        self.assertIn("NOT_GENERATED", rendered)
+        self.assertIn("PREVIEW_ONLY_NOT_DELIVERED", rendered)
+        self.assertIn("模拟动作决策表示策略如何处理输入，不代表实际产生提醒", rendered)
         self.assertIn("CONFLICT_PENDING", rendered)
+        self.assertIn("未实际创建事件卡", rendered)
+        self.assertIn("用户可见内容预览（仅模拟）", rendered)
+        self.assertIn("每条必填字段审计", rendered)
         self.assertNotIn("https://", rendered)
 
 

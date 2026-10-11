@@ -88,6 +88,8 @@ class ActionIntent:
     candidate_episode_ids: tuple[str, ...]
     association_ids: tuple[str, ...]
     evidence_refs: tuple[str, ...]
+    risk_flags: tuple[str, ...]
+    risk_basis_ids: tuple[str, ...]
     source_times: tuple[str, ...]
     observed_at_times: tuple[str, ...]
     experiment_batch_id: str
@@ -122,6 +124,8 @@ class ActionIntent:
             "candidate_episode_ids",
             "association_ids",
             "evidence_refs",
+            "risk_flags",
+            "risk_basis_ids",
             "source_times",
             "observed_at_times",
         ):
@@ -152,6 +156,8 @@ class CardRevision:
     candidate_episode_ids: tuple[str, ...]
     association_ids: tuple[str, ...]
     evidence_refs: tuple[str, ...]
+    risk_flags: tuple[str, ...]
+    risk_basis_ids: tuple[str, ...]
     source_times: tuple[str, ...]
     observed_at_times: tuple[str, ...]
     experiment_batch_id: str
@@ -175,6 +181,8 @@ class CardRevision:
             candidate_episode_ids=intent.candidate_episode_ids,
             association_ids=intent.association_ids,
             evidence_refs=intent.evidence_refs,
+            risk_flags=intent.risk_flags,
+            risk_basis_ids=intent.risk_basis_ids,
             source_times=intent.source_times,
             observed_at_times=intent.observed_at_times,
             experiment_batch_id=intent.experiment_batch_id,

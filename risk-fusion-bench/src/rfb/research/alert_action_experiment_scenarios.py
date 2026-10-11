@@ -22,6 +22,11 @@ from .alert_governance import (
     DeliveryStatus,
     RelationDecision,
 )
+from .alert_notification_preview import (
+    PUBLIC_V2_NOTIFICATION_REQUIRED_FIELDS,
+    build_notification_content_preview,
+    summarize_notification_preview_audits,
+)
 
 
 _UTC = timezone.utc
@@ -79,6 +84,8 @@ def _to_intent(
         candidate_episode_ids=candidate_ids,
         association_ids=association_ids,
         evidence_refs=alert.evidence_refs,
+        risk_flags=tuple(sorted({candidates[item].risk_flag for item in candidate_ids})),
+        risk_basis_ids=alert.evidence_refs,
         source_times=tuple(candidates[item].event_time for item in candidate_ids),
         observed_at_times=tuple(candidates[item].observed_at for item in candidate_ids),
         experiment_batch_id=_BATCH_ID,
@@ -140,6 +147,8 @@ def _synthetic_pending_intent(
     candidate_episode_ids: tuple[str, ...],
     association_id: str,
     evidence_ref: str,
+    risk_flags: tuple[str, ...],
+    risk_basis_ids: tuple[str, ...],
     source_seconds: float,
     observed_seconds: float,
     trigger_known_seconds: float,
@@ -160,6 +169,8 @@ def _synthetic_pending_intent(
         candidate_episode_ids=candidate_episode_ids,
         association_ids=(association_id,),
         evidence_refs=(evidence_ref,),
+        risk_flags=risk_flags,
+        risk_basis_ids=risk_basis_ids,
         source_times=(_stamp(source_seconds),),
         observed_at_times=(_stamp(observed_seconds),),
         experiment_batch_id=_BATCH_ID,
@@ -211,6 +222,8 @@ def _serialize_intent(intent: ActionIntent) -> dict[str, Any]:
         "candidate_episode_ids": list(intent.candidate_episode_ids),
         "association_ids": list(intent.association_ids),
         "evidence_refs": list(intent.evidence_refs),
+        "risk_flags": list(intent.risk_flags),
+        "risk_basis_ids": list(intent.risk_basis_ids),
         "source_times": list(intent.source_times),
         "observed_at_times": list(intent.observed_at_times),
         "experiment_batch_id": intent.experiment_batch_id,
@@ -234,6 +247,8 @@ def _serialize_revision(revision: Any) -> dict[str, Any]:
         "candidate_episode_ids": list(revision.candidate_episode_ids),
         "association_ids": list(revision.association_ids),
         "evidence_refs": list(revision.evidence_refs),
+        "risk_flags": list(revision.risk_flags),
+        "risk_basis_ids": list(revision.risk_basis_ids),
         "source_times": list(revision.source_times),
         "observed_at_times": list(revision.observed_at_times),
         "experiment_batch_id": revision.experiment_batch_id,
@@ -385,6 +400,108 @@ def _run_policy(
             "revision_count_after": revisions_after_stale,
         },
     }
+
+
+def _attach_notification_content_previews(
+    policy_result: dict[str, Any],
+    intents: tuple[ActionIntent, ...],
+    exact_replay: ActionIntent,
+) -> None:
+    """Attach one preview per semantic update and one audit row per exact replay."""
+    decisions = {
+        row["intent_id"]: row
+        for row in policy_result["decisions"]
+        if row["status"] != ApplyStatus.DUPLICATE_REPLAY.value
+    }
+    revisions_by_card: dict[str, list[dict[str, Any]]] = {}
+    revision_by_intent: dict[str, dict[str, Any]] = {}
+    for row in policy_result["card_revisions"]:
+        revisions_by_card.setdefault(row["display_card_id"], []).append(row)
+        revision_by_intent[row["intent_id"]] = row
+
+    trace_by_intent: dict[str, dict[str, Any]] = {}
+    for card_id, rows in revisions_by_card.items():
+        rows.sort(key=lambda row: row["revision"])
+        for index, row in enumerate(rows):
+            decision = decisions[row["intent_id"]]
+            previous = rows[index - 1] if index else None
+            trace_by_intent[row["intent_id"]] = {
+                "intent_id": row["intent_id"],
+                "action_kind": row["kind"],
+                "decision_status": decision["status"],
+                "decision_reason": decision["decision_reason"],
+                "notification_id": decision["experiment_notification_id"],
+                "display_card_id": card_id,
+                "content_revision": row["revision"],
+                "previous_content_revision": previous["revision"] if previous else None,
+                "previous_intent_id": previous["intent_id"] if previous else None,
+                "risk_stage": row["risk_stage"],
+                "risk_flags": row["risk_flags"],
+                "risk_basis_ids": row["risk_basis_ids"],
+                "association_state": row["association_state"],
+                "association_ids": row["association_ids"],
+                "candidate_episode_ids": row["candidate_episode_ids"],
+                "affected_observation_ids": row["observation_ids"],
+                "source_ids": row["source_ids"],
+                "evidence_refs": row["evidence_refs"],
+                "source_times": row["source_times"],
+                "observed_at_times": row["observed_at_times"],
+                "trigger_known_time": row["trigger_known_time"],
+                "detected_at": row["detected_at"],
+                "received_at_processing_time": row["received_at"],
+                "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
+            }
+
+    previews: list[dict[str, Any]] = []
+    for intent in intents:
+        decision = decisions[intent.intent_id]
+        previews.append(
+            build_notification_content_preview(
+                intent,
+                notification_id=decision["experiment_notification_id"],
+                content_revision=decision["card_revision"],
+                decision_status=decision["status"],
+                revision_trace=trace_by_intent[intent.intent_id],
+            )
+        )
+
+    duplicate_decision = next(
+        row
+        for row in policy_result["decisions"]
+        if row["status"] == ApplyStatus.DUPLICATE_REPLAY.value
+    )
+    original_revision = revision_by_intent[exact_replay.intent_id]
+    duplicate_trace = dict(trace_by_intent[exact_replay.intent_id])
+    duplicate_trace.update(
+        {
+            "duplicate_of_intent_id": exact_replay.intent_id,
+            "replay_received_at": exact_replay.received_at,
+            "new_revision_created": False,
+        }
+    )
+    duplicate_preview = build_notification_content_preview(
+        exact_replay,
+        notification_id=duplicate_decision["experiment_notification_id"],
+        content_revision=original_revision["revision"],
+        decision_status=duplicate_decision["status"],
+        revision_trace=duplicate_trace,
+    )
+    duplicate_preview["preview_id"] = (
+        f"{duplicate_decision['experiment_notification_id']}:duplicate-replay:"
+        f"{exact_replay.intent_id}"
+    )
+    previews.append(duplicate_preview)
+
+    audit = summarize_notification_preview_audits(previews)
+    audit["replay_outcomes"] = {
+        "exact_replay": policy_result["exact_replay"]["status"],
+        "exact_replay_preview_reuses_original_revision": True,
+        "stale_replay": policy_result["stale_replay"]["status"],
+        "stale_replay_content_preview_generated": False,
+    }
+    audit["required_fields"] = list(PUBLIC_V2_NOTIFICATION_REQUIRED_FIELDS)
+    policy_result["notification_content_previews"] = previews
+    policy_result["notification_content_preview_audit"] = audit
 
 
 def build_comparison() -> dict[str, Any]:
@@ -587,6 +704,8 @@ def build_comparison() -> dict[str, Any]:
         candidate_episode_ids=("episode-G", "episode-H"),
         association_id="ASSOC-CROSS-EPISODE-G-H",
         evidence_ref="synthetic://association/cross-episode-G-H",
+        risk_flags=("EXPOSURE",),
+        risk_basis_ids=("synthetic://association/cross-episode-G-H",),
         source_seconds=2,
         observed_seconds=9,
         trigger_known_seconds=10,
@@ -603,6 +722,8 @@ def build_comparison() -> dict[str, Any]:
         candidate_episode_ids=a_pending_ab.candidate_episode_ids,
         association_id=association_ab,
         evidence_ref=a_pending_ab.evidence_refs[0],
+        risk_flags=a_pending_ab.risk_flags,
+        risk_basis_ids=a_pending_ab.risk_basis_ids,
         source_seconds=0,
         observed_seconds=2,
         trigger_known_seconds=10,
@@ -619,6 +740,8 @@ def build_comparison() -> dict[str, Any]:
         candidate_episode_ids=a_pending_ab.candidate_episode_ids,
         association_id="ASSOC-CONFLICT-AB",
         evidence_ref="synthetic://association/conflict-A-B",
+        risk_flags=a_pending_ab.risk_flags,
+        risk_basis_ids=("synthetic://association/conflict-A-B",),
         source_seconds=0,
         observed_seconds=9,
         trigger_known_seconds=10,
@@ -636,6 +759,8 @@ def build_comparison() -> dict[str, Any]:
         candidate_episode_ids=("episode-late-old",),
         association_id="ASSOC-LATE-OLD",
         evidence_ref="synthetic://observation/late-old-source",
+        risk_flags=("EXPOSURE",),
+        risk_basis_ids=("synthetic://observation/late-old-source",),
         source_seconds=1,
         observed_seconds=18,
         trigger_known_seconds=20,
@@ -672,21 +797,24 @@ def build_comparison() -> dict[str, Any]:
 
     window_results = []
     for window_seconds in (0, 5):
-        window_results.append(
-            {
-                "window_seconds": window_seconds,
-                "per_association": _run_policy(
-                    sorted_intents,
-                    mode=PolicyMode.PER_ASSOCIATION,
-                    window_seconds=window_seconds,
-                ),
-                "card_coalesce": _run_policy(
-                    sorted_intents,
-                    mode=PolicyMode.CARD_COALESCE,
-                    window_seconds=window_seconds,
-                ),
-            }
-        )
+        window_result = {
+            "window_seconds": window_seconds,
+            "per_association": _run_policy(
+                sorted_intents,
+                mode=PolicyMode.PER_ASSOCIATION,
+                window_seconds=window_seconds,
+            ),
+            "card_coalesce": _run_policy(
+                sorted_intents,
+                mode=PolicyMode.CARD_COALESCE,
+                window_seconds=window_seconds,
+            ),
+        }
+        for policy_name in ("per_association", "card_coalesce"):
+            _attach_notification_content_previews(
+                window_result[policy_name], sorted_intents, exact_replay
+            )
+        window_results.append(window_result)
 
     a_pending_ae = next(
         intent
@@ -934,26 +1062,27 @@ def build_comparison() -> dict[str, Any]:
         "window_results": window_results,
         "v2_contract_audit": {
             "source_spec_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
-            "status": "PARTIAL_SYNTHETIC_FIELD_TRACE_NOT_BUSINESS_PASS",
+            "status": "PARTIAL_SYNTHETIC_CONTENT_PREVIEW_NOT_BUSINESS_PASS",
             "stable_display_card_id": "PRESENT_SYNTHETIC_CONTINUITY_ID",
             "same_card_is_event_equivalence": False,
             "candidate_episode_ids": "PRESENT_AS_SEPARATE_NODES; NEVER_UNIONED_BY_CARD_COALESCING",
             "association_state": "PRESENT_USING_PUBLIC_ENUM_VALUES",
             "dedup_episode_interval_key": "EXPERIMENT_INPUT_NOT_FROZEN",
             "notification_id": "EXPERIMENT_LOCAL_ID_ONLY",
-            "kind": "PRESENT_AS_EXPERIMENT_ACTION_KIND",
-            "severity": "NOT_MAPPED_FROM_RISK_STAGE",
-            "risk_state": "NOT_FULLY_MAPPED",
-            "risk_basis_ids": "SYNTHETIC_EVIDENCE_REFS_ONLY",
-            "uncertainty_reason": "NOT_GENERATED_AS_USER_FACING_FIELD",
+            "kind": "PREVIEW_USES_PUBLIC_FIXED_KIND",
+            "severity": "SINGLE_FLAG_PUBLIC_MAPPING; MULTI_FLAG_POLICY_UNDECIDED",
+            "risk_state": "SYNTHETIC_FLAGS_AND_ACTION_STAGE",
+            "risk_basis_ids": "SYNTHETIC_ALERT_EVIDENCE_REFS; QUALIFICATION_NOT_ASSESSED",
+            "uncertainty_reason": "PREVIEW_TEMPLATE_FROM_ASSOCIATION_STATE; SEMANTIC_GATE_NOT_VALIDATED",
             "affected_observation_ids": "PRESENT_SYNTHETIC_IDS",
-            "user_visible_message": "NOT_GENERATED",
-            "suggested_verification_action": "NOT_GENERATED",
-            "trigger_known_time": "SYNTHETIC_INPUT_PRESENT; NOT_EXTERNAL_RECEIPT",
+            "user_visible_message": "PREVIEW_ONLY_NOT_DELIVERED",
+            "suggested_verification_action": "PREVIEW_ONLY_NOT_PROCEDURE_VALIDATION",
+            "trigger_known_time": "SYNTHETIC_INPUT_PRESENT; NOT_RUNTIME_RECEIPT",
             "detected_at": "SYNTHETIC_INPUT_PRESENT; NOT_RUNTIME_TRACE",
             "emitted_at": "NOT_ACTUALLY_EMITTED",
             "visible_at": "UNKNOWN_NOT_RUN",
             "content_revision": "PRESENT_AS_IN_MEMORY_CARD_REVISION",
+            "required_field_audit": "PARTIAL_FIELD_PRESENCE_ONLY; BUSINESS_ACCEPTANCE_NOT_EVALUATED",
         },
         "evaluation": {
             "reminder_action_timeliness": {
@@ -976,6 +1105,34 @@ def build_comparison() -> dict[str, Any]:
                     window_results[-1]["card_coalesce"]["candidate_episode_ids_retained"]
                 ),
                 "model_calls_saved": "NOT_MEASURED",
+            },
+            "notification_content_preview": {
+                "status": "PREVIEW_ONLY_NOT_DELIVERED",
+                "required_field_count": len(PUBLIC_V2_NOTIFICATION_REQUIRED_FIELDS),
+                "all_required_fields_present_for_all_runs": all(
+                    result["notification_content_preview_audit"][
+                        "all_required_fields_present"
+                    ]
+                    for window in window_results
+                    for result in (
+                        window["per_association"],
+                        window["card_coalesce"],
+                    )
+                ),
+                "preview_count_by_window_and_policy": {
+                    f"{window['window_seconds']}s": {
+                        "per_association": len(
+                            window["per_association"]["notification_content_previews"]
+                        ),
+                        "card_coalesce": len(
+                            window["card_coalesce"]["notification_content_previews"]
+                        ),
+                    }
+                    for window in window_results
+                },
+                "schema_scope": "PARTIAL_FIELD_PRESENCE_ONLY",
+                "business_acceptance": "NOT_EVALUATED",
+                "multi_flag_severity": "UNDECIDED; PREVIEW SEVERITY IS NULL FOR MULTIPLE FLAGS",
             },
             "event_confirmation_accuracy": {
                 "status": "NOT_EVALUATED",
@@ -1108,6 +1265,73 @@ def render_html(result: dict[str, Any]) -> str:
             "</tr>"
         )
 
+    preview_panels = []
+    for window in result["window_results"]:
+        for policy_name, label in (
+            ("per_association", "PER_ASSOCIATION"),
+            ("card_coalesce", "CARD_COALESCE"),
+        ):
+            policy = window[policy_name]
+            preview_rows = []
+            for preview in policy["notification_content_previews"]:
+                trace = preview["revision_trace"]
+                field_audit = preview["field_audit"]
+                field_status_rows = "".join(
+                    f"<li><code>{esc(field)}</code>: {esc(detail['status'])}"
+                    f" — {'存在' if detail['present'] else '缺失'}</li>"
+                    for field, detail in field_audit["fields"].items()
+                )
+                severity = preview["severity"] or "等级待定"
+                previous = trace.get("previous_intent_id") or "无前序修订"
+                if preview["preview_status"] == "DUPLICATE_REPLAY_IGNORED":
+                    previous = f"重复引用原修订：{trace.get('duplicate_of_intent_id')}"
+                preview_rows.append(
+                    "<tr>"
+                    f"<td><code>{esc(preview['preview_id'])}</code><br>"
+                    f"模拟动作决策：{esc(preview['decision_status'])}<br>"
+                    f"{esc(preview['delivery_status'])} / {esc(preview['emission_status'])}</td>"
+                    f"<td><code>{esc(preview['notification_id'])}</code><br>"
+                    f"卡：{esc(preview['display_card_id'])}<br>"
+                    f"修订：{esc(preview['content_revision'])}；前序：{esc(previous)}</td>"
+                    f"<td>{esc(preview['kind'])}<br>等级：{esc(severity)}<br>"
+                    f"风险：{esc(preview['risk_flags'])}<br>"
+                    f"关联：{esc(preview['association_state'])}<br>"
+                    f"阶段：{esc(preview['risk_state']['risk_stage'])}</td>"
+                    f"<td>风险依据：{esc(preview['risk_basis_ids'])}<br>"
+                    f"证据引用：{esc(preview['evidence_refs'])}<br>"
+                    f"候选 episode：{esc(preview['candidate_episode_ids'])}<br>"
+                    f"观测：{esc(preview['affected_observation_ids'])}</td>"
+                    f"<td>{esc(preview['user_visible_message'])}<br><small>建议行动："
+                    f"{esc(preview['suggested_verification_action'])}</small><br>"
+                    f"<small>不确定原因：{esc(preview['uncertainty_reason'])}</small></td>"
+                    f"<td>source_time：{esc(preview['time_evidence']['source_times'])}<br>"
+                    f"observed_at：{esc(preview['time_evidence']['observed_at_times'])}<br>"
+                    f"trigger_known_time：{esc(preview['trigger_known_time'])}<br>"
+                    f"detected_at：{esc(preview['detected_at'])}<br>"
+                    "emitted_at：未产生<br>visible_at：未运行<br>"
+                    f"处理 received_at：{esc(preview['time_evidence']['received_at_processing_time'])}</td>"
+                    f"<td><details><summary>每条必填字段审计：{field_audit['present_field_count']}/"
+                    f"{field_audit['required_field_count']}；业务验收未评估</summary>"
+                    f"<ul>{field_status_rows}</ul></details></td>"
+                    "</tr>"
+                )
+            audit = policy["notification_content_preview_audit"]
+            open_attr = " open" if window["window_seconds"] == 5 and policy_name == "card_coalesce" else ""
+            preview_panels.append(
+                f"<details{open_attr}><summary>{esc(window['window_seconds'])} 秒 / {label}："
+                f"{audit['preview_count']} 条预览；必填字段齐全："
+                f"{esc(audit['all_required_fields_present'])}</summary>"
+                "<div class=\"scroll\"><table><thead><tr>"
+                "<th>预览 / 模拟动作决策 / 送达状态</th><th>通知 / 卡片 / 修订链</th>"
+                "<th>类型 / 等级 / 风险 / 关联</th><th>依据与关联证据</th>"
+                "<th>内容预览 / 行动 / 不确定原因</th><th>已知与未知时间</th>"
+                "<th>逐字段审计</th></tr></thead><tbody>"
+                f"{''.join(preview_rows)}</tbody></table></div>"
+                "<p class=\"muted\">字段状态："
+                f"{esc(json.dumps(audit['field_status_counts'], ensure_ascii=False, sort_keys=True))}"
+                "</p></details>"
+            )
+
     baseline = result["historical_baseline"]
     return f"""<!doctype html>
 <html lang="zh-CN">
@@ -1125,6 +1349,8 @@ main {{ max-width:1220px; margin:0 auto; padding:30px 22px 56px; }} h1 {{ font-s
 .grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }} .metric {{ padding:13px; background:var(--pale); border-radius:9px; }} .metric strong {{ display:block; font-size:17px; }}
 .scroll {{ overflow:auto; border:1px solid var(--line); border-radius:9px; background:white; }} table {{ width:100%; border-collapse:collapse; min-width:780px; }} th,td {{ text-align:left; vertical-align:top; padding:10px 11px; border-bottom:1px solid var(--line); }} thead th {{ background:#eef3fa; position:sticky; top:0; }} tr:last-child th,tr:last-child td {{ border-bottom:0; }}
 code {{ font-size:12px; overflow-wrap:anywhere; }} .boundary {{ background:#eff8ff; border:1px solid #b2ddff; padding:14px; border-radius:9px; }} .foot {{ margin-top:28px; font-size:13px; color:var(--muted); }}
+details {{ margin:14px 0; }} details > summary {{ cursor:pointer; padding:10px 12px; background:#eef3fa; border-radius:8px; }}
+details ul {{ margin:8px 0 10px; padding-left:22px; }}
 </style>
 </head>
 <body><main>
@@ -1147,6 +1373,9 @@ code {{ font-size:12px; overflow-wrap:anywhere; }} .boundary {{ background:#eff8
 <section class="panel"><h2>强制场景</h2><div class="scroll"><table><thead><tr><th>场景</th><th>键</th><th>输入和判定</th></tr></thead><tbody>{''.join(case_rows)}</tbody></table></div></section>
 <section class="panel"><h2>被比较的同一提醒输入（{len(result['input']['action_intents'])} 条顺序动作，不作独立样本）</h2>
 <div class="scroll"><table><thead><tr><th>处理 received_at</th><th>稳定显示卡 / 修订</th><th>动作 / 阶段 / 关联状态</th><th>候选 episode 节点</th><th>实验区间键</th><th>观测 / 来源</th><th>证据 / source_time</th><th>observed_at</th><th>trigger_known_time / detected_at / received_at</th></tr></thead><tbody>{''.join(action_rows)}</tbody></table></div></section>
+<section class="panel"><h2>用户可见内容预览（仅模拟）</h2>
+<p>每个窗口和策略均使用同一动作输入，逐条呈现 23 个语义修订及一次精确重放审计。表中的模拟动作决策表示策略如何处理输入，不代表实际产生提醒；内容只是模板预览，状态统一为 <code>NOT_DELIVERED</code>，实际 emitted_at 未产生，visible_at 未运行。精确重放复用原修订；旧内容冲突重放只保留拒绝记录，不生成内容预览。多 flag severity 规则未定义，多标记预览将等级置空并明确待定。</p>
+{''.join(preview_panels)}</section>
 <section class="panel"><h2>公开 V2 字段审计：部分合成跟踪</h2>
 <p class="muted">逐字段对照固定公开规格提交 <code>{esc(result['v2_contract_audit']['source_spec_commit'])}</code>。这些状态表示字段跟踪，不代表业务通过。</p>
 <div class="scroll"><table><thead><tr><th>V2 字段 / 边界</th><th>本次证据</th></tr></thead><tbody>{''.join(v2_audit_rows)}</tbody></table></div></section>
@@ -1156,6 +1385,6 @@ code {{ font-size:12px; overflow-wrap:anywhere; }} .boundary {{ background:#eff8
 <div class="metric"><strong>内容完整性：对输入核对</strong><span>所有唯一语义更新均有卡片修订；证据与关联引用按输入保留。完整性不等于用户界面显示成功。</span></div>
 <div class="metric"><strong>事件确证准确性：未评估</strong><span>同/不同事件转换由合成场景指定，不能据此估计真实事件身份准确率。</span></div>
 </div><p class="boundary"><b>尚未决定：</b>官方合并键、窗口长度、多 flag severity 优先级、来源可信阈值、提醒是否真实送达，以及 Mac 上的 ESRCH / EPERM 原因。</p></section>
-<p class="foot">实验参数：窗口 {esc(result['experiment_parameters']['window_values_seconds'])} 秒；批次 {esc(result['experiment_parameters']['batch_id'])}。dedup_episode_interval_key 的正式语义未冻结。多 flag severity 保持未决；用户可见消息未生成。未调用模型、网络服务或投递适配器。关联证据/设备名称均为 synthetic:// 占位内容。生成修订 {esc(result.get('source_revision', 'not-recorded'))}。</p>
+<p class="foot">实验参数：窗口 {esc(result['experiment_parameters']['window_values_seconds'])} 秒；批次 {esc(result['experiment_parameters']['batch_id'])}。dedup_episode_interval_key 的正式语义未冻结。多 flag severity 保持未决；内容为预览，未发送通知。未调用模型、网络服务或投递适配器。关联证据/设备名称均为 synthetic:// 占位内容。生成修订 {esc(result.get('source_revision', 'not-recorded'))}。</p>
 </main></body></html>
 """
