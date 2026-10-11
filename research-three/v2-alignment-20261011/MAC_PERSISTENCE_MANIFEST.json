@@ -3,7 +3,7 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "72944b6fcbb57719b32f3377de12f1f2bdb7574c",
+  "source_commit": "29095d8e127c99dd9d397a3e70b3a85a1325d0d5",
   "path_convention": "Repository-relative POSIX paths. SHA-256 values bind listed file contents; the manifest does not hash itself. mac_local_project_root is intentionally null; resolve paths only under the Mac checkout root, never against cloud absolute paths.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
@@ -32,8 +32,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/AUTONOMOUS_ASSOCIATION_DEVELOPMENT_PLAN.md",
-      "bytes": 18813,
-      "sha256": "e4477a9e4781803b3d4ff1e602d87c19d416124b2324b0b4dc231f01d83520f6"
+      "bytes": 21050,
+      "sha256": "2d18b8a6da4b276e8971732ab920dd89d5e61c0cfab769fd5eb0aec21056447c"
     },
     {
       "path": "research-three/v2-alignment-20261011/HELD_OUT_TEMPORAL_PROTOCOL_DRAFT.md",
@@ -52,8 +52,8 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 13909,
-      "sha256": "5a8f4dd3301b7fd2364dc4d383c7f1b25f9046d114593aab309086837aef787d"
+      "bytes": 14146,
+      "sha256": "00f7f8be7d7a55911cc5a0d41fb57944d68941ab9084110dc31fb26abce5ba2e"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_idempotency_layers.py",
@@ -162,8 +162,8 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/observable_association.py",
-      "bytes": 31383,
-      "sha256": "881ae112cc5b07f69690cbe539c8cc5a7c272c08cecfd0959e719df7be7f5f75"
+      "bytes": 35702,
+      "sha256": "d6fbebee538cf9ad68b35076b995f5f1bf962efc27350e098c2dfea655c27afe"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
@@ -207,8 +207,8 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_observable_association.py",
-      "bytes": 30333,
-      "sha256": "6486978518303ca01a8c17774461e644e99e5c7f03f8f75290a60608fec93fe4"
+      "bytes": 35073,
+      "sha256": "cba2e30497612b3e533cd0ea2b0d8002fa16b7c7d9d3725fa579780c921452c0"
     }
   ],
   "notification_content_preview": "PREVIEW_ONLY; NOT_DELIVERED; emitted_at/visible_at are null; field-presence audit only; business acceptance not evaluated.",
@@ -217,7 +217,7 @@
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11",
   "new_adapter_scope": "Synthetic-only frozen visible-prefix boundary plus explicit pending-to-confirmed event-card identity transition; no event recognition, real provenance certification, held-out run, delivery, or Mac validation.",
   "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
-  "focused_local_validation": "PASS; 16 observable-only association synthetic unit tests and 29 focused alert-ledger/reminder regression tests. New coverage includes future-prefix invariance, identifier bijection, replay and lineage support, delayed arrival, risk escalation, adjacent verified assets, unknown asset binding/degraded-quality abstention, recovery/reappearance, immutable-content conflict rejection, fixed-universe scorer denominators, and pending-only ledger handoff. Not cumulative with the historical 59-case result; no efficacy estimate, old 1464-check trial rerun, Mac/device validation, or real delivery.",
+  "focused_local_validation": "PASS; 20 observable-only association synthetic unit tests and 29 focused alert-ledger/reminder regression tests. I1 regression coverage rejects future observation-ID, receipt, and field-known times at direct prefix construction and dataclasses.replace, and revalidates candidate/rule consumers. Existing prefix invariance, identifier bijection, replay/lineage, late-arrival, asset/recovery, scorer-contract, and pending-ledger coverage remains passing. No efficacy estimate, old 1464-check trial rerun, Mac/device validation, or real delivery.",
   "event_card_preview_scope": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY; external identity resolution plus all action-ledger revisions and per-revision public V2 previews; full candidate pair, card-specific resolved episodes, association IDs/states, and resolved-state action times are fail-closed across history; no history is marked NO_LEDGER_HISTORY_TO_COMPARE; NOT_DELIVERED; not a real UI, dispatch, or identity-truth acceptance.",
   "identity_ledger_alignment_scope": "Across history, every ASSOCIATION_PENDING revision must carry the full pending pair; every resolved-state revision must match the externally supplied resolved state and card episodes; identity-transition detected_at cannot precede identity_evidence_known_at and resolved revision received_at cannot precede resolved_at. trigger_known_time and earlier pending revisions are preserved. Latest revision must reference identity association ID/state.",
   "temporal_identity_alignment_scope": "Synthetic-only chronology validation: resolved-state revisions require received_at >= external resolved_at; identity-transition actions with detected_at require detected_at >= identity_evidence_known_at. Audit shows evidence-known, resolved, earliest relevant receipt, and earliest transition-detected times. No real clock provenance or delivery is validated.",
@@ -257,13 +257,14 @@
     "inference_truth_access": false,
     "scorer_reads_truth_only_after_output_freeze": true,
     "formal_efficacy_estimated": false,
-    "new_unit_test_count": 16,
+    "new_unit_test_count": 20,
     "direct_ledger_regression_test_count": 29,
     "test_commands_from_risk_fusion_bench": [
       "PYTHONPATH=src python -m unittest -v tests.test_observable_association",
       "PYTHONPATH=src python -m unittest -v tests.test_alert_governance tests.test_alert_governance_idempotency"
     ],
     "synthetic_parameters_are_production_thresholds": false,
-    "mac_device_or_cleanup_validation": "NOT_RUN"
+    "mac_device_or_cleanup_validation": "NOT_RUN",
+    "prefix_time_boundary": "DIRECT_CONSTRUCTION_AND_REPLACE_VALIDATE_ID_RECEIPT_AND_FIELD_TIMES; CANDIDATE_AND_RULE_CONSUMERS_REVALIDATE"
   }
 }
