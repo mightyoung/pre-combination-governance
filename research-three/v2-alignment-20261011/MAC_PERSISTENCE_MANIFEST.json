@@ -3,11 +3,12 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "403f14217dde6b8c58e8305c55dffb6a16d79aef",
+  "source_commit": "f816bda0543d6fd1d49c542b97fd927f40bef1fd",
   "path_convention": "All file paths below are repository-relative POSIX paths rooted at a checkout of source_commit.",
   "mac_local_project_root": null,
   "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. No cloud-workspace absolute path is encoded here.",
   "sha256_scope": "Listed deliverables only; this manifest does not hash itself.",
+  "related_public_v2_spec_branch": "task/v2-public-spec-20261011",
   "related_public_v2_spec_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
   "includes_original_mac_v2_spec": false,
   "includes_frozen_trial_raw_data": false,
@@ -17,13 +18,13 @@
   "files": [
     {
       "path": "research-three/v2-alignment-20261011/ALIGNMENT.md",
-      "bytes": 13424,
-      "sha256": "4bcad90b98211193ad4235436c4e051481f4e19b19c3e8c412ace7dbf609e073"
+      "bytes": 16650,
+      "sha256": "6f51280be8e3c7fccab6bf425542f30e0d43157ebcb13789060ce2c865ffa244"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 1397,
-      "sha256": "55139a8e61a1ea1082d27e5e8c305ae546ab1f04a8ddf3be3132901b132cb72d"
+      "bytes": 2010,
+      "sha256": "918441d38f80ec6470279b86437b8d7b1ba7d4cf4d37e17c6b9cccd4624c7493"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py",
@@ -39,6 +40,16 @@
       "path": "research-three/v2-alignment-20261011/visualization/synthetic-event-timeline.html",
       "bytes": 11170,
       "sha256": "07bd15542fb06f6835a3850af17debd485110cfe0e5e79a5afa1b1b1aea0f06a"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_governance_v2.py",
+      "bytes": 1541,
+      "sha256": "0eb852f16213484eeb4a1bf4aa8c7f4360865e3692d2f3d370ab15dd0985dbcd"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_alert_governance_v2.py",
+      "bytes": 1836,
+      "sha256": "2baac1c13100ea51068bbf7ebe972414378bfe95904d147655cd39fa35a4e65e"
     }
   ]
 }
