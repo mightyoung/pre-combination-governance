@@ -192,3 +192,17 @@ This stage does not estimate efficacy. Before a blinded evaluation, submit the i
 ### Review gate
 
 Submit this protocol and implementation for independent review before any formal split generation. Review must address scorer denominators, truth isolation, candidate parity, world independence, timing/censoring, stop conditions, and whether the declared budgets match the code. Any fix requires a focused RED-to-GREEN test and a new reviewed protocol/code SHA before held-out data is generated or scored.
+
+## Handoff: source-lineage timestamp review and next observation choice (2026-10-11)
+
+### Independent review result for `398b75f6`
+
+- Parent's independent review rated this narrow fix `C0/I0/M0` and closed it within that scope. The reviewer reports 19 contract tests passed: sub-second future evidence on an edge, node, or completeness assertion returns `UNKNOWN`; an eligible whole-second claim at a later sub-second cutoff remains `SHARED_KNOWN_ANCESTOR`; both `earliest_known_at` and `valid_until` comparisons use timezone-aware datetime instants.
+- The independent reviewer directly checked only the two new code/test SHA entries in the Mac manifest. This is not a claim that all 64 then-listed manifest entries were independently audited. The review did not validate Mac behavior, real provenance availability, rule efficacy, or the old 1,464-check trial.
+- The evidence record is [`SOURCE_LINEAGE_TEMPORAL_PRECISION_FIX_RESULTS.json`](SOURCE_LINEAGE_TEMPORAL_PRECISION_FIX_RESULTS.json). The code review target is commit [`398b75f6`](https://github.com/mightyoung/pre-combination-governance/commit/398b75f66f55af6d5e37d85f3e1af53a3d75f4b1); its manifest follow-up is [`2564911b`](https://github.com/mightyoung/pre-combination-governance/commit/2564911be0f054bac86a3a3223079e92630d89f2).
+
+### Next work: acquire observable lineage facts
+
+The next open design item is a short inventory of source-side, forwarding, and transform-run observations, their verification limits, and the minimum distinguishable development examples. See [`SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md`](SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md). It asks which real connector can provide raw record references/hashes, per-hop receipts, transform/config digests, bounded completeness evidence, and independent event adjudication. A hidden `source_family` label is never a method observation.
+
+Do not build fixtures or run another contract/association experiment until the parent selects a concrete observation source and confirms which of those fields are available. This handoff can proceed without the private Mac V2 package; missing package contents are not a blocker for selecting or assessing these independent source observations.
