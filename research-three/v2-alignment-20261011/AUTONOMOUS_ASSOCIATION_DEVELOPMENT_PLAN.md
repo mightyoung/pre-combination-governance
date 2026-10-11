@@ -125,8 +125,9 @@ The unit fixtures contain complete synthetic worlds for scorer use, but inferenc
 - [x] Add the module, test command, synthetic-only limits, and no-formal-study boundary to the README.
 - [x] Run only the new inference unit tests and directly relevant pure-software ledger tests; no executor probes or the complete unrelated research suite were run.
 - [x] Record exact command, test count, actual failures observed during RED, final result, source/input hashes, and deviations here.
-- [ ] Verify every listed manifest file hash and `git diff --check`; commit and push only this independent research branch.
-- [ ] Request an independent review of the plan, code, and test evidence before reporting completion. Fix any important finding test-first.
+- [x] Verify every listed manifest file hash and `git diff --check`; commit only this independent research branch.
+- [ ] Push this independent research branch and read back its remote SHA.
+- [x] Request an independent review of the plan, code, and test evidence before reporting completion. Fix important findings test-first.
 
 ### Execution Evidence (2026-10-11)
 
