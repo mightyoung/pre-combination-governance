@@ -243,7 +243,7 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
             *((pair, association.ProposalAction.ABSTAIN) for pair in other_pairs),
         )
         terminal = world.scorer_only.evaluation_cutoff
-        steps = (
+        final_steps = (
             make_step("TIME_ASSET_RULE", terminal, actions, pairs=all_pairs),
             make_step(
                 "MULTI_EVIDENCE_RULE",
@@ -252,6 +252,12 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
                 pairs=all_pairs,
             ),
         )
+        earlier_steps = tuple(
+            make_step(method, cutoff, (), pairs=())
+            for cutoff in world.scorer_only.registered_cutoffs[:-1]
+            for method in ("TIME_ASSET_RULE", "MULTI_EVIDENCE_RULE")
+        )
+        steps = (*earlier_steps, *final_steps)
 
         scored = evaluation.score_world(steps, world.scorer_only)
         baseline = scored["methods"]["TIME_ASSET_RULE"]
@@ -295,6 +301,7 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
                 stratum=world.scorer_only.stratum,
                 pair_truths=truth_rows[:-1],
                 evaluation_cutoff=world.scorer_only.evaluation_cutoff,
+                registered_cutoffs=world.scorer_only.registered_cutoffs,
                 escalation_opportunities=world.scorer_only.escalation_opportunities,
                 split_name="development",
             )
@@ -304,9 +311,116 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
                 stratum=world.scorer_only.stratum,
                 pair_truths=world.scorer_only.pair_truths,
                 evaluation_cutoff=world.scorer_only.evaluation_cutoff,
+                registered_cutoffs=world.scorer_only.registered_cutoffs,
                 escalation_opportunities=world.scorer_only.escalation_opportunities,
                 split_name="development",
             )
+
+    def test_score_world_rejects_both_arms_dropping_a_registered_prefix(self):
+        require_api(self)
+        world = evaluation.generate_synthetic_world(
+            seed=8401,
+            world_index=4,
+            stratum=evaluation.SyntheticStratum.ADJACENT_DISTINCT_ASSETS,
+        )
+        steps = evaluation.run_two_methods(world.observable)
+        truncated_steps = tuple(
+            step
+            for step in steps
+            if step.cutoff == world.scorer_only.evaluation_cutoff
+        )
+
+        self.assertGreater(len(world.observable.cutoffs), 1)
+        self.assertEqual(len({step.cutoff for step in truncated_steps}), 1)
+        self.assertEqual(
+            tuple(step.cutoff for step in truncated_steps if step.method == "TIME_ASSET_RULE"),
+            tuple(step.cutoff for step in truncated_steps if step.method == "MULTI_EVIDENCE_RULE"),
+        )
+        with self.assertRaises(ValueError):
+            evaluation.score_world(truncated_steps, world.scorer_only)
+
+    def test_score_world_rejects_nine_cutoffs_even_when_arms_match(self):
+        require_api(self)
+        world = evaluation.generate_synthetic_world(
+            seed=8402,
+            world_index=5,
+            stratum=evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,
+        )
+        all_pairs = tuple(row.pair for row in world.scorer_only.pair_truths)
+        final_cutoff = world.scorer_only.evaluation_cutoff
+        nine_cutoffs = tuple(stamp(seconds) for seconds in range(10, 90, 10)) + (
+            final_cutoff,
+        )
+        self.assertEqual(len(nine_cutoffs), 9)
+        with self.assertRaises(ValueError):
+            evaluation.ScorerSidecar(
+                world_group_id="WORLD-CONTRACT-OVER-BUDGET",
+                stratum=world.scorer_only.stratum,
+                pair_truths=world.scorer_only.pair_truths,
+                evaluation_cutoff=final_cutoff,
+                registered_cutoffs=nine_cutoffs,
+                escalation_opportunities=world.scorer_only.escalation_opportunities,
+            )
+        all_abstain = tuple(
+            (pair, association.ProposalAction.ABSTAIN) for pair in all_pairs
+        )
+        steps = tuple(
+            make_step(method, cutoff, all_abstain, pairs=all_pairs)
+            for cutoff in nine_cutoffs
+            for method in ("TIME_ASSET_RULE", "MULTI_EVIDENCE_RULE")
+        )
+
+        with self.assertRaises(ValueError):
+            evaluation.score_world(steps, world.scorer_only)
+
+    def test_candidate_without_explicit_proposal_is_invalid_output(self):
+        require_api(self)
+        world = evaluation.generate_synthetic_world(
+            seed=8404,
+            world_index=7,
+            stratum=evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,
+        )
+        all_pairs = tuple(row.pair for row in world.scorer_only.pair_truths)
+        partial_actions = ((all_pairs[0], association.ProposalAction.ABSTAIN),)
+        steps = tuple(
+            make_step(method, cutoff, partial_actions, pairs=all_pairs)
+            for cutoff in world.scorer_only.registered_cutoffs
+            for method in ("TIME_ASSET_RULE", "MULTI_EVIDENCE_RULE")
+        )
+
+        with self.assertRaises(ValueError):
+            evaluation.score_world(steps, world.scorer_only)
+
+    def test_shared_root_same_pair_is_censored_before_independent_evidence(self):
+        require_api(self)
+        world = evaluation.generate_synthetic_world(
+            seed=8403,
+            world_index=6,
+            stratum=evaluation.SyntheticStratum.DEPENDENT_REPLAY_UNKNOWN,
+        )
+        same_shared_root = next(
+            row
+            for row in world.scorer_only.pair_truths
+            if row.label is evaluation.PairTruthLabel.SAME
+            and row.first_sufficient_evidence_at is None
+        )
+        scored = evaluation.score_world(
+            evaluation.run_two_methods(world.observable), world.scorer_only
+        )
+        expected_pair = {
+            "left_observation_id": same_shared_root.pair.left_observation_id,
+            "right_observation_id": same_shared_root.pair.right_observation_id,
+        }
+
+        for method in scored["methods"].values():
+            timing = next(
+                row
+                for row in method["decision_timing"]
+                if row["pair"] == expected_pair
+            )
+            self.assertEqual(timing["status"], "RIGHT_CENSORED_BEFORE_SUFFICIENT_EVIDENCE")
+            self.assertEqual(timing["censor_stage"], "BEFORE_SUFFICIENT_EVIDENCE")
+            self.assertFalse(timing["event_observed"])
 
     def test_all_registered_strata_generate_bounded_contract_worlds(self):
         require_api(self)
@@ -355,6 +469,7 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
                 ),
             ),
             evaluation_cutoff=stamp(20),
+            registered_cutoffs=(stamp(5), stamp(12), stamp(20)),
             escalation_opportunities=(),
         )
         candidate_pairs = (pair,)
@@ -429,8 +544,33 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
         )
         steps = evaluation.run_two_methods(world.observable)
         score = evaluation.score_world(steps, world.scorer_only)
+        self.assertEqual(score["registered_cutoffs"], world.observable.cutoffs)
+        self.assertEqual(score["scored_cutoffs"], world.observable.cutoffs)
         aggregate = evaluation.aggregate_world_scores((score,))
         self.assertEqual(aggregate["independent_world_count"], 1)
+        truncated_scored_cutoffs = (
+            score["scored_cutoffs"][:1] + score["scored_cutoffs"][2:]
+        )
+        with self.assertRaises(ValueError):
+            evaluation.aggregate_world_scores(
+                (dict(score, scored_cutoffs=truncated_scored_cutoffs),)
+            )
+        with self.assertRaises(ValueError):
+            over_budget = tuple(stamp(seconds) for seconds in range(10, 90, 10)) + (
+                world.scorer_only.evaluation_cutoff,
+            )
+            evaluation.aggregate_world_scores(
+                (dict(score, registered_cutoffs=over_budget, scored_cutoffs=over_budget),)
+            )
+        duplicate_cutoffs = (
+            score["registered_cutoffs"][0],
+            score["registered_cutoffs"][0],
+            *score["registered_cutoffs"][1:],
+        )
+        with self.assertRaises(ValueError):
+            evaluation.aggregate_world_scores(
+                (dict(score, registered_cutoffs=duplicate_cutoffs, scored_cutoffs=duplicate_cutoffs),)
+            )
         with self.assertRaises(ValueError):
             evaluation.aggregate_world_scores((score, score))
 

@@ -185,6 +185,7 @@ class ScorerSidecar:
     stratum: SyntheticStratum
     pair_truths: tuple[PairTruth, ...]
     evaluation_cutoff: str
+    registered_cutoffs: tuple[str, ...]
     escalation_opportunities: tuple[AlertEscalationOpportunity, ...]
     split_name: str = "contract_test"
 
@@ -240,7 +241,19 @@ class ScorerSidecar:
             if unknown_count != expected_unknown_count:
                 raise ValueError("formal split UNKNOWN pairs must match the registered stratum")
         cutoff = _parse_timestamp(self.evaluation_cutoff, "evaluation_cutoff")
-        object.__setattr__(self, "evaluation_cutoff", _format_timestamp(cutoff))
+        normalized_cutoff = _format_timestamp(cutoff)
+        object.__setattr__(self, "evaluation_cutoff", normalized_cutoff)
+        if not isinstance(self.registered_cutoffs, tuple):
+            raise ValueError("scorer sidecar registered_cutoffs must be a tuple")
+        object.__setattr__(
+            self,
+            "registered_cutoffs",
+            _normalize_registered_cutoffs(
+                self.registered_cutoffs,
+                normalized_cutoff,
+                context="scorer sidecar",
+            ),
+        )
         if not isinstance(self.escalation_opportunities, tuple) or any(
             not isinstance(item, AlertEscalationOpportunity)
             for item in self.escalation_opportunities
@@ -553,6 +566,7 @@ def generate_synthetic_world(
         stratum=selected_stratum,
         pair_truths=tuple(pair_truths),
         evaluation_cutoff=evaluation_cutoff,
+        registered_cutoffs=observable.cutoffs,
         escalation_opportunities=(escalation_opportunity,),
         split_name=split_name,
     )
@@ -631,6 +645,9 @@ def score_world(
     if not isinstance(scorer_only, ScorerSidecar):
         raise TypeError("scorer_only must be a ScorerSidecar")
     validated_steps = _validate_steps(steps, scorer_only)
+    scored_cutoffs = tuple(
+        step.cutoff for step in validated_steps if step.method == "TIME_ASSET_RULE"
+    )
     truth_by_pair = {row.pair: row for row in scorer_only.pair_truths}
     methods = ("TIME_ASSET_RULE", "MULTI_EVIDENCE_RULE")
     final_cutoff = scorer_only.evaluation_cutoff
@@ -720,6 +737,8 @@ def score_world(
         "world_group_id": scorer_only.world_group_id,
         "stratum": scorer_only.stratum.value,
         "evaluation_cutoff": final_cutoff,
+        "registered_cutoffs": scorer_only.registered_cutoffs,
+        "scored_cutoffs": scored_cutoffs,
         "independent_world_count": 1,
         "methods": method_scores,
         "alert_escalation": alert_score,
@@ -803,6 +822,19 @@ def aggregate_world_scores(world_scores: Sequence[Mapping[str, object]]) -> dict
         raise ValueError("each world score must carry a registered split_name")
     if len(set(split_names)) != 1:
         raise ValueError("development, held-out, and contract worlds cannot be aggregated together")
+    for world in world_scores:
+        registered_cutoffs = _normalize_registered_cutoffs(
+            world.get("registered_cutoffs"),
+            world.get("evaluation_cutoff"),
+            context="world score registered schedule",
+        )
+        scored_cutoffs = _normalize_registered_cutoffs(
+            world.get("scored_cutoffs"),
+            world.get("evaluation_cutoff"),
+            context="world score executed trace",
+        )
+        if scored_cutoffs != registered_cutoffs:
+            raise ValueError("world score must include the complete registered cutoff trace")
     split_name = split_names[0]
     if split_name in {"development", "heldout"}:
         plan = get_split_plan(split_name)
@@ -939,8 +971,17 @@ def _validate_steps(
     }
     if cutoffs_by_method["TIME_ASSET_RULE"] != cutoffs_by_method["MULTI_EVIDENCE_RULE"]:
         raise ValueError("method arms must share the same cutoff sequence")
+    registered_cutoffs = _normalize_registered_cutoffs(
+        scorer_only.registered_cutoffs,
+        scorer_only.evaluation_cutoff,
+        context="scorer sidecar",
+    )
+    if cutoffs_by_method["TIME_ASSET_RULE"] != registered_cutoffs:
+        raise ValueError("method arms must cover the complete registered cutoff sequence")
     if len(cutoffs_by_method["TIME_ASSET_RULE"]) != len(set(cutoffs_by_method["TIME_ASSET_RULE"])):
         raise ValueError("each method must have one output per cutoff")
+    if len(cutoffs_by_method["TIME_ASSET_RULE"]) > _MAX_CUTOFFS_PER_WORLD:
+        raise ValueError("method trace exceeds the registered cutoff budget")
     time_asset_cutoffs = cutoffs_by_method["TIME_ASSET_RULE"]
     if tuple(
         sorted(time_asset_cutoffs, key=lambda value: _parse_timestamp(value, "cutoff"))
@@ -1269,6 +1310,31 @@ def _parse_timestamp(value: str, field: str) -> datetime:
     if parsed.tzinfo is None:
         raise ValueError(f"{field} must include a timezone")
     return parsed.astimezone(_UTC)
+
+
+def _normalize_registered_cutoffs(
+    values: object,
+    evaluation_cutoff: object,
+    *,
+    context: str,
+) -> tuple[str, ...]:
+    if not isinstance(values, (tuple, list)) or not values:
+        raise ValueError(f"{context} must carry a non-empty registered cutoff sequence")
+    normalized = tuple(
+        _format_timestamp(_parse_timestamp(value, f"{context} registered cutoff"))
+        for value in values
+    )
+    parsed = tuple(_parse_timestamp(value, f"{context} registered cutoff") for value in normalized)
+    if parsed != tuple(sorted(set(parsed))):
+        raise ValueError(f"{context} registered cutoffs must be unique and chronological")
+    if len(normalized) > _MAX_CUTOFFS_PER_WORLD:
+        raise ValueError(f"{context} exceeds the registered cutoff budget")
+    final_cutoff = _format_timestamp(
+        _parse_timestamp(evaluation_cutoff, f"{context} evaluation cutoff")
+    )
+    if normalized[-1] != final_cutoff:
+        raise ValueError(f"{context} registered cutoffs must end at the evaluation cutoff")
+    return normalized
 
 
 def _json_value(value: object) -> object:
