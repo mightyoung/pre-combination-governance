@@ -40,9 +40,9 @@
       "sha256": "f0aad2195aa9e1c3ae3c84d3331a6b95b23dfe87ecb7ae95819cc28d46b58883"
     },
     {
-      "bytes": 19232,
+      "bytes": 19540,
       "path": "research-three/v2-alignment-20261011/README.md",
-      "sha256": "c0513af77b5e9291656965fb1071613deaf72ce49f55f28d380be99b83b13ac8"
+      "sha256": "d104772180ce16e10600c06bc0d5fa3a5f2574217b810d6074e9ff120e915fe9"
     },
     {
       "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_2X2_PROTOCOL_DRAFT.md",
@@ -56,8 +56,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_CONTRACT_V1.md",
-      "bytes": 4062,
-      "sha256": "bd1affd3f77446c079a16b8e4c5773adfd724de6d71fdf7fde576afbea85f3f5"
+      "bytes": 4659,
+      "sha256": "d0577d2b4b73512f0b98f3530543d885514e2670cb9f8ded4997ec9cca49440c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_TEMPORAL_PRECISION_FIX_RESULTS.json",
+      "bytes": 2643,
+      "sha256": "b1f0d5dd6eebc05a242b8f86935251c7df86fa843a31e2330a7d3db32695f422"
     },
     {
       "bytes": 1711,
@@ -261,8 +266,8 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/source_lineage_contract_v1.py",
-      "bytes": 14126,
-      "sha256": "4860cedb7559aef82e6db658d66f43533dc2dc4b841bbc39fb90e9c496f792a0"
+      "bytes": 14240,
+      "sha256": "ca58668d724c3b547de01dbcf3b6e0460adbdf1cf72ae54bd94515d5ac3bac26"
     },
     {
       "bytes": 22183,
@@ -316,8 +321,8 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_source_lineage_contract_v1.py",
-      "bytes": 11456,
-      "sha256": "76a103dcd29feae88fb8b1f30801cb65a0a0398b7233238fd58d40796b30d291"
+      "bytes": 15236,
+      "sha256": "70e4d49fe50701f74a2fbb198d971a04cd76a69d3c0246954821095a98ac78cd"
     }
   ],
   "finite_synthetic_evaluation": {
@@ -369,7 +374,7 @@
       "heldout": 6
     }
   },
-  "focused_local_validation": "PASS; 20 observable-only association synthetic unit tests and 29 focused alert-ledger/reminder regression tests. I1 regression coverage rejects future observation-ID, receipt, and field-known times at direct prefix construction and dataclasses.replace, and revalidates candidate/rule consumers; it also asserts factory preservation of ID availability times and a valid later cutoff. Existing prefix invariance, identifier bijection, replay/lineage, late-arrival, asset/recovery, scorer-contract, and pending-ledger coverage remains passing. No efficacy estimate, old 1464-check trial rerun, Mac/device validation, or real delivery. The additive source-lineage contract v1 was then tested separately: 13 focused pure-CPU contract tests passed after 13 expected RED failures; no association rules, pilot, heldout, device, model, or delivery path was executed.",
+  "focused_local_validation": "PASS; 20 observable-only association synthetic unit tests and 29 focused alert-ledger/reminder regression tests. I1 regression coverage rejects future observation-ID, receipt, and field-known times at direct prefix construction and dataclasses.replace, and revalidates candidate/rule consumers; it also asserts factory preservation of ID availability times and a valid later cutoff. Existing prefix invariance, identifier bijection, replay/lineage, late-arrival, asset/recovery, scorer-contract, and pending-ledger coverage remains passing. No efficacy estimate, old 1464-check trial rerun, Mac/device validation, or real delivery. The additive source-lineage contract v1 was then tested separately: 13 focused pure-CPU contract tests passed after 13 expected RED failures; no association rules, pilot, heldout, device, model, or delivery path was executed. Source-lineage temporal-precision review then reproduced four sub-second ordering failures before the fix; after parsing UTC instants, the 19-test pure-CPU contract suite passed, including equivalent-offset and inclusive valid-until boundary cases. No association rules, frozen pilot outputs, old 1,464-check trial, Mac, heldout, device, model, or notification path was run.",
   "frozen_prefix_integration_scope": "Two complete synthetic trajectories with a common prefix and distinct future suffixes are passed in full to freeze_visible_prefix at the same as_of; frozen prefix, pending action-ledger input, and card preview match. A later as_of exposes the divergent future values.",
   "historical_independent_review": "USER_HANDOFF_SUMMARY_ONLY; reported 63 pure tests (38 focused), C0/I0/M0 and prior closeout; not rerun in this environment.",
   "identity_ledger_alignment_scope": "Across history, every ASSOCIATION_PENDING revision must carry the full pending pair; every resolved-state revision must match the externally supplied resolved state and card episodes; identity-transition detected_at cannot precede identity_evidence_known_at and resolved revision received_at cannot precede resolved_at. trigger_known_time and earlier pending revisions are preserved. Latest revision must reference identity association ID/state.",
@@ -414,7 +419,7 @@
   "research_protocol_revision": "OUTCOME_DRIVEN_DRAFT_2026-10-11_WITH_FINITE_EVALUATION_REVIEW_DRAFT",
   "run_artifacts_are_synthetic_only": true,
   "sha256_scope": "Listed deliverables only; this manifest does not hash itself.",
-  "source_commit": "835a30ec4dc843e0cdab61d96173478449659f86",
+  "source_commit": "398b75f66f55af6d5e37d85f3e1af53a3d75f4b1",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "synthetic_event_card_examples": {
     "business_acceptance": "NOT_EVALUATED",
@@ -462,15 +467,31 @@
     "contract_path": "risk-fusion-bench/src/rfb/research/source_lineage_contract_v1.py",
     "test_path": "risk-fusion-bench/tests/test_source_lineage_contract_v1.py",
     "contract_test_status": "PASS",
-    "contract_tests_passed": 13,
+    "contract_tests_passed": 19,
     "test_command": "PYTHONPATH=src python -m unittest -v tests.test_source_lineage_contract_v1",
-    "tdd_red_first_failures": 13,
+    "tdd_red_first_failures": 4,
     "future_2x2_protocol_path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_2X2_PROTOCOL_DRAFT.md",
     "future_2x2_protocol_status": "DRAFT_NOT_RUN",
     "association_rule_integration": false,
     "event_identity_accuracy_evaluated": false,
     "heldout_accessed": false,
     "statistical_independence_claimed": false,
-    "mac_device_or_notification_validation": false
+    "mac_device_or_notification_validation": false,
+    "initial_contract_tests_passed": 13,
+    "initial_tdd_red_first_failures": 13,
+    "temporal_precision_fix_results_path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_TEMPORAL_PRECISION_FIX_RESULTS.json"
+  },
+  "source_lineage_temporal_precision_fix": {
+    "status": "PASS_PURE_CPU_CONTRACT_TEST_ONLY",
+    "source_commit": "398b75f66f55af6d5e37d85f3e1af53a3d75f4b1",
+    "results_path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_TEMPORAL_PRECISION_FIX_RESULTS.json",
+    "current_contract_tests_passed": 19,
+    "expected_red_regressions": 4,
+    "additional_boundary_tests": 2,
+    "comparison": "Timezone-aware UTC datetime instants; no ISO string ordering",
+    "old_association_rules_changed": false,
+    "frozen_pilot_outputs_changed": false,
+    "old_1464_check_trial_rerun": false,
+    "Mac_accessed": false
   }
 }
