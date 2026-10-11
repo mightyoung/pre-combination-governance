@@ -33,6 +33,8 @@
 
 合并候选的实验条件为相同 `display_card_id + action_kind + risk_stage + association_state + experiment_batch_id + dedup_episode_interval_key`，并与该提醒组首条修订至少共享一个 `candidate_episode_id`；窗口按首条 `received_at` 计算且含边界。`UNKNOWN_PENDING` 与 `CONFLICT_PENDING` 作为不同动作状态；冲突更新不并入一般待核动作。该规则以及 0/5 秒窗口均不是冻结建议或生产规则。稳定显示卡只表示展示上下文，不证明事件等价；UNKNOWN 关联和候选节点不被 union。内容预览对每个窗口/策略变体输出 23 条语义修订和一条精确重放审计；每条都列出公开 V2 的 18 个必填字段状态与修订追溯。精确重放复用原修订，旧内容冲突重放没有内容预览。所有内容标记 `PREVIEW_ONLY`，动作标记 `NOT_DELIVERED`；实际 `emitted_at` 未产生、`visible_at` 未运行。输入中的 `trigger_known_time` 与 `detected_at` 是合成字段，不是运行时外部时间证据；迟到旧观测另将 `source_time`、`observed_at`、`trigger_known_time`、`detected_at`、`received_at` 设为不同值，未以处理时间替换观测时间。单 flag severity 使用公开映射，多 flag severity 置空待定、不排序。提醒及时性、内容完整性、事件确证准确性分别报告；本合成输入只检查语义内容完整性，不能测真实事件确证准确率，亦不估模型调用节省量。来源可信度/统计独立性不评估。
 
+另有隔离回归测试验证一个不在这 23 条输入中的情形：同卡同关联组内，调用者仍标为 `ASSOCIATION_PENDING`，但单个已知风险 flag 的公开映射从 `WARNING` 升至 `CRITICAL`，CARD_COALESCE 仍产生新的模拟动作；精确重放不追加修订，同等级与 `CRITICAL` 降至 `WARNING` 对照继续走原合并路径。该守卫只识别公开单 flag 的 `WARNING→CRITICAL`，不推定多 flag 优先级，也不改写现有合成对照结果。
+
 测试：`risk-fusion-bench/tests/test_alert_action_experiment.py`、`risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py`。复现命令见 [README](README.md)。
 
 ## 相邻系统设计依据

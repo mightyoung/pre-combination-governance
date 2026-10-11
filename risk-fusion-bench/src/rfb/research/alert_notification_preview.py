@@ -105,7 +105,7 @@ def build_notification_content_preview(
     user_message = (
         f"待核实风险提醒｜等级：{severity_text}。当前风险标记：{risk_label}；"
         f"关联状态：{association_text}。原因：{association_reason}"
-        f"涉及设备/来源：{source_label}；任务：未提供；观测：{observation_label}；"
+        f"涉及设备/来源：{source_label}；任务：当前接口不支持绑定；观测：{observation_label}；"
         f"候选事件：{candidate_label}；风险依据：{evidence_label}。"
         f"显示卡：{intent.display_card_id}。"
     )
@@ -204,7 +204,7 @@ def build_notification_content_preview(
         "risk_flags": risk_flags,
         "source_ids": list(intent.source_ids),
         "task_ids": [],
-        "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+        "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
         "evidence_refs": list(intent.evidence_refs),
         "time_evidence": {
             "source_times": list(intent.source_times),

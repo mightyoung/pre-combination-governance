@@ -72,8 +72,12 @@ class NotificationContentPreviewTests(unittest.TestCase):
         self.assertEqual(preview["association_state"], "UNKNOWN_PENDING")
         self.assertEqual(preview["candidate_episode_ids"], ["episode-A", "episode-B"])
         self.assertIn("按既定处置流程核查", preview["user_visible_message"])
-        self.assertIn("任务：未提供", preview["user_visible_message"])
+        self.assertIn("任务：当前接口不支持绑定", preview["user_visible_message"])
         self.assertIn("CARD-PREVIEW-A", preview["user_visible_message"])
+        self.assertEqual(preview["task_ids"], [])
+        self.assertEqual(
+            preview["task_context_status"], "UNSUPPORTED_BY_CURRENT_INTERFACE"
+        )
         self.assertEqual(preview["delivery_status"], "NOT_DELIVERED")
         self.assertIsNone(preview["emitted_at"])
         self.assertIsNone(preview["visible_at"])

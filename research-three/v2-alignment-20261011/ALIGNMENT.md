@@ -4,6 +4,9 @@
 
 ## 固定来源与边界
 
+- **本矩阵修订日期/规格版：** 2026-10-11；公开 V2 清单版 `PUBLIC_SANITIZED_EDITION_V1`，规则版 `STUDY3_ALERT_BUSINESS_SPEC_V2_RESULT_INFORMED`，固定提交见下项。
+- **旧失败基线日期/版本：** 交接摘要仅标明 `Mac V3-RSS single trial`；试验日期、Mac 构建号和代码提交未提供。其 1,464 项检查失败记录只按用户提供的摘要保存于 [`historical-baseline.json`](../alert-governance-v1/historical-baseline.json)，不是原始运行包或可复现记录。
+
 - 本轮指定对齐依据是公开分支 `task/v2-public-spec-20261011` 的固定提交 [`cc6d59b88bda73381fc09d9091a224ab4155891e`](https://github.com/mightyoung/pre-combination-governance/tree/cc6d59b88bda73381fc09d9091a224ab4155891e/research-three/v2-public-spec-20261011)，目录 `research-three/v2-public-spec-20261011/`。清单版号为 `PUBLIC_SANITIZED_EDITION_V1`，规则版号为 `STUDY3_ALERT_BUSINESS_SPEC_V2_RESULT_INFORMED`，scope 是主业务规格、部分记录 schema 和指标定义。
 - 已逐一读取该目录 7 个文件：`README.md`、`REVISION.md`、`SPEC.md`、`business-spec.json`、`record-fields.schema.json`、`METRICS.md`、`PUBLIC-MANIFEST.json`。清单列出的前 6 个文件的字节数和 SHA-256 均已与固定提交逐项核对通过；清单自身明确不含 self-hash。
 - 对照实现：`task/research-three-alert-governance`，提交
@@ -133,11 +136,6 @@
 2. **下一步可独立实现的合同部分。** 将 V2 展示卡上下文、候选 episode 节点、关联状态和不可变分拆引用建成独立模型；UNKNOWN/CONFLICT 不合并 episode；风险升级与事件身份分离。先用公开版明确行为写测试，不改写 V1 的卡语义，也不声称 V2 payload 合格。
 3. **尚需冻结后才实现的部分。** 多 flag severity 聚合、字段类型/空值、真实时钟和 visible_at 回执、SLO、证据资格的机器判据、dedup interval/key 算法，以及可评价真值/分母。没有这些选择时保留 UNKNOWN 或拒绝聚合，不用私有 Mac 原件作为笼统前置。
 
-### 请先讨论：多 flag severity 汇总
+### 多 flag severity：仍未决
 
-公开版给出单 flag 等级，但未规定一个待核提醒同时含多个 flag 时如何定级。可选：
-
-- **A（推荐）：** 单条卡片提醒取最高优先级 `CRITICAL > WARNING_RISK_UNRESOLVED > WARNING`，同时保留全部 risk basis、冲突状态和不确定原因。这样不会让高等级依据被低等级提醒覆盖。
-- **B：** 每个风险依据分别产生提醒修订，使用各自公开的单 flag 等级；不设总优先级，但同一卡片可能出现并行提醒，需额外控制重复负担。
-
-我建议 A；该排序是建议，不是公开 V2 规则，也尚未编码。请先选 A 或 B；收到选择后再逐项讨论其他未冻结项。本轮没有运行 1,464 旧试验、真实投递、模型服务或 Mac 资格/清理流程。
+公开版只给单 flag 映射，没有规定多个同时有效的 flag 如何汇总。本文件早期草稿曾列出“取最高等级”和“分别出修订”两种讨论项；两者均未获采纳。本次修订撤回早期对最高等级的倾向，不选择优先级、不改变 18 字段合同，也不据此排名或折叠多 flag。当前实现只映射一个已知 flag；多个 flag 的预览等级保持待定。旧失败基线和旧指标仍按本文件所注明的来源与版本保存；本轮未运行 1,464 旧试验、真实投递、模型服务或 Mac 资格/清理流程。

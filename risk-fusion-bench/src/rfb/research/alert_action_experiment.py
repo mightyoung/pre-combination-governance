@@ -14,6 +14,8 @@ from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from enum import StrEnum
 
+from .alert_governance_v2 import severity_for_risk_flag
+
 
 class PolicyMode(StrEnum):
     PER_ASSOCIATION = "PER_ASSOCIATION"
@@ -48,6 +50,20 @@ _RISK_STAGES = frozenset({"PRECAUTIONARY", "CONFIRMED", "ESCALATED"})
 _ASSOCIATION_STATES = frozenset(
     {"SAME_CONFIRMED", "DIFFERENT_CONFIRMED", "UNKNOWN_PENDING", "CONFLICT_PENDING"}
 )
+
+
+def _is_single_flag_warning_to_critical(
+    previous_risk_flags: tuple[str, ...], current_risk_flags: tuple[str, ...]
+) -> bool:
+    """Recognize only the public, mapped single-flag WARNING to CRITICAL rise."""
+    if len(previous_risk_flags) != 1 or len(current_risk_flags) != 1:
+        return False
+    try:
+        previous_severity = severity_for_risk_flag(previous_risk_flags[0])
+        current_severity = severity_for_risk_flag(current_risk_flags[0])
+    except ValueError:
+        return False
+    return previous_severity == "WARNING" and current_severity == "CRITICAL"
 
 
 def _parse_utc(value: str, label: str) -> datetime:
@@ -305,12 +321,20 @@ class ReminderActionLedger:
         revisions.append(card_revision)
 
         target_index = None
+        coalescing_decision_reason = None
         if (
             self.mode is PolicyMode.CARD_COALESCE
             and intent.kind is ActionKind.ASSOCIATION_PENDING
             and intent.kind not in _PROTECTED_ACTIONS
         ):
             target_index = self._coalescing_target(intent)
+            if target_index is not None:
+                previous_risk_flags = self._notifications[target_index].updates[-1].risk_flags
+                if _is_single_flag_warning_to_critical(
+                    previous_risk_flags, intent.risk_flags
+                ):
+                    target_index = None
+                    coalescing_decision_reason = "SINGLE_FLAG_SEVERITY_ESCALATION"
 
         if target_index is None:
             notification_id = f"EXPERIMENT-NOTIFY-{len(self._notifications) + 1:04d}"
@@ -333,6 +357,8 @@ class ReminderActionLedger:
                 decision_reason = "PER_ASSOCIATION_POLICY"
             elif intent.kind in _PROTECTED_ACTIONS:
                 decision_reason = "PROTECTED_ACTION_KIND"
+            elif coalescing_decision_reason is not None:
+                decision_reason = coalescing_decision_reason
             elif intent.kind is ActionKind.ASSOCIATION_PENDING:
                 decision_reason = "NO_MATCHING_EPISODE_INTERVAL_KEY_WITHIN_WINDOW"
             else:

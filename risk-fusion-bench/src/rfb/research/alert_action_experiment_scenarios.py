@@ -470,26 +470,29 @@ def _attach_notification_content_previews(
         for row in policy_result["decisions"]
         if row["status"] == ApplyStatus.DUPLICATE_REPLAY.value
     )
-    original_revision = revision_by_intent[exact_replay.intent_id]
-    duplicate_trace = dict(trace_by_intent[exact_replay.intent_id])
-    duplicate_trace.update(
-        {
-            "duplicate_of_intent_id": exact_replay.intent_id,
-            "replay_received_at": exact_replay.received_at,
-            "new_revision_created": False,
-        }
+    original_intent = next(
+        intent for intent in intents if intent.intent_id == exact_replay.intent_id
     )
+    original_revision = revision_by_intent[exact_replay.intent_id]
     duplicate_preview = build_notification_content_preview(
-        exact_replay,
+        original_intent,
         notification_id=duplicate_decision["experiment_notification_id"],
         content_revision=original_revision["revision"],
         decision_status=duplicate_decision["status"],
-        revision_trace=duplicate_trace,
+        revision_trace=trace_by_intent[exact_replay.intent_id],
     )
     duplicate_preview["preview_id"] = (
         f"{duplicate_decision['experiment_notification_id']}:duplicate-replay:"
         f"{exact_replay.intent_id}"
     )
+    duplicate_preview["replay_attempt_audit"] = {
+        "duplicate_of_intent_id": exact_replay.intent_id,
+        "original_received_at": original_intent.received_at,
+        "attempted_received_at": exact_replay.received_at,
+        "decision_status": duplicate_decision["status"],
+        "content_revision": original_revision["revision"],
+        "new_revision_created": False,
+    }
     previews.append(duplicate_preview)
 
     audit = summarize_notification_preview_audits(previews)
@@ -1209,12 +1212,12 @@ def render_html(result: dict[str, Any]) -> str:
     intent_by_id = {
         intent["intent_id"]: intent for intent in result["input"]["action_intents"]
     }
-    intent_by_id[result["input"]["exact_replay_attempt"]["intent_id"]] = result[
-        "input"
-    ]["exact_replay_attempt"]
     decision_rows = []
     for decision in result["window_results"][1]["card_coalesce"]["decisions"]:
-        intent = intent_by_id[decision["intent_id"]]
+        if decision["status"] == ApplyStatus.DUPLICATE_REPLAY.value:
+            intent = result["input"]["exact_replay_attempt"]
+        else:
+            intent = intent_by_id[decision["intent_id"]]
         elapsed = decision["coalescing_elapsed_seconds"]
         window = decision["coalescing_window_seconds"]
         decision_rows.append(
@@ -1283,8 +1286,15 @@ def render_html(result: dict[str, Any]) -> str:
                 )
                 severity = preview["severity"] or "等级待定"
                 previous = trace.get("previous_intent_id") or "无前序修订"
+                replay_audit = preview.get("replay_attempt_audit")
+                replay_audit_html = (
+                    "<br>重放到达时间（审计）："
+                    f"{esc(replay_audit['attempted_received_at'])}"
+                    if replay_audit is not None
+                    else ""
+                )
                 if preview["preview_status"] == "DUPLICATE_REPLAY_IGNORED":
-                    previous = f"重复引用原修订：{trace.get('duplicate_of_intent_id')}"
+                    previous = f"重复引用原修订：{trace['intent_id']}"
                 preview_rows.append(
                     "<tr>"
                     f"<td><code>{esc(preview['preview_id'])}</code><br>"
@@ -1309,7 +1319,8 @@ def render_html(result: dict[str, Any]) -> str:
                     f"trigger_known_time：{esc(preview['trigger_known_time'])}<br>"
                     f"detected_at：{esc(preview['detected_at'])}<br>"
                     "emitted_at：未产生<br>visible_at：未运行<br>"
-                    f"处理 received_at：{esc(preview['time_evidence']['received_at_processing_time'])}</td>"
+                    f"原修订处理 received_at：{esc(preview['time_evidence']['received_at_processing_time'])}"
+                    f"{replay_audit_html}</td>"
                     f"<td><details><summary>每条必填字段审计：{field_audit['present_field_count']}/"
                     f"{field_audit['required_field_count']}；业务验收未评估</summary>"
                     f"<ul>{field_status_rows}</ul></details></td>"
@@ -1374,7 +1385,7 @@ details ul {{ margin:8px 0 10px; padding-left:22px; }}
 <section class="panel"><h2>被比较的同一提醒输入（{len(result['input']['action_intents'])} 条顺序动作，不作独立样本）</h2>
 <div class="scroll"><table><thead><tr><th>处理 received_at</th><th>稳定显示卡 / 修订</th><th>动作 / 阶段 / 关联状态</th><th>候选 episode 节点</th><th>实验区间键</th><th>观测 / 来源</th><th>证据 / source_time</th><th>observed_at</th><th>trigger_known_time / detected_at / received_at</th></tr></thead><tbody>{''.join(action_rows)}</tbody></table></div></section>
 <section class="panel"><h2>用户可见内容预览（仅模拟）</h2>
-<p>每个窗口和策略均使用同一动作输入，逐条呈现 23 个语义修订及一次精确重放审计。表中的模拟动作决策表示策略如何处理输入，不代表实际产生提醒；内容只是模板预览，状态统一为 <code>NOT_DELIVERED</code>，实际 emitted_at 未产生，visible_at 未运行。精确重放复用原修订；旧内容冲突重放只保留拒绝记录，不生成内容预览。多 flag severity 规则未定义，多标记预览将等级置空并明确待定。</p>
+<p>每个窗口和策略均使用同一动作输入，逐条呈现 23 个语义修订及一次精确重放审计。表中的模拟动作决策表示策略如何处理输入，不代表实际产生提醒；内容只是模板预览，状态统一为 <code>NOT_DELIVERED</code>，实际 emitted_at 未产生，visible_at 未运行。本表展示增量通知内容，不是累积后的整张可见卡；保留历史引用不代表完整卡已对用户可见。task_ids 接口当前不支持绑定。精确重放复用原修订，保留原内容时间并把本次重放到达时间单独列入审计；旧内容冲突重放只保留拒绝记录，不生成内容预览。多 flag severity 规则未定义，多标记预览将等级置空并明确待定。</p>
 {''.join(preview_panels)}</section>
 <section class="panel"><h2>公开 V2 字段审计：部分合成跟踪</h2>
 <p class="muted">逐字段对照固定公开规格提交 <code>{esc(result['v2_contract_audit']['source_spec_commit'])}</code>。这些状态表示字段跟踪，不代表业务通过。</p>

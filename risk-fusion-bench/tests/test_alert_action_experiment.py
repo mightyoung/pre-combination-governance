@@ -164,6 +164,86 @@ class ReminderActionExperimentTests(unittest.TestCase):
             5,
         )
 
+    def test_card_policy_emits_unlabeled_single_flag_warning_to_critical_upgrade(self):
+        first = pending(
+            "intent-warning", "assoc-upgrade", received_seconds=0,
+            episode_ids=("episode-shared",), interval_key="INTERVAL-UPGRADE",
+        )
+        upgrade = replace(
+            first,
+            intent_id="intent-critical",
+            received_at=stamp(1),
+            risk_flags=("EXPOSURE_HIGH",),
+        )
+        candidate = ledger(PolicyMode.CARD_COALESCE, window=5)
+
+        candidate.apply(first)
+        upgrade_decision = candidate.apply(upgrade)
+
+        self.assertIs(upgrade.kind, ActionKind.ASSOCIATION_PENDING)
+        self.assertEqual(upgrade_decision.status, ApplyStatus.EMITTED)
+        self.assertEqual(
+            upgrade_decision.decision_reason,
+            "SINGLE_FLAG_SEVERITY_ESCALATION",
+        )
+        self.assertEqual(len(candidate.notifications), 2)
+        self.assertEqual(len(candidate.card_revisions_for("CARD-A")), 2)
+
+        replay = replace(upgrade, received_at=stamp(2))
+        replay_decision = candidate.apply(replay)
+        self.assertEqual(replay_decision.status, ApplyStatus.DUPLICATE_REPLAY)
+        self.assertEqual(len(candidate.notifications), 2)
+        self.assertEqual(len(candidate.card_revisions_for("CARD-A")), 2)
+
+    def test_card_policy_coalesces_same_mapped_single_flag_severity(self):
+        first = pending(
+            "intent-warning", "assoc-same-severity", received_seconds=0,
+            episode_ids=("episode-shared",), interval_key="INTERVAL-SAME-SEVERITY",
+        )
+        same_severity = replace(
+            first,
+            intent_id="intent-warning-peer",
+            received_at=stamp(1),
+            risk_flags=("CONFLICT_REVIEW",),
+        )
+        candidate = ledger(PolicyMode.CARD_COALESCE, window=5)
+
+        candidate.apply(first)
+        decision = candidate.apply(same_severity)
+
+        self.assertEqual(decision.status, ApplyStatus.COALESCED)
+        self.assertEqual(
+            decision.decision_reason,
+            "SAME_CARD_EPISODE_INTERVAL_KEY_WITHIN_WINDOW",
+        )
+        self.assertEqual(len(candidate.notifications), 1)
+
+    def test_card_policy_coalesces_single_flag_downgrade_without_reclassifying_it(self):
+        first = replace(
+            pending(
+                "intent-critical", "assoc-downgrade", received_seconds=0,
+                episode_ids=("episode-shared",), interval_key="INTERVAL-DOWNGRADE",
+            ),
+            risk_flags=("EXPOSURE_HIGH",),
+        )
+        downgrade = replace(
+            first,
+            intent_id="intent-warning",
+            received_at=stamp(1),
+            risk_flags=("EXPOSURE",),
+        )
+        candidate = ledger(PolicyMode.CARD_COALESCE, window=5)
+
+        candidate.apply(first)
+        decision = candidate.apply(downgrade)
+
+        self.assertEqual(decision.status, ApplyStatus.COALESCED)
+        self.assertEqual(
+            decision.decision_reason,
+            "SAME_CARD_EPISODE_INTERVAL_KEY_WITHIN_WINDOW",
+        )
+        self.assertEqual(len(candidate.notifications), 1)
+
     def test_zero_window_coalesces_only_same_processing_instant(self):
         inputs = (
             pending("intent-ab", "assoc-ab", received_seconds=0),

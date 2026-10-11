@@ -249,7 +249,7 @@ class ReminderActionScenarioTests(unittest.TestCase):
                         if row["preview_status"] == "DUPLICATE_REPLAY_IGNORED"
                     )
                     self.assertFalse(
-                        duplicate_preview["revision_trace"]["new_revision_created"]
+                        duplicate_preview["replay_attempt_audit"]["new_revision_created"]
                     )
                     for preview in previews:
                         self.assertEqual(preview["field_audit"]["missing_fields"], [])
@@ -322,6 +322,63 @@ class ReminderActionScenarioTests(unittest.TestCase):
         self.assertFalse(baseline["rerun_this_time"])
         self.assertEqual(baseline["legacy_metric_status"], "NOT_RECONSTRUCTED")
 
+    def test_exact_replay_preserves_original_revision_times_and_audits_attempt_time(self):
+        result = build_comparison()
+        replay = result["input"]["exact_replay_attempt"]
+        original = next(
+            row
+            for row in result["input"]["action_intents"]
+            if row["intent_id"] == replay["intent_id"]
+        )
+
+        for window in result["window_results"]:
+            for policy_name in ("per_association", "card_coalesce"):
+                previews = window[policy_name]["notification_content_previews"]
+                original_preview = next(
+                    row
+                    for row in previews
+                    if row["preview_status"] == "PREVIEW_ONLY"
+                    and row["revision_trace"]["intent_id"] == replay["intent_id"]
+                )
+                duplicate_preview = next(
+                    row
+                    for row in previews
+                    if row["preview_status"] == "DUPLICATE_REPLAY_IGNORED"
+                )
+                with self.subTest(window=window["window_seconds"], policy=policy_name):
+                    self.assertEqual(
+                        duplicate_preview["time_evidence"],
+                        original_preview["time_evidence"],
+                    )
+                    self.assertEqual(
+                        duplicate_preview["revision_trace"],
+                        original_preview["revision_trace"],
+                    )
+                    self.assertEqual(
+                        duplicate_preview["replay_attempt_audit"],
+                        {
+                            "duplicate_of_intent_id": replay["intent_id"],
+                            "original_received_at": original["received_at"],
+                            "attempted_received_at": replay["received_at"],
+                            "decision_status": "DUPLICATE_REPLAY_IGNORED",
+                            "content_revision": original_preview["content_revision"],
+                            "new_revision_created": False,
+                        },
+                    )
+
+    def test_html_keeps_original_first_decision_time_separate_from_replay_time(self):
+        rendered = scenarios.render_html(build_comparison())
+        decision_section = rendered.split(
+            "<h2>CARD_COALESCE / 5 秒：逐条决策与时间证据</h2>", 1
+        )[1].split("</section>", 1)[0]
+
+        self.assertIn(
+            "<tbody><tr><td>2026-10-11T08:00:10Z</td>",
+            decision_section,
+        )
+        self.assertIn("<td>2026-10-11T08:00:40Z</td>", decision_section)
+        self.assertIn("重放到达时间（审计）：2026-10-11T08:00:40Z", rendered)
+
     def test_html_rendering_is_standalone_and_labels_unknown_delivery(self):
         self.assertTrue(callable(getattr(scenarios, "render_html", None)))
         rendered = scenarios.render_html(build_comparison())
@@ -342,6 +399,8 @@ class ReminderActionScenarioTests(unittest.TestCase):
         self.assertIn("未实际创建事件卡", rendered)
         self.assertIn("用户可见内容预览（仅模拟）", rendered)
         self.assertIn("每条必填字段审计", rendered)
+        self.assertIn("本表展示增量通知内容，不是累积后的整张可见卡", rendered)
+        self.assertIn("task_ids 接口当前不支持", rendered)
         self.assertNotIn("https://", rendered)
 
 
