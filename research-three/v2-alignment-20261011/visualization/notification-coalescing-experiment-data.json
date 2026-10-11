@@ -3214,7 +3214,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -3230,7 +3230,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -3439,7 +3439,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -3455,7 +3455,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -3664,7 +3664,7 @@
               "candidate-C"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -3680,7 +3680,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-C",
               "synthetic://observation/candidate-A",
@@ -3889,7 +3889,7 @@
               "candidate-C"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -3905,7 +3905,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-C",
               "synthetic://observation/candidate-A",
@@ -4112,7 +4112,7 @@
               "episode-H"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-G、device-H；任务：未提供；观测：observation-G、observation-H；候选事件：episode-G、episode-H；风险依据：synthetic://association/cross-episode-G-H。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-G、device-H；任务：当前接口不支持绑定；观测：observation-G、observation-H；候选事件：episode-G、episode-H；风险依据：synthetic://association/cross-episode-G-H。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -4128,7 +4128,7 @@
               "device-H"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://association/cross-episode-G-H"
             ],
@@ -4327,7 +4327,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-CROSS-CARD。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-CROSS-CARD。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -4343,7 +4343,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B"
             ],
@@ -4542,7 +4542,7 @@
               "candidate-B"
             ],
             "association_state": "CONFLICT_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：CONFLICT_PENDING（本次输入状态）。原因：风险或事件身份相关证据冲突尚未解决。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://association/conflict-A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：CONFLICT_PENDING（本次输入状态）。原因：风险或事件身份相关证据冲突尚未解决。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://association/conflict-A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -4558,7 +4558,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://association/conflict-A-B"
             ],
@@ -4753,7 +4753,7 @@
               "candidate-A"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A；任务：未提供；观测：candidate-A；候选事件：candidate-A；风险依据：synthetic://risk/escalation-A。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A；任务：当前接口不支持绑定；观测：candidate-A；候选事件：candidate-A；风险依据：synthetic://risk/escalation-A。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:11Z",
             "detected_at": "2026-10-11T08:00:11Z",
@@ -4768,7 +4768,7 @@
               "device-A"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://risk/escalation-A"
             ],
@@ -4958,7 +4958,7 @@
               "candidate-Z-distinct-event"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-Z；任务：未提供；观测：candidate-Z-distinct-event；候选事件：candidate-Z-distinct-event；风险依据：synthetic://observation/candidate-Z-distinct-event。显示卡：CARD-d0aa8c3e786d718534297667fb7bfe150262bc7381baea8146a285c2a448e638。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-Z；任务：当前接口不支持绑定；观测：candidate-Z-distinct-event；候选事件：candidate-Z-distinct-event；风险依据：synthetic://observation/candidate-Z-distinct-event。显示卡：CARD-d0aa8c3e786d718534297667fb7bfe150262bc7381baea8146a285c2a448e638。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:11Z",
             "detected_at": "2026-10-11T08:00:11Z",
@@ -4973,7 +4973,7 @@
               "device-Z"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-Z-distinct-event"
             ],
@@ -5165,7 +5165,7 @@
               "candidate-B"
             ],
             "association_state": "SAME_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:12Z",
             "detected_at": "2026-10-11T08:00:12Z",
@@ -5181,7 +5181,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://confirmation/A-B"
             ],
@@ -5382,7 +5382,7 @@
               "candidate-B"
             ],
             "association_state": "SAME_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:12Z",
             "detected_at": "2026-10-11T08:00:12Z",
@@ -5398,7 +5398,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://confirmation/A-B"
             ],
@@ -5599,7 +5599,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -5615,7 +5615,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -5816,7 +5816,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -5832,7 +5832,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -6033,7 +6033,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -6049,7 +6049,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -6250,7 +6250,7 @@
               "candidate-B"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查分拆证据、设备/任务绑定和事件关联；若证据通过门控，应建立独立事件卡并以不可变历史引用链接此卡。本预览不代表分拆已确认或事件卡已创建。",
             "trigger_known_time": "2026-10-11T08:00:14Z",
             "detected_at": "2026-10-11T08:00:14Z",
@@ -6266,7 +6266,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://split/A-B"
             ],
@@ -6467,7 +6467,7 @@
               "candidate-B"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查分拆证据、设备/任务绑定和事件关联；若证据通过门控，应建立独立事件卡并以不可变历史引用链接此卡。本预览不代表分拆已确认或事件卡已创建。",
             "trigger_known_time": "2026-10-11T08:00:14Z",
             "detected_at": "2026-10-11T08:00:14Z",
@@ -6483,7 +6483,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://split/A-B"
             ],
@@ -6686,7 +6686,7 @@
               "candidate-D"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：未提供；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：当前接口不支持绑定；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:15Z",
             "detected_at": "2026-10-11T08:00:15Z",
@@ -6702,7 +6702,7 @@
               "device-D"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-D",
               "synthetic://observation/candidate-A",
@@ -6911,7 +6911,7 @@
               "candidate-D"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：未提供；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-151b2dfa6419ab529f18652541d611b95db4b7f206849517ef29bceece507fe2。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：当前接口不支持绑定；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-151b2dfa6419ab529f18652541d611b95db4b7f206849517ef29bceece507fe2。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:15Z",
             "detected_at": "2026-10-11T08:00:15Z",
@@ -6927,7 +6927,7 @@
               "device-D"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-D",
               "synthetic://observation/candidate-A",
@@ -7136,7 +7136,7 @@
               "candidate-E"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：未提供；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：当前接口不支持绑定；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:20Z",
@@ -7152,7 +7152,7 @@
               "device-E"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-E",
               "synthetic://observation/candidate-A",
@@ -7361,7 +7361,7 @@
               "candidate-E"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：未提供；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-3c6d25350fe19e394d9146488bc389eb4d57581c5cd24652d3c315623d8ac49b。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：当前接口不支持绑定；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-3c6d25350fe19e394d9146488bc389eb4d57581c5cd24652d3c315623d8ac49b。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:20Z",
@@ -7377,7 +7377,7 @@
               "device-E"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-E",
               "synthetic://observation/candidate-A",
@@ -7586,7 +7586,7 @@
               "candidate-F"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：未提供；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：当前接口不支持绑定；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:21Z",
             "detected_at": "2026-10-11T08:00:21Z",
@@ -7602,7 +7602,7 @@
               "device-F"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-F",
               "synthetic://observation/candidate-A",
@@ -7811,7 +7811,7 @@
               "candidate-F"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：未提供；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-4263dc873d29589a9b88b33a7a4ab12ab162b38541a7e44ccde140def07faa2c。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：当前接口不支持绑定；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-4263dc873d29589a9b88b33a7a4ab12ab162b38541a7e44ccde140def07faa2c。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:21Z",
             "detected_at": "2026-10-11T08:00:21Z",
@@ -7827,7 +7827,7 @@
               "device-F"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-F",
               "synthetic://observation/candidate-A",
@@ -8032,7 +8032,7 @@
               "episode-late-old"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-late-old；任务：未提供；观测：observation-late-old；候选事件：episode-late-old；风险依据：synthetic://observation/late-old-source。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-late-old；任务：当前接口不支持绑定；观测：observation-late-old；候选事件：episode-late-old；风险依据：synthetic://observation/late-old-source。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:22Z",
@@ -8047,7 +8047,7 @@
               "device-late-old"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/late-old-source"
             ],
@@ -8243,7 +8243,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -8259,7 +8259,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -8276,7 +8276,7 @@
               ],
               "trigger_known_time": "2026-10-11T08:00:10Z",
               "detected_at": "2026-10-11T08:00:10Z",
-              "received_at_processing_time": "2026-10-11T08:00:40Z",
+              "received_at_processing_time": "2026-10-11T08:00:10Z",
               "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
             },
             "revision_trace": {
@@ -8330,10 +8330,7 @@
               "trigger_known_time": "2026-10-11T08:00:10Z",
               "detected_at": "2026-10-11T08:00:10Z",
               "received_at_processing_time": "2026-10-11T08:00:10Z",
-              "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
-              "duplicate_of_intent_id": "intent-CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57-R0002-ASSOCIATION_PENDING",
-              "replay_received_at": "2026-10-11T08:00:40Z",
-              "new_revision_created": false
+              "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
             },
             "field_statuses": {
               "notification_id": "EXPERIMENT_LOCAL_ID",
@@ -8437,6 +8434,14 @@
                   "status": "EXPERIMENT_INPUT_NOT_FROZEN"
                 }
               }
+            },
+            "replay_attempt_audit": {
+              "duplicate_of_intent_id": "intent-CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57-R0002-ASSOCIATION_PENDING",
+              "original_received_at": "2026-10-11T08:00:10Z",
+              "attempted_received_at": "2026-10-11T08:00:40Z",
+              "decision_status": "DUPLICATE_REPLAY_IGNORED",
+              "content_revision": 1,
+              "new_revision_created": false
             }
           }
         ],
@@ -10401,7 +10406,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -10417,7 +10422,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -10626,7 +10631,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -10642,7 +10647,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -10851,7 +10856,7 @@
               "candidate-C"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -10867,7 +10872,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-C",
               "synthetic://observation/candidate-A",
@@ -11076,7 +11081,7 @@
               "candidate-C"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -11092,7 +11097,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-C",
               "synthetic://observation/candidate-A",
@@ -11299,7 +11304,7 @@
               "episode-H"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-G、device-H；任务：未提供；观测：observation-G、observation-H；候选事件：episode-G、episode-H；风险依据：synthetic://association/cross-episode-G-H。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-G、device-H；任务：当前接口不支持绑定；观测：observation-G、observation-H；候选事件：episode-G、episode-H；风险依据：synthetic://association/cross-episode-G-H。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -11315,7 +11320,7 @@
               "device-H"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://association/cross-episode-G-H"
             ],
@@ -11514,7 +11519,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-CROSS-CARD。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-CROSS-CARD。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -11530,7 +11535,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B"
             ],
@@ -11729,7 +11734,7 @@
               "candidate-B"
             ],
             "association_state": "CONFLICT_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：CONFLICT_PENDING（本次输入状态）。原因：风险或事件身份相关证据冲突尚未解决。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://association/conflict-A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：CONFLICT_PENDING（本次输入状态）。原因：风险或事件身份相关证据冲突尚未解决。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://association/conflict-A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -11745,7 +11750,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://association/conflict-A-B"
             ],
@@ -11940,7 +11945,7 @@
               "candidate-A"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A；任务：未提供；观测：candidate-A；候选事件：candidate-A；风险依据：synthetic://risk/escalation-A。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A；任务：当前接口不支持绑定；观测：candidate-A；候选事件：candidate-A；风险依据：synthetic://risk/escalation-A。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:11Z",
             "detected_at": "2026-10-11T08:00:11Z",
@@ -11955,7 +11960,7 @@
               "device-A"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://risk/escalation-A"
             ],
@@ -12145,7 +12150,7 @@
               "candidate-Z-distinct-event"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-Z；任务：未提供；观测：candidate-Z-distinct-event；候选事件：candidate-Z-distinct-event；风险依据：synthetic://observation/candidate-Z-distinct-event。显示卡：CARD-d0aa8c3e786d718534297667fb7bfe150262bc7381baea8146a285c2a448e638。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-Z；任务：当前接口不支持绑定；观测：candidate-Z-distinct-event；候选事件：candidate-Z-distinct-event；风险依据：synthetic://observation/candidate-Z-distinct-event。显示卡：CARD-d0aa8c3e786d718534297667fb7bfe150262bc7381baea8146a285c2a448e638。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:11Z",
             "detected_at": "2026-10-11T08:00:11Z",
@@ -12160,7 +12165,7 @@
               "device-Z"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-Z-distinct-event"
             ],
@@ -12352,7 +12357,7 @@
               "candidate-B"
             ],
             "association_state": "SAME_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:12Z",
             "detected_at": "2026-10-11T08:00:12Z",
@@ -12368,7 +12373,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://confirmation/A-B"
             ],
@@ -12569,7 +12574,7 @@
               "candidate-B"
             ],
             "association_state": "SAME_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:12Z",
             "detected_at": "2026-10-11T08:00:12Z",
@@ -12585,7 +12590,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://confirmation/A-B"
             ],
@@ -12786,7 +12791,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -12802,7 +12807,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -13003,7 +13008,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -13019,7 +13024,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -13220,7 +13225,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -13236,7 +13241,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -13437,7 +13442,7 @@
               "candidate-B"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查分拆证据、设备/任务绑定和事件关联；若证据通过门控，应建立独立事件卡并以不可变历史引用链接此卡。本预览不代表分拆已确认或事件卡已创建。",
             "trigger_known_time": "2026-10-11T08:00:14Z",
             "detected_at": "2026-10-11T08:00:14Z",
@@ -13453,7 +13458,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://split/A-B"
             ],
@@ -13654,7 +13659,7 @@
               "candidate-B"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查分拆证据、设备/任务绑定和事件关联；若证据通过门控，应建立独立事件卡并以不可变历史引用链接此卡。本预览不代表分拆已确认或事件卡已创建。",
             "trigger_known_time": "2026-10-11T08:00:14Z",
             "detected_at": "2026-10-11T08:00:14Z",
@@ -13670,7 +13675,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://split/A-B"
             ],
@@ -13873,7 +13878,7 @@
               "candidate-D"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：未提供；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：当前接口不支持绑定；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:15Z",
             "detected_at": "2026-10-11T08:00:15Z",
@@ -13889,7 +13894,7 @@
               "device-D"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-D",
               "synthetic://observation/candidate-A",
@@ -14098,7 +14103,7 @@
               "candidate-D"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：未提供；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-151b2dfa6419ab529f18652541d611b95db4b7f206849517ef29bceece507fe2。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：当前接口不支持绑定；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-151b2dfa6419ab529f18652541d611b95db4b7f206849517ef29bceece507fe2。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:15Z",
             "detected_at": "2026-10-11T08:00:15Z",
@@ -14114,7 +14119,7 @@
               "device-D"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-D",
               "synthetic://observation/candidate-A",
@@ -14323,7 +14328,7 @@
               "candidate-E"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：未提供；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：当前接口不支持绑定；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:20Z",
@@ -14339,7 +14344,7 @@
               "device-E"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-E",
               "synthetic://observation/candidate-A",
@@ -14548,7 +14553,7 @@
               "candidate-E"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：未提供；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-3c6d25350fe19e394d9146488bc389eb4d57581c5cd24652d3c315623d8ac49b。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：当前接口不支持绑定；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-3c6d25350fe19e394d9146488bc389eb4d57581c5cd24652d3c315623d8ac49b。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:20Z",
@@ -14564,7 +14569,7 @@
               "device-E"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-E",
               "synthetic://observation/candidate-A",
@@ -14773,7 +14778,7 @@
               "candidate-F"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：未提供；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：当前接口不支持绑定；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:21Z",
             "detected_at": "2026-10-11T08:00:21Z",
@@ -14789,7 +14794,7 @@
               "device-F"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-F",
               "synthetic://observation/candidate-A",
@@ -14998,7 +15003,7 @@
               "candidate-F"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：未提供；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-4263dc873d29589a9b88b33a7a4ab12ab162b38541a7e44ccde140def07faa2c。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：当前接口不支持绑定；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-4263dc873d29589a9b88b33a7a4ab12ab162b38541a7e44ccde140def07faa2c。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:21Z",
             "detected_at": "2026-10-11T08:00:21Z",
@@ -15014,7 +15019,7 @@
               "device-F"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-F",
               "synthetic://observation/candidate-A",
@@ -15219,7 +15224,7 @@
               "episode-late-old"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-late-old；任务：未提供；观测：observation-late-old；候选事件：episode-late-old；风险依据：synthetic://observation/late-old-source。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-late-old；任务：当前接口不支持绑定；观测：observation-late-old；候选事件：episode-late-old；风险依据：synthetic://observation/late-old-source。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:22Z",
@@ -15234,7 +15239,7 @@
               "device-late-old"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/late-old-source"
             ],
@@ -15430,7 +15435,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -15446,7 +15451,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -15463,7 +15468,7 @@
               ],
               "trigger_known_time": "2026-10-11T08:00:10Z",
               "detected_at": "2026-10-11T08:00:10Z",
-              "received_at_processing_time": "2026-10-11T08:00:40Z",
+              "received_at_processing_time": "2026-10-11T08:00:10Z",
               "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
             },
             "revision_trace": {
@@ -15517,10 +15522,7 @@
               "trigger_known_time": "2026-10-11T08:00:10Z",
               "detected_at": "2026-10-11T08:00:10Z",
               "received_at_processing_time": "2026-10-11T08:00:10Z",
-              "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
-              "duplicate_of_intent_id": "intent-CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57-R0002-ASSOCIATION_PENDING",
-              "replay_received_at": "2026-10-11T08:00:40Z",
-              "new_revision_created": false
+              "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
             },
             "field_statuses": {
               "notification_id": "EXPERIMENT_LOCAL_ID",
@@ -15624,6 +15626,14 @@
                   "status": "EXPERIMENT_INPUT_NOT_FROZEN"
                 }
               }
+            },
+            "replay_attempt_audit": {
+              "duplicate_of_intent_id": "intent-CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57-R0002-ASSOCIATION_PENDING",
+              "original_received_at": "2026-10-11T08:00:10Z",
+              "attempted_received_at": "2026-10-11T08:00:40Z",
+              "decision_status": "DUPLICATE_REPLAY_IGNORED",
+              "content_revision": 1,
+              "new_revision_created": false
             }
           }
         ],
@@ -17605,7 +17615,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -17621,7 +17631,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -17830,7 +17840,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -17846,7 +17856,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -18055,7 +18065,7 @@
               "candidate-C"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -18071,7 +18081,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-C",
               "synthetic://observation/candidate-A",
@@ -18280,7 +18290,7 @@
               "candidate-C"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -18296,7 +18306,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-C",
               "synthetic://observation/candidate-A",
@@ -18503,7 +18513,7 @@
               "episode-H"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-G、device-H；任务：未提供；观测：observation-G、observation-H；候选事件：episode-G、episode-H；风险依据：synthetic://association/cross-episode-G-H。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-G、device-H；任务：当前接口不支持绑定；观测：observation-G、observation-H；候选事件：episode-G、episode-H；风险依据：synthetic://association/cross-episode-G-H。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -18519,7 +18529,7 @@
               "device-H"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://association/cross-episode-G-H"
             ],
@@ -18718,7 +18728,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-CROSS-CARD。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-CROSS-CARD。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -18734,7 +18744,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B"
             ],
@@ -18933,7 +18943,7 @@
               "candidate-B"
             ],
             "association_state": "CONFLICT_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：CONFLICT_PENDING（本次输入状态）。原因：风险或事件身份相关证据冲突尚未解决。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://association/conflict-A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：CONFLICT_PENDING（本次输入状态）。原因：风险或事件身份相关证据冲突尚未解决。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://association/conflict-A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -18949,7 +18959,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://association/conflict-A-B"
             ],
@@ -19144,7 +19154,7 @@
               "candidate-A"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A；任务：未提供；观测：candidate-A；候选事件：candidate-A；风险依据：synthetic://risk/escalation-A。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A；任务：当前接口不支持绑定；观测：candidate-A；候选事件：candidate-A；风险依据：synthetic://risk/escalation-A。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:11Z",
             "detected_at": "2026-10-11T08:00:11Z",
@@ -19159,7 +19169,7 @@
               "device-A"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://risk/escalation-A"
             ],
@@ -19349,7 +19359,7 @@
               "candidate-Z-distinct-event"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-Z；任务：未提供；观测：candidate-Z-distinct-event；候选事件：candidate-Z-distinct-event；风险依据：synthetic://observation/candidate-Z-distinct-event。显示卡：CARD-d0aa8c3e786d718534297667fb7bfe150262bc7381baea8146a285c2a448e638。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-Z；任务：当前接口不支持绑定；观测：candidate-Z-distinct-event；候选事件：candidate-Z-distinct-event；风险依据：synthetic://observation/candidate-Z-distinct-event。显示卡：CARD-d0aa8c3e786d718534297667fb7bfe150262bc7381baea8146a285c2a448e638。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:11Z",
             "detected_at": "2026-10-11T08:00:11Z",
@@ -19364,7 +19374,7 @@
               "device-Z"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-Z-distinct-event"
             ],
@@ -19556,7 +19566,7 @@
               "candidate-B"
             ],
             "association_state": "SAME_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:12Z",
             "detected_at": "2026-10-11T08:00:12Z",
@@ -19572,7 +19582,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://confirmation/A-B"
             ],
@@ -19773,7 +19783,7 @@
               "candidate-B"
             ],
             "association_state": "SAME_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:12Z",
             "detected_at": "2026-10-11T08:00:12Z",
@@ -19789,7 +19799,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://confirmation/A-B"
             ],
@@ -19990,7 +20000,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -20006,7 +20016,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -20207,7 +20217,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -20223,7 +20233,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -20424,7 +20434,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -20440,7 +20450,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -20641,7 +20651,7 @@
               "candidate-B"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查分拆证据、设备/任务绑定和事件关联；若证据通过门控，应建立独立事件卡并以不可变历史引用链接此卡。本预览不代表分拆已确认或事件卡已创建。",
             "trigger_known_time": "2026-10-11T08:00:14Z",
             "detected_at": "2026-10-11T08:00:14Z",
@@ -20657,7 +20667,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://split/A-B"
             ],
@@ -20858,7 +20868,7 @@
               "candidate-B"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查分拆证据、设备/任务绑定和事件关联；若证据通过门控，应建立独立事件卡并以不可变历史引用链接此卡。本预览不代表分拆已确认或事件卡已创建。",
             "trigger_known_time": "2026-10-11T08:00:14Z",
             "detected_at": "2026-10-11T08:00:14Z",
@@ -20874,7 +20884,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://split/A-B"
             ],
@@ -21077,7 +21087,7 @@
               "candidate-D"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：未提供；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：当前接口不支持绑定；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:15Z",
             "detected_at": "2026-10-11T08:00:15Z",
@@ -21093,7 +21103,7 @@
               "device-D"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-D",
               "synthetic://observation/candidate-A",
@@ -21302,7 +21312,7 @@
               "candidate-D"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：未提供；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-151b2dfa6419ab529f18652541d611b95db4b7f206849517ef29bceece507fe2。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：当前接口不支持绑定；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-151b2dfa6419ab529f18652541d611b95db4b7f206849517ef29bceece507fe2。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:15Z",
             "detected_at": "2026-10-11T08:00:15Z",
@@ -21318,7 +21328,7 @@
               "device-D"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-D",
               "synthetic://observation/candidate-A",
@@ -21527,7 +21537,7 @@
               "candidate-E"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：未提供；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：当前接口不支持绑定；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:20Z",
@@ -21543,7 +21553,7 @@
               "device-E"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-E",
               "synthetic://observation/candidate-A",
@@ -21752,7 +21762,7 @@
               "candidate-E"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：未提供；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-3c6d25350fe19e394d9146488bc389eb4d57581c5cd24652d3c315623d8ac49b。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：当前接口不支持绑定；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-3c6d25350fe19e394d9146488bc389eb4d57581c5cd24652d3c315623d8ac49b。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:20Z",
@@ -21768,7 +21778,7 @@
               "device-E"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-E",
               "synthetic://observation/candidate-A",
@@ -21977,7 +21987,7 @@
               "candidate-F"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：未提供；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：当前接口不支持绑定；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:21Z",
             "detected_at": "2026-10-11T08:00:21Z",
@@ -21993,7 +22003,7 @@
               "device-F"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-F",
               "synthetic://observation/candidate-A",
@@ -22202,7 +22212,7 @@
               "candidate-F"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：未提供；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-4263dc873d29589a9b88b33a7a4ab12ab162b38541a7e44ccde140def07faa2c。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：当前接口不支持绑定；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-4263dc873d29589a9b88b33a7a4ab12ab162b38541a7e44ccde140def07faa2c。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:21Z",
             "detected_at": "2026-10-11T08:00:21Z",
@@ -22218,7 +22228,7 @@
               "device-F"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-F",
               "synthetic://observation/candidate-A",
@@ -22423,7 +22433,7 @@
               "episode-late-old"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-late-old；任务：未提供；观测：observation-late-old；候选事件：episode-late-old；风险依据：synthetic://observation/late-old-source。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-late-old；任务：当前接口不支持绑定；观测：observation-late-old；候选事件：episode-late-old；风险依据：synthetic://observation/late-old-source。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:22Z",
@@ -22438,7 +22448,7 @@
               "device-late-old"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/late-old-source"
             ],
@@ -22634,7 +22644,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -22650,7 +22660,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -22667,7 +22677,7 @@
               ],
               "trigger_known_time": "2026-10-11T08:00:10Z",
               "detected_at": "2026-10-11T08:00:10Z",
-              "received_at_processing_time": "2026-10-11T08:00:40Z",
+              "received_at_processing_time": "2026-10-11T08:00:10Z",
               "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
             },
             "revision_trace": {
@@ -22721,10 +22731,7 @@
               "trigger_known_time": "2026-10-11T08:00:10Z",
               "detected_at": "2026-10-11T08:00:10Z",
               "received_at_processing_time": "2026-10-11T08:00:10Z",
-              "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
-              "duplicate_of_intent_id": "intent-CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57-R0002-ASSOCIATION_PENDING",
-              "replay_received_at": "2026-10-11T08:00:40Z",
-              "new_revision_created": false
+              "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
             },
             "field_statuses": {
               "notification_id": "EXPERIMENT_LOCAL_ID",
@@ -22828,6 +22835,14 @@
                   "status": "EXPERIMENT_INPUT_NOT_FROZEN"
                 }
               }
+            },
+            "replay_attempt_audit": {
+              "duplicate_of_intent_id": "intent-CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57-R0002-ASSOCIATION_PENDING",
+              "original_received_at": "2026-10-11T08:00:10Z",
+              "attempted_received_at": "2026-10-11T08:00:40Z",
+              "decision_status": "DUPLICATE_REPLAY_IGNORED",
+              "content_revision": 1,
+              "new_revision_created": false
             }
           }
         ],
@@ -24777,7 +24792,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -24793,7 +24808,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -25002,7 +25017,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -25018,7 +25033,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -25227,7 +25242,7 @@
               "candidate-C"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -25243,7 +25258,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-C",
               "synthetic://observation/candidate-A",
@@ -25452,7 +25467,7 @@
               "candidate-C"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://observation/candidate-C、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-C。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -25468,7 +25483,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-C",
               "synthetic://observation/candidate-A",
@@ -25675,7 +25690,7 @@
               "episode-H"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-G、device-H；任务：未提供；观测：observation-G、observation-H；候选事件：episode-G、episode-H；风险依据：synthetic://association/cross-episode-G-H。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-G、device-H；任务：当前接口不支持绑定；观测：observation-G、observation-H；候选事件：episode-G、episode-H；风险依据：synthetic://association/cross-episode-G-H。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -25691,7 +25706,7 @@
               "device-H"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://association/cross-episode-G-H"
             ],
@@ -25890,7 +25905,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-CROSS-CARD。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-CROSS-CARD。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -25906,7 +25921,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B"
             ],
@@ -26105,7 +26120,7 @@
               "candidate-B"
             ],
             "association_state": "CONFLICT_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：CONFLICT_PENDING（本次输入状态）。原因：风险或事件身份相关证据冲突尚未解决。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://association/conflict-A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：CONFLICT_PENDING（本次输入状态）。原因：风险或事件身份相关证据冲突尚未解决。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://association/conflict-A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10.250000Z",
@@ -26121,7 +26136,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://association/conflict-A-B"
             ],
@@ -26316,7 +26331,7 @@
               "candidate-A"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A；任务：未提供；观测：candidate-A；候选事件：candidate-A；风险依据：synthetic://risk/escalation-A。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A；任务：当前接口不支持绑定；观测：candidate-A；候选事件：candidate-A；风险依据：synthetic://risk/escalation-A。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:11Z",
             "detected_at": "2026-10-11T08:00:11Z",
@@ -26331,7 +26346,7 @@
               "device-A"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://risk/escalation-A"
             ],
@@ -26521,7 +26536,7 @@
               "candidate-Z-distinct-event"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-Z；任务：未提供；观测：candidate-Z-distinct-event；候选事件：candidate-Z-distinct-event；风险依据：synthetic://observation/candidate-Z-distinct-event。显示卡：CARD-d0aa8c3e786d718534297667fb7bfe150262bc7381baea8146a285c2a448e638。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-Z；任务：当前接口不支持绑定；观测：candidate-Z-distinct-event；候选事件：candidate-Z-distinct-event；风险依据：synthetic://observation/candidate-Z-distinct-event。显示卡：CARD-d0aa8c3e786d718534297667fb7bfe150262bc7381baea8146a285c2a448e638。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:11Z",
             "detected_at": "2026-10-11T08:00:11Z",
@@ -26536,7 +26551,7 @@
               "device-Z"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-Z-distinct-event"
             ],
@@ -26728,7 +26743,7 @@
               "candidate-B"
             ],
             "association_state": "SAME_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:12Z",
             "detected_at": "2026-10-11T08:00:12Z",
@@ -26744,7 +26759,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://confirmation/A-B"
             ],
@@ -26945,7 +26960,7 @@
               "candidate-B"
             ],
             "association_state": "SAME_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：SAME_CONFIRMED（本次输入状态）。原因：当前输入标记为 SAME_CONFIRMED；真实来源资格与事件确证真值未评估。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://confirmation/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:12Z",
             "detected_at": "2026-10-11T08:00:12Z",
@@ -26961,7 +26976,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://confirmation/A-B"
             ],
@@ -27162,7 +27177,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-71c9df98fe2923da809c8d0389a7f3bc14f56bffb4df295cabc8c885ed267533。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -27178,7 +27193,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -27379,7 +27394,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -27395,7 +27410,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -27596,7 +27611,7 @@
               "candidate-C"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：未提供；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-C；任务：当前接口不支持绑定；观测：candidate-A、candidate-C；候选事件：candidate-A、candidate-C；风险依据：synthetic://counterevidence/A-C-distinct。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:13Z",
             "detected_at": "2026-10-11T08:00:13Z",
@@ -27612,7 +27627,7 @@
               "device-C"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://counterevidence/A-C-distinct"
             ],
@@ -27813,7 +27828,7 @@
               "candidate-B"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-90fc884daf13bcd87176dbdd4f142470940f165b7d4b5fc8458188379f2f9863。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查分拆证据、设备/任务绑定和事件关联；若证据通过门控，应建立独立事件卡并以不可变历史引用链接此卡。本预览不代表分拆已确认或事件卡已创建。",
             "trigger_known_time": "2026-10-11T08:00:14Z",
             "detected_at": "2026-10-11T08:00:14Z",
@@ -27829,7 +27844,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://split/A-B"
             ],
@@ -28030,7 +28045,7 @@
               "candidate-B"
             ],
             "association_state": "DIFFERENT_CONFIRMED",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：DIFFERENT_CONFIRMED（本次输入状态）。原因：当前输入标记为 DIFFERENT_CONFIRMED；真实确证真值未评估，需保留关系历史。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://split/A-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查分拆依据；本次只是分拆预览，未实际创建事件卡。证据充分并通过门控后，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查分拆证据、设备/任务绑定和事件关联；若证据通过门控，应建立独立事件卡并以不可变历史引用链接此卡。本预览不代表分拆已确认或事件卡已创建。",
             "trigger_known_time": "2026-10-11T08:00:14Z",
             "detected_at": "2026-10-11T08:00:14Z",
@@ -28046,7 +28061,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://split/A-B"
             ],
@@ -28249,7 +28264,7 @@
               "candidate-D"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：未提供；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：当前接口不支持绑定；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:15Z",
             "detected_at": "2026-10-11T08:00:15Z",
@@ -28265,7 +28280,7 @@
               "device-D"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-D",
               "synthetic://observation/candidate-A",
@@ -28474,7 +28489,7 @@
               "candidate-D"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：未提供；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-151b2dfa6419ab529f18652541d611b95db4b7f206849517ef29bceece507fe2。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-D；任务：当前接口不支持绑定；观测：candidate-A、candidate-D；候选事件：candidate-A、candidate-D；风险依据：synthetic://observation/candidate-D、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-D。显示卡：CARD-151b2dfa6419ab529f18652541d611b95db4b7f206849517ef29bceece507fe2。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:15Z",
             "detected_at": "2026-10-11T08:00:15Z",
@@ -28490,7 +28505,7 @@
               "device-D"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-D",
               "synthetic://observation/candidate-A",
@@ -28699,7 +28714,7 @@
               "candidate-E"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：未提供；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：当前接口不支持绑定；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:20Z",
@@ -28715,7 +28730,7 @@
               "device-E"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-E",
               "synthetic://observation/candidate-A",
@@ -28924,7 +28939,7 @@
               "candidate-E"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：未提供；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-3c6d25350fe19e394d9146488bc389eb4d57581c5cd24652d3c315623d8ac49b。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-E；任务：当前接口不支持绑定；观测：candidate-A、candidate-E；候选事件：candidate-A、candidate-E；风险依据：synthetic://observation/candidate-E、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-E。显示卡：CARD-3c6d25350fe19e394d9146488bc389eb4d57581c5cd24652d3c315623d8ac49b。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:20Z",
@@ -28940,7 +28955,7 @@
               "device-E"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-E",
               "synthetic://observation/candidate-A",
@@ -29149,7 +29164,7 @@
               "candidate-F"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：未提供；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：当前接口不支持绑定；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:21Z",
             "detected_at": "2026-10-11T08:00:21Z",
@@ -29165,7 +29180,7 @@
               "device-F"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-F",
               "synthetic://observation/candidate-A",
@@ -29374,7 +29389,7 @@
               "candidate-F"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：未提供；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-4263dc873d29589a9b88b33a7a4ab12ab162b38541a7e44ccde140def07faa2c。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-F；任务：当前接口不支持绑定；观测：candidate-A、candidate-F；候选事件：candidate-A、candidate-F；风险依据：synthetic://observation/candidate-F、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-F。显示卡：CARD-4263dc873d29589a9b88b33a7a4ab12ab162b38541a7e44ccde140def07faa2c。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:21Z",
             "detected_at": "2026-10-11T08:00:21Z",
@@ -29390,7 +29405,7 @@
               "device-F"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-F",
               "synthetic://observation/candidate-A",
@@ -29595,7 +29610,7 @@
               "episode-late-old"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-late-old；任务：未提供；观测：observation-late-old；候选事件：episode-late-old；风险依据：synthetic://observation/late-old-source。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-late-old；任务：当前接口不支持绑定；观测：observation-late-old；候选事件：episode-late-old；风险依据：synthetic://observation/late-old-source。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:20Z",
             "detected_at": "2026-10-11T08:00:22Z",
@@ -29610,7 +29625,7 @@
               "device-late-old"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/late-old-source"
             ],
@@ -29806,7 +29821,7 @@
               "candidate-B"
             ],
             "association_state": "UNKNOWN_PENDING",
-            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：未提供；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+            "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：device-A、device-B；任务：当前接口不支持绑定；观测：candidate-A、candidate-B；候选事件：candidate-A、candidate-B；风险依据：synthetic://observation/candidate-B、synthetic://observation/candidate-A、synthetic://association/candidate-A-candidate-B。显示卡：CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
             "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
             "trigger_known_time": "2026-10-11T08:00:10Z",
             "detected_at": "2026-10-11T08:00:10Z",
@@ -29822,7 +29837,7 @@
               "device-B"
             ],
             "task_ids": [],
-            "task_context_status": "NOT_PROVIDED_BY_SYNTHETIC_INPUT",
+            "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
             "evidence_refs": [
               "synthetic://observation/candidate-B",
               "synthetic://observation/candidate-A",
@@ -29839,7 +29854,7 @@
               ],
               "trigger_known_time": "2026-10-11T08:00:10Z",
               "detected_at": "2026-10-11T08:00:10Z",
-              "received_at_processing_time": "2026-10-11T08:00:40Z",
+              "received_at_processing_time": "2026-10-11T08:00:10Z",
               "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
             },
             "revision_trace": {
@@ -29893,10 +29908,7 @@
               "trigger_known_time": "2026-10-11T08:00:10Z",
               "detected_at": "2026-10-11T08:00:10Z",
               "received_at_processing_time": "2026-10-11T08:00:10Z",
-              "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
-              "duplicate_of_intent_id": "intent-CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57-R0002-ASSOCIATION_PENDING",
-              "replay_received_at": "2026-10-11T08:00:40Z",
-              "new_revision_created": false
+              "revision_provenance": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
             },
             "field_statuses": {
               "notification_id": "EXPERIMENT_LOCAL_ID",
@@ -30000,6 +30012,14 @@
                   "status": "EXPERIMENT_INPUT_NOT_FROZEN"
                 }
               }
+            },
+            "replay_attempt_audit": {
+              "duplicate_of_intent_id": "intent-CARD-fcd6d3dc0518ef3aac3dfce7a9a3e3bc2360a0e6301288278264f102fb4c1b57-R0002-ASSOCIATION_PENDING",
+              "original_received_at": "2026-10-11T08:00:10Z",
+              "attempted_received_at": "2026-10-11T08:00:40Z",
+              "decision_status": "DUPLICATE_REPLAY_IGNORED",
+              "content_revision": 1,
+              "new_revision_created": false
             }
           }
         ],
@@ -30198,5 +30218,5 @@
     "legacy_metric_status": "NOT_RECONSTRUCTED",
     "rerun_this_time": false
   },
-  "source_revision": "8880da395000fb35f6ff88cdbade3b98142b738d"
+  "source_revision": "db4dc0f79eea6a525a1aff04a4da7f4b03bb385f"
 }
