@@ -62,7 +62,7 @@ V2 公开来源固定在 `task/v2-public-spec-20261011` commit `cc6d59b88bda7338
 
 时间/资产基线和多证据规则对同一前缀、同一候选对集合运行。单一高风险 flag 和同源重放不增加独立源数；相邻但已核验的不同资产保持分开；可见恢复边界阻止跨恢复关联。规则只产出 `LINK_CANDIDATES`、`RETAIN_SEPARATELY` 或 `ABSTAIN`。只有候选链接调用现有 `AlertLedger.propose_association()`，结果保持 `PENDING`；不自动确证身份，不改提醒策略。配置中的时间、位置和值误差参数只服务于合成测试，不是生产阈值。
 
-原 scorer 测试在算法输出序列化并哈希后才读取独立 world 分组、关系真值和首次充分证据时间。新增有限评价 scorer 仍保持该隔离；误合率、误拆率、覆盖率和决策延迟分别计分，UNKNOWN 计入 coverage 分母但不进入错误/延迟分母。新协议的四类 strata、12 个 development worlds、24 个预留 held-out worlds 和零参数搜索预算见草案。当前 7 项评价合同测试与 20 项关联规则测试共 27 项 focused unittest 通过；正式 development/held-out split 均未生成或评分。此前 I1 本地记录为 20 项关联规则及 29 项提醒/关联账本测试通过；本轮未重跑账本回归。没有运行大规模参数扫描、旧 1,464 检查试验、Mac 或真实通知。
+原 scorer 测试在算法输出序列化并哈希后才读取独立 world 分组、关系真值和首次充分证据时间。新增有限评价 scorer 仍保持该隔离；误合率、误拆率、覆盖率和决策延迟分别计分，UNKNOWN 计入 coverage 分母但不进入错误/延迟分母，并报告其 LINK/RETAIN/ABSTAIN 动作分布。新版本将误合、误拆率分别改为 DIFFERENT/SAME 类条件分母（早期计划曾草拟全六 pair 分母，因此两种口径不可直接比较）；coverage 仍用完整六 pair universe。正式聚合校验完整配额、seed 派生 world ID 集合及 ID-stratum 对应关系；这些字段检查不提供评分载荷的密码学认证。新协议的四类 strata、12 个 development worlds、24 个预留 held-out worlds 和零参数搜索预算见草案。当前 7 项评价合同测试与 20 项关联规则测试共 27 项 focused unittest 通过；正式 development/held-out split 均未生成或评分。此前 I1 本地记录为 20 项关联规则及 29 项提醒/关联账本测试通过；本轮未重跑账本回归。没有运行大规模参数扫描、旧 1,464 检查试验、Mac 或真实通知。
 
 从 `risk-fusion-bench/` 重跑：
 

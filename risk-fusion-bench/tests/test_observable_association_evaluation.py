@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import unittest
 from dataclasses import fields
 from datetime import datetime, timedelta, timezone
+from unittest.mock import patch
 
 try:
     from rfb.research import observable_association as association
@@ -20,6 +22,12 @@ BASE = datetime(2026, 10, 11, 12, 0, tzinfo=timezone.utc)
 
 def stamp(seconds: int) -> str:
     return (BASE + timedelta(seconds=seconds)).isoformat().replace("+00:00", "Z")
+
+
+def registered_world_group_id(split_name, seed, world_index, stratum):
+    material = f"observable-association-v1|{split_name}|{seed}|{world_index}|{stratum.value}"
+    token = hashlib.sha256(material.encode("utf-8")).hexdigest()
+    return f"WG-{token[:24]}"
 
 
 def require_api(test: unittest.TestCase) -> None:
@@ -74,6 +82,32 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
                 stratum=evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,
                 split_name="heldout",
             )
+        with patch.object(
+            evaluation,
+            "_build_observation_record",
+            side_effect=AssertionError("invalid formal request reached world construction"),
+        ):
+            with self.assertRaises(ValueError):
+                evaluation.generate_synthetic_world(
+                    seed=development.seed + 1,
+                    world_index=0,
+                    stratum=evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,
+                    split_name="development",
+                )
+            with self.assertRaises(ValueError):
+                evaluation.generate_synthetic_world(
+                    seed=development.seed,
+                    world_index=development.world_budget,
+                    stratum=evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,
+                    split_name="development",
+                )
+            with self.assertRaises(ValueError):
+                evaluation.generate_synthetic_world(
+                    seed=development.seed,
+                    world_index=0,
+                    stratum=evaluation.SyntheticStratum.ADJACENT_DISTINCT_ASSETS,
+                    split_name="development",
+                )
 
     def test_contract_world_is_deterministic_and_keeps_truth_out_of_method_input(self):
         require_api(self)
@@ -252,9 +286,23 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             evaluation.ScorerSidecar(
-                world_group_id="WORLD-INCOMPLETE-FORMAL",
+                world_group_id=registered_world_group_id(
+                    "development",
+                    evaluation.get_split_plan("development").seed,
+                    9,
+                    evaluation.SyntheticStratum.DEPENDENT_REPLAY_UNKNOWN,
+                ),
                 stratum=world.scorer_only.stratum,
                 pair_truths=truth_rows[:-1],
+                evaluation_cutoff=world.scorer_only.evaluation_cutoff,
+                escalation_opportunities=world.scorer_only.escalation_opportunities,
+                split_name="development",
+            )
+        with self.assertRaises(ValueError):
+            evaluation.ScorerSidecar(
+                world_group_id="WORLD-UNREGISTERED",
+                stratum=world.scorer_only.stratum,
+                pair_truths=world.scorer_only.pair_truths,
                 evaluation_cutoff=world.scorer_only.evaluation_cutoff,
                 escalation_opportunities=world.scorer_only.escalation_opportunities,
                 split_name="development",
@@ -404,7 +452,7 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
             for stratum in evaluation.SyntheticStratum
             for _ in range(3)
         )
-        balanced_development_scores = tuple(
+        unregistered_balanced_scores = tuple(
             dict(
                 score,
                 split_name="development",
@@ -413,8 +461,8 @@ class ObservableAssociationEvaluationTests(unittest.TestCase):
             )
             for index, stratum in enumerate(balanced_strata)
         )
-        balanced_aggregate = evaluation.aggregate_world_scores(balanced_development_scores)
-        self.assertEqual(balanced_aggregate["independent_world_count"], 12)
+        with self.assertRaises(ValueError):
+            evaluation.aggregate_world_scores(unregistered_balanced_scores)
 
         unbalanced_strata = (
             (evaluation.SyntheticStratum.INDEPENDENT_SAME_EVENT,) * 4

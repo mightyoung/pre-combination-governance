@@ -19,6 +19,10 @@
 
 每个 world 最多 4 个唯一异常观测 ID、6 个唯一无序评分 pair、8 个 prefix cutoff。最多方法调用预算为 development 每臂 `12 × 8 × 6 = 576` 次、held-out 每臂 `24 × 8 × 6 = 1,152` 次；两臂合计上限分别为 1,152 与 2,304 次。精确转发重放不新增观测 ID，也不增加 pair 或方法调用分母。
 
+每个 world 的固定最终 cutoff 是 synthetic 起点后 120 秒；中间 cutoff 只来自可见记录到达时间并计入 8 个上限。生成器与 trajectory 合同拒绝异常观测 ID 超过四个，正式聚合只接受完整、平衡的 12 或 24 world split，避免调用方用超额候选、部分 split 或不平衡 strata 绕开登记预算。
+
+正式 split 的 world ID 由登记 seed、split 名称、world index 和 stratum 确定。直接生成 development/held-out world 时必须使用相应的登记 seed、预算内 index 和该 index 对应的 stratum；正式 scorer sidecar 与聚合器也校验完整的确定性 ID 集合及 ID-stratum 映射。这个约束防止任意合成样本仅靠补齐行数和配额就被标成登记 split；它不构成对伪造评分载荷的密码学认证。
+
 两臂都固定使用同一份 `InferenceConfig()`，参数为 120 秒候选时间窗、600 秒同资产候选跨度、8 米候选半径、1 米位置余量、2.5°C 值余量。**每臂超参数搜索预算为 0**，不在 development 或 held-out 上选参。该预算相同且为零，故本协议评价当前固定配置，不评价调参后的最佳规则。任何未来调参都须另行冻结开发集目标、候选 grid 和相同的每臂预算，且 held-out 开封前完成。
 
 种子和生成器为公开确定性材料；因此该 synthetic held-out 不是密码学封存集。它只定义与 development 不重叠的预留分区，协议禁止用其选参。若未来需要真正盲态，必须由独立保管方在本公开分区之外持有种子与 truth sidecar，且新版本不得复用本公开种子。
@@ -45,8 +49,10 @@
 - `false_merge_count / different_pair_denominator`：真值 `DIFFERENT` 的 pair 中，动作是 `LINK_CANDIDATES` 的个数/比例。
 - `false_split_count / same_pair_denominator`：真值 `SAME` 的 pair 中，动作是 `RETAIN_SEPARATELY` 的个数/比例。
 - `coverage_count / coverage_denominator`：固定全集中动作不是 `ABSTAIN` 的 pair 数/总 pair 数；分母包含 `UNKNOWN`。
-- `unknown_pair_count`、其中的非拒判数与动作分布单独报告。UNKNOWN 不进入 false merge、false split 或决策延迟分母；不得静默删除。
+- `unknown_pair_count`、其中的非拒判数及 `LINK_CANDIDATES` / `RETAIN_SEPARATELY` / `ABSTAIN` 动作计数单独报告。UNKNOWN 不进入 false merge、false split 或决策延迟分母；不得静默删除。
 - 另报 `candidate_generation_recall`：最终 cutoff 前曾进入共享可见候选集的已知 SAME pair 数/固定全集中的已知 SAME pair 数。未被任一前缀生成的 pair 对规则动作记为 `ABSTAIN`，故不会伪装成错误的明确拆分。
+
+**显式口径修订：**较早的自主关联计划曾草拟让 false merge 与 false split 都除以完整六 pair 固定全集。本版 `finite-score-v1` 改为分别除以 `DIFFERENT` 与 `SAME` 类 pair 数，使两项成为类条件错误率；`coverage` 仍用包含 UNKNOWN 的完整六 pair 分母。该定义差异保留在历史计划中，但两版比率不可直接数值比较；此修订没有基于正式 held-out 输出做选择，本草案需先经审阅冻结。
 
 每项输出分子、分母、world group 数与逐 world 汇总。公布 pooled pair counts 仅作描述；跨 world 的主汇总等权计算 world 级比例，并单列可评价 world 数。pair、prefix、方法臂均不是独立样本。协议不做显著性检验，不把多个时间点或两个方法行当独立观测。
 
@@ -70,11 +76,12 @@ scorer sidecar 为每个可评的 SAME/DIFFERENT pair 提供独立 `first_suffic
 
 1. truth、world/split/stratum ID、未来 cutoff、首次充分证据时间或升级机会字段进入方法输入或冻结方法输出。
 2. 两臂在任一 cutoff 接收的前缀哈希或候选 pair 集不完全一致。
-3. 观测时间越界、world/root 跨组复用、候选固定全集缺项、pair truth 缺项或 scorer 输出哈希校验失败。
+3. 观测时间越界、world/root 跨组复用、异常观测 ID、cutoff、候选、pair truth 或 scorer 输出超出/少于固定预算，或 scorer 输出哈希校验失败。
 4. 精确 replay 增加唯一观测/pair 数，或同 lineage root 被记为多个独立根。
 5. UNKNOWN 被计入 false merge/split，或 coverage 分母未包括 UNKNOWN。
 6. 首次错误决策被用于结束有效决策延迟，或截止未解决被误记为已解决。
 7. held-out 生成/执行时协议仍为 `REVIEW_DRAFT`，配置与代码 SHA 未冻结，或发生任何基于 held-out 结果的选参/改代码。
+8. 正式聚合缺少完整注册 world 数、精确 seed 派生 world ID 集合、ID-stratum 映射、四类 strata 配额平衡或共同 evaluation cutoff，或将 development 与 held-out 混合。
 
 正式 held-out 还需单独批次批准。若 integrity 检查失败，保留全部失败输出和日志；不得用同一种子重新抽取并称为一次新独立评价。需要修复时须先修代码、留 RED→GREEN 证据，再以新协议版本及新 holdout seed 重新送审。
 
@@ -87,8 +94,8 @@ scorer sidecar 为每个可评的 SAME/DIFFERENT pair 提供独立 `first_suffic
 
 ## 离线实现与构造性检查
 
-- `risk-fusion-bench/src/rfb/research/observable_association_evaluation.py`：固定 split 预算/seed、纯函数 world generator、共同前缀候选构造、两臂冻结运行、pair 分类/时序评分与独立升级评分。
-- `risk-fusion-bench/tests/test_observable_association_evaluation.py`：7 个只用专门的 `CONTRACT_TEST` 小夹具的构造性用例，测试 truth 隔离、确定性、split gate、唯一 world/root、迟到字段、replay 去重、共享候选、UNKNOWN 分母、错误分母、右删失和告警升级 `NOT_EVALUATED`/漏报口径。
+- `risk-fusion-bench/src/rfb/research/observable_association_evaluation.py`：固定 split 预算/seed、严格四个异常 ID/world 合同、登记 seed/index/stratum/world ID 绑定、完整平衡 split 聚合、纯函数 world generator、共同前缀候选构造、两臂冻结运行、pair 分类/时序评分、UNKNOWN 动作分布与独立升级评分。
+- `risk-fusion-bench/tests/test_observable_association_evaluation.py`：7 个构造性用例，主要使用 `CONTRACT_TEST` world，并用 ID-only/伪造汇总输入检查无效 formal 请求会在 world 构造或聚合前被拒绝。另测 truth 隔离、确定性、split gate、唯一 world/root、四异常 ID/六 pair 上限、迟到字段、replay 去重、共享候选、UNKNOWN 分母及动作分布、错误分母、右删失和告警升级口径；不生成或评分正式 split。
 - 构造性测试不得调用 `generate_protocol_split("heldout")`；holdout split API 默认拒绝，只有显式 `protocol_approved=True` 才允许之后单独生成。该参数是工作流闸门，不是安全边界。
 - 允许的本地验证命令：`PYTHONPATH=src python -m unittest -v tests.test_observable_association_evaluation`，从 `risk-fusion-bench/` 运行。本轮不运行 formal held-out、旧 1,464 试验、宽泛研究套件、模型/网络、设备、通知或执行器路径。
 

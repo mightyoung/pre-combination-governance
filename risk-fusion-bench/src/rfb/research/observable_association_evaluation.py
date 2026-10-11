@@ -197,6 +197,12 @@ class ScorerSidecar:
             raise ValueError("unsupported synthetic stratum") from exc
         if self.split_name not in {"development", "heldout", "contract_test"}:
             raise ValueError("unsupported split name")
+        if self.split_name in {"development", "heldout"}:
+            registered_worlds = _registered_formal_worlds(self.split_name)
+            if registered_worlds.get(self.world_group_id) is not self.stratum:
+                raise ValueError(
+                    "formal sidecar world_group_id must match the registered seed, index, and stratum"
+                )
         if not isinstance(self.pair_truths, tuple) or any(
             not isinstance(item, PairTruth) for item in self.pair_truths
         ):
@@ -319,6 +325,39 @@ def get_split_plan(name: str) -> SplitPlan:
     raise ValueError("split must be development or heldout")
 
 
+def _world_group_id(
+    split_name: str,
+    seed: int,
+    world_index: int,
+    stratum: SyntheticStratum,
+) -> str:
+    return f"WG-{_world_token(split_name, seed, world_index, stratum)[:24]}"
+
+
+def _world_token(
+    split_name: str,
+    seed: int,
+    world_index: int,
+    stratum: SyntheticStratum,
+) -> str:
+    material = f"observable-association-v1|{split_name}|{seed}|{world_index}|{stratum.value}"
+    return hashlib.sha256(material.encode("utf-8")).hexdigest()
+
+
+def _registered_formal_worlds(split_name: str) -> dict[str, SyntheticStratum]:
+    """Map every fixed formal ID to its registered stratum without generating data."""
+    plan = get_split_plan(split_name)
+    strata = tuple(SyntheticStratum)
+    return {
+        _world_group_id(split_name, plan.seed, world_index, stratum): stratum
+        for stratum_index, stratum in enumerate(strata)
+        for world_index in range(
+            stratum_index * plan.worlds_per_stratum,
+            (stratum_index + 1) * plan.worlds_per_stratum,
+        )
+    }
+
+
 def generate_protocol_split(
     name: str, *, protocol_approved: bool = False
 ) -> tuple[GeneratedWorld, ...]:
@@ -369,10 +408,21 @@ def generate_synthetic_world(
     except (TypeError, ValueError) as exc:
         raise ValueError("unsupported synthetic stratum") from exc
 
-    material = f"observable-association-v1|{split_name}|{seed}|{world_index}|{selected_stratum.value}"
-    token = hashlib.sha256(material.encode("utf-8")).hexdigest()
+    if split_name in {"development", "heldout"}:
+        plan = get_split_plan(split_name)
+        if seed != plan.seed:
+            raise ValueError("formal split generation requires its registered seed")
+        if world_index >= plan.world_budget:
+            raise ValueError("formal split generation requires an in-budget world index")
+        expected_stratum = tuple(SyntheticStratum)[
+            world_index // plan.worlds_per_stratum
+        ]
+        if selected_stratum is not expected_stratum:
+            raise ValueError("formal split world index must match its registered stratum")
+
+    token = _world_token(split_name, seed, world_index, selected_stratum)
     rng = random.Random(int(token[:16], 16))
-    world_group_id = f"WG-{token[:24]}"
+    world_group_id = _world_group_id(split_name, seed, world_index, selected_stratum)
 
     event_a_asset = f"ASSET-{_opaque_id(token, 'asset-a')}"
     event_b_asset = (
@@ -758,6 +808,11 @@ def aggregate_world_scores(world_scores: Sequence[Mapping[str, object]]) -> dict
         plan = get_split_plan(split_name)
         if len(world_scores) != plan.world_budget:
             raise ValueError("formal aggregation requires the complete registered split budget")
+        registered_worlds = _registered_formal_worlds(split_name)
+        if set(world_ids) != set(registered_worlds):
+            raise ValueError(
+                "formal aggregation requires the exact registered seed-derived world IDs"
+            )
         expected_strata = {
             stratum.value: plan.worlds_per_stratum for stratum in SyntheticStratum
         }
@@ -766,6 +821,13 @@ def aggregate_world_scores(world_scores: Sequence[Mapping[str, object]]) -> dict
             stratum = world.get("stratum")
             if not isinstance(stratum, str) or stratum not in expected_strata:
                 raise ValueError("formal world score must carry a registered stratum")
+            if (
+                registered_worlds.get(world.get("world_group_id"))
+                is not SyntheticStratum(stratum)
+            ):
+                raise ValueError(
+                    "formal world score stratum must match its registered seed-derived ID"
+                )
             observed_strata[stratum] = observed_strata.get(stratum, 0) + 1
             if world.get("evaluation_cutoff") != _stamp(_EVALUATION_CUTOFF_SECONDS):
                 raise ValueError("formal worlds must share the registered evaluation cutoff")
