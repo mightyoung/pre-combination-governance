@@ -3,19 +3,28 @@
   "artifact_set": "research-three-v2-alignment-20261011",
   "source_repository": "https://github.com/mightyoung/pre-combination-governance",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "61d2fcd90b93f036084baa6f4a3f594485be479d",
-  "path_convention": "All file paths below are repository-relative POSIX paths rooted at a checkout of source_commit.",
+  "source_commit": "b6808a6f9867a52aecd9ad08855eee1104817dfc",
+  "path_convention": "All file paths below are repository-relative POSIX paths rooted at source_commit. No cloud-workspace absolute path is encoded here.",
   "mac_local_project_root": null,
-  "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. No cloud-workspace absolute path is encoded here.",
+  "mac_path_mapping": "On the Mac, choose the local checkout root and resolve only these repository-relative paths beneath it. Cloud and Mac paths are not interchangeable.",
   "sha256_scope": "Listed deliverables only; this manifest does not hash itself.",
   "related_public_v2_spec_branch": "task/v2-public-spec-20261011",
   "related_public_v2_spec_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
   "includes_original_mac_v2_spec": false,
   "includes_frozen_trial_raw_data": false,
   "run_artifacts_are_synthetic_only": true,
-  "real_delivery_or_visibility_validation": "NOT_RUN",
+  "notification_coalescing_policy": "Experiment only; window, batch, and key are not frozen or production defaults.",
+  "multi_flag_severity_priority": "UNDECIDED",
+  "legacy_metric_status": "NOT_RECONSTRUCTED",
+  "real_delivery_or_visibility_validation": "NOT_RUN; synthetic reminder actions are marked NOT_DELIVERED.",
   "mac_device_or_cleanup_validation": "NOT_RUN",
+  "old_1464_check_trial_rerun": false,
   "files": [
+    {
+      "path": "research-three/alert-governance-v1/historical-baseline.json",
+      "bytes": 1151,
+      "sha256": "5ba968272973da7a66f3b8d4779a0952d602993ef745060373c0b74398766bb7"
+    },
     {
       "path": "research-three/v2-alignment-20261011/ALIGNMENT.md",
       "bytes": 16650,
@@ -23,13 +32,13 @@
     },
     {
       "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
-      "bytes": 4255,
-      "sha256": "98a1a5a296647d1ff4311d05d3370d7f65977ccf57cddcf6d2ae686d889ca20a"
+      "bytes": 6067,
+      "sha256": "78f671e20b4ad377ec1b6033dee73400810302cf35eb5699db7068bcabce6d24"
     },
     {
       "path": "research-three/v2-alignment-20261011/README.md",
-      "bytes": 2879,
-      "sha256": "e1171e8687c1ce476431ce05201abd29c36c85730388913971963076d5de24f7"
+      "bytes": 4569,
+      "sha256": "bd5338d7012a139ddda10e3cd1cd85b2473d5dae033a1461c0f8b4ab35b0c2c7"
     },
     {
       "path": "research-three/v2-alignment-20261011/visualization/generate_synthetic_timeline.py",
@@ -62,9 +71,39 @@
       "sha256": "5bf9eeb7c7f2d0753f0f9ae78bdfd635aa88beacb0613609c6141352a1a1d7a2"
     },
     {
+      "path": "research-three/v2-alignment-20261011/visualization/generate_notification_coalescing_experiment.py",
+      "bytes": 1538,
+      "sha256": "123ab998ed9b034fb67944b240e6c6b20e1b1155813c1a123d3cb4a12d2e600f"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment-data.json",
+      "bytes": 244360,
+      "sha256": "ecde8934a42864f32bfcf75ae35c203d242d5aa9ec4d12526bf7edf1641f306f"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/visualization/notification-coalescing-experiment.html",
+      "bytes": 25457,
+      "sha256": "f51bb78f91da55bbf4a997f648bf7c2d586c4d48286f3f41afd538425c36df00"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
+      "bytes": 38947,
+      "sha256": "1ba47f343e03a105a5ec02d903739a70d262c3905350abdaaa58fcb1981d6251"
+    },
+    {
       "path": "risk-fusion-bench/src/rfb/research/alert_governance_v2.py",
       "bytes": 1541,
       "sha256": "0eb852f16213484eeb4a1bf4aa8c7f4360865e3692d2f3d370ab15dd0985dbcd"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
+      "bytes": 14587,
+      "sha256": "4485fdc9047b81329730d225f6bbc7c8150f264d1d407eee6a604ccfcafc8bea"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment_scenarios.py",
+      "bytes": 36950,
+      "sha256": "05fa361cb9b0b03f98113a362a4f99f85eac19f9326ba345389a0f2f9523d249"
     },
     {
       "path": "risk-fusion-bench/tests/test_alert_governance_v2.py",
@@ -75,6 +114,16 @@
       "path": "risk-fusion-bench/tests/test_alert_governance_idempotency.py",
       "bytes": 5946,
       "sha256": "e1e9297c80ea5556385bd0f3f9a7c6b17b93ced4dda760369ebf8f8e0deca257"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
+      "bytes": 11139,
+      "sha256": "2dad44f30f1a421ab85222215d4b253f4f0dca14805568e46a2962da095d5623"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_alert_action_experiment_scenarios.py",
+      "bytes": 6749,
+      "sha256": "d8eb63f99c36f7daaae4e630b3d081ceb0bf927d6272145265c294561bcdbc04"
     }
   ]
 }
