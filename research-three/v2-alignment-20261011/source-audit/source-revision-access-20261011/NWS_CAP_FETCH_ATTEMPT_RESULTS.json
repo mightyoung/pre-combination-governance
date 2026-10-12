@@ -1,0 +1,64 @@
+{
+  "artifact_kind": "PUBLIC_SOURCE_FETCH_ATTEMPT_RESULTS",
+  "source_payload_received": false,
+  "cap_parse_status": "NOT_RUN_NO_PAYLOAD",
+  "references_chain_status": "UNKNOWN_NOT_PARSED",
+  "filename_based_link_inference": false,
+  "retry_policy": "One normal HTTPS attempt per exact user-supplied URL; no retry storm.",
+  "spacing_seconds_between_attempt_starts": 37,
+  "attempts": [
+    {
+      "message_label_from_user_url": "Cancel",
+      "url": "https://tgftp.nws.noaa.gov/SL.us008001/DF.xml/DC.cap/T_XOAK51_C_KWBC_20261001142454_urn:oid:2.49.0.1.840.0.0142b0389798c01d5bb5f28f9aa7320092c5196d.001.1-O-CAN-PAFC-FG-Y-0013.xml",
+      "local_request_start_utc": "2026-10-11T23:59:38Z",
+      "local_request_complete_utc": "2026-10-11T23:59:38Z",
+      "curl_exit_code": 56,
+      "curl_error": "curl: (56) CONNECT tunnel failed, response 403",
+      "curl_http_code": "000",
+      "curl_size_download_bytes": 0,
+      "curl_time_total_seconds": 0.011665,
+      "proxy_response_headers": {
+        "status_line": "HTTP/1.1 403 Forbidden",
+        "content-length": "16",
+        "content-type": "text/plain",
+        "date": "Sun, 11 Oct 2026 23:59:37 GMT",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "origin_response_confirmed": false,
+      "source_xml_bytes_saved": false,
+      "source_xml_sha256": null,
+      "error_body_saved": false
+    },
+    {
+      "message_label_from_user_url": "NEW",
+      "url": "https://tgftp.nws.noaa.gov/SL.us008001/DF.xml/DC.cap/T_XOAK51_C_KWBC_20261001064420_urn:oid:2.49.0.1.840.0.0fad6b84fb446e26e7fd80e35cd6ee85cda474d5.001.1-O-NEW-PAFC-FG-Y-0013.xml",
+      "local_request_start_utc": "2026-10-12T00:00:15Z",
+      "local_request_complete_utc": "2026-10-12T00:00:15Z",
+      "curl_exit_code": 56,
+      "curl_error": "curl: (56) CONNECT tunnel failed, response 403",
+      "curl_http_code": "000",
+      "curl_size_download_bytes": 0,
+      "curl_time_total_seconds": 0.007517,
+      "proxy_response_headers": {
+        "status_line": "HTTP/1.1 403 Forbidden",
+        "content-length": "16",
+        "content-type": "text/plain",
+        "date": "Mon, 12 Oct 2026 00:00:15 GMT",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "origin_response_confirmed": false,
+      "source_xml_bytes_saved": false,
+      "source_xml_sha256": null,
+      "error_body_saved": false
+    }
+  ],
+  "interpretation": "Both requests were rejected at the execution environment's CONNECT tunnel before an HTTP response from tgftp.nws.noaa.gov was confirmed. The tunnel's 403 is not evidence that either NWS cache URL is unavailable. No CAP XML was obtained, so the filename event/product labels were not treated as a references relation and no prototype was run.",
+  "capture_method": {
+    "client": "curl 8.14.1",
+    "auth": "none",
+    "user_agent": "pre-combination-governance-research/1.0",
+    "network_permissions_escalated": false
+  }
+}

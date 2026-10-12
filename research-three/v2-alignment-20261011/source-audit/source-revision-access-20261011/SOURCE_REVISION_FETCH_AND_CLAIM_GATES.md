@@ -25,6 +25,9 @@ Please inspect these through the ordinary web channel and return one complete CA
 3. Unfiltered actual alerts fallback: <https://api.weather.gov/alerts?status=actual&limit=100>
 4. API specification (the browser connector could not parse its vendor OpenAPI content type): <https://api.weather.gov/openapi.json>
 5. NWS Atom CAP feed (this connector returned HTTP 502): <https://alerts.weather.gov/cap/us.php?x=0>
+6. User-provided NWS cache directory: <https://tgftp.nws.noaa.gov/SL.us008001/DF.xml/DC.cap/>
+7. User-provided Cancel XML: <https://tgftp.nws.noaa.gov/SL.us008001/DF.xml/DC.cap/T_XOAK51_C_KWBC_20261001142454_urn:oid:2.49.0.1.840.0.0142b0389798c01d5bb5f28f9aa7320092c5196d.001.1-O-CAN-PAFC-FG-Y-0013.xml>
+8. User-provided NEW XML: <https://tgftp.nws.noaa.gov/SL.us008001/DF.xml/DC.cap/T_XOAK51_C_KWBC_20261001064420_urn:oid:2.49.0.1.840.0.0fad6b84fb446e26e7fd80e35cd6ee85cda474d5.001.1-O-NEW-PAFC-FG-Y-0013.xml>
 
 NWS documentation says the API has JSON-LD defaults, supports CAP v1.2 via content negotiation, requires an identifying `User-Agent` for application requests, and asks clients not to request more often than every 30 seconds. A direct CAP request should use `Accept: application/cap+xml`; do not poll in a loop.
 
@@ -72,7 +75,8 @@ This is a single-series mechanism check, not an efficacy experiment and not an i
 - `https://api.weather.gov/alerts?status=actual&message_type=Update&limit=5`: browser tool returned “URL … is not accessible via this tool.”
 - `https://api.weather.gov/openapi.json`: the official API-spec link returned “Unsupported content-type: application/vnd.oai.openapi+json” in the browser connector.
 - `https://alerts.weather.gov/cap/us.php?x=0`: browser tool returned HTTP 502 Bad Gateway.
-- These responses identify tool-path restrictions only; they do not establish source outage or lack of NWS Update/Cancel records.
+- The two user-supplied `tgftp.nws.noaa.gov` XML URLs were each requested once with ordinary HTTPS/curl, no login, no elevated permissions, and 37 seconds between request starts. Both failed before reaching a confirmed origin response: `curl: (56) CONNECT tunnel failed, response 403`, curl HTTP status `000`, download size `0` bytes. The proxy response headers were `HTTP/1.1 403 Forbidden`, `content-length: 16`, `content-type: text/plain`, `server: envoy`, and a `Date` header matching each attempt. Exact local UTC times, timings, URLs, and response headers are saved in [`NWS_CAP_FETCH_ATTEMPT_RESULTS.json`](NWS_CAP_FETCH_ATTEMPT_RESULTS.json).
+- No CAP XML bytes or CAP hash were obtained. No `references` parse was performed, and the matching filename token was not treated as proof of an event-message relation. No retry was made. The 403 came from this environment's CONNECT tunnel; it does not establish source outage or lack of NWS Update/Cancel records.
 
 Official references:
 
