@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
+import json
+from pathlib import Path
 import unittest
 
 from rfb.research.alert_action_experiment import (
@@ -400,6 +402,82 @@ class EventCardIntegrationTests(unittest.TestCase):
         self.assertEqual(preview["replay_attempt_count"], 1)
         self.assertFalse(preview["replay_attempts"][0]["new_notification_created"])
         self.assertFalse(preview["replay_attempts"][0]["new_revision_created"])
+
+    def test_synthetic_card_lifecycle_pilot_preserves_correction_and_cancel_history(self):
+        self.assertTrue(
+            hasattr(ActionKind, "NOTICE_CORRECTED"),
+            "correction must be a typed protected action",
+        )
+        self.assertTrue(
+            hasattr(ActionKind, "NOTICE_CANCELLED"),
+            "cancellation must be a typed protected action",
+        )
+        from rfb.research.event_card_lifecycle_pilot import (
+            run_synthetic_card_lifecycle_pilot,
+        )
+
+        repo_root = Path(__file__).resolve().parents[2]
+        spec_path = (
+            repo_root
+            / "research-three"
+            / "v2-alignment-20261011"
+            / "runs"
+            / "synthetic-card-lifecycle-pilot-20261012"
+            / "INPUT_AND_EXPECTATIONS.json"
+        )
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        result = run_synthetic_card_lifecycle_pilot(spec)
+        expected = spec["expected"]
+
+        self.assertEqual(result["classification"], "SYNTHETIC_MECHANISM_CHECK_ONLY")
+        self.assertTrue(result["synthetic_only"])
+        self.assertEqual(
+            [row["decision_status"] for row in result["timeline"]],
+            expected["decision_statuses"],
+        )
+        self.assertEqual(
+            [row["notification_action_count"] for row in result["timeline"]],
+            expected["notification_action_counts_after_each_step"],
+        )
+        self.assertEqual(
+            [row["card_revision_count"] for row in result["timeline"]],
+            expected["card_revision_counts_after_each_step"],
+        )
+        self.assertEqual(
+            [row["notice_lifecycle_status"] for row in result["timeline"]],
+            expected["notice_lifecycle_states_after_each_step"],
+        )
+        self.assertEqual(
+            [row["display_card_id"] for row in result["timeline"]],
+            [spec["context"]["display_card_id"]] * len(spec["steps"]),
+        )
+
+        final_card = result["final_card"]
+        self.assertEqual(final_card["notice_lifecycle_status"], "CANCELLED")
+        self.assertEqual(final_card["content_revision_count"], expected["final_card_revision_count"])
+        self.assertEqual(
+            final_card["notification_action_count"],
+            expected["final_notification_action_count"],
+        )
+        self.assertEqual(
+            [revision["revision_trace"]["intent_id"] for revision in final_card["revision_history"]],
+            expected["final_history_intent_ids"],
+        )
+        self.assertEqual(final_card["association_state"], expected["association_state_remains"])
+        self.assertEqual(final_card["replay_attempt_count"], expected["replay_attempt_count"])
+        self.assertEqual(final_card["delivery_status"], expected["delivery_status"])
+        self.assertEqual(
+            result["counterexample"]["notice_lifecycle_status"],
+            spec["counterexample"]["expected"]["final_notice_lifecycle_status"],
+        )
+        self.assertEqual(
+            result["counterexample"]["decision_statuses"],
+            spec["counterexample"]["expected"]["decision_statuses"],
+        )
+        self.assertEqual(
+            result["counterexample"]["notification_action_counts"],
+            spec["counterexample"]["expected"]["notification_action_counts_after_each_step"],
+        )
 
     def test_rejects_identity_episode_or_association_mismatch_with_ledger(self):
         self.require_preview_builder()
