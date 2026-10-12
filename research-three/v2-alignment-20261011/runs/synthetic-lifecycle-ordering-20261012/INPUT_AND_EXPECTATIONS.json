@@ -1,0 +1,143 @@
+{
+  "pilot_id": "SYNTH-LIFECYCLE-ORDERING-20261012-V1",
+  "status": "FROZEN_PRE_RUN",
+  "classification": "SYNTHETIC_MECHANISM_BOUNDARY_ONLY",
+  "synthetic_only": true,
+  "spec_revision_type": "RESULT_DRIVEN_BOUNDARY_CHECK; EXPECTATIONS_FROZEN_BEFORE_THIS_RUN",
+  "scenario_premise": "One synthetic display card receives notice revisions and deliveries in a deliberately different order. This checks ledger ordering behavior only; it does not establish event truth or real clock behavior.",
+  "ordering_contract_assumption": {
+    "notice_version": "A synthetic, card-scoped logical version. Higher versions supersede lower versions for current notice state.",
+    "event_occurred_at": "A synthetic source occurrence time. Preserve it as evidence, but do not use it to infer receive order or real clock skew.",
+    "received_at": "Synthetic ledger arrival/processing time, separate from occurrence time and notice version.",
+    "same_version_same_semantics": "A second delivery with the same notice version and equivalent semantic content, even under a different transport intent ID, is a duplicate and must not add a card revision or notification action.",
+    "lower_version_after_higher": "A lower version arriving after a higher accepted version is stale. Record the ignored attempt for audit, but do not change current card state or emit another notification.",
+    "scope_warning": "This is a local test contract, not an approved production rule or a claim that private V2 specifies version semantics this way."
+  },
+  "source_independence": "NOT_ASSERTED; all messages use one synthetic source label.",
+  "delivery_status": "NOT_DELIVERED",
+  "base_time_utc": "2026-10-12T00:00:00Z",
+  "settings": {
+    "policy_mode": "CARD_COALESCE",
+    "merge_window_seconds": 5,
+    "merge_window_status": "SYNTHETIC_FIXTURE_ONLY_NOT_A_PRODUCTION_DEFAULT"
+  },
+  "context": {
+    "display_card_id": "CARD-SYNTH-ORDERING-01",
+    "candidate_episode_ids": ["SYNTH-EPISODE-A", "SYNTH-EPISODE-B"],
+    "association_id": "SYNTH-ASSOCIATION-A-B",
+    "association_state": "UNKNOWN_PENDING",
+    "source_ids": ["SYNTH-SOURCE-ONE"],
+    "observation_ids": ["SYNTH-OBSERVATION-ONE"],
+    "experiment_batch_id": "SYNTH-ORDERING-BATCH-01",
+    "dedup_episode_interval_key": "SYNTH-ORDERING-INTERVAL-01"
+  },
+  "steps": [
+    {
+      "step_id": "initial_active_v1",
+      "intent_id": "SYNTH-ORDER-001",
+      "transport_receipt_id": "SYNTH-RECEIPT-001",
+      "notice_version": 1,
+      "kind": "ASSOCIATION_PENDING",
+      "event_occurred_seconds": 0,
+      "received_seconds": 0,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE"],
+      "evidence_refs": ["synthetic://ordering/notice/v1"],
+      "risk_basis_ids": ["synthetic://ordering/risk/exposure"]
+    },
+    {
+      "step_id": "cancel_v3",
+      "intent_id": "SYNTH-ORDER-002",
+      "transport_receipt_id": "SYNTH-RECEIPT-002",
+      "notice_version": 3,
+      "kind": "NOTICE_CANCELLED",
+      "event_occurred_seconds": 2,
+      "received_seconds": 3,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE"],
+      "evidence_refs": ["synthetic://ordering/cancel/v3"],
+      "risk_basis_ids": ["synthetic://ordering/risk/exposure"]
+    },
+    {
+      "step_id": "late_correction_v2",
+      "intent_id": "SYNTH-ORDER-003",
+      "transport_receipt_id": "SYNTH-RECEIPT-003",
+      "notice_version": 2,
+      "kind": "NOTICE_CORRECTED",
+      "event_occurred_seconds": 1,
+      "received_seconds": 4,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE"],
+      "evidence_refs": ["synthetic://ordering/correction/v2"],
+      "risk_basis_ids": ["synthetic://ordering/risk/exposure"]
+    },
+    {
+      "step_id": "duplicate_cancel_v3_new_receipt",
+      "intent_id": "SYNTH-ORDER-004",
+      "transport_receipt_id": "SYNTH-RECEIPT-004",
+      "duplicate_of": "cancel_v3",
+      "notice_version": 3,
+      "kind": "NOTICE_CANCELLED",
+      "event_occurred_seconds": 2,
+      "received_seconds": 5,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE"],
+      "evidence_refs": ["synthetic://ordering/cancel/v3"],
+      "risk_basis_ids": ["synthetic://ordering/risk/exposure"]
+    },
+    {
+      "step_id": "old_active_v1_new_receipt_after_cancel",
+      "intent_id": "SYNTH-ORDER-005",
+      "transport_receipt_id": "SYNTH-RECEIPT-005",
+      "duplicate_of": "initial_active_v1",
+      "notice_version": 1,
+      "kind": "ASSOCIATION_PENDING",
+      "event_occurred_seconds": 0,
+      "received_seconds": 6,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE"],
+      "evidence_refs": ["synthetic://ordering/notice/v1"],
+      "risk_basis_ids": ["synthetic://ordering/risk/exposure"]
+    }
+  ],
+  "expected": {
+    "decision_statuses": [
+      "EMITTED",
+      "EMITTED",
+      "STALE_NOTICE_VERSION_IGNORED",
+      "DUPLICATE_NOTICE_VERSION_IGNORED",
+      "STALE_NOTICE_VERSION_IGNORED"
+    ],
+    "notification_action_counts_after_each_step": [1, 2, 2, 2, 2],
+    "card_revision_counts_after_each_step": [1, 2, 2, 2, 2],
+    "notice_lifecycle_states_after_each_step": ["ACTIVE", "CANCELLED", "CANCELLED", "CANCELLED", "CANCELLED"],
+    "accepted_notice_versions": [1, 3],
+    "final_history_intent_ids": ["SYNTH-ORDER-001", "SYNTH-ORDER-002"],
+    "ignored_attempt_step_ids": [
+      "late_correction_v2",
+      "duplicate_cancel_v3_new_receipt",
+      "old_active_v1_new_receipt_after_cancel"
+    ],
+    "final_notice_lifecycle_status": "CANCELLED",
+    "final_notification_action_count": 2,
+    "final_card_revision_count": 2,
+    "delivery_status": "NOT_DELIVERED"
+  },
+  "arrival_order_only_negative_control_expected": {
+    "decision_statuses": ["EMITTED", "EMITTED", "EMITTED", "EMITTED", "EMITTED"],
+    "notification_action_counts_after_each_step": [1, 2, 3, 4, 5],
+    "card_revision_counts_after_each_step": [1, 2, 3, 4, 5],
+    "notice_lifecycle_states_after_each_step": ["ACTIVE", "CANCELLED", "CORRECTED", "CANCELLED", "ACTIVE"],
+    "final_notice_lifecycle_status": "ACTIVE",
+    "interpretation": "The unversioned arrival-order ledger accepts every fresh intent ID as new. A late lower-version correction regresses the card, a duplicate cancellation emits another action, and an old active message arriving after cancellation restores ACTIVE. This is a negative control, not desired behavior."
+  },
+  "unsupported_items": [
+    "Actual wall-clock skew or source clock correctness.",
+    "Production rules for assigning, skipping, or conflicting notice versions.",
+    "Same-version messages with conflicting semantic content.",
+    "Reopening a cancelled notice with a later version.",
+    "Transport receipt identity and retry guarantees in a real delivery system.",
+    "Real notification emission, user visibility, acknowledgment, or efficacy.",
+    "Physical-event truth, alert correctness, and source independence."
+  ]
+}
