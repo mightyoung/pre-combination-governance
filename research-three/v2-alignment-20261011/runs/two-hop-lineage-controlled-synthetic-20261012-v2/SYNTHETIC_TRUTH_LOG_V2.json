@@ -1,0 +1,14 @@
+{
+  "classification": "SCORER_ONLY_CONTROLLED_SYNTHETIC_FIXTURE_NOT_PRODUCTION_LOG",
+  "world_id": "SYNTHETIC-WORLD-001",
+  "source_observation": "SOURCE",
+  "synthetic_parent_id": "SYNTHETIC-ROOT-001",
+  "truth_relations": [
+    {"pair_id": "SOURCE/HOP1", "relation": "SAME_SYNTHETIC_PARENT"},
+    {"pair_id": "SOURCE/HOP2", "relation": "SAME_SYNTHETIC_PARENT"},
+    {"pair_id": "HOP1/HOP2", "relation": "SAME_SYNTHETIC_PARENT"}
+  ],
+  "production_replay_log_denominator": 0,
+  "accuracy_use": "PROHIBITED; fixture documents construction only and is not independent production truth.",
+  "note": "One fixed synthetic chain; its three related pair rows are not independent samples."
+}
