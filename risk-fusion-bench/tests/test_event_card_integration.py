@@ -451,6 +451,29 @@ class EventCardIntegrationTests(unittest.TestCase):
             [row["display_card_id"] for row in result["timeline"]],
             [spec["context"]["display_card_id"]] * len(spec["steps"]),
         )
+        self.assertTrue(
+            all(row["delivery_status"] == "NOT_DELIVERED" for row in result["timeline"])
+        )
+        self.assertEqual(
+            result["protected_action_reasons"], expected["protected_action_reasons"]
+        )
+        self.assertEqual(result["source_independence"], spec["source_independence"])
+        self.assertEqual(
+            [row["source_ids"] for row in result["timeline"]],
+            [spec["context"]["source_ids"]] * len(spec["steps"]),
+        )
+        continuing_received = datetime.fromisoformat(
+            result["timeline"][1]["time_evidence"]["received_at_processing_time"].replace(
+                "Z", "+00:00"
+            )
+        )
+        replay_received = datetime.fromisoformat(
+            result["timeline"][2]["time_evidence"]["received_at_processing_time"].replace(
+                "Z", "+00:00"
+            )
+        )
+        self.assertEqual((replay_received - continuing_received).total_seconds(), 1)
+        self.assertIsNone(result["timeline"][2]["time_evidence"]["actual_visible_at"])
 
         final_card = result["final_card"]
         self.assertEqual(final_card["notice_lifecycle_status"], "CANCELLED")
@@ -466,6 +489,14 @@ class EventCardIntegrationTests(unittest.TestCase):
         self.assertEqual(final_card["association_state"], expected["association_state_remains"])
         self.assertEqual(final_card["replay_attempt_count"], expected["replay_attempt_count"])
         self.assertEqual(final_card["delivery_status"], expected["delivery_status"])
+        self.assertIsNone(final_card["emitted_at"])
+        self.assertIsNone(final_card["visible_at"])
+        self.assertTrue(
+            all(
+                revision["source_ids"] == spec["context"]["source_ids"]
+                for revision in final_card["revision_history"]
+            )
+        )
         self.assertEqual(
             result["counterexample"]["notice_lifecycle_status"],
             spec["counterexample"]["expected"]["final_notice_lifecycle_status"],
@@ -477,6 +508,10 @@ class EventCardIntegrationTests(unittest.TestCase):
         self.assertEqual(
             result["counterexample"]["notification_action_counts"],
             spec["counterexample"]["expected"]["notification_action_counts_after_each_step"],
+        )
+        self.assertEqual(
+            result["counterexample"]["card_revision_counts"],
+            spec["counterexample"]["expected"]["card_revision_counts_after_each_step"],
         )
 
     def test_rejects_identity_episode_or_association_mismatch_with_ledger(self):

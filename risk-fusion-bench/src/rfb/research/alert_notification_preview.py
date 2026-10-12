@@ -577,6 +577,14 @@ def build_event_card_preview(
     ]
 
     current_content = revision_previews[-1] if revision_previews else None
+    if not revisions:
+        notice_lifecycle_status = "NO_NOTICE"
+    elif revisions[-1].kind is ActionKind.NOTICE_CORRECTED:
+        notice_lifecycle_status = "CORRECTED"
+    elif revisions[-1].kind is ActionKind.NOTICE_CANCELLED:
+        notice_lifecycle_status = "CANCELLED"
+    else:
+        notice_lifecycle_status = "ACTIVE"
     candidate_episode_ids = (
         association_episode_ids
         if association_state in {"UNKNOWN_PENDING", "CONFLICT_PENDING"}
@@ -602,6 +610,7 @@ def build_event_card_preview(
         "candidate_episode_ids": candidate_episode_ids,
         "association_context_episode_ids": association_episode_ids,
         "association_state": association_state,
+        "notice_lifecycle_status": notice_lifecycle_status,
         "history_link_card_ids": history_links,
         "identity_resolution": identity_record,
         "identity_ledger_alignment": identity_ledger_alignment,
