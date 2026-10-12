@@ -1,0 +1,1332 @@
+{
+  "pilot_id": "SYNTH-LIFECYCLE-ORDERING-20261012-V1",
+  "classification": "SYNTHETIC_ARRIVAL_ORDER_ONLY_NEGATIVE_CONTROL",
+  "run_status": "COMPLETED",
+  "source_code_commit": "c2cff355c355506d29c0d0905169f3149d789f4c",
+  "input_sha256": "8d5c6515977ae93eb528f572e07d0570b94ebe6386bdc8f1fcd63eff34e87f87",
+  "notice_version_field_supported_by_ledger": false,
+  "timeline": [
+    {
+      "step_id": "initial_active_v1",
+      "intent_id": "SYNTH-ORDER-001",
+      "notice_version_input_only": 1,
+      "event_occurred_at": "2026-10-12T00:00:00Z",
+      "received_at_processing_time": "2026-10-12T00:00:00Z",
+      "decision_status": "EMITTED",
+      "notification_action_count": 1,
+      "card_revision_count": 1,
+      "notice_lifecycle_status": "ACTIVE",
+      "notification_id": "EXPERIMENT-NOTIFY-0001"
+    },
+    {
+      "step_id": "cancel_v3",
+      "intent_id": "SYNTH-ORDER-002",
+      "notice_version_input_only": 3,
+      "event_occurred_at": "2026-10-12T00:00:02Z",
+      "received_at_processing_time": "2026-10-12T00:00:03Z",
+      "decision_status": "EMITTED",
+      "notification_action_count": 2,
+      "card_revision_count": 2,
+      "notice_lifecycle_status": "CANCELLED",
+      "notification_id": "EXPERIMENT-NOTIFY-0002"
+    },
+    {
+      "step_id": "late_correction_v2",
+      "intent_id": "SYNTH-ORDER-003",
+      "notice_version_input_only": 2,
+      "event_occurred_at": "2026-10-12T00:00:01Z",
+      "received_at_processing_time": "2026-10-12T00:00:04Z",
+      "decision_status": "EMITTED",
+      "notification_action_count": 3,
+      "card_revision_count": 3,
+      "notice_lifecycle_status": "CORRECTED",
+      "notification_id": "EXPERIMENT-NOTIFY-0003"
+    },
+    {
+      "step_id": "duplicate_cancel_v3_new_receipt",
+      "intent_id": "SYNTH-ORDER-004",
+      "notice_version_input_only": 3,
+      "event_occurred_at": "2026-10-12T00:00:02Z",
+      "received_at_processing_time": "2026-10-12T00:00:05Z",
+      "decision_status": "EMITTED",
+      "notification_action_count": 4,
+      "card_revision_count": 4,
+      "notice_lifecycle_status": "CANCELLED",
+      "notification_id": "EXPERIMENT-NOTIFY-0004"
+    },
+    {
+      "step_id": "old_active_v1_new_receipt_after_cancel",
+      "intent_id": "SYNTH-ORDER-005",
+      "notice_version_input_only": 1,
+      "event_occurred_at": "2026-10-12T00:00:00Z",
+      "received_at_processing_time": "2026-10-12T00:00:06Z",
+      "decision_status": "EMITTED",
+      "notification_action_count": 5,
+      "card_revision_count": 5,
+      "notice_lifecycle_status": "ACTIVE",
+      "notification_id": "EXPERIMENT-NOTIFY-0005"
+    }
+  ],
+  "observed": {
+    "decision_statuses": [
+      "EMITTED",
+      "EMITTED",
+      "EMITTED",
+      "EMITTED",
+      "EMITTED"
+    ],
+    "notification_action_counts_after_each_step": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "card_revision_counts_after_each_step": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "notice_lifecycle_states_after_each_step": [
+      "ACTIVE",
+      "CANCELLED",
+      "CORRECTED",
+      "CANCELLED",
+      "ACTIVE"
+    ],
+    "final_notice_lifecycle_status": "ACTIVE"
+  },
+  "matches_frozen_negative_control_expectation": true,
+  "matches_frozen_versioned_expectation": false,
+  "final_card": {
+    "preview_status": "SYNTHETIC_FULL_EVENT_CARD_PREVIEW_ONLY",
+    "card_content_scope": "ALL_LEDGER_REVISIONS_PLUS_IDENTITY_LINKS",
+    "delivery_status": "NOT_DELIVERED",
+    "emitted_at": null,
+    "visible_at": null,
+    "display_card_id": "CARD-SYNTH-ORDERING-01",
+    "event_episode_ids": [],
+    "candidate_episode_ids": [
+      "SYNTH-EPISODE-A",
+      "SYNTH-EPISODE-B"
+    ],
+    "association_context_episode_ids": [
+      "SYNTH-EPISODE-A",
+      "SYNTH-EPISODE-B"
+    ],
+    "association_state": "UNKNOWN_PENDING",
+    "notice_lifecycle_status": "ACTIVE",
+    "history_link_card_ids": [],
+    "identity_resolution": {
+      "association_id": "SYNTH-ASSOCIATION-A-B",
+      "association_state": "UNKNOWN_PENDING",
+      "state_source": "EXTERNALLY_SUPPLIED_PENDING_STATE",
+      "pending_at": "2026-10-12T00:00:00Z",
+      "evidence_refs": [
+        "synthetic://ordering/pending"
+      ],
+      "identity_truth": "NOT_EVALUATED"
+    },
+    "identity_ledger_alignment": {
+      "status": "MATCHED_LEDGER_HISTORY",
+      "association_id": "SYNTH-ASSOCIATION-A-B",
+      "matched_revision_count": 5,
+      "latest_revision_association_state": "UNKNOWN_PENDING",
+      "expected_event_episode_ids": [],
+      "latest_revision_candidate_episode_ids": [
+        "SYNTH-EPISODE-A",
+        "SYNTH-EPISODE-B"
+      ],
+      "temporal_alignment": {
+        "status": "NOT_APPLICABLE_TO_PENDING_IDENTITY",
+        "identity_evidence_known_at": null,
+        "identity_resolved_at": null,
+        "earliest_resolved_revision_received_at": null,
+        "earliest_identity_transition_detected_at": null
+      }
+    },
+    "content_revision_count": 5,
+    "notification_action_count": 5,
+    "notification_ids": [
+      "EXPERIMENT-NOTIFY-0001",
+      "EXPERIMENT-NOTIFY-0002",
+      "EXPERIMENT-NOTIFY-0003",
+      "EXPERIMENT-NOTIFY-0004",
+      "EXPERIMENT-NOTIFY-0005"
+    ],
+    "revision_history": [
+      {
+        "preview_id": "EXPERIMENT-NOTIFY-0001:revision:1",
+        "preview_status": "PREVIEW_ONLY",
+        "decision_status": "EMITTED",
+        "delivery_status": "NOT_DELIVERED",
+        "emission_status": "NOT_EMITTED_SIMULATION_ONLY",
+        "notification_id": "EXPERIMENT-NOTIFY-0001",
+        "kind": "PENDING_VERIFICATION_RISK_ALERT",
+        "severity": "WARNING",
+        "risk_state": {
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "risk_stage": "PRECAUTIONARY",
+          "provenance": "SYNTHETIC_INPUT"
+        },
+        "risk_basis_ids": [
+          "synthetic://ordering/risk/exposure"
+        ],
+        "uncertainty_reason": "事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。",
+        "affected_observation_ids": [
+          "SYNTH-OBSERVATION-ONE"
+        ],
+        "display_card_id": "CARD-SYNTH-ORDERING-01",
+        "candidate_episode_ids": [
+          "SYNTH-EPISODE-A",
+          "SYNTH-EPISODE-B"
+        ],
+        "association_state": "UNKNOWN_PENDING",
+        "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：SYNTH-SOURCE-ONE；任务：当前接口不支持绑定；观测：SYNTH-OBSERVATION-ONE；候选事件：SYNTH-EPISODE-A、SYNTH-EPISODE-B；风险依据：synthetic://ordering/risk/exposure。显示卡：CARD-SYNTH-ORDERING-01。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+        "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
+        "trigger_known_time": null,
+        "detected_at": null,
+        "emitted_at": null,
+        "visible_at": null,
+        "content_revision": 1,
+        "dedup_episode_interval_key": "SYNTH-ORDERING-INTERVAL-01",
+        "risk_flags": [
+          "EXPOSURE"
+        ],
+        "source_ids": [
+          "SYNTH-SOURCE-ONE"
+        ],
+        "task_ids": [],
+        "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
+        "evidence_refs": [
+          "synthetic://ordering/notice/v1"
+        ],
+        "time_evidence": {
+          "source_times": [
+            "2026-10-12T00:00:00Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:00Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:00Z",
+          "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
+        },
+        "revision_trace": {
+          "intent_id": "SYNTH-ORDER-001",
+          "action_kind": "ASSOCIATION_PENDING",
+          "decision_status": "EMITTED",
+          "decision_reason": "NO_MATCHING_EPISODE_INTERVAL_KEY_WITHIN_WINDOW",
+          "notification_id": "EXPERIMENT-NOTIFY-0001",
+          "display_card_id": "CARD-SYNTH-ORDERING-01",
+          "content_revision": 1,
+          "previous_content_revision": null,
+          "previous_intent_id": null,
+          "association_state": "UNKNOWN_PENDING",
+          "candidate_episode_ids": [
+            "SYNTH-EPISODE-A",
+            "SYNTH-EPISODE-B"
+          ],
+          "evidence_refs": [
+            "synthetic://ordering/notice/v1"
+          ],
+          "source_times": [
+            "2026-10-12T00:00:00Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:00Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:00Z",
+          "provenance": "SYNTHETIC_ACTION_LEDGER_REVISION"
+        },
+        "field_statuses": {
+          "notification_id": "EXPERIMENT_LOCAL_ID",
+          "kind": "PUBLIC_V2_FIXED_KIND",
+          "severity": "MAPPED_SINGLE_FLAG",
+          "risk_state": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE",
+          "risk_basis_ids": "SYNTHETIC_EVIDENCE_REFERENCES",
+          "uncertainty_reason": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE",
+          "affected_observation_ids": "SYNTHETIC_INPUT_IDS",
+          "display_card_id": "SYNTHETIC_STABLE_DISPLAY_ID",
+          "candidate_episode_ids": "SYNTHETIC_SEPARATE_NODES",
+          "association_state": "SYNTHETIC_PUBLIC_ENUM_VALUE",
+          "user_visible_message": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED",
+          "suggested_verification_action": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION",
+          "trigger_known_time": "UNKNOWN_NOT_PROVIDED",
+          "detected_at": "UNKNOWN_NOT_PROVIDED",
+          "emitted_at": "NOT_EMITTED",
+          "visible_at": "UNKNOWN_NOT_RUN",
+          "content_revision": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
+          "dedup_episode_interval_key": "EXPERIMENT_INPUT_NOT_FROZEN"
+        },
+        "field_audit": {
+          "schema_source_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
+          "schema_scope": "PARTIAL_FIELD_PRESENCE_ONLY",
+          "required_field_count": 18,
+          "present_field_count": 18,
+          "missing_fields": [],
+          "all_required_fields_present": true,
+          "business_acceptance": "NOT_EVALUATED",
+          "fields": {
+            "notification_id": {
+              "present": true,
+              "status": "EXPERIMENT_LOCAL_ID"
+            },
+            "kind": {
+              "present": true,
+              "status": "PUBLIC_V2_FIXED_KIND"
+            },
+            "severity": {
+              "present": true,
+              "status": "MAPPED_SINGLE_FLAG"
+            },
+            "risk_state": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE"
+            },
+            "risk_basis_ids": {
+              "present": true,
+              "status": "SYNTHETIC_EVIDENCE_REFERENCES"
+            },
+            "uncertainty_reason": {
+              "present": true,
+              "status": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE"
+            },
+            "affected_observation_ids": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_IDS"
+            },
+            "display_card_id": {
+              "present": true,
+              "status": "SYNTHETIC_STABLE_DISPLAY_ID"
+            },
+            "candidate_episode_ids": {
+              "present": true,
+              "status": "SYNTHETIC_SEPARATE_NODES"
+            },
+            "association_state": {
+              "present": true,
+              "status": "SYNTHETIC_PUBLIC_ENUM_VALUE"
+            },
+            "user_visible_message": {
+              "present": true,
+              "status": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED"
+            },
+            "suggested_verification_action": {
+              "present": true,
+              "status": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION"
+            },
+            "trigger_known_time": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "detected_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "emitted_at": {
+              "present": true,
+              "status": "NOT_EMITTED"
+            },
+            "visible_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_RUN"
+            },
+            "content_revision": {
+              "present": true,
+              "status": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
+            },
+            "dedup_episode_interval_key": {
+              "present": true,
+              "status": "EXPERIMENT_INPUT_NOT_FROZEN"
+            }
+          }
+        }
+      },
+      {
+        "preview_id": "EXPERIMENT-NOTIFY-0002:revision:2",
+        "preview_status": "PREVIEW_ONLY",
+        "decision_status": "EMITTED",
+        "delivery_status": "NOT_DELIVERED",
+        "emission_status": "NOT_EMITTED_SIMULATION_ONLY",
+        "notification_id": "EXPERIMENT-NOTIFY-0002",
+        "kind": "PENDING_VERIFICATION_RISK_ALERT",
+        "severity": "WARNING",
+        "risk_state": {
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "risk_stage": "PRECAUTIONARY",
+          "provenance": "SYNTHETIC_INPUT"
+        },
+        "risk_basis_ids": [
+          "synthetic://ordering/risk/exposure"
+        ],
+        "uncertainty_reason": "事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。",
+        "affected_observation_ids": [
+          "SYNTH-OBSERVATION-ONE"
+        ],
+        "display_card_id": "CARD-SYNTH-ORDERING-01",
+        "candidate_episode_ids": [
+          "SYNTH-EPISODE-A",
+          "SYNTH-EPISODE-B"
+        ],
+        "association_state": "UNKNOWN_PENDING",
+        "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：SYNTH-SOURCE-ONE；任务：当前接口不支持绑定；观测：SYNTH-OBSERVATION-ONE；候选事件：SYNTH-EPISODE-A、SYNTH-EPISODE-B；风险依据：synthetic://ordering/risk/exposure。显示卡：CARD-SYNTH-ORDERING-01。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+        "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
+        "trigger_known_time": null,
+        "detected_at": null,
+        "emitted_at": null,
+        "visible_at": null,
+        "content_revision": 2,
+        "dedup_episode_interval_key": "SYNTH-ORDERING-INTERVAL-01",
+        "risk_flags": [
+          "EXPOSURE"
+        ],
+        "source_ids": [
+          "SYNTH-SOURCE-ONE"
+        ],
+        "task_ids": [],
+        "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
+        "evidence_refs": [
+          "synthetic://ordering/cancel/v3"
+        ],
+        "time_evidence": {
+          "source_times": [
+            "2026-10-12T00:00:02Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:02Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:03Z",
+          "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
+        },
+        "revision_trace": {
+          "intent_id": "SYNTH-ORDER-002",
+          "action_kind": "NOTICE_CANCELLED",
+          "decision_status": "EMITTED",
+          "decision_reason": "PROTECTED_ACTION_KIND",
+          "notification_id": "EXPERIMENT-NOTIFY-0002",
+          "display_card_id": "CARD-SYNTH-ORDERING-01",
+          "content_revision": 2,
+          "previous_content_revision": 1,
+          "previous_intent_id": "SYNTH-ORDER-001",
+          "association_state": "UNKNOWN_PENDING",
+          "candidate_episode_ids": [
+            "SYNTH-EPISODE-A",
+            "SYNTH-EPISODE-B"
+          ],
+          "evidence_refs": [
+            "synthetic://ordering/cancel/v3"
+          ],
+          "source_times": [
+            "2026-10-12T00:00:02Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:02Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:03Z",
+          "provenance": "SYNTHETIC_ACTION_LEDGER_REVISION"
+        },
+        "field_statuses": {
+          "notification_id": "EXPERIMENT_LOCAL_ID",
+          "kind": "PUBLIC_V2_FIXED_KIND",
+          "severity": "MAPPED_SINGLE_FLAG",
+          "risk_state": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE",
+          "risk_basis_ids": "SYNTHETIC_EVIDENCE_REFERENCES",
+          "uncertainty_reason": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE",
+          "affected_observation_ids": "SYNTHETIC_INPUT_IDS",
+          "display_card_id": "SYNTHETIC_STABLE_DISPLAY_ID",
+          "candidate_episode_ids": "SYNTHETIC_SEPARATE_NODES",
+          "association_state": "SYNTHETIC_PUBLIC_ENUM_VALUE",
+          "user_visible_message": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED",
+          "suggested_verification_action": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION",
+          "trigger_known_time": "UNKNOWN_NOT_PROVIDED",
+          "detected_at": "UNKNOWN_NOT_PROVIDED",
+          "emitted_at": "NOT_EMITTED",
+          "visible_at": "UNKNOWN_NOT_RUN",
+          "content_revision": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
+          "dedup_episode_interval_key": "EXPERIMENT_INPUT_NOT_FROZEN"
+        },
+        "field_audit": {
+          "schema_source_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
+          "schema_scope": "PARTIAL_FIELD_PRESENCE_ONLY",
+          "required_field_count": 18,
+          "present_field_count": 18,
+          "missing_fields": [],
+          "all_required_fields_present": true,
+          "business_acceptance": "NOT_EVALUATED",
+          "fields": {
+            "notification_id": {
+              "present": true,
+              "status": "EXPERIMENT_LOCAL_ID"
+            },
+            "kind": {
+              "present": true,
+              "status": "PUBLIC_V2_FIXED_KIND"
+            },
+            "severity": {
+              "present": true,
+              "status": "MAPPED_SINGLE_FLAG"
+            },
+            "risk_state": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE"
+            },
+            "risk_basis_ids": {
+              "present": true,
+              "status": "SYNTHETIC_EVIDENCE_REFERENCES"
+            },
+            "uncertainty_reason": {
+              "present": true,
+              "status": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE"
+            },
+            "affected_observation_ids": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_IDS"
+            },
+            "display_card_id": {
+              "present": true,
+              "status": "SYNTHETIC_STABLE_DISPLAY_ID"
+            },
+            "candidate_episode_ids": {
+              "present": true,
+              "status": "SYNTHETIC_SEPARATE_NODES"
+            },
+            "association_state": {
+              "present": true,
+              "status": "SYNTHETIC_PUBLIC_ENUM_VALUE"
+            },
+            "user_visible_message": {
+              "present": true,
+              "status": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED"
+            },
+            "suggested_verification_action": {
+              "present": true,
+              "status": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION"
+            },
+            "trigger_known_time": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "detected_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "emitted_at": {
+              "present": true,
+              "status": "NOT_EMITTED"
+            },
+            "visible_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_RUN"
+            },
+            "content_revision": {
+              "present": true,
+              "status": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
+            },
+            "dedup_episode_interval_key": {
+              "present": true,
+              "status": "EXPERIMENT_INPUT_NOT_FROZEN"
+            }
+          }
+        }
+      },
+      {
+        "preview_id": "EXPERIMENT-NOTIFY-0003:revision:3",
+        "preview_status": "PREVIEW_ONLY",
+        "decision_status": "EMITTED",
+        "delivery_status": "NOT_DELIVERED",
+        "emission_status": "NOT_EMITTED_SIMULATION_ONLY",
+        "notification_id": "EXPERIMENT-NOTIFY-0003",
+        "kind": "PENDING_VERIFICATION_RISK_ALERT",
+        "severity": "WARNING",
+        "risk_state": {
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "risk_stage": "PRECAUTIONARY",
+          "provenance": "SYNTHETIC_INPUT"
+        },
+        "risk_basis_ids": [
+          "synthetic://ordering/risk/exposure"
+        ],
+        "uncertainty_reason": "事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。",
+        "affected_observation_ids": [
+          "SYNTH-OBSERVATION-ONE"
+        ],
+        "display_card_id": "CARD-SYNTH-ORDERING-01",
+        "candidate_episode_ids": [
+          "SYNTH-EPISODE-A",
+          "SYNTH-EPISODE-B"
+        ],
+        "association_state": "UNKNOWN_PENDING",
+        "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：SYNTH-SOURCE-ONE；任务：当前接口不支持绑定；观测：SYNTH-OBSERVATION-ONE；候选事件：SYNTH-EPISODE-A、SYNTH-EPISODE-B；风险依据：synthetic://ordering/risk/exposure。显示卡：CARD-SYNTH-ORDERING-01。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+        "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
+        "trigger_known_time": null,
+        "detected_at": null,
+        "emitted_at": null,
+        "visible_at": null,
+        "content_revision": 3,
+        "dedup_episode_interval_key": "SYNTH-ORDERING-INTERVAL-01",
+        "risk_flags": [
+          "EXPOSURE"
+        ],
+        "source_ids": [
+          "SYNTH-SOURCE-ONE"
+        ],
+        "task_ids": [],
+        "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
+        "evidence_refs": [
+          "synthetic://ordering/correction/v2"
+        ],
+        "time_evidence": {
+          "source_times": [
+            "2026-10-12T00:00:01Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:01Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:04Z",
+          "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
+        },
+        "revision_trace": {
+          "intent_id": "SYNTH-ORDER-003",
+          "action_kind": "NOTICE_CORRECTED",
+          "decision_status": "EMITTED",
+          "decision_reason": "PROTECTED_ACTION_KIND",
+          "notification_id": "EXPERIMENT-NOTIFY-0003",
+          "display_card_id": "CARD-SYNTH-ORDERING-01",
+          "content_revision": 3,
+          "previous_content_revision": 2,
+          "previous_intent_id": "SYNTH-ORDER-002",
+          "association_state": "UNKNOWN_PENDING",
+          "candidate_episode_ids": [
+            "SYNTH-EPISODE-A",
+            "SYNTH-EPISODE-B"
+          ],
+          "evidence_refs": [
+            "synthetic://ordering/correction/v2"
+          ],
+          "source_times": [
+            "2026-10-12T00:00:01Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:01Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:04Z",
+          "provenance": "SYNTHETIC_ACTION_LEDGER_REVISION"
+        },
+        "field_statuses": {
+          "notification_id": "EXPERIMENT_LOCAL_ID",
+          "kind": "PUBLIC_V2_FIXED_KIND",
+          "severity": "MAPPED_SINGLE_FLAG",
+          "risk_state": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE",
+          "risk_basis_ids": "SYNTHETIC_EVIDENCE_REFERENCES",
+          "uncertainty_reason": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE",
+          "affected_observation_ids": "SYNTHETIC_INPUT_IDS",
+          "display_card_id": "SYNTHETIC_STABLE_DISPLAY_ID",
+          "candidate_episode_ids": "SYNTHETIC_SEPARATE_NODES",
+          "association_state": "SYNTHETIC_PUBLIC_ENUM_VALUE",
+          "user_visible_message": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED",
+          "suggested_verification_action": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION",
+          "trigger_known_time": "UNKNOWN_NOT_PROVIDED",
+          "detected_at": "UNKNOWN_NOT_PROVIDED",
+          "emitted_at": "NOT_EMITTED",
+          "visible_at": "UNKNOWN_NOT_RUN",
+          "content_revision": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
+          "dedup_episode_interval_key": "EXPERIMENT_INPUT_NOT_FROZEN"
+        },
+        "field_audit": {
+          "schema_source_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
+          "schema_scope": "PARTIAL_FIELD_PRESENCE_ONLY",
+          "required_field_count": 18,
+          "present_field_count": 18,
+          "missing_fields": [],
+          "all_required_fields_present": true,
+          "business_acceptance": "NOT_EVALUATED",
+          "fields": {
+            "notification_id": {
+              "present": true,
+              "status": "EXPERIMENT_LOCAL_ID"
+            },
+            "kind": {
+              "present": true,
+              "status": "PUBLIC_V2_FIXED_KIND"
+            },
+            "severity": {
+              "present": true,
+              "status": "MAPPED_SINGLE_FLAG"
+            },
+            "risk_state": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE"
+            },
+            "risk_basis_ids": {
+              "present": true,
+              "status": "SYNTHETIC_EVIDENCE_REFERENCES"
+            },
+            "uncertainty_reason": {
+              "present": true,
+              "status": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE"
+            },
+            "affected_observation_ids": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_IDS"
+            },
+            "display_card_id": {
+              "present": true,
+              "status": "SYNTHETIC_STABLE_DISPLAY_ID"
+            },
+            "candidate_episode_ids": {
+              "present": true,
+              "status": "SYNTHETIC_SEPARATE_NODES"
+            },
+            "association_state": {
+              "present": true,
+              "status": "SYNTHETIC_PUBLIC_ENUM_VALUE"
+            },
+            "user_visible_message": {
+              "present": true,
+              "status": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED"
+            },
+            "suggested_verification_action": {
+              "present": true,
+              "status": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION"
+            },
+            "trigger_known_time": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "detected_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "emitted_at": {
+              "present": true,
+              "status": "NOT_EMITTED"
+            },
+            "visible_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_RUN"
+            },
+            "content_revision": {
+              "present": true,
+              "status": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
+            },
+            "dedup_episode_interval_key": {
+              "present": true,
+              "status": "EXPERIMENT_INPUT_NOT_FROZEN"
+            }
+          }
+        }
+      },
+      {
+        "preview_id": "EXPERIMENT-NOTIFY-0004:revision:4",
+        "preview_status": "PREVIEW_ONLY",
+        "decision_status": "EMITTED",
+        "delivery_status": "NOT_DELIVERED",
+        "emission_status": "NOT_EMITTED_SIMULATION_ONLY",
+        "notification_id": "EXPERIMENT-NOTIFY-0004",
+        "kind": "PENDING_VERIFICATION_RISK_ALERT",
+        "severity": "WARNING",
+        "risk_state": {
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "risk_stage": "PRECAUTIONARY",
+          "provenance": "SYNTHETIC_INPUT"
+        },
+        "risk_basis_ids": [
+          "synthetic://ordering/risk/exposure"
+        ],
+        "uncertainty_reason": "事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。",
+        "affected_observation_ids": [
+          "SYNTH-OBSERVATION-ONE"
+        ],
+        "display_card_id": "CARD-SYNTH-ORDERING-01",
+        "candidate_episode_ids": [
+          "SYNTH-EPISODE-A",
+          "SYNTH-EPISODE-B"
+        ],
+        "association_state": "UNKNOWN_PENDING",
+        "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：SYNTH-SOURCE-ONE；任务：当前接口不支持绑定；观测：SYNTH-OBSERVATION-ONE；候选事件：SYNTH-EPISODE-A、SYNTH-EPISODE-B；风险依据：synthetic://ordering/risk/exposure。显示卡：CARD-SYNTH-ORDERING-01。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+        "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
+        "trigger_known_time": null,
+        "detected_at": null,
+        "emitted_at": null,
+        "visible_at": null,
+        "content_revision": 4,
+        "dedup_episode_interval_key": "SYNTH-ORDERING-INTERVAL-01",
+        "risk_flags": [
+          "EXPOSURE"
+        ],
+        "source_ids": [
+          "SYNTH-SOURCE-ONE"
+        ],
+        "task_ids": [],
+        "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
+        "evidence_refs": [
+          "synthetic://ordering/cancel/v3"
+        ],
+        "time_evidence": {
+          "source_times": [
+            "2026-10-12T00:00:02Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:02Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:05Z",
+          "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
+        },
+        "revision_trace": {
+          "intent_id": "SYNTH-ORDER-004",
+          "action_kind": "NOTICE_CANCELLED",
+          "decision_status": "EMITTED",
+          "decision_reason": "PROTECTED_ACTION_KIND",
+          "notification_id": "EXPERIMENT-NOTIFY-0004",
+          "display_card_id": "CARD-SYNTH-ORDERING-01",
+          "content_revision": 4,
+          "previous_content_revision": 3,
+          "previous_intent_id": "SYNTH-ORDER-003",
+          "association_state": "UNKNOWN_PENDING",
+          "candidate_episode_ids": [
+            "SYNTH-EPISODE-A",
+            "SYNTH-EPISODE-B"
+          ],
+          "evidence_refs": [
+            "synthetic://ordering/cancel/v3"
+          ],
+          "source_times": [
+            "2026-10-12T00:00:02Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:02Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:05Z",
+          "provenance": "SYNTHETIC_ACTION_LEDGER_REVISION"
+        },
+        "field_statuses": {
+          "notification_id": "EXPERIMENT_LOCAL_ID",
+          "kind": "PUBLIC_V2_FIXED_KIND",
+          "severity": "MAPPED_SINGLE_FLAG",
+          "risk_state": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE",
+          "risk_basis_ids": "SYNTHETIC_EVIDENCE_REFERENCES",
+          "uncertainty_reason": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE",
+          "affected_observation_ids": "SYNTHETIC_INPUT_IDS",
+          "display_card_id": "SYNTHETIC_STABLE_DISPLAY_ID",
+          "candidate_episode_ids": "SYNTHETIC_SEPARATE_NODES",
+          "association_state": "SYNTHETIC_PUBLIC_ENUM_VALUE",
+          "user_visible_message": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED",
+          "suggested_verification_action": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION",
+          "trigger_known_time": "UNKNOWN_NOT_PROVIDED",
+          "detected_at": "UNKNOWN_NOT_PROVIDED",
+          "emitted_at": "NOT_EMITTED",
+          "visible_at": "UNKNOWN_NOT_RUN",
+          "content_revision": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
+          "dedup_episode_interval_key": "EXPERIMENT_INPUT_NOT_FROZEN"
+        },
+        "field_audit": {
+          "schema_source_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
+          "schema_scope": "PARTIAL_FIELD_PRESENCE_ONLY",
+          "required_field_count": 18,
+          "present_field_count": 18,
+          "missing_fields": [],
+          "all_required_fields_present": true,
+          "business_acceptance": "NOT_EVALUATED",
+          "fields": {
+            "notification_id": {
+              "present": true,
+              "status": "EXPERIMENT_LOCAL_ID"
+            },
+            "kind": {
+              "present": true,
+              "status": "PUBLIC_V2_FIXED_KIND"
+            },
+            "severity": {
+              "present": true,
+              "status": "MAPPED_SINGLE_FLAG"
+            },
+            "risk_state": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE"
+            },
+            "risk_basis_ids": {
+              "present": true,
+              "status": "SYNTHETIC_EVIDENCE_REFERENCES"
+            },
+            "uncertainty_reason": {
+              "present": true,
+              "status": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE"
+            },
+            "affected_observation_ids": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_IDS"
+            },
+            "display_card_id": {
+              "present": true,
+              "status": "SYNTHETIC_STABLE_DISPLAY_ID"
+            },
+            "candidate_episode_ids": {
+              "present": true,
+              "status": "SYNTHETIC_SEPARATE_NODES"
+            },
+            "association_state": {
+              "present": true,
+              "status": "SYNTHETIC_PUBLIC_ENUM_VALUE"
+            },
+            "user_visible_message": {
+              "present": true,
+              "status": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED"
+            },
+            "suggested_verification_action": {
+              "present": true,
+              "status": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION"
+            },
+            "trigger_known_time": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "detected_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "emitted_at": {
+              "present": true,
+              "status": "NOT_EMITTED"
+            },
+            "visible_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_RUN"
+            },
+            "content_revision": {
+              "present": true,
+              "status": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
+            },
+            "dedup_episode_interval_key": {
+              "present": true,
+              "status": "EXPERIMENT_INPUT_NOT_FROZEN"
+            }
+          }
+        }
+      },
+      {
+        "preview_id": "EXPERIMENT-NOTIFY-0005:revision:5",
+        "preview_status": "PREVIEW_ONLY",
+        "decision_status": "EMITTED",
+        "delivery_status": "NOT_DELIVERED",
+        "emission_status": "NOT_EMITTED_SIMULATION_ONLY",
+        "notification_id": "EXPERIMENT-NOTIFY-0005",
+        "kind": "PENDING_VERIFICATION_RISK_ALERT",
+        "severity": "WARNING",
+        "risk_state": {
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "risk_stage": "PRECAUTIONARY",
+          "provenance": "SYNTHETIC_INPUT"
+        },
+        "risk_basis_ids": [
+          "synthetic://ordering/risk/exposure"
+        ],
+        "uncertainty_reason": "事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。",
+        "affected_observation_ids": [
+          "SYNTH-OBSERVATION-ONE"
+        ],
+        "display_card_id": "CARD-SYNTH-ORDERING-01",
+        "candidate_episode_ids": [
+          "SYNTH-EPISODE-A",
+          "SYNTH-EPISODE-B"
+        ],
+        "association_state": "UNKNOWN_PENDING",
+        "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：SYNTH-SOURCE-ONE；任务：当前接口不支持绑定；观测：SYNTH-OBSERVATION-ONE；候选事件：SYNTH-EPISODE-A、SYNTH-EPISODE-B；风险依据：synthetic://ordering/risk/exposure。显示卡：CARD-SYNTH-ORDERING-01。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+        "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
+        "trigger_known_time": null,
+        "detected_at": null,
+        "emitted_at": null,
+        "visible_at": null,
+        "content_revision": 5,
+        "dedup_episode_interval_key": "SYNTH-ORDERING-INTERVAL-01",
+        "risk_flags": [
+          "EXPOSURE"
+        ],
+        "source_ids": [
+          "SYNTH-SOURCE-ONE"
+        ],
+        "task_ids": [],
+        "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
+        "evidence_refs": [
+          "synthetic://ordering/notice/v1"
+        ],
+        "time_evidence": {
+          "source_times": [
+            "2026-10-12T00:00:00Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:00Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:06Z",
+          "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
+        },
+        "revision_trace": {
+          "intent_id": "SYNTH-ORDER-005",
+          "action_kind": "ASSOCIATION_PENDING",
+          "decision_status": "EMITTED",
+          "decision_reason": "NO_MATCHING_EPISODE_INTERVAL_KEY_WITHIN_WINDOW",
+          "notification_id": "EXPERIMENT-NOTIFY-0005",
+          "display_card_id": "CARD-SYNTH-ORDERING-01",
+          "content_revision": 5,
+          "previous_content_revision": 4,
+          "previous_intent_id": "SYNTH-ORDER-004",
+          "association_state": "UNKNOWN_PENDING",
+          "candidate_episode_ids": [
+            "SYNTH-EPISODE-A",
+            "SYNTH-EPISODE-B"
+          ],
+          "evidence_refs": [
+            "synthetic://ordering/notice/v1"
+          ],
+          "source_times": [
+            "2026-10-12T00:00:00Z"
+          ],
+          "observed_at_times": [
+            "2026-10-12T00:00:00Z"
+          ],
+          "trigger_known_time": null,
+          "detected_at": null,
+          "received_at_processing_time": "2026-10-12T00:00:06Z",
+          "provenance": "SYNTHETIC_ACTION_LEDGER_REVISION"
+        },
+        "field_statuses": {
+          "notification_id": "EXPERIMENT_LOCAL_ID",
+          "kind": "PUBLIC_V2_FIXED_KIND",
+          "severity": "MAPPED_SINGLE_FLAG",
+          "risk_state": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE",
+          "risk_basis_ids": "SYNTHETIC_EVIDENCE_REFERENCES",
+          "uncertainty_reason": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE",
+          "affected_observation_ids": "SYNTHETIC_INPUT_IDS",
+          "display_card_id": "SYNTHETIC_STABLE_DISPLAY_ID",
+          "candidate_episode_ids": "SYNTHETIC_SEPARATE_NODES",
+          "association_state": "SYNTHETIC_PUBLIC_ENUM_VALUE",
+          "user_visible_message": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED",
+          "suggested_verification_action": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION",
+          "trigger_known_time": "UNKNOWN_NOT_PROVIDED",
+          "detected_at": "UNKNOWN_NOT_PROVIDED",
+          "emitted_at": "NOT_EMITTED",
+          "visible_at": "UNKNOWN_NOT_RUN",
+          "content_revision": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
+          "dedup_episode_interval_key": "EXPERIMENT_INPUT_NOT_FROZEN"
+        },
+        "field_audit": {
+          "schema_source_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
+          "schema_scope": "PARTIAL_FIELD_PRESENCE_ONLY",
+          "required_field_count": 18,
+          "present_field_count": 18,
+          "missing_fields": [],
+          "all_required_fields_present": true,
+          "business_acceptance": "NOT_EVALUATED",
+          "fields": {
+            "notification_id": {
+              "present": true,
+              "status": "EXPERIMENT_LOCAL_ID"
+            },
+            "kind": {
+              "present": true,
+              "status": "PUBLIC_V2_FIXED_KIND"
+            },
+            "severity": {
+              "present": true,
+              "status": "MAPPED_SINGLE_FLAG"
+            },
+            "risk_state": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE"
+            },
+            "risk_basis_ids": {
+              "present": true,
+              "status": "SYNTHETIC_EVIDENCE_REFERENCES"
+            },
+            "uncertainty_reason": {
+              "present": true,
+              "status": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE"
+            },
+            "affected_observation_ids": {
+              "present": true,
+              "status": "SYNTHETIC_INPUT_IDS"
+            },
+            "display_card_id": {
+              "present": true,
+              "status": "SYNTHETIC_STABLE_DISPLAY_ID"
+            },
+            "candidate_episode_ids": {
+              "present": true,
+              "status": "SYNTHETIC_SEPARATE_NODES"
+            },
+            "association_state": {
+              "present": true,
+              "status": "SYNTHETIC_PUBLIC_ENUM_VALUE"
+            },
+            "user_visible_message": {
+              "present": true,
+              "status": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED"
+            },
+            "suggested_verification_action": {
+              "present": true,
+              "status": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION"
+            },
+            "trigger_known_time": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "detected_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_PROVIDED"
+            },
+            "emitted_at": {
+              "present": true,
+              "status": "NOT_EMITTED"
+            },
+            "visible_at": {
+              "present": true,
+              "status": "UNKNOWN_NOT_RUN"
+            },
+            "content_revision": {
+              "present": true,
+              "status": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
+            },
+            "dedup_episode_interval_key": {
+              "present": true,
+              "status": "EXPERIMENT_INPUT_NOT_FROZEN"
+            }
+          }
+        }
+      }
+    ],
+    "current_content": {
+      "preview_id": "EXPERIMENT-NOTIFY-0005:revision:5",
+      "preview_status": "PREVIEW_ONLY",
+      "decision_status": "EMITTED",
+      "delivery_status": "NOT_DELIVERED",
+      "emission_status": "NOT_EMITTED_SIMULATION_ONLY",
+      "notification_id": "EXPERIMENT-NOTIFY-0005",
+      "kind": "PENDING_VERIFICATION_RISK_ALERT",
+      "severity": "WARNING",
+      "risk_state": {
+        "risk_flags": [
+          "EXPOSURE"
+        ],
+        "risk_stage": "PRECAUTIONARY",
+        "provenance": "SYNTHETIC_INPUT"
+      },
+      "risk_basis_ids": [
+        "synthetic://ordering/risk/exposure"
+      ],
+      "uncertainty_reason": "事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。",
+      "affected_observation_ids": [
+        "SYNTH-OBSERVATION-ONE"
+      ],
+      "display_card_id": "CARD-SYNTH-ORDERING-01",
+      "candidate_episode_ids": [
+        "SYNTH-EPISODE-A",
+        "SYNTH-EPISODE-B"
+      ],
+      "association_state": "UNKNOWN_PENDING",
+      "user_visible_message": "待核实风险提醒｜等级：WARNING（单一风险标记映射预览）。当前风险标记：EXPOSURE；关联状态：UNKNOWN_PENDING（本次输入状态）。原因：事件关联仍待核实；未知状态不代表风险消失，也不证明候选属于同一事件。涉及设备/来源：SYNTH-SOURCE-ONE；任务：当前接口不支持绑定；观测：SYNTH-OBSERVATION-ONE；候选事件：SYNTH-EPISODE-A、SYNTH-EPISODE-B；风险依据：synthetic://ordering/risk/exposure。显示卡：CARD-SYNTH-ORDERING-01。请按既定处置流程核查；后续确认或升级会作为本卡修订。证据支持分拆时，应建立独立事件卡并保留到本卡的历史链接。",
+      "suggested_verification_action": "按既定处置流程核查相关风险依据、设备/任务绑定和事件关联；证据充分后确认或升级并保留本卡修订；若证据支持分拆，应建立独立事件卡并链接本卡历史。",
+      "trigger_known_time": null,
+      "detected_at": null,
+      "emitted_at": null,
+      "visible_at": null,
+      "content_revision": 5,
+      "dedup_episode_interval_key": "SYNTH-ORDERING-INTERVAL-01",
+      "risk_flags": [
+        "EXPOSURE"
+      ],
+      "source_ids": [
+        "SYNTH-SOURCE-ONE"
+      ],
+      "task_ids": [],
+      "task_context_status": "UNSUPPORTED_BY_CURRENT_INTERFACE",
+      "evidence_refs": [
+        "synthetic://ordering/notice/v1"
+      ],
+      "time_evidence": {
+        "source_times": [
+          "2026-10-12T00:00:00Z"
+        ],
+        "observed_at_times": [
+          "2026-10-12T00:00:00Z"
+        ],
+        "trigger_known_time": null,
+        "detected_at": null,
+        "received_at_processing_time": "2026-10-12T00:00:06Z",
+        "provenance": "SYNTHETIC_EXPERIMENT_INPUT"
+      },
+      "revision_trace": {
+        "intent_id": "SYNTH-ORDER-005",
+        "action_kind": "ASSOCIATION_PENDING",
+        "decision_status": "EMITTED",
+        "decision_reason": "NO_MATCHING_EPISODE_INTERVAL_KEY_WITHIN_WINDOW",
+        "notification_id": "EXPERIMENT-NOTIFY-0005",
+        "display_card_id": "CARD-SYNTH-ORDERING-01",
+        "content_revision": 5,
+        "previous_content_revision": 4,
+        "previous_intent_id": "SYNTH-ORDER-004",
+        "association_state": "UNKNOWN_PENDING",
+        "candidate_episode_ids": [
+          "SYNTH-EPISODE-A",
+          "SYNTH-EPISODE-B"
+        ],
+        "evidence_refs": [
+          "synthetic://ordering/notice/v1"
+        ],
+        "source_times": [
+          "2026-10-12T00:00:00Z"
+        ],
+        "observed_at_times": [
+          "2026-10-12T00:00:00Z"
+        ],
+        "trigger_known_time": null,
+        "detected_at": null,
+        "received_at_processing_time": "2026-10-12T00:00:06Z",
+        "provenance": "SYNTHETIC_ACTION_LEDGER_REVISION"
+      },
+      "field_statuses": {
+        "notification_id": "EXPERIMENT_LOCAL_ID",
+        "kind": "PUBLIC_V2_FIXED_KIND",
+        "severity": "MAPPED_SINGLE_FLAG",
+        "risk_state": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE",
+        "risk_basis_ids": "SYNTHETIC_EVIDENCE_REFERENCES",
+        "uncertainty_reason": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE",
+        "affected_observation_ids": "SYNTHETIC_INPUT_IDS",
+        "display_card_id": "SYNTHETIC_STABLE_DISPLAY_ID",
+        "candidate_episode_ids": "SYNTHETIC_SEPARATE_NODES",
+        "association_state": "SYNTHETIC_PUBLIC_ENUM_VALUE",
+        "user_visible_message": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED",
+        "suggested_verification_action": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION",
+        "trigger_known_time": "UNKNOWN_NOT_PROVIDED",
+        "detected_at": "UNKNOWN_NOT_PROVIDED",
+        "emitted_at": "NOT_EMITTED",
+        "visible_at": "UNKNOWN_NOT_RUN",
+        "content_revision": "IN_MEMORY_SYNTHETIC_CARD_REVISION",
+        "dedup_episode_interval_key": "EXPERIMENT_INPUT_NOT_FROZEN"
+      },
+      "field_audit": {
+        "schema_source_commit": "cc6d59b88bda73381fc09d9091a224ab4155891e",
+        "schema_scope": "PARTIAL_FIELD_PRESENCE_ONLY",
+        "required_field_count": 18,
+        "present_field_count": 18,
+        "missing_fields": [],
+        "all_required_fields_present": true,
+        "business_acceptance": "NOT_EVALUATED",
+        "fields": {
+          "notification_id": {
+            "present": true,
+            "status": "EXPERIMENT_LOCAL_ID"
+          },
+          "kind": {
+            "present": true,
+            "status": "PUBLIC_V2_FIXED_KIND"
+          },
+          "severity": {
+            "present": true,
+            "status": "MAPPED_SINGLE_FLAG"
+          },
+          "risk_state": {
+            "present": true,
+            "status": "SYNTHETIC_INPUT_FLAGS_AND_ACTION_STAGE"
+          },
+          "risk_basis_ids": {
+            "present": true,
+            "status": "SYNTHETIC_EVIDENCE_REFERENCES"
+          },
+          "uncertainty_reason": {
+            "present": true,
+            "status": "TEMPLATE_FROM_PUBLIC_ASSOCIATION_STATE"
+          },
+          "affected_observation_ids": {
+            "present": true,
+            "status": "SYNTHETIC_INPUT_IDS"
+          },
+          "display_card_id": {
+            "present": true,
+            "status": "SYNTHETIC_STABLE_DISPLAY_ID"
+          },
+          "candidate_episode_ids": {
+            "present": true,
+            "status": "SYNTHETIC_SEPARATE_NODES"
+          },
+          "association_state": {
+            "present": true,
+            "status": "SYNTHETIC_PUBLIC_ENUM_VALUE"
+          },
+          "user_visible_message": {
+            "present": true,
+            "status": "CONTENT_PREVIEW_ONLY_NOT_DELIVERED"
+          },
+          "suggested_verification_action": {
+            "present": true,
+            "status": "PUBLIC_TEMPLATE_PREVIEW_NOT_PROCEDURE_VALIDATION"
+          },
+          "trigger_known_time": {
+            "present": true,
+            "status": "UNKNOWN_NOT_PROVIDED"
+          },
+          "detected_at": {
+            "present": true,
+            "status": "UNKNOWN_NOT_PROVIDED"
+          },
+          "emitted_at": {
+            "present": true,
+            "status": "NOT_EMITTED"
+          },
+          "visible_at": {
+            "present": true,
+            "status": "UNKNOWN_NOT_RUN"
+          },
+          "content_revision": {
+            "present": true,
+            "status": "IN_MEMORY_SYNTHETIC_CARD_REVISION"
+          },
+          "dedup_episode_interval_key": {
+            "present": true,
+            "status": "EXPERIMENT_INPUT_NOT_FROZEN"
+          }
+        }
+      }
+    },
+    "replay_attempts": [],
+    "replay_attempt_count": 0,
+    "card_preview_audit": {
+      "all_required_fields_present": true,
+      "revision_count": 5,
+      "business_acceptance": "NOT_EVALUATED",
+      "identity_truth": "NOT_EVALUATED",
+      "delivery_evidence": "NOT_RUN"
+    },
+    "business_acceptance": "NOT_EVALUATED"
+  },
+  "interpretation": "The unversioned arrival-order ledger accepts every fresh intent ID as new. A late lower-version correction regresses the card, a duplicate cancellation emits another action, and an old active message arriving after cancellation restores ACTIVE. This is a negative control, not desired behavior.",
+  "delivery_status": "NOT_DELIVERED"
+}
