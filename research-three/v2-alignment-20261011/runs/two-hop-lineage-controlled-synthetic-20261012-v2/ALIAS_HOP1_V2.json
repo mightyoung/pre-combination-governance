@@ -1,0 +1,1 @@
+{"artifact_kind":"CONTROLLED_SYNTHETIC_ALIAS","observation_id":"HOP1","outer_id":"relay-one/ci41346535","projection":{"event_timestamp":"2026-10-11T21:28:13.930Z","location_text":"34 km WNW of Desert Center, CA","magnitude_value":2.52,"record_ref":"ci41346535","source_namespace":"ci","updated_epoch_ms":1791758365040},"synthetic":true}

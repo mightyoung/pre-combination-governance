@@ -1,0 +1,64 @@
+{
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V2",
+  "status": "COMPLETED_V2_SYNTHETIC_MECHANICS_ONLY",
+  "classification": "CONTROLLED_SYNTHETIC_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "method_outputs_sha256_at_freeze": "15ee4c362160bfb1381da9a2e304f09224e73c265dc95fba949135d5694c66cb",
+  "method_runner_read_truth_log": false,
+  "scorer_read_synthetic_fixture_after_output_freeze": true,
+  "synthetic_truth_fixture_used_for_accuracy": false,
+  "synthetic_fixture_audit": {
+    "world_id": "SYNTHETIC-WORLD-001",
+    "pair_rows": 3,
+    "single_shared_synthetic_parent": true,
+    "production_truth": false
+  },
+  "production_truth_denominator": 0,
+  "production_accuracy": "NOT_COMPUTABLE",
+  "wrong_confirmed_attribution_count": null,
+  "wrong_confirmed_attribution_status": "NOT_EVALUATED_NO_INDEPENDENT_PRODUCTION_TRUTH",
+  "pair_rows_are_independent_samples": false,
+  "conditions": {
+    "FULL_RECEIPT_CHAIN": {
+      "eligible_pair_rows": 3,
+      "counts": {
+        "confirmed_shared_ancestor": 3,
+        "unknown": 0,
+        "other_bounded_graph_state": 0
+      },
+      "coverage_is_count_only": true,
+      "wrong_confirmed_attribution_count": null,
+      "wrong_confirmed_attribution_status": "NOT_EVALUATED_NO_INDEPENDENT_PRODUCTION_TRUTH"
+    },
+    "MISSING_INTERMEDIATE_RECEIPT": {
+      "eligible_pair_rows": 3,
+      "counts": {
+        "confirmed_shared_ancestor": 1,
+        "unknown": 2,
+        "other_bounded_graph_state": 0
+      },
+      "coverage_is_count_only": true,
+      "wrong_confirmed_attribution_count": null,
+      "wrong_confirmed_attribution_status": "NOT_EVALUATED_NO_INDEPENDENT_PRODUCTION_TRUTH"
+    },
+    "HASH_ONLY_DEDUP": {
+      "eligible_pair_rows": 3,
+      "counts": {
+        "confirmed_shared_ancestor": 0,
+        "unknown": 3,
+        "other_bounded_graph_state": 0
+      },
+      "coverage_is_count_only": true,
+      "wrong_confirmed_attribution_count": null,
+      "wrong_confirmed_attribution_status": "NOT_EVALUATED_NO_INDEPENDENT_PRODUCTION_TRUTH"
+    }
+  },
+  "side_input_negative_control": {
+    "receipt_validation_status": "UNDECLARED_SIDE_INPUT",
+    "lineage_status": "UNKNOWN",
+    "included_in_pair_denominator": false
+  },
+  "interpretation": "Counts are coverage/UNKNOWN states within one fixed synthetic chain. Hash equality and inequality are byte observations only. Missing lineage capability is not counted as a wrong attribution.",
+  "delivery_status": "NOT_DELIVERED",
+  "event_identity_status": "NOT_EVALUATED",
+  "network_or_model_or_notification_called": false
+}

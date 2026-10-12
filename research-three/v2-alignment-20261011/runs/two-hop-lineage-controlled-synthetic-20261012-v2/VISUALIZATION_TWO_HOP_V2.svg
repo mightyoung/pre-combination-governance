@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="860" viewBox="0 0 1480 860" role="img" aria-labelledby="title desc">
+<title id="title">V2 conservative two-hop synthetic lineage replay</title>
+<desc id="desc">Hop 2 consumes only persisted Hop 1 bytes. Full receipts confirm three shared-ancestor pairs, a missing second receipt leaves two unknown, and hash-only results are unknown whether hashes match or differ. An undeclared source side input is rejected. Production denominator is zero.</desc>
+<rect width="1480" height="860" fill="#f5f7fb"/>
+<text x="42" y="48" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#17243b">V2：保守哈希评分与两跳输入完整性</text>
+<text x="42" y="80" font-family="Arial,sans-serif" font-size="15" fill="#52627b">同一条固定合成链 · 1 个 synthetic world · 3 组相关配对（非独立样本）</text>
+<rect x="42" y="108" width="340" height="178" rx="14" fill="#fff" stroke="#d4deea" stroke-width="2"/>
+<text x="64" y="144" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#17243b">SOURCE · 已保存规范化样本</text>
+<text x="64" y="177" font-family="Arial,sans-serif" font-size="13" fill="#37475e">feature ci41346535</text>
+<text x="64" y="202" font-family="Arial,sans-serif" font-size="12" fill="#37475e">SHA 9bfbd8a6600deb0c…</text>
+<text x="64" y="230" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#8e3028">历史接收时间：UNKNOWN</text>
+<text x="64" y="260" font-family="Arial,sans-serif" font-size="12" fill="#52627b">真实样本锚点；原始响应字节缺失</text>
+<line x1="382" y1="196" x2="454" y2="196" stroke="#43769d" stroke-width="3"/><polygon points="454,196 440,188 440,204" fill="#43769d"/>
+<text x="389" y="176" font-family="Arial,sans-serif" font-size="12" fill="#27527a">合成 receipt E1</text>
+<rect x="460" y="108" width="412" height="178" rx="14" fill="#edf4fb" stroke="#b8ccdf" stroke-width="2"/>
+<text x="482" y="144" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#27527a">HOP1 · relay-one/ci41346535</text>
+<text x="482" y="176" font-family="Arial,sans-serif" font-size="12" fill="#344b66">保留 Hop 2 所需字段：namespace / update time</text>
+<text x="482" y="205" font-family="Arial,sans-serif" font-size="12" fill="#344b66">SHA 014eec4ae5b63876…</text>
+<text x="482" y="237" font-family="Arial,sans-serif" font-size="12" fill="#52627b">持久化为 ALIAS_HOP1_V2.json</text>
+<text x="482" y="261" font-family="Arial,sans-serif" font-size="12" fill="#52627b">字段投影与 SOURCE 不同</text>
+<line x1="872" y1="196" x2="944" y2="196" stroke="#43769d" stroke-width="3"/><polygon points="944,196 930,188 930,204" fill="#43769d"/>
+<text x="880" y="176" font-family="Arial,sans-serif" font-size="12" fill="#27527a">合成 receipt E2</text>
+<rect x="950" y="108" width="488" height="178" rx="14" fill="#edf4fb" stroke="#b8ccdf" stroke-width="2"/>
+<text x="972" y="144" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#27527a">HOP2 · relay-two::relay-one/…</text>
+<text x="972" y="176" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#27527a">唯一输入：磁盘重读的 HOP1 bytes</text>
+<text x="972" y="205" font-family="Arial,sans-serif" font-size="12" fill="#344b66">parent SHA = persisted Hop 1 SHA</text>
+<text x="972" y="237" font-family="Arial,sans-serif" font-size="12" fill="#344b66">SHA 3a634d9e2c916314…</text>
+<text x="972" y="261" font-family="Arial,sans-serif" font-size="12" fill="#52627b">不读取 SOURCE side input</text>
+<rect x="42" y="314" width="1396" height="100" rx="12" fill="#fff0ee" stroke="#e9b7b0" stroke-width="2"/>
+<text x="66" y="347" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#8e3028">负例：故意让错误 Hop 2 偷读 SOURCE namespace side input</text>
+<text x="66" y="378" font-family="Arial,sans-serif" font-size="13" fill="#6f302b">观测输入 = HOP1 + SOURCE；回执只声明 HOP1 → UNDECLARED_SIDE_INPUT → UNKNOWN（控制项，不计入 3 个 pair rows）</text>
+<text x="42" y="455" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#17243b">V2 冻结评分：已支持的共同祖先覆盖 / UNKNOWN；哈希本身不判谱系</text>
+<rect x="42" y="480" width="1396" height="250" rx="14" fill="#fff" stroke="#d4deea" stroke-width="2"/>
+<text x="66" y="518" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#40536b">条件</text>
+<text x="720" y="518" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#275c43">确认共享祖先（计数）</text>
+<text x="990" y="518" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#765600">UNKNOWN</text>
+<text x="1190" y="518" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#8e3028">生产准确性</text>
+<line x1="66" y1="533" x2="1410" y2="533" stroke="#d4deea"/>
+<text x="66" y="575" font-family="Arial,sans-serif" font-size="15" fill="#263850">两跳回执齐全（3 个配对）</text><text x="758" y="575" font-family="Arial,sans-serif" font-size="15" fill="#275c43">3</text><text x="1024" y="575" font-family="Arial,sans-serif" font-size="15" fill="#765600">0</text><text x="1212" y="575" font-family="Arial,sans-serif" font-size="13" fill="#687891">NOT EVALUATED</text>
+<text x="66" y="623" font-family="Arial,sans-serif" font-size="15" fill="#263850">缺 Hop 1 → Hop 2 回执（3 个配对）</text><text x="758" y="623" font-family="Arial,sans-serif" font-size="15" fill="#275c43">1</text><text x="1024" y="623" font-family="Arial,sans-serif" font-size="15" fill="#765600">2</text><text x="1212" y="623" font-family="Arial,sans-serif" font-size="13" fill="#687891">NOT EVALUATED</text>
+<text x="66" y="671" font-family="Arial,sans-serif" font-size="15" fill="#263850">仅哈希（3 个配对；不判根源）</text><text x="758" y="671" font-family="Arial,sans-serif" font-size="15" fill="#275c43">0</text><text x="1024" y="671" font-family="Arial,sans-serif" font-size="15" fill="#765600">3</text><text x="1212" y="671" font-family="Arial,sans-serif" font-size="13" fill="#687891">NOT EVALUATED</text>
+<rect x="42" y="752" width="1396" height="78" rx="12" fill="#eaf0f7"/>
+<text x="66" y="781" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#263850">生产谱系真值分母 = 0；准确率 NOT COMPUTABLE；错误归属 NOT EVALUATED（不是零错误）。</text>
+<text x="66" y="808" font-family="Arial,sans-serif" font-size="12" fill="#52627b">单一合成链中的三组相关配对；确认计数与 UNKNOWN 只描述覆盖，不构成独立样本、真实来源认证或统计独立性证据。</text>
+</svg>

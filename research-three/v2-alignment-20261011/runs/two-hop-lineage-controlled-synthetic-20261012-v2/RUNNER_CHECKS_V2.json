@@ -1,0 +1,27 @@
+{
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V2",
+  "pre_run_commit": "7c950a9546495d3a125ff17cbd581ac684469c1c",
+  "pre_run_manifest_sha256": "cdf77fe8a5bd5db08aaa9f7a967f47c733a3bd5fcfb3737eb59a515f404d22a7",
+  "method_outputs_sha256_at_freeze": "15ee4c362160bfb1381da9a2e304f09224e73c265dc95fba949135d5694c66cb",
+  "execution_started_at_utc": "2026-10-12T05:13:42.766934Z",
+  "method_runner_read_truth_log": false,
+  "network_or_model_or_notification_called": false,
+  "checks": {
+    "source_hash_matches_frozen_input": true,
+    "hop1_persisted_bytes_match_written_bytes": true,
+    "hop2_transform_has_one_persisted_bytes_argument": true,
+    "hop2_receipt_declares_exact_observed_hop1_input": true,
+    "hop2_parent_hash_is_persisted_hop1_hash": true,
+    "outer_id_changes_at_each_hop": true,
+    "projection_schema_changes_at_each_hop": true,
+    "all_payload_hashes_are_distinct": true,
+    "both_valid_receipts_pass_local_consistency": true,
+    "full_chain_states_match_frozen_expectations": true,
+    "missing_receipt_states_match_frozen_expectations": true,
+    "hash_only_returns_unknown_for_all_pair_rows": true,
+    "hash_equal_and_different_policy_checks_return_unknown": true,
+    "undeclared_side_input_fails_closed": true,
+    "no_statistical_independence_claim": true,
+    "all_frozen_expectations_passed": true
+  }
+}
