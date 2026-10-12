@@ -1,0 +1,67 @@
+{
+  "artifact_classification": "LOCAL_UNSIGNED_REPLAY_RECEIPTS_NOT_SOURCE_AUTHENTICATION",
+  "local_replay_received_at_utc": "2026-10-12T04:11:19.646393Z",
+  "parent_receipt": {
+    "receipt_id": "LOCAL-PARENT-RECEIPT-0001",
+    "record_id": "LOCAL-SAVED-NORMALIZED-USGS-SAMPLE",
+    "file_path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+    "file_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+    "byte_length": 2537,
+    "received_at_utc": "2026-10-12T04:11:19.646393Z",
+    "receipt_issuer": "LOCAL_CONTROLLED_REPLAY_RUNNER",
+    "signature": null,
+    "timestamp_semantics": "THIS_RUN_LOCAL_REPLAY_RECEIPT_NOT_HISTORICAL_SOURCE_RECEIVE_TIME",
+    "receipt_sha256": "fdc705069d252f655c3b28a15b0d1b8e3542f22d418eb064e409fefa3d2881a8"
+  },
+  "child_receipts": [
+    {
+      "receipt_id": "LOCAL-CHILD-RECEIPT-PRESERVED-0001",
+      "parent_receipt_id": "LOCAL-PARENT-RECEIPT-0001",
+      "parent_record_id": "LOCAL-SAVED-NORMALIZED-USGS-SAMPLE",
+      "parent_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+      "child_record_id": "LOCAL-ALIAS-USGS-FEATURE-CI41346535",
+      "child_sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+      "transform_id": "USGS_SAMPLE_ALIAS_PROJECTION",
+      "transform_version": "1",
+      "transform_code_sha256": "aaf6d7bf2f7e046754a5d2847691bbf4b73956103c3f90a40ac560c8616186d9",
+      "generated_at_utc": "2026-10-12T04:11:19.646498Z",
+      "receipt_issuer": "LOCAL_CONTROLLED_REPLAY_RUNNER",
+      "signature": null,
+      "timestamp_semantics": "THIS_RUN_LOCAL_TRANSFORM_TIME_NOT_HISTORICAL_SOURCE_RECEIVE_TIME",
+      "receipt_sha256": "c62a6fa726dd1b1b71ab105ddf32f761f072a08283cb8cf93268e7948235650a"
+    },
+    {
+      "receipt_id": "LOCAL-CHILD-RECEIPT-FORGED-0001",
+      "parent_receipt_id": "LOCAL-PARENT-RECEIPT-0001",
+      "parent_record_id": "ATTACKER-FORGED-PARENT",
+      "parent_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+      "child_record_id": "LOCAL-ALIAS-USGS-FEATURE-CI41346535",
+      "child_sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+      "transform_id": "USGS_SAMPLE_ALIAS_PROJECTION",
+      "transform_version": "1",
+      "transform_code_sha256": "aaf6d7bf2f7e046754a5d2847691bbf4b73956103c3f90a40ac560c8616186d9",
+      "generated_at_utc": "2026-10-12T04:11:19.646498Z",
+      "receipt_issuer": "LOCAL_CONTROLLED_REPLAY_RUNNER",
+      "signature": null,
+      "timestamp_semantics": "THIS_RUN_LOCAL_TRANSFORM_TIME_NOT_HISTORICAL_SOURCE_RECEIVE_TIME",
+      "receipt_sha256": "346b1c545d1a465962cdd17a209731ebb8e12a79bfb15d2488868a748971b1d7"
+    },
+    {
+      "receipt_id": "LOCAL-CHILD-RECEIPT-MISMATCH-0001",
+      "parent_receipt_id": "LOCAL-PARENT-RECEIPT-0001",
+      "parent_record_id": "LOCAL-SAVED-NORMALIZED-USGS-SAMPLE",
+      "parent_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "child_record_id": "LOCAL-ALIAS-USGS-FEATURE-CI41346535",
+      "child_sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+      "transform_id": "USGS_SAMPLE_ALIAS_PROJECTION",
+      "transform_version": "1",
+      "transform_code_sha256": "aaf6d7bf2f7e046754a5d2847691bbf4b73956103c3f90a40ac560c8616186d9",
+      "generated_at_utc": "2026-10-12T04:11:19.646498Z",
+      "receipt_issuer": "LOCAL_CONTROLLED_REPLAY_RUNNER",
+      "signature": null,
+      "timestamp_semantics": "THIS_RUN_LOCAL_TRANSFORM_TIME_NOT_HISTORICAL_SOURCE_RECEIVE_TIME",
+      "receipt_sha256": "7cb41e1f8b0e4e40bceb066414c82b516de8fcca826bc16be5fdfd04f38432dd"
+    }
+  ],
+  "omitted_lineage_arm": "No child receipt emitted; alias bytes equal the preserved arm."
+}

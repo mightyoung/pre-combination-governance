@@ -1,0 +1,38 @@
+{
+  "run_id": "LOCAL-USGS-SAVED-SAMPLE-ALIAS-LINEAGE-20261012-V1",
+  "status": "FAILED_AFTER_CONTRACT_CALLS_BEFORE_RESULT_SERIALIZATION",
+  "pre_run_commit": "9c9ff2caecadcc2ec6eeaabac3edc26497c0bc00",
+  "method_source_commit": "e50fa5d27f3f4311a1e682a6a31be18f9a22e97e",
+  "pre_run_manifest_sha256": "7fba4c5fabac39b353e7a05be6e3d08e6add3c01579d8a3798adb0454dbcdedb",
+  "inputs_sha256": "63d8654ce4f9d7e7beb78a9ff96723e7f5aa9c8033a295e67e7975b9d05b0760",
+  "runner_sha256": "aaf6d7bf2f7e046754a5d2847691bbf4b73956103c3f90a40ac560c8616186d9",
+  "local_replay_received_at_utc": "2026-10-12T04:11:19.646393Z",
+  "exception": {
+    "type": "KeyError",
+    "message": "'source_code_commit'",
+    "location": "result metadata assembly; pre-run manifest key is method_source_commit"
+  },
+  "contract_calls_completed_before_exception": true,
+  "method_output_sha256_persisted": false,
+  "result_json_written": false,
+  "generated_local_files": [
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/FAILED_ATTEMPT_V1_ALIAS_WITH_LINEAGE.json",
+      "bytes": 283,
+      "sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/FAILED_ATTEMPT_V1_ALIAS_WITHOUT_LINEAGE.json",
+      "bytes": 283,
+      "sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/FAILED_ATTEMPT_V1_LOCAL_RECEIPTS.json",
+      "bytes": 3784,
+      "sha256": "36b72842c8734bfa915f86770c8e9490a2362463f0e5130472a12b18046b3000"
+    }
+  ],
+  "network_or_model_or_notification_called": false,
+  "delivery_status": "NOT_DELIVERED",
+  "interpretation": "This is a runner serialization failure. Contract-call outputs and expectation-check summary were not persisted. Do not treat this attempt as a completed result or infer the outcomes from its test count."
+}
