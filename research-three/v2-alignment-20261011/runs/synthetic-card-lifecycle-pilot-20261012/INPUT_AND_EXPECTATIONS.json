@@ -1,0 +1,153 @@
+{
+  "pilot_id": "SYNTH-CARD-LIFECYCLE-20261012-V1",
+  "status": "FROZEN_PRE_RUN",
+  "classification": "SYNTHETIC_MECHANISM_CHECK_ONLY",
+  "synthetic_only": true,
+  "scenario_premise": "One scripted notice thread uses one stable display-card ID. The test does not adjudicate physical-event identity or operational safety truth.",
+  "source_independence": "NOT_ASSERTED; every message uses the same single synthetic source label.",
+  "delivery_status": "NOT_DELIVERED; no transport, app, or UI is used.",
+  "base_time_utc": "2026-10-12T10:00:00Z",
+  "settings": {
+    "policy_mode": "CARD_COALESCE",
+    "merge_window_seconds": 5,
+    "merge_window_status": "SYNTHETIC_FIXTURE_ONLY_NOT_A_PRODUCTION_DEFAULT"
+  },
+  "context": {
+    "display_card_id": "CARD-SYNTH-LIFECYCLE-01",
+    "candidate_episode_ids": ["SYNTH-EPISODE-A", "SYNTH-EPISODE-B"],
+    "association_id": "SYNTH-ASSOCIATION-A-B",
+    "association_state": "UNKNOWN_PENDING",
+    "source_ids": ["SYNTH-SOURCE-ONE"],
+    "experiment_batch_id": "SYNTH-LIFECYCLE-BATCH-01",
+    "dedup_episode_interval_key": "SYNTH-LIFECYCLE-INTERVAL-01"
+  },
+  "steps": [
+    {
+      "step_id": "initial_notice",
+      "intent_id": "SYNTH-NOTICE-001",
+      "kind": "ASSOCIATION_PENDING",
+      "received_seconds": 0,
+      "source_seconds": 0,
+      "observed_seconds": 0,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE"],
+      "evidence_refs": ["synthetic://lifecycle/message/initial"],
+      "risk_basis_ids": ["synthetic://lifecycle/risk/exposure"]
+    },
+    {
+      "step_id": "continuing_update",
+      "intent_id": "SYNTH-NOTICE-002",
+      "kind": "ASSOCIATION_PENDING",
+      "received_seconds": 1,
+      "source_seconds": 1,
+      "observed_seconds": 1,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE"],
+      "evidence_refs": ["synthetic://lifecycle/message/update-1"],
+      "risk_basis_ids": ["synthetic://lifecycle/risk/exposure"]
+    },
+    {
+      "step_id": "exact_message_replay",
+      "intent_id": "SYNTH-NOTICE-002",
+      "replay_of": "continuing_update",
+      "received_seconds": 2
+    },
+    {
+      "step_id": "risk_escalation",
+      "intent_id": "SYNTH-NOTICE-003",
+      "kind": "ASSOCIATION_PENDING",
+      "received_seconds": 3,
+      "source_seconds": 3,
+      "observed_seconds": 3,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE_HIGH"],
+      "evidence_refs": ["synthetic://lifecycle/message/escalation"],
+      "risk_basis_ids": ["synthetic://lifecycle/risk/exposure-high"]
+    },
+    {
+      "step_id": "correction",
+      "intent_id": "SYNTH-NOTICE-004",
+      "kind": "NOTICE_CORRECTED",
+      "received_seconds": 4,
+      "source_seconds": 4,
+      "observed_seconds": 4,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE_HIGH"],
+      "evidence_refs": ["synthetic://lifecycle/message/correction-v2"],
+      "risk_basis_ids": ["synthetic://lifecycle/risk/exposure-high-corrected"]
+    },
+    {
+      "step_id": "cancellation",
+      "intent_id": "SYNTH-NOTICE-005",
+      "kind": "NOTICE_CANCELLED",
+      "received_seconds": 5,
+      "source_seconds": 5,
+      "observed_seconds": 5,
+      "risk_stage": "PRECAUTIONARY",
+      "risk_flags": ["EXPOSURE_HIGH"],
+      "evidence_refs": ["synthetic://lifecycle/message/cancellation"],
+      "risk_basis_ids": ["synthetic://lifecycle/risk/cancellation"]
+    }
+  ],
+  "expected": {
+    "decision_statuses": ["EMITTED", "COALESCED_IN_PLACE", "DUPLICATE_REPLAY_IGNORED", "EMITTED", "EMITTED", "EMITTED"],
+    "notification_action_counts_after_each_step": [1, 1, 1, 2, 3, 4],
+    "card_revision_counts_after_each_step": [1, 2, 2, 3, 4, 5],
+    "notice_lifecycle_states_after_each_step": ["ACTIVE", "ACTIVE", "ACTIVE", "ACTIVE", "CORRECTED", "CANCELLED"],
+    "protected_action_reasons": ["PROTECTED_ACTION_KIND", "PROTECTED_ACTION_KIND"],
+    "final_notification_action_count": 4,
+    "final_card_revision_count": 5,
+    "final_history_intent_ids": ["SYNTH-NOTICE-001", "SYNTH-NOTICE-002", "SYNTH-NOTICE-003", "SYNTH-NOTICE-004", "SYNTH-NOTICE-005"],
+    "association_state_remains": "UNKNOWN_PENDING",
+    "replay_attempt_count": 1,
+    "delivery_status": "NOT_DELIVERED"
+  },
+  "counterexample": {
+    "description": "Encode a cancellation incorrectly as an ordinary same-card ASSOCATION_PENDING update. The current coalescing rule should absorb it, add a semantic revision, and fail to mark the notice cancelled; this demonstrates why cancellation needs an explicit protected action kind.",
+    "steps": [
+      {
+        "step_id": "counterexample_initial_high_notice",
+        "intent_id": "SYNTH-COUNTER-001",
+        "kind": "ASSOCIATION_PENDING",
+        "received_seconds": 0,
+        "source_seconds": 0,
+        "observed_seconds": 0,
+        "risk_stage": "PRECAUTIONARY",
+        "risk_flags": ["EXPOSURE_HIGH"],
+        "evidence_refs": ["synthetic://counterexample/initial"],
+        "risk_basis_ids": ["synthetic://counterexample/risk"]
+      },
+      {
+        "step_id": "counterexample_routine_update",
+        "intent_id": "SYNTH-COUNTER-002",
+        "kind": "ASSOCIATION_PENDING",
+        "received_seconds": 1,
+        "source_seconds": 1,
+        "observed_seconds": 1,
+        "risk_stage": "PRECAUTIONARY",
+        "risk_flags": ["EXPOSURE_HIGH"],
+        "evidence_refs": ["synthetic://counterexample/update"],
+        "risk_basis_ids": ["synthetic://counterexample/risk"]
+      },
+      {
+        "step_id": "counterexample_misclassified_cancel",
+        "intent_id": "SYNTH-COUNTER-003",
+        "kind": "ASSOCIATION_PENDING",
+        "received_seconds": 2,
+        "source_seconds": 2,
+        "observed_seconds": 2,
+        "risk_stage": "PRECAUTIONARY",
+        "risk_flags": ["EXPOSURE_HIGH"],
+        "evidence_refs": ["synthetic://counterexample/misclassified-cancel"],
+        "risk_basis_ids": ["synthetic://counterexample/risk"]
+      }
+    ],
+    "expected": {
+      "decision_statuses": ["EMITTED", "COALESCED_IN_PLACE", "COALESCED_IN_PLACE"],
+      "notification_action_counts_after_each_step": [1, 1, 1],
+      "card_revision_counts_after_each_step": [1, 2, 3],
+      "final_notice_lifecycle_status": "ACTIVE",
+      "interpretation": "The incorrect action type preserves an ordinary revision but loses the cancellation notice and leaves the card lifecycle active. This is a negative control, not a true cancellation scenario."
+    }
+  }
+}
