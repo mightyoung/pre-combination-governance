@@ -37,6 +37,8 @@ class ApplyStatus(StrEnum):
     EMITTED = "EMITTED"
     COALESCED = "COALESCED_IN_PLACE"
     DUPLICATE_REPLAY = "DUPLICATE_REPLAY_IGNORED"
+    DUPLICATE_NOTICE_VERSION = "DUPLICATE_NOTICE_VERSION_IGNORED"
+    STALE_NOTICE_VERSION = "STALE_NOTICE_VERSION_IGNORED"
 
 
 _PROTECTED_ACTIONS = frozenset(
@@ -96,6 +98,8 @@ class ActionIntent:
 
     `received_at` is synthetic processing time. Source and observation times
     remain separate immutable values; the experiment never refreshes them.
+    When supplied, `notice_version` is a card-scoped experimental ordering
+    input; it is not a production versioning contract.
     """
 
     intent_id: str
@@ -117,6 +121,7 @@ class ActionIntent:
     dedup_episode_interval_key: str
     trigger_known_time: str | None = None
     detected_at: str | None = None
+    notice_version: int | None = None
 
     def __post_init__(self) -> None:
         for label in ("intent_id", "display_card_id", "risk_stage", "experiment_batch_id"):
@@ -133,6 +138,12 @@ class ActionIntent:
             raise ValueError("association_state must use a V2 association state")
         if not isinstance(self.dedup_episode_interval_key, str) or not self.dedup_episode_interval_key.strip():
             raise ValueError("dedup_episode_interval_key must be an explicit experiment value")
+        if self.notice_version is not None and (
+            isinstance(self.notice_version, bool)
+            or not isinstance(self.notice_version, int)
+            or self.notice_version < 1
+        ):
+            raise ValueError("notice_version must be a positive integer when supplied")
         _parse_utc(self.received_at, "received_at")
         for label in ("trigger_known_time", "detected_at"):
             value = getattr(self, label)
@@ -186,6 +197,7 @@ class CardRevision:
     trigger_known_time: str | None
     detected_at: str | None
     simulated_card_update_delay_seconds: float
+    notice_version: int | None = None
 
     @classmethod
     def from_intent(cls, revision: int, intent: ActionIntent) -> CardRevision:
@@ -211,6 +223,7 @@ class CardRevision:
             trigger_known_time=intent.trigger_known_time,
             detected_at=intent.detected_at,
             simulated_card_update_delay_seconds=0.0,
+            notice_version=intent.notice_version,
         )
 
 
@@ -248,7 +261,7 @@ class ApplyDecision:
 
 
 class ReminderActionLedger:
-    """Run one explicit action policy over an ordered synthetic intent stream."""
+    """Run one action policy over a synthetic stream, optionally version-gated."""
 
     def __init__(self, *, mode: PolicyMode, merge_window_seconds: float) -> None:
         try:
@@ -265,6 +278,8 @@ class ReminderActionLedger:
         self._decisions: list[ApplyDecision] = []
         self._seen_intents: dict[str, ActionIntent] = {}
         self._decision_by_intent: dict[str, ApplyDecision] = {}
+        self._notice_versions_by_card: dict[str, dict[int, ActionIntent]] = {}
+        self._latest_notice_version_by_card: dict[str, int] = {}
 
     @property
     def notifications(self) -> tuple[ActionNotification, ...]:
@@ -286,6 +301,20 @@ class ReminderActionLedger:
     def duplicate_replay_count(self) -> int:
         return sum(decision.status is ApplyStatus.DUPLICATE_REPLAY for decision in self._decisions)
 
+    @property
+    def duplicate_notice_version_count(self) -> int:
+        return sum(
+            decision.status is ApplyStatus.DUPLICATE_NOTICE_VERSION
+            for decision in self._decisions
+        )
+
+    @property
+    def stale_notice_version_count(self) -> int:
+        return sum(
+            decision.status is ApplyStatus.STALE_NOTICE_VERSION
+            for decision in self._decisions
+        )
+
     def card_revisions_for(self, display_card_id: str) -> tuple[CardRevision, ...]:
         return tuple(self._card_revisions.get(display_card_id, ()))
 
@@ -295,10 +324,22 @@ class ReminderActionLedger:
             for notification in self._notifications
             for update in notification.updates
         }
+        intentionally_ignored = {
+            decision.intent_id
+            for decision in self._decisions
+            if decision.status
+            in {
+                ApplyStatus.DUPLICATE_REPLAY,
+                ApplyStatus.DUPLICATE_NOTICE_VERSION,
+                ApplyStatus.STALE_NOTICE_VERSION,
+            }
+        }
         return tuple(
             intent_id
             for intent_id, intent in self._seen_intents.items()
-            if intent.kind in _PROTECTED_ACTIONS and intent_id not in represented
+            if intent.kind in _PROTECTED_ACTIONS
+            and intent_id not in represented
+            and intent_id not in intentionally_ignored
         )
 
     def apply(self, intent: ActionIntent) -> ApplyDecision:
@@ -319,6 +360,36 @@ class ReminderActionLedger:
             )
             self._decisions.append(decision)
             return decision
+
+        if intent.notice_version is not None:
+            version = intent.notice_version
+            versions_for_card = self._notice_versions_by_card.setdefault(
+                intent.display_card_id, {}
+            )
+            previous_version = versions_for_card.get(version)
+            if previous_version is not None and not self._same_notice_version_semantics(
+                previous_version, intent
+            ):
+                raise ValueError(
+                    "notice_version already exists with different semantic content"
+                )
+            latest_version = self._latest_notice_version_by_card.get(
+                intent.display_card_id
+            )
+            if latest_version is not None and version < latest_version:
+                versions_for_card.setdefault(version, intent)
+                decision = self._record_ignored_notice_version(
+                    intent,
+                    status=ApplyStatus.STALE_NOTICE_VERSION,
+                    reason="LOWER_NOTICE_VERSION_THAN_LATEST",
+                )
+                return decision
+            if previous_version is not None:
+                return self._record_ignored_notice_version(
+                    intent,
+                    status=ApplyStatus.DUPLICATE_NOTICE_VERSION,
+                    reason="SAME_NOTICE_VERSION_DUPLICATE_NO_REFRESH",
+                )
 
         revisions = self._card_revisions.setdefault(intent.display_card_id, [])
         card_revision = CardRevision.from_intent(len(revisions) + 1, intent)
@@ -407,11 +478,48 @@ class ReminderActionLedger:
         self._seen_intents[intent.intent_id] = intent
         self._decision_by_intent[intent.intent_id] = decision
         self._decisions.append(decision)
+        if intent.notice_version is not None:
+            self._notice_versions_by_card.setdefault(intent.display_card_id, {})[
+                intent.notice_version
+            ] = intent
+            self._latest_notice_version_by_card[intent.display_card_id] = (
+                intent.notice_version
+            )
+        return decision
+
+    def _record_ignored_notice_version(
+        self,
+        intent: ActionIntent,
+        *,
+        status: ApplyStatus,
+        reason: str,
+    ) -> ApplyDecision:
+        decision = ApplyDecision(
+            intent_id=intent.intent_id,
+            status=status,
+            experiment_notification_id=None,
+            card_revision=None,
+            simulated_card_update_delay_seconds=None,
+            decision_reason=reason,
+        )
+        self._seen_intents[intent.intent_id] = intent
+        self._decision_by_intent[intent.intent_id] = decision
+        self._decisions.append(decision)
         return decision
 
     @staticmethod
     def _same_semantics(first: ActionIntent, replay: ActionIntent) -> bool:
         return replace(replay, received_at=first.received_at) == first
+
+    @staticmethod
+    def _same_notice_version_semantics(
+        first: ActionIntent, replay: ActionIntent
+    ) -> bool:
+        return replace(
+            replay,
+            intent_id=first.intent_id,
+            received_at=first.received_at,
+        ) == first
 
     def _coalescing_target(self, intent: ActionIntent) -> int | None:
         received = _parse_utc(intent.received_at, "received_at")

@@ -272,6 +272,7 @@ def _intent_from_card_revision(revision: CardRevision) -> ActionIntent:
         dedup_episode_interval_key=revision.dedup_episode_interval_key,
         trigger_known_time=revision.trigger_known_time,
         detected_at=revision.detected_at,
+        notice_version=revision.notice_version,
     )
 
 
@@ -540,6 +541,7 @@ def build_event_card_preview(
             "content_revision": revision.revision,
             "previous_content_revision": previous.revision if previous else None,
             "previous_intent_id": previous.intent_id if previous else None,
+            "notice_version": revision.notice_version,
             "association_state": revision.association_state,
             "candidate_episode_ids": list(revision.candidate_episode_ids),
             "evidence_refs": list(revision.evidence_refs),

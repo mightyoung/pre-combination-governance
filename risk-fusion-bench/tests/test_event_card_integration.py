@@ -577,6 +577,29 @@ class EventCardIntegrationTests(unittest.TestCase):
         self.assertEqual(versioned["final_card"]["delivery_status"], "NOT_DELIVERED")
         self.assertEqual(versioned["missed_important_update_ids"], [])
 
+        cancel_received = datetime.fromisoformat(
+            versioned["timeline"][1]["received_at_processing_time"].replace(
+                "Z", "+00:00"
+            )
+        )
+        late_correction_occurred = datetime.fromisoformat(
+            versioned["timeline"][2]["event_occurred_at"].replace("Z", "+00:00")
+        )
+        late_correction_received = datetime.fromisoformat(
+            versioned["timeline"][2]["received_at_processing_time"].replace(
+                "Z", "+00:00"
+            )
+        )
+        cancel_occurred = datetime.fromisoformat(
+            versioned["timeline"][1]["event_occurred_at"].replace("Z", "+00:00")
+        )
+        self.assertLess(late_correction_occurred, cancel_occurred)
+        self.assertGreater(late_correction_received, cancel_received)
+        self.assertEqual(
+            [row["notice_version"] for row in versioned["timeline"]],
+            [step["notice_version"] for step in spec["steps"]],
+        )
+
         legacy_expected = spec["arrival_order_only_negative_control_expected"]
         baseline = result["arrival_order_only_baseline"]
         self.assertEqual(baseline["decision_statuses"], legacy_expected["decision_statuses"])
@@ -595,6 +618,19 @@ class EventCardIntegrationTests(unittest.TestCase):
         self.assertEqual(
             baseline["final_notice_lifecycle_status"],
             legacy_expected["final_notice_lifecycle_status"],
+        )
+        legacy_record = json.loads(
+            (spec_path.parent / "LEGACY_ARRIVAL_ORDER_BASELINE.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(
+            baseline["decision_statuses"],
+            legacy_record["observed"]["decision_statuses"],
+        )
+        self.assertEqual(
+            baseline["notice_lifecycle_states"],
+            legacy_record["observed"]["notice_lifecycle_states_after_each_step"],
         )
 
     def test_rejects_identity_episode_or_association_mismatch_with_ledger(self):
