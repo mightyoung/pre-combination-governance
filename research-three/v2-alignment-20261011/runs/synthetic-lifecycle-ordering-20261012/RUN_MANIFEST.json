@@ -1,0 +1,120 @@
+{
+  "artifact_version": "synthetic-notice-version-ordering-check-v1",
+  "artifact_id": "SYNTH-LIFECYCLE-ORDERING-20261012-V1",
+  "branch_at_run": "task/research-three-lifecycle-ordering-20261012",
+  "source_commit": "3a9a20b78e7ddc7ae327bd2237636a54c5f8e2ae",
+  "input_frozen_commit": "c2cff355c355506d29c0d0905169f3149d789f4c",
+  "legacy_baseline_record_commit": "76d2426f01b7b340dc2c631c30abe61fc597cc6c",
+  "behavior_test_spec_commit": "59197ae59cf8bb7bdaf91050bc8627c97d257ce6",
+  "classification": "SYNTHETIC_MECHANISM_BOUNDARY_ONLY",
+  "spec_revision_type": "RESULT_DRIVEN_BOUNDARY_CHECK; EXPECTATIONS_FROZEN_PRE_RUN",
+  "input_spec_status": "FROZEN_PRE_RUN; NOT_EDITED_AFTER_BASELINE",
+  "input_spec_sha256": "8d5c6515977ae93eb528f572e07d0570b94ebe6386bdc8f1fcd63eff34e87f87",
+  "tdd_red": "Focused new test failed before implementation because ActionIntent had no notice_version field.",
+  "post_change_tests": {
+    "command": "PYTHONPATH=src python -m unittest -v tests.test_alert_action_experiment tests.test_event_card_integration",
+    "working_directory": "risk-fusion-bench",
+    "tests_run": 27,
+    "passed": 27,
+    "failures": 0,
+    "errors": 0,
+    "status": "PASSED"
+  },
+  "versioned_result": {
+    "decision_statuses": [
+      "EMITTED",
+      "EMITTED",
+      "STALE_NOTICE_VERSION_IGNORED",
+      "DUPLICATE_NOTICE_VERSION_IGNORED",
+      "STALE_NOTICE_VERSION_IGNORED"
+    ],
+    "notification_action_counts": [
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "card_revision_counts": [
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "notice_lifecycle_states": [
+      "ACTIVE",
+      "CANCELLED",
+      "CANCELLED",
+      "CANCELLED",
+      "CANCELLED"
+    ],
+    "accepted_notice_versions": [
+      1,
+      3
+    ],
+    "final_notice_lifecycle_status": "CANCELLED"
+  },
+  "arrival_order_only_negative_control": {
+    "decision_statuses": [
+      "EMITTED",
+      "EMITTED",
+      "EMITTED",
+      "EMITTED",
+      "EMITTED"
+    ],
+    "notification_action_counts": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "notice_lifecycle_states": [
+      "ACTIVE",
+      "CANCELLED",
+      "CORRECTED",
+      "CANCELLED",
+      "ACTIVE"
+    ],
+    "final_notice_lifecycle_status": "ACTIVE"
+  },
+  "execution_limits": {
+    "old_1464_frozen_trial": "NOT_RERUN; prior FAILED result preserved",
+    "network_or_cap_fetch": "NOT_RUN",
+    "model_service": "NOT_CALLED",
+    "real_delivery_or_visibility": "NOT_RUN",
+    "mac_executor_or_qualification_probe": "NOT_RUN",
+    "source_independence": "NOT_ASSERTED; one synthetic source label",
+    "true_clock_skew": "NOT_ASSESSED",
+    "efficacy": "NOT_ASSESSED"
+  },
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/INPUT_AND_EXPECTATIONS.json",
+      "bytes": 6866,
+      "sha256": "8d5c6515977ae93eb528f572e07d0570b94ebe6386bdc8f1fcd63eff34e87f87"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/LEGACY_ARRIVAL_ORDER_BASELINE.json",
+      "bytes": 53152,
+      "sha256": "549b601eeb4f66fcfee715bb031e158dcc1ce79fb6c5a2bbc79e3298d6b5a0e9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/RESULT.json",
+      "bytes": 92301,
+      "sha256": "7b552b7ab5a29a3297c0527c0796356e1a31f12770cdf00147d5a205d0f2e39a"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/REPORT.md",
+      "bytes": 4049,
+      "sha256": "1653e687a1a2393ac8af6e43fc31af783294914a296c5be23cf50c369b2e09ef"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/ORDERING_TIMELINE.svg",
+      "bytes": 8174,
+      "sha256": "44f6fc640d62f396e57cdcfa55b507fbc5fb29a8397efbd7cbe3e2d6393217b9"
+    }
+  ],
+  "manifest_excludes_itself": true
+}

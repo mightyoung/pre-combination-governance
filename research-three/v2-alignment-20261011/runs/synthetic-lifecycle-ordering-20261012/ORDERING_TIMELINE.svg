@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="850" viewBox="0 0 1380 850">
+<defs><style>
+ text {font-family:'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif;fill:#172033}
+ .title {font-size:24px;font-weight:700} .section {font-size:17px;font-weight:700}
+ .small {font-size:13px} .tiny {font-size:11px} .muted {fill:#667489}
+ .head {fill:#e9eff6} .a {fill:#fff} .b {fill:#f8fafc}
+</style></defs>
+<rect width="100%" height="100%" fill="#f3f6fb"/>
+<text x="38" y="40" class="title">通知版本、发生时间与到达顺序：合成边界检查</text>
+<text x="38" y="66" class="small muted">SYNTHETIC MECHANISM ONLY · NOT DELIVERED · 版本顺序是本夹具假设，不代表私有 V2 或真实时钟结论</text>
+<rect x="38" y="84" width="1304" height="56" rx="8" fill="#fff4d6" stroke="#e4b84b"/>
+<text x="54" y="108" class="small">顺序分离：通知版本 = 1 → 3 → 2 → 3 → 1　|　来源发生偏移 = 0s → 2s → 1s → 2s → 0s　|　处理到达偏移 = 0s → 3s → 4s → 5s → 6s</text>
+<text x="54" y="129" class="tiny muted">每条消息使用同一个合成来源标签；occurred_at 是夹具时间，不验证设备时钟或真实时间错位。</text>
+<text x="38" y="176" class="section">冻结输入逐步结果</text>
+<rect x="38" y="190" width="1304" height="40" rx="5" class="head"/>
+<text x="52" y="215" class="small" font-weight="700">到达序</text>
+<text x="130" y="215" class="small" font-weight="700">消息</text>
+<text x="404" y="215" class="small" font-weight="700">版本</text>
+<text x="486" y="215" class="small" font-weight="700">发生时间</text>
+<text x="608" y="215" class="small" font-weight="700">处理到达</text>
+<text x="732" y="215" class="small" font-weight="700">版本门控决策</text>
+<text x="1010" y="215" class="small" font-weight="700">版本门控卡状态</text>
+<text x="1155" y="215" class="small" font-weight="700">门控动作</text>
+<text x="1260" y="215" class="small" font-weight="700">无版本动作</text>
+
+<rect x="38" y="230" width="1304" height="50" class="a"/>
+<text x="58" y="260" class="small">1</text>
+<text x="130" y="260" class="small">初始 ACTIVE · ASSOCIATION_PENDING</text>
+<text x="417" y="260" class="small">v1</text>
+<text x="486" y="260" class="small">00:00:00Z</text>
+<text x="608" y="260" class="small">00:00:00Z</text>
+<text x="732" y="260" class="small">EMITTED</text>
+<text x="1010" y="260" class="small">ACTIVE</text>
+<text x="1188" y="260" class="small">1</text>
+<text x="1292" y="260" class="small">1</text>
+<line x1="38" y1="280" x2="1342" y2="280" stroke="#e3e9f0"/>
+<rect x="38" y="280" width="1304" height="50" class="b"/>
+<text x="58" y="310" class="small">2</text>
+<text x="130" y="310" class="small">取消 v3 · NOTICE_CANCELLED</text>
+<text x="417" y="310" class="small">v3</text>
+<text x="486" y="310" class="small">00:00:02Z</text>
+<text x="608" y="310" class="small">00:00:03Z</text>
+<text x="732" y="310" class="small">EMITTED</text>
+<text x="1010" y="310" class="small">CANCELLED</text>
+<text x="1188" y="310" class="small">2</text>
+<text x="1292" y="310" class="small">2</text>
+<line x1="38" y1="330" x2="1342" y2="330" stroke="#e3e9f0"/>
+<rect x="38" y="330" width="1304" height="50" class="a"/>
+<text x="58" y="360" class="small">3</text>
+<text x="130" y="360" class="small">迟到更正 v2 · NOTICE_CORRECTED</text>
+<text x="417" y="360" class="small">v2</text>
+<text x="486" y="360" class="small">00:00:01Z</text>
+<text x="608" y="360" class="small">00:00:04Z</text>
+<text x="732" y="360" class="small">STALE_NOTICE_VERSION_IGNORED</text>
+<text x="1010" y="360" class="small">CANCELLED</text>
+<text x="1188" y="360" class="small">2</text>
+<text x="1292" y="360" class="small">3</text>
+<line x1="38" y1="380" x2="1342" y2="380" stroke="#e3e9f0"/>
+<rect x="38" y="380" width="1304" height="50" class="b"/>
+<text x="58" y="410" class="small">4</text>
+<text x="130" y="410" class="small">重复取消 v3 · NOTICE_CANCELLED</text>
+<text x="417" y="410" class="small">v3</text>
+<text x="486" y="410" class="small">00:00:02Z</text>
+<text x="608" y="410" class="small">00:00:05Z</text>
+<text x="732" y="410" class="small">DUPLICATE_NOTICE_VERSION_IGNORED</text>
+<text x="1010" y="410" class="small">CANCELLED</text>
+<text x="1188" y="410" class="small">2</text>
+<text x="1292" y="410" class="small">4</text>
+<line x1="38" y1="430" x2="1342" y2="430" stroke="#e3e9f0"/>
+<rect x="38" y="430" width="1304" height="50" class="a"/>
+<text x="58" y="460" class="small">5</text>
+<text x="130" y="460" class="small">旧 ACTIVE v1 重送 · ASSOCIATION_PENDING</text>
+<text x="417" y="460" class="small">v1</text>
+<text x="486" y="460" class="small">00:00:00Z</text>
+<text x="608" y="460" class="small">00:00:06Z</text>
+<text x="732" y="460" class="small">STALE_NOTICE_VERSION_IGNORED</text>
+<text x="1010" y="460" class="small">CANCELLED</text>
+<text x="1188" y="460" class="small">2</text>
+<text x="1292" y="460" class="small">5</text>
+<line x1="38" y1="480" x2="1342" y2="480" stroke="#e3e9f0"/>
+<text x="52" y="493" class="tiny muted">版本门控把 v2 更正和 v1 旧提醒记为过期审计尝试，把新收据的 v3 取消记为重复；它们都不增加卡片修订或通知动作。</text>
+<text x="38" y="533" class="section">累计通知动作：冻结版本规则与无版本反例</text>
+<rect x="38" y="546" width="1304" height="220" rx="8" fill="#fff" stroke="#dfe6ee"/>
+
+<line x1="95" y1="732.0" x2="1300" y2="732.0" stroke="#edf1f5"/>
+<text x="62" y="736.0" class="tiny muted">0</text>
+<line x1="95" y1="700.6" x2="1300" y2="700.6" stroke="#edf1f5"/>
+<text x="62" y="704.6" class="tiny muted">1</text>
+<line x1="95" y1="669.2" x2="1300" y2="669.2" stroke="#edf1f5"/>
+<text x="62" y="673.2" class="tiny muted">2</text>
+<line x1="95" y1="637.8" x2="1300" y2="637.8" stroke="#edf1f5"/>
+<text x="62" y="641.8" class="tiny muted">3</text>
+<line x1="95" y1="606.4" x2="1300" y2="606.4" stroke="#edf1f5"/>
+<text x="62" y="610.4" class="tiny muted">4</text>
+<line x1="95" y1="575.0" x2="1300" y2="575.0" stroke="#edf1f5"/>
+<text x="62" y="579.0" class="tiny muted">5</text>
+<line x1="95.0" y1="732" x2="95.0" y2="575" stroke="#f2f5f8"/>
+<text x="92.0" y="752" class="tiny muted">1</text>
+<line x1="396.2" y1="732" x2="396.2" y2="575" stroke="#f2f5f8"/>
+<text x="393.2" y="752" class="tiny muted">2</text>
+<line x1="697.5" y1="732" x2="697.5" y2="575" stroke="#f2f5f8"/>
+<text x="694.5" y="752" class="tiny muted">3</text>
+<line x1="998.8" y1="732" x2="998.8" y2="575" stroke="#f2f5f8"/>
+<text x="995.8" y="752" class="tiny muted">4</text>
+<line x1="1300.0" y1="732" x2="1300.0" y2="575" stroke="#f2f5f8"/>
+<text x="1297.0" y="752" class="tiny muted">5</text>
+<polyline points="95.0,700.6 396.2,669.2 697.5,669.2 998.8,669.2 1300.0,669.2" fill="none" stroke="#2368d5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="95.0" cy="700.6" r="5" fill="#2368d5"/>
+<circle cx="396.2" cy="669.2" r="5" fill="#2368d5"/>
+<circle cx="697.5" cy="669.2" r="5" fill="#2368d5"/>
+<circle cx="998.8" cy="669.2" r="5" fill="#2368d5"/>
+<circle cx="1300.0" cy="669.2" r="5" fill="#2368d5"/>
+<polyline points="95.0,700.6 396.2,669.2 697.5,637.8 998.8,606.4 1300.0,575.0" fill="none" stroke="#dc6b2f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="95.0" cy="700.6" r="5" fill="#dc6b2f"/>
+<circle cx="396.2" cy="669.2" r="5" fill="#dc6b2f"/>
+<circle cx="697.5" cy="637.8" r="5" fill="#dc6b2f"/>
+<circle cx="998.8" cy="606.4" r="5" fill="#dc6b2f"/>
+<circle cx="1300.0" cy="575.0" r="5" fill="#dc6b2f"/>
+<line x1="860" y1="563" x2="892" y2="563" stroke="#2368d5" stroke-width="3"/><text x="902" y="567" class="tiny">版本门控（终态 CANCELLED）</text>
+<line x1="1100" y1="563" x2="1132" y2="563" stroke="#dc6b2f" stroke-width="3"/><text x="1142" y="567" class="tiny">无版本（终态 ACTIVE）</text>
+<rect x="38" y="792" width="1304" height="38" rx="7" fill="#fff" stroke="#dfe6ee"/>
+<text x="54" y="817" class="small">结果边界：纯软件机制行为已对照冻结预期；没有真实投递、真实时钟校验、事件真值判断或效果结论。</text>
+</svg>

@@ -1,0 +1,71 @@
+{
+  "manifest_version": "mac-persistence-v1",
+  "artifact_set": "SYNTH-LIFECYCLE-ORDERING-20261012-V1",
+  "branch": "task/research-three-lifecycle-ordering-20261012",
+  "source_commit": "3a9a20b78e7ddc7ae327bd2237636a54c5f8e2ae",
+  "input_frozen_commit": "c2cff355c355506d29c0d0905169f3149d789f4c",
+  "status": "PREPARED_IN_REPOSITORY; NOT_STORED_ON_MAC; MAC_NOT_VALIDATED_IN_THIS_RUN",
+  "path_convention": "Repository-relative POSIX paths; resolve only beneath the Mac checkout root. No cloud absolute paths are included.",
+  "mac_local_project_root": null,
+  "scope": "Frozen version-ordering input, preserved pre-change arrival-order negative control, post-change result, report, SVG, run manifest, implementation, and integration test.",
+  "sha256_scope": "All listed deliverables; this manifest does not hash itself.",
+  "includes_original_mac_v2_spec": false,
+  "includes_frozen_old_trial_raw_data": false,
+  "old_1464_check_trial_rerun": false,
+  "mac_esrch_eperm_repair_verified": false,
+  "real_delivery_or_visibility_validation": "NOT_RUN; synthetic actions are not delivered.",
+  "source_independence": "NOT_ASSERTED; all messages use one synthetic source label.",
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/INPUT_AND_EXPECTATIONS.json",
+      "bytes": 6866,
+      "sha256": "8d5c6515977ae93eb528f572e07d0570b94ebe6386bdc8f1fcd63eff34e87f87"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/LEGACY_ARRIVAL_ORDER_BASELINE.json",
+      "bytes": 53152,
+      "sha256": "549b601eeb4f66fcfee715bb031e158dcc1ce79fb6c5a2bbc79e3298d6b5a0e9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/RESULT.json",
+      "bytes": 92301,
+      "sha256": "7b552b7ab5a29a3297c0527c0796356e1a31f12770cdf00147d5a205d0f2e39a"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/REPORT.md",
+      "bytes": 4049,
+      "sha256": "1653e687a1a2393ac8af6e43fc31af783294914a296c5be23cf50c369b2e09ef"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/ORDERING_TIMELINE.svg",
+      "bytes": 8174,
+      "sha256": "44f6fc640d62f396e57cdcfa55b507fbc5fb29a8397efbd7cbe3e2d6393217b9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-lifecycle-ordering-20261012/RUN_MANIFEST.json",
+      "bytes": 3891,
+      "sha256": "15b8ec40b2b01755f2d323e2265e1aecbf949e0e841d9f00398ec7005f3a6425"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
+      "bytes": 22173,
+      "sha256": "52b89c019532034d8483220436362844ce897a2d2d6c88f94b6dd9e6217a78f7"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
+      "bytes": 29209,
+      "sha256": "f46c3978b340f6b0599503d1f742aeb033d1ceb5da7fcd32dd6a6e1168f6b637"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/notice_version_ordering_pilot.py",
+      "bytes": 10188,
+      "sha256": "296ffdfe0276d4e0332df6cb05fed1bad0d67702153a8597275509122988a6bf"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_event_card_integration.py",
+      "bytes": 32650,
+      "sha256": "bd4e2b5ca98af986aba959bac72a06c3be4101227e7977a810c04fb153438b9d"
+    }
+  ],
+  "manifest_excludes_itself": true
+}
