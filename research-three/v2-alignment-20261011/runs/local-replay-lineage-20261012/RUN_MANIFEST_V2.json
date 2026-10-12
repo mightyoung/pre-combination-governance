@@ -1,0 +1,185 @@
+{
+  "manifest_version": 1,
+  "run_id": "LOCAL-USGS-SAVED-SAMPLE-ALIAS-LINEAGE-20261012-V2",
+  "classification": "LOCAL_CONTROLLED_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "run_status": "COMPLETED_LOCAL_CONTROLLED_REPLAY",
+  "branch": "task/research-three-local-replay-lineage-20261012",
+  "pre_run_commit": "adbca00b689430d9f9b908b3134afaf15ba8db08",
+  "method_source_commit": "9c9ff2caecadcc2ec6eeaabac3edc26497c0bc00",
+  "pre_run_manifest_sha256": "9f6529528440f84ee8dbf9ec8ac8d0fe63b7abb21a6298cf2f9f6736f8436c15",
+  "result_sha256": "b5b1ce97ceb08a9197408a75c0fce751d1bba4e687c206a0f62ad279c6dcf22c",
+  "local_replay_received_at_utc": "2026-10-12T04:14:25.109847Z",
+  "saved_sample_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+  "alias_sha256_both_arms": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+  "all_frozen_checks_passed": true,
+  "network_or_model_or_notification_called": false,
+  "delivery_status": "NOT_DELIVERED",
+  "event_identity_status": "NOT_EVALUATED",
+  "numeric_risk_confidence": "NOT_COMPUTED",
+  "v1_failure_preserved": true,
+  "v1_failure": "KeyError: source_code_commit; no V1 result was written; no V1 outcome inferred from V2.",
+  "reproduction_command": "PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/run_local_replay_v2.py",
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md",
+      "bytes": 4920,
+      "sha256": "2833a106d88f227e240e8e263ed5561a46daf324a7ebac1dd670fddfb575974b"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_CONTRACT_V1.md",
+      "bytes": 4659,
+      "sha256": "d0577d2b4b73512f0b98f3530543d885514e2670cb9f8ded4997ec9cca49440c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/ALIAS_WITHOUT_LINEAGE_V2.json",
+      "bytes": 283,
+      "sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/ALIAS_WITH_LINEAGE_V2.json",
+      "bytes": 283,
+      "sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/FAILED_ATTEMPT_V1_ALIAS_WITHOUT_LINEAGE.json",
+      "bytes": 283,
+      "sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/FAILED_ATTEMPT_V1_ALIAS_WITH_LINEAGE.json",
+      "bytes": 283,
+      "sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/FAILED_ATTEMPT_V1_LOCAL_RECEIPTS.json",
+      "bytes": 3784,
+      "sha256": "36b72842c8734bfa915f86770c8e9490a2362463f0e5130472a12b18046b3000"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/FAILURE_ATTEMPT_V1.json",
+      "bytes": 2001,
+      "sha256": "28bff476484702c575e6224a90ab212a9c56feafa3b99f359a06147d377db121"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/INPUTS.json",
+      "bytes": 4840,
+      "sha256": "63d8654ce4f9d7e7beb78a9ff96723e7f5aa9c8033a295e67e7975b9d05b0760"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/INPUTS_V2.json",
+      "bytes": 4952,
+      "sha256": "aa1087f365b0f5fc3e6800f39d1d2e70599dbc1a74229c5edc7b90402f539f8a"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/LOCAL_RECEIPTS_V2.json",
+      "bytes": 3805,
+      "sha256": "89ed6c204c7fb6df6eb2d7ccd4fb02c30d14f753c058316b60f12465e4e8b2f8"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/PRE_RUN_MANIFEST.json",
+      "bytes": 4851,
+      "sha256": "7fba4c5fabac39b353e7a05be6e3d08e6add3c01579d8a3798adb0454dbcdedb"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/PRE_RUN_MANIFEST_V2.json",
+      "bytes": 5723,
+      "sha256": "9f6529528440f84ee8dbf9ec8ac8d0fe63b7abb21a6298cf2f9f6736f8436c15"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/PROTOCOL.md",
+      "bytes": 5242,
+      "sha256": "d2ca92351283aa081738f0a92480e07638ecae42c2168aebadcd7ffcc602673a"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/PROTOCOL_V2.md",
+      "bytes": 2534,
+      "sha256": "da9d309e96efa4e2946161a0c6a386d1138ddd227a91476f6654b2d21fcaee31"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/REPORT_V2.md",
+      "bytes": 5935,
+      "sha256": "4cfded45ff8349662c4d7206ca13fd7970d31bd4566f2c8bf16072b197d17468"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/RESULT_V2.json",
+      "bytes": 7837,
+      "sha256": "b5b1ce97ceb08a9197408a75c0fce751d1bba4e687c206a0f62ad279c6dcf22c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/VISUALIZATION_V2.svg",
+      "bytes": 5356,
+      "sha256": "f33ac8cbbfebc287b45c9f0c1a519296f7314c719c86e6c370f5b99d8f9d1bc3"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/run_local_replay.py",
+      "bytes": 28532,
+      "sha256": "aaf6d7bf2f7e046754a5d2847691bbf4b73956103c3f90a40ac560c8616186d9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/run_local_replay_v2.py",
+      "bytes": 28588,
+      "sha256": "3b44fffc1221f8bce8519e5d26fb59e9179486fd7298224f5e8aec109191ff44"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/INPUTS.json",
+      "bytes": 25963,
+      "sha256": "71e010d6e9a57c8e6ccdf709b6603027bf3f7c5d6ea87b55d69be5b4641c4e4f"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/PRE_RUN_MANIFEST.json",
+      "bytes": 3145,
+      "sha256": "2c6c0b44f1254ac32d7f61c5c52b202c5ec534be3c5b0f587da7724a92d729e6"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/PROTOCOL.md",
+      "bytes": 5066,
+      "sha256": "03961f9869dc2648ffb7d5d6ebdf5ed1225edde1207335955918226392a489d9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/RESULT.json",
+      "bytes": 7110,
+      "sha256": "24cbbc67012033cf71c377bc0c2005d933d2d48827fc90507e6d3d3518428080"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/REVIEW_ADDENDUM_20261012.md",
+      "bytes": 1550,
+      "sha256": "3f29b27d3556b8597639fbadd155d0ceab6ffcca6cf5884217435d4c3aeb031b"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/RUN_MANIFEST.json",
+      "bytes": 5085,
+      "sha256": "c2f7bb8cad8f9b88942781cd9a34e2a010110c14a670aa9978fb6e026dfb0f5a"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/run_probe.py",
+      "bytes": 16935,
+      "sha256": "289a34543a2ae8b8ca8641a5191c691810f2ab4b4cafc814755d1b7e82811238"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+      "bytes": 2537,
+      "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_SOURCE_AUDIT.md",
+      "bytes": 6770,
+      "sha256": "bebdb8ea2b074fd5778e8c873e34ac3f86361fe03fead214ba2f8b0752d68d29"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_SOURCE_OBSERVABILITY_AUDIT_MANIFEST.json",
+      "bytes": 2079,
+      "sha256": "6b0aa7758fd417fd6f1b702faa7a63cf07fee3ac5203f1ad3a16bcba82bd6b4a"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/source_lineage_contract_v1.py",
+      "bytes": 14240,
+      "sha256": "ca58668d724c3b547de01dbcf3b6e0460adbdf1cf72ae54bd94515d5ac3bac26"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_source_lineage_contract_v1.py",
+      "bytes": 15236,
+      "sha256": "70e4d49fe50701f74a2fbb198d971a04cd76a69d3c0246954821095a98ac78cd"
+    }
+  ],
+  "self_hash_excluded": true
+}

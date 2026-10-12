@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="920" viewBox="0 0 1320 920" role="img" aria-labelledby="title desc">
+<title id="title">Local controlled replay: lineage preserved versus omitted</title>
+<desc id="desc">A saved normalized USGS sample is replayed locally with a new receipt time. The same alias bytes are processed with lineage retained or omitted. Forged-parent and hash-mismatch receipts are rejected. No original USGS response or historic receipt is claimed.</desc>
+<rect width="1320" height="920" fill="#f5f7fb"/>
+<text x="48" y="54" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#17243b">本地受控回放：保留谱系与丢失谱系对照</text>
+<text x="48" y="84" font-family="Arial, sans-serif" font-size="15" fill="#52627b">Saved normalized USGS sample · no new collection · no NWS access · no notification</text>
+<rect x="48" y="108" width="1224" height="170" rx="14" fill="#ffffff" stroke="#d4deea"/>
+<text x="76" y="145" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#17243b">1 · 已保存文件（不是原始 USGS 响应）</text>
+<text x="76" y="175" font-family="Arial, sans-serif" font-size="14" fill="#37475e">REAL_PUBLIC_FEED_SAMPLE.json · feature ci41346535 · 2537 bytes</text>
+<text x="76" y="201" font-family="Arial, sans-serif" font-size="14" fill="#37475e">SHA-256: 9bfbd8a6600deb0c… · historical receive time: UNKNOWN</text>
+<line x1="450" y1="194" x2="598" y2="194" stroke="#718096" stroke-width="3"/><polygon points="598,194 584,186 584,202" fill="#718096"/>
+<rect x="620" y="126" width="590" height="110" rx="12" fill="#edf4fb"/>
+<text x="642" y="157" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#27527a">LOCAL REPLAY RECEIPT · 2026-10-12T04:14:25.109847Z</text>
+<text x="642" y="184" font-family="Arial, sans-serif" font-size="13" fill="#344b66">New local clock time; not the source event/update/feed time</text>
+<text x="642" y="208" font-family="Arial, sans-serif" font-size="13" fill="#344b66">Parent receipt binds file SHA and byte length</text>
+<rect x="48" y="300" width="1224" height="249" rx="14" fill="#ffffff" stroke="#d4deea"/>
+<text x="76" y="339" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#17243b">2 · 同一字段投影，alias payload bytes 相同</text>
+<text x="76" y="369" font-family="Arial, sans-serif" font-size="14" fill="#37475e">Child SHA-256: 0d1831ef70dc3a8c… · transform code hash recorded in receipt · local replay only</text>
+<rect x="76" y="396" width="538" height="126" rx="12" fill="#eaf6ef" stroke="#9acdb1"/>
+<text x="98" y="428" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#275c43">A · Parent / child receipt preserved</text>
+<text x="98" y="456" font-family="Arial, sans-serif" font-size="14" fill="#275c43">Receipt hashes and parent-child IDs validate</text>
+<text x="98" y="484" font-family="Arial, sans-serif" font-size="14" fill="#275c43">SHARED_KNOWN_ANCESTOR · shared local file ancestor</text>
+<rect x="644" y="396" width="566" height="126" rx="12" fill="#fff4dd" stroke="#e2c780"/>
+<text x="666" y="428" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#765600">B · Same alias bytes, receipts omitted</text>
+<text x="666" y="456" font-family="Arial, sans-serif" font-size="14" fill="#765600">No parent-child edge submitted as complete</text>
+<text x="666" y="484" font-family="Arial, sans-serif" font-size="14" fill="#765600">UNKNOWN · TRACE_INCOMPLETE</text>
+<rect x="48" y="570" width="1224" height="207" rx="14" fill="#ffffff" stroke="#d4deea"/>
+<text x="76" y="608" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#17243b">3 · 伪造 / 不一致回执负例</text>
+<rect x="76" y="630" width="538" height="112" rx="12" fill="#fff0ee" stroke="#e9b7b0"/>
+<text x="98" y="663" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#8e3028">Forged parent link</text>
+<text x="98" y="691" font-family="Arial, sans-serif" font-size="14" fill="#8e3028">PARENT_RECORD_ID_UNKNOWN</text>
+<text x="98" y="718" font-family="Arial, sans-serif" font-size="14" fill="#8e3028">Lineage: UNKNOWN</text>
+<rect x="644" y="630" width="566" height="112" rx="12" fill="#fff0ee" stroke="#e9b7b0"/>
+<text x="666" y="663" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#8e3028">Parent hash mismatch</text>
+<text x="666" y="691" font-family="Arial, sans-serif" font-size="14" fill="#8e3028">PARENT_HASH_MISMATCH</text>
+<text x="666" y="718" font-family="Arial, sans-serif" font-size="14" fill="#8e3028">Lineage: UNKNOWN</text>
+<rect x="48" y="800" width="1224" height="75" rx="14" fill="#eaf0f7" stroke="#cbd7e5"/>
+<text x="76" y="831" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#263850">Boundary: locally recomputed hashes support attribution to this saved file only.</text>
+<text x="76" y="854" font-family="Arial, sans-serif" font-size="13" fill="#40536b">Unsigned local receipts do not prove USGS authenticity, historic receipt, transport integrity, source independence, risk confidence, or delivery.</text>
+<text x="48" y="903" font-family="Arial, sans-serif" font-size="12" fill="#687891">Delivery: NOT_DELIVERED · event truth: NOT_EVALUATED · numeric risk-confidence delta: NOT_COMPUTED</text>
+</svg>

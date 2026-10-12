@@ -1,0 +1,180 @@
+{
+  "run_id": "LOCAL-USGS-SAVED-SAMPLE-ALIAS-LINEAGE-20261012-V2",
+  "run_status": "COMPLETED_LOCAL_CONTROLLED_REPLAY",
+  "classification": "LOCAL_CONTROLLED_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "pre_run_commit": "adbca00b689430d9f9b908b3134afaf15ba8db08",
+  "method_source_commit": "9c9ff2caecadcc2ec6eeaabac3edc26497c0bc00",
+  "pre_run_manifest_sha256": "9f6529528440f84ee8dbf9ec8ac8d0fe63b7abb21a6298cf2f9f6736f8436c15",
+  "inputs_sha256": "aa1087f365b0f5fc3e6800f39d1d2e70599dbc1a74229c5edc7b90402f539f8a",
+  "method_outputs_sha256_before_expectation_checks": "872cce8cf1887c9e34cabbb1279347fc8e5209a0083b57216ea01e5f41a9b905",
+  "network_or_model_called": false,
+  "nws_endpoint_accessed": false,
+  "notification_created": false,
+  "delivery_status": "NOT_DELIVERED",
+  "event_identity_status": "NOT_EVALUATED",
+  "numeric_risk_confidence": "NOT_COMPUTED",
+  "saved_sample": {
+    "classification": "REAL_PUBLIC_SAMPLE_NORMALIZED_EXTRACT",
+    "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+    "feature_id": "ci41346535",
+    "file_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+    "byte_length": 2537,
+    "original_usgs_response_bytes_available": false,
+    "original_response_sha256": null,
+    "historical_source_or_collector_received_at": "UNKNOWN_NOT_IN_SAVED_SAMPLE"
+  },
+  "local_replay_received_at_utc": "2026-10-12T04:14:25.109847Z",
+  "local_receipts_issued_at_utc": "2026-10-12T04:14:25.109958Z",
+  "receipt_authenticity": "UNSIGNED_LOCAL_RUNNER_ASSERTION; digest/link checks do not prove source authenticity or historical transport.",
+  "alias_payload": {
+    "preserved_path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/ALIAS_WITH_LINEAGE_V2.json",
+    "omitted_path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/ALIAS_WITHOUT_LINEAGE_V2.json",
+    "sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+    "byte_length": 283,
+    "same_bytes_in_both_arms": true,
+    "transform_code_sha256": "3b44fffc1221f8bce8519e5d26fb59e9179486fd7298224f5e8aec109191ff44"
+  },
+  "parent_receipt_id": "LOCAL-PARENT-RECEIPT-V2-0001",
+  "parent_receipt_validation": {
+    "status": "PASS",
+    "issues": []
+  },
+  "receipt_artifact_path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/LOCAL_RECEIPTS_V2.json",
+  "cases": {
+    "lineage_preserved": {
+      "receipt_validation": {
+        "status": "PASS",
+        "issues": []
+      },
+      "lineage": {
+        "status": "SHARED_KNOWN_ANCESTOR",
+        "declared_root_id_relation": "SAME_DECLARED_ID",
+        "shared_ancestor_node_ids": [
+          "LOCAL-SAVED-SAMPLE-FILE"
+        ],
+        "reason_codes": [
+          "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+          "SHARED_KNOWN_ANCESTOR"
+        ],
+        "evidence_refs": [
+          "local-alias-sha256:0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+          "local-file-sha256:9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+          "local-receipt-sha256:67565fd31f74d4c0b36110e38f1633b6c6ded7371ba09d83bc52cb4a46a733b2",
+          "local-replay-receipt-validation:PASS",
+          "local-transform-sha256:3b44fffc1221f8bce8519e5d26fb59e9179486fd7298224f5e8aec109191ff44"
+        ],
+        "unique_edge_count": 2,
+        "statistical_independence_established": false,
+        "numeric_risk_confidence_delta": null
+      },
+      "child_sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+      "child_byte_length": 283,
+      "numeric_risk_confidence_delta": null
+    },
+    "lineage_omitted": {
+      "receipt_validation": {
+        "status": "MISSING_PARENT_CHILD_RECEIPT",
+        "issues": [
+          "MISSING_CHILD_RECEIPT"
+        ]
+      },
+      "lineage": {
+        "status": "UNKNOWN",
+        "declared_root_id_relation": "SAME_DECLARED_ID",
+        "shared_ancestor_node_ids": [],
+        "reason_codes": [
+          "TRACE_INCOMPLETE"
+        ],
+        "evidence_refs": [
+          "local-alias-bytes-without-valid-parent-receipt",
+          "local-file-sha256:9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+          "local-replay-receipt-validation:MISSING_PARENT_CHILD_RECEIPT"
+        ],
+        "unique_edge_count": 0,
+        "statistical_independence_established": false,
+        "numeric_risk_confidence_delta": null
+      },
+      "child_sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+      "child_byte_length": 283,
+      "numeric_risk_confidence_delta": null
+    },
+    "forged_parent_link": {
+      "receipt_validation": {
+        "status": "PARENT_RECORD_ID_UNKNOWN",
+        "issues": [
+          "PARENT_RECORD_ID_UNKNOWN"
+        ]
+      },
+      "lineage": {
+        "status": "UNKNOWN",
+        "declared_root_id_relation": "SAME_DECLARED_ID",
+        "shared_ancestor_node_ids": [],
+        "reason_codes": [
+          "TRACE_INCOMPLETE"
+        ],
+        "evidence_refs": [
+          "local-alias-bytes-without-valid-parent-receipt",
+          "local-file-sha256:9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+          "local-replay-receipt-validation:PARENT_RECORD_ID_UNKNOWN"
+        ],
+        "unique_edge_count": 0,
+        "statistical_independence_established": false,
+        "numeric_risk_confidence_delta": null
+      },
+      "child_sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+      "child_byte_length": 283,
+      "numeric_risk_confidence_delta": null
+    },
+    "parent_hash_mismatch": {
+      "receipt_validation": {
+        "status": "PARENT_HASH_MISMATCH",
+        "issues": [
+          "PARENT_HASH_MISMATCH"
+        ]
+      },
+      "lineage": {
+        "status": "UNKNOWN",
+        "declared_root_id_relation": "SAME_DECLARED_ID",
+        "shared_ancestor_node_ids": [],
+        "reason_codes": [
+          "TRACE_INCOMPLETE"
+        ],
+        "evidence_refs": [
+          "local-alias-bytes-without-valid-parent-receipt",
+          "local-file-sha256:9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+          "local-replay-receipt-validation:PARENT_HASH_MISMATCH"
+        ],
+        "unique_edge_count": 0,
+        "statistical_independence_established": false,
+        "numeric_risk_confidence_delta": null
+      },
+      "child_sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+      "child_byte_length": 283,
+      "numeric_risk_confidence_delta": null
+    }
+  },
+  "checks_after_method_output_freeze": {
+    "saved_normalized_file_hash_matches_frozen_input": true,
+    "alias_payload_matches_frozen_projection": true,
+    "alias_payload_hash_matches_frozen_expectation": true,
+    "alias_payload_length_matches_frozen_expectation": true,
+    "parent_receipt_matches_saved_bytes": true,
+    "preserved_and_omitted_alias_hashes_equal": true,
+    "preserved_receipt_chain_passes": true,
+    "preserved_lineage_is_local_shared_ancestor": true,
+    "omitted_lineage_fails_closed": true,
+    "forged_parent_link_fails_closed": true,
+    "parent_hash_mismatch_fails_closed": true,
+    "independence_never_asserted": true,
+    "lineage_states_match_frozen_expectations": true,
+    "receipt_states_match_frozen_expectations": true,
+    "preserved_root_and_edge_fields_match_frozen_expectations": true,
+    "unknown_cases_report_frozen_reason": true
+  },
+  "all_frozen_checks_passed": true,
+  "interpretation": {
+    "preserved_lineage": "Attributable to this locally saved normalized file under unsigned in-run receipt/hash assumptions only.",
+    "omitted_or_invalid_lineage": "UNKNOWN; the same alias bytes do not constitute an independent source.",
+    "risk_fusion": "No numeric confidence or D-S combination was computed."
+  }
+}
