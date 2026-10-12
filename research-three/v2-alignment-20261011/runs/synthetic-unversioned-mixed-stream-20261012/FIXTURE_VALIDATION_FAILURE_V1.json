@@ -1,0 +1,14 @@
+{
+  "pilot_id": "SYNTH-UNVERSIONED-MIXED-STREAM-20261012-V1",
+  "classification": "FIXTURE_VALIDATION_FAILURE; NO_MECHANISM_RESULT",
+  "attempted_command": "Inline pure-Python direct-apply baseline over INPUT_AND_EXPECTATIONS.json",
+  "source_code_commit": "552dccbda69895b5c7666ef7f91fa838e296b518",
+  "input_sha256": "c571fd9e39886d79bfc3c1e06fd006a0ea30244fe7159b8c6ba8e2dc0f46b277",
+  "failure_type": "ValueError",
+  "failure_message": "risk_flags must contain non-empty strings",
+  "failure_step": "active_versioned_card.unversioned_lower_risk",
+  "cause": "The frozen fixture used an empty risk_flags array, while ActionIntent requires a non-empty tuple of strings.",
+  "result_written": false,
+  "expected_behavior_changed": false,
+  "resolution": "Preserve this v1 input and failure record; create a separately versioned v2 fixture with a non-empty unmapped synthetic flag while retaining the same expected decision/count/state arrays."
+}
