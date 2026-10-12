@@ -633,6 +633,142 @@ class EventCardIntegrationTests(unittest.TestCase):
             legacy_record["observed"]["notice_lifecycle_states_after_each_step"],
         )
 
+    def test_synthetic_unversioned_updates_are_audited_without_overwriting_versioned_cards(self):
+        self.assertIn(
+            "risk_level_claim",
+            ActionIntent.__dataclass_fields__,
+            "mixed-stream audit needs an explicit claimed-risk field",
+        )
+        from rfb.research.unversioned_mixed_stream_pilot import (
+            run_synthetic_unversioned_mixed_stream_pilot,
+        )
+
+        repo_root = Path(__file__).resolve().parents[2]
+        run_dir = (
+            repo_root
+            / "research-three"
+            / "v2-alignment-20261011"
+            / "runs"
+            / "synthetic-unversioned-mixed-stream-20261012"
+        )
+        spec = json.loads(
+            (run_dir / "INPUT_AND_EXPECTATIONS_V2.json").read_text(encoding="utf-8")
+        )
+        legacy_record = json.loads(
+            (run_dir / "LEGACY_MIXED_BASELINE.json").read_text(encoding="utf-8")
+        )
+        result = run_synthetic_unversioned_mixed_stream_pilot(spec)
+
+        for scenario_spec in spec["scenarios"]:
+            scenario_id = scenario_spec["scenario_id"]
+            expected = scenario_spec["expected"]
+            observed = result["scenarios"][scenario_id]
+            self.assertEqual(
+                observed["decision_statuses"], expected["decision_statuses"]
+            )
+            self.assertEqual(
+                observed["notification_action_counts"],
+                expected["notification_action_counts_after_each_step"],
+            )
+            self.assertEqual(
+                observed["card_revision_counts"],
+                expected["card_revision_counts_after_each_step"],
+            )
+            self.assertEqual(
+                observed["notice_lifecycle_states"],
+                expected["notice_lifecycle_states_after_each_step"],
+            )
+            self.assertEqual(
+                observed["audit_record_counts"],
+                expected["audit_record_counts_after_each_step"],
+            )
+            self.assertEqual(
+                observed["pending_risk_review_counts"],
+                expected["pending_risk_review_counts_after_each_step"],
+            )
+            self.assertEqual(
+                observed["reported_risk_grade_statuses"],
+                expected["reported_risk_grade_statuses"],
+            )
+            self.assertEqual(
+                observed["risk_signal_grades"], expected["risk_signal_grades"]
+            )
+            self.assertEqual(
+                observed["current_card_risk_grades"],
+                expected["current_card_risk_grades_after_each_step"],
+            )
+            self.assertEqual(
+                [row["revision_trace"]["intent_id"] for row in observed["final_card"]["revision_history"]],
+                expected["final_history_intent_ids"],
+            )
+            self.assertEqual(
+                observed["final_card"]["notice_lifecycle_status"],
+                expected["final_notice_lifecycle_status"],
+            )
+            self.assertEqual(
+                observed["final_card"]["notification_action_count"],
+                expected["final_notification_action_count"],
+            )
+            self.assertEqual(
+                observed["final_card"]["content_revision_count"],
+                expected["final_card_revision_count"],
+            )
+            self.assertEqual(
+                len(observed["audit_records"]), expected["final_audit_record_count"]
+            )
+            self.assertEqual(
+                len(observed["pending_risk_reviews"]),
+                expected["final_pending_risk_review_count"],
+            )
+            self.assertEqual(
+                all(
+                    review["status"] == "PENDING_VERIFICATION"
+                    and review["confirmed"] is False
+                    and review["notification_created"] is False
+                    and review["card_content_changed"] is False
+                    for review in observed["pending_risk_reviews"]
+                ),
+                expected["all_pending_reviews_unconfirmed"],
+            )
+            unversioned_step_ids = [
+                step["step_id"]
+                for step in scenario_spec["steps"]
+                if step.get("notice_version") is None
+            ]
+            self.assertEqual(
+                [record["step_id"] for record in observed["audit_records"]],
+                unversioned_step_ids,
+            )
+            self.assertEqual(
+                [
+                    record["duplicate_of_intent_id"]
+                    for record in observed["audit_records"]
+                    if record["duplicate_of_intent_id"] is not None
+                ],
+                expected.get("duplicate_of_intent_ids", []),
+            )
+            self.assertEqual(
+                observed["final_card"]["delivery_status"], expected["delivery_status"]
+            )
+
+            baseline = legacy_record["scenarios"][scenario_id]["observed"]
+            negative = scenario_spec["direct_apply_negative_control_expected"]
+            for key, value in negative.items():
+                self.assertEqual(baseline[key], value)
+
+        active = result["scenarios"]["active_versioned_card"]
+        missing_grade = active["audit_records"][-1]
+        self.assertEqual(missing_grade["reported_risk_grade_status"], "UNKNOWN_MISSING_CLAIM")
+        self.assertEqual(missing_grade["risk_signal_grade"], "CRITICAL")
+        self.assertTrue(missing_grade["pending_risk_review_id"])
+        self.assertEqual(
+            active["pending_risk_reviews"][-1]["source_intent_id"],
+            "SYNTH-MIX-A-MISSING-GRADE",
+        )
+        cancelled = result["scenarios"]["cancelled_versioned_card"]
+        self.assertEqual(cancelled["final_card"]["notice_lifecycle_status"], "CANCELLED")
+        self.assertEqual(cancelled["pending_risk_reviews"][0]["status"], "PENDING_VERIFICATION")
+
     def test_rejects_identity_episode_or_association_mismatch_with_ledger(self):
         self.require_preview_builder()
         pending = pending_association()
