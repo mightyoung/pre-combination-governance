@@ -1,0 +1,108 @@
+{
+  "run_id": "LOCAL-USGS-SAVED-SAMPLE-ALIAS-LINEAGE-20261012-V1",
+  "status": "FROZEN_PRE_RUN",
+  "classification": "LOCAL_CONTROLLED_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "source_sample": {
+    "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+    "artifact_kind": "REAL_PUBLIC_FEED_SAMPLE_NORMALIZED_EXTRACT",
+    "feature_id": "ci41346535",
+    "exact_local_file_bytes_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+    "exact_local_file_bytes_length": 2537,
+    "original_usgs_response_bytes_available": false,
+    "historical_source_or_collector_received_at": "UNKNOWN_NOT_IN_SAVED_SAMPLE"
+  },
+  "method": "rfb.research.source_lineage_contract_v1.assess_source_lineage",
+  "transform": {
+    "transform_id": "USGS_SAMPLE_ALIAS_PROJECTION",
+    "version": "1",
+    "alias_fields": {
+      "catalog_record_ref": "feature.id",
+      "magnitude": "feature.properties.mag",
+      "description": "feature.properties.place",
+      "source_event_time_utc": "feature.properties.time_utc",
+      "catalog_updated_time_utc": "feature.properties.updated_utc",
+      "catalog_ids": "split(feature.properties.ids_raw, \",\")",
+      "catalog_source_labels": "split(feature.properties.sources_raw, \",\")"
+    },
+    "canonical_encoding": "UTF-8 JSON, sort keys, compact separators, trailing newline",
+    "expected_alias_payload": {
+      "catalog_ids": [
+        "ci41346535",
+        "us6000u1mg"
+      ],
+      "catalog_record_ref": "ci41346535",
+      "catalog_source_labels": [
+        "ci",
+        "us"
+      ],
+      "catalog_updated_time_utc": "2026-10-11T22:39:25.040Z",
+      "description": "34 km WNW of Desert Center, CA",
+      "magnitude": 2.52,
+      "source_event_time_utc": "2026-10-11T21:28:13.930Z"
+    },
+    "expected_alias_payload_sha256": "0d1831ef70dc3a8c43a50be60fa6592fe5ed7551e80a94e326b955ee3e283695",
+    "expected_alias_payload_byte_length": 283,
+    "same_payload_required_in_both_arms": true
+  },
+  "local_replay_receipt_policy": {
+    "timestamp_source": "UTC system clock sampled at run start before reading the saved file",
+    "timestamp_semantics": "new local replay receipt only; not source time or historic collector receive time",
+    "parent_receipt": "record local saved-file record ID, exact saved-file SHA-256, byte length, and local time",
+    "child_receipt": "record parent receipt ID/record/hash, child alias hash, transform ID/version/code hash, and same run-local time",
+    "signature": "NONE; receipt issuer is this local runner",
+    "trust_status_in_contract": "VERIFIED only after this runner checks local IDs, hashes, and timestamps; this is not source-authenticity proof"
+  },
+  "comparison_arms": [
+    {
+      "case_id": "lineage_preserved",
+      "receipt_mode": "PARENT_AND_CHILD_RECEIPT",
+      "expected_receipt_validation": "PASS",
+      "expected_lineage_status": "SHARED_KNOWN_ANCESTOR",
+      "expected_root_relation": "SAME_DECLARED_ID",
+      "expected_shared_ancestor_ids": [
+        "LOCAL-SAVED-SAMPLE-FILE"
+      ],
+      "expected_unique_edge_count": 2,
+      "expected_statistical_independence_established": false
+    },
+    {
+      "case_id": "lineage_omitted",
+      "receipt_mode": "OMITTED",
+      "expected_receipt_validation": "MISSING_PARENT_CHILD_RECEIPT",
+      "expected_lineage_status": "UNKNOWN",
+      "expected_reason_code": "TRACE_INCOMPLETE",
+      "expected_statistical_independence_established": false
+    }
+  ],
+  "negative_controls": [
+    {
+      "case_id": "forged_parent_link",
+      "mutation": {
+        "parent_record_id": "ATTACKER-FORGED-PARENT"
+      },
+      "expected_receipt_validation": "PARENT_RECORD_ID_UNKNOWN",
+      "expected_lineage_status": "UNKNOWN",
+      "expected_reason_code": "TRACE_INCOMPLETE"
+    },
+    {
+      "case_id": "parent_hash_mismatch",
+      "mutation": {
+        "parent_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected_receipt_validation": "PARENT_HASH_MISMATCH",
+      "expected_lineage_status": "UNKNOWN",
+      "expected_reason_code": "TRACE_INCOMPLETE"
+    }
+  ],
+  "measures": [
+    "Exact saved-file and child alias SHA-256 values and byte lengths.",
+    "Local replay receipt timestamp, explicitly not historical receive time.",
+    "Alias payload hash equality between lineage-preserved and lineage-omitted arms.",
+    "Parent/child receipt validation status for preserved, omitted, forged-parent, and mismatched-hash cases.",
+    "Pairwise lineage contract state and shared ancestor; independence remains false.",
+    "No numeric risk-confidence, probability, event-accuracy, delivery-latency, or D-S metric."
+  ],
+  "network_or_model_or_notification_called": false,
+  "nws_endpoint_accessed": false,
+  "synthetic_scenarios_are_event_truth": false
+}
