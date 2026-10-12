@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="920" viewBox="0 0 1240 920">
+<defs>
+  <style>
+    text { font-family: 'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif; fill: #172033; }
+    .muted { fill: #627084; } .small { font-size: 13px; } .tiny { font-size: 11px; }
+    .heading { font-size: 23px; font-weight: 700; } .subheading { font-size: 16px; font-weight: 700; }
+    .table-head { fill: #edf2f7; } .row-a { fill: #ffffff; } .row-b { fill: #f8fafc; }
+  </style>
+</defs>
+<rect width="100%" height="100%" fill="#f3f6fb"/>
+<text x="40" y="42" class="heading">合成卡片生命周期：通知动作与修订时间线</text>
+<text x="40" y="68" class="small muted">SYNTHETIC MECHANISM CHECK ONLY · NOT DELIVERED · 不评估真实事件真值、传感器独立性或效果</text>
+<rect x="40" y="88" width="1160" height="42" rx="8" fill="#fff4d6" stroke="#e4b84b"/>
+<text x="58" y="114" class="small">稳定显示卡：CARD-SYNTH-LIFECYCLE-01　|　关联状态持续 UNKNOWN_PENDING　|　单一合成来源：SYNTH-SOURCE-ONE　|　模拟合并窗：5 秒</text>
+
+<text x="40" y="166" class="subheading">主时间线</text>
+<rect x="40" y="180" width="1160" height="38" rx="5" class="table-head"/>
+<text x="56" y="204" class="small" font-weight="700">步骤 / 时间</text>
+<text x="236" y="204" class="small" font-weight="700">动作与风险</text>
+<text x="490" y="204" class="small" font-weight="700">台账决策</text>
+<text x="750" y="204" class="small" font-weight="700">卡状态</text>
+<text x="900" y="204" class="small" font-weight="700">修订数</text>
+<text x="1050" y="204" class="small" font-weight="700">通知动作数</text>
+
+<rect x="40" y="218" width="1160" height="46" class="row-a"/>
+<text x="56" y="246" class="small">初始提醒 · t=0s</text>
+<text x="236" y="246" class="small">ASSOCIATION_PENDING · EXPOSURE</text>
+<text x="490" y="246" class="small">EMITTED</text>
+<text x="750" y="246" class="small">ACTIVE</text>
+<text x="925" y="246" class="small">1</text>
+<text x="1080" y="246" class="small">1</text>
+<line x1="40" y1="264" x2="1200" y2="264" stroke="#e4eaf1"/>
+<rect x="40" y="264" width="1160" height="46" class="row-b"/>
+<text x="56" y="292" class="small">持续更新 · t=1s</text>
+<text x="236" y="292" class="small">ASSOCIATION_PENDING · EXPOSURE</text>
+<text x="490" y="292" class="small">COALESCED_IN_PLACE</text>
+<text x="750" y="292" class="small">ACTIVE</text>
+<text x="925" y="292" class="small">2</text>
+<text x="1080" y="292" class="small">1</text>
+<line x1="40" y1="310" x2="1200" y2="310" stroke="#e4eaf1"/>
+<rect x="40" y="310" width="1160" height="46" class="row-a"/>
+<text x="56" y="338" class="small">精确重放 · t=2s</text>
+<text x="236" y="338" class="small">ASSOCIATION_PENDING · EXPOSURE</text>
+<text x="490" y="338" class="small">DUPLICATE_REPLAY_IGNORED</text>
+<text x="750" y="338" class="small">ACTIVE</text>
+<text x="925" y="338" class="small">2</text>
+<text x="1080" y="338" class="small">1</text>
+<line x1="40" y1="356" x2="1200" y2="356" stroke="#e4eaf1"/>
+<rect x="40" y="356" width="1160" height="46" class="row-b"/>
+<text x="56" y="384" class="small">风险升高 · t=3s</text>
+<text x="236" y="384" class="small">ASSOCIATION_PENDING · EXPOSURE_HIGH</text>
+<text x="490" y="384" class="small">EMITTED</text>
+<text x="750" y="384" class="small">ACTIVE</text>
+<text x="925" y="384" class="small">3</text>
+<text x="1080" y="384" class="small">2</text>
+<line x1="40" y1="402" x2="1200" y2="402" stroke="#e4eaf1"/>
+<rect x="40" y="402" width="1160" height="46" class="row-a"/>
+<text x="56" y="430" class="small">更正 · t=4s</text>
+<text x="236" y="430" class="small">NOTICE_CORRECTED · EXPOSURE_HIGH</text>
+<text x="490" y="430" class="small">EMITTED</text>
+<text x="750" y="430" class="small">CORRECTED</text>
+<text x="925" y="430" class="small">4</text>
+<text x="1080" y="430" class="small">3</text>
+<line x1="40" y1="448" x2="1200" y2="448" stroke="#e4eaf1"/>
+<rect x="40" y="448" width="1160" height="46" class="row-b"/>
+<text x="56" y="476" class="small">取消 · t=5s</text>
+<text x="236" y="476" class="small">NOTICE_CANCELLED · EXPOSURE_HIGH</text>
+<text x="490" y="476" class="small">EMITTED</text>
+<text x="750" y="476" class="small">CANCELLED</text>
+<text x="925" y="476" class="small">5</text>
+<text x="1080" y="476" class="small">4</text>
+<line x1="40" y1="494" x2="1200" y2="494" stroke="#e4eaf1"/>
+<text x="56" y="498" class="tiny muted">精确重放仅记入审计轨迹：通知数与修订数不增加。风险升级、更正和取消各新增一个通知动作；更正与取消的修订保留在同一张卡的历史中。</text>
+
+<text x="40" y="540" class="subheading">累计数量</text>
+<rect x="40" y="554" width="1160" height="190" rx="8" fill="#ffffff" stroke="#e0e7ef"/>
+
+<line x1="110" y1="710.0" x2="1135" y2="710.0" stroke="#edf1f5"/>
+<text x="72" y="714.0" class="tiny muted">0</text>
+<line x1="110" y1="684.0" x2="1135" y2="684.0" stroke="#edf1f5"/>
+<text x="72" y="688.0" class="tiny muted">1</text>
+<line x1="110" y1="658.0" x2="1135" y2="658.0" stroke="#edf1f5"/>
+<text x="72" y="662.0" class="tiny muted">2</text>
+<line x1="110" y1="632.0" x2="1135" y2="632.0" stroke="#edf1f5"/>
+<text x="72" y="636.0" class="tiny muted">3</text>
+<line x1="110" y1="606.0" x2="1135" y2="606.0" stroke="#edf1f5"/>
+<text x="72" y="610.0" class="tiny muted">4</text>
+<line x1="110" y1="580.0" x2="1135" y2="580.0" stroke="#edf1f5"/>
+<text x="72" y="584.0" class="tiny muted">5</text>
+<line x1="110.0" y1="710" x2="110.0" y2="580" stroke="#f2f5f8"/>
+<text x="95.0" y="730" class="tiny muted">t0</text>
+<line x1="315.0" y1="710" x2="315.0" y2="580" stroke="#f2f5f8"/>
+<text x="300.0" y="730" class="tiny muted">t1</text>
+<line x1="520.0" y1="710" x2="520.0" y2="580" stroke="#f2f5f8"/>
+<text x="505.0" y="730" class="tiny muted">t2</text>
+<line x1="725.0" y1="710" x2="725.0" y2="580" stroke="#f2f5f8"/>
+<text x="710.0" y="730" class="tiny muted">t3</text>
+<line x1="930.0" y1="710" x2="930.0" y2="580" stroke="#f2f5f8"/>
+<text x="915.0" y="730" class="tiny muted">t4</text>
+<line x1="1135.0" y1="710" x2="1135.0" y2="580" stroke="#f2f5f8"/>
+<text x="1120.0" y="730" class="tiny muted">t5</text>
+<polyline points="110.0,684.0 315.0,684.0 520.0,684.0 725.0,658.0 930.0,632.0 1135.0,606.0" fill="none" stroke="#2368d5" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="110.0" cy="684.0" r="5" fill="#2368d5"/><text x="106.0" y="675.0" class="tiny" fill="#2368d5">1</text>
+<circle cx="315.0" cy="684.0" r="5" fill="#2368d5"/><text x="311.0" y="675.0" class="tiny" fill="#2368d5">1</text>
+<circle cx="520.0" cy="684.0" r="5" fill="#2368d5"/><text x="516.0" y="675.0" class="tiny" fill="#2368d5">1</text>
+<circle cx="725.0" cy="658.0" r="5" fill="#2368d5"/><text x="721.0" y="649.0" class="tiny" fill="#2368d5">2</text>
+<circle cx="930.0" cy="632.0" r="5" fill="#2368d5"/><text x="926.0" y="623.0" class="tiny" fill="#2368d5">3</text>
+<circle cx="1135.0" cy="606.0" r="5" fill="#2368d5"/><text x="1131.0" y="597.0" class="tiny" fill="#2368d5">4</text>
+<polyline points="110.0,684.0 315.0,658.0 520.0,658.0 725.0,632.0 930.0,606.0 1135.0,580.0" fill="none" stroke="#6d49b8" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="110.0" cy="684.0" r="5" fill="#6d49b8"/><text x="106.0" y="675.0" class="tiny" fill="#6d49b8">1</text>
+<circle cx="315.0" cy="658.0" r="5" fill="#6d49b8"/><text x="311.0" y="649.0" class="tiny" fill="#6d49b8">2</text>
+<circle cx="520.0" cy="658.0" r="5" fill="#6d49b8"/><text x="516.0" y="649.0" class="tiny" fill="#6d49b8">2</text>
+<circle cx="725.0" cy="632.0" r="5" fill="#6d49b8"/><text x="721.0" y="623.0" class="tiny" fill="#6d49b8">3</text>
+<circle cx="930.0" cy="606.0" r="5" fill="#6d49b8"/><text x="926.0" y="597.0" class="tiny" fill="#6d49b8">4</text>
+<circle cx="1135.0" cy="580.0" r="5" fill="#6d49b8"/><text x="1131.0" y="571.0" class="tiny" fill="#6d49b8">5</text>
+<line x1="835" y1="570" x2="867" y2="570" stroke="#2368d5" stroke-width="3"/><text x="876" y="574" class="tiny">通知动作</text>
+<line x1="970" y1="570" x2="1002" y2="570" stroke="#6d49b8" stroke-width="3"/><text x="1011" y="574" class="tiny">卡片修订</text>
+
+<text x="40" y="790" class="subheading">反例：把取消误编码成普通更新</text>
+<rect x="40" y="804" width="1160" height="74" rx="8" fill="#fff" stroke="#d5dde7"/>
+
+<text x="58" y="830" class="small">决策：EMITTED → COALESCED_IN_PLACE → COALESCED_IN_PLACE</text>
+<text x="58" y="852" class="small">通知动作：1 → 1 → 1　|　卡片修订：1 → 2 → 3　|　最终状态：ACTIVE</text>
+<text x="40" y="902" class="tiny muted">反例只展示错误动作类型会被普通更新合并规则吸收；它不是实际取消事件，也不是效果证据。所有时间均来自合成输入；实际 emitted_at / visible_at 未运行。</text>
+</svg>

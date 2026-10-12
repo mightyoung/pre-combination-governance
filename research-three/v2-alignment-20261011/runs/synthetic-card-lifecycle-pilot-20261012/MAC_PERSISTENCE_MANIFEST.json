@@ -1,0 +1,65 @@
+{
+  "manifest_version": "mac-persistence-v1",
+  "artifact_set": "SYNTH-CARD-LIFECYCLE-20261012-V1",
+  "branch": "task/research-three-v2-alignment-20261011",
+  "source_commit": "364e6c1830f87456c757928521b11a848c36351c",
+  "status": "PREPARED_IN_REPOSITORY; NOT_STORED_ON_MAC; MAC_NOT_VALIDATED_IN_THIS_RUN",
+  "path_convention": "Repository-relative POSIX paths; resolve only beneath the Mac checkout root. No cloud absolute paths are included.",
+  "mac_local_project_root": null,
+  "scope": "Frozen synthetic lifecycle fixture, mechanism result, report, visualization, run manifest, implementation and focused integration test.",
+  "sha256_scope": "All listed deliverables; this manifest does not hash itself.",
+  "includes_original_mac_v2_spec": false,
+  "includes_frozen_old_trial_raw_data": false,
+  "old_1464_check_trial_rerun": false,
+  "mac_esrch_eperm_repair_verified": false,
+  "real_delivery_or_visibility_validation": "NOT_RUN; synthetic actions are not delivered.",
+  "source_independence": "NOT_ASSERTED; all scenario messages use one synthetic source label.",
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/INPUT_AND_EXPECTATIONS.json",
+      "bytes": 6387,
+      "sha256": "b0ed1817f44ec054a6477961f56e267b528eff1112790e09e6005cead9413d0f"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/RESULT.json",
+      "bytes": 97102,
+      "sha256": "15229418f8232ea3327a3ac48ea857e66977a4f07afdbeeab261404a3a006da1"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/REPORT.md",
+      "bytes": 4337,
+      "sha256": "f24b16ae7cea5049b06327be8f72935129b29a653c91e8f79de3a7b2792d56a1"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/TIMELINE.svg",
+      "bytes": 8881,
+      "sha256": "5e084cb26095e65f0ba147fde79581f0a0ebd01c3346d5a93fb3f52a09e477a7"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/RUN_MANIFEST.json",
+      "bytes": 3021,
+      "sha256": "9ed86c0b389335c6fda2b6a688fd960d4fceea8e9cc8bd301ce891c7ed013a27"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
+      "bytes": 17955,
+      "sha256": "c88cde2adfa6fea9fbb19a55a5c8ba41daa2a33d4e87530247fab3fd59a257b0"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
+      "bytes": 29106,
+      "sha256": "31516a4336081762be1456d9855d2617443232c3774aededdda5e42bdb6fc215"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/event_card_lifecycle_pilot.py",
+      "bytes": 9564,
+      "sha256": "a22b32842ec4db714b45a9a612d28d8fc293b84bf4f3d7fa76ea37518edab0d7"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_event_card_integration.py",
+      "bytes": 27791,
+      "sha256": "20d3ae0957244de79ff60493bd28722d19f143ca8bed4d60d54311c43566bc81"
+    }
+  ],
+  "manifest_excludes_itself": true
+}

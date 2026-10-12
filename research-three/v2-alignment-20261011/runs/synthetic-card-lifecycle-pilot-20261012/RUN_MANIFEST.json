@@ -1,0 +1,89 @@
+{
+  "artifact_version": "synthetic-card-lifecycle-mechanism-check-v1",
+  "artifact_id": "SYNTH-CARD-LIFECYCLE-20261012-V1",
+  "branch_at_run": "task/research-three-v2-alignment-20261011",
+  "source_commit": "364e6c1830f87456c757928521b11a848c36351c",
+  "classification": "SYNTHETIC_MECHANISM_CHECK_ONLY",
+  "spec_revision_type": "RESULT_DRIVEN_MICRO_SPEC; INPUT_AND_EXPECTATIONS_FROZEN_PRE_RUN",
+  "input_spec_status": "FROZEN_PRE_RUN",
+  "input_spec_sha256": "b0ed1817f44ec054a6477961f56e267b528eff1112790e09e6005cead9413d0f",
+  "test_run": {
+    "command": "PYTHONPATH=src python -m unittest -v tests.test_alert_action_experiment tests.test_event_card_integration",
+    "working_directory": "risk-fusion-bench",
+    "tests_run": 26,
+    "passed": 26,
+    "failures": 0,
+    "errors": 0,
+    "status": "PASSED",
+    "test_driven_red": "Initial new test failed because ActionKind.NOTICE_CORRECTED was absent; the new focused test passed after implementation."
+  },
+  "mechanism_summary": {
+    "decision_statuses": [
+      "EMITTED",
+      "COALESCED_IN_PLACE",
+      "DUPLICATE_REPLAY_IGNORED",
+      "EMITTED",
+      "EMITTED",
+      "EMITTED"
+    ],
+    "notification_action_counts": [
+      1,
+      1,
+      1,
+      2,
+      3,
+      4
+    ],
+    "card_revision_counts": [
+      1,
+      2,
+      2,
+      3,
+      4,
+      5
+    ],
+    "notice_lifecycle_states": [
+      "ACTIVE",
+      "ACTIVE",
+      "ACTIVE",
+      "ACTIVE",
+      "CORRECTED",
+      "CANCELLED"
+    ],
+    "counterexample_final_notice_status": "ACTIVE",
+    "delivery_status": "NOT_DELIVERED",
+    "association_state": "UNKNOWN_PENDING"
+  },
+  "execution_limits": {
+    "network_or_cap_fetch": "NOT_RUN",
+    "model_service": "NOT_CALLED",
+    "real_delivery_or_visibility": "NOT_RUN; emitted_at and visible_at are null",
+    "source_independence": "NOT_ASSERTED; one synthetic source label",
+    "old_1464_frozen_trial": "NOT_RERUN; historical FAILED status preserved",
+    "mac_executor_or_qualification_probe": "NOT_RUN",
+    "efficacy": "NOT_ASSESSED"
+  },
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/INPUT_AND_EXPECTATIONS.json",
+      "bytes": 6387,
+      "sha256": "b0ed1817f44ec054a6477961f56e267b528eff1112790e09e6005cead9413d0f"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/RESULT.json",
+      "bytes": 97102,
+      "sha256": "15229418f8232ea3327a3ac48ea857e66977a4f07afdbeeab261404a3a006da1"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/REPORT.md",
+      "bytes": 4337,
+      "sha256": "f24b16ae7cea5049b06327be8f72935129b29a653c91e8f79de3a7b2792d56a1"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-card-lifecycle-pilot-20261012/TIMELINE.svg",
+      "bytes": 8881,
+      "sha256": "5e084cb26095e65f0ba147fde79581f0a0ebd01c3346d5a93fb3f52a09e477a7"
+    }
+  ],
+  "manifest_excludes_itself": true
+}
