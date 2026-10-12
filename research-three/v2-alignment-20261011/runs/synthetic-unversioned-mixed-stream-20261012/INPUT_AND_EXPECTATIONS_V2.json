@@ -1,0 +1,494 @@
+{
+  "pilot_id": "SYNTH-UNVERSIONED-MIXED-STREAM-20261012-V2",
+  "status": "FROZEN_PRE_RUN",
+  "classification": "SYNTHETIC_MECHANISM_BOUNDARY_ONLY",
+  "synthetic_only": true,
+  "spec_revision_type": "USER_APPROVED_RESULT_DRIVEN_MIXED_STREAM_BOUNDARY; EXPECTATIONS_FROZEN_PRE_RUN",
+  "policy_assumption": {
+    "activation_condition": "At least one versioned notice has already been accepted for this display card.",
+    "unversioned_card_content": "After activation, an unversioned message is recorded for audit and does not alter the versioned card, its lifecycle state, revision history, or notification action count.",
+    "higher_risk_signal": "When an unversioned message carries a higher known risk signal, preserve it in a separate PENDING_VERIFICATION review record; do not confirm it, merge it into the current card, restore a cancelled notice, or emit a notification.",
+    "deduplication": "Exact replays and semantically identical messages with a new intent ID are audit-linked duplicates; they do not create another risk review.",
+    "missing_grade": "A missing explicit risk_grade_claim is UNKNOWN. A separately mapped single risk flag may still create a pending review, but cannot convert the missing grade into a confirmed grade.",
+    "authority_warning": "The versioned notice is treated as trusted only because the synthetic fixture labels it so. This does not prove real-world version authority or provenance."
+  },
+  "source_independence": "NOT_ASSERTED; each scenario uses one synthetic source label.",
+  "delivery_status": "NOT_DELIVERED",
+  "base_time_utc": "2026-10-12T00:00:00Z",
+  "settings": {
+    "policy_mode": "CARD_COALESCE",
+    "merge_window_seconds": 5,
+    "merge_window_status": "SYNTHETIC_FIXTURE_ONLY_NOT_A_PRODUCTION_DEFAULT",
+    "synthetic_claimed_risk_grades": [
+      "LOW",
+      "WARNING",
+      "CRITICAL"
+    ]
+  },
+  "scenarios": [
+    {
+      "scenario_id": "active_versioned_card",
+      "context": {
+        "display_card_id": "CARD-SYNTH-MIX-ACTIVE-01",
+        "candidate_episode_ids": [
+          "SYNTH-EPISODE-A1",
+          "SYNTH-EPISODE-A2"
+        ],
+        "association_id": "SYNTH-ASSOCIATION-ACTIVE",
+        "association_state": "UNKNOWN_PENDING",
+        "source_ids": [
+          "SYNTH-SOURCE-ACTIVE"
+        ],
+        "observation_ids": [
+          "SYNTH-OBS-ACTIVE"
+        ],
+        "experiment_batch_id": "SYNTH-MIX-ACTIVE-BATCH",
+        "dedup_episode_interval_key": "SYNTH-MIX-ACTIVE-INTERVAL"
+      },
+      "steps": [
+        {
+          "step_id": "active_versioned_v1",
+          "intent_id": "SYNTH-MIX-A-001",
+          "transport_receipt_id": "SYNTH-RECEIPT-A-001",
+          "notice_version": 1,
+          "kind": "ASSOCIATION_PENDING",
+          "source_seconds": 0,
+          "observed_seconds": 0,
+          "received_seconds": 0,
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/active/notice/v1"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/active/risk/warning"
+          ]
+        },
+        {
+          "step_id": "unversioned_lower_risk",
+          "intent_id": "SYNTH-MIX-A-LOW",
+          "transport_receipt_id": "SYNTH-RECEIPT-A-LOW",
+          "notice_version": null,
+          "kind": "ASSOCIATION_PENDING",
+          "source_seconds": 1,
+          "observed_seconds": 1,
+          "received_seconds": 1,
+          "risk_level_claim": "LOW",
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "UNMAPPED_SYNTHETIC_RISK"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/active/low"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/active/risk/low"
+          ]
+        },
+        {
+          "step_id": "unversioned_equal_risk",
+          "intent_id": "SYNTH-MIX-A-EQUAL",
+          "transport_receipt_id": "SYNTH-RECEIPT-A-EQUAL",
+          "notice_version": null,
+          "kind": "ASSOCIATION_PENDING",
+          "source_seconds": 2,
+          "observed_seconds": 2,
+          "received_seconds": 2,
+          "risk_level_claim": "WARNING",
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/active/equal"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/active/risk/warning-equal"
+          ]
+        },
+        {
+          "step_id": "unversioned_higher_risk",
+          "intent_id": "SYNTH-MIX-A-HIGH",
+          "transport_receipt_id": "SYNTH-RECEIPT-A-HIGH-1",
+          "notice_version": null,
+          "kind": "ASSOCIATION_PENDING",
+          "source_seconds": 3,
+          "observed_seconds": 3,
+          "received_seconds": 3,
+          "risk_level_claim": "CRITICAL",
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "EXPOSURE_HIGH"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/active/high"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/active/risk/critical"
+          ]
+        },
+        {
+          "step_id": "exact_replay_of_unversioned_high",
+          "intent_id": "SYNTH-MIX-A-HIGH",
+          "transport_receipt_id": "SYNTH-RECEIPT-A-HIGH-RETRY",
+          "replay_of": "unversioned_higher_risk",
+          "received_seconds": 4
+        },
+        {
+          "step_id": "alias_duplicate_of_unversioned_high",
+          "intent_id": "SYNTH-MIX-A-HIGH-ALIAS",
+          "transport_receipt_id": "SYNTH-RECEIPT-A-HIGH-ALIAS",
+          "duplicate_of": "unversioned_higher_risk",
+          "notice_version": null,
+          "kind": "ASSOCIATION_PENDING",
+          "source_seconds": 3,
+          "observed_seconds": 3,
+          "received_seconds": 5,
+          "risk_level_claim": "CRITICAL",
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "EXPOSURE_HIGH"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/active/high"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/active/risk/critical"
+          ]
+        },
+        {
+          "step_id": "unversioned_missing_grade_high_flag",
+          "intent_id": "SYNTH-MIX-A-MISSING-GRADE",
+          "transport_receipt_id": "SYNTH-RECEIPT-A-MISSING-GRADE",
+          "notice_version": null,
+          "kind": "ASSOCIATION_PENDING",
+          "source_seconds": 6,
+          "observed_seconds": 6,
+          "received_seconds": 6,
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "EXPOSURE_HIGH"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/active/missing-grade"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/active/risk/missing-grade"
+          ]
+        }
+      ],
+      "expected": {
+        "decision_statuses": [
+          "EMITTED",
+          "UNVERSIONED_AUDIT_ONLY",
+          "UNVERSIONED_AUDIT_ONLY",
+          "UNVERSIONED_HIGHER_RISK_PENDING_REVIEW",
+          "DUPLICATE_UNVERSIONED_AUDIT_ONLY",
+          "DUPLICATE_UNVERSIONED_AUDIT_ONLY",
+          "UNVERSIONED_HIGHER_RISK_PENDING_REVIEW"
+        ],
+        "notification_action_counts_after_each_step": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "card_revision_counts_after_each_step": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "notice_lifecycle_states_after_each_step": [
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "audit_record_counts_after_each_step": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "pending_risk_review_counts_after_each_step": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2
+        ],
+        "reported_risk_grade_statuses": [
+          "WARNING_FROM_VERSIONED_FLAG",
+          "LOW_CLAIM",
+          "WARNING_CLAIM",
+          "CRITICAL_CLAIM",
+          "CRITICAL_CLAIM",
+          "CRITICAL_CLAIM",
+          "UNKNOWN_MISSING_CLAIM"
+        ],
+        "risk_signal_grades": [
+          "WARNING",
+          "LOW",
+          "WARNING",
+          "CRITICAL",
+          "CRITICAL",
+          "CRITICAL",
+          "CRITICAL"
+        ],
+        "current_card_risk_grades_after_each_step": [
+          "WARNING",
+          "WARNING",
+          "WARNING",
+          "WARNING",
+          "WARNING",
+          "WARNING",
+          "WARNING"
+        ],
+        "final_history_intent_ids": [
+          "SYNTH-MIX-A-001"
+        ],
+        "final_notice_lifecycle_status": "ACTIVE",
+        "final_notification_action_count": 1,
+        "final_card_revision_count": 1,
+        "final_audit_record_count": 6,
+        "final_pending_risk_review_count": 2,
+        "duplicate_of_intent_ids": [
+          "SYNTH-MIX-A-HIGH",
+          "SYNTH-MIX-A-HIGH"
+        ],
+        "all_pending_reviews_unconfirmed": true,
+        "delivery_status": "NOT_DELIVERED"
+      },
+      "direct_apply_negative_control_expected": {
+        "decision_statuses": [
+          "EMITTED",
+          "COALESCED_IN_PLACE",
+          "COALESCED_IN_PLACE",
+          "EMITTED",
+          "DUPLICATE_REPLAY_IGNORED",
+          "COALESCED_IN_PLACE",
+          "COALESCED_IN_PLACE"
+        ],
+        "notification_action_counts_after_each_step": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2
+        ],
+        "card_revision_counts_after_each_step": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6
+        ],
+        "notice_lifecycle_states_after_each_step": [
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE",
+          "ACTIVE"
+        ]
+      }
+    },
+    {
+      "scenario_id": "cancelled_versioned_card",
+      "context": {
+        "display_card_id": "CARD-SYNTH-MIX-CANCELLED-01",
+        "candidate_episode_ids": [
+          "SYNTH-EPISODE-C1",
+          "SYNTH-EPISODE-C2"
+        ],
+        "association_id": "SYNTH-ASSOCIATION-CANCELLED",
+        "association_state": "UNKNOWN_PENDING",
+        "source_ids": [
+          "SYNTH-SOURCE-CANCELLED"
+        ],
+        "observation_ids": [
+          "SYNTH-OBS-CANCELLED"
+        ],
+        "experiment_batch_id": "SYNTH-MIX-CANCELLED-BATCH",
+        "dedup_episode_interval_key": "SYNTH-MIX-CANCELLED-INTERVAL"
+      },
+      "steps": [
+        {
+          "step_id": "cancelled_card_initial_v1",
+          "intent_id": "SYNTH-MIX-C-001",
+          "transport_receipt_id": "SYNTH-RECEIPT-C-001",
+          "notice_version": 1,
+          "kind": "ASSOCIATION_PENDING",
+          "source_seconds": 0,
+          "observed_seconds": 0,
+          "received_seconds": 0,
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/cancelled/notice/v1"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/cancelled/risk/warning"
+          ]
+        },
+        {
+          "step_id": "cancelled_card_cancel_v3",
+          "intent_id": "SYNTH-MIX-C-003",
+          "transport_receipt_id": "SYNTH-RECEIPT-C-003",
+          "notice_version": 3,
+          "kind": "NOTICE_CANCELLED",
+          "source_seconds": 2,
+          "observed_seconds": 2,
+          "received_seconds": 3,
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "EXPOSURE"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/cancelled/cancel/v3"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/cancelled/risk/warning"
+          ]
+        },
+        {
+          "step_id": "cancelled_card_unversioned_higher_risk",
+          "intent_id": "SYNTH-MIX-C-HIGH",
+          "transport_receipt_id": "SYNTH-RECEIPT-C-HIGH",
+          "notice_version": null,
+          "kind": "ASSOCIATION_PENDING",
+          "source_seconds": 4,
+          "observed_seconds": 4,
+          "received_seconds": 4,
+          "risk_level_claim": "CRITICAL",
+          "risk_stage": "PRECAUTIONARY",
+          "risk_flags": [
+            "EXPOSURE_HIGH"
+          ],
+          "evidence_refs": [
+            "synthetic://mixed/cancelled/high"
+          ],
+          "risk_basis_ids": [
+            "synthetic://mixed/cancelled/risk/critical"
+          ]
+        }
+      ],
+      "expected": {
+        "decision_statuses": [
+          "EMITTED",
+          "EMITTED",
+          "UNVERSIONED_HIGHER_RISK_PENDING_REVIEW"
+        ],
+        "notification_action_counts_after_each_step": [
+          1,
+          2,
+          2
+        ],
+        "card_revision_counts_after_each_step": [
+          1,
+          2,
+          2
+        ],
+        "notice_lifecycle_states_after_each_step": [
+          "ACTIVE",
+          "CANCELLED",
+          "CANCELLED"
+        ],
+        "audit_record_counts_after_each_step": [
+          0,
+          0,
+          1
+        ],
+        "pending_risk_review_counts_after_each_step": [
+          0,
+          0,
+          1
+        ],
+        "reported_risk_grade_statuses": [
+          "WARNING_FROM_VERSIONED_FLAG",
+          "WARNING_FROM_VERSIONED_FLAG",
+          "CRITICAL_CLAIM"
+        ],
+        "risk_signal_grades": [
+          "WARNING",
+          "WARNING",
+          "CRITICAL"
+        ],
+        "current_card_risk_grades_after_each_step": [
+          "WARNING",
+          "WARNING",
+          "WARNING"
+        ],
+        "final_history_intent_ids": [
+          "SYNTH-MIX-C-001",
+          "SYNTH-MIX-C-003"
+        ],
+        "final_notice_lifecycle_status": "CANCELLED",
+        "final_notification_action_count": 2,
+        "final_card_revision_count": 2,
+        "final_audit_record_count": 1,
+        "final_pending_risk_review_count": 1,
+        "all_pending_reviews_unconfirmed": true,
+        "delivery_status": "NOT_DELIVERED"
+      },
+      "direct_apply_negative_control_expected": {
+        "decision_statuses": [
+          "EMITTED",
+          "EMITTED",
+          "EMITTED"
+        ],
+        "notification_action_counts_after_each_step": [
+          1,
+          2,
+          3
+        ],
+        "card_revision_counts_after_each_step": [
+          1,
+          2,
+          3
+        ],
+        "notice_lifecycle_states_after_each_step": [
+          "ACTIVE",
+          "CANCELLED",
+          "ACTIVE"
+        ]
+      }
+    }
+  ],
+  "unsupported_items": [
+    "Proof that the real source is authorized to issue notice_version values.",
+    "Unversioned messages arriving before the first accepted versioned notice.",
+    "Production risk-grade semantics or ranking; LOW/WARNING/CRITICAL are synthetic comparison values in this fixture.",
+    "Multi-flag or unmapped-risk aggregation beyond the existing single-flag preview mapping.",
+    "Whether a pending higher-risk review should later become a user-visible notification, and under which evidence gate.",
+    "Mixed-source independence, physical event truth, real clock accuracy, real delivery, acknowledgment, or efficacy.",
+    "Semantic fingerprint identity guarantees and transport-provider retry guarantees outside the synthetic inputs."
+  ],
+  "spec_version": 2,
+  "supersedes_input": "INPUT_AND_EXPECTATIONS.json (V1; preserved with FIXTURE_VALIDATION_FAILURE_V1.json)",
+  "spec_revision_note": "Input-shape correction only: replaced the empty risk_flags array on the LOW-claim case with one non-empty unmapped synthetic flag because ActionIntent requires non-empty risk_flags. All expected decisions, counts, lifecycle states, audit counts, and review counts are byte-for-byte unchanged."
+}
