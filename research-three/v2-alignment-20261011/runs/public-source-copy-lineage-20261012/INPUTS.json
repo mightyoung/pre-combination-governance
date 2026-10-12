@@ -1,0 +1,669 @@
+{
+  "run_id": "USGS-PUBLIC-REPLAY-LINEAGE-BOUNDARY-20261012-V1",
+  "status": "FROZEN_PRE_RUN",
+  "classification": "REAL_PUBLIC_SNAPSHOT_ANCHOR_PLUS_SYNTHETIC_LINEAGE_CONTRACT_CASES",
+  "synthetic_only_for_method_calls": true,
+  "protocol_path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/PROTOCOL.md",
+  "method": "rfb.research.source_lineage_contract_v1.assess_source_lineage",
+  "as_of": "2026-10-12T00:00:00Z",
+  "public_source_anchor": {
+    "sample_path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+    "artifact_kind": "REAL_PUBLIC_FEED_SAMPLE",
+    "feed_name": "USGS past-day earthquake GeoJSON summary feed",
+    "feature_id": "ci41346535",
+    "ids": [
+      "ci41346535",
+      "us6000u1mg"
+    ],
+    "source_labels": [
+      "ci",
+      "us"
+    ],
+    "event_origin_time": "2026-10-11T21:28:13.930Z",
+    "catalog_updated_time": "2026-10-11T22:39:25.040Z",
+    "feed_generated_time": "2026-10-11T23:44:47.000Z",
+    "lineage_status": "UNKNOWN",
+    "raw_bytes_saved": false,
+    "raw_response_sha256": null,
+    "exact_local_capture_time_utc": null,
+    "directional_forwarding_receipts_available": false,
+    "allowed_interpretation": "The IDs and source labels are metadata on one catalog feature; they do not prove separate acquisition paths or source independence.",
+    "not_submitted_to_contract_as_complete_graph": true
+  },
+  "synthetic_copy_sequence": {
+    "base_feature_ref": "public-sample:ci41346535",
+    "copy_offsets_seconds": [
+      0,
+      1,
+      2
+    ],
+    "copy_type": "HYPOTHETICAL_REPLAY_OR_FORWARD_COPY",
+    "observed_in_public_feed": false,
+    "exact_payload_replay_proven": false,
+    "source_independence": "NOT_ESTABLISHED",
+    "notification_created": false,
+    "delivery_status": "NOT_DELIVERED",
+    "numeric_risk_confidence_delta": "NOT_COMPUTED"
+  },
+  "cases": [
+    {
+      "case_id": "synthetic_shared_graph_base",
+      "left": {
+        "observation_id": "SYNTH-OBS-A",
+        "declared_root_id": "DECLARED-ROOT-A",
+        "terminal_node_id": "SYNTH-OBS-A",
+        "trace_complete": true,
+        "completeness_evidence": {
+          "source_ref": "synthetic://copy-lineage/completeness/SYNTH-OBS-A",
+          "actual_available_at": "2026-10-12T00:00:00Z",
+          "earliest_known_at": "2026-10-12T00:00:00Z",
+          "trust_status": "VERIFIED",
+          "valid_until": "2026-10-12T00:10:00Z"
+        },
+        "nodes": [
+          {
+            "node_id": "SYNTH-UPSTREAM-ONE",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-ACQ-A",
+            "node_type": "ACQUISITION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-ACQ-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-OBS-A",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-OBS-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "SYNTH-EDGE-A1",
+            "upstream_node_id": "SYNTH-UPSTREAM-ONE",
+            "downstream_node_id": "SYNTH-ACQ-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A1",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-A2",
+            "upstream_node_id": "SYNTH-ACQ-A",
+            "downstream_node_id": "SYNTH-OBS-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A2",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ]
+      },
+      "right": {
+        "observation_id": "SYNTH-OBS-B",
+        "declared_root_id": "DECLARED-ROOT-B",
+        "terminal_node_id": "SYNTH-OBS-B",
+        "trace_complete": true,
+        "completeness_evidence": {
+          "source_ref": "synthetic://copy-lineage/completeness/SYNTH-OBS-B",
+          "actual_available_at": "2026-10-12T00:00:00Z",
+          "earliest_known_at": "2026-10-12T00:00:00Z",
+          "trust_status": "VERIFIED",
+          "valid_until": "2026-10-12T00:10:00Z"
+        },
+        "nodes": [
+          {
+            "node_id": "SYNTH-UPSTREAM-ONE",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-ACQ-B",
+            "node_type": "ACQUISITION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-ACQ-B",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-OBS-B",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-OBS-B",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "SYNTH-EDGE-B1",
+            "upstream_node_id": "SYNTH-UPSTREAM-ONE",
+            "downstream_node_id": "SYNTH-ACQ-B",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-B1",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-B2",
+            "upstream_node_id": "SYNTH-ACQ-B",
+            "downstream_node_id": "SYNTH-OBS-B",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-B2",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ]
+      },
+      "duplicate_assertion_copies": 1,
+      "expected": {
+        "status": "SHARED_KNOWN_ANCESTOR",
+        "declared_root_id_relation": "DISTINCT_DECLARED_IDS",
+        "shared_ancestor_node_ids": [
+          "SYNTH-UPSTREAM-ONE"
+        ],
+        "unique_edge_count": 4,
+        "statistical_independence_established": false
+      }
+    },
+    {
+      "case_id": "synthetic_shared_graph_four_assertion_copies",
+      "left": {
+        "observation_id": "SYNTH-OBS-A",
+        "declared_root_id": "DECLARED-ROOT-A",
+        "terminal_node_id": "SYNTH-OBS-A",
+        "trace_complete": true,
+        "completeness_evidence": {
+          "source_ref": "synthetic://copy-lineage/completeness/SYNTH-OBS-A",
+          "actual_available_at": "2026-10-12T00:00:00Z",
+          "earliest_known_at": "2026-10-12T00:00:00Z",
+          "trust_status": "VERIFIED",
+          "valid_until": "2026-10-12T00:10:00Z"
+        },
+        "nodes": [
+          {
+            "node_id": "SYNTH-UPSTREAM-ONE",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-ACQ-A",
+            "node_type": "ACQUISITION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-ACQ-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-OBS-A",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-OBS-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-UPSTREAM-ONE",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-ACQ-A",
+            "node_type": "ACQUISITION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-ACQ-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-OBS-A",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-OBS-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-UPSTREAM-ONE",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-ACQ-A",
+            "node_type": "ACQUISITION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-ACQ-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-OBS-A",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-OBS-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-UPSTREAM-ONE",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-ACQ-A",
+            "node_type": "ACQUISITION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-ACQ-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-OBS-A",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-OBS-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "SYNTH-EDGE-A1",
+            "upstream_node_id": "SYNTH-UPSTREAM-ONE",
+            "downstream_node_id": "SYNTH-ACQ-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A1",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-A2",
+            "upstream_node_id": "SYNTH-ACQ-A",
+            "downstream_node_id": "SYNTH-OBS-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A2",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-A1",
+            "upstream_node_id": "SYNTH-UPSTREAM-ONE",
+            "downstream_node_id": "SYNTH-ACQ-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A1",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-A2",
+            "upstream_node_id": "SYNTH-ACQ-A",
+            "downstream_node_id": "SYNTH-OBS-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A2",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-A1",
+            "upstream_node_id": "SYNTH-UPSTREAM-ONE",
+            "downstream_node_id": "SYNTH-ACQ-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A1",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-A2",
+            "upstream_node_id": "SYNTH-ACQ-A",
+            "downstream_node_id": "SYNTH-OBS-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A2",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-A1",
+            "upstream_node_id": "SYNTH-UPSTREAM-ONE",
+            "downstream_node_id": "SYNTH-ACQ-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A1",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-A2",
+            "upstream_node_id": "SYNTH-ACQ-A",
+            "downstream_node_id": "SYNTH-OBS-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-A2",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ]
+      },
+      "right": {
+        "observation_id": "SYNTH-OBS-B",
+        "declared_root_id": "DECLARED-ROOT-B",
+        "terminal_node_id": "SYNTH-OBS-B",
+        "trace_complete": true,
+        "completeness_evidence": {
+          "source_ref": "synthetic://copy-lineage/completeness/SYNTH-OBS-B",
+          "actual_available_at": "2026-10-12T00:00:00Z",
+          "earliest_known_at": "2026-10-12T00:00:00Z",
+          "trust_status": "VERIFIED",
+          "valid_until": "2026-10-12T00:10:00Z"
+        },
+        "nodes": [
+          {
+            "node_id": "SYNTH-UPSTREAM-ONE",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-ACQ-B",
+            "node_type": "ACQUISITION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-ACQ-B",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-OBS-B",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-OBS-B",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "SYNTH-EDGE-B1",
+            "upstream_node_id": "SYNTH-UPSTREAM-ONE",
+            "downstream_node_id": "SYNTH-ACQ-B",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-B1",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "edge_id": "SYNTH-EDGE-B2",
+            "upstream_node_id": "SYNTH-ACQ-B",
+            "downstream_node_id": "SYNTH-OBS-B",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-EDGE-B2",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ]
+      },
+      "duplicate_assertion_copies": 4,
+      "expected": {
+        "status": "SHARED_KNOWN_ANCESTOR",
+        "declared_root_id_relation": "DISTINCT_DECLARED_IDS",
+        "shared_ancestor_node_ids": [
+          "SYNTH-UPSTREAM-ONE"
+        ],
+        "unique_edge_count": 4,
+        "statistical_independence_established": false
+      }
+    },
+    {
+      "case_id": "synthetic_disjoint_complete_graph_control",
+      "left": {
+        "observation_id": "SYNTH-DISJOINT-OBS-A",
+        "declared_root_id": "DECLARED-ROOT-C",
+        "terminal_node_id": "SYNTH-DISJOINT-OBS-A",
+        "trace_complete": true,
+        "completeness_evidence": {
+          "source_ref": "synthetic://copy-lineage/completeness/SYNTH-DISJOINT-OBS-A",
+          "actual_available_at": "2026-10-12T00:00:00Z",
+          "earliest_known_at": "2026-10-12T00:00:00Z",
+          "trust_status": "VERIFIED",
+          "valid_until": "2026-10-12T00:10:00Z"
+        },
+        "nodes": [
+          {
+            "node_id": "SYNTH-DISJOINT-SOURCE-A",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-DISJOINT-SOURCE-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-DISJOINT-OBS-A",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-DISJOINT-OBS-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "SYNTH-DISJOINT-EDGE-A",
+            "upstream_node_id": "SYNTH-DISJOINT-SOURCE-A",
+            "downstream_node_id": "SYNTH-DISJOINT-OBS-A",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-DISJOINT-EDGE-A",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ]
+      },
+      "right": {
+        "observation_id": "SYNTH-DISJOINT-OBS-B",
+        "declared_root_id": "DECLARED-ROOT-D",
+        "terminal_node_id": "SYNTH-DISJOINT-OBS-B",
+        "trace_complete": true,
+        "completeness_evidence": {
+          "source_ref": "synthetic://copy-lineage/completeness/SYNTH-DISJOINT-OBS-B",
+          "actual_available_at": "2026-10-12T00:00:00Z",
+          "earliest_known_at": "2026-10-12T00:00:00Z",
+          "trust_status": "VERIFIED",
+          "valid_until": "2026-10-12T00:10:00Z"
+        },
+        "nodes": [
+          {
+            "node_id": "SYNTH-DISJOINT-SOURCE-B",
+            "node_type": "SOURCE",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-DISJOINT-SOURCE-B",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          },
+          {
+            "node_id": "SYNTH-DISJOINT-OBS-B",
+            "node_type": "OBSERVATION",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/node/SYNTH-DISJOINT-OBS-B",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "SYNTH-DISJOINT-EDGE-B",
+            "upstream_node_id": "SYNTH-DISJOINT-SOURCE-B",
+            "downstream_node_id": "SYNTH-DISJOINT-OBS-B",
+            "evidence": {
+              "source_ref": "synthetic://copy-lineage/edge/SYNTH-DISJOINT-EDGE-B",
+              "actual_available_at": "2026-10-12T00:00:00Z",
+              "earliest_known_at": "2026-10-12T00:00:00Z",
+              "trust_status": "VERIFIED",
+              "valid_until": "2026-10-12T00:10:00Z"
+            }
+          }
+        ]
+      },
+      "duplicate_assertion_copies": 1,
+      "expected": {
+        "status": "NO_SHARED_KNOWN_ANCESTOR",
+        "declared_root_id_relation": "DISTINCT_DECLARED_IDS",
+        "shared_ancestor_node_ids": [],
+        "unique_edge_count": 2,
+        "statistical_independence_established": false
+      }
+    }
+  ],
+  "metrics": {
+    "contract_conformance": "Observed contract state and fields equal frozen expectations.",
+    "duplicate_invariance_fields": [
+      "status",
+      "declared_root_id_relation",
+      "shared_ancestor_node_ids",
+      "unique_edge_count",
+      "evidence_refs",
+      "statistical_independence_established"
+    ],
+    "public_sample_lineage": "UNKNOWN regardless of listed ID/source-label count.",
+    "risk_confidence": "No numeric score is defined or computed; exact duplicate assertions permit zero new lineage support."
+  }
+}
