@@ -1,0 +1,215 @@
+{
+  "classification": "CONTROLLED_SYNTHETIC_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "conditions": {
+    "FULL_RECEIPT_CHAIN": {
+      "available_receipt_ids": [
+        "RECEIPT-HOP1",
+        "RECEIPT-HOP2"
+      ],
+      "pair_results": [
+        {
+          "lineage_status": "SHARED_KNOWN_ANCESTOR",
+          "pair_id": "SOURCE/HOP1",
+          "reason_codes": [
+            "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+            "SHARED_KNOWN_ANCESTOR"
+          ],
+          "root_id_relation": "SAME_DECLARED_ID",
+          "shared_ancestor_node_ids": [
+            "NODE-SOURCE"
+          ],
+          "statistical_independence_established": false,
+          "unique_edge_count": 2
+        },
+        {
+          "lineage_status": "SHARED_KNOWN_ANCESTOR",
+          "pair_id": "SOURCE/HOP2",
+          "reason_codes": [
+            "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+            "SHARED_KNOWN_ANCESTOR"
+          ],
+          "root_id_relation": "SAME_DECLARED_ID",
+          "shared_ancestor_node_ids": [
+            "NODE-SOURCE"
+          ],
+          "statistical_independence_established": false,
+          "unique_edge_count": 4
+        },
+        {
+          "lineage_status": "SHARED_KNOWN_ANCESTOR",
+          "pair_id": "HOP1/HOP2",
+          "reason_codes": [
+            "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+            "SHARED_KNOWN_ANCESTOR"
+          ],
+          "root_id_relation": "SAME_DECLARED_ID",
+          "shared_ancestor_node_ids": [
+            "NODE-HOP1",
+            "NODE-SOURCE",
+            "NODE-TRANSFORM-1"
+          ],
+          "statistical_independence_established": false,
+          "unique_edge_count": 4
+        }
+      ],
+      "receipt_statuses": [
+        "PASS_LOCAL_RUNNER_CONSISTENCY",
+        "PASS_LOCAL_RUNNER_CONSISTENCY"
+      ]
+    },
+    "HASH_ONLY_DEDUP": {
+      "available_receipt_ids": [],
+      "distinct_hash_bucket_count": 3,
+      "pair_results": [
+        {
+          "dedup_outcome": "DISTINCT_HASH_BUCKETS",
+          "left_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+          "pair_id": "SOURCE/HOP1",
+          "right_sha256": "228636e4fd7f1c9fc8d2c4b04043d16653aa3db8c4b005c93e4c5bcc2cc17893"
+        },
+        {
+          "dedup_outcome": "DISTINCT_HASH_BUCKETS",
+          "left_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+          "pair_id": "SOURCE/HOP2",
+          "right_sha256": "95fa65fe89464c2ec2034ecb3d5995f581a91bfc4be7fc61fa943e8a1323b195"
+        },
+        {
+          "dedup_outcome": "DISTINCT_HASH_BUCKETS",
+          "left_sha256": "228636e4fd7f1c9fc8d2c4b04043d16653aa3db8c4b005c93e4c5bcc2cc17893",
+          "pair_id": "HOP1/HOP2",
+          "right_sha256": "95fa65fe89464c2ec2034ecb3d5995f581a91bfc4be7fc61fa943e8a1323b195"
+        }
+      ]
+    },
+    "MISSING_INTERMEDIATE_RECEIPT": {
+      "available_receipt_ids": [
+        "RECEIPT-HOP1"
+      ],
+      "omitted_receipt_id": "RECEIPT-HOP2",
+      "pair_results": [
+        {
+          "lineage_status": "SHARED_KNOWN_ANCESTOR",
+          "pair_id": "SOURCE/HOP1",
+          "reason_codes": [
+            "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+            "SHARED_KNOWN_ANCESTOR"
+          ],
+          "root_id_relation": "SAME_DECLARED_ID",
+          "shared_ancestor_node_ids": [
+            "NODE-SOURCE"
+          ],
+          "statistical_independence_established": false,
+          "unique_edge_count": 2
+        },
+        {
+          "lineage_status": "UNKNOWN",
+          "pair_id": "SOURCE/HOP2",
+          "reason_codes": [
+            "TRACE_INCOMPLETE"
+          ],
+          "root_id_relation": "SAME_DECLARED_ID",
+          "shared_ancestor_node_ids": [],
+          "statistical_independence_established": false,
+          "unique_edge_count": 0
+        },
+        {
+          "lineage_status": "UNKNOWN",
+          "pair_id": "HOP1/HOP2",
+          "reason_codes": [
+            "TRACE_INCOMPLETE"
+          ],
+          "root_id_relation": "SAME_DECLARED_ID",
+          "shared_ancestor_node_ids": [],
+          "statistical_independence_established": false,
+          "unique_edge_count": 0
+        }
+      ],
+      "receipt_statuses": [
+        "PASS_LOCAL_RUNNER_CONSISTENCY",
+        "MISSING_RECEIPT"
+      ]
+    }
+  },
+  "delivery_status": "NOT_DELIVERED",
+  "event_identity_status": "NOT_EVALUATED",
+  "independence_established": false,
+  "production_truth_denominator": "UNAVAILABLE",
+  "receipt_authenticity": "UNSIGNED_LOCAL_RUNNER_ASSERTIONS; PASS means internal IDs/hashes/transform references are consistent under this controlled runner only.",
+  "receipts": [
+    {
+      "child_observation_id": "HOP1",
+      "child_sha256": "228636e4fd7f1c9fc8d2c4b04043d16653aa3db8c4b005c93e4c5bcc2cc17893",
+      "generated_at_utc": "2000-01-01T00:00:01Z",
+      "issuer": "LOCAL_CONTROLLED_SYNTHETIC_RUNNER",
+      "parent_observation_id": "SOURCE",
+      "parent_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+      "receipt_id": "RECEIPT-HOP1",
+      "receipt_sha256": "e0bbc672ab5d58dbbc06b81f566ec0c0d3aab1c1ecda3f30bb05757d7be0e786",
+      "signature": null,
+      "transform_code_sha256": "d1cbc59fa93f2f3a57a7fbe2a2f8d7b84594045945f9af1542a8e0ead3bc00de",
+      "transform_id": "SYNTHETIC-RELAY-ONE-V1"
+    },
+    {
+      "child_observation_id": "HOP2",
+      "child_sha256": "95fa65fe89464c2ec2034ecb3d5995f581a91bfc4be7fc61fa943e8a1323b195",
+      "generated_at_utc": "2000-01-01T00:00:02Z",
+      "issuer": "LOCAL_CONTROLLED_SYNTHETIC_RUNNER",
+      "parent_observation_id": "HOP1",
+      "parent_sha256": "228636e4fd7f1c9fc8d2c4b04043d16653aa3db8c4b005c93e4c5bcc2cc17893",
+      "receipt_id": "RECEIPT-HOP2",
+      "receipt_sha256": "11d1e61bab6e99338f798bfd1c1b8ef0b3450e5ab778048e434ad95838d5975a",
+      "signature": null,
+      "transform_code_sha256": "d1cbc59fa93f2f3a57a7fbe2a2f8d7b84594045945f9af1542a8e0ead3bc00de",
+      "transform_id": "SYNTHETIC-RELAY-TWO-V1"
+    }
+  ],
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V1",
+  "runner_code_sha256": "d1cbc59fa93f2f3a57a7fbe2a2f8d7b84594045945f9af1542a8e0ead3bc00de",
+  "source_anchor": {
+    "byte_length": 2537,
+    "classification": "SAVED_NORMALIZED_PUBLIC_SAMPLE_NOT_RAW_RESPONSE",
+    "historical_receiver_time": "UNKNOWN_NOT_IN_SAVED_SAMPLE",
+    "observation_id": "SOURCE",
+    "projection_keys": [
+      "code",
+      "detail_url",
+      "ids_raw",
+      "mag",
+      "net",
+      "place",
+      "sources_raw",
+      "time_epoch_ms",
+      "time_utc",
+      "types_raw",
+      "updated_epoch_ms",
+      "updated_utc"
+    ],
+    "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+  },
+  "synthetic_aliases": [
+    {
+      "byte_length": 280,
+      "observation_id": "HOP1",
+      "outer_id": "relay-one/ci41346535",
+      "projection_keys": [
+        "event_timestamp",
+        "location_text",
+        "magnitude_value",
+        "record_ref"
+      ],
+      "sha256": "228636e4fd7f1c9fc8d2c4b04043d16653aa3db8c4b005c93e4c5bcc2cc17893"
+    },
+    {
+      "byte_length": 272,
+      "observation_id": "HOP2",
+      "outer_id": "relay-two::relay-one/ci41346535",
+      "projection_keys": [
+        "source_alias",
+        "summary",
+        "updated_epoch_ms"
+      ],
+      "sha256": "95fa65fe89464c2ec2034ecb3d5995f581a91bfc4be7fc61fa943e8a1323b195"
+    }
+  ],
+  "world_id": "SYNTHETIC-WORLD-001"
+}

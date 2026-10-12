@@ -1,0 +1,214 @@
+{
+  "manifest_version": 1,
+  "purpose": "Repository-relative files and hashes for persistent storage in a Mac checkout.",
+  "mac_local_project_root": null,
+  "copy_status": "NOT_COPIED_BY_THIS_RUN",
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V1",
+  "branch": "task/research-three-two-hop-lineage-20261012",
+  "pre_run_commit": "c1212932e52ce1025c27d1168e68c1e310b7d387",
+  "run_manifest_sha256": "930dc2d59c40e01fc8d9841fb69a567fdaa4145548efc57913d5d86064c8ef9b",
+  "files": [
+    {
+      "path": "outputs/remote-shakedown/SHK-000-remote-20260714T0900Z/NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "bytes": 96,
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "path": "outputs/remote-shakedown/SHK-000-remote-20260714T0900Z/manifest.json",
+      "bytes": 2108,
+      "sha256": "97828582c8b06090685e888634b2e9c251d3b5f47a6802ebc82269ddd9a45e2d"
+    },
+    {
+      "path": "outputs/remote-shakedown/SHK-000-remote-20260714T0900Z/run_ledger.jsonl",
+      "bytes": 15072,
+      "sha256": "20688b7996122a65ddd668d5c6fb5e2c9453f618acd2d328fd4b77a9674659a8"
+    },
+    {
+      "path": "outputs/restore-cache/SHK-001A-resource-v611-20260715/NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "bytes": 96,
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "path": "outputs/restore-cache/SHK-001A-resource-v611-20260715/manifest.json",
+      "bytes": 2115,
+      "sha256": "70bfe7bd33329fadfba672ade779d5fe15779dda56e4bed52bef95f8bcbd7958"
+    },
+    {
+      "path": "outputs/restore-cache/SHK-001A-resource-v611-20260715/run_ledger.jsonl",
+      "bytes": 52752,
+      "sha256": "5b3964367fc08178f33e65f9f4a40bdbfccd092b7f8dca50b8a1369951e6c017"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/INPUTS_V2.json",
+      "bytes": 4952,
+      "sha256": "aa1087f365b0f5fc3e6800f39d1d2e70599dbc1a74229c5edc7b90402f539f8a"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/LOCAL_RECEIPTS_V2.json",
+      "bytes": 3805,
+      "sha256": "89ed6c204c7fb6df6eb2d7ccd4fb02c30d14f753c058316b60f12465e4e8b2f8"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/PRE_RUN_MANIFEST_V2.json",
+      "bytes": 5723,
+      "sha256": "9f6529528440f84ee8dbf9ec8ac8d0fe63b7abb21a6298cf2f9f6736f8436c15"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/PROTOCOL_V2.md",
+      "bytes": 2534,
+      "sha256": "da9d309e96efa4e2946161a0c6a386d1138ddd227a91476f6654b2d21fcaee31"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/REPORT_V2.md",
+      "bytes": 5935,
+      "sha256": "4cfded45ff8349662c4d7206ca13fd7970d31bd4566f2c8bf16072b197d17468"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/RESULT_V2.json",
+      "bytes": 7837,
+      "sha256": "b5b1ce97ceb08a9197408a75c0fce751d1bba4e687c206a0f62ad279c6dcf22c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/VISUALIZATION_V2.svg",
+      "bytes": 5356,
+      "sha256": "f33ac8cbbfebc287b45c9f0c1a519296f7314c719c86e6c370f5b99d8f9d1bc3"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/run_local_replay_v2.py",
+      "bytes": 28588,
+      "sha256": "3b44fffc1221f8bce8519e5d26fb59e9179486fd7298224f5e8aec109191ff44"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/ALIAS_HOP1.json",
+      "bytes": 280,
+      "sha256": "228636e4fd7f1c9fc8d2c4b04043d16653aa3db8c4b005c93e4c5bcc2cc17893"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/ALIAS_HOP2.json",
+      "bytes": 272,
+      "sha256": "95fa65fe89464c2ec2034ecb3d5995f581a91bfc4be7fc61fa943e8a1323b195"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/INPUTS.json",
+      "bytes": 3025,
+      "sha256": "093d1bd55a01aa3eb86bc88a3cbe3bf2b462c85b8bec4ced3b3dbbeaedb5232c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/METHOD_OUTPUTS.json",
+      "bytes": 7384,
+      "sha256": "a2feb4759acf9bc08a6f5bdb4d328954d46267d27012c441c3cef654719f4b11"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/METHOD_OUTPUT_FREEZE.json",
+      "bytes": 388,
+      "sha256": "5ef30be4a2390800876c63c7cb17116f9872ba03a26bffe59cd54c3af3aa7dec"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/PRE_RUN_MANIFEST.json",
+      "bytes": 1738,
+      "sha256": "3c03e46611e1122ca8ba13c1f62da3cea79e1c3b8c0b8fccaf5c04003d405fd1"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/PRIOR_V2_AUDIT_ADDENDUM.md",
+      "bytes": 2305,
+      "sha256": "60c971434c092651442d4f1fed8e89209f1e4458c33ced2aaf2f8bef851a5d44"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/PROTOCOL.md",
+      "bytes": 6186,
+      "sha256": "326b494ca6c00a09050bd90a8b0dbb32170ac99a4cb75ccc82cbd330abbea531"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/REPORT.md",
+      "bytes": 6276,
+      "sha256": "24225a09734cb161c0a415be63bce86ecbfe01e59764ee372a31c9c5da4689ab"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/RUNNER_CHECKS.json",
+      "bytes": 1100,
+      "sha256": "65097a18a6c5693c8c6b0723adc00f4b9635d77bb67a169565b67d12144e48c8"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/SCORED_RESULT.json",
+      "bytes": 3142,
+      "sha256": "05a6c80bd03d178c88a00c599877e491151e149d9bbf7670d21eb7da3479f712"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/SCORER_TRUTH_MANIFEST.json",
+      "bytes": 1620,
+      "sha256": "fd5c3632750c5d202facd62bb0d13ea889148cc4410a6c63e0fa20a9d0b6c37c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/SYNTHETIC_TRUTH_LOG.json",
+      "bytes": 923,
+      "sha256": "fe777a8c976c4f7b0ebb5f919f3f1c41178409f1a7a3e74ffb7aebd9c2b177f6"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/VISUALIZATION_TWO_HOP.svg",
+      "bytes": 6497,
+      "sha256": "1b542194a355d2ea4ef3a1f124e92da8f8b65233fc225bc04712ed7192a334d3"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/VISUALIZATION_V2_AUDIT_CORRECTED.svg",
+      "bytes": 2415,
+      "sha256": "27f0bf21793bd586a7b0e72874cb79f50d8f7aea101ef1e89b3cdf3db8e58e72"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/run_two_hop_lineage.py",
+      "bytes": 17277,
+      "sha256": "d1cbc59fa93f2f3a57a7fbe2a2f8d7b84594045945f9af1542a8e0ead3bc00de"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/score_two_hop_lineage.py",
+      "bytes": 5233,
+      "sha256": "c481697f2a6783d0cab658272053ea1a5aba8d97529c40ae371d436bb612741e"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+      "bytes": 2537,
+      "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_SOURCE_AUDIT.md",
+      "bytes": 6770,
+      "sha256": "bebdb8ea2b074fd5778e8c873e34ac3f86361fe03fead214ba2f8b0752d68d29"
+    },
+    {
+      "path": "risk-fusion-bench/outputs/D_shakedown/SHK-000-local-20260714T1655CST/NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "bytes": 96,
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "path": "risk-fusion-bench/outputs/D_shakedown/SHK-000-local-20260714T1655CST/manifest.json",
+      "bytes": 2109,
+      "sha256": "0ce8a913dbbba022de32f05dcd001201eff30193c2f8b190fc2289a98f248f1d"
+    },
+    {
+      "path": "risk-fusion-bench/outputs/D_shakedown/SHK-000-local-20260714T1655CST/qa.json",
+      "bytes": 942,
+      "sha256": "8f9f5d2a6f6ee196aff71e161f0174c18cb9f9f3272b2a1312d541573a93508b"
+    },
+    {
+      "path": "risk-fusion-bench/outputs/D_shakedown/SHK-000-local-20260714T1655CST/run_ledger.jsonl",
+      "bytes": 15072,
+      "sha256": "20688b7996122a65ddd668d5c6fb5e2c9453f618acd2d328fd4b77a9674659a8"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/source_lineage_contract_v1.py",
+      "bytes": 14240,
+      "sha256": "ca58668d724c3b547de01dbcf3b6e0460adbdf1cf72ae54bd94515d5ac3bac26"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_source_lineage_contract_v1.py",
+      "bytes": 15236,
+      "sha256": "70e4d49fe50701f74a2fbb198d971a04cd76a69d3c0246954821095a98ac78cd"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/RUN_MANIFEST.json",
+      "bytes": 9860,
+      "sha256": "930dc2d59c40e01fc8d9841fb69a567fdaa4145548efc57913d5d86064c8ef9b"
+    }
+  ],
+  "self_hash_excluded": true,
+  "path_rule": "Resolve each path from the Mac repository checkout root; never reuse an absolute path from another environment."
+}

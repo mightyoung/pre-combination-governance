@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="780" viewBox="0 0 1440 780" role="img" aria-labelledby="title desc">
+<title id="title">Two-hop controlled synthetic lineage replay</title>
+<desc id="desc">One saved normalized USGS sample is locally transformed twice with changing outer IDs and projections. Full receipts, missing second-hop receipt, and exact-hash-only dedup are compared. All three pairs belong to one synthetic world, and there are no production replay logs.</desc>
+<rect width="1440" height="780" fill="#f5f7fb"/>
+<text x="42" y="48" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#17243b">两跳本地离线转换：回执链 vs 缺中间回执 vs 仅哈希去重</text>
+<text x="42" y="80" font-family="Arial,sans-serif" font-size="15" fill="#52627b">一条预先冻结的 controlled synthetic chain · 1 个世界 · 3 个配对行（彼此非独立）</text>
+<rect x="42" y="108" width="350" height="180" rx="14" fill="#ffffff" stroke="#d4deea" stroke-width="2"/>
+<text x="66" y="144" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#17243b">SOURCE · 已保存规范化样本</text>
+<text x="66" y="177" font-family="Arial,sans-serif" font-size="14" fill="#37475e">feature ci41346535</text>
+<text x="66" y="203" font-family="Arial,sans-serif" font-size="13" fill="#37475e">SHA 9bfbd8a6600deb0c…</text>
+<text x="66" y="229" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#8e3028">历史接收时间：UNKNOWN</text>
+<text x="66" y="258" font-family="Arial,sans-serif" font-size="12" fill="#52627b">真实样本锚点；原始响应字节缺失</text>
+<line x1="392" y1="198" x2="474" y2="198" stroke="#43769d" stroke-width="3"/><polygon points="474,198 460,190 460,206" fill="#43769d"/>
+<text x="398" y="179" font-family="Arial,sans-serif" font-size="12" fill="#27527a">synthetic E1</text>
+<rect x="480" y="108" width="380" height="180" rx="14" fill="#edf4fb" stroke="#b8ccdf" stroke-width="2"/>
+<text x="504" y="144" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#27527a">HOP1 · relay-one/ci41346535</text>
+<text x="504" y="177" font-family="Arial,sans-serif" font-size="13" fill="#344b66">record_ref · magnitude_value</text>
+<text x="504" y="201" font-family="Arial,sans-serif" font-size="13" fill="#344b66">location_text · event_timestamp</text>
+<text x="504" y="237" font-family="Arial,sans-serif" font-size="13" fill="#344b66">SHA 228636e4fd7f1c9f…</text>
+<text x="504" y="263" font-family="Arial,sans-serif" font-size="12" fill="#52627b">synthetic alias · ID 与字段投影已变</text>
+<line x1="860" y1="198" x2="946" y2="198" stroke="#43769d" stroke-width="3"/><polygon points="946,198 932,190 932,206" fill="#43769d"/>
+<text x="864" y="179" font-family="Arial,sans-serif" font-size="12" fill="#27527a">synthetic E2</text>
+<rect x="952" y="108" width="446" height="180" rx="14" fill="#edf4fb" stroke="#b8ccdf" stroke-width="2"/>
+<text x="976" y="144" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#27527a">HOP2 · relay-two::relay-one/…</text>
+<text x="976" y="177" font-family="Arial,sans-serif" font-size="13" fill="#344b66">source_alias · summary · updated_epoch_ms</text>
+<text x="976" y="213" font-family="Arial,sans-serif" font-size="13" fill="#344b66">SHA 95fa65fe89464c2e…</text>
+<text x="976" y="246" font-family="Arial,sans-serif" font-size="12" fill="#52627b">第二次合成转换；输出哈希与前两者不同</text>
+<text x="42" y="326" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#17243b">Scorer-only synthetic truth: SOURCE, HOP1, HOP2 all derive from one controlled parent</text>
+<text x="42" y="353" font-family="Arial,sans-serif" font-size="13" fill="#52627b">不代表生产记录；验证器未读取 truth sidecar。receipt PASS 只表示本地 runner 内部 ID/hash/transform 一致。</text>
+<rect x="42" y="382" width="1356" height="270" rx="14" fill="#ffffff" stroke="#d4deea" stroke-width="2"/>
+<text x="66" y="420" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#17243b">冻结指标：正确来源归属 / 错误分桶归属 / UNKNOWN（每条件固定 3 个配对行）</text>
+<text x="66" y="463" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#40536b">条件</text>
+<text x="630" y="463" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#275c43">正确</text>
+<text x="820" y="463" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#8e3028">错误</text>
+<text x="1008" y="463" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#765600">UNKNOWN</text>
+<line x1="66" y1="478" x2="1368" y2="478" stroke="#d4deea"/>
+<text x="66" y="513" font-family="Arial,sans-serif" font-size="15" fill="#263850">完整两跳回执链</text><text x="650" y="513" font-family="Arial,sans-serif" font-size="15" fill="#275c43">3</text><text x="840" y="513" font-family="Arial,sans-serif" font-size="15" fill="#8e3028">0</text><text x="1044" y="513" font-family="Arial,sans-serif" font-size="15" fill="#765600">0</text>
+<text x="66" y="558" font-family="Arial,sans-serif" font-size="15" fill="#263850">缺 HOP1→HOP2 中间回执</text><text x="650" y="558" font-family="Arial,sans-serif" font-size="15" fill="#275c43">1</text><text x="840" y="558" font-family="Arial,sans-serif" font-size="15" fill="#8e3028">0</text><text x="1044" y="558" font-family="Arial,sans-serif" font-size="15" fill="#765600">2</text>
+<text x="66" y="603" font-family="Arial,sans-serif" font-size="15" fill="#263850">仅哈希去重（各异摘要分桶）</text><text x="650" y="603" font-family="Arial,sans-serif" font-size="15" fill="#275c43">0</text><text x="840" y="603" font-family="Arial,sans-serif" font-size="15" fill="#8e3028">3</text><text x="1044" y="603" font-family="Arial,sans-serif" font-size="15" fill="#765600">0</text>
+<rect x="42" y="674" width="1356" height="70" rx="12" fill="#eaf0f7"/>
+<text x="66" y="702" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#263850">生产谱系真值日志：0 条可用；生产准确率不可计算。三行是同一合成链内配对，不是独立样本，也不估计统计独立性。</text>
+<text x="66" y="728" font-family="Arial,sans-serif" font-size="12" fill="#52627b">E1/E2 均为本地合成回执。SOURCE 的历史接收时间保持 UNKNOWN；本图箭头仅表示本次合成转换关系。</text>
+</svg>

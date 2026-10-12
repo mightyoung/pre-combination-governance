@@ -1,0 +1,94 @@
+{
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V1",
+  "world_id": "SYNTHETIC-WORLD-001",
+  "status": "COMPLETED_CONTROLLED_SYNTHETIC_REPLAY_NOT_PRODUCTION_EVIDENCE",
+  "classification": "SCORER_ONLY_CONTROLLED_SYNTHETIC_FIXTURE_NOT_PRODUCTION_LOG",
+  "method_outputs_sha256_at_freeze": "a2feb4759acf9bc08a6f5bdb4d328954d46267d27012c441c3cef654719f4b11",
+  "method_runner_read_truth_log": false,
+  "scorer_read_truth_after_method_output_freeze": true,
+  "production_replay_log_denominator": 0,
+  "production_accuracy": "NOT_COMPUTABLE",
+  "synthetic_worlds": 1,
+  "pair_rows_within_world": 3,
+  "pair_rows_are_independent_samples": false,
+  "conditions": {
+    "FULL_RECEIPT_CHAIN": {
+      "pair_rows": 3,
+      "counts": {
+        "correct_source_attribution": 3,
+        "wrong_separate_attribution": 0,
+        "unknown": 0
+      },
+      "scored_pairs": [
+        {
+          "pair_id": "SOURCE/HOP1",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "CORRECT_SOURCE_ATTRIBUTION"
+        },
+        {
+          "pair_id": "SOURCE/HOP2",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "CORRECT_SOURCE_ATTRIBUTION"
+        },
+        {
+          "pair_id": "HOP1/HOP2",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "CORRECT_SOURCE_ATTRIBUTION"
+        }
+      ]
+    },
+    "HASH_ONLY_DEDUP": {
+      "pair_rows": 3,
+      "counts": {
+        "correct_source_attribution": 0,
+        "wrong_separate_attribution": 3,
+        "unknown": 0
+      },
+      "scored_pairs": [
+        {
+          "pair_id": "SOURCE/HOP1",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "WRONG_SEPARATE_ATTRIBUTION"
+        },
+        {
+          "pair_id": "SOURCE/HOP2",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "WRONG_SEPARATE_ATTRIBUTION"
+        },
+        {
+          "pair_id": "HOP1/HOP2",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "WRONG_SEPARATE_ATTRIBUTION"
+        }
+      ]
+    },
+    "MISSING_INTERMEDIATE_RECEIPT": {
+      "pair_rows": 3,
+      "counts": {
+        "correct_source_attribution": 1,
+        "wrong_separate_attribution": 0,
+        "unknown": 2
+      },
+      "scored_pairs": [
+        {
+          "pair_id": "SOURCE/HOP1",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "CORRECT_SOURCE_ATTRIBUTION"
+        },
+        {
+          "pair_id": "SOURCE/HOP2",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "UNKNOWN"
+        },
+        {
+          "pair_id": "HOP1/HOP2",
+          "synthetic_truth": "SAME_SYNTHETIC_PARENT",
+          "method_outcome": "UNKNOWN"
+        }
+      ]
+    }
+  },
+  "interpretation": "Counts describe only three pairwise rows within one predeclared synthetic chain. Hash-distinct buckets are scored as wrong separation for this source-attribution task; this does not imply or measure statistical independence.",
+  "network_or_model_or_notification_called": false,
+  "delivery_status": "NOT_DELIVERED"
+}

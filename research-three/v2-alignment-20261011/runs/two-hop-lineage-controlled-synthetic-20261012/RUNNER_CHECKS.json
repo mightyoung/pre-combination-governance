@@ -1,0 +1,22 @@
+{
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V1",
+  "pre_run_commit": "c1212932e52ce1025c27d1168e68c1e310b7d387",
+  "pre_run_manifest_sha256": "3c03e46611e1122ca8ba13c1f62da3cea79e1c3b8c0b8fccaf5c04003d405fd1",
+  "method_outputs_sha256_at_freeze": "a2feb4759acf9bc08a6f5bdb4d328954d46267d27012c441c3cef654719f4b11",
+  "execution_started_at_utc": "2026-10-12T05:04:13.817055Z",
+  "method_runner_read_truth_log": false,
+  "network_or_model_or_notification_called": false,
+  "checks": {
+    "source_sample_hash_matches_frozen_input": true,
+    "all_three_payload_hashes_distinct": true,
+    "outer_id_changes_at_each_hop": true,
+    "projection_key_sets_change_at_each_hop": true,
+    "full_receipts_pass_local_runner_consistency": true,
+    "full_receipt_pair_states_match_frozen_expectations": true,
+    "missing_hop2_receipt_is_unknown_for_hop2_pairs": true,
+    "missing_hop2_receipt_status_matches_frozen_expectation": true,
+    "hash_only_bucket_count_matches_frozen_expectation": true,
+    "independence_not_asserted": true,
+    "all_frozen_expectation_checks_passed": true
+  }
+}

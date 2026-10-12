@@ -1,0 +1,7 @@
+{
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V1",
+  "freeze_sequence": "METHOD_OUTPUTS_WRITTEN_AND_HASHED_BEFORE_EXPECTATION_COMPARISON",
+  "method_outputs_path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/METHOD_OUTPUTS.json",
+  "bytes": 7384,
+  "sha256": "a2feb4759acf9bc08a6f5bdb4d328954d46267d27012c441c3cef654719f4b11"
+}
