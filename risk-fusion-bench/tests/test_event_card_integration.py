@@ -735,10 +735,30 @@ class EventCardIntegrationTests(unittest.TestCase):
                 for step in scenario_spec["steps"]
                 if step.get("notice_version") is None
             ]
+            steps_by_id = {step["step_id"]: step for step in scenario_spec["steps"]}
             self.assertEqual(
                 [record["step_id"] for record in observed["audit_records"]],
                 unversioned_step_ids,
             )
+            for record in observed["audit_records"]:
+                source_step = steps_by_id[record["step_id"]]
+                expected_received_at = (
+                    datetime.fromisoformat(
+                        spec["base_time_utc"].replace("Z", "+00:00")
+                    )
+                    + timedelta(seconds=source_step["received_seconds"])
+                ).isoformat().replace("+00:00", "Z")
+                self.assertEqual(record["intent_id"], source_step["intent_id"])
+                self.assertEqual(
+                    record["transport_receipt_id"],
+                    source_step["transport_receipt_id"],
+                )
+                self.assertEqual(
+                    record["received_at_processing_time"], expected_received_at
+                )
+                self.assertIsNone(record["notice_version"])
+                self.assertFalse(record["card_revision_created"])
+                self.assertFalse(record["notification_created"])
             self.assertEqual(
                 [
                     record["duplicate_of_intent_id"]
@@ -758,6 +778,7 @@ class EventCardIntegrationTests(unittest.TestCase):
 
         active = result["scenarios"]["active_versioned_card"]
         missing_grade = active["audit_records"][-1]
+        self.assertEqual(missing_grade["reported_risk_grade"], "UNKNOWN")
         self.assertEqual(missing_grade["reported_risk_grade_status"], "UNKNOWN_MISSING_CLAIM")
         self.assertEqual(missing_grade["risk_signal_grade"], "CRITICAL")
         self.assertTrue(missing_grade["pending_risk_review_id"])

@@ -39,6 +39,11 @@ class ApplyStatus(StrEnum):
     DUPLICATE_REPLAY = "DUPLICATE_REPLAY_IGNORED"
     DUPLICATE_NOTICE_VERSION = "DUPLICATE_NOTICE_VERSION_IGNORED"
     STALE_NOTICE_VERSION = "STALE_NOTICE_VERSION_IGNORED"
+    UNVERSIONED_AUDIT_ONLY = "UNVERSIONED_AUDIT_ONLY"
+    UNVERSIONED_HIGHER_RISK_PENDING_REVIEW = "UNVERSIONED_HIGHER_RISK_PENDING_REVIEW"
+    UNVERSIONED_RISK_COMPARISON_UNKNOWN_PENDING_REVIEW = "UNVERSIONED_RISK_COMPARISON_UNKNOWN_PENDING_REVIEW"
+    UNVERSIONED_RISK_UNKNOWN_AUDIT_ONLY = "UNVERSIONED_RISK_UNKNOWN_AUDIT_ONLY"
+    DUPLICATE_UNVERSIONED_AUDIT_ONLY = "DUPLICATE_UNVERSIONED_AUDIT_ONLY"
 
 
 _PROTECTED_ACTIONS = frozenset(
@@ -56,6 +61,7 @@ _RISK_STAGES = frozenset({"PRECAUTIONARY", "CONFIRMED", "ESCALATED"})
 _ASSOCIATION_STATES = frozenset(
     {"SAME_CONFIRMED", "DIFFERENT_CONFIRMED", "UNKNOWN_PENDING", "CONFLICT_PENDING"}
 )
+_RISK_GRADE_RANK = {"LOW": 0, "WARNING": 1, "CRITICAL": 2}
 
 
 def _is_single_flag_warning_to_critical(
@@ -122,6 +128,7 @@ class ActionIntent:
     trigger_known_time: str | None = None
     detected_at: str | None = None
     notice_version: int | None = None
+    risk_level_claim: str | None = None
 
     def __post_init__(self) -> None:
         for label in ("intent_id", "display_card_id", "risk_stage", "experiment_batch_id"):
@@ -144,6 +151,11 @@ class ActionIntent:
             or self.notice_version < 1
         ):
             raise ValueError("notice_version must be a positive integer when supplied")
+        if self.risk_level_claim is not None and (
+            not isinstance(self.risk_level_claim, str)
+            or not self.risk_level_claim.strip()
+        ):
+            raise ValueError("risk_level_claim must be a non-empty string when supplied")
         _parse_utc(self.received_at, "received_at")
         for label in ("trigger_known_time", "detected_at"):
             value = getattr(self, label)
@@ -280,6 +292,13 @@ class ReminderActionLedger:
         self._decision_by_intent: dict[str, ApplyDecision] = {}
         self._notice_versions_by_card: dict[str, dict[int, ActionIntent]] = {}
         self._latest_notice_version_by_card: dict[str, int] = {}
+        self._unversioned_audit_records: list[dict[str, object]] = []
+        self._pending_risk_reviews: list[dict[str, object]] = []
+        self._unversioned_fingerprint_to_intent_id: dict[tuple[object, ...], str] = {}
+        self._pending_review_by_unversioned_fingerprint: dict[
+            tuple[object, ...], str
+        ] = {}
+        self._unversioned_audit_intent_ids: set[str] = set()
 
     @property
     def notifications(self) -> tuple[ActionNotification, ...]:
@@ -315,6 +334,39 @@ class ReminderActionLedger:
             for decision in self._decisions
         )
 
+    @property
+    def unversioned_audit_records(self) -> tuple[dict[str, object], ...]:
+        return tuple(dict(record) for record in self._unversioned_audit_records)
+
+    @property
+    def pending_risk_reviews(self) -> tuple[dict[str, object], ...]:
+        return tuple(dict(record) for record in self._pending_risk_reviews)
+
+    @property
+    def pending_risk_review_count(self) -> int:
+        return len(self._pending_risk_reviews)
+
+    def unversioned_audit_records_for(
+        self, display_card_id: str
+    ) -> tuple[dict[str, object], ...]:
+        return tuple(
+            dict(record)
+            for record in self._unversioned_audit_records
+            if record["display_card_id"] == display_card_id
+        )
+
+    def pending_risk_reviews_for(
+        self, display_card_id: str
+    ) -> tuple[dict[str, object], ...]:
+        return tuple(
+            dict(record)
+            for record in self._pending_risk_reviews
+            if record["display_card_id"] == display_card_id
+        )
+
+    def latest_notice_version_for(self, display_card_id: str) -> int | None:
+        return self._latest_notice_version_by_card.get(display_card_id)
+
     def card_revisions_for(self, display_card_id: str) -> tuple[CardRevision, ...]:
         return tuple(self._card_revisions.get(display_card_id, ()))
 
@@ -332,6 +384,11 @@ class ReminderActionLedger:
                 ApplyStatus.DUPLICATE_REPLAY,
                 ApplyStatus.DUPLICATE_NOTICE_VERSION,
                 ApplyStatus.STALE_NOTICE_VERSION,
+                ApplyStatus.UNVERSIONED_AUDIT_ONLY,
+                ApplyStatus.UNVERSIONED_HIGHER_RISK_PENDING_REVIEW,
+                ApplyStatus.UNVERSIONED_RISK_COMPARISON_UNKNOWN_PENDING_REVIEW,
+                ApplyStatus.UNVERSIONED_RISK_UNKNOWN_AUDIT_ONLY,
+                ApplyStatus.DUPLICATE_UNVERSIONED_AUDIT_ONLY,
             }
         }
         return tuple(
@@ -349,6 +406,12 @@ class ReminderActionLedger:
         if previous is not None:
             if not self._same_semantics(previous, intent):
                 raise ValueError("intent_id already exists with different semantic content")
+            if (
+                intent.notice_version is None
+                and intent.display_card_id in self._latest_notice_version_by_card
+                and intent.intent_id in self._unversioned_audit_intent_ids
+            ):
+                return self._record_unversioned_after_versioned(intent)
             original = self._decision_by_intent[intent.intent_id]
             decision = ApplyDecision(
                 intent_id=intent.intent_id,
@@ -390,6 +453,8 @@ class ReminderActionLedger:
                     status=ApplyStatus.DUPLICATE_NOTICE_VERSION,
                     reason="SAME_NOTICE_VERSION_DUPLICATE_NO_REFRESH",
                 )
+        elif intent.display_card_id in self._latest_notice_version_by_card:
+            return self._record_unversioned_after_versioned(intent)
 
         revisions = self._card_revisions.setdefault(intent.display_card_id, [])
         card_revision = CardRevision.from_intent(len(revisions) + 1, intent)
@@ -520,6 +585,212 @@ class ReminderActionLedger:
             intent_id=first.intent_id,
             received_at=first.received_at,
         ) == first
+
+    @staticmethod
+    def _risk_grade_from_claim(claim: str | None) -> tuple[str, str]:
+        if claim is None:
+            return "UNKNOWN", "UNKNOWN_MISSING_CLAIM"
+        grade = claim.strip().upper()
+        if grade not in _RISK_GRADE_RANK:
+            return "UNKNOWN", "UNKNOWN_UNMAPPED_CLAIM"
+        return grade, f"{grade}_CLAIM"
+
+    @staticmethod
+    def _risk_grade_from_flags(risk_flags: tuple[str, ...]) -> str:
+        if len(risk_flags) != 1:
+            return "UNKNOWN"
+        try:
+            grade = severity_for_risk_flag(risk_flags[0])
+        except ValueError:
+            return "UNKNOWN"
+        return grade if grade in _RISK_GRADE_RANK else "UNKNOWN"
+
+    def _current_versioned_risk_grade(self, display_card_id: str) -> str:
+        version = self._latest_notice_version_by_card.get(display_card_id)
+        if version is None:
+            return "UNKNOWN"
+        intent = self._notice_versions_by_card[display_card_id][version]
+        claimed_grade, _ = self._risk_grade_from_claim(intent.risk_level_claim)
+        if claimed_grade != "UNKNOWN":
+            return claimed_grade
+        return self._risk_grade_from_flags(intent.risk_flags)
+
+    def _current_notice_lifecycle_status(self, display_card_id: str) -> str:
+        revisions = self._card_revisions.get(display_card_id, ())
+        if not revisions:
+            return "NO_NOTICE"
+        latest_kind = revisions[-1].kind
+        if latest_kind is ActionKind.NOTICE_CORRECTED:
+            return "CORRECTED"
+        if latest_kind is ActionKind.NOTICE_CANCELLED:
+            return "CANCELLED"
+        return "ACTIVE"
+
+    @staticmethod
+    def _unversioned_semantic_fingerprint(
+        intent: ActionIntent,
+    ) -> tuple[object, ...]:
+        """Fingerprint semantic content while ignoring intent ID and arrival time."""
+        return (
+            intent.display_card_id,
+            intent.kind.value,
+            intent.risk_stage,
+            intent.observation_ids,
+            intent.source_ids,
+            intent.candidate_episode_ids,
+            intent.association_ids,
+            intent.evidence_refs,
+            intent.risk_flags,
+            intent.risk_basis_ids,
+            intent.source_times,
+            intent.observed_at_times,
+            intent.experiment_batch_id,
+            intent.association_state,
+            intent.dedup_episode_interval_key,
+            intent.trigger_known_time,
+            intent.detected_at,
+            intent.risk_level_claim,
+        )
+
+    def _record_unversioned_after_versioned(
+        self, intent: ActionIntent
+    ) -> ApplyDecision:
+        fingerprint = self._unversioned_semantic_fingerprint(intent)
+        original_intent_id = self._unversioned_fingerprint_to_intent_id.get(
+            fingerprint
+        )
+        current_grade = self._current_versioned_risk_grade(
+            intent.display_card_id
+        )
+        reported_grade, reported_grade_status = self._risk_grade_from_claim(
+            intent.risk_level_claim
+        )
+        if reported_grade != "UNKNOWN":
+            risk_signal_grade = reported_grade
+            risk_signal_provenance = "SYNTHETIC_RISK_GRADE_CLAIM"
+        else:
+            risk_signal_grade = self._risk_grade_from_flags(intent.risk_flags)
+            risk_signal_provenance = (
+                "SINGLE_FLAG_MAPPING"
+                if risk_signal_grade != "UNKNOWN"
+                else "UNKNOWN_NO_MAPPED_SINGLE_FLAG"
+            )
+
+        pending_review_id = self._pending_review_by_unversioned_fingerprint.get(
+            fingerprint
+        )
+        if original_intent_id is not None:
+            status = ApplyStatus.DUPLICATE_UNVERSIONED_AUDIT_ONLY
+            decision_reason = "DUPLICATE_UNVERSIONED_SEMANTICS_NO_REFRESH"
+        elif risk_signal_grade == "UNKNOWN":
+            status = ApplyStatus.UNVERSIONED_RISK_UNKNOWN_AUDIT_ONLY
+            decision_reason = "RISK_GRADE_AND_FLAG_SIGNAL_UNKNOWN"
+            self._unversioned_fingerprint_to_intent_id[fingerprint] = intent.intent_id
+        elif current_grade == "UNKNOWN":
+            status = ApplyStatus.UNVERSIONED_RISK_COMPARISON_UNKNOWN_PENDING_REVIEW
+            decision_reason = "VERSIONED_CARD_RISK_GRADE_UNKNOWN"
+        elif _RISK_GRADE_RANK[risk_signal_grade] > _RISK_GRADE_RANK[current_grade]:
+            status = ApplyStatus.UNVERSIONED_HIGHER_RISK_PENDING_REVIEW
+            decision_reason = "UNVERSIONED_SIGNAL_ABOVE_VERSIONED_CARD_RISK"
+        else:
+            status = ApplyStatus.UNVERSIONED_AUDIT_ONLY
+            decision_reason = "UNVERSIONED_SIGNAL_NOT_ABOVE_VERSIONED_CARD_RISK"
+            self._unversioned_fingerprint_to_intent_id[fingerprint] = intent.intent_id
+
+        if status in {
+            ApplyStatus.UNVERSIONED_HIGHER_RISK_PENDING_REVIEW,
+            ApplyStatus.UNVERSIONED_RISK_COMPARISON_UNKNOWN_PENDING_REVIEW,
+        } and pending_review_id is None:
+            pending_review_id = (
+                f"EXPERIMENT-RISK-REVIEW-{len(self._pending_risk_reviews) + 1:04d}"
+            )
+            self._pending_review_by_unversioned_fingerprint[fingerprint] = (
+                pending_review_id
+            )
+            self._pending_risk_reviews.append(
+                {
+                    "review_id": pending_review_id,
+                    "display_card_id": intent.display_card_id,
+                    "source_intent_id": intent.intent_id,
+                    "notice_version": None,
+                    "reported_risk_grade": reported_grade,
+                    "reported_risk_grade_status": reported_grade_status,
+                    "risk_signal_grade": risk_signal_grade,
+                    "risk_signal_provenance": risk_signal_provenance,
+                    "current_versioned_risk_grade": current_grade,
+                    "status": "PENDING_VERIFICATION",
+                    "confirmed": False,
+                    "notification_created": False,
+                    "card_content_changed": False,
+                    "notice_lifecycle_status_preserved": self._current_notice_lifecycle_status(
+                        intent.display_card_id
+                    ),
+                    "risk_flags": list(intent.risk_flags),
+                    "risk_basis_ids": list(intent.risk_basis_ids),
+                    "evidence_refs": list(intent.evidence_refs),
+                    "source_ids": list(intent.source_ids),
+                    "source_times": list(intent.source_times),
+                    "observed_at_times": list(intent.observed_at_times),
+                    "received_at_processing_time": intent.received_at,
+                    "delivery_status": "NOT_DELIVERED",
+                    "resolution": "NOT_EVALUATED",
+                }
+            )
+            self._unversioned_fingerprint_to_intent_id.setdefault(
+                fingerprint, intent.intent_id
+            )
+
+        if original_intent_id is None:
+            original_intent_id = intent.intent_id
+        audit_record: dict[str, object] = {
+            "audit_id": f"UNVERSIONED-AUDIT-{len(self._unversioned_audit_records) + 1:04d}",
+            "intent_id": intent.intent_id,
+            "display_card_id": intent.display_card_id,
+            "notice_version": None,
+            "action_kind": intent.kind.value,
+            "decision_status": status.value,
+            "decision_reason": decision_reason,
+            "duplicate_of_intent_id": (
+                original_intent_id
+                if status is ApplyStatus.DUPLICATE_UNVERSIONED_AUDIT_ONLY
+                else None
+            ),
+            "risk_level_claim": intent.risk_level_claim,
+            "reported_risk_grade": reported_grade,
+            "reported_risk_grade_status": reported_grade_status,
+            "risk_signal_grade": risk_signal_grade,
+            "risk_signal_provenance": risk_signal_provenance,
+            "current_versioned_risk_grade": current_grade,
+            "pending_risk_review_id": pending_review_id,
+            "risk_flags": list(intent.risk_flags),
+            "risk_basis_ids": list(intent.risk_basis_ids),
+            "evidence_refs": list(intent.evidence_refs),
+            "source_ids": list(intent.source_ids),
+            "source_times": list(intent.source_times),
+            "observed_at_times": list(intent.observed_at_times),
+            "received_at_processing_time": intent.received_at,
+            "card_lifecycle_status_at_receipt": self._current_notice_lifecycle_status(
+                intent.display_card_id
+            ),
+            "card_revision_created": False,
+            "notification_created": False,
+            "delivery_status": "NOT_DELIVERED",
+        }
+        self._unversioned_audit_records.append(audit_record)
+        self._unversioned_audit_intent_ids.add(intent.intent_id)
+
+        decision = ApplyDecision(
+            intent_id=intent.intent_id,
+            status=status,
+            experiment_notification_id=None,
+            card_revision=None,
+            simulated_card_update_delay_seconds=None,
+            decision_reason=decision_reason,
+        )
+        self._seen_intents[intent.intent_id] = intent
+        self._decision_by_intent[intent.intent_id] = decision
+        self._decisions.append(decision)
+        return decision
 
     def _coalescing_target(self, intent: ActionIntent) -> int | None:
         received = _parse_utc(intent.received_at, "received_at")
