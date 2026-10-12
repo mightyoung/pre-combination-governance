@@ -1,0 +1,45 @@
+{
+  "manifest_version": 1,
+  "status": "FROZEN_BEFORE_V2_REPLAY; READ_ONLY_AFTER_METHOD_OUTPUT_FREEZE",
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V2",
+  "classification": "SCORER_SIDE_SYNTHETIC_FIXTURE_AUDIT_ONLY",
+  "accuracy_use": "PROHIBITED; production source-lineage truth denominator is zero.",
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/SCORING_POLICY_V2.md",
+      "bytes": 2734,
+      "sha256": "cdc973f8381c5ab03d596e69d8eb789afb822e911d40d42aa2fb5fcfc0e8c61b"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/PROTOCOL_V2.md",
+      "bytes": 4442,
+      "sha256": "5d77110809e25d0b193ab01715cbafd1835f0d6b3ab64ceb64e9c0435f9a5a01"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/INPUTS_V2.json",
+      "bytes": 4150,
+      "sha256": "d239231a62a157a84ec15676b81457da19c0f0d5a2bd850b2ab46e0ab4da22ff"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/PRE_RUN_MANIFEST_V2.json",
+      "bytes": 1882,
+      "sha256": "cdf77fe8a5bd5db08aaa9f7a967f47c733a3bd5fcfb3737eb59a515f404d22a7"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/SYNTHETIC_TRUTH_LOG_V2.json",
+      "bytes": 685,
+      "sha256": "5a0ddea83a5ead1f045faae760805544b5d9d69deb810580c444bc6b85545dc9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/score_two_hop_lineage_v2.py",
+      "bytes": 6014,
+      "sha256": "72e68b0520147e37f1bfc3514b151c45b1283ad527849245af945cb69b6f6392"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/V1_SCORE_CORRECTION.md",
+      "bytes": 843,
+      "sha256": "3bda7457833ae2c1f77da44dd329350afcdfc00d9d2dde1d02e5221e1583524a"
+    }
+  ],
+  "self_hash_excluded": true
+}

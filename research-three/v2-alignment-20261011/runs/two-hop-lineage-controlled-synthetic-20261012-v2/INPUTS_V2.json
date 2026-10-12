@@ -1,0 +1,103 @@
+{
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V2",
+  "status": "FROZEN_PRE_RUN",
+  "classification": "CONTROLLED_SYNTHETIC_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "supersedes_scoring_policy_for_new_outputs": "SCORING_POLICY_V2.md",
+  "source_sample": {
+    "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+    "feature_id": "ci41346535",
+    "bytes": 2537,
+    "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+    "original_response_bytes_available": false,
+    "historical_receiver_time": "UNKNOWN_NOT_IN_SAVED_SAMPLE"
+  },
+  "split": {
+    "name": "SYNTHETIC-WORLD-001",
+    "worlds": 1,
+    "random_seed": null,
+    "train_worlds": 0,
+    "held_out_worlds": 0,
+    "pair_ids": ["SOURCE/HOP1", "SOURCE/HOP2", "HOP1/HOP2"],
+    "pair_rows_are_independent_samples": false
+  },
+  "synthetic_clock": {
+    "base_utc": "2000-01-01T00:00:00Z",
+    "meaning": "Fixture timestamps only; unrelated to event, collector, or current local time."
+  },
+  "hop1": {
+    "transform_id": "SYNTHETIC-RELAY-ONE-V2",
+    "outer_id_template": "relay-one/{feature.id}",
+    "projection": {
+      "record_ref": "feature.id",
+      "magnitude_value": "feature.properties.mag",
+      "location_text": "feature.properties.place",
+      "event_timestamp": "feature.properties.time_utc",
+      "updated_epoch_ms": "feature.properties.updated_epoch_ms",
+      "source_namespace": "feature.properties.net"
+    },
+    "output_path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/ALIAS_HOP1_V2.json"
+  },
+  "hop2": {
+    "transform_id": "SYNTHETIC-RELAY-TWO-V2",
+    "outer_id_template": "relay-two::{HOP1.outer_id}",
+    "input_contract": "One argument only: exact persisted ALIAS_HOP1_V2.json bytes reread from disk.",
+    "projection": {
+      "source_alias": "HOP1.outer_id",
+      "summary": "{HOP1.projection.magnitude_value} M · {HOP1.projection.location_text}",
+      "updated_epoch_ms": "HOP1.projection.updated_epoch_ms",
+      "source_namespace": "HOP1.projection.source_namespace"
+    },
+    "output_path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/ALIAS_HOP2_V2.json"
+  },
+  "conditions": [
+    {
+      "condition_id": "FULL_RECEIPT_CHAIN",
+      "available_receipts": ["RECEIPT-HOP1-V2", "RECEIPT-HOP2-V2"],
+      "expected_pair_statuses": {
+        "SOURCE/HOP1": "SHARED_KNOWN_ANCESTOR",
+        "SOURCE/HOP2": "SHARED_KNOWN_ANCESTOR",
+        "HOP1/HOP2": "SHARED_KNOWN_ANCESTOR"
+      },
+      "expected_counts": {"confirmed_shared_ancestor": 3, "unknown": 0}
+    },
+    {
+      "condition_id": "MISSING_INTERMEDIATE_RECEIPT",
+      "available_receipts": ["RECEIPT-HOP1-V2"],
+      "omitted_receipt": "RECEIPT-HOP2-V2",
+      "expected_pair_statuses": {
+        "SOURCE/HOP1": "SHARED_KNOWN_ANCESTOR",
+        "SOURCE/HOP2": "UNKNOWN",
+        "HOP1/HOP2": "UNKNOWN"
+      },
+      "expected_counts": {"confirmed_shared_ancestor": 1, "unknown": 2}
+    },
+    {
+      "condition_id": "HASH_ONLY_DEDUP",
+      "available_receipts": [],
+      "hash_equal_policy": "BYTE_IDENTICAL_ONLY; lineage UNKNOWN",
+      "hash_different_policy": "BYTE_DIFFERENT_ONLY; lineage UNKNOWN",
+      "expected_pair_statuses": {
+        "SOURCE/HOP1": "UNKNOWN",
+        "SOURCE/HOP2": "UNKNOWN",
+        "HOP1/HOP2": "UNKNOWN"
+      },
+      "expected_counts": {"confirmed_shared_ancestor": 0, "unknown": 3}
+    }
+  ],
+  "side_input_negative_control": {
+    "control_id": "UNDECLARED_SOURCE_SIDE_INPUT",
+    "bad_transform_reads": ["HOP1", "SOURCE"],
+    "receipt_declares": ["HOP1"],
+    "expected_receipt_validation": "UNDECLARED_SIDE_INPUT",
+    "expected_lineage_status": "UNKNOWN",
+    "included_in_pair_denominator": false
+  },
+  "scoring_policy": {
+    "production_truth_denominator": 0,
+    "production_accuracy": "NOT_COMPUTABLE",
+    "wrong_attribution_count": "NOT_EVALUATED",
+    "report_metric": ["raw confirmed shared-ancestor count", "raw UNKNOWN count"],
+    "no_percentages_or_effect_estimate": true
+  },
+  "network_or_model_or_notification_called": false
+}
