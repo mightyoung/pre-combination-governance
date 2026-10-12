@@ -1,0 +1,225 @@
+{
+  "manifest_version": 1,
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V2",
+  "classification": "CONTROLLED_SYNTHETIC_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "run_status": "COMPLETED_V2_SYNTHETIC_MECHANICS_ONLY",
+  "branch": "task/research-three-two-hop-lineage-20261012",
+  "pre_run_commit": "7c950a9546495d3a125ff17cbd581ac684469c1c",
+  "pre_run_manifest_sha256": "cdf77fe8a5bd5db08aaa9f7a967f47c733a3bd5fcfb3737eb59a515f404d22a7",
+  "method_outputs_sha256_at_freeze": "15ee4c362160bfb1381da9a2e304f09224e73c265dc95fba949135d5694c66cb",
+  "execution_started_at_utc": "2026-10-12T05:13:42.766934Z",
+  "production_truth_denominator": 0,
+  "production_accuracy": "NOT_COMPUTABLE",
+  "independent_synthetic_worlds": 1,
+  "pair_rows_are_independent_samples": false,
+  "network_or_model_or_notification_called": false,
+  "delivery_status": "NOT_DELIVERED",
+  "files": [
+    {
+      "path": "outputs/remote-shakedown/SHK-000-remote-20260714T0900Z/NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "bytes": 96,
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "path": "outputs/remote-shakedown/SHK-000-remote-20260714T0900Z/manifest.json",
+      "bytes": 2108,
+      "sha256": "97828582c8b06090685e888634b2e9c251d3b5f47a6802ebc82269ddd9a45e2d"
+    },
+    {
+      "path": "outputs/remote-shakedown/SHK-000-remote-20260714T0900Z/run_ledger.jsonl",
+      "bytes": 15072,
+      "sha256": "20688b7996122a65ddd668d5c6fb5e2c9453f618acd2d328fd4b77a9674659a8"
+    },
+    {
+      "path": "outputs/restore-cache/SHK-001A-resource-v611-20260715/NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "bytes": 96,
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "path": "outputs/restore-cache/SHK-001A-resource-v611-20260715/manifest.json",
+      "bytes": 2115,
+      "sha256": "70bfe7bd33329fadfba672ade779d5fe15779dda56e4bed52bef95f8bcbd7958"
+    },
+    {
+      "path": "outputs/restore-cache/SHK-001A-resource-v611-20260715/run_ledger.jsonl",
+      "bytes": 52752,
+      "sha256": "5b3964367fc08178f33e65f9f4a40bdbfccd092b7f8dca50b8a1369951e6c017"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/LOCAL_RECEIPTS_V2.json",
+      "bytes": 3805,
+      "sha256": "89ed6c204c7fb6df6eb2d7ccd4fb02c30d14f753c058316b60f12465e4e8b2f8"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/REPORT_V2.md",
+      "bytes": 5935,
+      "sha256": "4cfded45ff8349662c4d7206ca13fd7970d31bd4566f2c8bf16072b197d17468"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/RESULT_V2.json",
+      "bytes": 7837,
+      "sha256": "b5b1ce97ceb08a9197408a75c0fce751d1bba4e687c206a0f62ad279c6dcf22c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/local-replay-lineage-20261012/VISUALIZATION_V2.svg",
+      "bytes": 5356,
+      "sha256": "f33ac8cbbfebc287b45c9f0c1a519296f7314c719c86e6c370f5b99d8f9d1bc3"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/ALIAS_HOP1_V2.json",
+      "bytes": 337,
+      "sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/ALIAS_HOP2_V2.json",
+      "bytes": 296,
+      "sha256": "3a634d9e2c91631412d326c96b605ff45368b93696011c057c9a3e469217f9d7"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/INPUTS_V2.json",
+      "bytes": 4150,
+      "sha256": "d239231a62a157a84ec15676b81457da19c0f0d5a2bd850b2ab46e0ab4da22ff"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/METHOD_OUTPUTS_V2.json",
+      "bytes": 9979,
+      "sha256": "15ee4c362160bfb1381da9a2e304f09224e73c265dc95fba949135d5694c66cb"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/METHOD_OUTPUT_FREEZE_V2.json",
+      "bytes": 389,
+      "sha256": "254443d0a01da0dc22099a7f4eeb14d189352cab7d08fb680327c215e2a18967"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/PRE_RUN_MANIFEST_V2.json",
+      "bytes": 1882,
+      "sha256": "cdf77fe8a5bd5db08aaa9f7a967f47c733a3bd5fcfb3737eb59a515f404d22a7"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/PROTOCOL_V2.md",
+      "bytes": 4442,
+      "sha256": "5d77110809e25d0b193ab01715cbafd1835f0d6b3ab64ceb64e9c0435f9a5a01"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/REPORT_V2.md",
+      "bytes": 4537,
+      "sha256": "18b6d20acbc286188dc73a78ce8001788719128fe723b8bc588cca10daaf8a5a"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/RUNNER_CHECKS_V2.json",
+      "bytes": 1356,
+      "sha256": "40d00873b0c834d63c84d42aecb0f0d31ccdd82887da59cd583f5e00ec34cf5e"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/SCORED_RESULT_V2.json",
+      "bytes": 2565,
+      "sha256": "98691bf703af525230026cbc944cfbbb72b0c04daa2b991ff9b2ceff2ee06122"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/SCORER_TRUTH_MANIFEST_V2.json",
+      "bytes": 2094,
+      "sha256": "16129b5109059a3e844bb930eeb938653134a4789d0bbed8c1e4ea6057c33d24"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/SCORING_POLICY_V2.md",
+      "bytes": 2734,
+      "sha256": "cdc973f8381c5ab03d596e69d8eb789afb822e911d40d42aa2fb5fcfc0e8c61b"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/SIDEINPUT_NEGATIVE_HOP2_V2.json",
+      "bytes": 336,
+      "sha256": "68c3205bd28fcb23ac7245c7c9a8e55f72f0e961f85c07a305187df2144e92fc"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/SYNTHETIC_TRUTH_LOG_V2.json",
+      "bytes": 685,
+      "sha256": "5a0ddea83a5ead1f045faae760805544b5d9d69deb810580c444bc6b85545dc9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/V1_SCORE_CORRECTION.md",
+      "bytes": 843,
+      "sha256": "3bda7457833ae2c1f77da44dd329350afcdfc00d9d2dde1d02e5221e1583524a"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/VISUALIZATION_TWO_HOP_V2.svg",
+      "bytes": 6749,
+      "sha256": "77a8be3871f9b24f891d21becac3805cecc90dfd613bcbfca5e4a97c7bead374"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/run_two_hop_lineage_v2.py",
+      "bytes": 22129,
+      "sha256": "bb23f9defe86ab2396e30e4c9604fe2e79ae6abbb80bf1049d3dd52834a5f606"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/score_two_hop_lineage_v2.py",
+      "bytes": 6014,
+      "sha256": "72e68b0520147e37f1bfc3514b151c45b1283ad527849245af945cb69b6f6392"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/INPUTS.json",
+      "bytes": 3025,
+      "sha256": "093d1bd55a01aa3eb86bc88a3cbe3bf2b462c85b8bec4ced3b3dbbeaedb5232c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/METHOD_OUTPUTS.json",
+      "bytes": 7384,
+      "sha256": "a2feb4759acf9bc08a6f5bdb4d328954d46267d27012c441c3cef654719f4b11"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/PROTOCOL.md",
+      "bytes": 6186,
+      "sha256": "326b494ca6c00a09050bd90a8b0dbb32170ac99a4cb75ccc82cbd330abbea531"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/REPORT.md",
+      "bytes": 6276,
+      "sha256": "24225a09734cb161c0a415be63bce86ecbfe01e59764ee372a31c9c5da4689ab"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/RUN_MANIFEST.json",
+      "bytes": 9860,
+      "sha256": "930dc2d59c40e01fc8d9841fb69a567fdaa4145548efc57913d5d86064c8ef9b"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/SCORED_RESULT.json",
+      "bytes": 3142,
+      "sha256": "05a6c80bd03d178c88a00c599877e491151e149d9bbf7670d21eb7da3479f712"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+      "bytes": 2537,
+      "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_SOURCE_AUDIT.md",
+      "bytes": 6770,
+      "sha256": "bebdb8ea2b074fd5778e8c873e34ac3f86361fe03fead214ba2f8b0752d68d29"
+    },
+    {
+      "path": "risk-fusion-bench/outputs/D_shakedown/SHK-000-local-20260714T1655CST/NON_CONFIRMATORY_DO_NOT_PROMOTE",
+      "bytes": 96,
+      "sha256": "146e61be29a0f44d7aa4b65ae5f3da4d6fb08ee0e2172eab9a2f87bf7fb425f8"
+    },
+    {
+      "path": "risk-fusion-bench/outputs/D_shakedown/SHK-000-local-20260714T1655CST/manifest.json",
+      "bytes": 2109,
+      "sha256": "0ce8a913dbbba022de32f05dcd001201eff30193c2f8b190fc2289a98f248f1d"
+    },
+    {
+      "path": "risk-fusion-bench/outputs/D_shakedown/SHK-000-local-20260714T1655CST/run_ledger.jsonl",
+      "bytes": 15072,
+      "sha256": "20688b7996122a65ddd668d5c6fb5e2c9453f618acd2d328fd4b77a9674659a8"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/source_lineage_contract_v1.py",
+      "bytes": 14240,
+      "sha256": "ca58668d724c3b547de01dbcf3b6e0460adbdf1cf72ae54bd94515d5ac3bac26"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_source_lineage_contract_v1.py",
+      "bytes": 15236,
+      "sha256": "70e4d49fe50701f74a2fbb198d971a04cd76a69d3c0246954821095a98ac78cd"
+    }
+  ],
+  "self_hash_excluded": true
+}

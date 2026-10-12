@@ -1,0 +1,1 @@
+{"artifact_kind":"CONTROLLED_SYNTHETIC_NEGATIVE_CONTROL","observation_id":"HOP2-SIDEINPUT-NEGATIVE","outer_id":"relay-two-sideinput::relay-one/ci41346535","projection":{"source_alias":"relay-one/ci41346535","source_namespace":"CI","summary":"2.52 M · 34 km WNW of Desert Center, CA","updated_epoch_ms":1791758365040},"synthetic":true}

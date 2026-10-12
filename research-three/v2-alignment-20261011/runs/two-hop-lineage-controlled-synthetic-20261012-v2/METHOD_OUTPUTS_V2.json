@@ -1,0 +1,293 @@
+{
+  "classification": "CONTROLLED_SYNTHETIC_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "conditions": {
+    "FULL_RECEIPT_CHAIN": {
+      "available_receipt_ids": [
+        "RECEIPT-HOP1-V2",
+        "RECEIPT-HOP2-V2"
+      ],
+      "pair_results": [
+        {
+          "lineage_status": "SHARED_KNOWN_ANCESTOR",
+          "pair_id": "SOURCE/HOP1",
+          "reason_codes": [
+            "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+            "SHARED_KNOWN_ANCESTOR"
+          ],
+          "shared_ancestor_node_ids": [
+            "NODE-SOURCE"
+          ],
+          "statistical_independence_established": false,
+          "unique_edge_count": 2
+        },
+        {
+          "lineage_status": "SHARED_KNOWN_ANCESTOR",
+          "pair_id": "SOURCE/HOP2",
+          "reason_codes": [
+            "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+            "SHARED_KNOWN_ANCESTOR"
+          ],
+          "shared_ancestor_node_ids": [
+            "NODE-SOURCE"
+          ],
+          "statistical_independence_established": false,
+          "unique_edge_count": 4
+        },
+        {
+          "lineage_status": "SHARED_KNOWN_ANCESTOR",
+          "pair_id": "HOP1/HOP2",
+          "reason_codes": [
+            "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+            "SHARED_KNOWN_ANCESTOR"
+          ],
+          "shared_ancestor_node_ids": [
+            "NODE-HOP1",
+            "NODE-SOURCE",
+            "NODE-TRANSFORM-1"
+          ],
+          "statistical_independence_established": false,
+          "unique_edge_count": 4
+        }
+      ],
+      "receipt_statuses": [
+        "PASS_LOCAL_RUNNER_CONSISTENCY",
+        "PASS_LOCAL_RUNNER_CONSISTENCY"
+      ]
+    },
+    "HASH_ONLY_DEDUP": {
+      "available_receipt_ids": [],
+      "hash_policy": "BYTE_EQUALITY_OR_INEQUALITY_ONLY; lineage UNKNOWN",
+      "pair_results": [
+        {
+          "byte_relation": "BYTE_DIFFERENT_ONLY",
+          "left_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+          "lineage_status": "UNKNOWN",
+          "pair_id": "SOURCE/HOP1",
+          "reason": "HASH_DIFFERENT_NO_PROVENANCE",
+          "right_sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+        },
+        {
+          "byte_relation": "BYTE_DIFFERENT_ONLY",
+          "left_sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+          "lineage_status": "UNKNOWN",
+          "pair_id": "SOURCE/HOP2",
+          "reason": "HASH_DIFFERENT_NO_PROVENANCE",
+          "right_sha256": "3a634d9e2c91631412d326c96b605ff45368b93696011c057c9a3e469217f9d7"
+        },
+        {
+          "byte_relation": "BYTE_DIFFERENT_ONLY",
+          "left_sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f",
+          "lineage_status": "UNKNOWN",
+          "pair_id": "HOP1/HOP2",
+          "reason": "HASH_DIFFERENT_NO_PROVENANCE",
+          "right_sha256": "3a634d9e2c91631412d326c96b605ff45368b93696011c057c9a3e469217f9d7"
+        }
+      ]
+    },
+    "MISSING_INTERMEDIATE_RECEIPT": {
+      "available_receipt_ids": [
+        "RECEIPT-HOP1-V2"
+      ],
+      "omitted_receipt_id": "RECEIPT-HOP2-V2",
+      "pair_results": [
+        {
+          "lineage_status": "SHARED_KNOWN_ANCESTOR",
+          "pair_id": "SOURCE/HOP1",
+          "reason_codes": [
+            "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+            "SHARED_KNOWN_ANCESTOR"
+          ],
+          "shared_ancestor_node_ids": [
+            "NODE-SOURCE"
+          ],
+          "statistical_independence_established": false,
+          "unique_edge_count": 2
+        },
+        {
+          "lineage_status": "UNKNOWN",
+          "pair_id": "SOURCE/HOP2",
+          "reason_codes": [
+            "TRACE_INCOMPLETE"
+          ],
+          "shared_ancestor_node_ids": [],
+          "statistical_independence_established": false,
+          "unique_edge_count": 0
+        },
+        {
+          "lineage_status": "UNKNOWN",
+          "pair_id": "HOP1/HOP2",
+          "reason_codes": [
+            "TRACE_INCOMPLETE"
+          ],
+          "shared_ancestor_node_ids": [],
+          "statistical_independence_established": false,
+          "unique_edge_count": 0
+        }
+      ],
+      "receipt_statuses": [
+        "PASS_LOCAL_RUNNER_CONSISTENCY",
+        "MISSING_RECEIPT"
+      ]
+    }
+  },
+  "hop2_input_audit": {
+    "observed_input_records": [
+      {
+        "observation_id": "HOP1",
+        "sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+      }
+    ],
+    "persisted_hop1_path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/ALIAS_HOP1_V2.json",
+    "persisted_hop1_sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f",
+    "receipt_declared_inputs": [
+      {
+        "observation_id": "HOP1",
+        "sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+      }
+    ],
+    "transform_function_parameters": [
+      "persisted_hop1_bytes"
+    ]
+  },
+  "independence_established": false,
+  "policy_branch_checks": {
+    "different_hash_policy": {
+      "byte_relation": "BYTE_DIFFERENT_ONLY",
+      "lineage_status": "UNKNOWN",
+      "reason": "HASH_DIFFERENT_NO_PROVENANCE"
+    },
+    "equal_hash_policy": {
+      "byte_relation": "BYTE_IDENTICAL_ONLY",
+      "lineage_status": "UNKNOWN",
+      "reason": "HASH_EQUAL_NO_PROVENANCE"
+    },
+    "note": "Two policy logic checks only; they do not create payloads or pair rows."
+  },
+  "production_truth_denominator": 0,
+  "receipt_authenticity": "UNSIGNED LOCAL RUNNER CONSISTENCY ONLY; does not authenticate real source or historic transport.",
+  "receipts": [
+    {
+      "child_observation_id": "HOP1",
+      "child_sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f",
+      "declared_inputs": [
+        {
+          "observation_id": "SOURCE",
+          "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+        }
+      ],
+      "generated_at_utc": "2000-01-01T00:00:01Z",
+      "issuer": "LOCAL_CONTROLLED_SYNTHETIC_RUNNER",
+      "receipt_id": "RECEIPT-HOP1-V2",
+      "receipt_sha256": "103057cc463325cbf004d807cf7f1c364136b069e3ecba946426bb5098adf75e",
+      "signature": null,
+      "transform_code_sha256": "bb23f9defe86ab2396e30e4c9604fe2e79ae6abbb80bf1049d3dd52834a5f606",
+      "transform_id": "SYNTHETIC-RELAY-ONE-V2"
+    },
+    {
+      "child_observation_id": "HOP2",
+      "child_sha256": "3a634d9e2c91631412d326c96b605ff45368b93696011c057c9a3e469217f9d7",
+      "declared_inputs": [
+        {
+          "observation_id": "HOP1",
+          "sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+        }
+      ],
+      "generated_at_utc": "2000-01-01T00:00:02Z",
+      "issuer": "LOCAL_CONTROLLED_SYNTHETIC_RUNNER",
+      "receipt_id": "RECEIPT-HOP2-V2",
+      "receipt_sha256": "ef45e9025bafb76f788614bedae840386d9c00e59495587fb7e6a92ea9aced50",
+      "signature": null,
+      "transform_code_sha256": "bb23f9defe86ab2396e30e4c9604fe2e79ae6abbb80bf1049d3dd52834a5f606",
+      "transform_id": "SYNTHETIC-RELAY-TWO-V2"
+    }
+  ],
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V2",
+  "side_input_negative_control": {
+    "control_id": "UNDECLARED_SOURCE_SIDE_INPUT",
+    "included_in_three_pair_denominator": false,
+    "lineage_status": "UNKNOWN",
+    "observed_input_records": [
+      {
+        "observation_id": "HOP1",
+        "sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+      },
+      {
+        "observation_id": "SOURCE",
+        "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+      }
+    ],
+    "receipt": {
+      "child_observation_id": "HOP2-SIDEINPUT-NEGATIVE",
+      "child_sha256": "68c3205bd28fcb23ac7245c7c9a8e55f72f0e961f85c07a305187df2144e92fc",
+      "declared_inputs": [
+        {
+          "observation_id": "HOP1",
+          "sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+        }
+      ],
+      "generated_at_utc": "2000-01-01T00:00:02Z",
+      "issuer": "LOCAL_CONTROLLED_SYNTHETIC_RUNNER",
+      "receipt_id": "RECEIPT-HOP2-SIDEINPUT-NEGATIVE-V2",
+      "receipt_sha256": "a1aaf8ac2ac8fcba9be528087245415af3659b6ea80218532515f88aa65b9e29",
+      "signature": null,
+      "transform_code_sha256": "bb23f9defe86ab2396e30e4c9604fe2e79ae6abbb80bf1049d3dd52834a5f606",
+      "transform_id": "SYNTHETIC-RELAY-TWO-SIDEINPUT-NEGATIVE-V2"
+    },
+    "receipt_declared_inputs": [
+      {
+        "observation_id": "HOP1",
+        "sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+      }
+    ],
+    "receipt_validation_status": "UNDECLARED_SIDE_INPUT",
+    "validator_visible_receipt_id": "RECEIPT-HOP2-SIDEINPUT-NEGATIVE-V2"
+  },
+  "source_anchor": {
+    "byte_length": 2537,
+    "historical_receiver_time": "UNKNOWN_NOT_IN_SAVED_SAMPLE",
+    "outer_id": "ci41346535",
+    "projection_keys": [
+      "code",
+      "detail_url",
+      "ids_raw",
+      "mag",
+      "net",
+      "place",
+      "sources_raw",
+      "time_epoch_ms",
+      "time_utc",
+      "types_raw",
+      "updated_epoch_ms",
+      "updated_utc"
+    ],
+    "raw_usgs_response_available": false,
+    "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+  },
+  "synthetic_aliases": [
+    {
+      "byte_length": 337,
+      "outer_id": "relay-one/ci41346535",
+      "projection_keys": [
+        "event_timestamp",
+        "location_text",
+        "magnitude_value",
+        "record_ref",
+        "source_namespace",
+        "updated_epoch_ms"
+      ],
+      "sha256": "014eec4ae5b63876b3058056383671f16fb2f03f6e083c12aacdfeff11bd043f"
+    },
+    {
+      "byte_length": 296,
+      "outer_id": "relay-two::relay-one/ci41346535",
+      "projection_keys": [
+        "source_alias",
+        "source_namespace",
+        "summary",
+        "updated_epoch_ms"
+      ],
+      "sha256": "3a634d9e2c91631412d326c96b605ff45368b93696011c057c9a3e469217f9d7"
+    }
+  ],
+  "world_id": "SYNTHETIC-WORLD-001"
+}
