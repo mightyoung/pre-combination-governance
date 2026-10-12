@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mightyoung/pre-combination-governance/blob/task/research-three-two-hop-lineage-20261012/research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/USER_CPU_REPLAY_RESULT_V1.schema.json",
+  "title": "PCG user CPU replay result bundle",
+  "description": "A returned reproducibility bundle. Structural validity is not production accuracy or new scientific evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "run_id",
+    "task_status",
+    "target_runner_commit",
+    "observed_runner_commit",
+    "execution",
+    "expected_input_pins",
+    "observed_input_pins",
+    "outcome",
+    "failure_reasons",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {"const": "pcg.user_cpu_replay_result.v1"},
+    "task_id": {"const": "PCG-LINEAGE-CPU-REPLAY-001"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,100}$"},
+    "task_status": {"enum": ["PASS", "FAIL", "BLOCKED"]},
+    "target_runner_commit": {"const": "c969913eacb56cda1236009ffa9390bd6f62cd3c"},
+    "observed_runner_commit": {
+      "oneOf": [
+        {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        {"type": "null"}
+      ]
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "started_at_utc",
+        "finished_at_utc",
+        "python_version",
+        "platform",
+        "cpu_count",
+        "gpu_used",
+        "network_calls_after_checkout",
+        "model_called",
+        "notification_called",
+        "packages_installed_for_task",
+        "commands",
+        "wall_time_seconds",
+        "peak_memory_mib",
+        "runner_exit_code",
+        "scorer_exit_code"
+      ],
+      "properties": {
+        "started_at_utc": {"type": "string", "format": "date-time", "pattern": "Z$"},
+        "finished_at_utc": {"type": "string", "format": "date-time", "pattern": "Z$"},
+        "python_version": {"type": "string", "pattern": "^3\\.(1[1-9]|[2-9][0-9])(?:\\.|$)"},
+        "platform": {"type": "string", "minLength": 1},
+        "cpu_count": {"type": "integer", "minimum": 1},
+        "gpu_used": {"const": false},
+        "network_calls_after_checkout": {"const": false},
+        "model_called": {"const": false},
+        "notification_called": {"const": false},
+        "packages_installed_for_task": {"type": "array", "maxItems": 0},
+        "commands": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "wall_time_seconds": {"type": ["number", "null"], "minimum": 0, "maximum": 300},
+        "peak_memory_mib": {"type": ["number", "null"], "minimum": 0, "maximum": 1024},
+        "runner_exit_code": {"type": ["integer", "null"]},
+        "scorer_exit_code": {"type": ["integer", "null"]}
+      }
+    },
+    "expected_input_pins": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pre_run_manifest_sha256", "scorer_truth_manifest_sha256", "source_sample_sha256", "source_sample_bytes"],
+      "properties": {
+        "pre_run_manifest_sha256": {"const": "cdf77fe8a5bd5db08aaa9f7a967f47c733a3bd5fcfb3737eb59a515f404d22a7"},
+        "scorer_truth_manifest_sha256": {"const": "16129b5109059a3e844bb930eeb938653134a4789d0bbed8c1e4ea6057c33d24"},
+        "source_sample_sha256": {"const": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"},
+        "source_sample_bytes": {"const": 2537}
+      }
+    },
+    "observed_input_pins": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pre_run_manifest_sha256", "scorer_truth_manifest_sha256", "source_sample_sha256", "source_sample_bytes"],
+          "properties": {
+            "pre_run_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "scorer_truth_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "source_sample_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "source_sample_bytes": {"type": "integer", "minimum": 0}
+          }
+        }
+      ]
+    },
+    "outcome": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method_outputs_sha256",
+            "runner_checks_total",
+            "runner_checks_passed",
+            "full_receipt_chain",
+            "missing_hop2_receipt",
+            "hash_only",
+            "side_input_receipt_status",
+            "side_input_lineage_status",
+            "production_truth_denominator",
+            "production_accuracy",
+            "wrong_confirmed_attribution_status",
+            "pair_rows_independent"
+          ],
+          "properties": {
+            "method_outputs_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "runner_checks_total": {"type": "integer", "minimum": 0},
+            "runner_checks_passed": {"type": "integer", "minimum": 0},
+            "full_receipt_chain": {"$ref": "#/$defs/counts"},
+            "missing_hop2_receipt": {"$ref": "#/$defs/counts"},
+            "hash_only": {"$ref": "#/$defs/counts"},
+            "side_input_receipt_status": {"type": "string"},
+            "side_input_lineage_status": {"type": "string"},
+            "production_truth_denominator": {"type": "integer", "minimum": 0},
+            "production_accuracy": {"type": "string"},
+            "wrong_confirmed_attribution_status": {"type": "string"},
+            "pair_rows_independent": {"type": "boolean"}
+          }
+        }
+      ]
+    },
+    "failure_reasons": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "bytes", "sha256"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+          "bytes": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["confirmed", "unknown"],
+      "properties": {
+        "confirmed": {"type": "integer", "minimum": 0},
+        "unknown": {"type": "integer", "minimum": 0}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"task_status": {"const": "PASS"}}},
+      "then": {
+        "properties": {
+          "observed_runner_commit": {"const": "c969913eacb56cda1236009ffa9390bd6f62cd3c"},
+          "execution": {"properties": {"runner_exit_code": {"const": 0}, "scorer_exit_code": {"const": 0}}},
+          "observed_input_pins": {"$ref": "#/properties/expected_input_pins"},
+          "outcome": {
+            "type": "object",
+            "properties": {
+              "method_outputs_sha256": {"const": "15ee4c362160bfb1381da9a2e304f09224e73c265dc95fba949135d5694c66cb"},
+              "runner_checks_total": {"const": 16},
+              "runner_checks_passed": {"const": 16},
+              "full_receipt_chain": {"const": {"confirmed": 3, "unknown": 0}},
+              "missing_hop2_receipt": {"const": {"confirmed": 1, "unknown": 2}},
+              "hash_only": {"const": {"confirmed": 0, "unknown": 3}},
+              "side_input_receipt_status": {"const": "UNDECLARED_SIDE_INPUT"},
+              "side_input_lineage_status": {"const": "UNKNOWN"},
+              "production_truth_denominator": {"const": 0},
+              "production_accuracy": {"const": "NOT_COMPUTABLE"},
+              "wrong_confirmed_attribution_status": {"const": "NOT_EVALUATED_NO_INDEPENDENT_PRODUCTION_TRUTH"},
+              "pair_rows_independent": {"const": false}
+            }
+          },
+          "failure_reasons": {"maxItems": 0}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"task_status": {"enum": ["FAIL", "BLOCKED"]}}},
+      "then": {"properties": {"failure_reasons": {"minItems": 1}}}
+    }
+  ]
+}

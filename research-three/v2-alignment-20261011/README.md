@@ -109,3 +109,26 @@ The sample is sufficient for a read-only field audit, but it has no collector re
 - The public row `ci41346535` contains multiple catalog IDs/source labels but no local receive time, raw-body digest, or forwarding receipts; lineage remains `UNKNOWN`. In the synthetic contract probe, four identical graph-claim sets produced the same shared-ancestor result and four unique edges as one set. A disjoint complete graph still did not establish statistical independence. No numerical risk confidence, event accuracy, or efficacy was computed.
 - [Pre-run manifest](runs/public-source-copy-lineage-20261012/PRE_RUN_MANIFEST.json) freezes input/protocol/source hashes. [Run manifest](runs/public-source-copy-lineage-20261012/RUN_MANIFEST.json) and [Mac persistence manifest](runs/public-source-copy-lineage-20261012/MAC_PERSISTENCE_MANIFEST.json) preserve reproduction files using repository-relative paths; the Mac project root remains null.
 - No NWS endpoint was queried or retried. The earlier access failure, public-source lineage unknowns, and Mac V3-RSS failed baseline remain unchanged.
+
+## User compute handoff: CPU replay, no GPU
+
+[PCG-LINEAGE-CPU-REPLAY-001](runs/two-hop-lineage-controlled-synthetic-20261012-v2/USER_CPU_REPLAY_TASK.md)
+is a CPU-only reproducibility check for the existing V2 two-hop lineage runner.
+It needs no model, weights, dataset download, package installation, or paid
+compute. It reuses the same synthetic world and three related pair rows, so it
+adds no independent sample or production-accuracy evidence. Run it in a
+disposable checkout because the legacy runner writes into its own run
+directory. The [result schema](runs/two-hop-lineage-controlled-synthetic-20261012-v2/USER_CPU_REPLAY_RESULT_V1.schema.json)
+and standard-library [bundle validator](../../risk-fusion-bench/src/rfb/research/user_cpu_replay_handoff.py)
+separate package integrity from the reported task outcome.
+The validator tests construct synthetic `PASS`/`BLOCKED` metadata around the
+already frozen V2 artifacts; they do not rerun the runner or scorer. The
+[Mac persistence manifest](runs/two-hop-lineage-controlled-synthetic-20261012-v2/MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json)
+lists these new handoff files with repository-relative paths. It records that
+no Mac copy was performed in this cloud checkout.
+
+The next real-source lineage collection remains blocked: the exact source
+response/collector receipt, two-sided forwarding receipts with bounded cursor
+evidence, product-specific terms, and independent event adjudication are not
+in the checkout, and no collector currently captures them. Do not use GPU or
+synthetic receipts to stand in for those missing facts.

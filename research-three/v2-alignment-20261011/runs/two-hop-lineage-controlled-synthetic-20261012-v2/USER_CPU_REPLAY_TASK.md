@@ -27,6 +27,18 @@ out of scope.
 - Existing entry points:
   - `PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/run_two_hop_lineage_v2.py`
   - `PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/score_two_hop_lineage_v2.py`
+- After returning the files in a separate task-run folder, validate the bundle
+  from the repository root with:
+  `PYTHONPATH=risk-fusion-bench/src python -m rfb.research.user_cpu_replay_handoff --bundle-dir research-three/v2-alignment-20261011/runs/user-cpu-replay-<UTC timestamp>-<run-id>`
+- The returned `TASK_RESULT.json` must follow
+  [USER_CPU_REPLAY_RESULT_V1.schema.json](USER_CPU_REPLAY_RESULT_V1.schema.json).
+  The validator checks the result artifact hashes, both frozen manifests, all
+  16 runner checks, the fixed pair counts, and the explicit `NOT_COMPUTABLE`
+  production-accuracy fields. It uses the Python standard library only.
+- [MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json](MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json)
+  lists the cloud-branch handoff files with repository-relative paths for a
+  future Mac checkout. Its `copy_status` is `NOT_COPIED_BY_THIS_RUN` and its
+  Mac project root is null; do not interpret cloud paths as Mac-local paths.
 - Python: `>=3.11`, using the checkout and Python standard library; no package
   installation is required.
 - Input: repository file
@@ -73,12 +85,16 @@ commit over V1/V2 files. Include `METHOD_OUTPUTS_V2.json`,
 `METHOD_OUTPUT_FREEZE_V2.json`, `RUNNER_CHECKS_V2.json`, `SCORED_RESULT_V2.json`,
 the generated aliases and side-input negative-control record, both frozen
 input manifests, the exact command/stdout/stderr/exit codes, and a task-result
-JSON recording the runner commit, Python version, source SHA, method-output
-SHA, exit codes, checks passed/total, and final status (`PASS`, `FAIL`, or
-`BLOCKED`). Keep paths repository-relative. Do not publish credentials,
-private Mac files/logs, or unreviewed source payloads. A machine schema and
-validation command are the next handoff increment; until then, the fields
-above are the required manual return contract, not schema-validated evidence.
+JSON recording target and observed runner commits, expected and observed input
+pins, Python/platform/CPU facts, exact commands, timestamps, exit codes,
+checks passed/total, task status (`PASS`, `FAIL`, or `BLOCKED`), failure reasons,
+and repository-relative artifact paths, byte lengths and SHA-256 values. If
+execution is blocked before checkout, set observed runner/input pins to `null`,
+include the command and logs, and explain the blocker. Run the validator above
+before pushing the task-run folder. It reports a valid evidence bundle and task
+outcome separately; a structurally valid `FAIL` or `BLOCKED` bundle is not a
+passing experiment. Do not publish credentials, private Mac files/logs, or
+unreviewed source payloads.
 
 ## Expected result and stop conditions
 

@@ -1,0 +1,42 @@
+{
+  "manifest_version": 1,
+  "purpose": "Repository-relative hash manifest for preserving the PCG user CPU replay handoff files in a Mac checkout.",
+  "source_scope": "Cloud repository branch task/research-three-two-hop-lineage-20261012",
+  "manifest_predecessor_commit_sha": "5cd6892ac9db8a5e9f22c614b6877681f89a1974",
+  "mac_local_project_root": null,
+  "copy_status": "NOT_COPIED_BY_THIS_RUN",
+  "evidence_class": "Handoff specification and validator only; no user replay was run.",
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/README.md",
+      "bytes": 25295,
+      "sha256": "877a267e8b8ef984a7d031c8157aea200cc2507eba93a452dc5986559f1ba3c5"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/USER_CPU_REPLAY_TASK.md",
+      "bytes": 7734,
+      "sha256": "86d0f849cdfdc326c67ae37e6444a39ad5c4cbf35e0f52892bbf09f9c8f865c4"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/USER_CPU_REPLAY_RESULT_V1.schema.json",
+      "bytes": 8163,
+      "sha256": "927569679a7a3e34279c5e14f3990093e2263bb940c5e47724d7858cb6f09fa0"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/user_cpu_replay_handoff.py",
+      "bytes": 27405,
+      "sha256": "67ccac68e7387cc02d8d5248cc76589e8cba196ee675f2cbce7873b5cac40b47"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_user_cpu_replay_handoff.py",
+      "bytes": 10609,
+      "sha256": "e1dd819772fec4de1367955f675338688bc6fa382fb2131680bb7e4d82e39db2"
+    }
+  ],
+  "related_existing_manifest": {
+    "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/MAC_PERSISTENCE_MANIFEST_V2.json",
+    "purpose": "Preserves the prior V2 research run and remains unchanged by this handoff."
+  },
+  "self_hash_excluded": true,
+  "path_rule": "Resolve every listed path from the Mac Git checkout root. Do not reuse cloud workspace absolute paths as Mac paths."
+}
