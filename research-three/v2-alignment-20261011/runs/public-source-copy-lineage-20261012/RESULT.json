@@ -1,0 +1,163 @@
+{
+  "run_id": "USGS-PUBLIC-REPLAY-LINEAGE-BOUNDARY-20261012-V1",
+  "run_status": "COMPLETED_SYNTHETIC_LINEAGE_BOUNDARY_CHECK",
+  "classification": "REAL_PUBLIC_SNAPSHOT_ANCHOR_PLUS_SYNTHETIC_LINEAGE_CONTRACT_CASES",
+  "synthetic_only_for_method_calls": true,
+  "pre_run_commit": "2eef5d97c901fb03676b72c4279209fb63419c22",
+  "pre_run_manifest_sha256": "2c6c0b44f1254ac32d7f61c5c52b202c5ec534be3c5b0f587da7724a92d729e6",
+  "input_sha256": "71e010d6e9a57c8e6ccdf709b6603027bf3f7c5d6ea87b55d69be5b4641c4e4f",
+  "method_source_commit": "bdbed0bc0e5415a39a790583e3550baf0b68ff18",
+  "method": "rfb.research.source_lineage_contract_v1.assess_source_lineage",
+  "network_or_model_called": false,
+  "nws_endpoint_accessed": false,
+  "notification_created": false,
+  "delivery_status": "NOT_DELIVERED",
+  "event_identity_status": "NOT_EVALUATED",
+  "efficacy_status": "NOT_ASSESSED",
+  "public_sample_summary": {
+    "feature_id": "ci41346535",
+    "ids": [
+      "ci41346535",
+      "us6000u1mg"
+    ],
+    "source_labels": [
+      "ci",
+      "us"
+    ],
+    "event_origin_time": "2026-10-11T21:28:13.930Z",
+    "catalog_updated_time": "2026-10-11T22:39:25.040Z",
+    "feed_generated_time": "2026-10-11T23:44:47.000Z",
+    "lineage_status": "UNKNOWN",
+    "raw_bytes_saved": false,
+    "raw_response_sha256": null,
+    "exact_local_capture_time_utc": null,
+    "directional_forwarding_receipts_available": false,
+    "confidence_change": "UNKNOWN_NO_CONFIDENCE_UPDATE",
+    "not_submitted_to_contract_as_complete_graph": true
+  },
+  "synthetic_copy_sequence": {
+    "base_feature_ref": "public-sample:ci41346535",
+    "copy_offsets_seconds": [
+      0,
+      1,
+      2
+    ],
+    "copy_type": "HYPOTHETICAL_REPLAY_OR_FORWARD_COPY",
+    "observed_in_public_feed": false,
+    "exact_payload_replay_proven": false,
+    "source_independence": "NOT_ESTABLISHED",
+    "notification_created": false,
+    "delivery_status": "NOT_DELIVERED",
+    "numeric_risk_confidence_delta": "NOT_COMPUTED",
+    "confidence_change": "NO_INCREMENT_FROM_EXACT_DUPLICATE_ASSERTIONS"
+  },
+  "method_outputs": [
+    {
+      "case_id": "synthetic_shared_graph_base",
+      "duplicate_assertion_copies": 1,
+      "status": "SHARED_KNOWN_ANCESTOR",
+      "declared_root_id_relation": "DISTINCT_DECLARED_IDS",
+      "shared_ancestor_node_ids": [
+        "SYNTH-UPSTREAM-ONE"
+      ],
+      "reason_codes": [
+        "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+        "SHARED_KNOWN_ANCESTOR"
+      ],
+      "evidence_refs": [
+        "synthetic://copy-lineage/completeness/SYNTH-OBS-A",
+        "synthetic://copy-lineage/completeness/SYNTH-OBS-B",
+        "synthetic://copy-lineage/edge/SYNTH-EDGE-A1",
+        "synthetic://copy-lineage/edge/SYNTH-EDGE-A2",
+        "synthetic://copy-lineage/edge/SYNTH-EDGE-B1",
+        "synthetic://copy-lineage/edge/SYNTH-EDGE-B2",
+        "synthetic://copy-lineage/node/SYNTH-ACQ-A",
+        "synthetic://copy-lineage/node/SYNTH-ACQ-B",
+        "synthetic://copy-lineage/node/SYNTH-OBS-A",
+        "synthetic://copy-lineage/node/SYNTH-OBS-B",
+        "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE"
+      ],
+      "unique_edge_count": 4,
+      "statistical_independence_established": false,
+      "numeric_risk_confidence_delta": null
+    },
+    {
+      "case_id": "synthetic_shared_graph_four_assertion_copies",
+      "duplicate_assertion_copies": 4,
+      "status": "SHARED_KNOWN_ANCESTOR",
+      "declared_root_id_relation": "DISTINCT_DECLARED_IDS",
+      "shared_ancestor_node_ids": [
+        "SYNTH-UPSTREAM-ONE"
+      ],
+      "reason_codes": [
+        "GROUP_OR_DISCOUNT_SHARED_EVIDENCE",
+        "SHARED_KNOWN_ANCESTOR"
+      ],
+      "evidence_refs": [
+        "synthetic://copy-lineage/completeness/SYNTH-OBS-A",
+        "synthetic://copy-lineage/completeness/SYNTH-OBS-B",
+        "synthetic://copy-lineage/edge/SYNTH-EDGE-A1",
+        "synthetic://copy-lineage/edge/SYNTH-EDGE-A2",
+        "synthetic://copy-lineage/edge/SYNTH-EDGE-B1",
+        "synthetic://copy-lineage/edge/SYNTH-EDGE-B2",
+        "synthetic://copy-lineage/node/SYNTH-ACQ-A",
+        "synthetic://copy-lineage/node/SYNTH-ACQ-B",
+        "synthetic://copy-lineage/node/SYNTH-OBS-A",
+        "synthetic://copy-lineage/node/SYNTH-OBS-B",
+        "synthetic://copy-lineage/node/SYNTH-UPSTREAM-ONE"
+      ],
+      "unique_edge_count": 4,
+      "statistical_independence_established": false,
+      "numeric_risk_confidence_delta": null
+    },
+    {
+      "case_id": "synthetic_disjoint_complete_graph_control",
+      "duplicate_assertion_copies": 1,
+      "status": "NO_SHARED_KNOWN_ANCESTOR",
+      "declared_root_id_relation": "DISTINCT_DECLARED_IDS",
+      "shared_ancestor_node_ids": [],
+      "reason_codes": [
+        "NO_SHARED_KNOWN_ANCESTOR",
+        "NO_STATISTICAL_INDEPENDENCE_CLAIM"
+      ],
+      "evidence_refs": [
+        "synthetic://copy-lineage/completeness/SYNTH-DISJOINT-OBS-A",
+        "synthetic://copy-lineage/completeness/SYNTH-DISJOINT-OBS-B",
+        "synthetic://copy-lineage/edge/SYNTH-DISJOINT-EDGE-A",
+        "synthetic://copy-lineage/edge/SYNTH-DISJOINT-EDGE-B",
+        "synthetic://copy-lineage/node/SYNTH-DISJOINT-OBS-A",
+        "synthetic://copy-lineage/node/SYNTH-DISJOINT-OBS-B",
+        "synthetic://copy-lineage/node/SYNTH-DISJOINT-SOURCE-A",
+        "synthetic://copy-lineage/node/SYNTH-DISJOINT-SOURCE-B"
+      ],
+      "unique_edge_count": 2,
+      "statistical_independence_established": false,
+      "numeric_risk_confidence_delta": null
+    }
+  ],
+  "method_outputs_sha256_before_expectation_checks": "3c4048aa8d782560e65b6709c31a18896d1d32cae3676f78c5d8c9f3d637500b",
+  "checks_after_output_freeze": {
+    "synthetic_shared_graph_base:contract_fields": true,
+    "synthetic_shared_graph_four_assertion_copies:contract_fields": true,
+    "synthetic_disjoint_complete_graph_control:contract_fields": true,
+    "exact_duplicate_claims_do_not_change_lineage_support": true,
+    "independence_never_asserted": true
+  },
+  "all_frozen_contract_checks_passed": true,
+  "interpretation": {
+    "public_sample": "UNKNOWN_LINEAGE_AND_NO_CONFIDENCE_UPDATE; listed IDs/source labels are not proof of independent acquisition.",
+    "synthetic_duplicate_case": {
+      "confidence_change": "NO_INCREMENT_FROM_EXACT_DUPLICATE_ASSERTIONS",
+      "numeric_risk_confidence_delta": null,
+      "basis": "The shared source graph result and unique edge/reference set are invariant under exact duplicate assertions."
+    },
+    "synthetic_disjoint_control": "NO_SHARED_KNOWN_ANCESTOR is not statistical independence and does not authorize a confidence increase.",
+    "risk_probability_or_severity": "NOT_COMPUTED"
+  },
+  "limitations": [
+    "The USGS feature is one real public row; its original response bytes, exact local receipt time, and forwarding receipts are absent.",
+    "Synthetic graph trust and trace-completeness claims are fixture assumptions, not verified USGS lineage.",
+    "The lineage contract does not compute risk confidence, event identity, or notification timeliness.",
+    "The probe does not estimate efficacy; contract check counts are not effect sizes or independent samples."
+  ]
+}

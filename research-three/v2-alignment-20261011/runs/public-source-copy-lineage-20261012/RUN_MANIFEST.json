@@ -1,0 +1,104 @@
+{
+  "manifest_version": 1,
+  "run_id": "USGS-PUBLIC-REPLAY-LINEAGE-BOUNDARY-20261012-V1",
+  "classification": "REAL_PUBLIC_SNAPSHOT_ANCHOR_PLUS_SYNTHETIC_LINEAGE_CONTRACT_CASES",
+  "run_status": "COMPLETED_SYNTHETIC_LINEAGE_BOUNDARY_CHECK",
+  "pre_run_commit": "2eef5d97c901fb03676b72c4279209fb63419c22",
+  "method_source_commit": "bdbed0bc0e5415a39a790583e3550baf0b68ff18",
+  "pre_run_manifest_sha256": "2c6c0b44f1254ac32d7f61c5c52b202c5ec534be3c5b0f587da7724a92d729e6",
+  "input_sha256": "71e010d6e9a57c8e6ccdf709b6603027bf3f7c5d6ea87b55d69be5b4641c4e4f",
+  "method_outputs_sha256": "3c4048aa8d782560e65b6709c31a18896d1d32cae3676f78c5d8c9f3d637500b",
+  "all_frozen_contract_checks_passed": true,
+  "focused_test_command": "cd risk-fusion-bench && PYTHONPATH=src python -m unittest -v tests.test_source_lineage_contract_v1 tests.test_observable_association.ObservableAssociationTests.test_duplicate_forwarding_does_not_increase_lineage_support",
+  "focused_test_result": "20 tests passed: 19 source-lineage contract tests plus 1 existing duplicate-forwarding regression; not an effect estimate.",
+  "reproduction_command": "PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/run_probe.py",
+  "network_or_model_or_notification_called": false,
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/README.md",
+      "bytes": 23700,
+      "sha256": "cb081b611d1abea93ea3a279515566709e2d128d67da3632c6cccd526f0cef72"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/PROTOCOL.md",
+      "bytes": 5066,
+      "sha256": "03961f9869dc2648ffb7d5d6ebdf5ed1225edde1207335955918226392a489d9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/INPUTS.json",
+      "bytes": 25963,
+      "sha256": "71e010d6e9a57c8e6ccdf709b6603027bf3f7c5d6ea87b55d69be5b4641c4e4f"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/PRE_RUN_MANIFEST.json",
+      "bytes": 3145,
+      "sha256": "2c6c0b44f1254ac32d7f61c5c52b202c5ec534be3c5b0f587da7724a92d729e6"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/run_probe.py",
+      "bytes": 16935,
+      "sha256": "289a34543a2ae8b8ca8641a5191c691810f2ab4b4cafc814755d1b7e82811238"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/RESULT.json",
+      "bytes": 7110,
+      "sha256": "24cbbc67012033cf71c377bc0c2005d933d2d48827fc90507e6d3d3518428080"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/SOURCE_COPY_SEQUENCE.svg",
+      "bytes": 6066,
+      "sha256": "a2bcd0e2554c3475bafff67376aa6a4f820ddf958c1f690b4684352e65ff8b13"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/public-source-copy-lineage-20261012/REPORT.md",
+      "bytes": 5996,
+      "sha256": "9fb4d45eaaa4a5836b5df08b7fd6a16a6dd500e641d5f467e59765a79354ce5d"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/source_lineage_contract_v1.py",
+      "bytes": 14240,
+      "sha256": "ca58668d724c3b547de01dbcf3b6e0460adbdf1cf72ae54bd94515d5ac3bac26"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_source_lineage_contract_v1.py",
+      "bytes": 15236,
+      "sha256": "70e4d49fe50701f74a2fbb198d971a04cd76a69d3c0246954821095a98ac78cd"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_observable_association.py",
+      "bytes": 35492,
+      "sha256": "691615d6a49e566209a5e939c1c257e7a091e02bd8aa0b55dd18a0a424bda08c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_CONTRACT_V1.md",
+      "bytes": 4659,
+      "sha256": "d0577d2b4b73512f0b98f3530543d885514e2670cb9f8ded4997ec9cca49440c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/SOURCE_LINEAGE_ACQUISITION_OBSERVABILITY_NOTE.md",
+      "bytes": 4920,
+      "sha256": "2833a106d88f227e240e8e263ed5561a46daf324a7ebac1dd670fddfb575974b"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_SOURCE_AUDIT.md",
+      "bytes": 6770,
+      "sha256": "bebdb8ea2b074fd5778e8c873e34ac3f86361fe03fead214ba2f8b0752d68d29"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+      "bytes": 2537,
+      "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.svg",
+      "bytes": 4840,
+      "sha256": "c113e9508edffff6ff3fab11ee571ae23122b45ac5942334cfd2eb2093fb2b0c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_SOURCE_OBSERVABILITY_AUDIT_MANIFEST.json",
+      "bytes": 2079,
+      "sha256": "6b0aa7758fd417fd6f1b702faa7a63cf07fee3ac5203f1ad3a16bcba82bd6b4a"
+    }
+  ],
+  "self_hash_excluded": true
+}
