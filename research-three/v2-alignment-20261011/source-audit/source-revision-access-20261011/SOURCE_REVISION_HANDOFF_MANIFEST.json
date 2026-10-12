@@ -2,8 +2,8 @@
   "manifest_version": "research-artifact-manifest-v1",
   "artifact_set": "public-source-revision-access-and-claim-gates-20261011",
   "branch": "task/research-three-v2-alignment-20261011",
-  "source_commit": "b4a1b2c5efb825f7c30c0057d9521ed5fc0a5cce",
-  "scope": "Public-source candidate assessment, exact NWS CAP URLs/required response, and claim-specific evidence gates. No live CAP payload or test result is included.",
+  "source_commit": "67ab9aca6dc3c82752f56b4ff9210af5d5058672",
+  "scope": "Public-source candidate assessment, exact NWS CAP URLs/required response, and two bounded CONNECT-tunnel retrieval attempts; no live CAP payload or test result is included.",
   "sha256_scope": "All listed deliverables; manifest does not hash itself.",
   "contains_raw_payload": false,
   "mac_local_project_root": null,
@@ -11,14 +11,19 @@
   "path_convention": "Repository-relative POSIX paths; resolve only beneath the Mac checkout root, never against cloud absolute paths.",
   "files": [
     {
+      "path": "research-three/v2-alignment-20261011/source-audit/source-revision-access-20261011/NWS_CAP_FETCH_ATTEMPT_RESULTS.json",
+      "bytes": 2925,
+      "sha256": "c99ddf37e630451751536eb2a72e4d497c186b18475a49a738c5980f8449c856"
+    },
+    {
       "path": "research-three/v2-alignment-20261011/source-audit/source-revision-access-20261011/NWS_CAP_REQUIRED_RESPONSE.json",
       "bytes": 3452,
       "sha256": "2c1a2fe480741d4975dd0daf2661bce8a0999907793f3e50f96762b4085b1fad"
     },
     {
       "path": "research-three/v2-alignment-20261011/source-audit/source-revision-access-20261011/SOURCE_REVISION_FETCH_AND_CLAIM_GATES.md",
-      "bytes": 11611,
-      "sha256": "9b9d6adab4d347a59031d7222ebba311e3dfffebf674ae1d19d3294845775a5d"
+      "bytes": 12959,
+      "sha256": "3efdd780907af4352ec05599a2946a765ade8b85b0a66280f45504c331fbc3dc"
     }
   ]
 }
