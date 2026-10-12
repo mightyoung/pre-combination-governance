@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Synthetic mixed-stream card gate comparison</title>
+<desc id="desc">Before and after counts for active and cancelled versioned cards. Unversioned inputs are audit-only, and higher risk signals create pending reviews without changing the versioned card or sending a notification.</desc>
+<rect width="1200" height="720" fill="#f5f7fb"/>
+<text x="48" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#17243b">Unversioned mixed-stream gate · synthetic only</text>
+<text x="48" y="91" font-family="Arial, sans-serif" font-size="15" fill="#50627d">Saved legacy direct-apply baseline vs. versioned-card gate · no real delivery, event truth, or efficacy measured</text>
+<rect x="48" y="122" width="1104" height="246" rx="14" fill="#ffffff" stroke="#d7dfeb"/>
+<text x="72" y="158" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#17243b">Active versioned card</text>
+<text x="72" y="193" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#63738c">LEGACY DIRECT APPLY</text>
+<rect x="72" y="207" width="320" height="38" rx="8" fill="#b8c7db"/><text x="86" y="232" font-family="Arial, sans-serif" font-size="16" fill="#17243b">2 notification actions</text>
+<rect x="72" y="255" width="960" height="38" rx="8" fill="#b8c7db"/><text x="86" y="280" font-family="Arial, sans-serif" font-size="16" fill="#17243b">6 card revisions</text>
+<text x="72" y="330" font-family="Arial, sans-serif" font-size="15" fill="#42536d">Final card: ACTIVE · unversioned updates overwrote card content</text>
+<text x="600" y="193" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#28634f">MIXED-STREAM GATE</text>
+<rect x="600" y="207" width="160" height="38" rx="8" fill="#78c8a2"/><text x="614" y="232" font-family="Arial, sans-serif" font-size="16" fill="#103b2a">1 notification action</text>
+<rect x="600" y="255" width="160" height="38" rx="8" fill="#78c8a2"/><text x="614" y="280" font-family="Arial, sans-serif" font-size="16" fill="#103b2a">1 card revision</text>
+<text x="600" y="319" font-family="Arial, sans-serif" font-size="14" fill="#28634f">6 audit records · 2 pending reviews · no card overwrite</text>
+<text x="600" y="342" font-family="Arial, sans-serif" font-size="14" fill="#28634f">Final card: ACTIVE · delivery NOT_DELIVERED</text>
+<rect x="48" y="392" width="1104" height="246" rx="14" fill="#ffffff" stroke="#d7dfeb"/>
+<text x="72" y="428" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#17243b">Cancelled versioned card</text>
+<text x="72" y="463" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#63738c">LEGACY DIRECT APPLY</text>
+<rect x="72" y="477" width="480" height="38" rx="8" fill="#b8c7db"/><text x="86" y="502" font-family="Arial, sans-serif" font-size="16" fill="#17243b">3 notification actions</text>
+<rect x="72" y="525" width="480" height="38" rx="8" fill="#b8c7db"/><text x="86" y="550" font-family="Arial, sans-serif" font-size="16" fill="#17243b">3 card revisions</text>
+<text x="72" y="600" font-family="Arial, sans-serif" font-size="15" fill="#9a3b37">Final card: ACTIVE · cancellation was overwritten</text>
+<text x="600" y="463" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#28634f">MIXED-STREAM GATE</text>
+<rect x="600" y="477" width="320" height="38" rx="8" fill="#78c8a2"/><text x="614" y="502" font-family="Arial, sans-serif" font-size="16" fill="#103b2a">2 notification actions</text>
+<rect x="600" y="525" width="320" height="38" rx="8" fill="#78c8a2"/><text x="614" y="550" font-family="Arial, sans-serif" font-size="16" fill="#103b2a">2 card revisions</text>
+<text x="600" y="589" font-family="Arial, sans-serif" font-size="14" fill="#28634f">1 audit record · 1 pending review</text>
+<text x="600" y="612" font-family="Arial, sans-serif" font-size="14" fill="#28634f">Final card: CANCELLED · higher risk stays pending · no delivery</text>
+<text x="48" y="675" font-family="Arial, sans-serif" font-size="13" fill="#687891">Risk claims LOW / WARNING / CRITICAL are fixture-only comparison labels. Version authority remains unverified.</text>
+</svg>

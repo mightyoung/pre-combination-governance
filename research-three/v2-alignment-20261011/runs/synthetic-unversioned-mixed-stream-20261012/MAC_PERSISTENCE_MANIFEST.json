@@ -1,0 +1,97 @@
+{
+  "manifest_version": 1,
+  "purpose": "Repository-relative file list and SHA-256 values for persistence into the Mac checkout.",
+  "mac_local_project_root": null,
+  "copy_status": "NOT_COPIED_BY_THIS_RUN",
+  "run_id": "SYNTH-UNVERSIONED-MIXED-STREAM-20261012-V2",
+  "source_code_commit": "cb3468e4842ea4cab29246ee2c36b2348efad2ec",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2534,
+      "sha256": "e988aca6e40e5fc7474e2cc9cca23360769feeae9409c915bcba8aabd7fc06fd"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/README.md",
+      "bytes": 22207,
+      "sha256": "941e036bc04871f45e7af4172690f956e6532b1901285f5f2ddceb23bb317523"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
+      "bytes": 34480,
+      "sha256": "c6a716c3747fa23e7e4a6f162e2b1cadc8a723a0030db3446ccc826c8d6b186b"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/unversioned_mixed_stream_pilot.py",
+      "bytes": 11354,
+      "sha256": "f23fc965f298b45df9846a3a9f087fc29bdfabedbf31557b59b140c04d9b37c5"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
+      "bytes": 29209,
+      "sha256": "f46c3978b340f6b0599503d1f742aeb033d1ceb5da7fcd32dd6a6e1168f6b637"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
+      "bytes": 7512,
+      "sha256": "57bd61160a59384251ecdc53c9adcc86f663c82e14ce00bc1261eec995374436"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_governance_v2.py",
+      "bytes": 1541,
+      "sha256": "0eb852f16213484eeb4a1bf4aa8c7f4360865e3692d2f3d370ab15dd0985dbcd"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
+      "bytes": 22183,
+      "sha256": "887a4a7ddca4d9bacbb9962f700c8031e295bb32de641d2c3b619b5d5662ad2d"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_event_card_integration.py",
+      "bytes": 39657,
+      "sha256": "fe13e465dc53fdaaf6d8eb1ef49282a392dab7d75a1fca4761a77854d63e47fc"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-unversioned-mixed-stream-20261012/INPUT_AND_EXPECTATIONS.json",
+      "bytes": 12997,
+      "sha256": "c571fd9e39886d79bfc3c1e06fd006a0ea30244fe7159b8c6ba8e2dc0f46b277"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-unversioned-mixed-stream-20261012/FIXTURE_VALIDATION_FAILURE_V1.json",
+      "bytes": 947,
+      "sha256": "16375291d6e99f40a0fcc0621660dfa1e378f108ca0f22c3227ffe782d950434"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-unversioned-mixed-stream-20261012/INPUT_AND_EXPECTATIONS_V2.json",
+      "bytes": 15844,
+      "sha256": "44cd6415c8eca05f028283be0475c51a8d39f97e6e9dff1789f6845d801dc4ce"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-unversioned-mixed-stream-20261012/LEGACY_MIXED_BASELINE.json",
+      "bytes": 107420,
+      "sha256": "e0514879977cf901082fa086fc3debca8ee5b94bc115fe4bd2bf1e7e34f25050"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-unversioned-mixed-stream-20261012/RESULT.json",
+      "bytes": 87868,
+      "sha256": "df9054cfad7f85cec1b34f3bf58daed47d55ccfecf26a1c3e43683dd16518dc0"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-unversioned-mixed-stream-20261012/MIXED_STREAM_COMPARISON.svg",
+      "bytes": 4294,
+      "sha256": "ea5cf0c74071b33e354d9b59f28e368d6d1b4f36cbe73cb95228ee7c67d481d9"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-unversioned-mixed-stream-20261012/REPORT.md",
+      "bytes": 5996,
+      "sha256": "4ae03aaccc702b8042ddf568474daf2ecc7a770c33a53aec08fb8a70ee437ff3"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/synthetic-unversioned-mixed-stream-20261012/RUN_MANIFEST.json",
+      "bytes": 4320,
+      "sha256": "58d32d00ecef02614fe9e49b9087176137ccf3fdd1935d0013dde837fe4d452a"
+    }
+  ],
+  "self_hash_excluded": true,
+  "path_rule": "Resolve each repository-relative path from the Mac checkout root; do not reuse cloud absolute paths."
+}

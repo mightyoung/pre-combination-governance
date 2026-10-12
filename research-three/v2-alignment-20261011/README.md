@@ -95,3 +95,10 @@ The inputs and results are repository-relative. For Mac persistence, use the loc
 - [Real-source audit persistence manifest](source-audit/usgs-summary-20261011/REAL_SOURCE_OBSERVABILITY_AUDIT_MANIFEST.json): repository-relative hashes for this audit, its sample/visualization, and the changed handoff/README. It is separate from the historical run-only Mac manifest and does not claim the files have been copied to a Mac.
 
 The sample is sufficient for a read-only field audit, but it has no collector receipt time, raw-body digest, or verified forwarding edge. No source-lineage or association prototype was run.
+
+## Versioned-card mixed-stream gate
+
+- [Run report](runs/synthetic-unversioned-mixed-stream-20261012/REPORT.md), [machine-readable result](runs/synthetic-unversioned-mixed-stream-20261012/RESULT.json), and [offline SVG comparison](runs/synthetic-unversioned-mixed-stream-20261012/MIXED_STREAM_COMPARISON.svg) record the synthetic unversioned-after-versioned boundary check.
+- The gate preserves a versioned card and lifecycle, audits later unversioned messages, and opens an unconfirmed pending review for higher risk signals. The corrected V2 fixture's frozen expectations match; the legacy direct-apply baseline and V1 fixture-validation failure remain preserved.
+- The implementation is in [`unversioned_mixed_stream_pilot.py`](../../risk-fusion-bench/src/rfb/research/unversioned_mixed_stream_pilot.py) and [`alert_action_experiment.py`](../../risk-fusion-bench/src/rfb/research/alert_action_experiment.py); the focused integration coverage is in [test_event_card_integration.py](../../risk-fusion-bench/tests/test_event_card_integration.py). The run is synthetic and not delivered; it does not validate real version authority or evaluate timeliness, content completeness, or event-confirmation accuracy.
+- [Run manifest](runs/synthetic-unversioned-mixed-stream-20261012/RUN_MANIFEST.json) and [Mac persistence manifest](runs/synthetic-unversioned-mixed-stream-20261012/MAC_PERSISTENCE_MANIFEST.json) contain repository-relative paths and SHA-256 hashes. The Mac project root is unspecified.
