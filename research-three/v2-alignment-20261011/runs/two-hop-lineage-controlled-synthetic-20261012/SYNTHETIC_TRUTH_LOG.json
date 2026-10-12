@@ -1,0 +1,16 @@
+{
+  "classification": "SCORER_ONLY_CONTROLLED_SYNTHETIC_FIXTURE_NOT_PRODUCTION_LOG",
+  "world_id": "SYNTHETIC-WORLD-001",
+  "source_observation": "SOURCE",
+  "synthetic_parent_id": "SYNTHETIC-ROOT-001",
+  "observations": ["SOURCE", "HOP1", "HOP2"],
+  "truth_relations": [
+    {"pair_id": "SOURCE/HOP1", "relation": "SAME_SYNTHETIC_PARENT"},
+    {"pair_id": "SOURCE/HOP2", "relation": "SAME_SYNTHETIC_PARENT"},
+    {"pair_id": "HOP1/HOP2", "relation": "SAME_SYNTHETIC_PARENT"}
+  ],
+  "generation_basis": "HOP1 and HOP2 are created by the frozen local deterministic transforms in INPUTS.json from the same saved normalized sample bytes.",
+  "production_replay_log_denominator": 0,
+  "independent_sample_count": 0,
+  "note": "This sidecar permits a single controlled software-mechanics check only. Its pair rows share one synthetic world and are not independent samples; it does not replace missing production replay logs."
+}

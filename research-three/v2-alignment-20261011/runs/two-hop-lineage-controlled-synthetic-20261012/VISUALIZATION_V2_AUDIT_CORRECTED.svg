@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+<title id="title">Corrected distinction between historical receive time and local replay time</title>
+<desc id="desc">Derived correction of the prior V2 visualization. The saved normalized sample has no known historical receive time. A separate local replay clock timestamp records this run only. There is no arrow between them.</desc>
+<rect width="1280" height="360" fill="#f5f7fb"/>
+<text x="48" y="48" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#17243b">V2 审核派生图：历史接收时间与本地回放时间分开</text>
+<rect x="48" y="84" width="540" height="190" rx="14" fill="#ffffff" stroke="#d4deea" stroke-width="2"/>
+<text x="76" y="125" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#17243b">已保存的规范化样本</text>
+<text x="76" y="163" font-family="Arial,sans-serif" font-size="15" fill="#37475e">feature: ci41346535</text>
+<text x="76" y="193" font-family="Arial,sans-serif" font-size="15" fill="#37475e">本地历史接收时间: UNKNOWN</text>
+<text x="76" y="223" font-family="Arial,sans-serif" font-size="14" fill="#52627b">非原始 USGS 响应；原始响应字节不可用</text>
+<line x1="628" y1="96" x2="628" y2="262" stroke="#c3cedb" stroke-width="2" stroke-dasharray="6 7"/>
+<text x="610" y="292" font-family="Arial,sans-serif" font-size="13" fill="#687891">无时间替代关系</text>
+<rect x="692" y="84" width="540" height="190" rx="14" fill="#edf4fb" stroke="#b8ccdf" stroke-width="2"/>
+<text x="720" y="125" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#27527a">本次本地回放记录</text>
+<text x="720" y="163" font-family="Arial,sans-serif" font-size="15" fill="#344b66">local_replay_received_at_utc:</text>
+<text x="720" y="193" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#344b66">2026-10-12T04:14:25.109847Z</text>
+<text x="720" y="223" font-family="Arial,sans-serif" font-size="14" fill="#52627b">仅表示该云端 runner 读取文件的时间</text>
+<rect x="48" y="310" width="1184" height="32" rx="8" fill="#eaf0f7"/>
+<text x="68" y="332" font-family="Arial,sans-serif" font-size="13" fill="#263850">原 V2 SVG 作为历史版本保留；本图只修正时间语义呈现，不补造历史接收时间。</text>
+</svg>

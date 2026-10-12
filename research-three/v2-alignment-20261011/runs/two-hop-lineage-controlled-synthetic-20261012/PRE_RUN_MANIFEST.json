@@ -1,0 +1,41 @@
+{
+  "manifest_version": 1,
+  "status": "FROZEN_BEFORE_REPLAY",
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V1",
+  "branch": "task/research-three-two-hop-lineage-20261012",
+  "classification": "CONTROLLED_SYNTHETIC_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "method_input_scope": "Method-visible protocol/input/runner, existing lineage contract, and saved normalized sample bytes only.",
+  "method_runner_must_not_read": [
+    "SYNTHETIC_TRUTH_LOG.json",
+    "SCORER_TRUTH_MANIFEST.json",
+    "score_two_hop_lineage.py"
+  ],
+  "files": [
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/PROTOCOL.md",
+      "bytes": 6186,
+      "sha256": "326b494ca6c00a09050bd90a8b0dbb32170ac99a4cb75ccc82cbd330abbea531"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/INPUTS.json",
+      "bytes": 3025,
+      "sha256": "093d1bd55a01aa3eb86bc88a3cbe3bf2b462c85b8bec4ced3b3dbbeaedb5232c"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012/run_two_hop_lineage.py",
+      "bytes": 17277,
+      "sha256": "d1cbc59fa93f2f3a57a7fbe2a2f8d7b84594045945f9af1542a8e0ead3bc00de"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/source_lineage_contract_v1.py",
+      "bytes": 14240,
+      "sha256": "ca58668d724c3b547de01dbcf3b6e0460adbdf1cf72ae54bd94515d5ac3bac26"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+      "bytes": 2537,
+      "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599"
+    }
+  ],
+  "self_hash_excluded": true
+}

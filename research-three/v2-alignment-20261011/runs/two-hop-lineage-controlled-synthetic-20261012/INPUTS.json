@@ -1,0 +1,88 @@
+{
+  "run_id": "TWO-HOP-LINEAGE-CONTROLLED-SYNTHETIC-20261012-V1",
+  "status": "FROZEN_PRE_RUN",
+  "classification": "CONTROLLED_SYNTHETIC_REPLAY_OF_SAVED_NORMALIZED_PUBLIC_SAMPLE",
+  "source_sample": {
+    "path": "research-three/v2-alignment-20261011/source-audit/usgs-summary-20261011/REAL_PUBLIC_FEED_SAMPLE.json",
+    "feature_id": "ci41346535",
+    "bytes": 2537,
+    "sha256": "9bfbd8a6600deb0c230fea2294f3673a2c726e5c8285687cb9531cd88a64d599",
+    "original_response_bytes_available": false,
+    "historical_receiver_time": "UNKNOWN_NOT_IN_SAVED_SAMPLE"
+  },
+  "split": {
+    "name": "SYNTHETIC-WORLD-001",
+    "worlds": 1,
+    "random_seed": null,
+    "train_worlds": 0,
+    "held_out_worlds": 0,
+    "statistical_sample": false
+  },
+  "synthetic_clock": {
+    "base_utc": "2000-01-01T00:00:00Z",
+    "meaning": "Fixture timestamps only; unrelated to event, collector, or current local time."
+  },
+  "transformations": [
+    {
+      "hop_id": "HOP1",
+      "transform_id": "SYNTHETIC-RELAY-ONE-V1",
+      "outer_id_template": "relay-one/{feature.id}",
+      "projection": {
+        "record_ref": "feature.id",
+        "magnitude_value": "feature.properties.mag",
+        "location_text": "feature.properties.place",
+        "event_timestamp": "feature.properties.time_utc"
+      }
+    },
+    {
+      "hop_id": "HOP2",
+      "transform_id": "SYNTHETIC-RELAY-TWO-V1",
+      "outer_id_template": "relay-two::{HOP1.outer_id}",
+      "projection": {
+        "source_alias": "HOP1.outer_id",
+        "summary": "{HOP1.projection.magnitude_value} M · {HOP1.projection.location_text}",
+        "updated_epoch_ms": "feature.properties.updated_epoch_ms"
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "condition_id": "FULL_RECEIPT_CHAIN",
+      "verifier_visible_receipts": ["RECEIPT-HOP1", "RECEIPT-HOP2"],
+      "expected_pair_statuses": {
+        "SOURCE/HOP1": "SHARED_KNOWN_ANCESTOR",
+        "SOURCE/HOP2": "SHARED_KNOWN_ANCESTOR",
+        "HOP1/HOP2": "SHARED_KNOWN_ANCESTOR"
+      }
+    },
+    {
+      "condition_id": "MISSING_INTERMEDIATE_RECEIPT",
+      "verifier_visible_receipts": ["RECEIPT-HOP1"],
+      "omitted_receipt": "RECEIPT-HOP2",
+      "expected_pair_statuses": {
+        "SOURCE/HOP1": "SHARED_KNOWN_ANCESTOR",
+        "SOURCE/HOP2": "UNKNOWN",
+        "HOP1/HOP2": "UNKNOWN"
+      }
+    },
+    {
+      "condition_id": "HASH_ONLY_DEDUP",
+      "verifier_visible_receipts": [],
+      "expected_distinct_hash_buckets": 3
+    }
+  ],
+  "expected_output_checks": {
+    "all_three_payload_hashes_distinct": true,
+    "outer_id_changes_at_each_hop": true,
+    "projection_key_sets_change_at_each_hop": true,
+    "full_receipt_statuses": ["PASS_LOCAL_RUNNER_CONSISTENCY", "PASS_LOCAL_RUNNER_CONSISTENCY"],
+    "missing_hop2_status": "MISSING_RECEIPT",
+    "hash_only_bucket_count": 3,
+    "independence_established": false
+  },
+  "production_truth_denominator": {
+    "status": "UNAVAILABLE_IN_THIS_CHECKOUT",
+    "eligible_production_replay_logs": 0
+  },
+  "network_or_model_or_notification_called": false
+}
