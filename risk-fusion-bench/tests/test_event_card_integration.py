@@ -514,6 +514,89 @@ class EventCardIntegrationTests(unittest.TestCase):
             spec["counterexample"]["expected"]["card_revision_counts_after_each_step"],
         )
 
+    def test_synthetic_versioned_lifecycle_ignores_late_and_duplicate_notice_versions(self):
+        self.assertIn(
+            "notice_version",
+            ActionIntent.__dataclass_fields__,
+            "the action ledger needs an explicit synthetic notice version",
+        )
+        from rfb.research.notice_version_ordering_pilot import (
+            run_synthetic_lifecycle_ordering_pilot,
+        )
+
+        repo_root = Path(__file__).resolve().parents[2]
+        spec_path = (
+            repo_root
+            / "research-three"
+            / "v2-alignment-20261011"
+            / "runs"
+            / "synthetic-lifecycle-ordering-20261012"
+            / "INPUT_AND_EXPECTATIONS.json"
+        )
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        result = run_synthetic_lifecycle_ordering_pilot(spec)
+        expected = spec["expected"]
+        versioned = result["versioned"]
+
+        self.assertEqual(versioned["decision_statuses"], expected["decision_statuses"])
+        self.assertEqual(
+            versioned["notification_action_counts"],
+            expected["notification_action_counts_after_each_step"],
+        )
+        self.assertEqual(
+            versioned["card_revision_counts"],
+            expected["card_revision_counts_after_each_step"],
+        )
+        self.assertEqual(
+            versioned["notice_lifecycle_states"],
+            expected["notice_lifecycle_states_after_each_step"],
+        )
+        self.assertEqual(
+            versioned["accepted_notice_versions"], expected["accepted_notice_versions"]
+        )
+        self.assertEqual(
+            [row["step_id"] for row in versioned["ignored_attempts"]],
+            expected["ignored_attempt_step_ids"],
+        )
+        self.assertEqual(
+            [revision["revision_trace"]["intent_id"] for revision in versioned["final_card"]["revision_history"]],
+            expected["final_history_intent_ids"],
+        )
+        self.assertEqual(
+            versioned["final_card"]["notice_lifecycle_status"],
+            expected["final_notice_lifecycle_status"],
+        )
+        self.assertEqual(
+            versioned["final_card"]["notification_action_count"],
+            expected["final_notification_action_count"],
+        )
+        self.assertEqual(
+            versioned["final_card"]["content_revision_count"],
+            expected["final_card_revision_count"],
+        )
+        self.assertEqual(versioned["final_card"]["delivery_status"], "NOT_DELIVERED")
+        self.assertEqual(versioned["missed_important_update_ids"], [])
+
+        legacy_expected = spec["arrival_order_only_negative_control_expected"]
+        baseline = result["arrival_order_only_baseline"]
+        self.assertEqual(baseline["decision_statuses"], legacy_expected["decision_statuses"])
+        self.assertEqual(
+            baseline["notification_action_counts"],
+            legacy_expected["notification_action_counts_after_each_step"],
+        )
+        self.assertEqual(
+            baseline["card_revision_counts"],
+            legacy_expected["card_revision_counts_after_each_step"],
+        )
+        self.assertEqual(
+            baseline["notice_lifecycle_states"],
+            legacy_expected["notice_lifecycle_states_after_each_step"],
+        )
+        self.assertEqual(
+            baseline["final_notice_lifecycle_status"],
+            legacy_expected["final_notice_lifecycle_status"],
+        )
+
     def test_rejects_identity_episode_or_association_mismatch_with_ledger(self):
         self.require_preview_builder()
         pending = pending_association()
