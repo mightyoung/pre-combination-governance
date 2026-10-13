@@ -1,0 +1,54 @@
+{
+  "manifest_version": 1,
+  "artifact_set": "PENDING-RISK-REVIEW-RESOLUTION-CONTRACT-20261013",
+  "implementation_branch": "task/research-three-two-hop-lineage-20261012",
+  "implementation_commit_sha": "101682aec6eea32b347e369f3cce0a0411198a6d",
+  "status": "PREPARED_IN_REPOSITORY; NOT_STORED_ON_MAC; MAC_NOT_VALIDATED_IN_THIS_RUN",
+  "mac_local_project_root": null,
+  "copy_status": "NOT_COPIED_BY_THIS_RUN",
+  "scope": "Offline pending risk-review decision contract, synthetic unit tests, and the existing ledger/card-resolution code needed to interpret the contract.",
+  "evidence_class": "Implementation and synthetic contract tests only; not a research outcome or evidence of real-source, notification, or delivery performance.",
+  "formal_v2_alignment_result": "NOT_ESTABLISHED; exact private Mac V2 specification was not available in this workspace.",
+  "includes_private_mac_v2_spec": false,
+  "original_1464_check_trial_rerun": false,
+  "mac_esrch_eperm_repair_verified": false,
+  "real_notification_delivery": "NOT_RUN; output contract explicitly records NOT_DELIVERED.",
+  "tests": {
+    "command": "PYTHONPATH=src python -m unittest -q tests.test_pending_risk_review_resolution tests.test_alert_action_experiment tests.test_event_card_integration",
+    "result": "34 tests passed"
+  },
+  "files": [
+    {
+      "path": "risk-fusion-bench/src/rfb/research/pending_risk_review_resolution.py",
+      "bytes": 9513,
+      "sha256": "2869d0eff3f0825a8f7f00d602dbed122523425920aba35aba4f805fb06828d9"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_pending_risk_review_resolution.py",
+      "bytes": 7141,
+      "sha256": "df49c22271bad78b040e8be158fe75c1714666ffa3f665f8b87161b3ab18c979"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
+      "bytes": 7512,
+      "sha256": "57bd61160a59384251ecdc53c9adcc86f663c82e14ce00bc1261eec995374436"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_event_card_integration.py",
+      "bytes": 39657,
+      "sha256": "fe13e465dc53fdaaf6d8eb1ef49282a392dab7d75a1fca4761a77854d63e47fc"
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
+      "bytes": 34480,
+      "sha256": "c6a716c3747fa23e7e4a6f162e2b1cadc8a723a0030db3446ccc826c8d6b186b"
+    },
+    {
+      "path": "risk-fusion-bench/tests/test_alert_action_experiment.py",
+      "bytes": 22183,
+      "sha256": "887a4a7ddca4d9bacbb9962f700c8031e295bb32de641d2c3b619b5d5662ad2d"
+    }
+  ],
+  "path_rule": "All file paths are repository-relative POSIX paths. Resolve them from the Mac Git checkout root only; do not reuse cloud workspace absolute paths.",
+  "verification_rule": "Verify each listed byte length and SHA-256 before restoring. The manifest itself is intentionally excluded from its file list."
+}
