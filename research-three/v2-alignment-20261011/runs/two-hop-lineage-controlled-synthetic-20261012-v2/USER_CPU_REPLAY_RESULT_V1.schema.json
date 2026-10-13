@@ -11,6 +11,8 @@
     "run_id",
     "task_status",
     "target_runner_commit",
+    "handoff_code_commit",
+    "result_schema_sha256",
     "observed_runner_commit",
     "execution",
     "expected_input_pins",
@@ -25,6 +27,8 @@
     "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,100}$"},
     "task_status": {"enum": ["PASS", "FAIL", "BLOCKED"]},
     "target_runner_commit": {"const": "c969913eacb56cda1236009ffa9390bd6f62cd3c"},
+    "handoff_code_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "result_schema_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "observed_runner_commit": {
       "oneOf": [
         {"type": "string", "pattern": "^[0-9a-f]{40}$"},
@@ -54,7 +58,7 @@
       "properties": {
         "started_at_utc": {"type": "string", "format": "date-time", "pattern": "Z$"},
         "finished_at_utc": {"type": "string", "format": "date-time", "pattern": "Z$"},
-        "python_version": {"type": "string", "pattern": "^3\\.(1[1-9]|[2-9][0-9])(?:\\.|$)"},
+        "python_version": {"type": "string", "pattern": "^\\d+\\.\\d+(?:\\.|$)"},
         "platform": {"type": "string", "minLength": 1},
         "cpu_count": {"type": "integer", "minimum": 1},
         "gpu_used": {"const": false},
@@ -63,8 +67,8 @@
         "notification_called": {"const": false},
         "packages_installed_for_task": {"type": "array", "maxItems": 0},
         "commands": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
-        "wall_time_seconds": {"type": ["number", "null"], "minimum": 0, "maximum": 300},
-        "peak_memory_mib": {"type": ["number", "null"], "minimum": 0, "maximum": 1024},
+        "wall_time_seconds": {"type": ["number", "null"], "minimum": 0},
+        "peak_memory_mib": {"type": ["number", "null"], "minimum": 0},
         "runner_exit_code": {"type": ["integer", "null"]},
         "scorer_exit_code": {"type": ["integer", "null"]}
       }
@@ -166,7 +170,15 @@
       "then": {
         "properties": {
           "observed_runner_commit": {"const": "c969913eacb56cda1236009ffa9390bd6f62cd3c"},
-          "execution": {"properties": {"runner_exit_code": {"const": 0}, "scorer_exit_code": {"const": 0}}},
+          "execution": {
+            "properties": {
+              "runner_exit_code": {"const": 0},
+              "scorer_exit_code": {"const": 0},
+              "python_version": {"pattern": "^3\\.(1[1-9]|[2-9][0-9])(?:\\.|$)"},
+              "wall_time_seconds": {"type": "number", "maximum": 300},
+              "peak_memory_mib": {"type": "number", "maximum": 1024}
+            }
+          },
           "observed_input_pins": {"$ref": "#/properties/expected_input_pins"},
           "outcome": {
             "type": "object",

@@ -1,8 +1,15 @@
 # PCG CPU replay handoff: V2 two-hop lineage
 
 **Task ID:** `PCG-LINEAGE-CPU-REPLAY-001`  
-**Status:** `READY_FOR_REPRODUCIBILITY_CHECK`  
+**Status:** `LOCAL_HANDOFF_PENDING_PUBLICATION`
 **Evidence class:** software/mechanics reproducibility only; not a new experiment.
+
+The complete task card, result generator, validator, and revised schema are
+present in this local research branch. The last read-only check of the remote
+branch found it at `f8fac06b769b1ba5c3f54e497e94c7eff0135518`, which does not
+contain this complete increment. Do not start the user-server replay until the
+handoff files are published on the branch and every file in the persistence
+manifest passes its byte/hash check.
 
 ## Decision and limits
 
@@ -21,20 +28,39 @@ out of scope.
 ## Pinned code and data
 
 - Repository: `mightyoung/pre-combination-governance`.
-- Runner base commit: `c969913eacb56cda1236009ffa9390bd6f62cd3c` on
-  `task/research-three-two-hop-lineage-20261012`. This is the immutable commit
-  containing the V2 runner and frozen inputs; record the full commit used.
-- Existing entry points:
-  - `PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/run_two_hop_lineage_v2.py`
-  - `PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/score_two_hop_lineage_v2.py`
-- After returning the files in a separate task-run folder, validate the bundle
-  from the repository root with:
+- Runner code pin: `c969913eacb56cda1236009ffa9390bd6f62cd3c` on
+  `task/research-three-two-hop-lineage-20261012`. It is the immutable commit
+  containing the V2 runner and frozen inputs. The runner pin is separate from
+  the handoff tool checkout and must be recorded as `target_runner_commit` and
+  `observed_runner_commit` in the result.
+- Handoff tool pin: acquire the published task branch and verify the files in
+  [MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json](MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json).
+  The result generator records the exact handoff checkout SHA in
+  `handoff_code_commit`; the validator verifies that commit is an ancestor of
+  the checkout used for validation. The result also records schema SHA-256
+  `1077cebe6ae18dd4c0218c11789ef9160592ee5c8cdf79c03f041607ff1c6bd0`.
+- The generator runs the existing runner and scorer in the disposable pinned
+  runner worktree, captures their output and resource measurements, copies the
+  resulting files into a separate result folder, and writes `TASK_RESULT.json`.
+  It first verifies the runner commit and clean worktree, removes only the
+  runner's generated outputs in that disposable worktree to avoid stale files,
+  and never edits the preserved handoff checkout's V1/V2 results.
+  A zero command exit code means the bundle was written; read `task_status` to
+  see whether the replay was `PASS`, `FAIL`, or `BLOCKED`.
+  Before leaving a result as `PASS`, the generator also applies the frozen
+  mechanics checks; the separate validator command below remains the final
+  explicit bundle check.
+- The result validator command from the handoff checkout root is:
   `PYTHONPATH=risk-fusion-bench/src python -m rfb.research.user_cpu_replay_handoff --bundle-dir research-three/v2-alignment-20261011/runs/user-cpu-replay-<UTC timestamp>-<run-id>`
-- The returned `TASK_RESULT.json` must follow
+- The returned `TASK_RESULT.json` follows
   [USER_CPU_REPLAY_RESULT_V1.schema.json](USER_CPU_REPLAY_RESULT_V1.schema.json).
-  The validator checks the result artifact hashes, both frozen manifests, all
-  16 runner checks, the fixed pair counts, and the explicit `NOT_COMPUTABLE`
-  production-accuracy fields. It uses the Python standard library only.
+  The validator checks handoff and runner pins, schema digest, result artifact
+  hashes, both frozen manifests, all 16 runner checks, fixed pair counts, and
+  the explicit `NOT_COMPUTABLE` production-accuracy fields for PASS results.
+  FAIL/BLOCKED bundles retain mismatched input artifacts for review and do not
+  claim frozen-mechanics checks passed. It uses the Python standard library
+  only. FAIL/BLOCKED records retain measured values above the 300-second or
+  1,024-MiB ceiling; only PASS is constrained by those ceilings.
 - [MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json](MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json)
   lists the cloud-branch handoff files with repository-relative paths for a
   future Mac checkout. Its `copy_status` is `NOT_COPIED_BY_THIS_RUN` and its
@@ -59,41 +85,57 @@ out of scope.
 
 ## Isolated execution
 
-The runner writes outputs into its own run directory, so do not execute it in
-the working checkout containing the preserved V2 result. Clone the pinned
-commit into a disposable directory (or use an equivalent isolated worktree),
-then run from that repository root:
+Run this only on the user's CPU server after the complete handoff files have
+been published and their manifest verifies. Use a handoff checkout and a
+separate disposable runner worktree; do not run the V2 entry points in the
+working checkout containing the preserved V2 result:
 
 ```sh
-git clone https://github.com/mightyoung/pre-combination-governance.git pcg-cpu-replay
-cd pcg-cpu-replay
-git checkout --detach c969913eacb56cda1236009ffa9390bd6f62cd3c
+git clone https://github.com/mightyoung/pre-combination-governance.git pcg-handoff
+cd pcg-handoff
+git fetch origin task/research-three-two-hop-lineage-20261012
+git switch --detach origin/task/research-three-two-hop-lineage-20261012
 git rev-parse HEAD
-PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/run_two_hop_lineage_v2.py
-PYTHONPATH=risk-fusion-bench/src python research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/score_two_hop_lineage_v2.py
+python - <<'PY'
+import hashlib, json
+from pathlib import Path
+manifest = json.loads(Path("research-three/v2-alignment-20261011/runs/two-hop-lineage-controlled-synthetic-20261012-v2/MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json").read_text(encoding="utf-8"))
+bad = []
+for entry in manifest["files"]:
+    data = Path(entry["path"]).read_bytes()
+    if len(data) != entry["bytes"] or hashlib.sha256(data).hexdigest() != entry["sha256"]:
+        bad.append(entry["path"])
+if bad:
+    raise SystemExit("handoff manifest mismatch: " + ", ".join(bad))
+print("handoff manifest verified", len(manifest["files"]), "files")
+PY
+git worktree add --detach ../pcg-v2-runner c969913eacb56cda1236009ffa9390bd6f62cd3c
+git -C ../pcg-v2-runner rev-parse HEAD
+git -C ../pcg-v2-runner status --short
+RUN_ID="user-cpu-replay-$(date -u +%Y%m%dT%H%M%SZ)-srv01"
+PYTHONPATH=risk-fusion-bench/src python -m rfb.research.user_cpu_replay_runner \
+  --runner-root ../pcg-v2-runner \
+  --bundle-dir "research-three/v2-alignment-20261011/runs/${RUN_ID}" \
+  --run-id "${RUN_ID}"
+PYTHONPATH=risk-fusion-bench/src python -m rfb.research.user_cpu_replay_handoff \
+  --bundle-dir "research-three/v2-alignment-20261011/runs/${RUN_ID}"
 ```
 
-This requires GitHub access to clone the repository. After checkout, the
-runner and scorer make no network calls. Suggested resource ceiling (not a
-measured runtime claim): one CPU, 1 GiB RAM, 1 GiB scratch, and five minutes;
-stop and report if any ceiling is exceeded. There is no added compute or data
-service cost.
-
-Before publishing, copy the generated result files into a **new** directory
-named `runs/user-cpu-replay-<UTC timestamp>-<run-id>/` on a task branch. Do not
-commit over V1/V2 files. Include `METHOD_OUTPUTS_V2.json`,
-`METHOD_OUTPUT_FREEZE_V2.json`, `RUNNER_CHECKS_V2.json`, `SCORED_RESULT_V2.json`,
-the generated aliases and side-input negative-control record, both frozen
-input manifests, the exact command/stdout/stderr/exit codes, and a task-result
-JSON recording target and observed runner commits, expected and observed input
-pins, Python/platform/CPU facts, exact commands, timestamps, exit codes,
-checks passed/total, task status (`PASS`, `FAIL`, or `BLOCKED`), failure reasons,
-and repository-relative artifact paths, byte lengths and SHA-256 values. If
-execution is blocked before checkout, set observed runner/input pins to `null`,
-include the command and logs, and explain the blocker. Run the validator above
-before pushing the task-run folder. It reports a valid evidence bundle and task
-outcome separately; a structurally valid `FAIL` or `BLOCKED` bundle is not a
-passing experiment. Do not publish credentials, private Mac files/logs, or
+The `date -u` expression creates a UTC timestamp; use a different safe suffix
+if multiple runs could start within the same second. The generated bundle
+includes `TASK_RESULT.json`, frozen
+inputs, aliases and scorer/runner output where available, environment facts,
+exact commands, stdout/stderr, timestamps, measured wall time and peak memory,
+exit codes, and SHA-256/byte-length entries with bundle-relative artifact
+paths. If runner checkout inspection is blocked, observed runner/input pins are
+null; if a wrong checkout is readable, the result retains its observed SHA. If
+any precondition fails, the generator writes a `BLOCKED` bundle with its reason
+and does not launch the runner. Nonzero exit, output mismatch, or a measured
+ceiling breach is recorded as `FAIL`; over-limit values are retained. A valid
+`FAIL`/`BLOCKED` bundle is not a passing replay. The wrapper uses only the Python standard library after
+checkout, installs no packages, and performs no network, model, or notification
+calls. Memory is sampled after each child process; an over-limit runner result
+stops the scorer. Do not publish credentials, private Mac files/logs, or
 unreviewed source payloads.
 
 ## Expected result and stop conditions

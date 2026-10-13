@@ -118,14 +118,24 @@ It needs no model, weights, dataset download, package installation, or paid
 compute. It reuses the same synthetic world and three related pair rows, so it
 adds no independent sample or production-accuracy evidence. Run it in a
 disposable checkout because the legacy runner writes into its own run
-directory. The [result schema](runs/two-hop-lineage-controlled-synthetic-20261012-v2/USER_CPU_REPLAY_RESULT_V1.schema.json)
-and standard-library [bundle validator](../../risk-fusion-bench/src/rfb/research/user_cpu_replay_handoff.py)
-separate package integrity from the reported task outcome.
-The validator tests construct synthetic `PASS`/`BLOCKED` metadata around the
-already frozen V2 artifacts; they do not rerun the runner or scorer. The
+directory. The task card supplies separate runner and handoff pins plus exact
+acquisition, result-generation, and validation commands. The result generator
+is for the user's server; cloud work is limited to isolated contract tests. The
+[result schema](runs/two-hop-lineage-controlled-synthetic-20261012-v2/USER_CPU_REPLAY_RESULT_V1.schema.json),
+standard-library [result generator](../../risk-fusion-bench/src/rfb/research/user_cpu_replay_runner.py),
+and [bundle validator](../../risk-fusion-bench/src/rfb/research/user_cpu_replay_handoff.py)
+separate package integrity from the reported task outcome. FAIL/BLOCKED bundles
+preserve measured values above task ceilings; PASS remains bounded.
+The contract tests construct synthetic `PASS`/`FAIL`/`BLOCKED` metadata around
+the already frozen V2 artifacts, including a mocked wrong-commit precondition;
+they do not rerun the runner or scorer. The
 [Mac persistence manifest](runs/two-hop-lineage-controlled-synthetic-20261012-v2/MAC_PERSISTENCE_MANIFEST_USER_CPU_REPLAY_V1.json)
 lists these new handoff files with repository-relative paths. It records that
 no Mac copy was performed in this cloud checkout.
+
+The complete handoff increment is local and awaits publication. The last
+read-only remote check found the branch at `f8fac06b769b1ba5c3f54e497e94c7eff0135518`;
+do not start the user-server replay until the full manifest verifies there.
 
 The next real-source lineage collection remains blocked: the exact source
 response/collector receipt, two-sided forwarding receipts with bounded cursor

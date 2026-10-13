@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from datetime import datetime
 from pathlib import Path
 import re
+import subprocess
 from typing import Any
 
 
@@ -18,6 +20,7 @@ SOURCE_SAMPLE_BYTES = 2537
 PRE_RUN_MANIFEST_SHA256 = "cdf77fe8a5bd5db08aaa9f7a967f47c733a3bd5fcfb3737eb59a515f404d22a7"
 SCORER_TRUTH_MANIFEST_SHA256 = "16129b5109059a3e844bb930eeb938653134a4789d0bbed8c1e4ea6057c33d24"
 EXPECTED_METHOD_OUTPUTS_SHA256 = "15ee4c362160bfb1381da9a2e304f09224e73c265dc95fba949135d5694c66cb"
+RESULT_SCHEMA_SHA256 = "1077cebe6ae18dd4c0218c11789ef9160592ee5c8cdf79c03f041607ff1c6bd0"
 RUNNER_COMMAND = (
     "PYTHONPATH=risk-fusion-bench/src python "
     "research-three/v2-alignment-20261011/runs/"
@@ -48,7 +51,8 @@ PASS_ARTIFACTS = {
 FAILURE_ARTIFACTS = {"commands.txt", "environment.json", "stdout.log", "stderr.log"}
 RESULT_FIELDS = {
     "schema_version", "task_id", "run_id", "task_status", "target_runner_commit",
-    "observed_runner_commit", "execution", "expected_input_pins", "observed_input_pins",
+    "handoff_code_commit", "result_schema_sha256", "observed_runner_commit", "execution",
+    "expected_input_pins", "observed_input_pins",
     "outcome", "failure_reasons", "artifacts",
 }
 EXECUTION_FIELDS = {
@@ -119,6 +123,17 @@ def _parse_python_version(value: Any) -> tuple[int, int] | None:
     return int(match.group(1)), int(match.group(2))
 
 
+def _git_commit_is_ancestor(commit_sha: str, repo_root: Path) -> bool:
+    try:
+        completed = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", commit_sha, "HEAD"],
+            cwd=repo_root, check=False, capture_output=True, text=True,
+        )
+    except OSError:
+        return False
+    return completed.returncode == 0
+
+
 def _load_artifacts(bundle_dir: Path, manifest: Any) -> dict[str, Path]:
     _require(isinstance(manifest, list), "artifacts must be an array")
     loaded: dict[str, Path] = {}
@@ -186,6 +201,8 @@ def _verify_result_schema(repo_root: Path) -> None:
                    "USER_CPU_REPLAY_RESULT_V1.schema.json")
     schema = _read_json(schema_path)
     _require(isinstance(schema, dict), "result schema must contain an object")
+    _require(_sha256(schema_path.read_bytes()) == RESULT_SCHEMA_SHA256,
+             "result schema file hash differs from the validator pin")
     _require(schema.get("$schema") == "https://json-schema.org/draft/2020-12/schema",
              "result schema must declare JSON Schema draft 2020-12")
     properties = schema.get("properties", {})
@@ -230,6 +247,9 @@ def _verify_result_schema(repo_root: Path) -> None:
              "result schema task ID is out of sync with the validator")
     _require(properties.get("target_runner_commit", {}).get("const") == BASE_RUNNER_COMMIT,
              "result schema runner commit is out of sync with the validator")
+    _require(properties.get("handoff_code_commit", {}).get("pattern") == "^[0-9a-f]{40}$"
+             and properties.get("result_schema_sha256", {}).get("pattern") == "^[0-9a-f]{64}$",
+             "result schema handoff pins are out of sync with the validator")
     expected_pins = {
         "pre_run_manifest_sha256": PRE_RUN_MANIFEST_SHA256,
         "scorer_truth_manifest_sha256": SCORER_TRUTH_MANIFEST_SHA256,
@@ -238,6 +258,22 @@ def _verify_result_schema(repo_root: Path) -> None:
     }
     _require(all(pin_properties.get(key, {}).get("const") == value for key, value in expected_pins.items()),
              "result schema input pins are out of sync with the validator")
+    _require("maximum" not in execution_properties["wall_time_seconds"]
+             and "maximum" not in execution_properties["peak_memory_mib"],
+             "result schema must preserve over-limit measurements on failure")
+    pass_constraints = next(
+        (
+            clause.get("then", {}).get("properties", {}).get("execution", {}).get("properties", {})
+            for clause in schema.get("allOf", [])
+            if clause.get("if", {}).get("properties", {}).get("task_status", {}).get("const") == "PASS"
+        ),
+        {},
+    )
+    _require(pass_constraints.get("wall_time_seconds", {}).get("maximum") == 300
+             and pass_constraints.get("peak_memory_mib", {}).get("maximum") == 1024
+             and pass_constraints.get("python_version", {}).get("pattern")
+             == "^3\\.(1[1-9]|[2-9][0-9])(?:\\.|$)",
+             "result schema PASS resource ceilings are out of sync with the validator")
 
 
 def validate_user_cpu_replay_bundle(bundle_dir: Path, repo_root: Path) -> dict[str, Any]:
@@ -257,6 +293,14 @@ def validate_user_cpu_replay_bundle(bundle_dir: Path, repo_root: Path) -> dict[s
     _require(status in {"PASS", "FAIL", "BLOCKED"}, "task_status must be PASS, FAIL, or BLOCKED")
     _require(result.get("target_runner_commit") == BASE_RUNNER_COMMIT,
              "target_runner_commit is not the pinned V2 runner revision")
+    handoff_commit = result.get("handoff_code_commit")
+    _require(isinstance(handoff_commit, str)
+             and re.fullmatch(r"[0-9a-f]{40}", handoff_commit) is not None,
+             "handoff_code_commit must be a full lowercase Git SHA")
+    _require(_git_commit_is_ancestor(handoff_commit, repo_root),
+             "handoff_code_commit is not an ancestor of the checkout used for validation")
+    _require(result.get("result_schema_sha256") == RESULT_SCHEMA_SHA256,
+             "result_schema_sha256 does not match the pinned result schema")
     observed_commit = result.get("observed_runner_commit")
     if observed_commit is not None:
         _require(isinstance(observed_commit, str) and re.fullmatch(r"[0-9a-f]{40}", observed_commit) is not None,
@@ -272,7 +316,9 @@ def validate_user_cpu_replay_bundle(bundle_dir: Path, repo_root: Path) -> dict[s
     finished_at = datetime.fromisoformat(execution["finished_at_utc"][:-1] + "+00:00")
     _require(finished_at >= started_at, "finished_at_utc predates started_at_utc")
     python_version = _parse_python_version(execution.get("python_version"))
-    _require(python_version is not None and python_version >= (3, 11), "Python >=3.11 is required")
+    _require(python_version is not None, "execution.python_version must be a numeric major.minor version")
+    if status == "PASS":
+        _require(python_version >= (3, 11), "passing execution requires Python >=3.11")
     _require(isinstance(execution.get("platform"), str) and execution["platform"], "execution.platform is required")
     _require(type(execution.get("cpu_count")) is int and execution["cpu_count"] >= 1, "cpu_count must be a positive integer")
     for field in ("gpu_used", "network_calls_after_checkout", "model_called", "notification_called"):
@@ -287,11 +333,19 @@ def validate_user_cpu_replay_bundle(bundle_dir: Path, repo_root: Path) -> dict[s
     exit_codes = (execution.get("runner_exit_code"), execution.get("scorer_exit_code"))
     _require(all(value is None or type(value) is int for value in exit_codes),
              "runner and scorer exit codes must be integers or null")
-    for field, maximum in (("wall_time_seconds", 300), ("peak_memory_mib", 1024)):
+    for field in ("wall_time_seconds", "peak_memory_mib"):
         value = execution.get(field)
-        _require(value is None or (type(value) in (int, float) and 0 <= value <= maximum),
-                 f"{field} must be null or within the task ceiling")
+        _require(value is None or (type(value) in (int, float) and math.isfinite(value) and value >= 0),
+                 f"{field} must be null or a finite nonnegative measurement")
     if status == "PASS":
+        _require(type(execution.get("wall_time_seconds")) in (int, float)
+                 and math.isfinite(execution["wall_time_seconds"])
+                 and execution["wall_time_seconds"] <= 300,
+                 "PASS wall_time_seconds must be measured and within the 300-second ceiling")
+        _require(type(execution.get("peak_memory_mib")) in (int, float)
+                 and math.isfinite(execution["peak_memory_mib"])
+                 and execution["peak_memory_mib"] <= 1024,
+                 "PASS peak_memory_mib must be measured and within the 1024 MiB ceiling")
         _require(exit_codes == (0, 0), "passing run requires runner and scorer exit code 0")
     else:
         reasons = result.get("failure_reasons")
@@ -371,8 +425,11 @@ def validate_user_cpu_replay_bundle(bundle_dir: Path, repo_root: Path) -> dict[s
         ("SCORER_TRUTH_MANIFEST_V2.json", SCORER_TRUTH_MANIFEST_SHA256),
     ):
         if filename in artifacts:
-            _require(_sha256(artifacts[filename].read_bytes()) == expected_hash,
-                     f"{filename} differs from the pinned manifest")
+            matches_pin = _sha256(artifacts[filename].read_bytes()) == expected_hash
+            if status == "PASS":
+                _require(matches_pin, f"{filename} differs from the pinned manifest")
+            elif not matches_pin:
+                notes.append(f"{filename} differs from the pinned manifest; preserved in this non-passing bundle")
     if status == "PASS":
         for filename in ("PRE_RUN_MANIFEST_V2.json", "SCORER_TRUTH_MANIFEST_V2.json"):
             _require((repo_root / "research-three/v2-alignment-20261011/runs/"

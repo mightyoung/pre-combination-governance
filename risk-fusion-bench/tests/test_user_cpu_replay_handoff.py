@@ -3,16 +3,19 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 
 from rfb.research.user_cpu_replay_handoff import (
     BASE_RUNNER_COMMIT,
     RUNNER_COMMAND,
+    RESULT_SCHEMA_SHA256,
     SCORER_COMMAND,
     HandoffValidationError,
     validate_user_cpu_replay_bundle,
 )
+from rfb.research.user_cpu_replay_runner import execute_user_cpu_replay
 
 
 # Synthetic validator fixtures wrap the already-frozen V2 output files. They
@@ -92,6 +95,10 @@ class UserCpuReplayHandoffTests(unittest.TestCase):
             "run_id": "user-cpu-replay-20261012T080000Z-test",
             "task_status": status,
             "target_runner_commit": BASE_RUNNER_COMMIT,
+            "handoff_code_commit": subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True
+            ).strip(),
+            "result_schema_sha256": RESULT_SCHEMA_SHA256,
             "observed_runner_commit": BASE_RUNNER_COMMIT,
             "execution": {
                 "started_at_utc": "2026-10-12T08:00:00Z",
@@ -234,6 +241,77 @@ class UserCpuReplayHandoffTests(unittest.TestCase):
         self.assertTrue(report["bundle_valid"])
         self.assertEqual(report["task_status"], "BLOCKED")
         self.assertTrue(any("task outcome did not pass" in note for note in report["notes"]))
+
+    def test_accepts_fail_result_and_preserves_over_limit_measurements(self) -> None:
+        result = self.write_bundle("FAIL")
+        result["execution"]["wall_time_seconds"] = 301.25
+        result["execution"]["peak_memory_mib"] = 1025.5
+        result["execution"]["runner_exit_code"] = 124
+        result["execution"]["scorer_exit_code"] = None
+        result["failure_reasons"] = ["runner exceeded the resource ceiling"]
+        (self.bundle_dir / "TASK_RESULT.json").write_text(json.dumps(result, indent=2) + "\n")
+
+        report = validate_user_cpu_replay_bundle(self.bundle_dir, REPO_ROOT)
+
+        self.assertTrue(report["bundle_valid"])
+        self.assertEqual(report["task_status"], "FAIL")
+        self.assertEqual(result["execution"]["wall_time_seconds"], 301.25)
+        self.assertEqual(result["execution"]["peak_memory_mib"], 1025.5)
+
+    def test_rejects_pass_result_with_over_limit_measurement(self) -> None:
+        result = self.write_bundle("PASS")
+        result["execution"]["wall_time_seconds"] = 301
+        (self.bundle_dir / "TASK_RESULT.json").write_text(json.dumps(result, indent=2) + "\n")
+
+        with self.assertRaisesRegex(HandoffValidationError, "PASS.*ceiling|ceiling.*PASS"):
+            validate_user_cpu_replay_bundle(self.bundle_dir, REPO_ROOT)
+
+    def test_accepts_fail_bundle_that_preserves_a_mismatched_input_manifest(self) -> None:
+        result = self.write_bundle("FAIL")
+        manifest_path = self.bundle_dir / "PRE_RUN_MANIFEST_V2.json"
+        mismatch_bytes = b'{"preserved_mismatch": true}\n'
+        manifest_path.write_bytes(mismatch_bytes)
+        for item in result["artifacts"]:
+            if item["path"] == manifest_path.name:
+                item["bytes"] = len(mismatch_bytes)
+                item["sha256"] = sha256(mismatch_bytes)
+        result["failure_reasons"] = ["pre-run manifest differed from its frozen pin"]
+        (self.bundle_dir / "TASK_RESULT.json").write_text(json.dumps(result, indent=2) + "\n")
+
+        report = validate_user_cpu_replay_bundle(self.bundle_dir, REPO_ROOT)
+
+        self.assertTrue(report["bundle_valid"])
+        self.assertEqual(report["task_status"], "FAIL")
+        self.assertEqual(manifest_path.read_bytes(), mismatch_bytes)
+
+    def test_result_generator_blocks_wrong_runner_commit_without_running_replay(self) -> None:
+        runner_root = self.bundle_dir / "wrong-runner-checkout"
+        runner_root.mkdir()
+        generated_bundle = self.bundle_dir / "generated-blocked-bundle"
+        calls: list[list[str]] = []
+
+        def fake_process_runner(command: list[str], **kwargs):
+            calls.append(command)
+            if command[:3] == ["git", "rev-parse", "HEAD"]:
+                return subprocess.CompletedProcess(command, 0, stdout="a" * 40, stderr="")
+            if command[:2] == ["git", "status"]:
+                return subprocess.CompletedProcess(command, 0, stdout="", stderr="")
+            raise AssertionError(f"unexpected process invocation: {command}")
+
+        result = execute_user_cpu_replay(
+            runner_root=runner_root,
+            bundle_dir=generated_bundle,
+            run_id="user-cpu-replay-20261012T080000Z-blocked",
+            handoff_root=REPO_ROOT,
+            process_runner=fake_process_runner,
+        )
+
+        self.assertEqual(result["task_status"], "BLOCKED")
+        self.assertTrue(all(command[:1] == ["git"] for command in calls))
+        self.assertEqual(result["observed_runner_commit"], "a" * 40)
+        report = validate_user_cpu_replay_bundle(generated_bundle, REPO_ROOT)
+        self.assertTrue(report["bundle_valid"])
+        self.assertEqual(report["task_status"], "BLOCKED")
 
 
 if __name__ == "__main__":
