@@ -1,0 +1,75 @@
+{
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "scope": "notification-revision-v1",
+  "files": [
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/independent_reference.py",
+      "sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/launcher.py",
+      "sha256": "42862623618866870e6b1d9b7941cef444b1696029160210f47255caf42bc11c"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/methods.py",
+      "sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/offline_evaluator.py",
+      "sha256": "e6b3c1d6982b2953a603c6d821e9a82ca2e289bbb6e0867ccba00899a6d5e712"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/oracle.physical.json",
+      "sha256": "97e8b05aec0bf331c3be2128234a0493120d97de6a65bbf1b5712fc0a8c24c4f"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/public-input.json",
+      "sha256": "14657afbe0e38ba6d45238a70b1c300f874c3640bfe47de6153d2ea5eb7badb4"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/regression_tests.py",
+      "sha256": "524c4e8987c67760443aa2a59f00ba42e2deb1a69eb542a6bbcb1803b55b40c7"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/scoring.py",
+      "sha256": "0bb143825b098bbc08a3c0df381408ee8c354c5dc2e16d25fd5c634d5496643f"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/worker.py",
+      "sha256": "6e5a3f8bddb4b636ebce6181c8790049bbef7916f4387633f6688092d58c4e40"
+    },
+    {
+      "path": "next-round-package-005-r2/MANIFEST.json",
+      "sha256": "a24c9906645e3c5969d0ba7260bfbdde0644f71686d6a2023cfd1ef4b2bb2559"
+    },
+    {
+      "path": "pcg-event-smoke-v1/runtime-manifest.json",
+      "sha256": "39a82eea02a6e2ada1e7584a51193ad9425a26c7693dba40db09f6dbd9c39961"
+    },
+    {
+      "path": "pcg-event-smoke-v1/public-input.json",
+      "sha256": "d22832037e7526fe220c5c78acf0a0a7c820c86c62d5c2a9ba7aa001cf15c216"
+    },
+    {
+      "path": "pcg-event-smoke-v1/oracle.physical.json",
+      "sha256": "6cf91478316ab4e5b988186233663a97a6ef7dd3ac53784cdc70c93534468f61"
+    },
+    {
+      "path": "pcg-event-smoke-v1/worker.py",
+      "sha256": "414c5ff8af6ace189fe03b646f3e8413f2129d2c79aa9eb123c5337fcfd7bb8a"
+    },
+    {
+      "path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/receipt.json",
+      "sha256": "78353ef26e7f279029df00f3b386fd2a978c86b1174b2db511c1117d2dadc13d"
+    },
+    {
+      "path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/stdout.log",
+      "sha256": "78db21877da9de02c0ed99c8800f44e3a536790c6863f1dd87c0aa524c61dee8"
+    },
+    {
+      "path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/stderr.log",
+      "sha256": "9f6ce5052e9f1bbb2bdeb386de77bf2ecc2c1803ebf94ed93bd35e9a703544dc"
+    }
+  ],
+  "python_sha256": "d4f152f2a753c94e0e7935c8ebbe6b2609979e1df7898422b577d0076383d08b"
+}

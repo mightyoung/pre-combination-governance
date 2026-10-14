@@ -1,0 +1,791 @@
+{
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "publication_scope": "approved synthetic diagnostics; sanitized code/provenance; no raw logs",
+  "os_file_network_isolation": false,
+  "MME_v2": "NOT_LOCATED",
+  "D07": "NOT_EXECUTED",
+  "B5_physical_notification_acceptance": false,
+  "identifiability_execution": "NOT_RUN",
+  "files": [
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/actual-output/supervisor_tests.json",
+      "bytes": 179,
+      "public_sha256": "c1b4759269eacce77696cecc2e487292fd65dce12a362c5cacefb9f8755e394c",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "78db21877da9de02c0ed99c8800f44e3a536790c6863f1dd87c0aa524c61dee8"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/actual-output/method_tests.json",
+      "bytes": 177,
+      "public_sha256": "b7214cd9e58601b986f99eee97eedc401a2970f9eab70407243a75d7321882af",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "78db21877da9de02c0ed99c8800f44e3a536790c6863f1dd87c0aa524c61dee8"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/actual-output/main.json",
+      "bytes": 76593,
+      "public_sha256": "c71f5252f6154eb5cc339d7e55d71a940a3b7a1fcdbc20020b1df45b35128a43",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "78db21877da9de02c0ed99c8800f44e3a536790c6863f1dd87c0aa524c61dee8"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/actual-output/evaluation.json",
+      "bytes": 94165,
+      "public_sha256": "5540a4147f2106c3846e7aa4ce857704d80826ffbc7cd29153ad2cbbea8847c2",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "78db21877da9de02c0ed99c8800f44e3a536790c6863f1dd87c0aa524c61dee8"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/README.md",
+      "bytes": 2953,
+      "public_sha256": "be085e0ca36595d4c363e72c8799553c64ee538a7a2b1e55370ad228811dc8b7",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/README.md",
+      "source_sha256": "a6e7b2ef25a3739b318ca58ba8deb488f9604bfd62145c9957a8df73a2be1439"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/binding.json",
+      "bytes": 2379,
+      "public_sha256": "f736b4f9c30cb918a03e4cac7acb8380a77e0b176359f1ae05cd1bc6e8251c78",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/binding.json",
+      "source_sha256": "f736b4f9c30cb918a03e4cac7acb8380a77e0b176359f1ae05cd1bc6e8251c78"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/launcher.py",
+      "bytes": 10861,
+      "public_sha256": "8f3fc38e3d02571dad195c292337865fadd98c84a4a2b35c4002a8990662933a",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/launcher.py",
+      "source_sha256": "3764e11a91f406a67a68e2dcce92964d56a3f4495433c3e12d89e0a102379677"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/non-author-review.md",
+      "bytes": 692,
+      "public_sha256": "fccaad7d270fcc6e27d0de921bf36d5a68bb8769c39ed236bf0f2451cfb67d57",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/non-author-review.md",
+      "source_sha256": "fccaad7d270fcc6e27d0de921bf36d5a68bb8769c39ed236bf0f2451cfb67d57"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/preparation-status.json",
+      "bytes": 1108,
+      "public_sha256": "0732d5c34c150d2db09baa96172d3df5bc5fa9dd4a339dbb56eca37c13d81323",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/preparation-status.json",
+      "source_sha256": "0732d5c34c150d2db09baa96172d3df5bc5fa9dd4a339dbb56eca37c13d81323"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/public-input.json",
+      "bytes": 12896,
+      "public_sha256": "d22832037e7526fe220c5c78acf0a0a7c820c86c62d5c2a9ba7aa001cf15c216",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/public-input.json",
+      "source_sha256": "d22832037e7526fe220c5c78acf0a0a7c820c86c62d5c2a9ba7aa001cf15c216"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/oracle.physical.json",
+      "bytes": 4189,
+      "public_sha256": "6cf91478316ab4e5b988186233663a97a6ef7dd3ac53784cdc70c93534468f61",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/oracle.physical.json",
+      "source_sha256": "6cf91478316ab4e5b988186233663a97a6ef7dd3ac53784cdc70c93534468f61"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/methods.py",
+      "bytes": 5655,
+      "public_sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/methods.py",
+      "source_sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/worker.py",
+      "bytes": 1852,
+      "public_sha256": "414c5ff8af6ace189fe03b646f3e8413f2129d2c79aa9eb123c5337fcfd7bb8a",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/worker.py",
+      "source_sha256": "414c5ff8af6ace189fe03b646f3e8413f2129d2c79aa9eb123c5337fcfd7bb8a"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/scoring.py",
+      "bytes": 2615,
+      "public_sha256": "5cc09fed32a7b9bc10a0ff7dc282118157e53dd4906713b720c375d0c2663dd4",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/scoring.py",
+      "source_sha256": "5cc09fed32a7b9bc10a0ff7dc282118157e53dd4906713b720c375d0c2663dd4"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/offline_evaluator.py",
+      "bytes": 4923,
+      "public_sha256": "703cdc79eb1319d62d3ca616ab24ee3360d69a327ac16834bd839f403ceaf935",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/offline_evaluator.py",
+      "source_sha256": "703cdc79eb1319d62d3ca616ab24ee3360d69a327ac16834bd839f403ceaf935"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/independent_reference.py",
+      "bytes": 2978,
+      "public_sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/independent_reference.py",
+      "source_sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/tests.py",
+      "bytes": 3626,
+      "public_sha256": "22ca5da02c942ea9c4bf01614887e25f54c22981ee5d0102c8cd04daa2bc88f2",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/tests.py",
+      "source_sha256": "22ca5da02c942ea9c4bf01614887e25f54c22981ee5d0102c8cd04daa2bc88f2"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/runtime-manifest.json",
+      "bytes": 2180,
+      "public_sha256": "39a82eea02a6e2ada1e7584a51193ad9425a26c7693dba40db09f6dbd9c39961",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/runtime-manifest.json",
+      "source_sha256": "39a82eea02a6e2ada1e7584a51193ad9425a26c7693dba40db09f6dbd9c39961"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/reference_plan.md",
+      "bytes": 1620,
+      "public_sha256": "8baff6a09831bf3ed1b86780870ba7bb3860bcb5179d50290f7dae9ab2d70541",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/reference_plan.md",
+      "source_sha256": "8baff6a09831bf3ed1b86780870ba7bb3860bcb5179d50290f7dae9ab2d70541"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/actual-output/receipt.sanitized.json",
+      "bytes": 1056,
+      "public_sha256": "9fa1fcd68f4ab317a624c34c5b692ea32db03ec65aa35cdb2b44a6cb75c52397",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/receipt.json",
+      "source_sha256": "78353ef26e7f279029df00f3b386fd2a978c86b1174b2db511c1117d2dadc13d"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/readonly-audit/audit.json",
+      "bytes": 5228,
+      "public_sha256": "986739dd58559e3a9b7ddf11881c51fd4e84ce8410a48a2c18648c128f9f2a2f",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001-readonly-audit/audit.json",
+      "source_sha256": "986739dd58559e3a9b7ddf11881c51fd4e84ce8410a48a2c18648c128f9f2a2f"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/readonly-audit/count-correction.json",
+      "bytes": 797,
+      "public_sha256": "57b29aca03026422d17c1cde549d9210f6efc1bf08c265e7e19bea92c5f16896",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001-readonly-audit/count-correction.json",
+      "source_sha256": "57b29aca03026422d17c1cde549d9210f6efc1bf08c265e7e19bea92c5f16896"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/readonly-audit/report.md",
+      "bytes": 4612,
+      "public_sha256": "4878b0b910bba537d5ce60a11ff5b0210d584538d61fd078f0d9a785aed20683",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001-readonly-audit/report.md",
+      "source_sha256": "4878b0b910bba537d5ce60a11ff5b0210d584538d61fd078f0d9a785aed20683"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/actual-output/regression_tests.json",
+      "bytes": 179,
+      "public_sha256": "0ea447f5b9681bc564d5ba3dedd11c99555c2874291e1109f59adefabee71d32",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "c1d9751f6a65cdb229a0a8ee6ad23189e7189bb0b593896f5b419b56b76333d7"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/actual-output/main.json",
+      "bytes": 32852,
+      "public_sha256": "7b84c3e9a0ec0f98cfa086e67e07b36f40a653d339025d97b4a8c8a7263a3daa",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "c1d9751f6a65cdb229a0a8ee6ad23189e7189bb0b593896f5b419b56b76333d7"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/actual-output/evaluation.json",
+      "bytes": 33001,
+      "public_sha256": "68ce5cc21dacb059c330bb88c2c529619cfb00143a13c198374922ccc4cd0d91",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "c1d9751f6a65cdb229a0a8ee6ad23189e7189bb0b593896f5b419b56b76333d7"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/README.md",
+      "bytes": 3345,
+      "public_sha256": "eec46da1c9b137411d49aa5c5d6075b3c747b91dd78a60652c3c633876c1fb5a",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/README.md",
+      "source_sha256": "c2eeac5d937dc6afedfac3d4da57dda16a5314b3674161bf8dc55c2da4f415b2"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/binding.json",
+      "bytes": 3047,
+      "public_sha256": "60288e33a6939384815b5ec72444b8b4382693de45cee24a468507ea99e480f7",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/binding.json",
+      "source_sha256": "60288e33a6939384815b5ec72444b8b4382693de45cee24a468507ea99e480f7"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/independent_reference.py",
+      "bytes": 2978,
+      "public_sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/independent_reference.py",
+      "source_sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/launcher.py",
+      "bytes": 10666,
+      "public_sha256": "d6bd8470dce8b46d8d194bfca8511f275501ef6b54c09196cc4d3fceb8cedacd",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/launcher.py",
+      "source_sha256": "42862623618866870e6b1d9b7941cef444b1696029160210f47255caf42bc11c"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/methods.py",
+      "bytes": 5655,
+      "public_sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/methods.py",
+      "source_sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/non-author-review.md",
+      "bytes": 1456,
+      "public_sha256": "754501931a5e0e5730aaa9bf44d65846f28e2d0b2102bbe3b3812ab50e8cea55",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/non-author-review.md",
+      "source_sha256": "754501931a5e0e5730aaa9bf44d65846f28e2d0b2102bbe3b3812ab50e8cea55"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/offline_evaluator.py",
+      "bytes": 4893,
+      "public_sha256": "e6b3c1d6982b2953a603c6d821e9a82ca2e289bbb6e0867ccba00899a6d5e712",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/offline_evaluator.py",
+      "source_sha256": "e6b3c1d6982b2953a603c6d821e9a82ca2e289bbb6e0867ccba00899a6d5e712"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/oracle.physical.json",
+      "bytes": 1386,
+      "public_sha256": "97e8b05aec0bf331c3be2128234a0493120d97de6a65bbf1b5712fc0a8c24c4f",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/oracle.physical.json",
+      "source_sha256": "97e8b05aec0bf331c3be2128234a0493120d97de6a65bbf1b5712fc0a8c24c4f"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/preparation-status.json",
+      "bytes": 788,
+      "public_sha256": "4486b561ad6e11807e9a0b44125b41a145f3e305d616324f8569a9c16b4778d0",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/preparation-status.json",
+      "source_sha256": "4486b561ad6e11807e9a0b44125b41a145f3e305d616324f8569a9c16b4778d0"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/public-input.json",
+      "bytes": 4349,
+      "public_sha256": "14657afbe0e38ba6d45238a70b1c300f874c3640bfe47de6153d2ea5eb7badb4",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/public-input.json",
+      "source_sha256": "14657afbe0e38ba6d45238a70b1c300f874c3640bfe47de6153d2ea5eb7badb4"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/regression_tests.py",
+      "bytes": 2477,
+      "public_sha256": "524c4e8987c67760443aa2a59f00ba42e2deb1a69eb542a6bbcb1803b55b40c7",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/regression_tests.py",
+      "source_sha256": "524c4e8987c67760443aa2a59f00ba42e2deb1a69eb542a6bbcb1803b55b40c7"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/scoring.py",
+      "bytes": 2613,
+      "public_sha256": "0bb143825b098bbc08a3c0df381408ee8c354c5dc2e16d25fd5c634d5496643f",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/scoring.py",
+      "source_sha256": "0bb143825b098bbc08a3c0df381408ee8c354c5dc2e16d25fd5c634d5496643f"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/worker.py",
+      "bytes": 4037,
+      "public_sha256": "6e5a3f8bddb4b636ebce6181c8790049bbef7916f4387633f6688092d58c4e40",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/worker.py",
+      "source_sha256": "6e5a3f8bddb4b636ebce6181c8790049bbef7916f4387633f6688092d58c4e40"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/actual-output/receipt.sanitized.json",
+      "bytes": 1060,
+      "public_sha256": "eda273a307ff12a4184b1fae231fb7343520e53a3fed981934bb12d98a39d979",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/receipt.json",
+      "source_sha256": "4188a23280020224ce951c0b01989c87f1cd608fb39f8e10f1ddb2a0425dc9f1"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/readonly-audit/all-notification-details.csv",
+      "bytes": 4112,
+      "public_sha256": "7f84cde9f617cfc5178bee8e513dddf42bc25fb15379ec8a490706b0ab01533f",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001-readonly-audit/all-notification-details.csv",
+      "source_sha256": "9c1774b52697b4f0b4a978ac20e12c793175dc57a424568ea9c35779dc10df68"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/readonly-audit/audit.json",
+      "bytes": 6485,
+      "public_sha256": "bb75a5b90abc493e5c5752e0860dc94cd352b5139352516ccbadeb83509bf587",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001-readonly-audit/audit.json",
+      "source_sha256": "bb75a5b90abc493e5c5752e0860dc94cd352b5139352516ccbadeb83509bf587"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-revision-v1/readonly-audit/report.md",
+      "bytes": 4876,
+      "public_sha256": "c2db954181cc1eda8327fee56614749a6e61811c2362a138eba9c98a457ec874",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001-readonly-audit/report.md",
+      "source_sha256": "c2db954181cc1eda8327fee56614749a6e61811c2362a138eba9c98a457ec874"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/actual-output/regression_tests.json",
+      "bytes": 179,
+      "public_sha256": "c4c3da3712dbb0b015020586f7850582f205e91a2c59ad52407f8193a37921ce",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "75b638160036242c9d6b625dfa4df3db3d5a2a2e4808f3dfe019b51ff1b411c9"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/actual-output/main.json",
+      "bytes": 84357,
+      "public_sha256": "c421892ce66998228b5d151b83ed531943acc3dac0aa2a17fa385604db6d0142",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "75b638160036242c9d6b625dfa4df3db3d5a2a2e4808f3dfe019b51ff1b411c9"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/actual-output/evaluation.json",
+      "bytes": 84818,
+      "public_sha256": "94a9e6f2ca28e68fbdbf6d4212d2fd190dc864b35f532fd40f64a916ab1839a7",
+      "transformation": "parsed_single_JSON_phase_from_local_stdout; raw_log_not_published",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "75b638160036242c9d6b625dfa4df3db3d5a2a2e4808f3dfe019b51ff1b411c9"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/README.md",
+      "bytes": 2197,
+      "public_sha256": "d42b57b7a427390e8aa0957b2d9f5877c9da135932934e0980aa2e3c0f97de12",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/README.md",
+      "source_sha256": "e26cf350ce8c9ca7c6e78e96c1fc9e351792e555cc6a968eb13d9ac56fe22889"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/binding.json",
+      "bytes": 4431,
+      "public_sha256": "3ed543724f60d48bf040dc3d9daea758d12ca1c6c7bed9f7c10593bcc3cb7e11",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/binding.json",
+      "source_sha256": "3ed543724f60d48bf040dc3d9daea758d12ca1c6c7bed9f7c10593bcc3cb7e11"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/case-plan.md",
+      "bytes": 2299,
+      "public_sha256": "ee0b7287a6ce35a595eedf8b0b0d0622ce15b982f7ebdc5f4f686c0516e387f4",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/case-plan.md",
+      "source_sha256": "ee0b7287a6ce35a595eedf8b0b0d0622ce15b982f7ebdc5f4f686c0516e387f4"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/independent_reference.py",
+      "bytes": 2978,
+      "public_sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/independent_reference.py",
+      "source_sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/launcher.py",
+      "bytes": 11016,
+      "public_sha256": "d8bb6d9bf3d5ef8536a77f44995e947d9c677c804a1b8cbdbbf14ea3181591e8",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/launcher.py",
+      "source_sha256": "f0980b50a430019e6eec65f17b0f1a5f6efd630c4db56320c862b4a35b3c8149"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/methods.py",
+      "bytes": 5655,
+      "public_sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/methods.py",
+      "source_sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/non-author-review.md",
+      "bytes": 1389,
+      "public_sha256": "7a74c45a68cc17f552d6f0c37f3b5524089e74643f00b737e04d0de2c75acb07",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/non-author-review.md",
+      "source_sha256": "7a74c45a68cc17f552d6f0c37f3b5524089e74643f00b737e04d0de2c75acb07"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/offline_evaluator.py",
+      "bytes": 5580,
+      "public_sha256": "632f3bc89d1e99cc773bc9a9dc770e34ec9b2ac22571fb5048ca860db2c9dba0",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/offline_evaluator.py",
+      "source_sha256": "632f3bc89d1e99cc773bc9a9dc770e34ec9b2ac22571fb5048ca860db2c9dba0"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/oracle.physical.json",
+      "bytes": 3442,
+      "public_sha256": "c86f3d0dd4158f6a527593160b7d70cbdc1815f6d28d4c28dd5ea4384a984a80",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/oracle.physical.json",
+      "source_sha256": "c86f3d0dd4158f6a527593160b7d70cbdc1815f6d28d4c28dd5ea4384a984a80"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/preparation-status.json",
+      "bytes": 806,
+      "public_sha256": "0f587ab5bf3716135aaed8fe8486f3c9a6ad9400ec6dbe3b98897ae45a7f9e94",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/preparation-status.json",
+      "source_sha256": "0f587ab5bf3716135aaed8fe8486f3c9a6ad9400ec6dbe3b98897ae45a7f9e94"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/public-input.json",
+      "bytes": 10752,
+      "public_sha256": "ace6dfaaf2f596a99dc72c7fca850e31c39ce89fc2d1dcdee8e6b751f7b860e0",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/public-input.json",
+      "source_sha256": "ace6dfaaf2f596a99dc72c7fca850e31c39ce89fc2d1dcdee8e6b751f7b860e0"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/regression_tests.py",
+      "bytes": 2836,
+      "public_sha256": "5be46ee28683f689b6b14ff4b9a7fbe579c625c0408752a39ba925967b9eab93",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/regression_tests.py",
+      "source_sha256": "5be46ee28683f689b6b14ff4b9a7fbe579c625c0408752a39ba925967b9eab93"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/scoring.py",
+      "bytes": 2615,
+      "public_sha256": "c7ed507b04b3461ecbb0953d576920be5c636d817873e823af60ff709497d875",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/scoring.py",
+      "source_sha256": "c7ed507b04b3461ecbb0953d576920be5c636d817873e823af60ff709497d875"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/terminal-reference.json",
+      "bytes": 1240,
+      "public_sha256": "32b46c0b936eee8b1c8e711a5a4b0dd915bce802c5478e07e0c1230ffc80c576",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/terminal-reference.json",
+      "source_sha256": "32b46c0b936eee8b1c8e711a5a4b0dd915bce802c5478e07e0c1230ffc80c576"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/worker.py",
+      "bytes": 3874,
+      "public_sha256": "79080980b6306edaa00ea23cede8c09db8a26fd8ca07f4209e8b82cb5e688cc0",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/worker.py",
+      "source_sha256": "79080980b6306edaa00ea23cede8c09db8a26fd8ca07f4209e8b82cb5e688cc0"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/actual-output/receipt.sanitized.json",
+      "bytes": 1806,
+      "public_sha256": "65e2a97de7d96f7f958726b09a3827de2b7e556f9039a527b36c3a5f53618938",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/receipt.json",
+      "source_sha256": "93a6f212177cf3cb32fec445f51f0a2e1acc89c2a6b2193dce51e9d9e2ca686e"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/readonly-audit/all-notifications.csv",
+      "bytes": 10069,
+      "public_sha256": "5620a2b8771f2e34aea0f575601dacd8c951d6fbc7cef452a3db4132acb4503f",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001-readonly-audit/all-notifications.csv",
+      "source_sha256": "ad99231d7b0ab602d096abf7846dc049a542a8e497d697a21f925dc45c66a535"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/readonly-audit/audit.json",
+      "bytes": 22984,
+      "public_sha256": "8abe154ca59bfba7b983f84c8fa96ea443b9e4613913f602875651c1e5a3274f",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001-readonly-audit/audit.json",
+      "source_sha256": "8abe154ca59bfba7b983f84c8fa96ea443b9e4613913f602875651c1e5a3274f"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/readonly-audit/non-author-result-review.md",
+      "bytes": 944,
+      "public_sha256": "3bd6fe5480213451daccbbe891965a6368117c77c0bc51d406b0ed1e370966f2",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001-readonly-audit/non-author-result-review.md",
+      "source_sha256": "3bd6fe5480213451daccbbe891965a6368117c77c0bc51d406b0ed1e370966f2"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/notification-boundary-v1/readonly-audit/report.md",
+      "bytes": 3435,
+      "public_sha256": "832b600bc19551e43521a56a95cfb1559d205f92d4926f0b3d1c124d756ab04a",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001-readonly-audit/report.md",
+      "source_sha256": "832b600bc19551e43521a56a95cfb1559d205f92d4926f0b3d1c124d756ab04a"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/binding.json",
+      "bytes": 5606,
+      "public_sha256": "10e6445dc7d105f87d4a196c1e1d8b8ef3dbda8e5159d5cee9dad324ad62f3f6",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/binding.json",
+      "source_sha256": "10e6445dc7d105f87d4a196c1e1d8b8ef3dbda8e5159d5cee9dad324ad62f3f6"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/case-plan.md",
+      "bytes": 3551,
+      "public_sha256": "54de6415f3683bae7d6d4d6bcbb2f764ac12f379d51d695362c0c2bc1d2125f4",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/case-plan.md",
+      "source_sha256": "54de6415f3683bae7d6d4d6bcbb2f764ac12f379d51d695362c0c2bc1d2125f4"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/independent_reference.py",
+      "bytes": 2978,
+      "public_sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/independent_reference.py",
+      "source_sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/launcher.py",
+      "bytes": 11308,
+      "public_sha256": "c25efe7b881b422f505c219d302e1066caa018094583e7c610285a4c53a42880",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/launcher.py",
+      "source_sha256": "7f80aadcead5fc83490c023eb9bb8c02964781529f803190e13683a2e43a8428"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/methods.py",
+      "bytes": 5655,
+      "public_sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/methods.py",
+      "source_sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/non-author-review.md",
+      "bytes": 688,
+      "public_sha256": "a94fd0e84b3b743246667e8232eca8ef2cba551c86da903b741160a0d70665a4",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/non-author-review.md",
+      "source_sha256": "a94fd0e84b3b743246667e8232eca8ef2cba551c86da903b741160a0d70665a4"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/offline_evaluator.py",
+      "bytes": 7022,
+      "public_sha256": "6504821d2c9c1362598077bd7956c03f177692ae638d9d68ceb13b47a98d9f86",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/offline_evaluator.py",
+      "source_sha256": "6504821d2c9c1362598077bd7956c03f177692ae638d9d68ceb13b47a98d9f86"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/oracle.physical.json",
+      "bytes": 5646,
+      "public_sha256": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/oracle.physical.json",
+      "source_sha256": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/public-input.json",
+      "bytes": 17222,
+      "public_sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/public-input.json",
+      "source_sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/regression_tests.py",
+      "bytes": 2177,
+      "public_sha256": "d77958dc5a26a7372eba3e33df7478fa8e1ae5907f1b3a2a7e2489ec44a92871",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/regression_tests.py",
+      "source_sha256": "d77958dc5a26a7372eba3e33df7478fa8e1ae5907f1b3a2a7e2489ec44a92871"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/scoring.py",
+      "bytes": 2615,
+      "public_sha256": "5cc09fed32a7b9bc10a0ff7dc282118157e53dd4906713b720c375d0c2663dd4",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/scoring.py",
+      "source_sha256": "5cc09fed32a7b9bc10a0ff7dc282118157e53dd4906713b720c375d0c2663dd4"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/shared_context.py",
+      "bytes": 3045,
+      "public_sha256": "fb46e5040fe91f7337fdd5cb585673e8fc9ee3cbb3fb5dc2e0e1604fab90029e",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/shared_context.py",
+      "source_sha256": "fb46e5040fe91f7337fdd5cb585673e8fc9ee3cbb3fb5dc2e0e1604fab90029e"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/terminal-reference.json",
+      "bytes": 1616,
+      "public_sha256": "6e53a4260d52bafd978ce5ff44f2a13ba1268fc2916f1e79f1eb17d071c6784f",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/terminal-reference.json",
+      "source_sha256": "6e53a4260d52bafd978ce5ff44f2a13ba1268fc2916f1e79f1eb17d071c6784f"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/worker.py",
+      "bytes": 4536,
+      "public_sha256": "5a904a8a877c3f7b2673fc2464cfaf57f80af4176780eb556acc35ca01fcaff7",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/worker.py",
+      "source_sha256": "5a904a8a877c3f7b2673fc2464cfaf57f80af4176780eb556acc35ca01fcaff7"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/EXPERIMENT-INDEX.md",
+      "bytes": 4836,
+      "public_sha256": "9cfab6346ab41748a740358d2e71eef46139107d847a4fdb483c8c084ceef55a",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/EXPERIMENT-INDEX.md",
+      "source_sha256": "2816e9ec42e915659e6170c9d385a040e1a838872a5c67222c6329e41756d248"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/experiment-index.json",
+      "bytes": 2768,
+      "public_sha256": "95d445eddcd1cb2662fbe5f84a68915036707e39b5fc8de2eb7dea706bf9da19",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/experiment-index.json",
+      "source_sha256": "95d445eddcd1cb2662fbe5f84a68915036707e39b5fc8de2eb7dea706bf9da19"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/static-review.json",
+      "bytes": 1122,
+      "public_sha256": "c761c40c9dee9871f1af9391e8712b5f22b18983b25ae57ee221a4679f3a0fc3",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/static-review.json",
+      "source_sha256": "c761c40c9dee9871f1af9391e8712b5f22b18983b25ae57ee221a4679f3a0fc3"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/non-author-static-review-rounds.md",
+      "bytes": 2978,
+      "public_sha256": "139433f84398c999f337ea734c4e4d88818e1132974f83db1b0babe809b84156",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/non-author-static-review-rounds.md",
+      "source_sha256": "139433f84398c999f337ea734c4e4d88818e1132974f83db1b0babe809b84156"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/history-recurrence-candidate.md",
+      "bytes": 1419,
+      "public_sha256": "a01791c72be5f3d77f570289c6c2f21ccb59cd8d02a40efd2cbd57579e6774bb",
+      "transformation": "unchanged_UTF8; private_message_ids_redacted_or_count_statement_corrected",
+      "source_workspace_relative": "pcg-event-smoke-v1/history-recurrence-candidate.md",
+      "source_sha256": "bf8c014ab571bfdb170fa4d9d1b409f63ed6ed336f175cab830b92c7811f40fb"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/history-memory-decision.md",
+      "bytes": 2254,
+      "public_sha256": "f8a243b705ff3da8b0a5b1e76217d409542e6a5ac408503966ab8e7b008e522f",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/history-memory-decision.md",
+      "source_sha256": "f8a243b705ff3da8b0a5b1e76217d409542e6a5ac408503966ab8e7b008e522f"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/device-model-ledger-interface-candidate.md",
+      "bytes": 4590,
+      "public_sha256": "8485db49fb98409c4816c2577ca88a3fff1a2cd4188d7e9b4a209b314b65e415",
+      "transformation": "unchanged_UTF8; private_message_ids_redacted_or_count_statement_corrected",
+      "source_workspace_relative": "pcg-event-smoke-v1/device-model-ledger-interface-candidate.md",
+      "source_sha256": "5d0fd782123bdb8a434bb7ca78f6a37e2f63960e7c1d90ccef4cbf87b45e9442"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/research-data-contract-candidate.md",
+      "bytes": 7281,
+      "public_sha256": "145d646800290d32e0341deb62084f345b7de6ead4d68972e795cf5dd15ebb19",
+      "transformation": "unchanged_UTF8; private_message_ids_redacted_or_count_statement_corrected",
+      "source_workspace_relative": "pcg-event-smoke-v1/research-data-contract-candidate.md",
+      "source_sha256": "39077e60d6084ada53376fc82e98fbce0184ac199767816c7c981a02bed5d1bd"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/outcome.md",
+      "bytes": 1586,
+      "public_sha256": "26b455c6ca3f683f725ee946c5b4319ee38832fa4eaa5234f3eb71ba5cb51870",
+      "transformation": "unchanged_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/outcome.md",
+      "source_sha256": "26b455c6ca3f683f725ee946c5b4319ee38832fa4eaa5234f3eb71ba5cb51870"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/blocked-receipt.json",
+      "bytes": 1749,
+      "public_sha256": "d2b243a6740f33220f28dbc32694959f630c525bc94216808aad68851415ca5c",
+      "transformation": "host_paths_and_private_references_redacted; private_message_ids_redacted_or_count_statement_corrected",
+      "source_workspace_relative": "pcg-event-smoke-v1/blocked-receipt.json",
+      "source_sha256": "aa1d15ca335bffc5e9243822b524ac0e4a2d03d5ae8c5211bacdcaa73d61dfa7"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/user-terminal-abort134-receipt.json",
+      "bytes": 2775,
+      "public_sha256": "ac76bba71f41b850c7d9bf0a8eff8ed8e4037919747db6fffef8bbd462330080",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/user-terminal-abort134-receipt.json",
+      "source_sha256": "0be4bab7de8e58c325f35a64f39b2d07aa281654322efe26d1fd24446c0ee831"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/history/native-terminal-selfcheck-blocked-app-policy.json",
+      "bytes": 898,
+      "public_sha256": "0c6e4b22433c848827d2a9bed123fb7dfcea4a22f29d79c4f274606fe872727d",
+      "transformation": "host_paths_and_private_references_redacted",
+      "source_workspace_relative": "pcg-event-smoke-v1/native-terminal-selfcheck-blocked-app-policy.json",
+      "source_sha256": "c33f600eb34dd05f8dd84d9fc83f0709b5fc68cecf3edccf35618b9bf03f0713"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/README.md",
+      "bytes": 4851,
+      "public_sha256": "fe836587982ff68822f8f01263aefe2a48b643d1f521d66208cf43177260416b",
+      "transformation": "sanitized_text; private_message_ids_redacted_or_count_statement_corrected"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/tests_supervisor.py",
+      "bytes": 863,
+      "public_sha256": "3bc7093df0910202a13dd3a22a8fd16f0373bf7cfc9775962b0ee620f865fbd5",
+      "source_workspace_relative": "pcg-event-smoke-v1/tests_supervisor.py",
+      "source_sha256": "3bc7093df0910202a13dd3a22a8fd16f0373bf7cfc9775962b0ee620f865fbd5",
+      "transformation": "unchanged_UTF8"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/degraded-v1/parent-source/resource_contract.py",
+      "bytes": 679,
+      "public_sha256": "e5e908339d5e43d65dfb4ba6ec1cf5224965c48ea799941618480b64e70dd1d6",
+      "source_workspace_relative": "pcg-event-smoke-v1/resource_contract.py",
+      "source_sha256": "e5e908339d5e43d65dfb4ba6ec1cf5224965c48ea799941618480b64e70dd1d6",
+      "transformation": "unchanged_UTF8"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/README.md",
+      "bytes": 2284,
+      "public_sha256": "e488e9782cd652f63d78193b3e18d5e9da457d897a259f62e76ce168cf151632",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/README.md",
+      "source_sha256": "61a0718097f10fd3d6d044e7ebb4a065db62ab5edb5becc881c4a346a1e9483b",
+      "transformation": "host_paths_and_private_references_redacted"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/identifiability-v1-PREPARED-NOT-RUN/preparation-status.json",
+      "bytes": 463,
+      "public_sha256": "870e485d4be6e4d97ee341787bbabe7148a40bd6d26fe0e90536eab83eaf30ad",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/preparation-status.json",
+      "source_sha256": "870e485d4be6e4d97ee341787bbabe7148a40bd6d26fe0e90536eab83eaf30ad",
+      "transformation": "unchanged_UTF8"
+    },
+    {
+      "path": "docs/research-handoff/mac-event-development-20261010/non-author-publication-review.md",
+      "bytes": 1216,
+      "public_sha256": "93fe64f3f9f4c89e212bdab4b563c74691af0fdb948db10355cf154857e4c6e6",
+      "transformation": "review_summary_authored_for_publication"
+    }
+  ]
+}

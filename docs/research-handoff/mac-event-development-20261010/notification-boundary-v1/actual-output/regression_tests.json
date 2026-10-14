@@ -1,0 +1,9 @@
+{
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "phase": "regression_tests",
+  "counted_bundles": 5,
+  "result": {
+    "tests_run": 5,
+    "passed": true
+  }
+}

@@ -1,0 +1,709 @@
+{
+  "status": "DRAFT_NOT_APPROVED_NOT_EXECUTED",
+  "repository": "mightyoung/pre-combination-governance",
+  "commit": "a21866022ba9ec08a1a5edf4a321718d633a2ab1",
+  "source_file_count": 140,
+  "total_source_bytes": 1713154,
+  "files": [
+    {
+      "path": "risk-fusion-bench/src/rfb/__init__.py",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/admission.py",
+      "git_blob_sha1": "42e01d44b48b6c3428630a4ee9a9af30f7b95912",
+      "size": 24946
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/archive_qa.py",
+      "git_blob_sha1": "ef2be2bbea1a8f39e0e70d8795b25decc0646efe",
+      "size": 18487
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/archive_targets.py",
+      "git_blob_sha1": "7467dfd8fce709f24a0aa649ecab2e0cb5ea54ad",
+      "size": 7532
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/authority/__init__.py",
+      "git_blob_sha1": "fece8838d9ad046248d1b39c7dc26be0edaf6339",
+      "size": 719
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/authority/generation.py",
+      "git_blob_sha1": "6522e34db373eb5ef1aac2294c4d183d90a5ab01",
+      "size": 21427
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/authority/migration.py",
+      "git_blob_sha1": "7229ce76d8c6e889b9664371bfe3e291aa03c6b6",
+      "size": 28094
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/benchmark/__init__.py",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/benchmark/generator.py",
+      "git_blob_sha1": "8b7e1b5faf3e7265cd24bbcf8d03cc1d9320c28b",
+      "size": 7355
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/broker/__init__.py",
+      "git_blob_sha1": "fed4b50d81fdb74f8701442378bf01c4f6dccf91",
+      "size": 421
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/broker/policy.py",
+      "git_blob_sha1": "fa91ac8f4ce0492a81ed24ef284fb19ab619b7d9",
+      "size": 36115
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/capacity.py",
+      "git_blob_sha1": "469f8529c1da39c77735b72460f6a2f232f88253",
+      "size": 6056
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/capacity_probe.py",
+      "git_blob_sha1": "2921a16dee8af6d9aae3a4ba146e45980bcc86f1",
+      "size": 6857
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/closeout_audit.py",
+      "git_blob_sha1": "08fafe629b6b3328c616cec15ca2839b3c579d8d",
+      "size": 39915
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/__init__.py",
+      "git_blob_sha1": "0a6bc62c369d235960093fcd69efc89fb34ba8b9",
+      "size": 975
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/authority_generation.schema.json",
+      "git_blob_sha1": "0c383748d16d28a246c0a3134a7de116208ccab9",
+      "size": 727
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/authority_receipt.schema.json",
+      "git_blob_sha1": "ed2cdb9f0df368b82998c4db8bd8a054a494725a",
+      "size": 978
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/broker_audit.schema.json",
+      "git_blob_sha1": "d7b6f0f9101396b485477bb488ad651c1a52122e",
+      "size": 2097
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/broker_envelope.schema.json",
+      "git_blob_sha1": "81e4d83811432455c8213dbf242c44f07bb7b90b",
+      "size": 1249
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/c2_sizing_report.schema.json",
+      "git_blob_sha1": "242c1f61361b55f1e7e992401a82571397dca7c7",
+      "size": 4765
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/c3_planning_report.schema.json",
+      "git_blob_sha1": "9454a74a6f6ff585a0ae3ca6e9a9d67bd0cc953f",
+      "size": 2857
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/canonical_json.py",
+      "git_blob_sha1": "f02e590173c3fe9a7b341a35c2a24eb6eb43fd64",
+      "size": 3818
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/copy_verification.schema.json",
+      "git_blob_sha1": "331ba86144710862de9b1fbb3289b6cf9ed275f9",
+      "size": 2836
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/dataset_purge_ledger.schema.json",
+      "git_blob_sha1": "cbc8233964297e5642b32035f90deee0e2f75355",
+      "size": 2421
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/dataset_purge_tombstone.schema.json",
+      "git_blob_sha1": "a2a25090cb43cc9399290f3a8287dcc6008a759c",
+      "size": 2158
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/durable_result_manifest.schema.json",
+      "git_blob_sha1": "097043fbbe1533964516de9117ba4603be93dd40",
+      "size": 1411
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/failure_codes.py",
+      "git_blob_sha1": "47e0fd64732e53804efe007728fe3585a80809f2",
+      "size": 1934
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/final_run_receipt.schema.json",
+      "git_blob_sha1": "ff15b90caf316ac835678d75eb309feb8d717caa",
+      "size": 4149
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/formal_stage_admission.schema.json",
+      "git_blob_sha1": "9ca41be8ad33378996c0314ce33490943a654d44",
+      "size": 1575
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/formal_transaction_ledger.schema.json",
+      "git_blob_sha1": "9ee809f98435a5369bf676bf198a39e981de48ac",
+      "size": 2003
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/lifecycle_property_corpus.schema.json",
+      "git_blob_sha1": "73a2190bbb6060c0a4b550b2b55154eb7c396d68",
+      "size": 3590
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/live_gate_verdict_set.schema.json",
+      "git_blob_sha1": "0ae06cd1f7e363a62a55c26352d6e7d235c0a370",
+      "size": 2159
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/method_output.schema.json",
+      "git_blob_sha1": "14a0c8be9e6ffd2d8f296ba41ef5c17a60c78570",
+      "size": 3998
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/mme_authorization_decision.schema.json",
+      "git_blob_sha1": "74dc7b9fe17057ad7b4b57ee4a67938e4ffb26c7",
+      "size": 943
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/mme_authorization_request.schema.json",
+      "git_blob_sha1": "c7d3059079f5aba564b1bf4fdfd7da8dccb19ba4",
+      "size": 4234
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/mme_authorization_revocation.schema.json",
+      "git_blob_sha1": "1e629fcdd355c34035455d76a2a64689a62f4c1c",
+      "size": 1417
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/mme_authorization_signature.schema.json",
+      "git_blob_sha1": "7c2e804481412d70b59f55846ae1a71112824fdf",
+      "size": 929
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/mme_authorization_trust_root.schema.json",
+      "git_blob_sha1": "3d369171df6c6e05d6f960388e4d5bda295c52d5",
+      "size": 1177
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/mme_execution_authorization.schema.json",
+      "git_blob_sha1": "f23603d69cf5176388371c7bb7105ecf6bf1e9bd",
+      "size": 1720
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/package_validator.py",
+      "git_blob_sha1": "e6b3910043b9b922c33499d487fda08bde22e15e",
+      "size": 31197
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/phase0_frozen_runtime_manifest.schema.json",
+      "git_blob_sha1": "9a38b5835cfea9e4af8dca4130bd14ef015a64ef",
+      "size": 5896
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/phase0_frozen_runtime_qualification.schema.json",
+      "git_blob_sha1": "0df05ed90dccf5ec3c9a1c93d54af04a11e0d3d6",
+      "size": 1280
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/phase0_frozen_runtime_receipt.schema.json",
+      "git_blob_sha1": "a7b8082b72eadb4c2f9aa36fe3eb458d5b6b0627",
+      "size": 1615
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/phase0_qualification_manifest.schema.json",
+      "git_blob_sha1": "d975ef472879d9eb2b82a9769f57fb40e0d6c103",
+      "size": 23606
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/phase0_qualification_raw_receipt.schema.json",
+      "git_blob_sha1": "424a485d29c39e6d1692f07849063c3faf029fe2",
+      "size": 1220
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/phase0_review_receipt.schema.json",
+      "git_blob_sha1": "e36ca39b1167f3bb196bd48a0a8226a42738484a",
+      "size": 2157
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/phase0_test_receipt.schema.json",
+      "git_blob_sha1": "79bb99049fa6f638c5eb256cd1da4ad8527f0bac",
+      "size": 10474
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/purge_capability.schema.json",
+      "git_blob_sha1": "c4256a631b380a75b731b03850be74820a8254d4",
+      "size": 2434
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/purge_execution_approval.schema.json",
+      "git_blob_sha1": "1749cfc110807cb868515299d29c4be389b96b67",
+      "size": 2261
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/purge_no_writer_attestation.schema.json",
+      "git_blob_sha1": "15887c0825bc8bb3c56cd65e1b5c97d5e26a5397",
+      "size": 1573
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/regeneration_sampling_qa.schema.json",
+      "git_blob_sha1": "70bf23b0a6b4257e8ab2174c0551682f4a63134d",
+      "size": 21295
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/remote_execution_receipt.schema.json",
+      "git_blob_sha1": "8e210e7f6177c39378a3670cd44a043b09d87687",
+      "size": 6721
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/research_lifecycle_trace.schema.json",
+      "git_blob_sha1": "b9a9c57624f93af1a4d67dee47117bca5549fdb9",
+      "size": 2446
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/research_run_manifest.schema.json",
+      "git_blob_sha1": "b0ee8dfe31f9909f942c29c55995fa4c62d2bee4",
+      "size": 11536
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/research_runtime_parity_inventory.json",
+      "git_blob_sha1": "9e70e5f430e22ee0a24d9fdfc4e32ef9c2365771",
+      "size": 1694
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/result_archive_targets.schema.json",
+      "git_blob_sha1": "7b8b66b324487e55fe97db3482f432d73d8eeb60",
+      "size": 2881
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/runtime_baseline.schema.json",
+      "git_blob_sha1": "7848b7de646c029ba82f4fefd3168dabefcdd942",
+      "size": 214
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/schema_versions.py",
+      "git_blob_sha1": "fc4fe6bd8548feee2c45957f74681125df2d51db",
+      "size": 2109
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/schemas.py",
+      "git_blob_sha1": "4b4c50a26fbecccd82d478c4baa9ff2c6a33dead",
+      "size": 9488
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/contracts/transaction_ledger.schema.json",
+      "git_blob_sha1": "60fc91fa8bcadddd183ad6323ef305f1c3425287",
+      "size": 11630
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/dst.py",
+      "git_blob_sha1": "7f380ce2ff8044ed12b16652c73703d666dd6606",
+      "size": 4437
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/durable_package.py",
+      "git_blob_sha1": "6336eabbc8afb20036cfcf12115226421f1268f1",
+      "size": 23975
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/durable_results.py",
+      "git_blob_sha1": "d5b128346cf972a6fe976f989f26e11c5fc07d04",
+      "size": 16060
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/formal/__init__.py",
+      "git_blob_sha1": "76f38fb2d7ff12cc34955f3fe7c4075750e0853e",
+      "size": 458
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/formal/lifecycle.py",
+      "git_blob_sha1": "a31a924cbc6343003a6496decb6f84ac9c0f7c4f",
+      "size": 9651
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/formal/runner.py",
+      "git_blob_sha1": "1b2f64565e57ca278211ec8c84023f53b33c3e17",
+      "size": 6944
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/formal/truth.py",
+      "git_blob_sha1": "0e99bff0d318b6519a53c040f7d562e0ebf1f87e",
+      "size": 1781
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/g004_evidence.py",
+      "git_blob_sha1": "f2ed5dbd369fbe9a6fecd158e56a63a17b1ab79b",
+      "size": 30313
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/gate_evidence.py",
+      "git_blob_sha1": "40924cb13a3b902ba9ce2b90dbe95fc4f9430e99",
+      "size": 38244
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/live_closeout.py",
+      "git_blob_sha1": "9e482de16f8e7f47fbf22445df28b3034b15390a",
+      "size": 8888
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/live_gate.py",
+      "git_blob_sha1": "4f76b02cc3080c13749f57879c951afb476233c1",
+      "size": 15960
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/live_purge.py",
+      "git_blob_sha1": "7cf94d7225a4b0cd7b82e61d9ae4184b5433dc39",
+      "size": 177
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/__init__.py",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/base.py",
+      "git_blob_sha1": "e5d030daabd638ad913a04c90191fd333729a5af",
+      "size": 4708
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/cwru.py",
+      "git_blob_sha1": "6f337044a39f7a1e22063df9b9de10f2d3b308e7",
+      "size": 5402
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/gas.py",
+      "git_blob_sha1": "eb4a9f382ea4bfbb969383fd30f59dda8cddd892",
+      "size": 4585
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/ha4m.py",
+      "git_blob_sha1": "79119abd0f11a0c997c5faeabfba37f7a4d84a46",
+      "size": 5249
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/ha4m_real.py",
+      "git_blob_sha1": "0017bee23c75259d230a092b7117c607afb13827",
+      "size": 7709
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/hm_sync.py",
+      "git_blob_sha1": "565755e5a26d89bbb5dae6055ba34c45d7b3b903",
+      "size": 12081
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/mimii.py",
+      "git_blob_sha1": "681a83dfcb34e86f3dd0527a5f514ff12134d7b7",
+      "size": 11398
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/mvtec.py",
+      "git_blob_sha1": "2e78e117f349cfc327e1cddc1cae10f320927ac1",
+      "size": 3938
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/loaders/tep.py",
+      "git_blob_sha1": "7d75354ba74ff68789497f13a11db7b77d22a590",
+      "size": 6215
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/methods/__init__.py",
+      "git_blob_sha1": "581669e71692065700ef6d5578f831b0a9d9044f",
+      "size": 914
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/methods/__main__.py",
+      "git_blob_sha1": "8419aea6b1f12cbad99b42b8433db7c392774fb9",
+      "size": 525
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/methods/algorithms.py",
+      "git_blob_sha1": "b1a3cf3bcdfad07b751a651b0ba6a50b85c8bd17",
+      "size": 9248
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/methods/api.py",
+      "git_blob_sha1": "1df9318097389ce18f7060cfe35f95891afaa372",
+      "size": 3010
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/methods/lifecycle_engine.py",
+      "git_blob_sha1": "bfac4d85156b87b7f6972d18a7cd2bf29f02145e",
+      "size": 26793
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/methods/models.py",
+      "git_blob_sha1": "f47685ad15600aa52a207b2d8e6c62878ba5d15b",
+      "size": 6395
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/methods/registry.py",
+      "git_blob_sha1": "f0c83719e7016a6d58d74fc2deca72554fbb4d09",
+      "size": 10557
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/orchestration/__init__.py",
+      "git_blob_sha1": "d55e6dec0d33c4a93a8236911873f66ba7fbda8f",
+      "size": 586
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/orchestration/__main__.py",
+      "git_blob_sha1": "266e5837ee1103ef0a5c93a2add3e7554ebfc0b8",
+      "size": 6686
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/orchestration/c3.py",
+      "git_blob_sha1": "d8a1c1bb7f848789a93a7ecc7e3da87ec0d1e8ff",
+      "size": 8568
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/orchestration/report.py",
+      "git_blob_sha1": "f7461d0fbbc14e6245c301af7d9aec2f6847b46b",
+      "size": 5783
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/orchestration/segment.py",
+      "git_blob_sha1": "a480e53120cdd92eadd96080996c655858cfcbf5",
+      "size": 21559
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/purge.py",
+      "git_blob_sha1": "b2c4987b0856d951aa0ddf279b86f29e833f92b8",
+      "size": 54209
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/purge_capability.py",
+      "git_blob_sha1": "20deeb0d3b4bcf705eb825489cda5148706849f7",
+      "size": 42501
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/regeneration.py",
+      "git_blob_sha1": "172fedb40618cd152ce08d40efc77023cd0d6a70",
+      "size": 73671
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/reliability.py",
+      "git_blob_sha1": "e32799cc526ed0d74647e4e54b7401db24f12384",
+      "size": 2662
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/__init__.py",
+      "git_blob_sha1": "e122ad3e8865baf96ba2015489be6c7d66940ec9",
+      "size": 1021
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/__main__.py",
+      "git_blob_sha1": "b08cdb1e20380532485d8f4c451aba72e2f9135a",
+      "size": 12854
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/adapters.py",
+      "git_blob_sha1": "3c4649c849081bc130fc765ede483ef2b08978a3",
+      "size": 10577
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/contracts/mme_v2_prediction.schema.json",
+      "git_blob_sha1": "c53211c4865b804e5be3f659664be4d7f394c945",
+      "size": 2602
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/contracts/pinned_runtime_manifest.schema.json",
+      "git_blob_sha1": "d77798630e7e29c3efd90571bc54882917250453",
+      "size": 5199
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/contracts/research_event.schema.json",
+      "git_blob_sha1": "c15964b478f93f1514873f1604c1691ee7a1ec8a",
+      "size": 622
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/controller.py",
+      "git_blob_sha1": "90b245ec96d26819cb9f1ee7c15a9e8dfca29062",
+      "size": 57271
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/files.py",
+      "git_blob_sha1": "0ddbfd4fe96faa90601b25dd53b340b5866c215f",
+      "size": 3760
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/formal_boundary.py",
+      "git_blob_sha1": "9af240c0444c8fc6ea1ee32f55a7114e186eda2d",
+      "size": 276
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/isolation.py",
+      "git_blob_sha1": "f1d404ec3a2dec875059a1075ecb8e83631326d5",
+      "size": 7454
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/lifecycle_properties.py",
+      "git_blob_sha1": "1154f17921431916ff7589716496801a542c0309",
+      "size": 10473
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/lifecycle_qualification.py",
+      "git_blob_sha1": "d767406e9cb17fa0c38f06804a436842e70a7d85",
+      "size": 5048
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/lifecycle_reference.py",
+      "git_blob_sha1": "5ea675833e91c9dcd7f77fd6a7a7a564deb00701",
+      "size": 10715
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/lock.py",
+      "git_blob_sha1": "0075e045aae8772e55466279a5e378d330101f7b",
+      "size": 11408
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/manifest.py",
+      "git_blob_sha1": "4e3a8d2eaff2e1785d586ecf174b94af1000ecd6",
+      "size": 6478
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_authorization.py",
+      "git_blob_sha1": "b42d638fc57d88a7b2e290feac337126399d1f63",
+      "size": 57435
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_baselines.py",
+      "git_blob_sha1": "38126a6450942ed14d5fa4ed1d3663fb94f0491e",
+      "size": 20651
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_conclusion.py",
+      "git_blob_sha1": "92ee8fe2e24c170c45881e4702a401e6bcdc9132",
+      "size": 4941
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_events.py",
+      "git_blob_sha1": "345e1d8b7b13d7312cc5f740c1a7668e3fb53195",
+      "size": 20487
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_methods.py",
+      "git_blob_sha1": "91fb67d4d9df43179e11b92c68cddc4513a37345",
+      "size": 7577
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_metrics.py",
+      "git_blob_sha1": "6b6ef9a3e3d05e84f1727092c8a4f095dd802ae3",
+      "size": 24196
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_oracle.py",
+      "git_blob_sha1": "25b2766145fc08439234e3e80ef3fdea28ad239b",
+      "size": 5431
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_process.py",
+      "git_blob_sha1": "5c6c89deaf4b7e6b76dbf346877afa57ea190813",
+      "size": 5578
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_report.py",
+      "git_blob_sha1": "a926d766f96aa4afde500f2274806bc403a4d8b9",
+      "size": 16765
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/mme_runner.py",
+      "git_blob_sha1": "42340d9b061ea46e720fe0740dcd17d8aa9e5297",
+      "size": 33164
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/models.py",
+      "git_blob_sha1": "a55670cf12b1936d68d5e229cd50407cf46f7f15",
+      "size": 2542
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/phase0_frozen_runtime.py",
+      "git_blob_sha1": "178bcf91267b88e272f197873493b19a472170f7",
+      "size": 60778
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/phase0_qualification.py",
+      "git_blob_sha1": "59e1afe767c72d6b8197b21790f372c5cb671df9",
+      "size": 65292
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/pinned_runtime.py",
+      "git_blob_sha1": "a91244f1409762faa6db205eed996a89ac6f4a13",
+      "size": 45428
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/preflight.py",
+      "git_blob_sha1": "e4aa6adb8c96ae953d0eb30297f689efc37b14ad",
+      "size": 19587
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/receipts.py",
+      "git_blob_sha1": "b6da457e9c79ad1f2da7dddc28798640fb40fe53",
+      "size": 21003
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/runtime_binding.py",
+      "git_blob_sha1": "d0db903729b4b12b5be6d2e31dfcac41228ba298",
+      "size": 3631
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/runtime_bundle.py",
+      "git_blob_sha1": "6258fd15b1f7c306a73d4123fcb711d5bb07b681",
+      "size": 68409
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/scorer_owner.py",
+      "git_blob_sha1": "cfc8c5d1c079e0013bd14dab65ee0bfe422b2092",
+      "size": 4204
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/trace.py",
+      "git_blob_sha1": "f277c9997390c8675df1f3d8433b49b0580dc8f2",
+      "size": 12783
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/transport.py",
+      "git_blob_sha1": "f91e2a3f1403a2a4b881ab4e895fda1cc3924e50",
+      "size": 45142
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/research/worker.py",
+      "git_blob_sha1": "c83778219e05b9b5db70b4926f6d13bf43dee89f",
+      "size": 37253
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/runtime/__init__.py",
+      "git_blob_sha1": "0b18fb1c985445bda6268650303fb150029b3490",
+      "size": 1546
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/runtime/ledger.py",
+      "git_blob_sha1": "86322b189f77d3810805e6245dcc619a766410bb",
+      "size": 15255
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/runtime/state.py",
+      "git_blob_sha1": "fd3c9853b6cd00739c17f673d048bff506c135a3",
+      "size": 22070
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/runtime/transaction.py",
+      "git_blob_sha1": "a107359149f1a8bba52d012f6c75ce9e7ca758bd",
+      "size": 39563
+    },
+    {
+      "path": "risk-fusion-bench/src/rfb/temporal.py",
+      "git_blob_sha1": "18f63a4c527db3dd9902414897578990d7e395f7",
+      "size": 7074
+    }
+  ]
+}

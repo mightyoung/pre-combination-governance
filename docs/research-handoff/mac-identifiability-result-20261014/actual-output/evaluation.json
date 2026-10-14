@@ -1,0 +1,3705 @@
+{
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "phase": "evaluation",
+  "counted_bundles": 102,
+  "result": {
+    "status": "DEVELOPMENT_ONLY",
+    "reference_bundles": 102,
+    "ds_inner_asset_groups": 72,
+    "total_evaluations": 228,
+    "checks": [
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 1,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 1,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 2,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 2,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 3,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 3,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 4,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 4,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 5,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 5,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 5,
+        "method": "M0",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 5,
+        "method": "M1",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 1,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 1,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 2,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 2,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 3,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 3,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 4,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 4,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 5,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 5,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 5,
+        "method": "M0",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 5,
+        "method": "M1",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 1,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 1,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 2,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 2,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 3,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 3,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 4,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 4,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 5,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 5,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 5,
+        "method": "M0",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "prefix": 5,
+        "method": "M1",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 1,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 1,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 2,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 2,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 3,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 3,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 4,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 4,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 5,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 5,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 5,
+        "method": "M0",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "prefix": 5,
+        "method": "M1",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 1,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 1,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 2,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 2,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 3,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 3,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 4,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 4,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 5,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 5,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 5,
+        "method": "M0",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "prefix": 5,
+        "method": "M1",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 1,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 1,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 2,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 2,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 3,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 3,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 4,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 4,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 5,
+        "method": "M2",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 5,
+        "method": "M3",
+        "ds_reference_match": true,
+        "common_cards_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 5,
+        "method": "M0",
+        "terminal_reference_match": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 5,
+        "method": "M1",
+        "terminal_reference_match": true
+      }
+    ],
+    "metrics": {
+      "status": "DEVELOPMENT_ONLY",
+      "prefix_metrics": {
+        "I1_NO_INFO_CONTINUING/1/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/1/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/1/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/1/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/2/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/2/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/2/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/2/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/3/M0": {
+          "false_merge": 0,
+          "false_split": 2,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": true
+        },
+        "I1_NO_INFO_CONTINUING/3/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/3/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/3/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/4/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/4/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/4/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/4/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/5/M0": {
+          "false_merge": 0,
+          "false_split": 6,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/5/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/5/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I1_NO_INFO_CONTINUING/5/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/1/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/1/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/1/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/1/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/2/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/2/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/2/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/2/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/3/M0": {
+          "false_merge": 0,
+          "false_split": 2,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": true
+        },
+        "I2_NO_INFO_NEW/3/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/3/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/3/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/4/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/4/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/4/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/4/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/5/M0": {
+          "false_merge": 2,
+          "false_split": 4,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": true,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/5/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": true,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/5/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": true,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I2_NO_INFO_NEW/5/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": true,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/1/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/1/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/1/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/1/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/2/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/2/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/2/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/2/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/3/M0": {
+          "false_merge": 0,
+          "false_split": 2,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": true
+        },
+        "I3_RECOVERY/3/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/3/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/3/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/4/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/4/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/4/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/4/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/5/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/5/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/5/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I3_RECOVERY/5/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/1/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/1/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/1/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/1/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/2/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/2/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/2/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/2/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/3/M0": {
+          "false_merge": 0,
+          "false_split": 2,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": true
+        },
+        "I4_WORK_ROUND/3/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/3/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/3/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/4/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/4/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/4/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/4/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/5/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/5/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/5/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I4_WORK_ROUND/5/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/1/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/1/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/1/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/1/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/2/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/2/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/2/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/2/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/3/M0": {
+          "false_merge": 0,
+          "false_split": 2,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": true
+        },
+        "I5_INDEPENDENT_STATE/3/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/3/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/3/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/4/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/4/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/4/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/4/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/5/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/5/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/5/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I5_INDEPENDENT_STATE/5/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/1/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/1/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/1/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/1/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 0,
+          "rejected_pairs": 0,
+          "total_pairs": 0,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/2/M0": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/2/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/2/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/2/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 1,
+          "rejected_pairs": 0,
+          "total_pairs": 1,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/3/M0": {
+          "false_merge": 0,
+          "false_split": 2,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": true,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": true
+        },
+        "I6_INVALID_CONTEXT/3/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/3/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/3/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 3,
+          "rejected_pairs": 0,
+          "total_pairs": 3,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": true,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/4/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/4/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/4/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/4/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 0,
+          "total_pairs": 6,
+          "missed_must_notify": false,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/5/M0": {
+          "false_merge": 0,
+          "false_split": 4,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": true,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/5/M1": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": true,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/5/M2": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": true,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        },
+        "I6_INVALID_CONTEXT/5/M3": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 6,
+          "rejected_pairs": 4,
+          "total_pairs": 10,
+          "missed_must_notify": true,
+          "physical_alert": false,
+          "handling_only": false,
+          "unsafe_clear": false,
+          "danger_truth_evaluable": true,
+          "danger_underassessment": false,
+          "high_danger_missed": false,
+          "unsupported_exposure": false,
+          "conflict_misresolved": false,
+          "spurious_conflict": false,
+          "alert_outside_exact_required_prefix": false
+        }
+      },
+      "warning": "DS fusion has common event rules; no separate clustering superiority claim; no calibration or significance claim"
+    },
+    "delay_checks": [
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M0",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M0",
+        "unmatched_alert_prefixes": [
+          3
+        ]
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M1",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M1",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M2",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M2",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M3",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M3",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M0",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M0",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M0",
+        "unmatched_alert_prefixes": [
+          3
+        ]
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M1",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M1",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M1",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M2",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M2",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M2",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M3",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M3",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M3",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M0",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M0",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M0",
+        "unmatched_alert_prefixes": [
+          3
+        ]
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M1",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M1",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M1",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M2",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M2",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M2",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M3",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M3",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M3",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M0",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M0",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M0",
+        "unmatched_alert_prefixes": [
+          3
+        ]
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M1",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M1",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M1",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M2",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M2",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M2",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M3",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M3",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M3",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M0",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M0",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M0",
+        "unmatched_alert_prefixes": [
+          3
+        ]
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M1",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M1",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M1",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M2",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M2",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M2",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M3",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M3",
+        "required_prefix": 5,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M3",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M0",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M0",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M0",
+        "unmatched_alert_prefixes": [
+          3
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M1",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M1",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M1",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M2",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M2",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M2",
+        "unmatched_alert_prefixes": []
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M3",
+        "required_prefix": 1,
+        "receipt_prefix_delay": 0,
+        "missed": false
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M3",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M3",
+        "unmatched_alert_prefixes": []
+      }
+    ],
+    "first_alert_checks": [
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M0",
+        "required": [
+          1
+        ],
+        "actual": [
+          1,
+          3
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [
+          3
+        ],
+        "logical_delays": [
+          0
+        ]
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M1",
+        "required": [
+          1
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0
+        ]
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M2",
+        "required": [
+          1
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0
+        ]
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "method": "M3",
+        "required": [
+          1
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0
+        ]
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M0",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          3
+        ],
+        "missed_at_required_prefix": [
+          5
+        ],
+        "extra_at_nonrequired_prefix": [
+          3
+        ],
+        "logical_delays": [
+          0,
+          null
+        ]
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M1",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [
+          5
+        ],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          null
+        ]
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M2",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [
+          5
+        ],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          null
+        ]
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M3",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [
+          5
+        ],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          null
+        ]
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M0",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          3,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [
+          3
+        ],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M1",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M2",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I3_RECOVERY",
+        "method": "M3",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M0",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          3,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [
+          3
+        ],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M1",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M2",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I4_WORK_ROUND",
+        "method": "M3",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M0",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          3,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [
+          3
+        ],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M1",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M2",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I5_INDEPENDENT_STATE",
+        "method": "M3",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          5
+        ],
+        "missed_at_required_prefix": [],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          0
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M0",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1,
+          3
+        ],
+        "missed_at_required_prefix": [
+          5
+        ],
+        "extra_at_nonrequired_prefix": [
+          3
+        ],
+        "logical_delays": [
+          0,
+          null
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M1",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [
+          5
+        ],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          null
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M2",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [
+          5
+        ],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          null
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M3",
+        "required": [
+          1,
+          5
+        ],
+        "actual": [
+          1
+        ],
+        "missed_at_required_prefix": [
+          5
+        ],
+        "extra_at_nonrequired_prefix": [],
+        "logical_delays": [
+          0,
+          null
+        ]
+      }
+    ],
+    "first_alert_acceptance": false,
+    "first_alert_acceptance_scope": "exact required prefixes, no extras, zero logical delay; window delays are diagnostic only",
+    "physical_notification_acceptance": false,
+    "physical_misses": [
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M0",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M1",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M2",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "method": "M3",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M0",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M1",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M2",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "method": "M3",
+        "required_prefix": 5,
+        "receipt_prefix_delay": null,
+        "missed": true
+      }
+    ],
+    "review_notifications": [
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 5,
+        "method": "M1",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 5,
+        "method": "M2",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I1_NO_INFO_CONTINUING",
+        "prefix": 5,
+        "method": "M3",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 5,
+        "method": "M1",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 5,
+        "method": "M2",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I2_NO_INFO_NEW",
+        "prefix": 5,
+        "method": "M3",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 5,
+        "method": "M0",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 5,
+        "method": "M1",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 5,
+        "method": "M2",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      },
+      {
+        "trace": "I6_INVALID_CONTEXT",
+        "prefix": 5,
+        "method": "M3",
+        "reasons": [
+          "uncertain_new_alarm_requires_review"
+        ]
+      }
+    ],
+    "delay_scope": "logical receipt-prefix delay only; no physical wall delay inference"
+  }
+}

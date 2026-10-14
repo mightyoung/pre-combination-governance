@@ -1,0 +1,119 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "BUILD003-outcome-report.md",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 5750,
+      "host_path_published": false,
+      "sha256": "dd5b89d447d3aa59a38116cb49b53546d23e2f55ea6b4b33d50d83bddbf85a80"
+    },
+    {
+      "artifact_id": "BUILD003-post-run-verification.json",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 27733,
+      "host_path_published": false,
+      "sha256": "95c10a7e66fd94fece329f58c3803d50f3899b7c47419e4f01eac6be777b0a44"
+    },
+    {
+      "artifact_id": "BUILD003-independent-post-run-verification.md",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 7832,
+      "host_path_published": false,
+      "sha256": "b25cee99bc86320bc31b253a9e40665b881810a6c4435bd066113eef138cfb93"
+    },
+    {
+      "artifact_id": "BUILD004-outcome-report.md",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 5923,
+      "host_path_published": false,
+      "sha256": "d1701e13553bd9f9ecf61221b72cc8a5a6bd54840e5353889e225f20377f0227"
+    },
+    {
+      "artifact_id": "BUILD004-post-run-verification.json",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 24890,
+      "host_path_published": false,
+      "sha256": "a2276a4e352a8298fa927cf8009722e8bc5b4914598bcfa47fdc7975ce934ba5"
+    },
+    {
+      "artifact_id": "BUILD004-stage-statistics.csv",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 1821,
+      "host_path_published": false,
+      "sha256": "cf0f6689a50ffdcb4d119a33f71e877b0dc83892050f01be55b92e8ce51f0459"
+    },
+    {
+      "artifact_id": "BUILD005-r2-independent-static-review.md",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 5751,
+      "host_path_published": false,
+      "sha256": "bfaa4a23d252760c4bc75ad618d76216b665d779e698419932e6efb65f3968d0"
+    },
+    {
+      "artifact_id": "BUILD005-r2-post-attempt-verification.json",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 3735,
+      "host_path_published": false,
+      "sha256": "ee8e6849171cc98f82277faee8b158fd6d2bf0bca463ea54af88e4e077a4948c"
+    },
+    {
+      "artifact_id": "BUILD005-r2-outcome-report.md",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 2361,
+      "host_path_published": false,
+      "sha256": "78b8dfe0170df440385f5e5cd2c244cfc998c186979ac3d22fcc6c78f3e914f2"
+    },
+    {
+      "artifact_id": "precombination-stream-cost-BUILD003-static-reviewed.zip",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 1285619,
+      "host_path_published": false,
+      "sha256": "c4942fcc92267b6548962e25e044a5ba80f81ad5a879e562017c9c55a2f79107"
+    },
+    {
+      "artifact_id": "precombination-N32-BUILD004-static-reviewed.zip",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 1285923,
+      "host_path_published": false,
+      "sha256": "a097c826589bc3d5fb58f792aba41a1489b8cd3d866cbf795773c85d826adc5d"
+    },
+    {
+      "artifact_id": "precombination-S2N8-BUILD005-r2-frozen-draft.zip",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 1315572,
+      "host_path_published": false,
+      "sha256": "eeba84f69768c86109017f462fbbd4224646d09b2745ee46f08e94f6a83cdf11"
+    },
+    {
+      "artifact_id": "precombination-S2N8-BUILD005-r2-attempt-001-evidence.zip",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 4851,
+      "host_path_published": false,
+      "sha256": "c545bc4b663c7768d21c84ccf385d65cd6d0bfafd36e24e638264590e0532b5b"
+    },
+    {
+      "artifact_id": "next-round-package-003-MANIFEST.json",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 58121,
+      "host_path_published": false,
+      "sha256": "1d57dd64e25332690341bc140e8872224fca0ecd8301c1f9a5ba86cf239af991"
+    },
+    {
+      "artifact_id": "next-round-package-004-MANIFEST.json",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 58385,
+      "host_path_published": false,
+      "sha256": "ccc0362e7e364eec707c33625df6879c80adbde76fb057c496aafd566ba8a3f6"
+    },
+    {
+      "artifact_id": "next-round-package-005-r2-MANIFEST.json",
+      "availability": "retained_local_only_not_uploaded",
+      "bytes": 58840,
+      "host_path_published": false,
+      "sha256": "a24c9906645e3c5969d0ba7260bfbdde0644f71686d6a2023cfd1ef4b2bb2559"
+    }
+  ],
+  "claim_boundary": "Identities computed from retained local bytes; publication does not make originals available or establish independent scientific review. No permit or private identifiers included.",
+  "schema_version": "pcg-public-provenance-index.v1",
+  "source_commit": "a21866022ba9ec08a1a5edf4a321718d633a2ab1"
+}

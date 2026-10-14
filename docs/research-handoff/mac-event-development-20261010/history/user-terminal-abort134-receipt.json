@@ -1,0 +1,59 @@
+{
+  "status": "USER_REPORTED_TRUE_ABORT_134_STATIC_DIAGNOSIS",
+  "recorded_at_utc": "2026-10-10T14:00:19.143398+00:00",
+  "provenance": "user-reported native Terminal transcript; not assistant execution",
+  "command": "/usr/bin/sandbox-exec -f '<LOCAL_HOST_PATH>' /usr/bin/true",
+  "user_reported_exit_code": 134,
+  "user_reported_error": "zsh: abort /usr/bin/sandbox-exec -f /usr/bin/true",
+  "assistant_dynamic_probes": 0,
+  "tests_run": 0,
+  "scientific_calls": 0,
+  "profile_sha256": "174ed07c6759f042fb6a894ee676a1eb66e12876b07385369c5604bb71ecd712",
+  "crash_evidence": {
+    "path": "<LOCAL_HOST_PATH>",
+    "sha256": "0d056fa8991bc779679add5146fdf837d821572b7d7dc0361f87a53a02f746e2",
+    "captureTime": "2026-10-10 21:57:54.0289 +0800",
+    "procName": "true",
+    "procPath": "/usr/bin/true",
+    "parentProc": "zsh",
+    "pid": 22940,
+    "exception": {
+      "codes": "0x0000000000000000, 0x0000000000000000",
+      "rawCodes": [
+        0,
+        0
+      ],
+      "type": "EXC_CRASH",
+      "signal": "SIGABRT"
+    },
+    "termination": {
+      "namespace": "<0x23>",
+      "flags": 582,
+      "code": 2
+    },
+    "frames": [
+      "__abort_with_payload",
+      "abort_with_payload_wrapper_internal",
+      "abort_with_reason",
+      "ignition_halt",
+      "boot_boot",
+      "ignite",
+      "dyld4::CacheFinder::CacheFinder(dyld4::ProcessConfig::Process const&, dyld4::ProcessConfig::Logging const&, dyld4::SyscallDelegate&)",
+      "dyld4::ProcessConfig::DyldCache::DyldCache(dyld4::ProcessConfig::Process&, dyld4::ProcessConfig::Security const&, dyld4::ProcessConfig::Logging const&, dyld4::SyscallDelegate&, lsl::Allocator&, dyld4::ProcessConfig const&)",
+      "dyld4::ProcessConfig::ProcessConfig(dyld4::KernelArgs const*, dyld4::SyscallDelegate&, lsl::Allocator&)",
+      "dyld4::start(dyld4::KernelArgs*, void*, void*, unsigned long long)::$_1::operator()() const",
+      "start"
+    ]
+  },
+  "association": "Latest true report on this date, native zsh parent and matching abort; transcript lacks exact execution timestamp, so correlation is strong but not exact-command proof",
+  "unified_log_read": {
+    "command": "/usr/bin/log show --last 30m --style compact --predicate process==sandbox-exec",
+    "exit_code": 64,
+    "error": "log: Cannot run while sandboxed",
+    "escalation_attempted": false
+  },
+  "prior_success_profile_sha256": "191f90536bd977791845d1aedf39cb90d48d89c8e5c0dfc75ba700c2a4e3f46b",
+  "root_read_hypothesis": "current lacks literal / file-read-data, previous strict one-variable repair succeeded; current exact denial not obtained",
+  "allow_default_success": "mentioned by delegation; no corresponding receipt/profile located in scoped workspace search; do not treat as locally verified",
+  "frozen_files_modified": false
+}

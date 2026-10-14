@@ -1,0 +1,134 @@
+{
+  "scope": "identifiability-v1",
+  "files": [
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/independent_reference.py",
+      "sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/launcher.py",
+      "sha256": "7f80aadcead5fc83490c023eb9bb8c02964781529f803190e13683a2e43a8428"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/methods.py",
+      "sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/offline_evaluator.py",
+      "sha256": "6504821d2c9c1362598077bd7956c03f177692ae638d9d68ceb13b47a98d9f86"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/regression_tests.py",
+      "sha256": "d77958dc5a26a7372eba3e33df7478fa8e1ae5907f1b3a2a7e2489ec44a92871"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/scoring.py",
+      "sha256": "5cc09fed32a7b9bc10a0ff7dc282118157e53dd4906713b720c375d0c2663dd4"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/shared_context.py",
+      "sha256": "fb46e5040fe91f7337fdd5cb585673e8fc9ee3cbb3fb5dc2e0e1604fab90029e"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/worker.py",
+      "sha256": "5a904a8a877c3f7b2673fc2464cfaf57f80af4176780eb556acc35ca01fcaff7"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/oracle.physical.json",
+      "sha256": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/public-input.json",
+      "sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/terminal-reference.json",
+      "sha256": "6e53a4260d52bafd978ce5ff44f2a13ba1268fc2916f1e79f1eb17d071c6784f"
+    },
+    {
+      "path": "pcg-event-smoke-v1/identifiability-v1/case-plan.md",
+      "sha256": "54de6415f3683bae7d6d4d6bcbb2f764ac12f379d51d695362c0c2bc1d2125f4"
+    },
+    {
+      "path": "next-round-package-005-r2/MANIFEST.json",
+      "sha256": "a24c9906645e3c5969d0ba7260bfbdde0644f71686d6a2023cfd1ef4b2bb2559"
+    },
+    {
+      "path": "pcg-event-smoke-v1/runtime-manifest.json",
+      "sha256": "39a82eea02a6e2ada1e7584a51193ad9425a26c7693dba40db09f6dbd9c39961"
+    },
+    {
+      "path": "pcg-event-smoke-v1/public-input.json",
+      "sha256": "d22832037e7526fe220c5c78acf0a0a7c820c86c62d5c2a9ba7aa001cf15c216"
+    },
+    {
+      "path": "pcg-event-smoke-v1/oracle.physical.json",
+      "sha256": "6cf91478316ab4e5b988186233663a97a6ef7dd3ac53784cdc70c93534468f61"
+    },
+    {
+      "path": "pcg-event-smoke-v1/worker.py",
+      "sha256": "414c5ff8af6ace189fe03b646f3e8413f2129d2c79aa9eb123c5337fcfd7bb8a"
+    },
+    {
+      "path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/intent.json",
+      "sha256": "48459d819940275f98901b6255d7dbc220da855751c8625947565efe3c8cb817"
+    },
+    {
+      "path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/stderr.log",
+      "sha256": "9f6ce5052e9f1bbb2bdeb386de77bf2ecc2c1803ebf94ed93bd35e9a703544dc"
+    },
+    {
+      "path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/stdout.log",
+      "sha256": "78db21877da9de02c0ed99c8800f44e3a536790c6863f1dd87c0aa524c61dee8"
+    },
+    {
+      "path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/receipt.json",
+      "sha256": "78353ef26e7f279029df00f3b386fd2a978c86b1174b2db511c1117d2dadc13d"
+    },
+    {
+      "path": "pcg-event-smoke-v1/degraded-v1/binding.json",
+      "sha256": "f736b4f9c30cb918a03e4cac7acb8380a77e0b176359f1ae05cd1bc6e8251c78"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/intent.json",
+      "sha256": "c24d360e91573d15323e01bf4dad0b44ea9d56ec19c8d709ac6225d11ab5aa26"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/stderr.log",
+      "sha256": "51d019edd1a54f7106f7443ef8ea6d97f6450243289a706c884fb858af6fd9b0"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/stdout.log",
+      "sha256": "c1d9751f6a65cdb229a0a8ee6ad23189e7189bb0b593896f5b419b56b76333d7"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/receipt.json",
+      "sha256": "4188a23280020224ce951c0b01989c87f1cd608fb39f8e10f1ddb2a0425dc9f1"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-revision-v1/binding.json",
+      "sha256": "60288e33a6939384815b5ec72444b8b4382693de45cee24a468507ea99e480f7"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/intent.json",
+      "sha256": "718a22606aa177c6021870bc240e818f276b4d1728feda4a249636a6763857ef"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/stderr.log",
+      "sha256": "54825e94dd14954e0c62ed2f1d3fd7dccdc2630ceadc2f90a64139eec53b4ad6"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/stdout.log",
+      "sha256": "75b638160036242c9d6b625dfa4df3db3d5a2a2e4808f3dfe019b51ff1b411c9"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/receipt.json",
+      "sha256": "93a6f212177cf3cb32fec445f51f0a2e1acc89c2a6b2193dce51e9d9e2ca686e"
+    },
+    {
+      "path": "pcg-event-smoke-v1/notification-boundary-v1/binding.json",
+      "sha256": "3ed543724f60d48bf040dc3d9daea758d12ca1c6c7bed9f7c10593bcc3cb7e11"
+    }
+  ],
+  "python_sha256": "d4f152f2a753c94e0e7935c8ebbe6b2609979e1df7898422b577d0076383d08b"
+}

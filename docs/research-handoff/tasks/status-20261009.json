@@ -1,0 +1,75 @@
+{
+  "schema_version": "research-handoff.v1",
+  "project_id": "pre-combination-governance",
+  "task_id": "pre-combination-governance-handoff-20261009",
+  "source_repo": "https://github.com/mightyoung/pre-combination-governance",
+  "source_commit": "a21866022ba9ec08a1a5edf4a321718d633a2ab1",
+  "owner": "repository-maintainer",
+  "status": "blocked",
+  "next_action": "Review the public handoff text; publication alone does not authorize execution.",
+  "artifacts": [
+    {
+      "artifact_id": "pcg-development-config.json",
+      "sha256": "e1721c4fa74d4cbc92060159f259ff35990751cdc9c89a8a5e0f458ea9d2f56e",
+      "bytes": 9295,
+      "visibility": "public",
+      "availability": "in_repository",
+      "provenance": {
+        "source": "Original synthetic development-smoke input.",
+        "license": "Project-owned text; no new license asserted.",
+        "split": "D_development synthetic",
+        "derivation": "Byte-identical copy; stale draft status in the source manifest is retained as historical provenance, not current authorization."
+      }
+    },
+    {
+      "artifact_id": "pcg-source-git-blob-manifest.json",
+      "sha256": "d9dcd531b8a259b4ccb3baad66dc13af186b33a8fdc2c40c428287e47b90371a",
+      "bytes": 24148,
+      "visibility": "public",
+      "availability": "in_repository",
+      "provenance": {
+        "source": "Original synthetic development-smoke input.",
+        "license": "Project-owned text; no new license asserted.",
+        "split": "D_development synthetic",
+        "derivation": "Byte-identical copy; stale draft status in the source manifest is retained as historical provenance, not current authorization."
+      }
+    }
+  ],
+  "review": {
+    "classification": "status snapshot",
+    "seen_candidates": null,
+    "independent_blind_gt": false
+  },
+  "claims": [
+    "Public fixed source matches 140 source/JSON files plus the design document from the prior private bundle.",
+    "Synthetic D_development smoke only: one block, eight methods, fifteen prefixes; deterministic replay is enabled.",
+    "Actual repository execution count is zero; all eight methods remain UNEXECUTED.",
+    "FORMAL_EXPERIMENT_BLOCKED remains unchanged."
+  ],
+  "execution": {
+    "claimed_status": "BLOCKED_ISOLATION_PREFLIGHT",
+    "executed_status": "REPOSITORY_UNEXECUTED",
+    "command": null,
+    "exit_code": null,
+    "output_sha256": null,
+    "authorization": "This PR publishes text only; no new execution is authorized."
+  },
+  "blockers": [
+    {
+      "category": "environment_capability",
+      "detail": "Prior OS isolation preflight failed; repository synchronization cannot resolve namespace restrictions."
+    },
+    {
+      "category": "authorization",
+      "detail": "Redacted plan has a new hash; environment, bindings and changed plan must be confirmed before execution."
+    },
+    {
+      "category": "missing_evidence",
+      "detail": "Missing original frozen preregistration/D07 evidence is not recreated by this handoff."
+    }
+  ],
+  "public_boundary": [
+    "No raw images, videos, original ZIP, private asset URLs or private conversation identifiers.",
+    "Private artifact entries are identifiers only; no external retrieval is implied."
+  ]
+}

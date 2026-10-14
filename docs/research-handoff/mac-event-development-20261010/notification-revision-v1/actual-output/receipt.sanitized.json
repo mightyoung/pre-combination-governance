@@ -1,0 +1,32 @@
+{
+  "attempts": 1,
+  "charged_cpu_seconds": 0.6669989999999999,
+  "child_exit_code": 0,
+  "command": [
+    "<LOCAL_RUNTIME_PATH>",
+    "-I",
+    "-B",
+    "<LOCAL_HOST_PATH>",
+    "--internal-pure-calculation"
+  ],
+  "counted_bundles": 76,
+  "enforcement": "single child CPU hard50 + parent CPU hard8; wall cooperative110; output9MiB",
+  "error": null,
+  "evaluation_unit": "2 regression test bundles + 40 method-prefix bundles + 34 reference bundles",
+  "input_and_362_frozen_hashes_after": "MATCH",
+  "os_file_network_isolation": false,
+  "output_sha256": {
+    "stderr.log": "51d019edd1a54f7106f7443ef8ea6d97f6450243289a706c884fb858af6fd9b0",
+    "stdout.log": "c1d9751f6a65cdb229a0a8ee6ad23189e7189bb0b593896f5b419b56b76333d7"
+  },
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "requested_limits": {
+    "aggregate_cpu_seconds": 60,
+    "bundles": 240,
+    "wall_seconds": 120
+  },
+  "retries": 0,
+  "status": "DEVELOPMENT_COMPLETED_NOT_ISOLATION_QUALIFIED",
+  "tests_run": 2,
+  "wall_seconds_before_receipt_write": 2.7966935000149533
+}

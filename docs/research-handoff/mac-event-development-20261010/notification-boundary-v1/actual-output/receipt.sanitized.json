@@ -1,0 +1,63 @@
+{
+  "attempts": 1,
+  "charged_cpu_seconds": 0.29384699999999997,
+  "child_exit_code": 0,
+  "command": [
+    "<LOCAL_RUNTIME_PATH>",
+    "-I",
+    "-B",
+    "<LOCAL_HOST_PATH>",
+    "--internal-pure-calculation"
+  ],
+  "counted_bundles": 190,
+  "enforcement": "single child CPU hard50 + parent CPU hard8; wall cooperative110; output9MiB",
+  "error": null,
+  "evaluation_unit": "5 regression test bundles + 100 method-prefix bundles + 85 reference bundles",
+  "input_and_362_frozen_hashes_after": "MATCH",
+  "os_file_network_isolation": false,
+  "output_sha256": {
+    "stderr.log": "54825e94dd14954e0c62ed2f1d3fd7dccdc2630ceadc2f90a64139eec53b4ad6",
+    "stdout.log": "75b638160036242c9d6b625dfa4df3db3d5a2a2e4808f3dfe019b51ff1b411c9"
+  },
+  "physical_misses": [
+    {
+      "method": "M0",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "B5_IDENTICAL_NEW_HIDDEN"
+    },
+    {
+      "method": "M1",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "B5_IDENTICAL_NEW_HIDDEN"
+    },
+    {
+      "method": "M2",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "B5_IDENTICAL_NEW_HIDDEN"
+    },
+    {
+      "method": "M3",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "B5_IDENTICAL_NEW_HIDDEN"
+    }
+  ],
+  "physical_notification_acceptance": false,
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "requested_limits": {
+    "aggregate_cpu_seconds": 60,
+    "bundles": 240,
+    "wall_seconds": 120
+  },
+  "retries": 0,
+  "status": "DIAGNOSTIC_COMPLETED_WITH_PHYSICAL_ALERT_GAPS_NOT_SAFETY_ACCEPTANCE",
+  "tests_run": 5,
+  "wall_seconds_before_receipt_write": 0.30143049999605864
+}

@@ -1,0 +1,881 @@
+{
+  "scope": "readonly parse/hash/comparison of saved outputs, no research execution or imports",
+  "user_reported_top_exit": 0,
+  "saved_child_exit": 0,
+  "error": null,
+  "run_status": "DIAGNOSTIC_COMPLETED_WITH_PHYSICAL_ALERT_GAPS_NOT_SAFETY_ACCEPTANCE",
+  "physical_notification_acceptance": false,
+  "test_bundles": 5,
+  "main_slots": 100,
+  "reference_bundles": 85,
+  "reference_breakdown": {
+    "physical": 25,
+    "DS": 50,
+    "terminal": 10
+  },
+  "total_bundles": 190,
+  "actual_assess_calls_including_tests": 106,
+  "reference_assertions": {
+    "ds_reference_match": 50,
+    "common_cards_match": 50,
+    "terminal_reference_match": 10
+  },
+  "ds_inner_asset_groups": 58,
+  "risk_rows_matching_hand_oracle": 100,
+  "duplicate_or_missing_slots": 0,
+  "all_card_id_completeness": true,
+  "B4_B5_public_inputs_and_result_values_equal": true,
+  "physical_misses": [
+    {
+      "trace": "B5_IDENTICAL_NEW_HIDDEN",
+      "method": "M0",
+      "required_prefix": 5,
+      "receipt_prefix_delay": null,
+      "missed": true
+    },
+    {
+      "trace": "B5_IDENTICAL_NEW_HIDDEN",
+      "method": "M1",
+      "required_prefix": 5,
+      "receipt_prefix_delay": null,
+      "missed": true
+    },
+    {
+      "trace": "B5_IDENTICAL_NEW_HIDDEN",
+      "method": "M2",
+      "required_prefix": 5,
+      "receipt_prefix_delay": null,
+      "missed": true
+    },
+    {
+      "trace": "B5_IDENTICAL_NEW_HIDDEN",
+      "method": "M3",
+      "required_prefix": 5,
+      "receipt_prefix_delay": null,
+      "missed": true
+    }
+  ],
+  "review_notifications": [
+    {
+      "trace": "B4_IDENTICAL_CONTINUING",
+      "prefix": 5,
+      "method": "M1",
+      "reasons": [
+        "uncertain_new_alarm_requires_review"
+      ]
+    },
+    {
+      "trace": "B4_IDENTICAL_CONTINUING",
+      "prefix": 5,
+      "method": "M2",
+      "reasons": [
+        "uncertain_new_alarm_requires_review"
+      ]
+    },
+    {
+      "trace": "B4_IDENTICAL_CONTINUING",
+      "prefix": 5,
+      "method": "M3",
+      "reasons": [
+        "uncertain_new_alarm_requires_review"
+      ]
+    },
+    {
+      "trace": "B5_IDENTICAL_NEW_HIDDEN",
+      "prefix": 5,
+      "method": "M1",
+      "reasons": [
+        "uncertain_new_alarm_requires_review"
+      ]
+    },
+    {
+      "trace": "B5_IDENTICAL_NEW_HIDDEN",
+      "prefix": 5,
+      "method": "M2",
+      "reasons": [
+        "uncertain_new_alarm_requires_review"
+      ]
+    },
+    {
+      "trace": "B5_IDENTICAL_NEW_HIDDEN",
+      "prefix": 5,
+      "method": "M3",
+      "reasons": [
+        "uncertain_new_alarm_requires_review"
+      ]
+    }
+  ],
+  "summary": {
+    "B1_NEW_INDEPENDENT": {
+      "M0": {
+        "expected_physical": [
+          1,
+          4
+        ],
+        "actual_physical": [
+          1,
+          4
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M1": {
+        "expected_physical": [
+          1,
+          4
+        ],
+        "actual_physical": [
+          1,
+          4
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M2": {
+        "expected_physical": [
+          1,
+          4
+        ],
+        "actual_physical": [
+          1,
+          4
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M3": {
+        "expected_physical": [
+          1,
+          4
+        ],
+        "actual_physical": [
+          1,
+          4
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      }
+    },
+    "B2_RECOVERY_RECURRENCE": {
+      "M0": {
+        "expected_physical": [
+          1,
+          3
+        ],
+        "actual_physical": [
+          1,
+          3
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 6,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "UNKNOWN",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M1": {
+        "expected_physical": [
+          1,
+          3
+        ],
+        "actual_physical": [
+          1,
+          3
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "UNKNOWN",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M2": {
+        "expected_physical": [
+          1,
+          3
+        ],
+        "actual_physical": [
+          1,
+          3
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "UNKNOWN",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M3": {
+        "expected_physical": [
+          1,
+          3
+        ],
+        "actual_physical": [
+          1,
+          3
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 10,
+          "rejected_pairs": 0,
+          "total_pairs": 10,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "UNKNOWN",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      }
+    },
+    "B3_DOWN_THEN_UP": {
+      "M0": {
+        "expected_physical": [
+          1,
+          4
+        ],
+        "actual_physical": [
+          1,
+          4
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE_HIGH",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE_HIGH",
+          "EXPOSURE_HIGH"
+        ]
+      },
+      "M1": {
+        "expected_physical": [
+          1,
+          4
+        ],
+        "actual_physical": [
+          1,
+          4
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE_HIGH",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE_HIGH",
+          "EXPOSURE_HIGH"
+        ]
+      },
+      "M2": {
+        "expected_physical": [
+          1,
+          4
+        ],
+        "actual_physical": [
+          1,
+          4
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE_HIGH",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE_HIGH",
+          "EXPOSURE_HIGH"
+        ]
+      },
+      "M3": {
+        "expected_physical": [
+          1,
+          4
+        ],
+        "actual_physical": [
+          1,
+          4
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE_HIGH",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE_HIGH",
+          "EXPOSURE_HIGH"
+        ]
+      }
+    },
+    "B4_IDENTICAL_CONTINUING": {
+      "M0": {
+        "expected_physical": [
+          1
+        ],
+        "actual_physical": [
+          1,
+          3
+        ],
+        "physical_matches_hand_expectation": false,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 12,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 1
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M1": {
+        "expected_physical": [
+          1
+        ],
+        "actual_physical": [
+          1
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [
+          5
+        ],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 16,
+          "rejected_pairs": 4,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 1,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M2": {
+        "expected_physical": [
+          1
+        ],
+        "actual_physical": [
+          1
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [
+          5
+        ],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 16,
+          "rejected_pairs": 4,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 1,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M3": {
+        "expected_physical": [
+          1
+        ],
+        "actual_physical": [
+          1
+        ],
+        "physical_matches_hand_expectation": true,
+        "review_prefixes": [
+          5
+        ],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 16,
+          "rejected_pairs": 4,
+          "total_pairs": 20,
+          "missed_must_notify": 0,
+          "physical_alert": 1,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      }
+    },
+    "B5_IDENTICAL_NEW_HIDDEN": {
+      "M0": {
+        "expected_physical": [
+          1,
+          5
+        ],
+        "actual_physical": [
+          1,
+          3
+        ],
+        "physical_matches_hand_expectation": false,
+        "review_prefixes": [],
+        "metric_sums": {
+          "false_merge": 2,
+          "false_split": 10,
+          "decided_pairs": 20,
+          "rejected_pairs": 0,
+          "total_pairs": 20,
+          "missed_must_notify": 1,
+          "physical_alert": 2,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 1
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M1": {
+        "expected_physical": [
+          1,
+          5
+        ],
+        "actual_physical": [
+          1
+        ],
+        "physical_matches_hand_expectation": false,
+        "review_prefixes": [
+          5
+        ],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 16,
+          "rejected_pairs": 4,
+          "total_pairs": 20,
+          "missed_must_notify": 1,
+          "physical_alert": 1,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M2": {
+        "expected_physical": [
+          1,
+          5
+        ],
+        "actual_physical": [
+          1
+        ],
+        "physical_matches_hand_expectation": false,
+        "review_prefixes": [
+          5
+        ],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 16,
+          "rejected_pairs": 4,
+          "total_pairs": 20,
+          "missed_must_notify": 1,
+          "physical_alert": 1,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      },
+      "M3": {
+        "expected_physical": [
+          1,
+          5
+        ],
+        "actual_physical": [
+          1
+        ],
+        "physical_matches_hand_expectation": false,
+        "review_prefixes": [
+          5
+        ],
+        "metric_sums": {
+          "false_merge": 0,
+          "false_split": 0,
+          "decided_pairs": 16,
+          "rejected_pairs": 4,
+          "total_pairs": 20,
+          "missed_must_notify": 1,
+          "physical_alert": 1,
+          "handling_only": 1,
+          "unsafe_clear": 0,
+          "danger_truth_evaluable": 5,
+          "danger_underassessment": 0,
+          "high_danger_missed": 0,
+          "unsupported_exposure": 0,
+          "conflict_misresolved": 0,
+          "spurious_conflict": 0,
+          "alert_outside_exact_required_prefix": 0
+        },
+        "risk_sequence": [
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE",
+          "EXPOSURE"
+        ]
+      }
+    }
+  },
+  "originals_newlogs_binding_frozen362_hash": "MATCH",
+  "recorded_resources": {
+    "cpu_seconds": 0.29384699999999997,
+    "wall_seconds_before_receipt_write": 0.30143049999605864,
+    "log_bytes": 113608,
+    "output_directory_bytes": 116082,
+    "RSS_measured": false,
+    "resource_limit_cleanup_faults_validated": false
+  },
+  "os_file_network_isolation": false,
+  "raw_evidence_hashes": {
+    "intent.json": "718a22606aa177c6021870bc240e818f276b4d1728feda4a249636a6763857ef",
+    "stderr.log": "54825e94dd14954e0c62ed2f1d3fd7dccdc2630ceadc2f90a64139eec53b4ad6",
+    "stdout.log": "75b638160036242c9d6b625dfa4df3db3d5a2a2e4808f3dfe019b51ff1b411c9",
+    "receipt.json": "93a6f212177cf3cb32fec445f51f0a2e1acc89c2a6b2193dce51e9d9e2ca686e"
+  },
+  "unknown": "B2 prefix2 UNKNOWN for all methods; STOP motion does not prove SAFE",
+  "formal_MME_v2": "not located",
+  "D07": "not executed"
+}

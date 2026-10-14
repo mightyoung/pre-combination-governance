@@ -1,0 +1,42 @@
+{
+  "status": "BLOCKED_BEFORE_WORKER_START_NO_RETRY",
+  "authorization": "<PRIVATE_MESSAGE_ID>; 6 synthetic traces, 5 prefixes, 4 methods, <=240 deterministic computations, wall <=120s, aggregate CPU <=60s",
+  "command": "/usr/bin/sandbox-exec -f pcg-event-smoke-v1/isolation-startup.sb <LOCAL_RUNTIME_PATH> -I -B -c 'print(\"SEATBELT_STARTUP_OK\")'",
+  "cwd": "<LOCAL_HOST_PATH>",
+  "exit_code": 71,
+  "stderr": "sandbox-exec: sandbox_apply: Operation not permitted",
+  "blocker": "Current tool execution context cannot apply nested macOS Seatbelt sandbox; readonly/no-network worker was not created. No escalation or alternative naked execution attempted.",
+  "science_invocations": 0,
+  "test_invocations": 0,
+  "method_implementation_created": false,
+  "fixed_inputs_or_oracle_created": false,
+  "existing_proposal_not_execution_manifest": true,
+  "scientific_result": null,
+  "limits_status": "Not exercised; sampling limits are not hard kernel guarantees.",
+  "old_execution_permission_reused": false,
+  "old_frozen_files_written": false,
+  "remote_published": false,
+  "downloaded": false,
+  "files": [
+    {
+      "path": "isolation-startup.exit-code",
+      "bytes": 3,
+      "sha256": "826b6832e45ba17d625debc95ae8554e148550b00c05b47fa8f7be1c555bc83c"
+    },
+    {
+      "path": "isolation-startup.sb",
+      "bytes": 447,
+      "sha256": "690e62590651b305e8d4ea881322341d5223be31a422ba14147280ec7a4d3002"
+    },
+    {
+      "path": "isolation-startup.stderr.log",
+      "bytes": 53,
+      "sha256": "d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e"
+    },
+    {
+      "path": "isolation-startup.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

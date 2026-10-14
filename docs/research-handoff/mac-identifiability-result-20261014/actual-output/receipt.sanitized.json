@@ -1,0 +1,541 @@
+{
+  "attempts": 1,
+  "charged_cpu_seconds": 0.542084,
+  "child_exit_code": 0,
+  "command": [
+    "<LOCAL_RUNTIME_PATH>",
+    "-I",
+    "-B",
+    "<LOCAL_HOST_PATH>",
+    "--internal-pure-calculation"
+  ],
+  "counted_bundles": 228,
+  "enforcement": "single child CPU hard50 + parent CPU hard8; wall cooperative110; output9MiB",
+  "error": null,
+  "evaluation_unit": "6 gate test bundles + 120 method-prefix bundles + 102 reference bundles",
+  "first_alert_acceptance": false,
+  "first_alert_acceptance_scope": "exact required prefixes, no extras, zero logical delay; window delays are diagnostic only",
+  "first_alert_checks": [
+    {
+      "actual": [
+        1,
+        3
+      ],
+      "extra_at_nonrequired_prefix": [
+        3
+      ],
+      "logical_delays": [
+        0
+      ],
+      "method": "M0",
+      "missed_at_required_prefix": [],
+      "required": [
+        1
+      ],
+      "trace": "I1_NO_INFO_CONTINUING"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0
+      ],
+      "method": "M1",
+      "missed_at_required_prefix": [],
+      "required": [
+        1
+      ],
+      "trace": "I1_NO_INFO_CONTINUING"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0
+      ],
+      "method": "M2",
+      "missed_at_required_prefix": [],
+      "required": [
+        1
+      ],
+      "trace": "I1_NO_INFO_CONTINUING"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0
+      ],
+      "method": "M3",
+      "missed_at_required_prefix": [],
+      "required": [
+        1
+      ],
+      "trace": "I1_NO_INFO_CONTINUING"
+    },
+    {
+      "actual": [
+        1,
+        3
+      ],
+      "extra_at_nonrequired_prefix": [
+        3
+      ],
+      "logical_delays": [
+        0,
+        null
+      ],
+      "method": "M0",
+      "missed_at_required_prefix": [
+        5
+      ],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I2_NO_INFO_NEW"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        null
+      ],
+      "method": "M1",
+      "missed_at_required_prefix": [
+        5
+      ],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I2_NO_INFO_NEW"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        null
+      ],
+      "method": "M2",
+      "missed_at_required_prefix": [
+        5
+      ],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I2_NO_INFO_NEW"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        null
+      ],
+      "method": "M3",
+      "missed_at_required_prefix": [
+        5
+      ],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I2_NO_INFO_NEW"
+    },
+    {
+      "actual": [
+        1,
+        3,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [
+        3
+      ],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M0",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I3_RECOVERY"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M1",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I3_RECOVERY"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M2",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I3_RECOVERY"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M3",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I3_RECOVERY"
+    },
+    {
+      "actual": [
+        1,
+        3,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [
+        3
+      ],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M0",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I4_WORK_ROUND"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M1",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I4_WORK_ROUND"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M2",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I4_WORK_ROUND"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M3",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I4_WORK_ROUND"
+    },
+    {
+      "actual": [
+        1,
+        3,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [
+        3
+      ],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M0",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I5_INDEPENDENT_STATE"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M1",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I5_INDEPENDENT_STATE"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M2",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I5_INDEPENDENT_STATE"
+    },
+    {
+      "actual": [
+        1,
+        5
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        0
+      ],
+      "method": "M3",
+      "missed_at_required_prefix": [],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I5_INDEPENDENT_STATE"
+    },
+    {
+      "actual": [
+        1,
+        3
+      ],
+      "extra_at_nonrequired_prefix": [
+        3
+      ],
+      "logical_delays": [
+        0,
+        null
+      ],
+      "method": "M0",
+      "missed_at_required_prefix": [
+        5
+      ],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I6_INVALID_CONTEXT"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        null
+      ],
+      "method": "M1",
+      "missed_at_required_prefix": [
+        5
+      ],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I6_INVALID_CONTEXT"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        null
+      ],
+      "method": "M2",
+      "missed_at_required_prefix": [
+        5
+      ],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I6_INVALID_CONTEXT"
+    },
+    {
+      "actual": [
+        1
+      ],
+      "extra_at_nonrequired_prefix": [],
+      "logical_delays": [
+        0,
+        null
+      ],
+      "method": "M3",
+      "missed_at_required_prefix": [
+        5
+      ],
+      "required": [
+        1,
+        5
+      ],
+      "trace": "I6_INVALID_CONTEXT"
+    }
+  ],
+  "input_and_362_frozen_hashes_after": "MATCH",
+  "os_file_network_isolation": false,
+  "output_sha256": {
+    "stderr.log": "cac32a2f400709d48653a9ae66aca8fbff49961ee1ab69befa8d7479188f2d09",
+    "stdout.log": "538f404d1692b57086a1382fbd2c3717aca038072751604eadc09af22d789a5c"
+  },
+  "physical_misses": [
+    {
+      "method": "M0",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "I2_NO_INFO_NEW"
+    },
+    {
+      "method": "M1",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "I2_NO_INFO_NEW"
+    },
+    {
+      "method": "M2",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "I2_NO_INFO_NEW"
+    },
+    {
+      "method": "M3",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "I2_NO_INFO_NEW"
+    },
+    {
+      "method": "M0",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "I6_INVALID_CONTEXT"
+    },
+    {
+      "method": "M1",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "I6_INVALID_CONTEXT"
+    },
+    {
+      "method": "M2",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "I6_INVALID_CONTEXT"
+    },
+    {
+      "method": "M3",
+      "missed": true,
+      "receipt_prefix_delay": null,
+      "required_prefix": 5,
+      "trace": "I6_INVALID_CONTEXT"
+    }
+  ],
+  "physical_notification_acceptance": false,
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "requested_limits": {
+    "aggregate_cpu_seconds": 60,
+    "bundles": 240,
+    "wall_seconds": 120
+  },
+  "retries": 0,
+  "status": "DIAGNOSTIC_COMPLETED_WITH_ALERT_GAPS_NOT_SAFETY_ACCEPTANCE",
+  "tests_run": 6,
+  "wall_seconds_before_receipt_write": 0.8574831669975538
+}

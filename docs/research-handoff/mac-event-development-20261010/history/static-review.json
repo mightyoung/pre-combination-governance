@@ -1,0 +1,31 @@
+{
+  "status": "STATIC_REPAIRS_REVIEWED_NO_RUN_VALIDATION",
+  "ast_parse_files": [
+    "bounded_actor.py",
+    "bounded_supervisor.py",
+    "independent_reference.py",
+    "methods.py",
+    "offline_evaluator.py",
+    "resource_contract.py",
+    "scoring.py",
+    "tests.py",
+    "tests_supervisor.py",
+    "worker.py"
+  ],
+  "tests_prepared": 18,
+  "tests_run": 0,
+  "science_invocations": 0,
+  "planned_evaluation_bundles": 240,
+  "frozen_files_verified": 362,
+  "old_failure_hashes_match": true,
+  "non_author_review": "non-author-static-review-rounds.md",
+  "native_terminal": "LOCKED; no terminal entry or true execution; no exit code",
+  "remaining_runtime_gates": [
+    "user-unlocked Mac and harmless terminal check",
+    "new explicit version-bound execution permit",
+    "fresh isolation/resource failure-injection and cleanup qualification",
+    "tests and independent recomputation not executed"
+  ],
+  "resource_scope": "per-actor CPU kernel limits; aggregate reservation/cooperative controllers; wall/RSS/output sampled",
+  "static_work_status": "complete for current requested scope; wait without retries"
+}

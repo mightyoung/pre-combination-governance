@@ -1,0 +1,207 @@
+{
+  "traces": {
+    "B1_NEW_INDEPENDENT": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E1",
+        "c": "E1",
+        "d": "E2",
+        "e": "E2"
+      },
+      "risk": [
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1,
+        4
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "B2_RECOVERY_RECURRENCE": {
+      "alarm_episodes": {
+        "a": "E1",
+        "c": "E2",
+        "d": "E2",
+        "e": "E2"
+      },
+      "risk": [
+        "EXPOSURE",
+        "UNKNOWN",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1,
+        3
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "STOP",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "B3_DOWN_THEN_UP": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E1",
+        "c": "E1",
+        "d": "E1",
+        "e": "E1"
+      },
+      "risk": [
+        "EXPOSURE_HIGH",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE_HIGH",
+        "EXPOSURE_HIGH"
+      ],
+      "must_notify": [
+        1,
+        4
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "B4_IDENTICAL_CONTINUING": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E1",
+        "c": "E1",
+        "d": "E1",
+        "e": "E1"
+      },
+      "risk": [
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "B5_IDENTICAL_NEW_HIDDEN": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E1",
+        "c": "E1",
+        "d": "E1",
+        "e": "E2"
+      },
+      "risk": [
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1,
+        5
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  }
+}
