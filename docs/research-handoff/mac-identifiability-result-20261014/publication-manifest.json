@@ -1,0 +1,128 @@
+{
+  "scope": "approved saved synthetic diagnostics; read-only internal verification; execution origin/top exit pending",
+  "parent_publication_commit": "ed463fa208d3fcadf5c8cb1e0c4505f64d4e7ca2",
+  "os_file_network_isolation": false,
+  "physical_notification_acceptance": false,
+  "first_alert_acceptance": false,
+  "raw_logs_uploaded": false,
+  "files": [
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/public-input.json",
+      "bytes": 17222,
+      "public_sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/public-input.json",
+      "source_sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/oracle.physical.json",
+      "bytes": 5646,
+      "public_sha256": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/oracle.physical.json",
+      "source_sha256": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/terminal-reference.json",
+      "bytes": 1616,
+      "public_sha256": "6e53a4260d52bafd978ce5ff44f2a13ba1268fc2916f1e79f1eb17d071c6784f",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/terminal-reference.json",
+      "source_sha256": "6e53a4260d52bafd978ce5ff44f2a13ba1268fc2916f1e79f1eb17d071c6784f"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/binding.json",
+      "bytes": 5606,
+      "public_sha256": "10e6445dc7d105f87d4a196c1e1d8b8ef3dbda8e5159d5cee9dad324ad62f3f6",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/binding.json",
+      "source_sha256": "10e6445dc7d105f87d4a196c1e1d8b8ef3dbda8e5159d5cee9dad324ad62f3f6"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/case-plan.md",
+      "bytes": 3551,
+      "public_sha256": "54de6415f3683bae7d6d4d6bcbb2f764ac12f379d51d695362c0c2bc1d2125f4",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/case-plan.md",
+      "source_sha256": "54de6415f3683bae7d6d4d6bcbb2f764ac12f379d51d695362c0c2bc1d2125f4"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/non-author-review.md",
+      "bytes": 688,
+      "public_sha256": "a94fd0e84b3b743246667e8232eca8ef2cba551c86da903b741160a0d70665a4",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/non-author-review.md",
+      "source_sha256": "a94fd0e84b3b743246667e8232eca8ef2cba551c86da903b741160a0d70665a4"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/readonly-audit/audit.json",
+      "bytes": 24432,
+      "public_sha256": "11cce2f8215e7808b97393f3bcedc2ed4238fd0aebb99d52befacf73db216652",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/manual-attempt-001-readonly-audit/audit.json",
+      "source_sha256": "11cce2f8215e7808b97393f3bcedc2ed4238fd0aebb99d52befacf73db216652"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/readonly-audit/first-alert-summary.csv",
+      "bytes": 2218,
+      "public_sha256": "f83583312d8f3a4bb1831e28a7d02d5f1040bb363e832fe7d2770a061aa37391",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/manual-attempt-001-readonly-audit/first-alert-summary.csv",
+      "source_sha256": "0ad0c0a987e7dd7b7c487a4f285a1bfd69f8606773febb58a6dfc57de09dab7a"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/readonly-audit/non-author-result-review.md",
+      "bytes": 1061,
+      "public_sha256": "3fa5bc9d774fd97f8336f4a4a17fcb21767734e2a5e95b6488dbd15e81e3f589",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/manual-attempt-001-readonly-audit/non-author-result-review.md",
+      "source_sha256": "3fa5bc9d774fd97f8336f4a4a17fcb21767734e2a5e95b6488dbd15e81e3f589"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/readonly-audit/report.md",
+      "bytes": 1378,
+      "public_sha256": "f94c2ca36aca4bd2554c2130bba0654b3493eea082c0075afecb638503d1aac8",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/manual-attempt-001-readonly-audit/report.md",
+      "source_sha256": "f94c2ca36aca4bd2554c2130bba0654b3493eea082c0075afecb638503d1aac8"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/actual-output/receipt.sanitized.json",
+      "bytes": 9948,
+      "public_sha256": "4971bba467085cd95bbe17d9cb12e1949d565543f30aad24a21676d50505f02c",
+      "transformation": "sanitized_UTF8",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/manual-attempt-001/receipt.json",
+      "source_sha256": "97d7ee93346eed3ebf70c19d830771ed737d3226e3a3830b3ba69a9b7e810cbc"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/actual-output/regression_tests.json",
+      "bytes": 179,
+      "public_sha256": "64a4c3503939d6317e30f8d9e1ae4b63d71f7ce5b9beb61c74b35383d5dfeba9",
+      "transformation": "parsed saved JSON phase; raw log not uploaded; no rerun",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "538f404d1692b57086a1382fbd2c3717aca038072751604eadc09af22d789a5c"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/actual-output/main.json",
+      "bytes": 126178,
+      "public_sha256": "77a98521f1c550f53222fba3799f4d879c8b822af3ca29566bb2fa8ece151353",
+      "transformation": "parsed saved JSON phase; raw log not uploaded; no rerun",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "538f404d1692b57086a1382fbd2c3717aca038072751604eadc09af22d789a5c"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/actual-output/evaluation.json",
+      "bytes": 110247,
+      "public_sha256": "2bc1eeb1201aecd8ba2393d24914ca43dce2ac64f850f051beb992ee32294b40",
+      "transformation": "parsed saved JSON phase; raw log not uploaded; no rerun",
+      "source_workspace_relative": "pcg-event-smoke-v1/identifiability-v1/manual-attempt-001/stdout.log",
+      "source_sha256": "538f404d1692b57086a1382fbd2c3717aca038072751604eadc09af22d789a5c"
+    },
+    {
+      "path": "docs/research-handoff/mac-identifiability-result-20261014/README.md",
+      "bytes": 3705,
+      "public_sha256": "2f8823443bf2467d85ad11f80f26bb9bdfc0ef91af11b13183a01c10dcb4b670",
+      "transformation": "sanitized_UTF8"
+    }
+  ]
+}
