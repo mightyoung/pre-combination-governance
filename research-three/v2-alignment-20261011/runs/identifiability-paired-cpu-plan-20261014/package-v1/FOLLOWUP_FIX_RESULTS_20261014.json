@@ -12,8 +12,8 @@
     "command": "python3 -I -B -m unittest discover -s tests -v",
     "exit_code": 0,
     "failed": 0,
-    "passed": 49,
-    "tests_run": 49
+    "passed": 50,
+    "tests_run": 50
   },
   "post_fix_review": {
     "complete_synthetic_PASS_accepted": true,
@@ -82,12 +82,32 @@
     "git_diff_check": "PASS",
     "python_compile": "PASS"
   },
+  "terminal_progress_seam_fix": {
+    "full_package_suite": {
+      "command": "python3 -I -B -m unittest discover -s tests -v",
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 50,
+      "tests_run": 50
+    },
+    "green_producer_test": "PASS: five mocked slot outputs captured 35 bytes through runner._execute_task; terminal progress recorded 35.",
+    "implementation": "Added output_bytes_captured from output_budget.captured to the final _write_progress payload. Validator requirements remain strict.",
+    "red_exit_code": 1,
+    "red_failure": "Expected 35 output bytes in the terminal progress record; got None.",
+    "red_test": "test_terminal_progress_records_captured_bytes_from_runner_producer",
+    "scope": {
+      "docker_started": false,
+      "full_80_slot_task_run": false,
+      "research_methods_started": false
+    },
+    "validator_seam_test": "PASS: complete synthetic return fixture writes progress with runner._write_progress and return_validator accepts it."
+  },
   "tested_source_sha256": {
-    "TASK_MANIFEST.json": "a7ec9af752a61e44242ff341513bf7434e79e7637771e50d7dd26554b5f4be70",
+    "TASK_MANIFEST.json": "f04d2074315c2fd2e5a482c59f2d36bbb7c88ace464b900a5abe9c734e4a8090",
     "return_validator.py": "cc60ecc680d168799cd7ee6a90451f0fda6b876bf8d6a6aa339f3d4c31b858ec",
-    "runner.py": "2b1cb49dcb59c267fd59989aaaeb4a6449361e8050e83e60cd7dc67ec1578be6",
+    "runner.py": "6c159afd3261400326c46be754986b72b2db7abcdd0f232dca39f0237c6eb6e8",
     "schemas/attempt.schema.json": "03ad7069baa412cd014ef76ac70cc20a72a81ceb70ec67031492267e45b13538",
-    "tests/test_return_validator.py": "4dd085e6200a72e9e22baeff401c9e79edd5c2578f3169daf8261cd8bac51978",
-    "tests/test_runner_preflight.py": "e9343ef3d287e352bbdd39debf893b239a7f029cef570dad91d8d1a251f12fcc"
+    "tests/test_return_validator.py": "c251b9c2458b46d9df5e38b3dd7efee0136fabd16749e8945082f68e59eb00b5",
+    "tests/test_runner_preflight.py": "768108327cae83bb19ccbd113325dea9382e632d4345a3b87faabdbfe0fe718d"
   }
 }

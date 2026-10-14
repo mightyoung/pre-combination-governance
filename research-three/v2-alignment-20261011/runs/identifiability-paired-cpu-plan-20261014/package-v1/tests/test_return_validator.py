@@ -146,7 +146,7 @@ def add_artifact_files(run_dir, record_count, start_requested_count,
     output_bytes_captured = sum(
         len(raw) for name, raw in common.items()
         if name.endswith(".stdout.bin") or name.endswith(".stderr.bin"))
-    common["progress.json"] = json.dumps({
+    terminal_progress = {
         "run_id": run_id,
         "state": "PASS" if record_count == 80 else "FAIL",
         "method_start_requests": start_requested_count,
@@ -155,9 +155,8 @@ def add_artifact_files(run_dir, record_count, start_requested_count,
         "planned_method_invocations": 80,
         "stop_reason": None if record_count == 80 else "synthetic partial",
         "sandbox_image_cleanup": "REMOVED",
-        "updated_at_utc": "2026-10-14T00:00:02+00:00",
         "output_bytes_captured": output_bytes_captured,
-    }, sort_keys=True, separators=(",", ":")).encode() + b"\n"
+    }
     events = []
     for slot_number in range(1, start_requested_count + 1):
         if slot_number <= len(slot_rows):
@@ -209,6 +208,7 @@ def add_artifact_files(run_dir, record_count, start_requested_count,
     common["slot-events.jsonl"] = ("\n".join(events) + "\n").encode()
     for name, raw in common.items():
         (run_dir / name).write_bytes(raw)
+    load_module("runner")._write_progress(run_dir, terminal_progress)
     return [
         {"path": path.name, "bytes": len(path.read_bytes()),
          "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}

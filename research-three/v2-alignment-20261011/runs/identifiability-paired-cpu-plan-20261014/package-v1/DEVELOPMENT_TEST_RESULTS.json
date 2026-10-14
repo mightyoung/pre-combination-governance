@@ -18,7 +18,7 @@
     "pair_inputs_sha256": "70d9662034777ce8e5fa1a02c4d870cdc8c788b9290f5231b7a0c8985c9dde24",
     "plan_sha256": "546f63965f1ae667181ef48910e12aa60834d5d5b855d52072e158fe3733f01e",
     "public_input_sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9",
-    "task_manifest_sha256": "a7ec9af752a61e44242ff341513bf7434e79e7637771e50d7dd26554b5f4be70"
+    "task_manifest_sha256": "f04d2074315c2fd2e5a482c59f2d36bbb7c88ace464b900a5abe9c734e4a8090"
   },
   "qualification_receipt_followup": {
     "pre_fix_red_baseline_established": true,
@@ -61,9 +61,15 @@
     "stop_reason": "resource limits are missing or invalid",
     "task_status": "BLOCKED"
   },
+  "terminal_progress_seam_fix": {
+    "baseline_red_observed": true,
+    "docker_or_80_slot_run": false,
+    "producer_output_bytes_captured": "PASS",
+    "validator_complete_positive_fixture_uses_runner_write_progress": true
+  },
   "test_command": "python3 -I -B -m unittest discover -s tests -v",
   "test_exit_code": 0,
   "tests_failed": 0,
-  "tests_passed": 49,
-  "tests_run": 49
+  "tests_passed": 50,
+  "tests_run": 50
 }

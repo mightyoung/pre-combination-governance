@@ -1914,6 +1914,7 @@ def _execute_task(preflight: dict, run_id: str, output_root: Path,
         "method_invocations_started": started_count,
         "completed_method_invocations": completed_count,
         "planned_method_invocations": PLANNED_SLOTS,
+        "output_bytes_captured": output_budget["captured"],
         "stop_reason": stop_reason,
         "sandbox_image_cleanup": "REMOVED" if image_cleanup_error is None else "FAILED",
     })

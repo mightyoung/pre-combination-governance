@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+import time
 import unittest
 from unittest import mock
 
@@ -78,6 +79,90 @@ def load_runner():
 
 
 class RunnerPreflightTests(unittest.TestCase):
+    def test_terminal_progress_records_captured_bytes_from_runner_producer(self):
+        runner = load_runner()
+        case_id = "42474559127419126b713096e9f4d3ee"
+        resources = {"cpu_quota_millis": 1000, "wall_seconds": 60,
+                    "memory_bytes": 268435456, "pids_limit": 16,
+                    "max_method_output_bytes": 65536}
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            run_dir = root / "run"
+            run_dir.mkdir()
+            manifest = {
+                "resources": resources,
+                "case_ids": [case_id],
+                "source_commits": {},
+                "schema_hashes": {},
+                "public_input_sha256": "a" * 64,
+                "pair_inputs_sha256": "b" * 64,
+                "oracle_sha256": "c" * 64,
+                "oracle_case_map_sha256": "d" * 64,
+                "plan_sha256": "e" * 64,
+            }
+            preflight = {
+                "manifest": manifest,
+                "manifest_sha256": "f" * 64,
+                "package_dir": PACKAGE,
+                "pair_inputs": {"cases": [{
+                    "case_id": case_id,
+                    "rows": [{"id": "row-" + str(index), "alarm": False}
+                             for index in range(5)],
+                }]},
+                "sandbox_image_id": "sha256:" + "9" * 64,
+                "qualification_evidence": {},
+            }
+
+            class FakeSession:
+                image_cleanup_attempted = True
+                info = {
+                    "server_version": "synthetic-docker",
+                    "cgroup_version": "2",
+                    "required_resource_capabilities": {
+                        "memory_limit": True, "swap_limit": True,
+                        "cpu_quota": True, "pids_limit": True,
+                    },
+                }
+
+            def fake_slot(session, slot_dir, run_id, slot_number, slot_case_id,
+                          prefix, method, payload, visible_rows, slot_resources,
+                          runtime_prefix, python_relative_path, source_dir,
+                          library_dirs, output_budget, deadline, event_path):
+                output_budget["captured"] += 7
+                output_budget["observed"] += 9
+                return {
+                    "status": "PASS", "started": True,
+                    "start_unknown": False, "start_requested": True,
+                    "container_id": "synthetic-container-" + str(slot_number),
+                    "container_cleanup_status": "REMOVED",
+                    "cli_exit_code": 0,
+                    "state": {"ExitCode": 0, "OOMKilled": False},
+                    "stdout_path": "slot-" + format(slot_number, "04d") + ".stdout.bin",
+                    "stderr_path": "slot-" + format(slot_number, "04d") + ".stderr.bin",
+                    "output_bytes_observed": 9,
+                    "error": None,
+                    "result": {"cards": {}, "risk": "EXPOSURE", "priority": "REVIEW"},
+                }
+
+            def fake_freeze(run_path, slots, attempt):
+                attempt["output_sha256"] = "1" * 64
+                return attempt
+
+            with mock.patch.object(runner, "PLANNED_SLOTS", 5), \
+                    mock.patch.object(runner, "METHOD_ORDER", ["M0"]), \
+                    mock.patch.object(runner, "_run_slot", side_effect=fake_slot), \
+                    mock.patch.object(runner, "freeze_bundle", side_effect=fake_freeze):
+                runner._execute_task(
+                    preflight, "synthetic-terminal", root, run_dir, FakeSession(),
+                    time.monotonic(), "2026-10-14T00:00:00+00:00",
+                )
+
+            terminal = json.loads((run_dir / "progress.json").read_text())
+            self.assertEqual("PASS", terminal["state"])
+            self.assertEqual(5, terminal["completed_method_invocations"])
+            self.assertEqual(35, terminal.get("output_bytes_captured"))
+
     def run_mocked_diagnostic(self, runner, *, network_errno, canary_errno,
                               network_timeout=False):
         resources = {"cpu_quota_millis": 1000, "memory_bytes": 268435456,
