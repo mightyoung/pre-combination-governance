@@ -15,7 +15,7 @@
     "wall_seconds_elapsed", "wall_seconds_scope", "cpu_quota_millis", "wall_seconds_limit", "container_cleanup_reserve_seconds", "memory_limit_bytes",
     "pids_limit", "max_method_output_bytes", "method_output_bytes_captured",
     "method_output_bytes_observed", "peak_rss_bytes", "cpu_usage_seconds",
-    "method_start_unknown_slots", "slot_exit_records", "sandbox_image_cleanup",
+    "method_start_unknown_slots", "slot_exit_records", "qualification_evidence", "sandbox_image_cleanup",
     "execution_environment", "command", "artifacts", "output_file", "output_sha256",
     "output_freeze_sha256"
   ],
@@ -23,11 +23,11 @@
     "schema_version": {"const": 1},
     "task_id": {"const": "PCG-IDENTIFIABILITY-PAIRED-CPU-001"},
     "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"},
-    "attempt_count": {"const": 1},
+    "attempt_count": {"type": "integer", "const": 1},
     "task_status": {"enum": ["PASS", "FAIL", "BLOCKED"]},
-    "terminal_exit_code": {"enum": [0, 20, 30]},
+    "terminal_exit_code": {"type": "integer", "enum": [0, 20, 30]},
     "research_acceptance": {"const": "NOT_EVALUATED"},
-    "planned_method_invocations": {"const": 80},
+    "planned_method_invocations": {"type": "integer", "const": 80},
     "method_start_requests": {"type": "integer", "minimum": 0, "maximum": 80},
     "method_invocations_started": {"type": "integer", "minimum": 0, "maximum": 80},
     "completed_method_invocations": {"type": "integer", "minimum": 0, "maximum": 80},
@@ -60,15 +60,143 @@
     "method_output_bytes_observed": {"type": "integer", "minimum": 0},
     "peak_rss_bytes": {"oneOf": [{"type": "integer", "minimum": 0}, {"const": "UNKNOWN"}]},
     "cpu_usage_seconds": {"oneOf": [{"type": "number", "minimum": 0}, {"const": "UNKNOWN"}]},
-    "method_start_unknown_slots": {"type": "array", "items": {"type": "object"}},
-    "slot_exit_records": {"type": "array", "items": {"type": "object"}},
+    "method_start_unknown_slots": {
+      "type": "array",
+      "items": {"type": "object", "additionalProperties": false,
+        "required": ["slot", "case_id", "prefix", "method"],
+        "properties": {
+          "slot": {"type": "integer", "minimum": 1, "maximum": 80},
+          "case_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+          "prefix": {"type": "integer", "minimum": 1, "maximum": 5},
+          "method": {"enum": ["M0", "M1", "M2", "M3"]}
+        }}
+    },
+    "slot_exit_records": {
+      "type": "array", "maxItems": 80,
+      "items": {"type": "object", "additionalProperties": false,
+        "required": ["slot", "case_id", "prefix", "method", "status", "started",
+          "start_requested", "start_unknown", "container_id", "container_cleanup_status",
+          "cli_exit_code", "container_exit_code", "oom_killed", "stdout_path", "stderr_path",
+          "output_bytes_observed", "error"],
+        "properties": {
+          "slot": {"type": "integer", "minimum": 1, "maximum": 80},
+          "case_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+          "prefix": {"type": "integer", "minimum": 1, "maximum": 5},
+          "method": {"enum": ["M0", "M1", "M2", "M3"]},
+          "status": {"enum": ["PASS", "FAIL", "BLOCKED"]},
+          "started": {"type": "boolean"},
+          "start_requested": {"type": "boolean"},
+          "start_unknown": {"type": "boolean"},
+          "container_id": {"type": ["string", "null"]},
+          "container_cleanup_status": {"enum": ["REMOVED", "FAILED", null]},
+          "cli_exit_code": {"type": ["integer", "null"]},
+          "container_exit_code": {"type": ["integer", "null"]},
+          "oom_killed": {"type": "boolean"},
+          "stdout_path": {"type": ["string", "null"]},
+          "stderr_path": {"type": ["string", "null"]},
+          "output_bytes_observed": {"type": "integer", "minimum": 0},
+          "error": {"type": ["string", "null"]}
+        }}
+    },
+    "qualification_evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "probe_id", "status", "script_sha256", "image_id",
+        "completed_at_utc", "checks", "observed"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1},
+        "probe_id": {"const": "fixed-network-cgroup-oom-v1"},
+        "status": {"const": "VERIFIED"},
+        "script_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "image_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "completed_at_utc": {"type": "string", "format": "date-time"},
+        "checks": {"type": "object", "additionalProperties": false,
+          "required": ["container_config", "host_file_unreadable", "network_unavailable",
+            "effective_cpu_quota", "effective_memory_limit", "effective_memory_swap_limit",
+            "effective_pid_limit", "memory_overlimit_killed", "probe_container_cleanup"],
+          "properties": {
+            "container_config": {"const": "PASS"},
+            "host_file_unreadable": {"const": "PASS"},
+            "network_unavailable": {"const": "PASS"},
+            "effective_cpu_quota": {"const": "PASS"},
+            "effective_memory_limit": {"const": "PASS"},
+            "effective_memory_swap_limit": {"const": "PASS"},
+            "effective_pid_limit": {"const": "PASS"},
+            "memory_overlimit_killed": {"const": "PASS"},
+            "probe_container_cleanup": {"const": "PASS"}
+          }},
+        "observed": {"type": "object", "required": ["resources", "effective_resources",
+          "diagnostic_container", "oom_container"], "properties": {
+          "resources": {"type": "object", "additionalProperties": false,
+            "required": ["cpu_quota_millis", "wall_seconds", "memory_bytes", "pids_limit",
+              "max_method_output_bytes"], "properties": {
+              "cpu_quota_millis": {"type": "integer", "const": 1000},
+              "wall_seconds": {"type": "integer", "minimum": 10},
+              "memory_bytes": {"type": "integer", "minimum": 1},
+              "pids_limit": {"type": "integer", "minimum": 1},
+              "max_method_output_bytes": {"type": "integer", "minimum": 1}
+            }},
+          "effective_resources": {"type": "object", "additionalProperties": false,
+            "required": ["cpu_quota_millis", "memory_bytes", "memory_swap_bytes", "pids_limit"],
+            "properties": {
+            "cpu_quota_millis": {"type": "integer", "const": 1000},
+            "memory_bytes": {"type": "integer", "minimum": 1},
+            "memory_swap_bytes": {"type": "integer", "const": 0},
+            "pids_limit": {"type": "integer", "minimum": 1}
+          }},
+          "diagnostic_container": {"$ref": "#/$defs/diagnosticContainer"},
+          "oom_container": {"$ref": "#/$defs/oomContainer"}
+        }}
+      }
+    },
     "sandbox_image_cleanup": {"enum": ["REMOVED", "FAILED"]},
     "execution_environment": {"type": "object"},
     "command": {"type": "array", "items": {"type": "string"}},
-    "artifacts": {"type": "array", "items": {"type": "object"}},
+    "artifacts": {"type": "array", "items": {"type": "object",
+      "additionalProperties": false, "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }}},
     "output_file": {"enum": ["slots.jsonl", "slots.partial.jsonl"]},
     "output_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "output_freeze_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "qualificationContainerBase": {
+      "type": "object", "additionalProperties": false,
+      "required": ["container_id", "config_valid", "return_code", "state", "removed",
+        "absent_after_cleanup", "error", "cleanup_error"],
+      "properties": {
+        "container_id": {"type": "string", "minLength": 1},
+        "config_valid": {"const": true},
+        "return_code": {"type": "integer"},
+        "state": {"type": "object"},
+        "removed": {"const": true},
+        "absent_after_cleanup": {"const": true},
+        "error": {"type": "null"},
+        "cleanup_error": {"type": "null"},
+        "overlimit_marker_seen": {"type": "boolean"}
+      }
+    },
+    "diagnosticContainer": {"allOf": [
+      {"$ref": "#/$defs/qualificationContainerBase"},
+      {"properties": {"return_code": {"const": 0}, "state": {"type": "object",
+        "required": ["ExitCode", "OOMKilled", "Running", "Status"], "properties": {
+          "ExitCode": {"type": "integer", "const": 0}, "OOMKilled": {"const": false},
+          "Running": {"const": false}, "Status": {"const": "exited"}
+        }}}}
+    ]},
+    "oomContainer": {"allOf": [
+      {"$ref": "#/$defs/qualificationContainerBase"},
+      {"required": ["overlimit_marker_seen"], "properties": {
+        "return_code": {"enum": [1, 137]}, "overlimit_marker_seen": {"const": true},
+        "state": {"type": "object",
+        "required": ["ExitCode", "OOMKilled", "Running", "Status"], "properties": {
+          "ExitCode": {"type": "integer", "const": 137}, "OOMKilled": {"const": true},
+          "Running": {"const": false}, "Status": {"const": "exited"}
+        }}}}
+    ]}
   },
   "allOf": [
     {"if": {"properties": {"task_status": {"const": "PASS"}}, "required": ["task_status"]},

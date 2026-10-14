@@ -10,6 +10,43 @@ from unittest import mock
 PACKAGE = Path(__file__).resolve().parents[1]
 
 
+def verified_qualification(runner, resources, image_id="sha256:" + "a" * 64):
+    checks = {name: "PASS" for name in runner.QUALIFICATION_CHECKS}
+    return {
+        "schema_version": 1,
+        "probe_id": runner.QUALIFICATION_PROBE_ID,
+        "status": "VERIFIED",
+        "script_sha256": runner._sha256((runner._QUALIFICATION_DIAGNOSTIC_PROGRAM
+                                         + runner._QUALIFICATION_OOM_PROGRAM).encode()),
+        "image_id": image_id,
+        "completed_at_utc": "2026-10-14T00:00:00+00:00",
+        "checks": checks,
+        "observed": {
+            "resources": dict(resources),
+            "effective_resources": {
+                "cpu_quota_millis": resources["cpu_quota_millis"],
+                "memory_bytes": resources["memory_bytes"],
+                "memory_swap_bytes": 0,
+                "pids_limit": resources["pids_limit"],
+            },
+            "diagnostic_container": {
+                "container_id": "synthetic-diagnostic", "config_valid": True,
+                "return_code": 0, "state": {"ExitCode": 0, "OOMKilled": False,
+                                              "Running": False, "Status": "exited"},
+                "removed": True, "absent_after_cleanup": True,
+                "error": None, "cleanup_error": None,
+            },
+            "oom_container": {
+                "container_id": "synthetic-oom", "config_valid": True,
+                "return_code": 137, "state": {"ExitCode": 137, "OOMKilled": True,
+                                               "Running": False, "Status": "exited"},
+                "removed": True, "absent_after_cleanup": True,
+                "error": None, "cleanup_error": None, "overlimit_marker_seen": True,
+            },
+        },
+    }
+
+
 def load_runner():
     module_path = PACKAGE / "runner.py"
     if not module_path.is_file():
@@ -23,6 +60,178 @@ def load_runner():
 
 
 class RunnerPreflightTests(unittest.TestCase):
+    def _run_qualification_container_with_cleanup_result(self, final_inspect):
+        runner = load_runner()
+        if isinstance(final_inspect, str):
+            final_inspect = runner.SandboxError(final_inspect)
+
+        class FakeSession:
+            def call(self, argv, **kwargs):
+                if argv[0] == "create":
+                    return b"synthetic-container-id"
+                if argv[0] == "inspect" and "--format" in argv:
+                    return b'{"HostConfig": {}, "Config": {}}'
+                if argv[0] == "rm":
+                    return b""
+                if argv[0] == "inspect":
+                    if isinstance(final_inspect, Exception):
+                        raise final_inspect
+                    return final_inspect
+                raise AssertionError("unexpected synthetic Docker command: " + repr(argv))
+
+        spec = {
+            "argv": ["create", "synthetic"],
+            "resources": {"cpu_quota_millis": 1000, "memory_bytes": 268435456,
+                          "pids_limit": 16},
+            "expected_binds": [],
+            "expected_command": ["python", "-c", "pass"],
+        }
+        with mock.patch.object(runner, "validate_container_config",
+                               return_value=["synthetic config rejection"]):
+            record = runner._qualification_container(
+                FakeSession(), spec, "synthetic-name", timeout=1,
+                probe_deadline=None,
+            )
+        return record
+
+    def test_qualification_cleanup_inspect_permission_error_is_not_proof_of_absence(self):
+        record = self._run_qualification_container_with_cleanup_result(
+            "local Docker call exited 1: permission denied (EPERM)"
+        )
+
+        self.assertTrue(record["removed"])
+        self.assertFalse(record["absent_after_cleanup"])
+        self.assertIn("EPERM", record["cleanup_error"])
+
+    def test_qualification_cleanup_inspection_finding_container_means_cleanup_failed(self):
+        record = self._run_qualification_container_with_cleanup_result(b"{}")
+
+        self.assertTrue(record["removed"])
+        self.assertFalse(record["absent_after_cleanup"])
+        self.assertIn("still exists", record["cleanup_error"])
+
+    def test_qualification_cleanup_recognizes_only_explicit_missing_container(self):
+        record = self._run_qualification_container_with_cleanup_result(
+            "local Docker call exited 1: Error: No such container: synthetic-container-id"
+        )
+
+        self.assertTrue(record["removed"])
+        self.assertTrue(record["absent_after_cleanup"])
+        self.assertIsNone(record.get("cleanup_error"))
+
+    def test_qualification_evidence_requires_all_checks_and_exact_limits(self):
+        runner = load_runner()
+        resources = {"cpu_quota_millis": 1000, "wall_seconds": 60,
+                     "memory_bytes": 268435456, "pids_limit": 16,
+                     "max_method_output_bytes": 65536}
+        report = verified_qualification(runner, resources)
+        self.assertTrue(runner.validate_qualification_evidence(report, resources))
+        report["checks"]["network_unavailable"] = "NOT_RUN"
+        self.assertFalse(runner.validate_qualification_evidence(report, resources))
+        report = verified_qualification(runner, resources)
+        report["observed"]["effective_resources"]["memory_bytes"] += 1
+        self.assertFalse(runner.validate_qualification_evidence(report, resources))
+
+    def test_preflight_blocks_even_with_good_daemon_info_when_qualification_is_unverified(self):
+        runner = load_runner()
+
+        class FakeSession:
+            info = {"server_version": "synthetic", "cgroup_version": "2",
+                    "required_resource_capabilities": {"cpu_quota": True}}
+
+            def __init__(self, package_dir, deadline=None):
+                self.package_dir = package_dir
+
+            def validate_resources(self, resources):
+                return None
+
+            def prepare_empty_image(self):
+                return "synthetic-image", "sha256:" + "a" * 64
+
+            def remove_empty_image(self):
+                return None
+
+            def close(self):
+                return None
+
+        preflight = {
+            "task_status": "READY",
+            "manifest": {"resources": {"cpu_quota_millis": 1000,
+                                         "wall_seconds": 60, "memory_bytes": 268435456,
+                                         "pids_limit": 16, "max_method_output_bytes": 65536}},
+            "manifest_sha256": "b" * 64,
+            "package_dir": PACKAGE,
+        }
+        not_verified = {"status": "NOT_VERIFIED", "checks": {
+            "daemon_info": "PASS", "container_inspect": "PASS",
+            "runtime_isolation_probe": "NOT_RUN"}}
+        with mock.patch.object(runner, "preflight_task", return_value=preflight), \
+                mock.patch.object(runner, "DockerSession", FakeSession), \
+                mock.patch.object(runner, "run_qualification_probe", return_value=not_verified,
+                                  create=True):
+            report = runner.preflight_only("synthetic-manifest.json")
+
+        self.assertEqual("BLOCKED", report["task_status"])
+        self.assertEqual(0, report["method_invocations_started"])
+        self.assertIn("qualification", report["stop_reason"].lower())
+
+    def test_run_task_never_enters_slots_without_verified_qualification_evidence(self):
+        runner = load_runner()
+
+        class FakeSession:
+            info = {"server_version": "synthetic", "cgroup_version": "2",
+                    "required_resource_capabilities": {"cpu_quota": True}}
+
+            def __init__(self, package_dir, deadline=None):
+                self.deadline = deadline
+
+            def validate_resources(self, resources):
+                return None
+
+            def prepare_empty_image(self):
+                return "synthetic-image", "sha256:" + "a" * 64
+
+            def remove_empty_image(self):
+                return None
+
+            def close(self):
+                return None
+
+        preflight = {
+            "task_status": "READY",
+            "manifest": {"resources": {"cpu_quota_millis": 1000,
+                                         "wall_seconds": 60, "memory_bytes": 268435456,
+                                         "pids_limit": 16, "max_method_output_bytes": 65536}},
+            "manifest_sha256": "b" * 64,
+            "package_dir": PACKAGE,
+        }
+        not_verified = {"status": "NOT_VERIFIED", "checks": {"network": "NOT_RUN"}}
+        with tempfile.TemporaryDirectory() as temp:
+            with mock.patch.object(runner, "preflight_task", return_value=preflight), \
+                    mock.patch.object(runner, "DockerSession", FakeSession), \
+                    mock.patch.object(runner, "run_qualification_probe", return_value=not_verified,
+                                      create=True), \
+                    mock.patch.object(runner, "_execute_task", return_value={"task_status": "PASS"}) as execute:
+                report = runner.run_task("synthetic-manifest.json", "qualification-blocked", temp)
+
+            self.assertEqual("BLOCKED", report["task_status"])
+            self.assertEqual(0, report["method_start_requests"])
+            self.assertEqual(0, report["method_invocations_started"])
+            self.assertEqual(0, report["completed_method_invocations"])
+            self.assertFalse((Path(temp) / "qualification-blocked").exists())
+            execute.assert_not_called()
+
+    def test_runtime_mount_rejects_ancestor_tree_that_contains_oracle_files(self):
+        runner = load_runner()
+        resources = {"cpu_quota_millis": 1000, "memory_bytes": 268435456,
+                     "pids_limit": 16}
+        runtime_dir = PACKAGE / "frozen_source" / "runtime"
+        with self.assertRaisesRegex(runner.SandboxError, "overlaps protected package paths"):
+            runner.build_container_spec(
+                "synthetic-image", resources, "synthetic", "/tmp/synthetic.cid",
+                str(PACKAGE.parent), "bin/python3", str(runtime_dir), [],
+            )
+
     def test_image_cleanup_is_attempted_once_and_timed_before_bundle_finalization(self):
         runner = load_runner()
 
@@ -65,7 +274,9 @@ class RunnerPreflightTests(unittest.TestCase):
 
         preflight = {
             "task_status": "READY",
-            "manifest": {"resources": {"wall_seconds": 30}},
+            "manifest": {"resources": {"cpu_quota_millis": 1000,
+                                         "wall_seconds": 30, "memory_bytes": 268435456,
+                                         "pids_limit": 16, "max_method_output_bytes": 65536}},
             "manifest_sha256": "b" * 64,
             "package_dir": PACKAGE,
         }
@@ -75,6 +286,9 @@ class RunnerPreflightTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             with mock.patch.object(runner, "preflight_task", return_value=preflight), \
                     mock.patch.object(runner, "DockerSession", FakeSession), \
+                    mock.patch.object(runner, "run_qualification_probe",
+                                      return_value=verified_qualification(
+                                          runner, preflight["manifest"]["resources"])), \
                     mock.patch.object(runner, "_execute_task", return_value=frozen_report), \
                     mock.patch.object(runner.time, "monotonic", side_effect=[100.0, 106.25]):
                 report = runner.run_task("synthetic-manifest.json", "scope-test", temp)
@@ -328,16 +542,18 @@ class RunnerPreflightTests(unittest.TestCase):
         runner = load_runner()
         self.assertTrue(callable(getattr(runner, "build_container_spec", None)),
                         "missing feature: secure Docker spec builder")
+        runtime_prefix, python_relative_path, library_dirs = runner._runtime_layout()
+        source_dir = PACKAGE / "frozen_source" / "runtime"
         spec = runner.build_container_spec(
             image="pcg-empty:sha",
             resources={"cpu_quota_millis": 1000, "memory_bytes": 268435456,
                        "pids_limit": 16},
             container_name="pcg-pair-synthetic-0001",
             cidfile="/tmp/cid",
-            runtime_prefix="/host/python",
-            python_relative_path="bin/python3",
-            source_dir="/host/frozen-runtime",
-            library_dirs=[("/host/lib", "/lib"), ("/host/usr-lib", "/usr/lib")],
+            runtime_prefix=runtime_prefix,
+            python_relative_path=python_relative_path,
+            source_dir=str(source_dir),
+            library_dirs=library_dirs,
         )
         argv = spec["argv"]
         self.assertIn("--network=none", argv)
@@ -350,9 +566,9 @@ class RunnerPreflightTests(unittest.TestCase):
         self.assertIn("--attach=stdin", argv)
         self.assertIn("--attach=stdout", argv)
         self.assertIn("--attach=stderr", argv)
-        self.assertIn("--volume=/host/python:/runtime:ro", argv)
-        self.assertIn("--volume=/host/frozen-runtime:/task/source:ro", argv)
-        self.assertIn("--volume=/host/lib:/lib:ro", argv)
+        self.assertIn("--volume=" + runtime_prefix + ":/runtime:ro", argv)
+        self.assertIn("--volume=" + str(source_dir.resolve()) + ":/task/source:ro", argv)
+        self.assertIn("--volume=" + library_dirs[0][0] + ":" + library_dirs[0][1] + ":ro", argv)
         self.assertNotIn("oracle", " ".join(argv).lower())
         self.assertNotIn("truth", " ".join(argv).lower())
 

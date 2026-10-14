@@ -64,6 +64,31 @@ not shared with the host. It never mounts the
 task manifest, pair-input file, case bindings, oracle, or scorer into the method
 container.
 
+Daemon `info` and stopped-container inspection are only preliminary checks.
+Before `--preflight-only` can return `READY`, or before `run_task` can reserve a
+run directory or start a method, the runner also executes the fixed
+`fixed-network-cgroup-oom-v1` qualification probe in separate disposable
+containers. Its diagnostic container checks that a random `/tmp` canary is
+unreadable, a TEST-NET connection is unavailable, and the effective cgroup CPU,
+memory and PID limits match the registered values. Since Docker's registered
+memory-plus-swap value equals the memory cap, cgroup v2 must report
+`memory.swap.max=0` (swap disabled). A second container
+uses a fixed 64 MiB memory cap, emits a start marker, then deliberately exceeds
+that cap; the runner requires Docker to report an OOM kill and a stopped
+container. Both probe containers must pass the same inspected security config,
+be removed, and be absent on a follow-up inspect. Any missing, malformed,
+unrun, or failed check blocks readiness. The diagnostic Python runtime requires
+at least 64 MiB in the task's memory limit.
+
+The qualification code binds only the active Python prefix, the exact host
+library directories used by that interpreter, and (for method slots) the exact
+frozen method runtime directory. Resolved ancestor/descendant overlaps with the
+package are rejected, so placing this package under `sys.prefix`, `/lib`, or
+`/usr/lib` blocks before a container starts. A `VERIFIED` report records the
+probe ID, script SHA-256, image ID, resource values, container states, kill
+result, and cleanup confirmation. No probe was run in this development
+environment; unit tests use synthetic reports and mocks.
+
 The `wall_seconds` deadline starts before Docker setup and ends after sandbox
 image cleanup. It caps the sandbox lifecycle; frozen-bundle finalization runs
 after that boundary. The attempt receipt records this value as
@@ -87,16 +112,17 @@ Missing kernel controls or an inspected-container mismatch block execution.
 
 ## Commands
 
-Run the read-only preflight on the intended Linux compute host after the
-resource profile has been completed and reviewed:
+Run the preflight on the intended Linux compute host after the resource profile
+has been completed and reviewed:
 
 ```sh
 python3 -I runner.py --task-manifest TASK_MANIFEST.json --preflight-only
 ```
 
-`--preflight-only` does not create a run directory or start a method. The
-current manifest is expected to return `BLOCKED` until the four resource values
-are supplied. To run the plan later, use a new unique run ID and a fresh output
+`--preflight-only` creates and removes the offline scratch image and starts only
+the fixed qualification containers; it does not create a run directory or start
+a research method. The current manifest is expected to return `BLOCKED` until
+the four resource values are supplied. To run the plan later, use a new unique run ID and a fresh output
 directory; one run ID gets one attempt and cannot be retried or overwritten:
 
 ```sh
@@ -122,7 +148,12 @@ python3 -I return_validator.py \
   --score ./returns/<unique-run-id>/score.json
 ```
 
-For a complete return, `return_validator.py` reruns the deterministic scorer
+Before scoring, `return_validator.py` validates the typed attempt schema,
+registered resource values and usage, qualification evidence, every child
+start/exit/cleanup state, and the exact path/byte-count/SHA-256 of all declared
+artifacts. Started slots must have both log files. It rejects unknown starts,
+failed cleanup, missing caps, over-limit complete runs, and boolean values in
+integer fields. For a complete return, `return_validator.py` reruns the deterministic scorer
 against the frozen bundle and the supplied/default pinned manifest, oracle, and
 case map, then compares the full score receipt. Matching copied IDs and hashes
 alone cannot certify a score.
@@ -149,3 +180,9 @@ The tests use generated dictionaries, opaque IDs, fake oracle fixtures, and a
 test-only method callable. They do not run the original trial, any frozen
 research method, a new 80-slot run, model/network service, Mac workload, or
 executor-qualification probe.
+
+The 2026-10-14 isolated test counts and supplemental regression-harness limits
+are recorded in [QUALIFICATION_RETURN_TEST_RESULTS_20261014.json](QUALIFICATION_RETURN_TEST_RESULTS_20261014.json).
+The result-driven alert-evaluation revision, including the preserved Mac trial
+failure and the missing V2-spec freeze boundary, is recorded in
+[`RESULT_DRIVEN_ALERT_EVALUATION_REVISION_20261014.md`](../../../RESULT_DRIVEN_ALERT_EVALUATION_REVISION_20261014.md).

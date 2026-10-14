@@ -1,9 +1,21 @@
 {
   "absolute_cloud_paths_included": false,
   "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001-PERSISTENCE",
-  "base_commit": "01f9a849b3fc24c8a46406919c0350e6d4b89729",
+  "base_commit": "6d7365af38ba5b9cd4b4eeab15ebb285e91fcf69",
   "cloud_repository_relative_base": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1",
   "files": [
+    {
+      "bytes": 7883,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "research-three/v2-alignment-20261011/IDEMPOTENCY_LAYERS.md",
+      "sha256": "690142359a1d217c4d6f940f961762269147d82b6d1ee5cf5cce3279a9255ea0"
+    },
+    {
+      "bytes": 4279,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "research-three/v2-alignment-20261011/RESULT_DRIVEN_ALERT_EVALUATION_REVISION_20261014.md",
+      "sha256": "079271386f5fbbc3a31c01c6ba62b472c8a8024f97392fcce26742e7ede766d6"
+    },
     {
       "bytes": 13539,
       "classification": "reviewed public plan",
@@ -29,16 +41,22 @@
       "sha256": "70d9662034777ce8e5fa1a02c4d870cdc8c788b9290f5231b7a0c8985c9dde24"
     },
     {
-      "bytes": 7681,
+      "bytes": 2633,
+      "classification": "public synthetic development test summary",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/QUALIFICATION_RETURN_TEST_RESULTS_20261014.json",
+      "sha256": "723b88ee656d57522ab9541387fabcb6ffc2a4d6db8983df1a6d2c4f89c829d6"
+    },
+    {
+      "bytes": 10317,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/README.md",
-      "sha256": "10f0814731bad88faf9511ef3b557e5b7328ee5600832a3fed2f609fa0915259"
+      "sha256": "efaff336ea254412fc33bf9c09e7b027439f8c089ab54b6692331b2cffa26fd6"
     },
     {
       "bytes": 4767,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/TASK_MANIFEST.json",
-      "sha256": "c159becc07c435571776ddf03d7125e71e422ec8ead16afb112feb73f5279a48"
+      "sha256": "74c6e944684c9fec88faaeba9d290457bd3792fc77d4ade47deb411b458c486f"
     },
     {
       "bytes": 1431,
@@ -125,16 +143,16 @@
       "sha256": "988d05bf388acfc6dbbea7ae0474aa406ccde54345768b829fa7988c837ae3cc"
     },
     {
-      "bytes": 4789,
+      "bytes": 35299,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/return_validator.py",
-      "sha256": "57683b781440c4958f5eb8ec8e6515cb6834241c85e96112cfc6d22ada8fa350"
+      "sha256": "f9ac49c3bc1a66d96d62f55d9de511664050b4f8085f3d64b078d1e616b1ea03"
     },
     {
-      "bytes": 67042,
+      "bytes": 93768,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/runner.py",
-      "sha256": "8d333bbf709ed0e1de02f49c857800774aef21b7b9b7cd2c558a0dfbea663b9a"
+      "sha256": "2918c6203d665e6846eef8be8ce7db30091a32428e24abfee8dc810748593e4f"
     },
     {
       "bytes": 28,
@@ -173,10 +191,10 @@
       "sha256": "3395aec541d51cb836391772d27c077cdc240a166cc35c48ba1e512de6bb0e3f"
     },
     {
-      "bytes": 5501,
+      "bytes": 12239,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/schemas/attempt.schema.json",
-      "sha256": "25718d3d6d23fd6c048871aa3ccd0f210aabcf268befcaad4c9a727adddf4865"
+      "sha256": "e419658d4c82a4f9b5d484694ff1415102e5feb2969dacd9e7059ebbe89a206b"
     },
     {
       "bytes": 3108,
@@ -287,27 +305,88 @@
       "sha256": "806a391c6df6c99a04150b573b5a2d7d17e6fe94eff7bdc6716459d6a8065220"
     },
     {
-      "bytes": 7822,
+      "bytes": 18664,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_return_validator.py",
-      "sha256": "7cecd766daf9d1741c09f8f7f61259587536c1ca1adc6f28aeeebb98e4d9ac2f"
+      "sha256": "3051885606e88f97b1f5e1ce6aa48183b818083b7a2c73269d5f3b105accdc3f"
     },
     {
-      "bytes": 20148,
+      "bytes": 30554,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_runner_preflight.py",
-      "sha256": "3cc328caffbe50178537356bc1828d1c48730bb77d451ab8b7c5754956aa3cd1"
+      "sha256": "59d26022624b263aee62fb10e43c408ae5db3caf3865f6e638aca199411ab240"
     },
     {
       "bytes": 1682,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_slot_worker.py",
       "sha256": "36b7cbf436a2b6f597247f8dff4966665bcb20598c8f10609492fdd1ddf4c67e"
+    },
+    {
+      "bytes": 34480,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/src/rfb/research/alert_action_experiment.py",
+      "sha256": "c6a716c3747fa23e7e4a6f162e2b1cadc8a723a0030db3446ccc826c8d6b186b"
+    },
+    {
+      "bytes": 38947,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/src/rfb/research/alert_governance.py",
+      "sha256": "1ba47f343e03a105a5ec02d903739a70d262c3905350abdaaa58fcb1981d6251"
+    },
+    {
+      "bytes": 29209,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/src/rfb/research/alert_notification_preview.py",
+      "sha256": "f46c3978b340f6b0599503d1f742aeb033d1ceb5da7fcd32dd6a6e1168f6b637"
+    },
+    {
+      "bytes": 7512,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/src/rfb/research/event_card_resolution.py",
+      "sha256": "57bd61160a59384251ecdc53c9adcc86f663c82e14ce00bc1261eec995374436"
+    },
+    {
+      "bytes": 9513,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/src/rfb/research/pending_risk_review_resolution.py",
+      "sha256": "2869d0eff3f0825a8f7f00d602dbed122523425920aba35aba4f805fb06828d9"
+    },
+    {
+      "bytes": 33967,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/tests/test_alert_governance.py",
+      "sha256": "e423e89bf9a2a23630fe07e85d5f343da8a450acf7e487f0daaefd06920ad0fb"
+    },
+    {
+      "bytes": 4853,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/tests/test_alert_notification_preview.py",
+      "sha256": "bad77dbcb75f87cfb5ab93771be275ed2b4861b2bdbcbc6ae65f7383d1cd4f6e"
+    },
+    {
+      "bytes": 39657,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/tests/test_event_card_integration.py",
+      "sha256": "fe13e465dc53fdaaf6d8eb1ef49282a392dab7d75a1fca4761a77854d63e47fc"
+    },
+    {
+      "bytes": 5038,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/tests/test_event_card_resolution.py",
+      "sha256": "ad86e2857b05ce203b92aa407dc35bef6b71a9b9004cb90e54d0251bc9d949f9"
+    },
+    {
+      "bytes": 7141,
+      "classification": "public code, synthetic contract, or result-driven design note",
+      "path": "risk-fusion-bench/tests/test_pending_risk_review_resolution.py",
+      "sha256": "df49c22271bad78b040e8be158fe75c1714666ffa3f665f8b87161b3ab18c979"
     }
   ],
   "includes_pinned_public_oracle": true,
   "includes_private_mac_originals": false,
   "includes_private_mac_v2_specification": false,
+  "includes_related_public_alert_governance_code": true,
   "mac_checkout_root": null,
   "mac_repository_relative_base": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1",
   "manifest_self_hash_included": false,
@@ -315,6 +394,7 @@
   "original_1464_check_trial_rerun": false,
   "research_methods_or_80_slot_run_performed": false,
   "resource_profile_status": "BLOCKED_MISSING_VALUES",
+  "result_driven_alert_evaluation_revision": "research-three/v2-alignment-20261011/RESULT_DRIVEN_ALERT_EVALUATION_REVISION_20261014.md",
   "source_branch": "task/research-three-two-hop-lineage-20261012",
   "status": "PACKAGE_READY_EXECUTION_BLOCKED_MISSING_RESOURCE_PROFILE"
 }

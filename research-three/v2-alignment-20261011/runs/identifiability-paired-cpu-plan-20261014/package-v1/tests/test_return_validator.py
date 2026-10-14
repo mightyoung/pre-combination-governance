@@ -13,6 +13,9 @@ CASE_IDS = [
     "42474559127419126b713096e9f4d3ee", "81050a121e028f59f1e6940d7c5eb477",
 ]
 METHODS = ["M0", "M1", "M2", "M3"]
+RESOURCES = {"cpu_quota_millis": 1000, "wall_seconds": 60,
+             "memory_bytes": 268435456, "pids_limit": 16,
+             "max_method_output_bytes": 65536}
 
 
 def load_module(name):
@@ -30,106 +33,279 @@ def load_module(name):
     return module
 
 
+def make_test_manifest(root):
+    manifest = json.loads((PACKAGE / "TASK_MANIFEST.json").read_text())
+    manifest["resource_profile_status"] = "PRE_REGISTERED"
+    manifest["resources"] = dict(RESOURCES)
+    for relative in manifest["execution_file_hashes"]:
+        path = PACKAGE / relative
+        manifest["execution_file_hashes"][relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+    for filename in manifest["schema_hashes"]:
+        path = PACKAGE / "schemas" / filename
+        manifest["schema_hashes"][filename] = hashlib.sha256(path.read_bytes()).hexdigest()
+    path = root / "synthetic-task-manifest.json"
+    raw = json.dumps(manifest, sort_keys=True, separators=(",", ":"),
+                     ensure_ascii=False).encode("utf-8") + b"\n"
+    path.write_bytes(raw)
+    (root / manifest["pair_inputs_path"]).write_bytes(
+        (PACKAGE / manifest["pair_inputs_path"]).read_bytes())
+    return path, manifest, hashlib.sha256(raw).hexdigest()
+
+
+def qualification_evidence(runner, resources):
+    image_id = "sha256:" + "a" * 64
+    checks = {name: "PASS" for name in runner.QUALIFICATION_CHECKS}
+    return {
+        "schema_version": 1,
+        "probe_id": runner.QUALIFICATION_PROBE_ID,
+        "status": "VERIFIED",
+        "script_sha256": runner._sha256((runner._QUALIFICATION_DIAGNOSTIC_PROGRAM
+                                         + runner._QUALIFICATION_OOM_PROGRAM).encode()),
+        "image_id": image_id,
+        "completed_at_utc": "2026-10-14T00:00:00+00:00",
+        "checks": checks,
+        "observed": {
+            "resources": dict(resources),
+            "effective_resources": {
+                "cpu_quota_millis": resources["cpu_quota_millis"],
+                "memory_bytes": resources["memory_bytes"],
+                "memory_swap_bytes": 0,
+                "pids_limit": resources["pids_limit"],
+            },
+            "diagnostic_container": {
+                "container_id": "synthetic-diagnostic", "config_valid": True,
+                "return_code": 0, "state": {"ExitCode": 0, "OOMKilled": False,
+                                              "Running": False, "Status": "exited"},
+                "removed": True, "absent_after_cleanup": True,
+                "error": None, "cleanup_error": None,
+            },
+            "oom_container": {
+                "container_id": "synthetic-oom", "config_valid": True,
+                "return_code": 137, "state": {"ExitCode": 137, "OOMKilled": True,
+                                               "Running": False, "Status": "exited"},
+                "removed": True, "absent_after_cleanup": True,
+                "error": None, "cleanup_error": None, "overlimit_marker_seen": True,
+            },
+        },
+    }
+
+
+def result_for(cards):
+    return {
+        "cards": cards, "possible": [], "risk": "EXPOSURE", "priority": "REVIEW",
+        "notify": False, "fused": {}, "independent_evidence": 0,
+        "role": "event rules shared; DS motion fusion diagnostic only",
+        "context_evidence": {"status": "ABSENT", "accepted": [], "rejected": []},
+        "notification_reasons": [], "card_updates": [],
+        "risk_state_update": None, "review_notification_reasons": [],
+    }
+
+
+def add_artifact_files(run_dir, record_count, start_requested_count,
+                       run_id, manifest_sha, qualification, slot_rows):
+    common = {
+        "progress.json": b'{"state":"SYNTHETIC"}\n',
+        "slot-events.jsonl": b'{"event":"SYNTHETIC"}\n',
+    }
+    intent = {
+        "task_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001",
+        "run_id": run_id, "attempt_count": 1, "state": "IN_PROGRESS",
+        "manifest_sha256": manifest_sha, "started_at_utc": "2026-10-14T00:00:00+00:00",
+        "sandbox_image_id": qualification["image_id"],
+        "qualification_evidence": qualification,
+    }
+    common["intent.json"] = json.dumps(intent, sort_keys=True,
+                                       separators=(",", ":")).encode() + b"\n"
+    for slot_number in range(1, record_count + 1):
+        (run_dir / ("container-" + format(slot_number, "04d") + ".cid")).write_text(
+            "synthetic-container-" + format(slot_number, "04d") + "\n")
+    for slot_number in range(1, start_requested_count + 1):
+        if slot_number <= len(slot_rows):
+            result = slot_rows[slot_number - 1]["result"]
+            stdout = json.dumps(result, sort_keys=True, separators=(",", ":"),
+                                ensure_ascii=False, allow_nan=False).encode() + b"\n"
+        else:
+            stdout = b""
+        common["slot-" + format(slot_number, "04d") + ".stdout.bin"] = stdout
+        common["slot-" + format(slot_number, "04d") + ".stderr.bin"] = b""
+    for name, raw in common.items():
+        (run_dir / name).write_bytes(raw)
+    return [
+        {"path": path.name, "bytes": len(path.read_bytes()),
+         "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+        for path in sorted(run_dir.iterdir()) if path.is_file()
+    ]
+
+
+def bind_output_counts(records, artifacts):
+    sizes = {artifact["path"]: artifact["bytes"] for artifact in artifacts}
+    for record in records:
+        if record["start_requested"]:
+            record["output_bytes_observed"] = (
+                sizes[record["stdout_path"]] + sizes[record["stderr_path"]])
+
+
+def slot_record(number, case_id, prefix, method, *, status="PASS", exit_code=0,
+                oom=False, cleanup="REMOVED", error=None, requested=True,
+                started=True, unknown=False):
+    return {
+        "slot": number, "case_id": case_id, "prefix": prefix, "method": method,
+        "status": status, "started": started, "start_requested": requested,
+        "start_unknown": unknown,
+        "container_id": "synthetic-container-" + format(number, "04d") if requested else None,
+        "container_cleanup_status": cleanup if requested else None,
+        "cli_exit_code": exit_code if requested and not unknown else None,
+        "container_exit_code": exit_code if started and not unknown else None,
+        "oom_killed": oom,
+        "stdout_path": ("slot-" + format(number, "04d") + ".stdout.bin") if requested else None,
+        "stderr_path": ("slot-" + format(number, "04d") + ".stderr.bin") if requested else None,
+        "output_bytes_observed": 0,
+        "error": error,
+    }
+
+
+def common_attempt(runner, manifest, manifest_sha, run_id, status,
+                   requests, started, completed, stop_reason, slot_records,
+                   unknown_slots, artifacts):
+    return {
+        "schema_version": 1,
+        "task_id": manifest["task_id"],
+        "run_id": run_id,
+        "attempt_count": 1,
+        "task_status": status,
+        "terminal_exit_code": 0 if status == "PASS" else 30,
+        "research_acceptance": "NOT_EVALUATED",
+        "planned_method_invocations": 80,
+        "method_start_requests": requests,
+        "method_invocations_started": started,
+        "completed_method_invocations": completed,
+        "partial": status != "PASS",
+        "stop_reason": stop_reason,
+        "case_ids": manifest["case_ids"],
+        "method_order": manifest["method_order"],
+        "task_manifest_sha256": manifest_sha,
+        "source_commits": manifest["source_commits"],
+        "schema_hashes": manifest["schema_hashes"],
+        "public_input_sha256": manifest["public_input_sha256"],
+        "pair_inputs_sha256": manifest["pair_inputs_sha256"],
+        "oracle_sha256": manifest["oracle_sha256"],
+        "oracle_case_map_sha256": manifest["oracle_case_map_sha256"],
+        "plan_sha256": manifest["plan_sha256"],
+        "started_at_utc": "2026-10-14T00:00:00+00:00",
+        "finished_at_utc": "2026-10-14T00:00:02+00:00",
+        "wall_seconds_elapsed": 2,
+        "wall_seconds_scope": "sandbox_lifecycle_through_image_cleanup",
+        "cpu_quota_millis": RESOURCES["cpu_quota_millis"],
+        "wall_seconds_limit": RESOURCES["wall_seconds"],
+        "container_cleanup_reserve_seconds": 9,
+        "memory_limit_bytes": RESOURCES["memory_bytes"],
+        "pids_limit": RESOURCES["pids_limit"],
+        "max_method_output_bytes": RESOURCES["max_method_output_bytes"],
+        "method_output_bytes_captured": sum(
+            artifact["bytes"] for artifact in artifacts
+            if ".stdout.bin" in artifact["path"] or ".stderr.bin" in artifact["path"]),
+        "method_output_bytes_observed": sum(
+            artifact["bytes"] for artifact in artifacts
+            if ".stdout.bin" in artifact["path"] or ".stderr.bin" in artifact["path"]),
+        "peak_rss_bytes": "UNKNOWN",
+        "cpu_usage_seconds": "UNKNOWN",
+        "method_start_unknown_slots": unknown_slots,
+        "slot_exit_records": slot_records,
+        "sandbox_image_cleanup": "REMOVED",
+        "qualification_evidence": qualification_evidence(runner, RESOURCES),
+        "execution_environment": {"platform": "synthetic", "sandbox_endpoint_type": "mock"},
+        "command": ["python3", "-I", "runner.py"],
+        "artifacts": artifacts,
+    }
+
+
+def complete_slots(bundle):
+    manifest = json.loads((PACKAGE / "TASK_MANIFEST.json").read_text())
+    pair_path = PACKAGE / manifest["pair_inputs_path"]
+    pair_inputs = json.loads(pair_path.read_text())
+    previous = {(case_id, method): {} for case_id in CASE_IDS for method in METHODS}
+    slots = []
+    for case in pair_inputs["cases"]:
+        case_id = case["case_id"]
+        for prefix in range(1, 6):
+            visible = case["rows"][:prefix]
+            cards = {row["id"]: "card-" + row["id"]
+                     for row in visible if row.get("alarm") is True}
+            for method in METHODS:
+                result = result_for(cards)
+                payload = {"method": method, "prefix": visible,
+                           "old": previous[(case_id, method)]}
+                slots.append({
+                    "case_id": case_id, "prefix": prefix, "method": method,
+                    "input_sha256": hashlib.sha256(bundle.canonical_bytes(payload)).hexdigest(),
+                    "output_sha256": hashlib.sha256(bundle.canonical_bytes(result)).hexdigest(),
+                    "result": result,
+                })
+                previous[(case_id, method)] = {
+                    key: result[key] for key in ("cards", "risk", "priority")
+                }
+    return slots
+
+
 class ReturnValidatorTests(unittest.TestCase):
     def test_partial_failure_is_valid_only_with_actual_counts_and_reason(self):
         bundle = load_module("bundle")
-        validator = load_module("return_validator")
-        with tempfile.TemporaryDirectory() as temp:
-            run_dir = Path(temp) / "run"
-            run_dir.mkdir()
-            slot = {
-                "case_id": CASE_IDS[0], "prefix": 1, "method": "M0",
-                "input_sha256": "a" * 64, "output_sha256": "b" * 64,
-                "result": {
-                    "cards": {"a": "card-a"}, "possible": [],
-                    "notification_reasons": [], "risk": "EXPOSURE",
-                    "priority": "REVIEW", "notify": False, "fused": {},
-                    "independent_evidence": 0,
-                    "role": "event rules shared; DS motion fusion diagnostic only",
-                    "context_evidence": {"status": "ABSENT", "accepted": [], "rejected": []},
-                    "card_updates": [], "risk_state_update": None,
-                    "review_notification_reasons": [],
-                },
-            }
-            attempt = {
-                "run_id": "synthetic-partial", "attempt_count": 1,
-                "task_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001",
-                "task_status": "FAIL", "research_acceptance": "NOT_EVALUATED",
-                "planned_method_invocations": 80, "method_start_requests": 2,
-                "method_invocations_started": 2,
-                "completed_method_invocations": 1, "partial": True,
-                "stop_reason": "synthetic_child_exit", "terminal_exit_code": 30,
-                "case_ids": CASE_IDS,
-                "method_order": METHODS,
-            }
-            bundle.freeze_bundle(run_dir, [slot], attempt)
-            report = validator.validate_return(run_dir)
-            self.assertEqual("VALID_PARTIAL_EXECUTION", report["validation_status"])
-            self.assertEqual(1, report["completed_method_invocations"])
-            self.assertEqual("NOT_EVALUATED", report["research_acceptance"])
-
-    def test_complete_pass_requires_matching_score_receipt(self):
-        bundle = load_module("bundle")
-        load_module("scorer")
+        runner = load_module("runner")
         validator = load_module("return_validator")
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             run_dir = root / "run"
             run_dir.mkdir()
-            manifest_path = PACKAGE / "TASK_MANIFEST.json"
-            manifest = json.loads(manifest_path.read_text())
-            pair_path = PACKAGE / manifest["pair_inputs_path"]
-            pair_inputs = json.loads(pair_path.read_text())
-            previous = {(case_id, method): {} for case_id in CASE_IDS for method in METHODS}
-            slots = []
-            for case in pair_inputs["cases"]:
-                case_id = case["case_id"]
+            manifest_path, manifest, manifest_sha = make_test_manifest(root)
+            slot = complete_slots(bundle)[0]
+            records = [
+                slot_record(1, CASE_IDS[0], 1, "M0"),
+                slot_record(2, CASE_IDS[0], 1, "M1", status="FAIL", exit_code=9,
+                            error="synthetic_child_exit"),
+            ]
+            qualification = qualification_evidence(runner, RESOURCES)
+            artifacts = add_artifact_files(run_dir, 2, 2, "synthetic-partial",
+                                           manifest_sha, qualification, [slot])
+            bind_output_counts(records, artifacts)
+            attempt = common_attempt(runner, manifest, manifest_sha, "synthetic-partial",
+                                     "FAIL", 2, 2, 1, "synthetic_child_exit", records, [], artifacts)
+            bundle.freeze_bundle(run_dir, [slot], attempt)
+            report = validator.validate_return(run_dir, task_manifest_path=manifest_path)
+            self.assertEqual("VALID_PARTIAL_EXECUTION", report["validation_status"])
+            self.assertEqual(1, report["completed_method_invocations"])
+            self.assertEqual("NOT_EVALUATED", report["research_acceptance"])
+
+    def test_complete_pass_requires_matching_score_and_strict_receipt(self):
+        bundle = load_module("bundle")
+        runner = load_module("runner")
+        scorer = load_module("scorer")
+        validator = load_module("return_validator")
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            run_dir = root / "run"
+            run_dir.mkdir()
+            manifest_path, manifest, manifest_sha = make_test_manifest(root)
+            slots = complete_slots(bundle)
+            records = []
+            number = 0
+            for case_id in CASE_IDS:
                 for prefix in range(1, 6):
-                    visible = case["rows"][:prefix]
-                    cards = {row["id"]: "card-" + row["id"]
-                             for row in visible if row.get("alarm") is True}
                     for method in METHODS:
-                        result = {
-                            "cards": cards, "possible": [], "risk": "EXPOSURE",
-                            "priority": "REVIEW", "notify": False, "fused": {},
-                            "independent_evidence": 0,
-                            "role": "event rules shared; DS motion fusion diagnostic only",
-                            "context_evidence": {"status": "ABSENT", "accepted": [], "rejected": []},
-                            "notification_reasons": [], "card_updates": [],
-                            "risk_state_update": None, "review_notification_reasons": [],
-                        }
-                        payload = {"method": method, "prefix": visible,
-                                   "old": previous[(case_id, method)]}
-                        slots.append({
-                            "case_id": case_id, "prefix": prefix, "method": method,
-                            "input_sha256": hashlib.sha256(bundle.canonical_bytes(payload)).hexdigest(),
-                            "output_sha256": hashlib.sha256(bundle.canonical_bytes(result)).hexdigest(),
-                            "result": result,
-                        })
-                        previous[(case_id, method)] = {
-                            key: result[key] for key in ("cards", "risk", "priority")
-                        }
-            attempt = {
-                "run_id": "synthetic-pass", "attempt_count": 1,
-                "task_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001",
-                "task_status": "PASS", "research_acceptance": "NOT_EVALUATED",
-                "planned_method_invocations": 80, "method_start_requests": 80,
-                "method_invocations_started": 80,
-                "completed_method_invocations": 80, "partial": False,
-                "stop_reason": None, "terminal_exit_code": 0,
-                "case_ids": CASE_IDS, "method_order": METHODS,
-                "task_manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
-                "source_commits": manifest["source_commits"],
-                "schema_hashes": manifest["schema_hashes"],
-                "public_input_sha256": manifest["public_input_sha256"],
-                "pair_inputs_sha256": manifest["pair_inputs_sha256"],
-                "oracle_sha256": manifest["oracle_sha256"],
-                "oracle_case_map_sha256": manifest["oracle_case_map_sha256"],
-                "plan_sha256": manifest["plan_sha256"],
-            }
+                        number += 1
+                        records.append(slot_record(number, case_id, prefix, method))
+            qualification = qualification_evidence(runner, RESOURCES)
+            artifacts = add_artifact_files(run_dir, 80, 80, "synthetic-pass",
+                                           manifest_sha, qualification, slots)
+            bind_output_counts(records, artifacts)
+            attempt = common_attempt(runner, manifest, manifest_sha, "synthetic-pass",
+                                     "PASS", 80, 80, 80, None, records, [], artifacts)
+            attempt["partial"] = False
             receipt = bundle.freeze_bundle(run_dir, slots, attempt)
+            pending = validator.validate_return(
+                run_dir, task_manifest_path=manifest_path)
+            self.assertEqual("VALID_EXECUTION_SCORE_PENDING",
+                             pending["validation_status"])
             score_path = root / "score.json"
-            scorer = load_module("scorer")
             scorer.score_bundle(
                 run_dir, manifest_path,
                 PACKAGE / "scorer_source" / "oracle.physical.json",
@@ -142,10 +318,54 @@ class ReturnValidatorTests(unittest.TestCase):
                 PACKAGE / "scorer_source" / "ORACLE_CASE_MAP.json",
             )
             self.assertEqual("VALID_COMPLETE_RETURN", valid["validation_status"])
+
+            attempt_path = run_dir / "attempt.json"
+            good_attempt = json.loads(attempt_path.read_text())
+            corruptions = {
+                "boolean_attempt_count": lambda value: value.update(attempt_count=True),
+                "boolean_terminal_exit": lambda value: value.update(terminal_exit_code=False),
+                "missing_stdout_artifact": lambda value: value.update(artifacts=[{
+                    "path": "missing.stdout.bin", "bytes": 9, "sha256": "c" * 64,
+                }]),
+                "child_exit_oom_and_failed_cleanup": lambda value: value.update(
+                    slot_exit_records=[{
+                        "slot": 1, "case_id": CASE_IDS[0], "prefix": 1, "method": "M0",
+                        "status": "FAIL", "started": True, "start_requested": True,
+                        "start_unknown": False, "container_id": "synthetic-container-0001",
+                        "container_cleanup_status": "FAILED", "cli_exit_code": 9,
+                        "container_exit_code": 9, "oom_killed": True,
+                        "stdout_path": "slot-0001.stdout.bin", "stderr_path": "slot-0001.stderr.bin",
+                        "output_bytes_observed": 0, "error": "synthetic OOM",
+                    }]),
+                "failed_image_cleanup": lambda value: value.update(sandbox_image_cleanup="FAILED"),
+                "wall_time_over_limit": lambda value: value.update(wall_seconds_elapsed=61),
+                "missing_memory_limit": lambda value: value.update(memory_limit_bytes=None),
+                "unknown_start_state": lambda value: value.update(
+                    method_start_unknown_slots=[{"slot": 1, "case_id": CASE_IDS[0],
+                                                "prefix": 1, "method": "M0"}]),
+                "artifact_hash_mismatch": lambda value: value.update(artifacts=[
+                    {**value["artifacts"][0], "sha256": "0" * 64}]),
+                "artifact_path_traversal": lambda value: value.update(artifacts=[
+                    {**value["artifacts"][0], "path": "../private.bin"}]),
+            }
+            for label, corrupt in corruptions.items():
+                with self.subTest(corruption=label):
+                    bad_attempt = json.loads(json.dumps(good_attempt))
+                    corrupt(bad_attempt)
+                    attempt_path.write_bytes(bundle.canonical_bytes(bad_attempt) + b"\n")
+                    with self.assertRaises(validator.ReturnValidationError):
+                        validator.validate_return(
+                            run_dir, score_path, manifest_path,
+                            PACKAGE / "scorer_source" / "oracle.physical.json",
+                            PACKAGE / "scorer_source" / "ORACLE_CASE_MAP.json",
+                        )
+            attempt_path.write_bytes(bundle.canonical_bytes(good_attempt) + b"\n")
+
             forged = json.loads(score_path.read_text())
             forged["first_alert_checks"].pop()
             score_path.write_text(json.dumps(forged))
-            with self.assertRaisesRegex(validator.ReturnValidationError, "differ from the deterministic scorer"):
+            with self.assertRaisesRegex(validator.ReturnValidationError,
+                                        "differ from the deterministic scorer"):
                 validator.validate_return(
                     run_dir, score_path, manifest_path,
                     PACKAGE / "scorer_source" / "oracle.physical.json",

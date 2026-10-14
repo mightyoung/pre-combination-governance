@@ -1,0 +1,62 @@
+{
+  "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001-TEST-RESULTS-20261014",
+  "classification": "public synthetic development tests only",
+  "result": "PASS_WITH_SUPPLEMENTAL_HARNESS_LIMITATION",
+  "scope": {
+    "research_methods_started": false,
+    "docker_or_executor_probe_run": false,
+    "original_1464_trial_rerun": false,
+    "mac_environment_or_esrch_eperm_repair_verified": false,
+    "model_or_network_service_called": false
+  },
+  "primary_test_suites": [
+    {
+      "name": "paired CPU package isolated unittest suite",
+      "command": "python3 -I -B -m unittest discover -s tests -v",
+      "tests": 46,
+      "passed": 46,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "existing alert-card and resolution contract tests",
+      "modules": [
+        "test_alert_governance.py",
+        "test_event_card_resolution.py",
+        "test_event_card_integration.py",
+        "test_alert_notification_preview.py",
+        "test_pending_risk_review_resolution.py"
+      ],
+      "tests": 50,
+      "passed": 50,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "runner and receipt static checks",
+      "checks": [
+        "runner.py and return_validator.py compile",
+        "attempt.schema.json parses as JSON",
+        "attempt.schema.json passes Draft 2020-12 schema validation"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "supplemental_user_regression_harness": {
+    "source_sha256": "7c25306b08337894ba1a92514ef0830274b54cb4fcc4cbff70d747acfd178593",
+    "cases": 7,
+    "harness_exit_code": 0,
+    "unsafe_cases_accepted": 0,
+    "interpretation": "The two qualification-gate and mount-overlap cases are exercised through mocked Docker and rejected. Four receipt fault cases are rejected at the new required-field gate before their intended individual corruption is exercised; per the harness note, those outcomes are inconclusive for the intended detailed assertions and are not counted as primary regression proof."
+  },
+  "test_changes": {
+    "qualification_cleanup_inspect_permission_error_is_not_proof_of_absence": "PASS",
+    "qualification_cleanup_inspection_finding_container_means_cleanup_failed": "PASS",
+    "qualification_cleanup_recognizes_only_explicit_missing_container": "PASS"
+  },
+  "limitations": [
+    "The task manifest remains BLOCKED_MISSING_VALUES for wall_seconds, memory_bytes, pids_limit, and max_method_output_bytes.",
+    "Synthetic tests do not prove real Linux cgroup, network, OOM-kill, host-path, or Docker cleanup behavior.",
+    "The full Mac V2 specification and referenced metric/schema files are absent from this checkout."
+  ]
+}

@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import selectors
 import shutil
+import socket
 import stat
 import subprocess
 import sys
@@ -34,6 +35,67 @@ WALL_SECONDS_SCOPE = "sandbox_lifecycle_through_image_cleanup"
 RUN_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$")
 DOCKER_CANDIDATES = ("/usr/bin/docker", "/usr/local/bin/docker", "/bin/docker")
 LOCAL_DOCKER_SOCKETS = ("/var/run/docker.sock", "/run/docker.sock")
+QUALIFICATION_PROBE_ID = "fixed-network-cgroup-oom-v1"
+QUALIFICATION_MEMORY_BYTES = 64 * 1024 * 1024
+QUALIFICATION_CHECKS = (
+    "container_config", "host_file_unreadable", "network_unavailable",
+    "effective_cpu_quota", "effective_memory_limit",
+    "effective_memory_swap_limit", "effective_pid_limit",
+    "memory_overlimit_killed", "probe_container_cleanup",
+)
+
+_QUALIFICATION_DIAGNOSTIC_PROGRAM = r'''import json, os, socket, sys
+expected = json.loads(sys.argv[1])
+canary = sys.argv[2]
+def read(path):
+    with open(path, "r", encoding="ascii") as stream:
+        return stream.read().strip()
+cpu_fields = read("/sys/fs/cgroup/cpu.max").split()
+cpu_quota = None if cpu_fields[0] == "max" else int(cpu_fields[0])
+cpu_period = int(cpu_fields[1])
+actual = {
+    "cpu_quota_millis": int(cpu_quota * 1000 / cpu_period) if cpu_quota is not None else None,
+    "memory_bytes": int(read("/sys/fs/cgroup/memory.max")),
+    "memory_swap_bytes": int(read("/sys/fs/cgroup/memory.swap.max")),
+    "pids_limit": int(read("/sys/fs/cgroup/pids.max")),
+}
+try:
+    with open(canary, "rb") as stream:
+        stream.read(1)
+    host_file_unreadable = False
+except OSError:
+    host_file_unreadable = True
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.settimeout(1.0)
+try:
+    network_unavailable = sock.connect_ex(("192.0.2.1", 9)) != 0
+finally:
+    sock.close()
+checks = {
+    "host_file_unreadable": host_file_unreadable,
+    "network_unavailable": network_unavailable,
+    "effective_cpu_quota": actual["cpu_quota_millis"] == expected["cpu_quota_millis"],
+    "effective_memory_limit": actual["memory_bytes"] == expected["memory_bytes"],
+    "effective_memory_swap_limit": actual["memory_swap_bytes"] == 0,
+    "effective_pid_limit": actual["pids_limit"] == expected["pids_limit"],
+}
+print(json.dumps({"actual": actual, "checks": checks}, sort_keys=True))
+sys.exit(0 if all(checks.values()) else 41)
+'''
+
+_QUALIFICATION_OOM_PROGRAM = r'''import os, sys
+os.write(1, b"PCG_OOM_PROBE_READY\n")
+target = int(sys.argv[1]) + 16 * 1024 * 1024
+chunk = 1024 * 1024
+blocks = []
+while True:
+    block = bytearray(min(chunk, target - len(blocks) * chunk))
+    for offset in range(0, len(block), 4096):
+        block[offset] = 1
+    blocks.append(block)
+    if len(blocks) * chunk >= target:
+        os._exit(42)
+'''
 
 
 def _sha256(data: bytes) -> str:
@@ -77,7 +139,8 @@ def _read_json(path: Path, label: str) -> tuple[bytes, dict]:
 
 def validate_container_config(host_config: dict, requested: dict,
                               expected_binds: list[str], config: dict | None = None,
-                              expected_command: list[str] | None = None) -> list[str]:
+                              expected_command: list[str] | None = None,
+                              expected_working_dir: str = "/task/source") -> list[str]:
     """Return exact mismatches from Docker's inspected, stopped container config."""
     issues = []
     expected_nano_cpus = requested["cpu_quota_millis"] * 1_000_000
@@ -138,7 +201,7 @@ def validate_container_config(host_config: dict, requested: dict,
     if config is not None:
         if config.get("User") != "65534:65534":
             issues.append("container user is not the unprivileged task user")
-        if config.get("WorkingDir") != "/task/source":
+        if config.get("WorkingDir") != expected_working_dir:
             issues.append("container working directory differs from the reviewed command")
         if config.get("Env") not in (None, []):
             issues.append("method container environment must be empty")
@@ -154,16 +217,70 @@ def validate_container_config(host_config: dict, requested: dict,
     return issues
 
 
+def _paths_overlap(left: Path, right: Path) -> bool:
+    return left == right or left in right.parents or right in left.parents
+
+
+def _validated_mounts(runtime_prefix: str, source_dir: str | None,
+                      library_dirs: list[tuple[str, str]]) -> list[tuple[str, str]]:
+    """Resolve binds and reject any path that can expose protected package data."""
+    protected_package = PACKAGE_DIR.resolve()
+    allowed_method_source = (protected_package / "frozen_source" / "runtime").resolve()
+    expected_prefix = Path(sys.prefix).resolve()
+    normalized_runtime = Path(runtime_prefix).resolve()
+    if _paths_overlap(normalized_runtime, protected_package):
+        raise SandboxError("bind mount overlaps protected package paths")
+    if normalized_runtime != expected_prefix:
+        raise SandboxError("runtime bind source differs from the active Python prefix")
+    mounts = [(str(normalized_runtime), "/runtime")]
+    if source_dir is not None:
+        normalized_source = Path(source_dir).resolve()
+        if normalized_source != allowed_method_source:
+            raise SandboxError("method source must use the exact frozen runtime directory")
+        mounts.append((str(normalized_source), "/task/source"))
+    expected_libraries = []
+    for host_path, destination in (("/lib", "/lib"), ("/lib64", "/lib64"),
+                                  ("/usr/lib", "/usr/lib")):
+        candidate = Path(host_path)
+        if candidate.exists():
+            expected_libraries.append((str(candidate.resolve()), destination))
+    normalized_libraries = [(str(Path(source).resolve()), destination)
+                            for source, destination in library_dirs]
+    if normalized_libraries != expected_libraries:
+        raise SandboxError("library binds differ from the exact host runtime allowlist")
+    if any(_paths_overlap(Path(source), protected_package)
+           for source, _destination in normalized_libraries):
+        raise SandboxError("bind mount overlaps protected package paths")
+    mounts.extend(normalized_libraries)
+    allowed_destinations = {"/runtime", "/task/source", "/lib", "/lib64", "/usr/lib"}
+    seen_destinations = set()
+    for source_text, destination in mounts:
+        source = Path(source_text)
+        if destination not in allowed_destinations or destination in seen_destinations:
+            raise SandboxError("bind mount destination is outside the reviewed allowlist")
+        seen_destinations.add(destination)
+        if (destination == "/task/source" and source == allowed_method_source):
+            if any(path.is_symlink() for path in source.rglob("*")):
+                raise SandboxError("method runtime mount contains a symlink")
+            continue
+        if _paths_overlap(source, protected_package):
+            raise SandboxError("bind mount overlaps protected package paths")
+    if "/runtime" not in seen_destinations:
+        raise SandboxError("runtime bind mount is missing")
+    if source_dir is not None and "/task/source" not in seen_destinations:
+        raise SandboxError("method source bind mount is missing")
+    return mounts
+
+
 def build_container_spec(image: str, resources: dict, container_name: str,
                          cidfile: str, runtime_prefix: str,
                          python_relative_path: str, source_dir: str,
                          library_dirs: list[tuple[str, str]]) -> dict:
     """Build one isolated container command with no oracle or case mount."""
-    runtime_prefix = str(Path(runtime_prefix).resolve())
-    source_dir = str(Path(source_dir).resolve())
-    mounts = [(runtime_prefix, "/runtime"), (source_dir, "/task/source")]
-    mounts.extend((str(Path(source).resolve()), destination)
-                  for source, destination in library_dirs)
+    mounts = _validated_mounts(runtime_prefix, source_dir, library_dirs)
+    expected_python = Path(sys.executable).resolve().relative_to(Path(sys.prefix).resolve()).as_posix()
+    if Path(python_relative_path).as_posix() != expected_python:
+        raise SandboxError("container Python executable differs from the active interpreter")
     binds = []
     for source, destination in mounts:
         if ":" in source or ":" in destination:
@@ -188,6 +305,42 @@ def build_container_spec(image: str, resources: dict, container_name: str,
     argv.extend((image, executable, "-I", "-S", "-B", "/task/source/slot_worker.py"))
     return {"argv": argv, "expected_binds": binds, "mounts": mounts,
             "expected_command": [executable, "-I", "-S", "-B", "/task/source/slot_worker.py"]}
+
+
+def build_qualification_container_spec(image: str, resources: dict,
+                                       container_name: str, cidfile: str,
+                                       runtime_prefix: str, python_relative_path: str,
+                                       library_dirs: list[tuple[str, str]],
+                                       program: str, arguments: list[str]) -> dict:
+    """Build the fixed qualification command with runtime binds only."""
+    mounts = _validated_mounts(runtime_prefix, None, library_dirs)
+    expected_python = Path(sys.executable).resolve().relative_to(Path(sys.prefix).resolve()).as_posix()
+    if Path(python_relative_path).as_posix() != expected_python:
+        raise SandboxError("qualification Python executable differs from the active interpreter")
+    binds = []
+    for source, destination in mounts:
+        if ":" in source or ":" in destination:
+            raise SandboxError("colon in bind path is unsupported")
+        binds.append(source + ":" + destination + ":ro")
+    cpu_value = resources["cpu_quota_millis"] / 1000
+    if cpu_value != 1.0:
+        raise SandboxError("the reviewed plan fixes execution to one CPU")
+    executable = "/runtime/" + str(Path(python_relative_path))
+    expected_command = [executable, "-I", "-S", "-B", "-c", program, *arguments]
+    argv = [
+        "create", "--cidfile", cidfile, "--name", container_name,
+        "--network=none", "--read-only", "--cgroupns=private", "--cpus=1.000",
+        "--memory=" + str(resources["memory_bytes"]),
+        "--memory-swap=" + str(resources["memory_bytes"]),
+        "--pids-limit=" + str(resources["pids_limit"]),
+        "--cap-drop=ALL", "--security-opt=no-new-privileges:true",
+        "--log-driver=none", "--user=65534:65534", "--workdir=/",
+        "--interactive", "--attach=stdin", "--attach=stdout", "--attach=stderr",
+    ]
+    argv.extend("--volume=" + bind for bind in binds)
+    argv.extend((image, *expected_command))
+    return {"argv": argv, "expected_binds": binds, "mounts": mounts,
+            "expected_command": expected_command}
 
 
 def _locate_docker() -> str | None:
@@ -258,7 +411,7 @@ class DockerSession:
             stderr=subprocess.PIPE, bufsize=0, env=environment,
         )
 
-    def call(self, args, timeout=20, input_data=None, deadline=None):
+    def call_completed(self, args, timeout=20, input_data=None, deadline=None):
         environment = {
             "HOME": str(self.home_dir),
             "PATH": "/usr/bin:/bin",
@@ -281,6 +434,11 @@ class DockerSession:
             )
         except (OSError, subprocess.TimeoutExpired) as error:
             raise SandboxError("local Docker call failed: " + type(error).__name__) from error
+        return result
+
+    def call(self, args, timeout=20, input_data=None, deadline=None):
+        result = self.call_completed(args, timeout=timeout, input_data=input_data,
+                                     deadline=deadline)
         if result.returncode != 0:
             message = result.stderr.decode("utf-8", "replace")[-1000:]
             raise SandboxError("local Docker call exited " + str(result.returncode) + ": " + message)
@@ -377,6 +535,289 @@ class DockerSession:
             except SandboxError as error:
                 return str(error)
         return None
+
+
+def _qualification_container(session: DockerSession, spec: dict,
+                             name: str, timeout: int,
+                             probe_deadline: float | None) -> dict:
+    """Create, inspect, start, and confirm removal of one fixed probe container."""
+    record = {"container_id": None, "config_valid": False,
+              "return_code": None, "stdout": b"", "stderr": b"",
+              "state": None, "removed": False, "absent_after_cleanup": False}
+    container_id = None
+    try:
+        created = session.call(spec["argv"], timeout=15, deadline=probe_deadline)
+        container_id = created.decode("ascii", "replace").strip()
+        if not container_id:
+            raise SandboxError("qualification container create returned no ID")
+        record["container_id"] = container_id
+        raw = session.call(["inspect", "--format", "{{json .}}", container_id],
+                           timeout=10, deadline=probe_deadline)
+        try:
+            inspected = json.loads(raw)
+            host_config = inspected["HostConfig"]
+            container_config = inspected["Config"]
+        except (json.JSONDecodeError, KeyError, TypeError) as error:
+            raise SandboxError("qualification container inspection is malformed") from error
+        issues = validate_container_config(
+            host_config, spec["resources"], spec["expected_binds"],
+            container_config, spec["expected_command"], expected_working_dir="/",
+        )
+        if issues:
+            raise SandboxError("qualification container configuration rejected: "
+                               + "; ".join(issues))
+        record["config_valid"] = True
+        result = session.call_completed(
+            ["start", "--attach", "--interactive", container_id],
+            timeout=timeout, input_data=b"", deadline=probe_deadline,
+        )
+        record["return_code"] = result.returncode
+        record["stdout"] = result.stdout
+        record["stderr"] = result.stderr
+        state_raw = session.call(["inspect", "--format", "{{json .State}}", container_id],
+                                 timeout=10, deadline=session.deadline)
+        try:
+            record["state"] = json.loads(state_raw)
+        except json.JSONDecodeError as error:
+            raise SandboxError("qualification container state is invalid JSON") from error
+    except (SandboxError, OSError, TypeError, KeyError, AttributeError) as error:
+        record["error"] = type(error).__name__ + ": " + str(error)
+    finally:
+        if container_id:
+            try:
+                session.call(["rm", "--force", container_id], timeout=5)
+                record["removed"] = True
+            except SandboxError as error:
+                record["cleanup_error"] = str(error)
+            try:
+                session.call(["inspect", container_id], timeout=5)
+            except SandboxError as error:
+                message = str(error).lower()
+                if "no such container" in message or "no such object" in message:
+                    record["absent_after_cleanup"] = True
+                else:
+                    prior = record.get("cleanup_error")
+                    record["cleanup_error"] = "; ".join(
+                        value for value in (prior, str(error)) if value
+                    )
+            else:
+                record["cleanup_error"] = "; ".join(
+                    value for value in (
+                        record.get("cleanup_error"),
+                        "qualification container still exists after cleanup",
+                    ) if value
+                )
+    return record
+
+
+def _probe_check_set() -> dict:
+    return {name: "NOT_RUN" for name in QUALIFICATION_CHECKS}
+
+
+def run_qualification_probe(session: DockerSession, resources: dict) -> dict:
+    """Run a fixed, non-research capability probe before any method slot starts."""
+    checks = _probe_check_set()
+    report = {
+        "schema_version": 1,
+        "probe_id": QUALIFICATION_PROBE_ID,
+        "status": "NOT_VERIFIED",
+        "script_sha256": _sha256((_QUALIFICATION_DIAGNOSTIC_PROGRAM
+                                   + _QUALIFICATION_OOM_PROGRAM).encode("utf-8")),
+        "image_id": getattr(session, "image_id", None),
+        "completed_at_utc": datetime.now(timezone.utc).isoformat(),
+        "checks": checks,
+        "observed": {"resources": dict(resources)},
+    }
+    diagnostic = None
+    oom = None
+    try:
+        probe_deadline = (session.deadline - CLEANUP_RESERVE_SECONDS
+                          if session.deadline is not None else None)
+        if not isinstance(report["image_id"], str) or not report["image_id"].startswith("sha256:"):
+            raise SandboxError("qualification probe has no inspected scratch image ID")
+        host_memory = session.info.get("memory_bytes")
+        if isinstance(host_memory, bool) or not isinstance(host_memory, int):
+            raise SandboxError("qualification host memory capacity is unavailable")
+        if host_memory < 256 * 1024 * 1024:
+            raise SandboxError("host memory is below the fixed qualification probe minimum")
+        if resources.get("memory_bytes", 0) < QUALIFICATION_MEMORY_BYTES:
+            raise SandboxError("task memory limit is below the fixed probe's Python runtime minimum")
+
+        runtime_prefix, python_relative_path, library_dirs = _runtime_layout()
+        nonce = format(time.monotonic_ns(), "x")
+        with tempfile.TemporaryDirectory(prefix="pcg-qualification-", dir="/tmp") as temp:
+            temp_dir = Path(temp)
+            canary = temp_dir / "host-only-canary.bin"
+            canary.write_bytes(os.urandom(32))
+            os.chmod(canary, 0o600)
+            expected = {key: resources[key] for key in (
+                "cpu_quota_millis", "memory_bytes", "pids_limit")}
+            diagnostic_program = _QUALIFICATION_DIAGNOSTIC_PROGRAM
+            diag_spec = build_qualification_container_spec(
+                session.image_tag, resources, "pcg-qual-diag-" + nonce,
+                str(temp_dir / "diag.cid"), runtime_prefix, python_relative_path,
+                library_dirs, diagnostic_program,
+                [json.dumps(expected, sort_keys=True), str(canary)],
+            )
+            diag_spec["resources"] = resources
+            diagnostic = _qualification_container(
+                session, diag_spec, "pcg-qual-diag-" + nonce, timeout=15,
+                probe_deadline=probe_deadline)
+            report["observed"]["diagnostic_container"] = {
+                key: diagnostic.get(key) for key in (
+                    "container_id", "config_valid", "return_code", "state",
+                    "removed", "absent_after_cleanup", "error", "cleanup_error")
+            }
+            if (diagnostic["config_valid"] and diagnostic["return_code"] == 0
+                    and isinstance(diagnostic.get("state"), dict)
+                    and diagnostic["state"].get("ExitCode") == 0
+                    and diagnostic["state"].get("OOMKilled") is False):
+                try:
+                    output = json.loads(diagnostic["stdout"].decode("utf-8"))
+                    observed_checks = output["checks"]
+                    actual = output["actual"]
+                except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError):
+                    observed_checks, actual = {}, {}
+                mapping = {
+                    "host_file_unreadable": "host_file_unreadable",
+                    "network_unavailable": "network_unavailable",
+                    "effective_cpu_quota": "effective_cpu_quota",
+                    "effective_memory_limit": "effective_memory_limit",
+                    "effective_memory_swap_limit": "effective_memory_swap_limit",
+                    "effective_pid_limit": "effective_pid_limit",
+                }
+                for output_key, report_key in mapping.items():
+                    checks[report_key] = "PASS" if observed_checks.get(output_key) is True else "FAIL"
+                report["observed"]["effective_resources"] = actual
+                checks["container_config"] = "PASS"
+            else:
+                checks["container_config"] = "PASS" if diagnostic["config_valid"] else "FAIL"
+                for key in ("host_file_unreadable", "network_unavailable",
+                            "effective_cpu_quota", "effective_memory_limit",
+                            "effective_memory_swap_limit", "effective_pid_limit"):
+                    checks[key] = "FAIL"
+
+            diag_clean = diagnostic["removed"] and diagnostic["absent_after_cleanup"]
+            checks["probe_container_cleanup"] = "PASS" if diag_clean else "FAIL"
+            if all(checks[key] == "PASS" for key in (
+                    "container_config", "host_file_unreadable", "network_unavailable",
+                    "effective_cpu_quota", "effective_memory_limit",
+                    "effective_memory_swap_limit", "effective_pid_limit",
+                    "probe_container_cleanup")):
+                oom_resources = dict(resources)
+                oom_resources["memory_bytes"] = QUALIFICATION_MEMORY_BYTES
+                oom_resources["pids_limit"] = min(resources["pids_limit"], 16)
+                oom_spec = build_qualification_container_spec(
+                    session.image_tag, oom_resources, "pcg-qual-oom-" + nonce,
+                    str(temp_dir / "oom.cid"), runtime_prefix, python_relative_path,
+                    library_dirs, _QUALIFICATION_OOM_PROGRAM,
+                    [str(QUALIFICATION_MEMORY_BYTES)],
+                )
+                oom_spec["resources"] = oom_resources
+                oom = _qualification_container(
+                    session, oom_spec, "pcg-qual-oom-" + nonce, timeout=15,
+                    probe_deadline=probe_deadline)
+                state = oom.get("state") or {}
+                marker_seen = oom.get("stdout", b"").startswith(b"PCG_OOM_PROBE_READY\n")
+                checks["memory_overlimit_killed"] = (
+                    "PASS" if oom["config_valid"] and state.get("OOMKilled") is True
+                    and state.get("ExitCode") == 137 and oom.get("return_code") in (137, 1)
+                    and marker_seen
+                    else "FAIL")
+                report["observed"]["oom_container"] = {
+                    key: oom.get(key) for key in (
+                        "container_id", "config_valid", "return_code", "state",
+                        "removed", "absent_after_cleanup", "error", "cleanup_error")
+                }
+                report["observed"]["oom_container"]["overlimit_marker_seen"] = marker_seen
+                checks["probe_container_cleanup"] = (
+                    "PASS" if diag_clean and oom["removed"] and oom["absent_after_cleanup"]
+                    else "FAIL")
+            else:
+                checks["memory_overlimit_killed"] = "NOT_RUN"
+
+        report["status"] = ("VERIFIED" if all(checks[name] == "PASS"
+                                              for name in QUALIFICATION_CHECKS)
+                            else "NOT_VERIFIED")
+    except (SandboxError, OSError, TypeError, KeyError, ValueError, AttributeError) as error:
+        report["error"] = type(error).__name__ + ": " + str(error)
+    report["completed_at_utc"] = datetime.now(timezone.utc).isoformat()
+    return report
+
+
+def validate_qualification_evidence(report: dict, resources: dict,
+                                    image_id: str | None = None) -> bool:
+    """Accept only a complete report from this fixed probe and exact profile."""
+    if (not isinstance(report, dict) or isinstance(report.get("schema_version"), bool)
+            or report.get("schema_version") != 1):
+        return False
+    if report.get("probe_id") != QUALIFICATION_PROBE_ID or report.get("status") != "VERIFIED":
+        return False
+    if (not isinstance(report.get("script_sha256"), str)
+            or report["script_sha256"] != _sha256((_QUALIFICATION_DIAGNOSTIC_PROGRAM
+                                                   + _QUALIFICATION_OOM_PROGRAM).encode("utf-8"))):
+        return False
+    expected_image = image_id or report.get("image_id")
+    if (not isinstance(expected_image, str) or not expected_image.startswith("sha256:")
+            or report.get("image_id") != expected_image):
+        return False
+    try:
+        completed_at = datetime.fromisoformat(str(report.get("completed_at_utc")).replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    if completed_at.tzinfo is None:
+        return False
+    checks = report.get("checks")
+    if not isinstance(checks, dict) or set(checks) != set(QUALIFICATION_CHECKS):
+        return False
+    if any(checks.get(name) != "PASS" for name in QUALIFICATION_CHECKS):
+        return False
+    observed = report.get("observed")
+    observed_resources = observed.get("resources") if isinstance(observed, dict) else None
+    if (not isinstance(observed_resources, dict)
+            or set(observed_resources) != set(resources)
+            or any(type(observed_resources.get(key)) is not int
+                   or type(value) is not int or observed_resources[key] != value
+                   for key, value in resources.items())):
+        return False
+    actual = observed.get("effective_resources")
+    diagnostic = observed.get("diagnostic_container")
+    oom = observed.get("oom_container")
+    resource_pairs = (
+        ("cpu_quota_millis", resources.get("cpu_quota_millis")),
+        ("memory_bytes", resources.get("memory_bytes")),
+        ("memory_swap_bytes", 0),
+        ("pids_limit", resources.get("pids_limit")),
+    )
+    if not (isinstance(actual, dict)
+            and all(type(actual.get(name)) is int and type(expected) is int
+                    and actual[name] == expected for name, expected in resource_pairs)
+            and isinstance(diagnostic, dict) and isinstance(oom, dict)):
+        return False
+    diag_state = diagnostic.get("state")
+    oom_state = oom.get("state")
+    return (diagnostic.get("config_valid") is True
+            and type(diagnostic.get("return_code")) is int
+            and diagnostic.get("return_code") == 0
+            and isinstance(diag_state, dict)
+            and type(diag_state.get("ExitCode")) is int and diag_state.get("ExitCode") == 0
+            and diag_state.get("OOMKilled") is False
+            and diag_state.get("Running") is False and diag_state.get("Status") == "exited"
+            and diagnostic.get("removed") is True
+            and diagnostic.get("absent_after_cleanup") is True
+            and diagnostic.get("error") is None
+            and diagnostic.get("cleanup_error") is None
+            and oom.get("config_valid") is True
+            and type(oom.get("return_code")) is int and oom.get("return_code") in (1, 137)
+            and isinstance(oom_state, dict)
+            and type(oom_state.get("ExitCode")) is int and oom_state.get("ExitCode") == 137
+            and oom_state.get("OOMKilled") is True
+            and oom_state.get("Running") is False and oom_state.get("Status") == "exited"
+            and oom.get("removed") is True
+            and oom.get("absent_after_cleanup") is True
+            and oom.get("error") is None
+            and oom.get("cleanup_error") is None
+            and oom.get("overlimit_marker_seen") is True)
 
 
 def _valid_manifest(manifest: dict) -> list[str]:
@@ -570,6 +1011,27 @@ def run_task(manifest_path, run_id: str, output_root) -> dict:
         image_tag, image_id = session.prepare_empty_image()
         preflight["sandbox_image_tag"] = image_tag
         preflight["sandbox_image_id"] = image_id
+        qualification = run_qualification_probe(session, preflight["manifest"]["resources"])
+        if not validate_qualification_evidence(
+                qualification, preflight["manifest"]["resources"], image_id):
+            failed_checks = [name for name in QUALIFICATION_CHECKS
+                             if qualification.get("checks", {}).get(name) != "PASS"]
+            cleanup_error = _remove_sandbox_image_once(session)
+            session.close()
+            reason = "sandbox qualification was not verified"
+            if failed_checks:
+                reason += ": " + ", ".join(failed_checks)
+            if qualification.get("error"):
+                reason += "; " + qualification["error"]
+            if cleanup_error:
+                reason += "; sandbox image cleanup failed: " + cleanup_error
+                qualification["sandbox_image_cleanup"] = "FAILED"
+            else:
+                qualification["sandbox_image_cleanup"] = "REMOVED"
+            blocked = _blocked(reason, run_id=run_id)
+            blocked["qualification_evidence"] = qualification
+            return blocked
+        preflight["qualification_evidence"] = qualification
     except (SandboxError, OSError) as error:
         if session is not None:
             cleanup_error = session.remove_empty_image()
@@ -592,6 +1054,7 @@ def run_task(manifest_path, run_id: str, output_root) -> dict:
         "manifest_sha256": preflight["manifest_sha256"],
         "started_at_utc": datetime.now(timezone.utc).isoformat(),
         "sandbox_image_id": image_id,
+        "qualification_evidence": preflight["qualification_evidence"],
     }
     try:
         (run_dir / "intent.json").write_bytes(canonical_bytes(intent) + b"\n")
@@ -612,7 +1075,7 @@ def run_task(manifest_path, run_id: str, output_root) -> dict:
 
 
 def preflight_only(manifest_path) -> dict:
-    """Check pins and the existing local Docker daemon without creating a run."""
+    """Check pins, daemon controls, and fixed sandbox qualification without a run."""
     result = preflight_task(manifest_path)
     if result["task_status"] != "READY":
         result["method_invocations_started"] = 0
@@ -623,26 +1086,56 @@ def preflight_only(manifest_path) -> dict:
         return result
     session = None
     try:
-        session = DockerSession(result["package_dir"])
+        wall_limit = result["manifest"]["resources"]["wall_seconds"]
+        session = DockerSession(result["package_dir"], deadline=time.monotonic() + wall_limit)
         session.validate_resources(result["manifest"]["resources"])
+        image_tag, image_id = session.prepare_empty_image()
+        qualification = run_qualification_probe(session, result["manifest"]["resources"])
+        if not validate_qualification_evidence(
+                qualification, result["manifest"]["resources"], image_id):
+            failed_checks = [name for name in QUALIFICATION_CHECKS
+                             if qualification.get("checks", {}).get(name) != "PASS"]
+            raise SandboxError("sandbox qualification was not verified: "
+                               + ", ".join(failed_checks))
+        cleanup_error = _remove_sandbox_image_once(session)
+        if cleanup_error:
+            qualification["status"] = "NOT_VERIFIED"
+            qualification["error"] = "sandbox image cleanup failed: " + cleanup_error
+            raise SandboxError(qualification["error"])
         return {
             "task_status": "READY",
             "research_acceptance": "NOT_EVALUATED",
             "planned_method_invocations": PLANNED_SLOTS,
+            "method_start_requests": 0,
             "method_invocations_started": 0,
             "completed_method_invocations": 0,
             "partial": False,
             "stop_reason": None,
-            "sandbox_preflight": "LOCAL_DOCKER_CGROUP_V2_SECCOMP_CHECKED",
+            "sandbox_preflight": "LOCAL_DOCKER_CGROUP_V2_SECCOMP_QUALIFICATION_CHECKED",
+            "qualification_evidence": qualification,
+            "sandbox_image_cleanup": "REMOVED",
             "docker_server_version": session.info["server_version"],
             "docker_cgroup_version": session.info["cgroup_version"],
             "docker_required_resource_capabilities": session.info["required_resource_capabilities"],
             "exit_code": 0,
         }
     except (SandboxError, OSError) as error:
-        return _blocked("sandbox preflight blocked: " + str(error))
+        cleanup_error = _remove_sandbox_image_once(session) if session is not None else None
+        blocked = _blocked("sandbox preflight blocked: " + str(error))
+        if "qualification" in locals():
+            if cleanup_error:
+                qualification["sandbox_image_cleanup"] = "FAILED"
+                qualification["error"] = (qualification.get("error", "")
+                                           + "; sandbox image cleanup failed: " + cleanup_error).strip("; ")
+            elif session is not None:
+                qualification["sandbox_image_cleanup"] = "REMOVED"
+            blocked["qualification_evidence"] = qualification
+        if cleanup_error:
+            blocked["stop_reason"] += "; sandbox image cleanup failed: " + cleanup_error
+        return blocked
     finally:
         if session is not None:
+            _remove_sandbox_image_once(session)
             session.close()
 
 
@@ -1002,6 +1495,7 @@ def _run_slot(session: DockerSession, run_dir: Path, run_id: str,
                         "start_unknown": process is not None,
                         "start_requested": start_requested,
                         "container_id": container_id,
+                        "output_bytes_observed": output_budget["observed"] - slot_observed_start,
                         "error": "METHOD_ATTACH_OR_CAPTURE_FAILED: " + str(error),
                         "result": None})
     finally:
@@ -1190,6 +1684,9 @@ def _execute_task(preflight: dict, run_id: str, output_root: Path,
                         "cli_exit_code": outcome.get("cli_exit_code"),
                         "container_exit_code": outcome.get("state", {}).get("ExitCode"),
                         "oom_killed": outcome.get("state", {}).get("OOMKilled", False),
+                        "stdout_path": outcome.get("stdout_path"),
+                        "stderr_path": outcome.get("stderr_path"),
+                        "output_bytes_observed": outcome.get("output_bytes_observed", 0),
                         "error": outcome.get("error"),
                     }
                     child_records.append(record)
@@ -1310,6 +1807,7 @@ def _execute_task(preflight: dict, run_id: str, output_root: Path,
         "cpu_usage_seconds": "UNKNOWN",
         "method_start_unknown_slots": start_unknown_slots,
         "slot_exit_records": child_records,
+        "qualification_evidence": preflight["qualification_evidence"],
         "sandbox_image_cleanup": "REMOVED" if image_cleanup_error is None else "FAILED",
         "execution_environment": {
             "python_executable": str(Path(sys.executable).resolve()),
@@ -1357,6 +1855,7 @@ def _execute_task(preflight: dict, run_id: str, output_root: Path,
         "partial": receipt["partial"],
         "stop_reason": receipt["stop_reason"],
         "output_sha256": receipt["output_sha256"],
+        "qualification_evidence": receipt["qualification_evidence"],
         "wall_seconds_elapsed": receipt["wall_seconds_elapsed"],
         "wall_seconds_scope": WALL_SECONDS_SCOPE,
         "exit_code": exit_code,
