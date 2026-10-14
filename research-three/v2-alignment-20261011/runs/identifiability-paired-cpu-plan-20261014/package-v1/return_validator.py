@@ -3,6 +3,7 @@
 import hashlib
 import json
 import math
+import errno
 from pathlib import Path
 import re
 import sys
@@ -55,6 +56,7 @@ RESOURCE_FIELDS = (
 HASH_RE = re.compile(r"^[0-9a-f]{64}$")
 SLOT_FILE_RE = re.compile(r"^slot-([0-9]{4})\.(stdout|stderr)\.bin$")
 SAFE_FILE_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
+CID_FILE_RE = re.compile(r"^container-([0-9]{4})\.cid$")
 SLOT_EXIT_FIELDS = {
     "slot", "case_id", "prefix", "method", "status", "started", "start_requested",
     "start_unknown", "container_id", "container_cleanup_status", "cli_exit_code",
@@ -245,10 +247,7 @@ def _validate_scalar_schema(attempt):
     _require(all(isinstance(value, str) and HASH_RE.fullmatch(value)
                  for value in attempt["schema_hashes"].values()),
              "attempt schema pin is not a SHA-256 value")
-    _require(isinstance(attempt.get("execution_environment"), dict)
-             and isinstance(attempt.get("command"), list)
-             and all(isinstance(value, str) for value in attempt["command"]),
-             "attempt execution environment or command is malformed")
+    _validate_execution_provenance(attempt)
     for field in ("peak_rss_bytes", "cpu_usage_seconds"):
         value = attempt.get(field)
         _require(value == "UNKNOWN" or
@@ -256,6 +255,75 @@ def _validate_scalar_schema(attempt):
                   isinstance(value, (int, float)) and not isinstance(value, bool)
                   and math.isfinite(value) and value >= 0),
                  "attempt resource usage field is invalid: " + field)
+
+
+def _validate_execution_provenance(attempt):
+    environment = attempt.get("execution_environment")
+    required_fields = {
+        "python_executable", "python_binary_sha256", "python_version", "platform",
+        "docker_server_version", "docker_cgroup_version",
+        "docker_required_resource_capabilities", "sandbox_image_id",
+        "sandbox_endpoint_type",
+    }
+    _require(isinstance(environment, dict) and set(environment) == required_fields,
+             "attempt execution environment has missing or unknown provenance fields")
+    _require(isinstance(environment.get("python_executable"), str)
+             and Path(environment["python_executable"]).is_absolute()
+             and environment["python_executable"].strip(),
+             "attempt Python executable provenance is invalid")
+    _require(isinstance(environment.get("python_binary_sha256"), str)
+             and HASH_RE.fullmatch(environment["python_binary_sha256"]),
+             "attempt Python binary hash provenance is invalid")
+    _require(isinstance(environment.get("python_version"), str)
+             and environment["python_version"].startswith("3.")
+             and environment["python_version"].strip(),
+             "attempt Python version provenance is invalid")
+    _require(environment.get("platform") == "linux",
+             "attempt execution platform provenance is invalid")
+    _require(isinstance(environment.get("docker_server_version"), str)
+             and environment["docker_server_version"].strip(),
+             "attempt Docker server version provenance is invalid")
+    _require(environment.get("docker_cgroup_version") == "2",
+             "attempt Docker cgroup version provenance is invalid")
+    expected_capabilities = {
+        "memory_limit": True, "swap_limit": True, "cpu_quota": True, "pids_limit": True,
+    }
+    capabilities = environment.get("docker_required_resource_capabilities")
+    _require(isinstance(capabilities, dict) and capabilities == expected_capabilities
+             and all(type(value) is bool for value in capabilities.values()),
+             "attempt Docker resource capability provenance is invalid")
+    qualification = attempt.get("qualification_evidence")
+    _require(isinstance(qualification, dict)
+             and environment.get("sandbox_image_id") == qualification.get("image_id"),
+             "attempt sandbox image provenance differs from qualification evidence")
+    _require(environment.get("sandbox_endpoint_type") == "local_unix_socket",
+             "attempt sandbox endpoint provenance is invalid")
+
+    command = attempt.get("command")
+    _require(isinstance(command, list) and len(command) == 7
+             and all(isinstance(value, str) and value.strip() for value in command)
+             and Path(command[0]).name == "runner.py",
+             "attempt command provenance is malformed")
+    values = {}
+    index = 1
+    while index < len(command):
+        option = command[index]
+        _require(option in ("--task-manifest", "--run-id", "--output-root")
+                 and option not in values and index + 1 < len(command),
+                 "attempt command provenance contains an unknown or duplicate option")
+        value = command[index + 1]
+        _require(isinstance(value, str) and value.strip()
+                 and not value.startswith("--"),
+                 "attempt command provenance has an empty option value")
+        values[option] = value
+        index += 2
+    _require(set(values) == {"--task-manifest", "--run-id", "--output-root"}
+             and values["--run-id"] == attempt.get("run_id"),
+             "attempt command provenance does not bind the receipt run ID")
+    _require(Path(values["--output-root"]).name not in ("", ".")
+             and "\x00" not in values["--task-manifest"]
+             and "\x00" not in values["--output-root"],
+             "attempt command path provenance is invalid")
 
 
 def _planned_slot(slot_number, case_ids):
@@ -402,7 +470,7 @@ def _validate_execution_records(attempt, slots, resources):
     return referenced_logs
 
 
-def _validate_artifacts(bundle_dir, attempt, referenced_logs, score_path):
+def _validate_artifacts(bundle_dir, attempt, referenced_logs, score_path, resources):
     root = Path(bundle_dir).resolve()
     entries = list(root.iterdir())
     _require(all(not path.is_symlink() for path in entries),
@@ -453,6 +521,19 @@ def _validate_artifacts(bundle_dir, attempt, referenced_logs, score_path):
     actual = {path.name for path in entries}
     _require(actual == expected,
              "bundle file set differs from declared artifacts and reserved receipts")
+    if attempt.get("task_status") == "PASS":
+        required_cids = {"container-" + format(slot, "04d") + ".cid"
+                         for slot in range(1, 81)}
+        required_observations = {"intent.json", "progress.json", "slot-events.jsonl"} | required_cids
+        missing = required_observations - actual
+        _require(not missing,
+                 "required observation artifact is missing: " + ", ".join(sorted(missing)))
+        cid_names = {name for name in actual if CID_FILE_RE.fullmatch(name)}
+        _require(cid_names == required_cids,
+                 "required observation artifact set has missing or extra container ID files")
+        _require(required_observations <= set(artifact_records),
+                 "required observation artifact is absent from the receipt manifest")
+        _validate_pass_observations(root, attempt, resources)
     intent_path = root / "intent.json"
     try:
         intent = json.loads(intent_path.read_bytes())
@@ -474,6 +555,134 @@ def _validate_artifacts(bundle_dir, attempt, referenced_logs, score_path):
              and intent.get("qualification_evidence") == attempt.get("qualification_evidence"),
              "single-attempt intent does not bind the verified qualification evidence")
     return artifact_records
+
+
+def _validate_pass_observations(root, attempt, resources):
+    """Validate fixed PASS evidence independently of the self-reported manifest."""
+    try:
+        progress = json.loads((root / "progress.json").read_bytes())
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ReturnValidationError("required observation artifact progress.json is invalid") from error
+    required_progress = {
+        "run_id", "state", "method_start_requests", "method_invocations_started",
+        "completed_method_invocations", "planned_method_invocations", "stop_reason",
+        "sandbox_image_cleanup", "updated_at_utc", "output_bytes_captured",
+    }
+    _require(isinstance(progress, dict) and required_progress <= set(progress),
+             "required observation artifact progress.json is incomplete")
+    _require(progress.get("run_id") == attempt.get("run_id")
+             and progress.get("state") == "PASS"
+             and progress.get("method_start_requests") == 80
+             and progress.get("method_invocations_started") == 80
+             and progress.get("completed_method_invocations") == 80
+             and progress.get("planned_method_invocations") == 80
+             and progress.get("stop_reason") is None
+             and progress.get("sandbox_image_cleanup") == "REMOVED"
+             and progress.get("output_bytes_captured") ==
+             attempt.get("method_output_bytes_captured")
+             and _is_datetime(progress.get("updated_at_utc")),
+             "required observation artifact progress.json conflicts with PASS receipt")
+
+    records = attempt.get("slot_exit_records")
+    _require(isinstance(records, list) and len(records) == 80,
+             "required observation artifact slot plan is incomplete")
+    cid_ids = {}
+    for number, record in enumerate(records, 1):
+        filename = "container-" + format(number, "04d") + ".cid"
+        try:
+            cid = (root / filename).read_text(encoding="ascii").strip()
+        except (OSError, UnicodeDecodeError) as error:
+            raise ReturnValidationError(
+                "required observation artifact cannot be read: " + filename) from error
+        _require(cid and cid == record.get("container_id"),
+                 "required observation artifact container ID differs from slot record: "
+                 + filename)
+        cid_ids[number] = cid
+
+    try:
+        raw_events = (root / "slot-events.jsonl").read_bytes()
+        lines = raw_events.decode("utf-8").splitlines()
+        _require(raw_events.endswith(b"\n") and all(line.strip() for line in lines),
+                 "required observation artifact slot-events.jsonl has blank or unterminated records")
+        events = [json.loads(line) for line in lines]
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ReturnValidationError(
+            "required observation artifact slot-events.jsonl is invalid") from error
+    _require(len(events) == 320,
+             "required observation artifact slot-events.jsonl does not contain 80 four-event records")
+    expected_types = ("CONTAINER_CREATED", "CONTAINER_CONFIG_INSPECTED",
+                      "METHOD_START_REQUESTED", "METHOD_PROCESS_FINISHED")
+    previous_at = None
+    for index, record in enumerate(records):
+        group = events[index * 4:(index + 1) * 4]
+        expected_identity = {
+            "slot": index + 1,
+            "case_id": record.get("case_id"),
+            "prefix": record.get("prefix"),
+            "method": record.get("method"),
+            "container_id": record.get("container_id"),
+        }
+        for event, event_type in zip(group, expected_types):
+            _require(isinstance(event, dict)
+                     and event.get("event") == event_type
+                     and type(event.get("slot")) is int
+                     and type(event.get("prefix")) is int
+                     and all(event.get(key) == value
+                             for key, value in expected_identity.items()),
+                     "required observation artifact event identity/order is invalid at slot "
+                     + str(index + 1))
+            event_at = event.get("event_at_utc")
+            _require(_is_datetime(event_at),
+                     "required observation artifact event time is invalid at slot "
+                     + str(index + 1))
+            parsed_at = datetime.fromisoformat(event_at.replace("Z", "+00:00"))
+            _require(previous_at is None or parsed_at >= previous_at,
+                     "required observation artifact event times are out of order")
+            previous_at = parsed_at
+        created, config, start, finished = group
+        _require(isinstance(created.get("create_argv"), list)
+                 and bool(created["create_argv"])
+                 and all(isinstance(value, str) and value for value in created["create_argv"]),
+                 "required observation artifact container create provenance is invalid")
+        configuration = config.get("configuration")
+        host_config = configuration.get("host_config") if isinstance(configuration, dict) else None
+        container_config = configuration.get("container_config") if isinstance(configuration, dict) else None
+        _require(config.get("validated") is True and config.get("issues") == []
+                 and isinstance(configuration, dict)
+                 and set(configuration) == {"host_config", "container_config"}
+                 and isinstance(host_config, dict)
+                 and isinstance(container_config, dict)
+                 and host_config.get("NanoCpus") == resources["cpu_quota_millis"] * 1_000_000
+                 and host_config.get("Memory") == resources["memory_bytes"]
+                 and host_config.get("MemorySwap") == resources["memory_bytes"]
+                 and host_config.get("PidsLimit") == resources["pids_limit"]
+                 and host_config.get("ReadonlyRootfs") is True
+                 and host_config.get("NetworkMode") == "none"
+                 and host_config.get("Privileged") is False
+                 and container_config.get("User") == "65534:65534"
+                 and container_config.get("WorkingDir") == "/task/source"
+                 and isinstance(config.get("configuration_sha256"), str)
+                 and HASH_RE.fullmatch(config["configuration_sha256"])
+                 and hashlib.sha256(canonical_bytes(configuration)).hexdigest()
+                 == config["configuration_sha256"],
+                 "required observation artifact container configuration evidence is invalid")
+        _require(record.get("status") == "PASS"
+                 and record.get("started") is True
+                 and record.get("start_requested") is True
+                 and start.get("started") is not False
+                 and finished.get("started") is True
+                 and _is_datetime(finished.get("started_at"))
+                 and finished.get("container_exit_code") == 0
+                 and finished.get("cli_exit_code") == 0
+                 and finished.get("oom_killed") is False
+                 and finished.get("stop_reason") is None,
+                 "required observation artifact process completion evidence is invalid")
+        started_at = datetime.fromisoformat(
+            finished["started_at"].replace("Z", "+00:00"))
+        finished_at = datetime.fromisoformat(
+            finished["event_at_utc"].replace("Z", "+00:00"))
+        _require(started_at <= finished_at,
+                 "required observation artifact process time exceeds its finish event")
 
 
 def _validate_frozen_slots(bundle_dir, verified, manifest, manifest_path):
@@ -560,7 +769,7 @@ def validate_return(bundle_dir, score_path=None, task_manifest_path=None,
     _validate_qualification(attempt, resources)
     status = attempt["task_status"]
     referenced_logs = _validate_execution_records(attempt, verified.slots, resources)
-    _validate_artifacts(bundle_dir, attempt, referenced_logs, score_path)
+    _validate_artifacts(bundle_dir, attempt, referenced_logs, score_path, resources)
     _validate_frozen_slots(bundle_dir, verified, manifest, manifest_path)
 
     score = None

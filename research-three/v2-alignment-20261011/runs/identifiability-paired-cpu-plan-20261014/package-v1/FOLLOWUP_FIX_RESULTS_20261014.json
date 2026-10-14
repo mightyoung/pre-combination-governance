@@ -1,0 +1,93 @@
+{
+  "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-FOLLOWUP-RESULTS-20261014",
+  "base_commit": "4ec995fd8a40a8b69e030c57e05743fed14476f6",
+  "branch": "task/research-three-two-hop-lineage-20261012",
+  "classification": "public synthetic regression and development test evidence",
+  "limitations": [
+    "The review harness is mocked and synthetic; diagnostic exit 41 means NOT_VERIFIED and is not evidence of real Docker isolation.",
+    "The task remains blocked until approved cloud resource caps are populated in TASK_MANIFEST.json.",
+    "The unabridged Mac V2 specification and cited metric/schema/data-dictionary/severity-map files are still required before adapting or computing new Mac metrics."
+  ],
+  "package_unit_tests": {
+    "command": "python3 -I -B -m unittest discover -s tests -v",
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 49,
+    "tests_run": 49
+  },
+  "post_fix_review": {
+    "complete_synthetic_PASS_accepted": true,
+    "mocked_diagnostic_cases": [
+      {
+        "canary_reason": "FILE_PROBE_ERROR",
+        "case": "probe_connection_refused_plus_DAC_denial",
+        "exit_code": 41,
+        "external_reason": "CONNECTION_REFUSED",
+        "positive_control_reason": "CONTROL_SETUP_FAILED"
+      },
+      {
+        "canary_reason": "FILE_PROBE_ERROR",
+        "case": "probe_timeout_plus_DAC_denial",
+        "exit_code": 41,
+        "external_reason": "TIMEOUT",
+        "positive_control_reason": "CONTROL_SETUP_FAILED"
+      },
+      {
+        "canary_reason": "FILE_PROBE_ERROR",
+        "case": "probe_network_unreachable_plus_DAC_denial",
+        "exit_code": 41,
+        "external_reason": "NETWORK_UNREACHABLE",
+        "positive_control_reason": "CONTROL_SETUP_FAILED"
+      }
+    ],
+    "mocked_socket_limitation": "Harness fake does not implement bind/listen/getsockname; each diagnostic correctly fails closed with CONTROL_SETUP_FAILED and exit 41. Harness PermissionError has no errno, so raw reason is FILE_PROBE_ERROR. Dedicated unit tests cover a real errno.EACCES (13), a successful loopback positive control, and external errno classifications.",
+    "normal_mount_positive_control_accepted": true,
+    "partial_synthetic_FAIL_accepted": true,
+    "protected_mount_overlap_cases": 5,
+    "receipt_corruptions": 22,
+    "receipt_corruptions_accepted": 0
+  },
+  "pre_fix_red_baseline": {
+    "complete_positive_control_accepted": true,
+    "deleted_progress_events_and_80_container_ids_accepted": true,
+    "empty_command_accepted": true,
+    "empty_execution_environment_accepted": true,
+    "mocked_connection_refused_timeout_and_unreachable_plus_canary_denial_exit_zero": true,
+    "preserved_report_path": "QUALIFICATION_RETURN_REVIEW_20261014_PRE_FIX.json",
+    "report_sha256": "56f4d9580e0ce05bb9857518655a760ccb38745a2ac6e159d838a39d1a3d4e51",
+    "synthetic_only": true
+  },
+  "review_harness": {
+    "bytes": 10229,
+    "library_file_id": "file_000000004d8c82109cc27a15f74d4768",
+    "library_name": "review_fixed_regressions.py",
+    "reported_checks": 33,
+    "reported_result_path": "QUALIFICATION_RETURN_REVIEW_20261014_R3.json",
+    "reported_result_sha256": "2757a34eb17ef4f86c472ff1fd7b09585cfe532ff16d0d9ab228297113d424dc",
+    "sha256": "a818a4c1deec6d30f42c1715a9f08a807be3afa0104d074c495debf00cd9d2ab"
+  },
+  "scope": {
+    "Mac_esrch_eperm_fix_verified": false,
+    "docker_started": false,
+    "mac_v2_specification_available": false,
+    "network_probe_run": false,
+    "new_80_slot_task_run": false,
+    "original_1464_trial_rerun": false,
+    "private_Mac_originals_uploaded": false,
+    "research_methods_started": false
+  },
+  "static_validation": {
+    "complete_synthetic_attempt_schema_instance": "PASS",
+    "draft_2020_12_schema_definitions_checked": 7,
+    "git_diff_check": "PASS",
+    "python_compile": "PASS"
+  },
+  "tested_source_sha256": {
+    "TASK_MANIFEST.json": "a7ec9af752a61e44242ff341513bf7434e79e7637771e50d7dd26554b5f4be70",
+    "return_validator.py": "cc60ecc680d168799cd7ee6a90451f0fda6b876bf8d6a6aa339f3d4c31b858ec",
+    "runner.py": "2b1cb49dcb59c267fd59989aaaeb4a6449361e8050e83e60cd7dc67ec1578be6",
+    "schemas/attempt.schema.json": "03ad7069baa412cd014ef76ac70cc20a72a81ceb70ec67031492267e45b13538",
+    "tests/test_return_validator.py": "4dd085e6200a72e9e22baeff401c9e79edd5c2578f3169daf8261cd8bac51978",
+    "tests/test_runner_preflight.py": "e9343ef3d287e352bbdd39debf893b239a7f029cef570dad91d8d1a251f12fcc"
+  }
+}

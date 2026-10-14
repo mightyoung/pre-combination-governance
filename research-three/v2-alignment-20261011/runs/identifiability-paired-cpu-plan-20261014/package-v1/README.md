@@ -68,8 +68,14 @@ Daemon `info` and stopped-container inspection are only preliminary checks.
 Before `--preflight-only` can return `READY`, or before `run_task` can reserve a
 run directory or start a method, the runner also executes the fixed
 `fixed-network-cgroup-oom-v1` qualification probe in separate disposable
-containers. Its diagnostic container checks that a random `/tmp` canary is
-unreadable, a TEST-NET connection is unavailable, and the effective cgroup CPU,
+containers. Before the container starts, the host process must prove that the
+canary is readable with the exact `65534:65534` probe identity and that its
+bytes match; the runner does not change file permissions. Inside the container,
+only `ENOENT` after a successful host baseline counts as path isolation; a DAC
+permission denial is a distinct failure. The network check first requires a
+successful loopback connection as a positive control. The TEST-NET attempt only
+counts as unavailable for `ENETUNREACH` or `EHOSTUNREACH`; connection-refused,
+timeout, and other errors do not qualify. The probe also verifies that the effective cgroup CPU,
 memory and PID limits match the registered values. Since Docker's registered
 memory-plus-swap value equals the memory cap, cgroup v2 must report
 `memory.swap.max=0` (swap disabled). A second container
@@ -85,9 +91,11 @@ library directories used by that interpreter, and (for method slots) the exact
 frozen method runtime directory. Resolved ancestor/descendant overlaps with the
 package are rejected, so placing this package under `sys.prefix`, `/lib`, or
 `/usr/lib` blocks before a container starts. A `VERIFIED` report records the
-probe ID, script SHA-256, image ID, resource values, container states, kill
-result, and cleanup confirmation. No probe was run in this development
-environment; unit tests use synthetic reports and mocks.
+probe ID, script SHA-256, image ID, resource values, same-identity canary
+baseline, raw errno/reason for both canary and network controls, container
+states, kill result, and cleanup confirmation. No Docker qualification probe
+was run in this development environment; unit tests use synthetic reports and
+mocks.
 
 The `wall_seconds` deadline starts before Docker setup and ends after sandbox
 image cleanup. It caps the sandbox lifecycle; frozen-bundle finalization runs
@@ -149,9 +157,14 @@ python3 -I return_validator.py \
 ```
 
 Before scoring, `return_validator.py` validates the typed attempt schema,
-registered resource values and usage, qualification evidence, every child
-start/exit/cleanup state, and the exact path/byte-count/SHA-256 of all declared
-artifacts. Started slots must have both log files. It rejects unknown starts,
+nonempty execution-environment provenance and a command bound to the receipt's
+run ID, registered resource values and usage, qualification evidence, every
+child start/exit/cleanup state, and the exact path/byte-count/SHA-256 of all
+declared artifacts. A complete `PASS` also requires `progress.json`, the
+ordered 320-event `slot-events.jsonl` journal, and all 80 `.cid` files, with
+their identities, times, configuration hashes and completion states checked
+against the slot records. These fixed observations are required independently
+of the receipt's artifact list. Started slots must have both log files. It rejects unknown starts,
 failed cleanup, missing caps, over-limit complete runs, and boolean values in
 integer fields. For a complete return, `return_validator.py` reruns the deterministic scorer
 against the frozen bundle and the supplied/default pinned manifest, oracle, and

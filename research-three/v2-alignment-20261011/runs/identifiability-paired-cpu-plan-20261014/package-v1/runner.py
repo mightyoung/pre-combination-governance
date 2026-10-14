@@ -2,6 +2,7 @@
 
 import argparse
 from datetime import datetime, timezone
+import errno
 import hashlib
 import json
 import os
@@ -38,13 +39,14 @@ LOCAL_DOCKER_SOCKETS = ("/var/run/docker.sock", "/run/docker.sock")
 QUALIFICATION_PROBE_ID = "fixed-network-cgroup-oom-v1"
 QUALIFICATION_MEMORY_BYTES = 64 * 1024 * 1024
 QUALIFICATION_CHECKS = (
-    "container_config", "host_file_unreadable", "network_unavailable",
+    "container_config", "host_file_baseline_readable", "host_file_unreadable",
+    "network_positive_control", "network_unavailable",
     "effective_cpu_quota", "effective_memory_limit",
     "effective_memory_swap_limit", "effective_pid_limit",
     "memory_overlimit_killed", "probe_container_cleanup",
 )
 
-_QUALIFICATION_DIAGNOSTIC_PROGRAM = r'''import json, os, socket, sys
+_QUALIFICATION_DIAGNOSTIC_PROGRAM = r'''import errno, hashlib, json, os, socket, sys
 expected = json.loads(sys.argv[1])
 canary = sys.argv[2]
 def read(path):
@@ -61,25 +63,93 @@ actual = {
 }
 try:
     with open(canary, "rb") as stream:
-        stream.read(1)
-    host_file_unreadable = False
-except OSError:
-    host_file_unreadable = True
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.settimeout(1.0)
+        canary_bytes = stream.read()
+    canary_hash = hashlib.sha256(canary_bytes).hexdigest()
+    hash_matches = canary_hash == expected.get("host_file_sha256")
+    host_file = {"readable": True, "errno": None,
+                 "reason": "HOST_FILE_VISIBLE" if hash_matches else "HOST_FILE_CONTENT_MISMATCH",
+                 "sha256": canary_hash}
+except OSError as error:
+    code = error.errno
+    reason = "DAC_PERMISSION_DENIED" if code == errno.EACCES else (
+        "PATH_NOT_VISIBLE" if code == errno.ENOENT else "FILE_PROBE_ERROR")
+    host_file = {"readable": False, "errno": code,
+                 "reason": reason, "sha256": None}
+
+listener = None
+positive = None
+positive_control = {"connected": False, "errno": None,
+                    "reason": "CONTROL_SETUP_FAILED"}
 try:
-    network_unavailable = sock.connect_ex(("192.0.2.1", 9)) != 0
+    listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    listener.bind(("127.0.0.1", 0))
+    listener.listen(1)
+    positive = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    positive.settimeout(1.0)
+    code = positive.connect_ex(listener.getsockname())
+    positive_control = {"connected": code == 0, "errno": code,
+                        "reason": "CONNECTED" if code == 0 else "CONTROL_CONNECT_FAILED"}
+except (OSError, AttributeError) as error:
+    code = error.errno if isinstance(error, OSError) else None
+    positive_control = {"connected": False, "errno": code,
+                        "reason": "CONTROL_SETUP_FAILED"}
 finally:
-    sock.close()
+    if positive is not None:
+        positive.close()
+    if listener is not None:
+        listener.close()
+
+external = None
+external_control = {"connected": False, "errno": None, "reason": "PROBE_FAILED"}
+try:
+    external = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    external.settimeout(1.0)
+    code = external.connect_ex(("192.0.2.1", 9))
+    if code == 0:
+        reason = "CONNECTED"
+    elif code == errno.ECONNREFUSED:
+        reason = "CONNECTION_REFUSED"
+    elif code in (errno.ENETUNREACH, errno.EHOSTUNREACH):
+        reason = "NETWORK_UNREACHABLE"
+    elif code == errno.ETIMEDOUT:
+        reason = "TIMEOUT"
+    else:
+        reason = "OTHER_ERRNO"
+    external_control = {"connected": code == 0, "errno": code, "reason": reason}
+except (OSError, TimeoutError) as error:
+    code = error.errno if isinstance(error, OSError) and error.errno is not None else errno.ETIMEDOUT
+    reason = "TIMEOUT" if code == errno.ETIMEDOUT else "OTHER_ERRNO"
+    external_control = {"connected": False, "errno": code, "reason": reason}
+finally:
+    if external is not None:
+        external.close()
+
+host_baseline = expected.get("host_file_baseline_readable") is True
+host_file_unreadable = (host_baseline and not host_file["readable"]
+                        and host_file["errno"] == errno.ENOENT
+                        and host_file["reason"] == "PATH_NOT_VISIBLE")
+network_positive_control = (positive_control["connected"] is True
+                           and positive_control["errno"] == 0)
+network_unavailable = (network_positive_control
+                       and external_control["connected"] is False
+                       and external_control["errno"] in (errno.ENETUNREACH,
+                                                          errno.EHOSTUNREACH)
+                       and external_control["reason"] == "NETWORK_UNREACHABLE")
 checks = {
+    "host_file_baseline_readable": host_baseline,
     "host_file_unreadable": host_file_unreadable,
+    "network_positive_control": network_positive_control,
     "network_unavailable": network_unavailable,
     "effective_cpu_quota": actual["cpu_quota_millis"] == expected["cpu_quota_millis"],
     "effective_memory_limit": actual["memory_bytes"] == expected["memory_bytes"],
     "effective_memory_swap_limit": actual["memory_swap_bytes"] == 0,
     "effective_pid_limit": actual["pids_limit"] == expected["pids_limit"],
 }
-print(json.dumps({"actual": actual, "checks": checks}, sort_keys=True))
+print(json.dumps({"actual": actual, "checks": checks,
+                  "probes": {"host_file": host_file,
+                             "network": {"positive_control": positive_control,
+                                         "external_control": external_control}}},
+                 sort_keys=True))
 sys.exit(0 if all(checks.values()) else 41)
 '''
 
@@ -100,6 +170,35 @@ while True:
 
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def _host_canary_baseline(path: Path, expected_bytes: bytes) -> dict:
+    """Prove the exact sandbox identity can read the untouched host canary."""
+    effective_uid = os.geteuid()
+    effective_gid = os.getegid()
+    report = {
+        "effective_uid": effective_uid,
+        "effective_gid": effective_gid,
+        "readable": False,
+        "sha256": None,
+        "errno": None,
+        "reason": None,
+    }
+    if effective_uid != 65534 or effective_gid != 65534:
+        report["reason"] = "HOST_IDENTITY_MISMATCH"
+        return report
+    try:
+        actual = path.read_bytes()
+    except OSError as error:
+        report["errno"] = error.errno
+        report["reason"] = "HOST_CANARY_READ_FAILED"
+        return report
+    report["sha256"] = _sha256(actual)
+    if actual != expected_bytes:
+        report["reason"] = "HOST_CANARY_CONTENT_MISMATCH"
+        return report
+    report["readable"] = True
+    return report
 
 
 def _remove_sandbox_image_once(session) -> str | None:
@@ -648,10 +747,14 @@ def run_qualification_probe(session: DockerSession, resources: dict) -> dict:
         with tempfile.TemporaryDirectory(prefix="pcg-qualification-", dir="/tmp") as temp:
             temp_dir = Path(temp)
             canary = temp_dir / "host-only-canary.bin"
-            canary.write_bytes(os.urandom(32))
-            os.chmod(canary, 0o600)
+            canary_bytes = os.urandom(32)
+            canary.write_bytes(canary_bytes)
+            baseline = _host_canary_baseline(canary, canary_bytes)
+            report["observed"]["host_canary_baseline"] = baseline
             expected = {key: resources[key] for key in (
                 "cpu_quota_millis", "memory_bytes", "pids_limit")}
+            expected["host_file_baseline_readable"] = baseline["readable"] is True
+            expected["host_file_sha256"] = baseline["sha256"]
             diagnostic_program = _QUALIFICATION_DIAGNOSTIC_PROGRAM
             diag_spec = build_qualification_container_spec(
                 session.image_tag, resources, "pcg-qual-diag-" + nonce,
@@ -679,7 +782,9 @@ def run_qualification_probe(session: DockerSession, resources: dict) -> dict:
                 except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError):
                     observed_checks, actual = {}, {}
                 mapping = {
+                    "host_file_baseline_readable": "host_file_baseline_readable",
                     "host_file_unreadable": "host_file_unreadable",
+                    "network_positive_control": "network_positive_control",
                     "network_unavailable": "network_unavailable",
                     "effective_cpu_quota": "effective_cpu_quota",
                     "effective_memory_limit": "effective_memory_limit",
@@ -689,10 +794,12 @@ def run_qualification_probe(session: DockerSession, resources: dict) -> dict:
                 for output_key, report_key in mapping.items():
                     checks[report_key] = "PASS" if observed_checks.get(output_key) is True else "FAIL"
                 report["observed"]["effective_resources"] = actual
+                report["observed"]["diagnostic_probes"] = output["probes"]
                 checks["container_config"] = "PASS"
             else:
                 checks["container_config"] = "PASS" if diagnostic["config_valid"] else "FAIL"
-                for key in ("host_file_unreadable", "network_unavailable",
+                for key in ("host_file_baseline_readable", "host_file_unreadable",
+                            "network_positive_control", "network_unavailable",
                             "effective_cpu_quota", "effective_memory_limit",
                             "effective_memory_swap_limit", "effective_pid_limit"):
                     checks[key] = "FAIL"
@@ -700,7 +807,8 @@ def run_qualification_probe(session: DockerSession, resources: dict) -> dict:
             diag_clean = diagnostic["removed"] and diagnostic["absent_after_cleanup"]
             checks["probe_container_cleanup"] = "PASS" if diag_clean else "FAIL"
             if all(checks[key] == "PASS" for key in (
-                    "container_config", "host_file_unreadable", "network_unavailable",
+                    "container_config", "host_file_baseline_readable",
+                    "host_file_unreadable", "network_positive_control", "network_unavailable",
                     "effective_cpu_quota", "effective_memory_limit",
                     "effective_memory_swap_limit", "effective_pid_limit",
                     "probe_container_cleanup")):
@@ -779,6 +887,49 @@ def validate_qualification_evidence(report: dict, resources: dict,
             or any(type(observed_resources.get(key)) is not int
                    or type(value) is not int or observed_resources[key] != value
                    for key, value in resources.items())):
+        return False
+    host_baseline = observed.get("host_canary_baseline")
+    if (not isinstance(host_baseline, dict)
+            or set(host_baseline) != {"effective_uid", "effective_gid", "readable",
+                                      "sha256", "errno", "reason"}
+            or type(host_baseline.get("effective_uid")) is not int
+            or host_baseline.get("effective_uid") != 65534
+            or type(host_baseline.get("effective_gid")) is not int
+            or host_baseline.get("effective_gid") != 65534
+            or host_baseline.get("readable") is not True
+            or not isinstance(host_baseline.get("sha256"), str)
+            or not re.fullmatch(r"[0-9a-f]{64}", host_baseline["sha256"])
+            or host_baseline.get("errno") is not None
+            or host_baseline.get("reason") is not None):
+        return False
+    probes = observed.get("diagnostic_probes")
+    if (not isinstance(probes, dict) or set(probes) != {"host_file", "network"}
+            or not isinstance(probes.get("host_file"), dict)
+            or set(probes["host_file"]) != {"readable", "errno", "reason", "sha256"}
+            or probes["host_file"].get("readable") is not False
+            or type(probes["host_file"].get("errno")) is not int
+            or probes["host_file"].get("errno") != errno.ENOENT
+            or probes["host_file"].get("reason") != "PATH_NOT_VISIBLE"
+            or probes["host_file"].get("sha256") is not None):
+        return False
+    network = probes.get("network") if isinstance(probes, dict) else None
+    if (not isinstance(network, dict)
+            or set(network) != {"positive_control", "external_control"}):
+        return False
+    positive = network.get("positive_control")
+    external = network.get("external_control")
+    if (not isinstance(positive, dict)
+            or set(positive) != {"connected", "errno", "reason"}
+            or positive.get("connected") is not True
+            or type(positive.get("errno")) is not int
+            or positive.get("errno") != 0
+            or positive.get("reason") != "CONNECTED"
+            or not isinstance(external, dict)
+            or set(external) != {"connected", "errno", "reason"}
+            or external.get("connected") is not False
+            or type(external.get("errno")) is not int
+            or external.get("errno") not in (errno.ENETUNREACH, errno.EHOSTUNREACH)
+            or external.get("reason") != "NETWORK_UNREACHABLE"):
         return False
     actual = observed.get("effective_resources")
     diagnostic = observed.get("diagnostic_container")

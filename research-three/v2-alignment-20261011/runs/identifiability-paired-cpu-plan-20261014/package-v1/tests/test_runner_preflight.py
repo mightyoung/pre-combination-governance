@@ -1,3 +1,5 @@
+import errno
+import io
 import importlib.util
 import json
 from pathlib import Path
@@ -23,6 +25,22 @@ def verified_qualification(runner, resources, image_id="sha256:" + "a" * 64):
         "checks": checks,
         "observed": {
             "resources": dict(resources),
+            "host_canary_baseline": {
+                "effective_uid": 65534, "effective_gid": 65534,
+                "readable": True, "sha256": "e" * 64,
+                "errno": None, "reason": None,
+            },
+            "diagnostic_probes": {
+                "host_file": {"readable": False, "errno": errno.ENOENT,
+                              "reason": "PATH_NOT_VISIBLE", "sha256": None},
+                "network": {
+                    "positive_control": {"connected": True, "errno": 0,
+                                         "reason": "CONNECTED"},
+                    "external_control": {"connected": False,
+                                         "errno": errno.ENETUNREACH,
+                                         "reason": "NETWORK_UNREACHABLE"},
+                },
+            },
             "effective_resources": {
                 "cpu_quota_millis": resources["cpu_quota_millis"],
                 "memory_bytes": resources["memory_bytes"],
@@ -60,6 +78,136 @@ def load_runner():
 
 
 class RunnerPreflightTests(unittest.TestCase):
+    def run_mocked_diagnostic(self, runner, *, network_errno, canary_errno,
+                              network_timeout=False):
+        resources = {"cpu_quota_millis": 1000, "memory_bytes": 268435456,
+                     "pids_limit": 16}
+        canary_path = "/tmp/synthetic-canary"
+        expected = {
+            **resources,
+            "host_file_baseline_readable": True,
+            "host_file_sha256": "e" * 64,
+        }
+        cgroup = {
+            "/sys/fs/cgroup/cpu.max": "100000 100000",
+            "/sys/fs/cgroup/memory.max": str(resources["memory_bytes"]),
+            "/sys/fs/cgroup/memory.swap.max": "0",
+            "/sys/fs/cgroup/pids.max": str(resources["pids_limit"]),
+        }
+
+        def fake_open(path, *unused, **kwargs):
+            path_text = str(path)
+            if path_text in cgroup:
+                return io.StringIO(cgroup[path_text])
+            if path_text == canary_path:
+                if canary_errno == errno.ENOENT:
+                    raise FileNotFoundError(errno.ENOENT, "synthetic path absent")
+                if canary_errno == errno.EACCES:
+                    raise PermissionError(errno.EACCES, "synthetic DAC denial")
+                return io.BytesIO(b"synthetic canary")
+            raise AssertionError("unexpected fixed-probe open path: " + path_text)
+
+        class FakeSocket:
+            def __init__(self, kind):
+                self.kind = kind
+
+            def bind(self, address):
+                self.address = address
+
+            def listen(self, backlog):
+                return None
+
+            def getsockname(self):
+                return ("127.0.0.1", 23456)
+
+            def settimeout(self, timeout):
+                return None
+
+            def connect_ex(self, address):
+                if address[0] == "127.0.0.1":
+                    return 0
+                if network_timeout:
+                    raise TimeoutError("synthetic network timeout")
+                return network_errno
+
+            def accept(self):
+                return (FakeSocket("accepted"), ("127.0.0.1", 23457))
+
+            def close(self):
+                return None
+
+        created = []
+
+        def fake_socket(*unused, **kwargs):
+            item = FakeSocket(len(created))
+            created.append(item)
+            return item
+
+        output = io.StringIO()
+        code = None
+        with mock.patch("builtins.open", side_effect=fake_open), \
+                mock.patch("socket.socket", side_effect=fake_socket), \
+                mock.patch.object(sys, "argv", ["probe", json.dumps(expected), canary_path]), \
+                mock.patch.object(sys, "stdout", output):
+            try:
+                exec(compile(runner._QUALIFICATION_DIAGNOSTIC_PROGRAM,
+                             "<synthetic-fixed-probe>", "exec"), {})
+            except SystemExit as error:
+                code = error.code
+        return code, json.loads(output.getvalue())
+
+    def test_fixed_diagnostic_requires_reachable_control_and_network_unreachable_errno(self):
+        runner = load_runner()
+        code, output = self.run_mocked_diagnostic(
+            runner, network_errno=errno.ENETUNREACH, canary_errno=errno.ENOENT)
+        self.assertEqual(0, code)
+        self.assertTrue(output["checks"]["network_positive_control"])
+        self.assertTrue(output["checks"]["network_unavailable"])
+        self.assertEqual("CONNECTED", output["probes"]["network"]["positive_control"]["reason"])
+        self.assertEqual("NETWORK_UNREACHABLE", output["probes"]["network"]["external_control"]["reason"])
+
+        refused_code, refused = self.run_mocked_diagnostic(
+            runner, network_errno=errno.ECONNREFUSED, canary_errno=errno.ENOENT)
+        self.assertNotEqual(0, refused_code)
+        self.assertTrue(refused["checks"]["network_positive_control"])
+        self.assertFalse(refused["checks"]["network_unavailable"])
+        self.assertEqual("CONNECTION_REFUSED", refused["probes"]["network"]["external_control"]["reason"])
+
+        timeout_code, timeout = self.run_mocked_diagnostic(
+            runner, network_errno=errno.ETIMEDOUT, canary_errno=errno.ENOENT,
+            network_timeout=True)
+        self.assertNotEqual(0, timeout_code)
+        self.assertFalse(timeout["checks"]["network_unavailable"])
+        self.assertEqual("TIMEOUT", timeout["probes"]["network"]["external_control"]["reason"])
+
+    def test_canary_dac_denial_is_distinct_from_path_isolation(self):
+        runner = load_runner()
+        code, output = self.run_mocked_diagnostic(
+            runner, network_errno=errno.ENETUNREACH, canary_errno=errno.EACCES)
+        self.assertNotEqual(0, code)
+        self.assertFalse(output["checks"]["host_file_unreadable"])
+        self.assertEqual("DAC_PERMISSION_DENIED", output["probes"]["host_file"]["reason"])
+        self.assertEqual(errno.EACCES, output["probes"]["host_file"]["errno"])
+
+    def test_canary_baseline_requires_same_probe_identity_without_chmod(self):
+        runner = load_runner()
+        with tempfile.TemporaryDirectory() as temp:
+            canary = Path(temp) / "host-canary"
+            canary.write_bytes(b"synthetic host canary")
+            before_mode = canary.stat().st_mode
+            with mock.patch.object(runner.os, "geteuid", return_value=65534), \
+                    mock.patch.object(runner.os, "getegid", return_value=65534):
+                baseline = runner._host_canary_baseline(canary, b"synthetic host canary")
+            self.assertTrue(baseline["readable"])
+            self.assertEqual(runner._sha256(b"synthetic host canary"), baseline["sha256"])
+            self.assertIsNone(baseline["reason"])
+            with mock.patch.object(runner.os, "geteuid", return_value=1234), \
+                    mock.patch.object(runner.os, "getegid", return_value=1234):
+                baseline = runner._host_canary_baseline(canary, b"synthetic host canary")
+            self.assertFalse(baseline["readable"])
+            self.assertEqual("HOST_IDENTITY_MISMATCH", baseline["reason"])
+            self.assertEqual(before_mode, canary.stat().st_mode)
+
     def _run_qualification_container_with_cleanup_result(self, final_inspect):
         runner = load_runner()
         if isinstance(final_inspect, str):
@@ -130,6 +278,18 @@ class RunnerPreflightTests(unittest.TestCase):
         self.assertFalse(runner.validate_qualification_evidence(report, resources))
         report = verified_qualification(runner, resources)
         report["observed"]["effective_resources"]["memory_bytes"] += 1
+        self.assertFalse(runner.validate_qualification_evidence(report, resources))
+        report = verified_qualification(runner, resources)
+        report["observed"]["diagnostic_probes"]["network"]["external_control"] = {
+            "connected": False, "errno": errno.ECONNREFUSED,
+            "reason": "CONNECTION_REFUSED",
+        }
+        self.assertFalse(runner.validate_qualification_evidence(report, resources))
+        report = verified_qualification(runner, resources)
+        report["observed"]["diagnostic_probes"]["host_file"] = {
+            "readable": False, "errno": errno.EACCES,
+            "reason": "DAC_PERMISSION_DENIED", "sha256": None,
+        }
         self.assertFalse(runner.validate_qualification_evidence(report, resources))
 
     def test_preflight_blocks_even_with_good_daemon_info_when_qualification_is_unverified(self):

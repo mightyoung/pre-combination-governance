@@ -110,12 +110,15 @@
         "image_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
         "completed_at_utc": {"type": "string", "format": "date-time"},
         "checks": {"type": "object", "additionalProperties": false,
-          "required": ["container_config", "host_file_unreadable", "network_unavailable",
+          "required": ["container_config", "host_file_baseline_readable", "host_file_unreadable",
+            "network_positive_control", "network_unavailable",
             "effective_cpu_quota", "effective_memory_limit", "effective_memory_swap_limit",
             "effective_pid_limit", "memory_overlimit_killed", "probe_container_cleanup"],
           "properties": {
             "container_config": {"const": "PASS"},
+            "host_file_baseline_readable": {"const": "PASS"},
             "host_file_unreadable": {"const": "PASS"},
+            "network_positive_control": {"const": "PASS"},
             "network_unavailable": {"const": "PASS"},
             "effective_cpu_quota": {"const": "PASS"},
             "effective_memory_limit": {"const": "PASS"},
@@ -125,7 +128,7 @@
             "probe_container_cleanup": {"const": "PASS"}
           }},
         "observed": {"type": "object", "required": ["resources", "effective_resources",
-          "diagnostic_container", "oom_container"], "properties": {
+          "host_canary_baseline", "diagnostic_probes", "diagnostic_container", "oom_container"], "properties": {
           "resources": {"type": "object", "additionalProperties": false,
             "required": ["cpu_quota_millis", "wall_seconds", "memory_bytes", "pids_limit",
               "max_method_output_bytes"], "properties": {
@@ -143,14 +146,66 @@
             "memory_swap_bytes": {"type": "integer", "const": 0},
             "pids_limit": {"type": "integer", "minimum": 1}
           }},
+          "host_canary_baseline": {"type": "object", "additionalProperties": false,
+            "required": ["effective_uid", "effective_gid", "readable", "sha256", "errno", "reason"],
+            "properties": {
+              "effective_uid": {"type": "integer", "const": 65534},
+              "effective_gid": {"type": "integer", "const": 65534},
+              "readable": {"const": true},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "errno": {"type": "null"},
+              "reason": {"type": "null"}
+            }},
+          "diagnostic_probes": {"type": "object", "additionalProperties": false,
+            "required": ["host_file", "network"], "properties": {
+              "host_file": {"type": "object", "additionalProperties": false,
+                "required": ["readable", "errno", "reason", "sha256"],
+                "properties": {
+                  "readable": {"type": "boolean", "const": false}, "errno": {"type": "integer", "const": 2},
+                  "reason": {"const": "PATH_NOT_VISIBLE"}, "sha256": {"type": "null"}
+                }},
+              "network": {"type": "object", "additionalProperties": false,
+                "required": ["positive_control", "external_control"], "properties": {
+                  "positive_control": {"type": "object", "additionalProperties": false,
+                    "required": ["connected", "errno", "reason"], "properties": {
+                      "connected": {"type": "boolean", "const": true}, "errno": {"type": "integer", "const": 0},
+                      "reason": {"const": "CONNECTED"}
+                    }},
+                  "external_control": {"type": "object", "additionalProperties": false,
+                    "required": ["connected", "errno", "reason"], "properties": {
+                      "connected": {"type": "boolean", "const": false}, "errno": {"type": "integer", "enum": [101, 113]},
+                      "reason": {"const": "NETWORK_UNREACHABLE"}
+                    }}
+                }}
+            }},
           "diagnostic_container": {"$ref": "#/$defs/diagnosticContainer"},
           "oom_container": {"$ref": "#/$defs/oomContainer"}
         }}
       }
     },
     "sandbox_image_cleanup": {"enum": ["REMOVED", "FAILED"]},
-    "execution_environment": {"type": "object"},
-    "command": {"type": "array", "items": {"type": "string"}},
+    "execution_environment": {"type": "object", "additionalProperties": false,
+      "required": ["python_executable", "python_binary_sha256", "python_version", "platform",
+        "docker_server_version", "docker_cgroup_version", "docker_required_resource_capabilities",
+        "sandbox_image_id", "sandbox_endpoint_type"],
+      "properties": {
+        "python_executable": {"type": "string", "minLength": 2, "pattern": "^/"},
+        "python_binary_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "python_version": {"type": "string", "pattern": "^3\\."},
+        "platform": {"const": "linux"},
+        "docker_server_version": {"type": "string", "minLength": 1},
+        "docker_cgroup_version": {"const": "2"},
+        "docker_required_resource_capabilities": {"type": "object", "additionalProperties": false,
+          "required": ["memory_limit", "swap_limit", "cpu_quota", "pids_limit"],
+          "properties": {"memory_limit": {"type": "boolean", "const": true},
+            "swap_limit": {"type": "boolean", "const": true},
+            "cpu_quota": {"type": "boolean", "const": true},
+            "pids_limit": {"type": "boolean", "const": true}}},
+        "sandbox_image_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "sandbox_endpoint_type": {"const": "local_unix_socket"}
+      }},
+    "command": {"type": "array", "minItems": 7, "maxItems": 7,
+      "items": {"type": "string", "minLength": 1}},
     "artifacts": {"type": "array", "items": {"type": "object",
       "additionalProperties": false, "required": ["path", "bytes", "sha256"],
       "properties": {

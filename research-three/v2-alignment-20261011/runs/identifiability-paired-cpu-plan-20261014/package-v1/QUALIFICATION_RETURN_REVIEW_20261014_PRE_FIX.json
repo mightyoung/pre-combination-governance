@@ -1,0 +1,289 @@
+{
+  "checks": [
+    {
+      "accepted": true,
+      "case": "complete_positive_control",
+      "report": {
+        "completed_method_invocations": 80,
+        "method_invocations_started": 80,
+        "method_start_requests": 80,
+        "output_sha256": "34652227711eb0b552183434eab7946d7c6daa1d87b2f2d3da664366bcd6b772",
+        "partial": false,
+        "planned_method_invocations": 80,
+        "research_acceptance": "FALSE",
+        "run_id": "synthetic-pass",
+        "stop_reason": null,
+        "task_status": "PASS",
+        "validation_status": "VALID_COMPLETE_RETURN"
+      }
+    },
+    {
+      "accepted": false,
+      "case": "boolean_attempt_count",
+      "reason": "attempt field must be a non-boolean integer: attempt_count",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "boolean_terminal_exit",
+      "reason": "attempt field must be a non-boolean integer: terminal_exit_code",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "child_exit_9",
+      "reason": "PASS child record contains a failed, unknown, or unclean slot",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "child_oom_true",
+      "reason": "PASS child record contains a failed, unknown, or unclean slot",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "child_cleanup_failed",
+      "reason": "PASS child record contains a failed, unknown, or unclean slot",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "child_exit_boolean",
+      "reason": "slot exit code must be null or a non-boolean integer: container_exit_code",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "image_cleanup_failed",
+      "reason": "PASS requires confirmed sandbox image cleanup",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "wall_over_limit",
+      "reason": "PASS wall time exceeds its registered limit",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "memory_limit_missing",
+      "reason": "attempt field must be a non-boolean integer: memory_limit_bytes",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "unknown_start",
+      "reason": "PASS cannot contain unknown method starts",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "output_over_limit",
+      "reason": "PASS output byte counters exceed or disagree with the cap",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "missing_log_file",
+      "reason": "declared artifact is missing or is not a regular file: slot-0001.stdout.bin",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "hash_wrong_one_artifact",
+      "reason": "declared artifact bytes/SHA-256 mismatch: container-0001.cid",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "absolute_artifact",
+      "reason": "artifact path must be a safe direct child filename",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "parent_artifact",
+      "reason": "artifact path must be a safe direct child filename",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "duplicate_artifact",
+      "reason": "attempt contains a duplicate artifact path",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "symlink_log",
+      "reason": "bundle contains a symlink",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "qualification_not_verified",
+      "reason": "qualification evidence is incomplete, unverified, or profile-mismatched",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "qualification_diag_exit_bool",
+      "reason": "qualification evidence is incomplete, unverified, or profile-mismatched",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": true,
+      "case": "empty_execution_environment",
+      "report": {
+        "completed_method_invocations": 80,
+        "method_invocations_started": 80,
+        "method_start_requests": 80,
+        "output_sha256": "34652227711eb0b552183434eab7946d7c6daa1d87b2f2d3da664366bcd6b772",
+        "partial": false,
+        "planned_method_invocations": 80,
+        "research_acceptance": "FALSE",
+        "run_id": "synthetic-pass",
+        "stop_reason": null,
+        "task_status": "PASS",
+        "validation_status": "VALID_COMPLETE_RETURN"
+      },
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": true,
+      "case": "empty_command",
+      "report": {
+        "completed_method_invocations": 80,
+        "method_invocations_started": 80,
+        "method_start_requests": 80,
+        "output_sha256": "34652227711eb0b552183434eab7946d7c6daa1d87b2f2d3da664366bcd6b772",
+        "partial": false,
+        "planned_method_invocations": 80,
+        "research_acceptance": "FALSE",
+        "run_id": "synthetic-pass",
+        "stop_reason": null,
+        "task_status": "PASS",
+        "validation_status": "VALID_COMPLETE_RETURN"
+      },
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": true,
+      "case": "remove_execution_journal_and_container_ids",
+      "report": {
+        "completed_method_invocations": 80,
+        "method_invocations_started": 80,
+        "method_start_requests": 80,
+        "output_sha256": "34652227711eb0b552183434eab7946d7c6daa1d87b2f2d3da664366bcd6b772",
+        "partial": false,
+        "planned_method_invocations": 80,
+        "research_acceptance": "FALSE",
+        "run_id": "synthetic-pass",
+        "stop_reason": null,
+        "task_status": "PASS",
+        "validation_status": "VALID_COMPLETE_RETURN"
+      },
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": true,
+      "case": "partial_FAIL_positive_control",
+      "research_acceptance": "NOT_EVALUATED"
+    },
+    {
+      "accepted": true,
+      "case": "normal_mount_positive_control"
+    },
+    {
+      "accepted": false,
+      "case": "mount_ancestor",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "accepted": false,
+      "case": "mount_same",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "accepted": false,
+      "case": "mount_descendant",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "accepted": false,
+      "case": "mount_normalized_ancestor",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "accepted": false,
+      "case": "mount_symlink_alias",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "actual_network_or_host_probe": false,
+      "case": "probe_connection_refused_plus_DAC_denial",
+      "diagnostic": {
+        "actual": {
+          "cpu_quota_millis": 1000,
+          "memory_bytes": 268435456,
+          "memory_swap_bytes": 0,
+          "pids_limit": 16
+        },
+        "checks": {
+          "effective_cpu_quota": true,
+          "effective_memory_limit": true,
+          "effective_memory_swap_limit": true,
+          "effective_pid_limit": true,
+          "host_file_unreadable": true,
+          "network_unavailable": true
+        }
+      },
+      "diagnostic_exit": 0
+    },
+    {
+      "actual_network_or_host_probe": false,
+      "case": "probe_timeout_plus_DAC_denial",
+      "diagnostic": {
+        "actual": {
+          "cpu_quota_millis": 1000,
+          "memory_bytes": 268435456,
+          "memory_swap_bytes": 0,
+          "pids_limit": 16
+        },
+        "checks": {
+          "effective_cpu_quota": true,
+          "effective_memory_limit": true,
+          "effective_memory_swap_limit": true,
+          "effective_pid_limit": true,
+          "host_file_unreadable": true,
+          "network_unavailable": true
+        }
+      },
+      "diagnostic_exit": 0
+    },
+    {
+      "actual_network_or_host_probe": false,
+      "case": "probe_network_unreachable_plus_DAC_denial",
+      "diagnostic": {
+        "actual": {
+          "cpu_quota_millis": 1000,
+          "memory_bytes": 268435456,
+          "memory_swap_bytes": 0,
+          "pids_limit": 16
+        },
+        "checks": {
+          "effective_cpu_quota": true,
+          "effective_memory_limit": true,
+          "effective_memory_swap_limit": true,
+          "effective_pid_limit": true,
+          "host_file_unreadable": true,
+          "network_unavailable": true
+        }
+      },
+      "diagnostic_exit": 0
+    }
+  ],
+  "real_docker_or_research_method_started": false,
+  "scope": "synthetic complete/partial receipts, isolated command construction, mocked probe behavior",
+  "source_commit": "4ec995fd8a40a8b69e030c57e05743fed14476f6"
+}

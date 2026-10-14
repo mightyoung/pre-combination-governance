@@ -1,0 +1,319 @@
+{
+  "checks": [
+    {
+      "accepted": true,
+      "case": "complete_positive_control",
+      "report": {
+        "completed_method_invocations": 80,
+        "method_invocations_started": 80,
+        "method_start_requests": 80,
+        "output_sha256": "34652227711eb0b552183434eab7946d7c6daa1d87b2f2d3da664366bcd6b772",
+        "partial": false,
+        "planned_method_invocations": 80,
+        "research_acceptance": "FALSE",
+        "run_id": "synthetic-pass",
+        "stop_reason": null,
+        "task_status": "PASS",
+        "validation_status": "VALID_COMPLETE_RETURN"
+      }
+    },
+    {
+      "accepted": false,
+      "case": "boolean_attempt_count",
+      "reason": "attempt field must be a non-boolean integer: attempt_count",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "boolean_terminal_exit",
+      "reason": "attempt field must be a non-boolean integer: terminal_exit_code",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "child_exit_9",
+      "reason": "PASS child record contains a failed, unknown, or unclean slot",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "child_oom_true",
+      "reason": "PASS child record contains a failed, unknown, or unclean slot",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "child_cleanup_failed",
+      "reason": "PASS child record contains a failed, unknown, or unclean slot",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "child_exit_boolean",
+      "reason": "slot exit code must be null or a non-boolean integer: container_exit_code",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "image_cleanup_failed",
+      "reason": "PASS requires confirmed sandbox image cleanup",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "wall_over_limit",
+      "reason": "PASS wall time exceeds its registered limit",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "memory_limit_missing",
+      "reason": "attempt field must be a non-boolean integer: memory_limit_bytes",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "unknown_start",
+      "reason": "PASS cannot contain unknown method starts",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "output_over_limit",
+      "reason": "PASS output byte counters exceed or disagree with the cap",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "missing_log_file",
+      "reason": "declared artifact is missing or is not a regular file: slot-0001.stdout.bin",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "hash_wrong_one_artifact",
+      "reason": "declared artifact bytes/SHA-256 mismatch: container-0001.cid",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "absolute_artifact",
+      "reason": "artifact path must be a safe direct child filename",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "parent_artifact",
+      "reason": "artifact path must be a safe direct child filename",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "duplicate_artifact",
+      "reason": "attempt contains a duplicate artifact path",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "symlink_log",
+      "reason": "bundle contains a symlink",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "qualification_not_verified",
+      "reason": "qualification evidence is incomplete, unverified, or profile-mismatched",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "qualification_diag_exit_bool",
+      "reason": "qualification evidence is incomplete, unverified, or profile-mismatched",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "empty_execution_environment",
+      "reason": "attempt execution environment has missing or unknown provenance fields",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "empty_command",
+      "reason": "attempt command provenance is malformed",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": false,
+      "case": "remove_execution_journal_and_container_ids",
+      "reason": "required observation artifact is missing: container-0001.cid, container-0002.cid, container-0003.cid, container-0004.cid, container-0005.cid, container-0006.cid, container-0007.cid, container-0008.cid, container-0009.cid, container-0010.cid, container-0011.cid, container-0012.cid, container-0013.cid, container-0014.cid, container-0015.cid, container-0016.cid, container-0017.cid, container-0018.cid, container-0019.cid, container-0020.cid, container-0021.cid, container-0022.cid, container-0023.cid, container-0024.cid, container-0025.cid, container-0026.cid, container-0027.cid, container-0028.cid, container-0029.cid, container-0030.cid, container-0031.cid, container-0032.cid, container-0033.cid, container-0034.cid, container-0035.cid, container-0036.cid, container-0037.cid, container-0038.cid, container-0039.cid, container-0040.cid, container-0041.cid, container-0042.cid, container-0043.cid, container-0044.cid, container-0045.cid, container-0046.cid, container-0047.cid, container-0048.cid, container-0049.cid, container-0050.cid, container-0051.cid, container-0052.cid, container-0053.cid, container-0054.cid, container-0055.cid, container-0056.cid, container-0057.cid, container-0058.cid, container-0059.cid, container-0060.cid, container-0061.cid, container-0062.cid, container-0063.cid, container-0064.cid, container-0065.cid, container-0066.cid, container-0067.cid, container-0068.cid, container-0069.cid, container-0070.cid, container-0071.cid, container-0072.cid, container-0073.cid, container-0074.cid, container-0075.cid, container-0076.cid, container-0077.cid, container-0078.cid, container-0079.cid, container-0080.cid, progress.json, slot-events.jsonl",
+      "valid_complete_baseline_established": true
+    },
+    {
+      "accepted": true,
+      "case": "partial_FAIL_positive_control",
+      "research_acceptance": "NOT_EVALUATED"
+    },
+    {
+      "accepted": true,
+      "case": "normal_mount_positive_control"
+    },
+    {
+      "accepted": false,
+      "case": "mount_ancestor",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "accepted": false,
+      "case": "mount_same",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "accepted": false,
+      "case": "mount_descendant",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "accepted": false,
+      "case": "mount_normalized_ancestor",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "accepted": false,
+      "case": "mount_symlink_alias",
+      "reason": "bind mount overlaps protected package paths"
+    },
+    {
+      "actual_network_or_host_probe": false,
+      "case": "probe_connection_refused_plus_DAC_denial",
+      "diagnostic": {
+        "actual": {
+          "cpu_quota_millis": 1000,
+          "memory_bytes": 268435456,
+          "memory_swap_bytes": 0,
+          "pids_limit": 16
+        },
+        "checks": {
+          "effective_cpu_quota": true,
+          "effective_memory_limit": true,
+          "effective_memory_swap_limit": true,
+          "effective_pid_limit": true,
+          "host_file_baseline_readable": false,
+          "host_file_unreadable": false,
+          "network_positive_control": false,
+          "network_unavailable": false
+        },
+        "probes": {
+          "host_file": {
+            "errno": null,
+            "readable": false,
+            "reason": "FILE_PROBE_ERROR",
+            "sha256": null
+          },
+          "network": {
+            "external_control": {
+              "connected": false,
+              "errno": 111,
+              "reason": "CONNECTION_REFUSED"
+            },
+            "positive_control": {
+              "connected": false,
+              "errno": null,
+              "reason": "CONTROL_SETUP_FAILED"
+            }
+          }
+        }
+      },
+      "diagnostic_exit": 41
+    },
+    {
+      "actual_network_or_host_probe": false,
+      "case": "probe_timeout_plus_DAC_denial",
+      "diagnostic": {
+        "actual": {
+          "cpu_quota_millis": 1000,
+          "memory_bytes": 268435456,
+          "memory_swap_bytes": 0,
+          "pids_limit": 16
+        },
+        "checks": {
+          "effective_cpu_quota": true,
+          "effective_memory_limit": true,
+          "effective_memory_swap_limit": true,
+          "effective_pid_limit": true,
+          "host_file_baseline_readable": false,
+          "host_file_unreadable": false,
+          "network_positive_control": false,
+          "network_unavailable": false
+        },
+        "probes": {
+          "host_file": {
+            "errno": null,
+            "readable": false,
+            "reason": "FILE_PROBE_ERROR",
+            "sha256": null
+          },
+          "network": {
+            "external_control": {
+              "connected": false,
+              "errno": 110,
+              "reason": "TIMEOUT"
+            },
+            "positive_control": {
+              "connected": false,
+              "errno": null,
+              "reason": "CONTROL_SETUP_FAILED"
+            }
+          }
+        }
+      },
+      "diagnostic_exit": 41
+    },
+    {
+      "actual_network_or_host_probe": false,
+      "case": "probe_network_unreachable_plus_DAC_denial",
+      "diagnostic": {
+        "actual": {
+          "cpu_quota_millis": 1000,
+          "memory_bytes": 268435456,
+          "memory_swap_bytes": 0,
+          "pids_limit": 16
+        },
+        "checks": {
+          "effective_cpu_quota": true,
+          "effective_memory_limit": true,
+          "effective_memory_swap_limit": true,
+          "effective_pid_limit": true,
+          "host_file_baseline_readable": false,
+          "host_file_unreadable": false,
+          "network_positive_control": false,
+          "network_unavailable": false
+        },
+        "probes": {
+          "host_file": {
+            "errno": null,
+            "readable": false,
+            "reason": "FILE_PROBE_ERROR",
+            "sha256": null
+          },
+          "network": {
+            "external_control": {
+              "connected": false,
+              "errno": 101,
+              "reason": "NETWORK_UNREACHABLE"
+            },
+            "positive_control": {
+              "connected": false,
+              "errno": null,
+              "reason": "CONTROL_SETUP_FAILED"
+            }
+          }
+        }
+      },
+      "diagnostic_exit": 41
+    }
+  ],
+  "real_docker_or_research_method_started": false,
+  "scope": "synthetic complete/partial receipts, isolated command construction, mocked probe behavior",
+  "source_commit": "4ec995fd8a40a8b69e030c57e05743fed14476f6"
+}

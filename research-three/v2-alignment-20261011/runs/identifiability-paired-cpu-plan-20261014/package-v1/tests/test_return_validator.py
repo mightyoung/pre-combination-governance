@@ -1,4 +1,5 @@
 import hashlib
+import errno
 import importlib.util
 import json
 from pathlib import Path
@@ -66,6 +67,22 @@ def qualification_evidence(runner, resources):
         "checks": checks,
         "observed": {
             "resources": dict(resources),
+            "host_canary_baseline": {
+                "effective_uid": 65534, "effective_gid": 65534,
+                "readable": True, "sha256": "e" * 64,
+                "errno": None, "reason": None,
+            },
+            "diagnostic_probes": {
+                "host_file": {"readable": False, "errno": errno.ENOENT,
+                              "reason": "PATH_NOT_VISIBLE", "sha256": None},
+                "network": {
+                    "positive_control": {"connected": True, "errno": 0,
+                                         "reason": "CONNECTED"},
+                    "external_control": {"connected": False,
+                                         "errno": errno.ENETUNREACH,
+                                         "reason": "NETWORK_UNREACHABLE"},
+                },
+            },
             "effective_resources": {
                 "cpu_quota_millis": resources["cpu_quota_millis"],
                 "memory_bytes": resources["memory_bytes"],
@@ -103,10 +120,7 @@ def result_for(cards):
 
 def add_artifact_files(run_dir, record_count, start_requested_count,
                        run_id, manifest_sha, qualification, slot_rows):
-    common = {
-        "progress.json": b'{"state":"SYNTHETIC"}\n',
-        "slot-events.jsonl": b'{"event":"SYNTHETIC"}\n',
-    }
+    common = {}
     intent = {
         "task_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001",
         "run_id": run_id, "attempt_count": 1, "state": "IN_PROGRESS",
@@ -121,13 +135,78 @@ def add_artifact_files(run_dir, record_count, start_requested_count,
             "synthetic-container-" + format(slot_number, "04d") + "\n")
     for slot_number in range(1, start_requested_count + 1):
         if slot_number <= len(slot_rows):
-            result = slot_rows[slot_number - 1]["result"]
+            slot = slot_rows[slot_number - 1]
+            result = slot["result"]
             stdout = json.dumps(result, sort_keys=True, separators=(",", ":"),
                                 ensure_ascii=False, allow_nan=False).encode() + b"\n"
         else:
             stdout = b""
         common["slot-" + format(slot_number, "04d") + ".stdout.bin"] = stdout
         common["slot-" + format(slot_number, "04d") + ".stderr.bin"] = b""
+    output_bytes_captured = sum(
+        len(raw) for name, raw in common.items()
+        if name.endswith(".stdout.bin") or name.endswith(".stderr.bin"))
+    common["progress.json"] = json.dumps({
+        "run_id": run_id,
+        "state": "PASS" if record_count == 80 else "FAIL",
+        "method_start_requests": start_requested_count,
+        "method_invocations_started": start_requested_count,
+        "completed_method_invocations": len(slot_rows),
+        "planned_method_invocations": 80,
+        "stop_reason": None if record_count == 80 else "synthetic partial",
+        "sandbox_image_cleanup": "REMOVED",
+        "updated_at_utc": "2026-10-14T00:00:02+00:00",
+        "output_bytes_captured": output_bytes_captured,
+    }, sort_keys=True, separators=(",", ":")).encode() + b"\n"
+    events = []
+    for slot_number in range(1, start_requested_count + 1):
+        if slot_number <= len(slot_rows):
+            slot = slot_rows[slot_number - 1]
+            case_id, prefix, method = slot["case_id"], slot["prefix"], slot["method"]
+        else:
+            case_index = (slot_number - 1) // 20
+            within_case = (slot_number - 1) % 20
+            case_id = CASE_IDS[case_index]
+            prefix = within_case // 4 + 1
+            method = METHODS[within_case % 4]
+        key = {
+            "slot": slot_number,
+            "case_id": case_id,
+            "prefix": prefix,
+            "method": method,
+            "container_id": "synthetic-container-" + format(slot_number, "04d"),
+        }
+        config = {
+            "host_config": {
+                "NanoCpus": RESOURCES["cpu_quota_millis"] * 1_000_000,
+                "Memory": RESOURCES["memory_bytes"],
+                "MemorySwap": RESOURCES["memory_bytes"],
+                "PidsLimit": RESOURCES["pids_limit"],
+                "NetworkMode": "none", "ReadonlyRootfs": True,
+                "Privileged": False,
+            },
+            "container_config": {"User": "65534:65534",
+                                 "WorkingDir": "/task/source"},
+        }
+        config_hash = hashlib.sha256(json.dumps(
+            config, sort_keys=True, separators=(",", ":")
+        ).encode()).hexdigest()
+        rows = (
+            {"event": "CONTAINER_CREATED", **key,
+             "create_argv": ["docker", "create", "synthetic"]},
+            {"event": "CONTAINER_CONFIG_INSPECTED", **key, "validated": True,
+             "issues": [], "configuration": config,
+             "configuration_sha256": config_hash},
+            {"event": "METHOD_START_REQUESTED", **key},
+            {"event": "METHOD_PROCESS_FINISHED", **key, "started": True,
+             "started_at": "2026-10-14T00:00:01+00:00",
+             "container_exit_code": 0, "cli_exit_code": 0,
+             "oom_killed": False, "stop_reason": None},
+        )
+        for event in rows:
+            event["event_at_utc"] = "2026-10-14T00:00:01+00:00"
+            events.append(json.dumps(event, sort_keys=True, separators=(",", ":")))
+    common["slot-events.jsonl"] = ("\n".join(events) + "\n").encode()
     for name, raw in common.items():
         (run_dir / name).write_bytes(raw)
     return [
@@ -167,6 +246,7 @@ def slot_record(number, case_id, prefix, method, *, status="PASS", exit_code=0,
 def common_attempt(runner, manifest, manifest_sha, run_id, status,
                    requests, started, completed, stop_reason, slot_records,
                    unknown_slots, artifacts):
+    qualification = qualification_evidence(runner, RESOURCES)
     return {
         "schema_version": 1,
         "task_id": manifest["task_id"],
@@ -212,9 +292,23 @@ def common_attempt(runner, manifest, manifest_sha, run_id, status,
         "method_start_unknown_slots": unknown_slots,
         "slot_exit_records": slot_records,
         "sandbox_image_cleanup": "REMOVED",
-        "qualification_evidence": qualification_evidence(runner, RESOURCES),
-        "execution_environment": {"platform": "synthetic", "sandbox_endpoint_type": "mock"},
-        "command": ["python3", "-I", "runner.py"],
+        "qualification_evidence": qualification,
+        "execution_environment": {
+            "python_executable": "/synthetic/python3",
+            "python_binary_sha256": "d" * 64,
+            "python_version": "3.12.synthetic",
+            "platform": "linux",
+            "docker_server_version": "synthetic-docker",
+            "docker_cgroup_version": "2",
+            "docker_required_resource_capabilities": {
+                "memory_limit": True, "swap_limit": True,
+                "cpu_quota": True, "pids_limit": True,
+            },
+            "sandbox_image_id": qualification["image_id"],
+            "sandbox_endpoint_type": "local_unix_socket",
+        },
+        "command": ["runner.py", "--task-manifest", "TASK_MANIFEST.json",
+                    "--run-id", run_id, "--output-root", "/synthetic/returns"],
         "artifacts": artifacts,
     }
 
@@ -321,6 +415,7 @@ class ReturnValidatorTests(unittest.TestCase):
 
             attempt_path = run_dir / "attempt.json"
             good_attempt = json.loads(attempt_path.read_text())
+            files = {path.name: path.read_bytes() for path in run_dir.iterdir()}
             corruptions = {
                 "boolean_attempt_count": lambda value: value.update(attempt_count=True),
                 "boolean_terminal_exit": lambda value: value.update(terminal_exit_code=False),
@@ -347,6 +442,12 @@ class ReturnValidatorTests(unittest.TestCase):
                     {**value["artifacts"][0], "sha256": "0" * 64}]),
                 "artifact_path_traversal": lambda value: value.update(artifacts=[
                     {**value["artifacts"][0], "path": "../private.bin"}]),
+                "empty_execution_environment": lambda value: value.update(
+                    execution_environment={}),
+                "empty_command": lambda value: value.update(command=[]),
+                "command_run_id_mismatch": lambda value: value.update(command=[
+                    "runner.py", "--task-manifest", "TASK_MANIFEST.json",
+                    "--run-id", "another-run", "--output-root", "/synthetic/returns"]),
             }
             for label, corrupt in corruptions.items():
                 with self.subTest(corruption=label):
@@ -359,6 +460,37 @@ class ReturnValidatorTests(unittest.TestCase):
                             PACKAGE / "scorer_source" / "oracle.physical.json",
                             PACKAGE / "scorer_source" / "ORACLE_CASE_MAP.json",
                         )
+            attempt_path.write_bytes(bundle.canonical_bytes(good_attempt) + b"\n")
+
+            for missing_name in (
+                "progress.json", "slot-events.jsonl",
+                "container-0001.cid", "container-0080.cid",
+            ):
+                with self.subTest(missing_observation=missing_name):
+                    for path in run_dir.iterdir():
+                        path.unlink()
+                    for filename, raw in files.items():
+                        (run_dir / filename).write_bytes(raw)
+                    bad_attempt = json.loads(json.dumps(good_attempt))
+                    (run_dir / missing_name).unlink()
+                    bad_attempt["artifacts"] = [
+                        item for item in bad_attempt["artifacts"]
+                        if item["path"] != missing_name
+                    ]
+                    attempt_path.write_bytes(bundle.canonical_bytes(bad_attempt) + b"\n")
+                    with self.assertRaisesRegex(
+                        validator.ReturnValidationError,
+                        "required observation artifact",
+                    ):
+                        validator.validate_return(
+                            run_dir, score_path, manifest_path,
+                            PACKAGE / "scorer_source" / "oracle.physical.json",
+                            PACKAGE / "scorer_source" / "ORACLE_CASE_MAP.json",
+                        )
+            for path in run_dir.iterdir():
+                path.unlink()
+            for filename, raw in files.items():
+                (run_dir / filename).write_bytes(raw)
             attempt_path.write_bytes(bundle.canonical_bytes(good_attempt) + b"\n")
 
             forged = json.loads(score_path.read_text())
