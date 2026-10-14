@@ -1,0 +1,78 @@
+{
+  "case_ids": [
+    "38e02496822f1a85849b6a39f698e50d",
+    "33fadeeedeed902bd0ab9dfae5420213",
+    "42474559127419126b713096e9f4d3ee",
+    "81050a121e028f59f1e6940d7c5eb477"
+  ],
+  "cpu_quota_basis": "one_cpu_serial_slots",
+  "execution_file_hashes": {
+    "CASE_BINDINGS.json": "87cf9794732b32f9fbc05452118d5a06e6fbf195cc931304b92ca4ac70f68659",
+    "PAIR_METHOD_INPUTS.json": "70d9662034777ce8e5fa1a02c4d870cdc8c788b9290f5231b7a0c8985c9dde24",
+    "bundle.py": "b7d5bdeaceb5087d986da36ebd45e26f7eff25380506dc1e003f0d61ac5468b7",
+    "frozen_source/public-input.json": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9",
+    "frozen_source/runtime/methods.py": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343",
+    "frozen_source/runtime/shared_context.py": "fb46e5040fe91f7337fdd5cb585673e8fc9ee3cbb3fb5dc2e0e1604fab90029e",
+    "frozen_source/runtime/slot_worker.py": "2e93dfefccd10cb676548721f52b73e9dddb1ed9e2021daf9745b342c6e59526",
+    "frozen_source/runtime/worker.py": "5a904a8a877c3f7b2673fc2464cfaf57f80af4176780eb556acc35ca01fcaff7",
+    "frozen_source/source-binding.json": "10e6445dc7d105f87d4a196c1e1d8b8ef3dbda8e5159d5cee9dad324ad62f3f6",
+    "frozen_source/source-case-plan.md": "54de6415f3683bae7d6d4d6bcbb2f764ac12f379d51d695362c0c2bc1d2125f4",
+    "frozen_source/source-preparation-status.json": "870e485d4be6e4d97ee341787bbabe7148a40bd6d26fe0e90536eab83eaf30ad",
+    "make_pair_inputs.py": "2f679bcaab8b67cc53a797b3c655d9af9907ef6410a0027be29e7446c674320e",
+    "pair_inputs.py": "6e1df092ede0fbf10342dcc84601c555cd8636a98ca6d2c227e05ebd90459969",
+    "preflight.py": "24068fb8d35362a62b87ddcc930b209ba0ae127638760d4e510cbb183808e863",
+    "result_contract.py": "988d05bf388acfc6dbbea7ae0474aa406ccde54345768b829fa7988c837ae3cc",
+    "return_validator.py": "57683b781440c4958f5eb8ec8e6515cb6834241c85e96112cfc6d22ada8fa350",
+    "runner.py": "8d333bbf709ed0e1de02f49c857800774aef21b7b9b7cd2c558a0dfbea663b9a",
+    "sandbox/Dockerfile": "8cbbf606f68f70a8550adb52faf33aca1b45441d6ad839c7011563d60b5c5c70",
+    "sandbox/rootfs/lib/.mountpoint": "3395aec541d51cb836391772d27c077cdc240a166cc35c48ba1e512de6bb0e3f",
+    "sandbox/rootfs/lib64/.mountpoint": "afe13a440c2267380ad2bad6a9cfdcf4295f7e55e06c9572748cee577ba1a2cf",
+    "sandbox/rootfs/runtime/.mountpoint": "09c907c28badbfebe5bbd16af514ec32eafef62c951bff14b77cbb4babb6b995",
+    "sandbox/rootfs/task/.mountpoint": "2731afacd0d0892ebbfcb861339588facc09e8884ea50c5d53424d6ffa826f12",
+    "sandbox/rootfs/usr/lib/.mountpoint": "3395aec541d51cb836391772d27c077cdc240a166cc35c48ba1e512de6bb0e3f",
+    "scorer.py": "28f41aaf01f0ae188a4c336aa72c5e090f4ccc32c015e14d4d7edd2733d6c5fd",
+    "task_contract.py": "b3158249b9a288387a6b0cb4d7cc6252cb76c05eab57a10ab156e7ca44f92b02"
+  },
+  "method_order": [
+    "M0",
+    "M1",
+    "M2",
+    "M3"
+  ],
+  "opaque_case_ids": {
+    "A": "38e02496822f1a85849b6a39f698e50d",
+    "B": "33fadeeedeed902bd0ab9dfae5420213",
+    "C": "42474559127419126b713096e9f4d3ee",
+    "D": "81050a121e028f59f1e6940d7c5eb477"
+  },
+  "oracle_case_map_sha256": "85d25db18ae58f6c27e9296b5d3b84f758ca91bf09f4018c617726c713a19225",
+  "oracle_sha256": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902",
+  "pair_inputs_path": "PAIR_METHOD_INPUTS.json",
+  "pair_inputs_sha256": "70d9662034777ce8e5fa1a02c4d870cdc8c788b9290f5231b7a0c8985c9dde24",
+  "plan_sha256": "546f63965f1ae667181ef48910e12aa60834d5d5b855d52072e158fe3733f01e",
+  "planned_method_invocations": 80,
+  "public_input_sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9",
+  "resource_profile_status": "BLOCKED_MISSING_VALUES",
+  "resources": {
+    "cpu_quota_millis": 1000,
+    "max_method_output_bytes": null,
+    "memory_bytes": null,
+    "pids_limit": null,
+    "wall_seconds": null
+  },
+  "schema_hashes": {
+    "attempt.schema.json": "25718d3d6d23fd6c048871aa3ccd0f210aabcf268befcaad4c9a727adddf4865",
+    "method-result.schema.json": "0726394901173027bf74c77e70948da485b7efe1f0c3161efddd710f22da2b41",
+    "oracle-case-map.schema.json": "61bea6faf3f9ffdc5e24805dbbe8908ecff58e0b17db7c23041585ac54f5db2f",
+    "pair-inputs.schema.json": "675bec40ecfe7b51cae473ef5223f5d206d6b0224762a496a1bf0935b31be4ca",
+    "return-validation.schema.json": "b7cc56d4b4d43a0e9dba5789dfd25495d26ccf2eea0cdf0a21034c8d9dd418de",
+    "score.schema.json": "69e969ba3f7c9e3300e7e4120c0b569c39eb507a4afed18b98c205fdb20165e1",
+    "task-manifest.schema.json": "9fa34c2c02859f065d93a6289026b9ba168a4707bd611622b6efab20437b3a96"
+  },
+  "schema_version": 1,
+  "source_commits": {
+    "methods_and_gate": "ed463fa208d3fcadf5c8cb1e0c4505f64d4e7ca2",
+    "public_input": "910302bac55487a542c656288d8202bd950e1b56"
+  },
+  "task_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001"
+}

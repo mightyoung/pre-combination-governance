@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcg:identifiability-paired-cpu:task-manifest:v1",
+  "title": "Paired CPU task manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "task_id", "resource_profile_status", "resources",
+    "cpu_quota_basis", "planned_method_invocations", "method_order", "case_ids",
+    "opaque_case_ids", "pair_inputs_path", "pair_inputs_sha256", "public_input_sha256",
+    "oracle_sha256", "oracle_case_map_sha256", "plan_sha256", "source_commits",
+    "execution_file_hashes", "schema_hashes"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "task_id": {"const": "PCG-IDENTIFIABILITY-PAIRED-CPU-001"},
+    "resource_profile_status": {"enum": ["BLOCKED_MISSING_VALUES", "PRE_REGISTERED"]},
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpu_quota_millis", "wall_seconds", "memory_bytes", "pids_limit", "max_method_output_bytes"],
+      "properties": {
+        "cpu_quota_millis": {"const": 1000},
+        "wall_seconds": {"type": ["integer", "null"], "minimum": 10, "description": "Parent-enforced sandbox lifecycle wall cap from before Docker setup through sandbox image cleanup. Frozen-bundle finalization is reported separately in the CLI attempt summary. The final 9 seconds are reserved for bounded container stop/removal and image cleanup."},
+        "memory_bytes": {"type": ["integer", "null"], "minimum": 1, "description": "Per-container cgroup memory and equal memory-plus-swap cap."},
+        "pids_limit": {"type": ["integer", "null"], "minimum": 1, "description": "Per-method-container cgroup PID cap."},
+        "max_method_output_bytes": {"type": ["integer", "null"], "minimum": 1, "description": "Cumulative captured stdout and stderr cap across all method slots."}
+      }
+    },
+    "cpu_quota_basis": {"const": "one_cpu_serial_slots"},
+    "planned_method_invocations": {"const": 80},
+    "method_order": {"const": ["M0", "M1", "M2", "M3"]},
+    "case_ids": {
+      "type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[0-9a-f]{32}$"}
+    },
+    "opaque_case_ids": {
+      "type": "object", "additionalProperties": false,
+      "required": ["A", "B", "C", "D"],
+      "properties": {
+        "A": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+        "B": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+        "C": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+        "D": {"type": "string", "pattern": "^[0-9a-f]{32}$"}
+      }
+    },
+    "pair_inputs_path": {"const": "PAIR_METHOD_INPUTS.json"},
+    "pair_inputs_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "public_input_sha256": {"const": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9"},
+    "oracle_sha256": {"const": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902"},
+    "oracle_case_map_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "plan_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commits": {
+      "const": {
+        "public_input": "910302bac55487a542c656288d8202bd950e1b56",
+        "methods_and_gate": "ed463fa208d3fcadf5c8cb1e0c4505f64d4e7ca2"
+      }
+    },
+    "execution_file_hashes": {
+      "type": "object", "minProperties": 1,
+      "propertyNames": {"pattern": "^[A-Za-z0-9._/-]+$"},
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "schema_hashes": {
+      "type": "object", "additionalProperties": false,
+      "required": ["pair-inputs.schema.json", "method-result.schema.json", "attempt.schema.json", "score.schema.json", "return-validation.schema.json", "task-manifest.schema.json", "oracle-case-map.schema.json"],
+      "properties": {
+        "pair-inputs.schema.json": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "method-result.schema.json": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "attempt.schema.json": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "score.schema.json": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "return-validation.schema.json": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "task-manifest.schema.json": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "oracle-case-map.schema.json": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"resource_profile_status": {"const": "PRE_REGISTERED"}}},
+      "then": {
+        "properties": {
+          "resources": {
+            "properties": {
+              "wall_seconds": {"type": "integer", "minimum": 10},
+              "memory_bytes": {"type": "integer", "minimum": 1},
+              "pids_limit": {"type": "integer", "minimum": 1},
+              "max_method_output_bytes": {"type": "integer", "minimum": 1}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"resource_profile_status": {"const": "BLOCKED_MISSING_VALUES"}}, "required": ["resource_profile_status"]},
+      "then": {
+        "properties": {
+          "resources": {
+            "anyOf": [
+              {"properties": {"wall_seconds": {"type": "null"}}, "required": ["wall_seconds"]},
+              {"properties": {"memory_bytes": {"type": "null"}}, "required": ["memory_bytes"]},
+              {"properties": {"pids_limit": {"type": "null"}}, "required": ["pids_limit"]},
+              {"properties": {"max_method_output_bytes": {"type": "null"}}, "required": ["max_method_output_bytes"]}
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcg:identifiability-paired-cpu:return-validation:v1",
+  "title": "Execution bundle return validation report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "validation_status", "run_id", "task_status", "research_acceptance",
+    "planned_method_invocations", "method_invocations_started",
+    "method_start_requests",
+    "completed_method_invocations", "partial", "stop_reason", "output_sha256"
+  ],
+  "properties": {
+    "validation_status": {"enum": ["VALID_EXECUTION_SCORE_PENDING", "VALID_COMPLETE_RETURN", "VALID_PARTIAL_EXECUTION"]},
+    "run_id": {"type": "string", "minLength": 1},
+    "task_status": {"enum": ["PASS", "FAIL", "BLOCKED"]},
+    "research_acceptance": {"enum": ["TRUE", "FALSE", "NOT_EVALUATED"]},
+    "planned_method_invocations": {"const": 80},
+    "method_invocations_started": {"type": "integer", "minimum": 0, "maximum": 80},
+    "method_start_requests": {"type": "integer", "minimum": 0, "maximum": 80},
+    "completed_method_invocations": {"type": "integer", "minimum": 0, "maximum": 80},
+    "partial": {"type": "boolean"},
+    "stop_reason": {"type": ["string", "null"]},
+    "output_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"validation_status": {"const": "VALID_PARTIAL_EXECUTION"}}, "required": ["validation_status"]},
+     "then": {"properties": {"task_status": {"enum": ["FAIL", "BLOCKED"]}, "research_acceptance": {"const": "NOT_EVALUATED"}, "partial": {"const": true}}}},
+    {"if": {"properties": {"validation_status": {"const": "VALID_COMPLETE_RETURN"}}, "required": ["validation_status"]},
+     "then": {"properties": {"task_status": {"const": "PASS"}, "research_acceptance": {"enum": ["TRUE", "FALSE"]}, "partial": {"const": false}}}}
+  ]
+}

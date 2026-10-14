@@ -1,0 +1,13 @@
+{
+  "status": "STATIC_PREPARATION_REVIEWED_NOT_RUN",
+  "test_bundles": 6,
+  "main_slots": 120,
+  "reference_bundles": 102,
+  "total_bundles": 228,
+  "assess_calls": 120,
+  "old_three_outputs_and_frozen362_hash": "MATCH",
+  "binding_sha256": "10e6445dc7d105f87d4a196c1e1d8b8ef3dbda8e5159d5cee9dad324ad62f3f6",
+  "os_file_network_isolation": false,
+  "resource_failure_qualification": false,
+  "non_author_review": "preparation blockers resolved; read-only only"
+}

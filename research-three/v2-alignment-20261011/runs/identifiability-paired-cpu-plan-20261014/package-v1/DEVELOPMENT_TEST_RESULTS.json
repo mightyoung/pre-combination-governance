@@ -1,0 +1,60 @@
+{
+  "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-DEV-TESTS-20261014",
+  "coverage_notes": [
+    "timeout cleanup sends bounded kill and forced removal requests, kills the fake attached Docker client, and preserves FAIL status",
+    "Docker call deadlines are clamped to the earlier method deadline or registered total wall deadline",
+    "container cgroup and UTS namespaces and daemon seccomp profile are checked fail-closed",
+    "A/B pairing, deterministic scoring, score receipt recomputation, output contract, and missing-resource blocking are covered",
+    "sandbox lifecycle wall time and full attempt wall time after bundle freeze are reported separately",
+    "sandbox image cleanup is attempted once so recorded sandbox timing matches the cleanup attempt before bundle finalization"
+  ],
+  "evidence_class": "synthetic development unit tests and static preflight only",
+  "executor_qualification_probe_run": false,
+  "mac_or_model_or_network_or_gpu_used": false,
+  "new_80_slot_run": "NOT_RUN",
+  "original_1464_check_trial": "NOT_RERUN",
+  "pinned_inputs": {
+    "oracle_sha256": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902",
+    "pair_inputs_sha256": "70d9662034777ce8e5fa1a02c4d870cdc8c788b9290f5231b7a0c8985c9dde24",
+    "plan_sha256": "546f63965f1ae667181ef48910e12aa60834d5d5b855d52072e158fe3733f01e",
+    "public_input_sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9",
+    "task_manifest_sha256": "c159becc07c435571776ddf03d7125e71e422ec8ead16afb112feb73f5279a48"
+  },
+  "recorded_at_utc": "2026-10-14T07:11:49Z",
+  "research_acceptance": "NOT_EVALUATED",
+  "research_method_code_executed": false,
+  "resource_values_invented": false,
+  "static_validation": {
+    "json_schemas_checked": 7,
+    "json_schemas_status": "PASS",
+    "oracle_case_map_schema_validation": "PASS",
+    "pair_inputs_schema_validation": "PASS",
+    "python_sources_ast": 24,
+    "python_sources_ast_status": "PASS",
+    "schema_library": "already available; no installation performed",
+    "synthetic_method_result_schema_validation": "PASS",
+    "task_manifest_schema_validation": "PASS"
+  },
+  "task_preflight": {
+    "command": "python3 -I -B runner.py --task-manifest TASK_MANIFEST.json --preflight-only",
+    "completed_method_invocations": 0,
+    "docker_or_method_execution_started": false,
+    "exit_code": 20,
+    "method_invocations_started": 0,
+    "method_start_requests": 0,
+    "missing_resource_fields": [
+      "wall_seconds",
+      "memory_bytes",
+      "pids_limit",
+      "max_method_output_bytes"
+    ],
+    "run_directory_created": false,
+    "stop_reason": "resource limits are missing or invalid",
+    "task_status": "BLOCKED"
+  },
+  "test_command": "python3 -I -B -m unittest discover -s research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests -v",
+  "test_exit_code": 0,
+  "tests_failed": 0,
+  "tests_passed": 39,
+  "tests_run": 39
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcg:identifiability-paired-cpu:pair-inputs:v1",
+  "title": "Opaque paired method inputs",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "cases"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "cases": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id", "rows"],
+        "properties": {
+          "case_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+          "rows": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 5,
+            "items": {"type": "object"}
+          }
+        }
+      }
+    }
+  }
+}

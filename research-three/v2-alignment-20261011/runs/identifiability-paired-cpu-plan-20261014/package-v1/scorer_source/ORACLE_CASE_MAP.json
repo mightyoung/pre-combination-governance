@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "oracle_trace_for_case": {
+    "38e02496822f1a85849b6a39f698e50d": "I1_NO_INFO_CONTINUING",
+    "33fadeeedeed902bd0ab9dfae5420213": "I2_NO_INFO_NEW",
+    "42474559127419126b713096e9f4d3ee": "I2_NO_INFO_NEW",
+    "81050a121e028f59f1e6940d7c5eb477": "I2_NO_INFO_NEW"
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "absolute_cloud_paths_included": false,
+  "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001-PERSISTENCE",
+  "base_commit": "01f9a849b3fc24c8a46406919c0350e6d4b89729",
+  "cloud_repository_relative_base": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1",
+  "files": [
+    {
+      "bytes": 13539,
+      "classification": "reviewed public plan",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/PLAN.md",
+      "sha256": "546f63965f1ae667181ef48910e12aa60834d5d5b855d52072e158fe3733f01e"
+    },
+    {
+      "bytes": 233,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/CASE_BINDINGS.json",
+      "sha256": "87cf9794732b32f9fbc05452118d5a06e6fbf195cc931304b92ca4ac70f68659"
+    },
+    {
+      "bytes": 2946,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/DEVELOPMENT_TEST_RESULTS.json",
+      "sha256": "76db077a65770b4aaf969a2e56fc218bf7fcdb9c9e5e9eaffb390a27602c7b50"
+    },
+    {
+      "bytes": 5425,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/PAIR_METHOD_INPUTS.json",
+      "sha256": "70d9662034777ce8e5fa1a02c4d870cdc8c788b9290f5231b7a0c8985c9dde24"
+    },
+    {
+      "bytes": 7681,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/README.md",
+      "sha256": "10f0814731bad88faf9511ef3b557e5b7328ee5600832a3fed2f609fa0915259"
+    },
+    {
+      "bytes": 4767,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/TASK_MANIFEST.json",
+      "sha256": "c159becc07c435571776ddf03d7125e71e422ec8ead16afb112feb73f5279a48"
+    },
+    {
+      "bytes": 1431,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/WALL_TIME_SCOPE_REVISION_20261014.md",
+      "sha256": "6c55bd6f01185265627a59066660aff0d099e7f4fbc3a7376f3fe55e8cc7396c"
+    },
+    {
+      "bytes": 9471,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/bundle.py",
+      "sha256": "b7d5bdeaceb5087d986da36ebd45e26f7eff25380506dc1e003f0d61ac5468b7"
+    },
+    {
+      "bytes": 17222,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/frozen_source/public-input.json",
+      "sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9"
+    },
+    {
+      "bytes": 5655,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/frozen_source/runtime/methods.py",
+      "sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343"
+    },
+    {
+      "bytes": 3045,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/frozen_source/runtime/shared_context.py",
+      "sha256": "fb46e5040fe91f7337fdd5cb585673e8fc9ee3cbb3fb5dc2e0e1604fab90029e"
+    },
+    {
+      "bytes": 1851,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/frozen_source/runtime/slot_worker.py",
+      "sha256": "2e93dfefccd10cb676548721f52b73e9dddb1ed9e2021daf9745b342c6e59526"
+    },
+    {
+      "bytes": 4536,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/frozen_source/runtime/worker.py",
+      "sha256": "5a904a8a877c3f7b2673fc2464cfaf57f80af4176780eb556acc35ca01fcaff7"
+    },
+    {
+      "bytes": 5606,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/frozen_source/source-binding.json",
+      "sha256": "10e6445dc7d105f87d4a196c1e1d8b8ef3dbda8e5159d5cee9dad324ad62f3f6"
+    },
+    {
+      "bytes": 3551,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/frozen_source/source-case-plan.md",
+      "sha256": "54de6415f3683bae7d6d4d6bcbb2f764ac12f379d51d695362c0c2bc1d2125f4"
+    },
+    {
+      "bytes": 463,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/frozen_source/source-preparation-status.json",
+      "sha256": "870e485d4be6e4d97ee341787bbabe7148a40bd6d26fe0e90536eab83eaf30ad"
+    },
+    {
+      "bytes": 1766,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/make_pair_inputs.py",
+      "sha256": "2f679bcaab8b67cc53a797b3c655d9af9907ef6410a0027be29e7446c674320e"
+    },
+    {
+      "bytes": 3113,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/pair_inputs.py",
+      "sha256": "6e1df092ede0fbf10342dcc84601c555cd8636a98ca6d2c227e05ebd90459969"
+    },
+    {
+      "bytes": 1688,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/preflight.py",
+      "sha256": "24068fb8d35362a62b87ddcc930b209ba0ae127638760d4e510cbb183808e863"
+    },
+    {
+      "bytes": 6660,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/result_contract.py",
+      "sha256": "988d05bf388acfc6dbbea7ae0474aa406ccde54345768b829fa7988c837ae3cc"
+    },
+    {
+      "bytes": 4789,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/return_validator.py",
+      "sha256": "57683b781440c4958f5eb8ec8e6515cb6834241c85e96112cfc6d22ada8fa350"
+    },
+    {
+      "bytes": 67042,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/runner.py",
+      "sha256": "8d333bbf709ed0e1de02f49c857800774aef21b7b9b7cd2c558a0dfbea663b9a"
+    },
+    {
+      "bytes": 28,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/sandbox/Dockerfile",
+      "sha256": "8cbbf606f68f70a8550adb52faf33aca1b45441d6ad839c7011563d60b5c5c70"
+    },
+    {
+      "bytes": 34,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/sandbox/rootfs/lib/.mountpoint",
+      "sha256": "3395aec541d51cb836391772d27c077cdc240a166cc35c48ba1e512de6bb0e3f"
+    },
+    {
+      "bytes": 34,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/sandbox/rootfs/lib64/.mountpoint",
+      "sha256": "afe13a440c2267380ad2bad6a9cfdcf4295f7e55e06c9572748cee577ba1a2cf"
+    },
+    {
+      "bytes": 27,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/sandbox/rootfs/runtime/.mountpoint",
+      "sha256": "09c907c28badbfebe5bbd16af514ec32eafef62c951bff14b77cbb4babb6b995"
+    },
+    {
+      "bytes": 38,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/sandbox/rootfs/task/.mountpoint",
+      "sha256": "2731afacd0d0892ebbfcb861339588facc09e8884ea50c5d53424d6ffa826f12"
+    },
+    {
+      "bytes": 34,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/sandbox/rootfs/usr/lib/.mountpoint",
+      "sha256": "3395aec541d51cb836391772d27c077cdc240a166cc35c48ba1e512de6bb0e3f"
+    },
+    {
+      "bytes": 5501,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/schemas/attempt.schema.json",
+      "sha256": "25718d3d6d23fd6c048871aa3ccd0f210aabcf268befcaad4c9a727adddf4865"
+    },
+    {
+      "bytes": 3108,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/schemas/method-result.schema.json",
+      "sha256": "0726394901173027bf74c77e70948da485b7efe1f0c3161efddd710f22da2b41"
+    },
+    {
+      "bytes": 628,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/schemas/oracle-case-map.schema.json",
+      "sha256": "61bea6faf3f9ffdc5e24805dbbe8908ecff58e0b17db7c23041585ac54f5db2f"
+    },
+    {
+      "bytes": 799,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/schemas/pair-inputs.schema.json",
+      "sha256": "675bec40ecfe7b51cae473ef5223f5d206d6b0224762a496a1bf0935b31be4ca"
+    },
+    {
+      "bytes": 1849,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/schemas/return-validation.schema.json",
+      "sha256": "b7cc56d4b4d43a0e9dba5789dfd25495d26ccf2eea0cdf0a21034c8d9dd418de"
+    },
+    {
+      "bytes": 2473,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/schemas/score.schema.json",
+      "sha256": "69e969ba3f7c9e3300e7e4120c0b569c39eb507a4afed18b98c205fdb20165e1"
+    },
+    {
+      "bytes": 5632,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/schemas/task-manifest.schema.json",
+      "sha256": "9fa34c2c02859f065d93a6289026b9ba168a4707bd611622b6efab20437b3a96"
+    },
+    {
+      "bytes": 14666,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/scorer.py",
+      "sha256": "28f41aaf01f0ae188a4c336aa72c5e090f4ccc32c015e14d4d7edd2733d6c5fd"
+    },
+    {
+      "bytes": 298,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/scorer_source/ORACLE_CASE_MAP.json",
+      "sha256": "85d25db18ae58f6c27e9296b5d3b84f758ca91bf09f4018c617726c713a19225"
+    },
+    {
+      "bytes": 2978,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/scorer_source/independent_reference.py",
+      "sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259"
+    },
+    {
+      "bytes": 7022,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/scorer_source/offline_evaluator.py",
+      "sha256": "6504821d2c9c1362598077bd7956c03f177692ae638d9d68ceb13b47a98d9f86"
+    },
+    {
+      "bytes": 5646,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/scorer_source/oracle.physical.json",
+      "sha256": "f41cddf14c1905b5358280445efbd542685fa1e2cfb61d6dc78274ec42fda902"
+    },
+    {
+      "bytes": 2615,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/scorer_source/scoring.py",
+      "sha256": "5cc09fed32a7b9bc10a0ff7dc282118157e53dd4906713b720c375d0c2663dd4"
+    },
+    {
+      "bytes": 548,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/task_contract.py",
+      "sha256": "b3158249b9a288387a6b0cb4d7cc6252cb76c05eab57a10ab156e7ca44f92b02"
+    },
+    {
+      "bytes": 12935,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_bundle_scoring.py",
+      "sha256": "270daccb43113506586f188ee2402f38c1c8b162ffc67a589576755dee1dfeaf"
+    },
+    {
+      "bytes": 2968,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_package_contract.py",
+      "sha256": "a49461f6d77e6687dbb8694b7c9aa621be29dd31ed422a911c1091ddbb1f76d6"
+    },
+    {
+      "bytes": 2943,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_pair_inputs.py",
+      "sha256": "21d193b52abbb04273bdf292e22e461a329a4c2243530554526b3053a71cb77d"
+    },
+    {
+      "bytes": 2058,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_preregistration.py",
+      "sha256": "c2699a202c0bd0ed52df20019595dc96b4a4553850fd403aa86bc003d9539c74"
+    },
+    {
+      "bytes": 3121,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_result_contract.py",
+      "sha256": "806a391c6df6c99a04150b573b5a2d7d17e6fe94eff7bdc6716459d6a8065220"
+    },
+    {
+      "bytes": 7822,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_return_validator.py",
+      "sha256": "7cecd766daf9d1741c09f8f7f61259587536c1ca1adc6f28aeeebb98e4d9ac2f"
+    },
+    {
+      "bytes": 20148,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_runner_preflight.py",
+      "sha256": "3cc328caffbe50178537356bc1828d1c48730bb77d451ab8b7c5754956aa3cd1"
+    },
+    {
+      "bytes": 1682,
+      "classification": "public package code/design/schema/test or pinned public synthetic source",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_slot_worker.py",
+      "sha256": "36b7cbf436a2b6f597247f8dff4966665bcb20598c8f10609492fdd1ddf4c67e"
+    }
+  ],
+  "includes_pinned_public_oracle": true,
+  "includes_private_mac_originals": false,
+  "includes_private_mac_v2_specification": false,
+  "mac_checkout_root": null,
+  "mac_repository_relative_base": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1",
+  "manifest_self_hash_included": false,
+  "manifest_version": 1,
+  "original_1464_check_trial_rerun": false,
+  "research_methods_or_80_slot_run_performed": false,
+  "resource_profile_status": "BLOCKED_MISSING_VALUES",
+  "source_branch": "task/research-three-two-hop-lineage-20261012",
+  "status": "PACKAGE_READY_EXECUTION_BLOCKED_MISSING_RESOURCE_PROFILE"
+}

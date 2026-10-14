@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcg:identifiability-paired-cpu:oracle-case-map:v1",
+  "title": "Scorer-only opaque case to physical trace map",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "oracle_trace_for_case"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "oracle_trace_for_case": {
+      "type": "object",
+      "minProperties": 4,
+      "maxProperties": 4,
+      "propertyNames": {"pattern": "^[0-9a-f]{32}$"},
+      "additionalProperties": {
+        "enum": ["I1_NO_INFO_CONTINUING", "I2_NO_INFO_NEW"]
+      }
+    }
+  }
+}

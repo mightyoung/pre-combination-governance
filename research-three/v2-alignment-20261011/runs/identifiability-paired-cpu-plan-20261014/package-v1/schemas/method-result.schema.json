@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcg:identifiability-paired-cpu:method-result:v1",
+  "title": "One method-prefix result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "cards", "possible", "risk", "priority", "notify", "fused",
+    "independent_evidence", "role", "context_evidence", "notification_reasons",
+    "card_updates", "risk_state_update", "review_notification_reasons"
+  ],
+  "properties": {
+    "cards": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+    "possible": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "risk": {"enum": ["UNKNOWN", "EXPOSURE", "EXPOSURE_HIGH", "CONFLICT_REVIEW"]},
+    "priority": {"enum": ["REVIEW", "FOLLOW_UP"]},
+    "notify": {"type": "boolean"},
+    "fused": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {"type": "null"},
+          {"type": "object", "additionalProperties": false,
+           "required": ["RUN", "STOP", "U", "conflict"],
+           "properties": {
+             "RUN": {"type": "string"}, "STOP": {"type": "string"},
+             "U": {"type": "string"}, "conflict": {"type": "string"}
+           }}
+        ]
+      }
+    },
+    "independent_evidence": {"type": "integer", "minimum": 0},
+    "role": {"const": "event rules shared; DS motion fusion diagnostic only"},
+    "context_evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "accepted", "rejected"],
+      "properties": {
+        "status": {"enum": ["ABSENT", "UNKNOWN_REVIEW", "NEW_BOUNDARY"]},
+        "accepted": {"type": "array", "items": {"type": "object"}},
+        "rejected": {
+          "type": "array", "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["kind", "reason"],
+            "properties": {"kind": {"type": "string"}, "reason": {"type": "string"}}
+          }
+        }
+      }
+    },
+    "notification_reasons": {
+      "type": "array", "uniqueItems": true,
+      "items": {"enum": ["new_event_first_alert", "risk_escalation", "handling_follow_up_only"]}
+    },
+    "card_updates": {
+      "type": "array", "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "kind", "association_established", "review_required"],
+        "properties": {
+          "id": {"type": "string"},
+          "kind": {"const": "possible_existing_event_update"},
+          "association_established": {"const": false},
+          "review_required": {"const": true}
+        }
+      }
+    },
+    "risk_state_update": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "object", "additionalProperties": false, "required": ["from", "to"],
+         "properties": {
+           "from": {"type": ["string", "null"]},
+           "to": {"enum": ["UNKNOWN", "EXPOSURE", "EXPOSURE_HIGH", "CONFLICT_REVIEW"]}
+         }}
+      ]
+    },
+    "review_notification_reasons": {
+      "type": "array", "uniqueItems": true,
+      "items": {"const": "uncertain_new_alarm_requires_review"}
+    }
+  }
+}
