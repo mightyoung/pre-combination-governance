@@ -2,7 +2,7 @@
   "manifest_version": 1,
   "purpose": "Repository-relative hash manifest for preserving the PCG user CPU replay handoff files in a Mac checkout.",
   "source_scope": "Public software handoff on independent task branch task/research-three-two-hop-lineage-20261012.",
-  "handoff_code_commit_sha": "6c147c3c74f4a7374b4f1969a2334d3f4b773517",
+  "handoff_code_commit_sha": "4b2ed70bd4a66c0988a20b45d7adf7b1b4f11c59",
   "mac_local_project_root": null,
   "copy_status": "NOT_COPIED_BY_THIS_RUN",
   "evidence_class": "Handoff specification, result generator, validator, and isolated synthetic contract tests only; no user replay was run.",
@@ -25,8 +25,8 @@
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/user_cpu_replay_handoff.py",
-      "bytes": 30716,
-      "sha256": "f8fcd4dc2fef1618e575b8da7fd02148d0eefccb2442de05d9740477092d6bba"
+      "bytes": 32153,
+      "sha256": "9283932a17a282c2edb16d1b48ace5a3f0b72845cdbc93558e6e1ccf14d2a869"
     },
     {
       "path": "risk-fusion-bench/src/rfb/research/user_cpu_replay_runner.py",
@@ -35,8 +35,8 @@
     },
     {
       "path": "risk-fusion-bench/tests/test_user_cpu_replay_handoff.py",
-      "bytes": 14597,
-      "sha256": "9b0739a3abed7bb704e78243e9e05e3c6d45fe1e9acc19c432afaa89be7d59bb"
+      "bytes": 17771,
+      "sha256": "d0ad4e53f4c45aa7d75e7575db8c36db8c3219412ad7f9489d77ba420a98cb8b"
     }
   ],
   "related_existing_manifest": {
