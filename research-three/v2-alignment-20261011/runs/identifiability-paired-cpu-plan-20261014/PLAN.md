@@ -63,7 +63,7 @@ A/B 应保持公开输入及输出一致；不允许按 oracle 标签分别调�
 1. 运行前固定公开输入、方法、gate、runner、schema、参数和 oracle sidecar 的 SHA-256；单独冻结 opaque method-input manifest。方法容器/进程不得挂载 oracle 文件，也不得导入 scorer。
 2. 每个 prefix 的方法输出及其完整 card/action/review 字段先写入新 bundle、规范化并哈希；只有输出哈希冻结后，独立 scorer 才能读 oracle sidecar。输出不得含 case truth、trace 名或隐藏未来字段。
 3. 需要 OS 级文件/网络隔离、单 CPU、进程树限制和可记录的内存上限。上一收据的来源与 terminal exit 未确认，且 RSS/资源故障资格未知；不得把其资源文字当作已验证限额。新任务 manifest 必须在运行前逐项冻结 CPU、wall、memory、output 上限及其 OS 强制/测量方式；任一缺失即 BLOCKED。
-4. 每个 run ID 只允许一次 attempt。任何超限、退出异常、hash/pin 不匹配或 oracle 泄漏都保留部分输出并停止；不得同 ID 重试、改写输入、改 oracle 或调整首报口径使结果变绿。
+4. 每个 run ID 只允许一次 attempt。预先定义的研究结果失败（首报漏报/额外报告、边界拒绝/接受不符）不提前终止剩余安全槽位；保留逐槽输出并交完整 bundle 给 scorer。资源超限、非零退出、hash/pin 不匹配、隔离丢失或 oracle 泄漏属于协议/执行故障，立即停止并保留已完成槽位、部分产物和原因；不得不安全地继续，也不得同 ID 重试、改写输入、改 oracle 或调整首报口径使结果变绿。
 
 ### CPU 命令与状态字段
 
@@ -79,16 +79,16 @@ python3 -I ./validate_identifiability_pair_v1.py \
   --bundle ./runs/<unique-run-id>
 ```
 
-回传至少包含：`task_id`、`run_id`、`task_status`（execution 的 PASS/FAIL/BLOCKED）、`research_acceptance`、源 commit 与代码/input/oracle/schema SHA、完整命令、实际 interpreter/python/platform、started/finished UTC、attempt 数、child exit 与 terminal top-level exit、CPU/wall、memory cap/peak RSS（不可得则写 UNKNOWN）、stdout/stderr 和每个 artifact 的 bytes/SHA。
+回传至少包含：`task_id`、`run_id`、`task_status`（execution/bundle 的 PASS/FAIL/BLOCKED）、`research_acceptance`（TRUE/FALSE/NOT_EVALUATED）、源 commit 与代码/input/oracle/schema SHA、完整命令、实际 interpreter/python/platform、started/finished UTC、attempt 数、`planned_method_invocations=80`、`completed_method_invocations`（实数，0–80）、`partial`、`stop_reason`、child exit 与 terminal top-level exit、CPU/wall、memory cap/peak RSS（不可得则写 UNKNOWN）、stdout/stderr 和每个 artifact 的 bytes/SHA。两个状态字段相互独立：仅当所有预定槽位完成且 bundle/协议完整性通过时 `task_status=PASS`；只有完整 bundle 经 oracle 解封和 scorer 评估后才填写研究接受 TRUE/FALSE。若因协议/执行故障中断，填 FAIL 或 BLOCKED、`research_acceptance=NOT_EVALUATED`，并报告实际完成数、部分状态和原因。研究接受 FALSE 本身不使已完整执行且完整封存的 bundle 变成 execution FAIL。
 
-机器结果须含 `method_invocations=80`、每 case/method/prefix 的输入/输出 hash、cards、notification reasons、first-alert prefix、accepted/rejected boundary reasons、possible/review 状态；oracle 解封后另给 `required_first_alert_prefixes`、`actual_first_alert_prefixes`、missed、extra、logical delay（漏报为 null）、两类 acceptance、rejection denominator、`production_truth_denominator=0`、`production_accuracy=NOT_COMPUTABLE`。`task_status=PASS` 只表示 bundle/协议完整，不得覆盖 `research_acceptance=false` 或“非安全验收”。
+机器结果须含所有已完成槽位的逐 case/method/prefix 输入/输出 hash、cards、notification reasons、first-alert prefix、accepted/rejected boundary reasons、possible/review 状态；仅在完整且哈希封存的 bundle 上解封 oracle 并评分，另给 `required_first_alert_prefixes`、`actual_first_alert_prefixes`、missed、extra、logical delay（漏报为 null）、两类 acceptance、rejection denominator、`production_truth_denominator=0`、`production_accuracy=NOT_COMPUTABLE`。完整运行预期 `planned_method_invocations=80`；回传的 `completed_method_invocations` 必须是实际值，不能把计划数写成完成数。`task_status=PASS` 只表示全部预定槽位执行完且 bundle/协议完整，不得覆盖 `research_acceptance=false` 或“非安全验收”。
 
 ### 停止条件与待用户决定
 
 - 源码或输入 manifest 不匹配、执行来源/terminal exit 无法确认、OS 级隔离/资源上限缺失、方法可访问 oracle/trace 标签/未来 prefix：运行前 BLOCKED。
-- A/B 输入不再完全相同或方法输出受 case 标签影响：隔离测试失败，停止，不调参。
-- C 的 boundary 未通过预先冻结的 gate，或 D 的 stale boundary 被接受：记录 FAIL/UNKNOWN，停止。
-- 任意首报漏报、额外 prefix 3 报告、非零 exit、资源超限、缺少原始日志/哈希：完整保留 FAIL/BLOCKED，不重试。
+- A/B 输入不再完全相同或方法输出受 case 标签影响：协议/隔离完整性失败，立即停止，不调参；保留实际完成槽位与部分产物。
+- C 的 boundary 未通过预先冻结的 gate，或 D 的 stale boundary 被接受：记为研究结果失败，继续其余预定槽位；完成并哈希封存全部安全槽位后交 scorer，最终 `research_acceptance=false`。
+- 任意首报漏报或额外 prefix 3 报告：记为研究结果失败并继续其余预定槽位；完整运行后由 scorer 汇总。非零 exit、资源超限、隔离丢失、缺少原始日志/哈希或完整性校验失败属于协议/执行故障，立即停止，保留实际完成数、部分产物和明确原因，置 `task_status=FAIL/BLOCKED`、`research_acceptance=NOT_EVALUATED`；不重试同 ID。
 
 当前不建议改变主研究假设；这份计划只测信息边界和实现行为，不检验 D-S 优越性。若要把目标从“准确的新事件首报”改为“身份未定时先发预警”，须用户先决定预警是否独立于事件确认、如何记入 false-positive/及时性指标。若采用 WORK_ROUND 作为主要区分证据，须用户先决定事件单位是否改为作业实例。若要把 M0 改成 task-aware 分组，须用户先批准新的方法版本/基线；本计划不做该改动。
 
