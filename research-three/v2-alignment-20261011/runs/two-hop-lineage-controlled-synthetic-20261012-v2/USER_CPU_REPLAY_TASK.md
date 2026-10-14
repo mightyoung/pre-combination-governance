@@ -1,15 +1,12 @@
 # PCG CPU replay handoff: V2 two-hop lineage
 
 **Task ID:** `PCG-LINEAGE-CPU-REPLAY-001`  
-**Status:** `LOCAL_HANDOFF_PENDING_PUBLICATION`
+**Status:** `READY_FOR_CPU_SERVER_CHECKOUT`
 **Evidence class:** software/mechanics reproducibility only; not a new experiment.
 
-The complete task card, result generator, validator, and revised schema are
-present in this local research branch. The last read-only check of the remote
-branch found it at `f8fac06b769b1ba5c3f54e497e94c7eff0135518`, which does not
-contain this complete increment. Do not start the user-server replay until the
-handoff files are published on the branch and every file in the persistence
-manifest passes its byte/hash check.
+Before running, check out the published task branch on the CPU server and
+verify every file in the persistence manifest by byte length and SHA-256. Do
+not start the replay from a partial checkout or before the manifest passes.
 
 ## Decision and limits
 

@@ -133,9 +133,10 @@ they do not rerun the runner or scorer. The
 lists these new handoff files with repository-relative paths. It records that
 no Mac copy was performed in this cloud checkout.
 
-The complete handoff increment is local and awaits publication. The last
-read-only remote check found the branch at `f8fac06b769b1ba5c3f54e497e94c7eff0135518`;
-do not start the user-server replay until the full manifest verifies there.
+Before replay, the CPU server must check out this task branch and verify all
+files in the handoff persistence manifest by byte length and SHA-256. The
+result validator is part of the handoff; synthetic contract tests do not run
+the pinned runner or scorer.
 
 The next real-source lineage collection remains blocked: the exact source
 response/collector receipt, two-sided forwarding receipts with bounded cursor
