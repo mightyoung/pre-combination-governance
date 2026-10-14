@@ -152,6 +152,24 @@ class UserCpuReplayHandoffTests(unittest.TestCase):
         (self.bundle_dir / "TASK_RESULT.json").write_text(json.dumps(result, indent=2) + "\n")
         return result
 
+    def replace_runner_checks(self, checks: dict[str, object]) -> None:
+        runner_path = self.bundle_dir / "RUNNER_CHECKS_V2.json"
+        runner = json.loads(runner_path.read_text())
+        runner["checks"] = checks
+        runner_bytes = json.dumps(runner, ensure_ascii=False, indent=2).encode() + b"\n"
+        runner_path.write_bytes(runner_bytes)
+
+        result_path = self.bundle_dir / "TASK_RESULT.json"
+        result = json.loads(result_path.read_text())
+        for artifact in result["artifacts"]:
+            if artifact["path"] == runner_path.name:
+                artifact["bytes"] = len(runner_bytes)
+                artifact["sha256"] = sha256(runner_bytes)
+                break
+        else:
+            self.fail("RUNNER_CHECKS_V2.json missing from TASK_RESULT artifact manifest")
+        result_path.write_text(json.dumps(result, indent=2) + "\n")
+
     def test_accepts_pass_bundle_with_frozen_mechanics_counts(self) -> None:
         self.write_bundle()
 
@@ -160,6 +178,51 @@ class UserCpuReplayHandoffTests(unittest.TestCase):
         self.assertTrue(report["bundle_valid"])
         self.assertEqual(report["task_status"], "PASS")
         self.assertEqual(report["checks_passed"], 16)
+
+    def test_rejects_pass_bundle_with_null_observed_input_pins(self) -> None:
+        result = self.write_bundle()
+        result["observed_input_pins"] = None
+        (self.bundle_dir / "TASK_RESULT.json").write_text(json.dumps(result, indent=2) + "\n")
+
+        with self.assertRaisesRegex(HandoffValidationError, "PASS.*observed_input_pins"):
+            validate_user_cpu_replay_bundle(self.bundle_dir, REPO_ROOT)
+
+    def test_rejects_pass_bundle_with_arbitrary_sixteen_check_names(self) -> None:
+        self.write_bundle()
+        self.replace_runner_checks({f"alternate_check_{index:02d}": True for index in range(16)})
+
+        with self.assertRaisesRegex(HandoffValidationError, "runner check names"):
+            validate_user_cpu_replay_bundle(self.bundle_dir, REPO_ROOT)
+
+    def test_rejects_pass_bundle_after_a_frozen_check_is_renamed(self) -> None:
+        self.write_bundle()
+        runner = json.loads((self.bundle_dir / "RUNNER_CHECKS_V2.json").read_text())
+        checks = runner["checks"]
+        checks["renamed_source_hash_check"] = checks.pop("source_hash_matches_frozen_input")
+        self.replace_runner_checks(checks)
+
+        with self.assertRaisesRegex(HandoffValidationError, "runner check names"):
+            validate_user_cpu_replay_bundle(self.bundle_dir, REPO_ROOT)
+
+    def test_rejects_missing_check_replaced_with_unfrozen_name(self) -> None:
+        self.write_bundle()
+        runner = json.loads((self.bundle_dir / "RUNNER_CHECKS_V2.json").read_text())
+        checks = runner["checks"]
+        checks.pop("all_frozen_expectations_passed")
+        checks["unfrozen_replacement_check"] = True
+        self.replace_runner_checks(checks)
+
+        with self.assertRaisesRegex(HandoffValidationError, "runner check names"):
+            validate_user_cpu_replay_bundle(self.bundle_dir, REPO_ROOT)
+
+    def test_rejects_truthy_non_boolean_runner_check_value(self) -> None:
+        self.write_bundle()
+        runner = json.loads((self.bundle_dir / "RUNNER_CHECKS_V2.json").read_text())
+        runner["checks"]["source_hash_matches_frozen_input"] = 1
+        self.replace_runner_checks(runner["checks"])
+
+        with self.assertRaisesRegex(HandoffValidationError, "runner check values"):
+            validate_user_cpu_replay_bundle(self.bundle_dir, REPO_ROOT)
 
     def test_rejects_artifact_changed_after_manifest_was_written(self) -> None:
         self.write_bundle()

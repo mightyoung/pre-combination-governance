@@ -32,6 +32,26 @@ SCORER_COMMAND = (
     "two-hop-lineage-controlled-synthetic-20261012-v2/score_two_hop_lineage_v2.py"
 )
 EXPECTED_COMMANDS = (RUNNER_COMMAND, SCORER_COMMAND)
+EXPECTED_FROZEN_CHECK_NAMES = frozenset(
+    {
+        "source_hash_matches_frozen_input",
+        "hop1_persisted_bytes_match_written_bytes",
+        "hop2_transform_has_one_persisted_bytes_argument",
+        "hop2_receipt_declares_exact_observed_hop1_input",
+        "hop2_parent_hash_is_persisted_hop1_hash",
+        "outer_id_changes_at_each_hop",
+        "projection_schema_changes_at_each_hop",
+        "all_payload_hashes_are_distinct",
+        "both_valid_receipts_pass_local_consistency",
+        "full_chain_states_match_frozen_expectations",
+        "missing_receipt_states_match_frozen_expectations",
+        "hash_only_returns_unknown_for_all_pair_rows",
+        "hash_equal_and_different_policy_checks_return_unknown",
+        "undeclared_side_input_fails_closed",
+        "no_statistical_independence_claim",
+        "all_frozen_expectations_passed",
+    }
+)
 
 PASS_ARTIFACTS = {
     "METHOD_OUTPUTS_V2.json",
@@ -365,6 +385,8 @@ def validate_user_cpu_replay_bundle(bundle_dir: Path, repo_root: Path) -> dict[s
     _require(expected_pins.get("source_sample_bytes") == SOURCE_SAMPLE_BYTES,
              "expected source sample byte-length pin mismatch")
     observed_pins = result.get("observed_input_pins")
+    if status == "PASS":
+        _require(observed_pins is not None, "PASS requires observed_input_pins")
     if observed_pins is not None:
         _require_exact_fields(observed_pins, PIN_FIELDS, "observed_input_pins")
         for field in ("pre_run_manifest_sha256", "scorer_truth_manifest_sha256", "source_sample_sha256"):
@@ -468,8 +490,19 @@ def validate_user_cpu_replay_bundle(bundle_dir: Path, repo_root: Path) -> dict[s
         _require(runner.get("network_or_model_or_notification_called") is False,
                  "runner records a prohibited external/model/notification call")
         checks = runner.get("checks")
-        _require(isinstance(checks, dict) and len(checks) == 16 and all(value is True for value in checks.values()),
-                 "runner must report all 16 frozen checks true")
+        _require(isinstance(checks, dict), "runner checks must be an object")
+        check_names = set(checks)
+        missing_checks = sorted(EXPECTED_FROZEN_CHECK_NAMES - check_names)
+        unexpected_checks = sorted(check_names - EXPECTED_FROZEN_CHECK_NAMES)
+        _require(
+            check_names == EXPECTED_FROZEN_CHECK_NAMES,
+            "runner check names differ from frozen names: "
+            f"missing={missing_checks}, unexpected={unexpected_checks}",
+        )
+        _require(
+            all(value is True for value in checks.values()),
+            "runner check values must all be strict true booleans",
+        )
 
         scored = _read_json(artifacts["SCORED_RESULT_V2.json"])
         _require(scored.get("method_outputs_sha256_at_freeze") == method_hash,
