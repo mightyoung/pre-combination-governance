@@ -1,0 +1,17 @@
+{
+  "status": "STATIC_PREPARED_NON_AUTHOR_REVIEWED_NOT_RUN_MANUAL_ONLY",
+  "tests_prepared": 2,
+  "tests_run": 0,
+  "main_slots_planned": 40,
+  "reference_bundles_planned": 34,
+  "total_bundles_planned": 76,
+  "assess_calls_planned": 120,
+  "negative_candidate_checks_inside_first_test": 6,
+  "new_scientific_execution": false,
+  "old_code_truth_results_and_frozen362_hashes": "MATCH",
+  "os_file_network_isolation": false,
+  "resource_failure_qualification": false,
+  "known_boundary": "Different physical events with identical public context cannot be distinguished; provisional cards retained with review_required; no blanket first-alert guarantee",
+  "binding_sha256": "60288e33a6939384815b5ec72444b8b4382693de45cee24a468507ea99e480f7",
+  "reviewer": "/root/degraded_static_review"
+}

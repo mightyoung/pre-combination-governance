@@ -1,0 +1,41 @@
+trace,prefix,method,risk,physical_alert,notification_reasons,card_updates,risk_state_update
+N1_UNCERTAIN_UPDATE,1,M0,EXPOSURE,True,"[""new_event_first_alert"", ""risk_escalation""]",[],"{""from"": null, ""to"": ""EXPOSURE""}"
+N1_UNCERTAIN_UPDATE,1,M1,EXPOSURE,True,"[""new_event_first_alert"", ""risk_escalation""]",[],"{""from"": null, ""to"": ""EXPOSURE""}"
+N1_UNCERTAIN_UPDATE,1,M2,EXPOSURE,True,"[""new_event_first_alert"", ""risk_escalation""]",[],"{""from"": null, ""to"": ""EXPOSURE""}"
+N1_UNCERTAIN_UPDATE,1,M3,EXPOSURE,True,"[""new_event_first_alert"", ""risk_escalation""]",[],"{""from"": null, ""to"": ""EXPOSURE""}"
+N1_UNCERTAIN_UPDATE,2,M0,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,2,M1,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,2,M2,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,2,M3,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,3,M0,EXPOSURE,True,"[""new_event_first_alert"", ""handling_follow_up_only""]",[],null
+N1_UNCERTAIN_UPDATE,3,M1,EXPOSURE,False,"[""handling_follow_up_only""]",[],null
+N1_UNCERTAIN_UPDATE,3,M2,EXPOSURE,False,"[""handling_follow_up_only""]",[],null
+N1_UNCERTAIN_UPDATE,3,M3,EXPOSURE,False,"[""handling_follow_up_only""]",[],null
+N1_UNCERTAIN_UPDATE,4,M0,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,4,M1,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,4,M2,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,4,M3,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,5,M0,EXPOSURE,False,[],[],null
+N1_UNCERTAIN_UPDATE,5,M1,EXPOSURE,False,[],"[{""id"": ""e"", ""kind"": ""possible_existing_event_update"", ""association_established"": false, ""review_required"": true}]",null
+N1_UNCERTAIN_UPDATE,5,M2,EXPOSURE,False,[],"[{""id"": ""e"", ""kind"": ""possible_existing_event_update"", ""association_established"": false, ""review_required"": true}]",null
+N1_UNCERTAIN_UPDATE,5,M3,EXPOSURE,False,[],"[{""id"": ""e"", ""kind"": ""possible_existing_event_update"", ""association_established"": false, ""review_required"": true}]",null
+N2_RISK_ESCALATION,1,M0,EXPOSURE,True,"[""new_event_first_alert"", ""risk_escalation""]",[],"{""from"": null, ""to"": ""EXPOSURE""}"
+N2_RISK_ESCALATION,1,M1,EXPOSURE,True,"[""new_event_first_alert"", ""risk_escalation""]",[],"{""from"": null, ""to"": ""EXPOSURE""}"
+N2_RISK_ESCALATION,1,M2,EXPOSURE,True,"[""new_event_first_alert"", ""risk_escalation""]",[],"{""from"": null, ""to"": ""EXPOSURE""}"
+N2_RISK_ESCALATION,1,M3,EXPOSURE,True,"[""new_event_first_alert"", ""risk_escalation""]",[],"{""from"": null, ""to"": ""EXPOSURE""}"
+N2_RISK_ESCALATION,2,M0,EXPOSURE,False,[],[],null
+N2_RISK_ESCALATION,2,M1,EXPOSURE,False,[],[],null
+N2_RISK_ESCALATION,2,M2,EXPOSURE,False,[],[],null
+N2_RISK_ESCALATION,2,M3,EXPOSURE,False,[],[],null
+N2_RISK_ESCALATION,3,M0,EXPOSURE,True,"[""new_event_first_alert"", ""handling_follow_up_only""]",[],null
+N2_RISK_ESCALATION,3,M1,EXPOSURE,False,"[""handling_follow_up_only""]",[],null
+N2_RISK_ESCALATION,3,M2,EXPOSURE,False,"[""handling_follow_up_only""]",[],null
+N2_RISK_ESCALATION,3,M3,EXPOSURE,False,"[""handling_follow_up_only""]",[],null
+N2_RISK_ESCALATION,4,M0,EXPOSURE,False,[],[],null
+N2_RISK_ESCALATION,4,M1,EXPOSURE,False,[],[],null
+N2_RISK_ESCALATION,4,M2,EXPOSURE,False,[],[],null
+N2_RISK_ESCALATION,4,M3,EXPOSURE,False,[],[],null
+N2_RISK_ESCALATION,5,M0,EXPOSURE_HIGH,True,"[""risk_escalation""]",[],"{""from"": ""EXPOSURE"", ""to"": ""EXPOSURE_HIGH""}"
+N2_RISK_ESCALATION,5,M1,EXPOSURE_HIGH,True,"[""risk_escalation""]","[{""id"": ""e"", ""kind"": ""possible_existing_event_update"", ""association_established"": false, ""review_required"": true}]","{""from"": ""EXPOSURE"", ""to"": ""EXPOSURE_HIGH""}"
+N2_RISK_ESCALATION,5,M2,EXPOSURE_HIGH,True,"[""risk_escalation""]","[{""id"": ""e"", ""kind"": ""possible_existing_event_update"", ""association_established"": false, ""review_required"": true}]","{""from"": ""EXPOSURE"", ""to"": ""EXPOSURE_HIGH""}"
+N2_RISK_ESCALATION,5,M3,EXPOSURE_HIGH,True,"[""risk_escalation""]","[{""id"": ""e"", ""kind"": ""possible_existing_event_update"", ""association_established"": false, ""review_required"": true}]","{""from"": ""EXPOSURE"", ""to"": ""EXPOSURE_HIGH""}"

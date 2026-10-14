@@ -1,0 +1,190 @@
+{
+  "audit_scope": "read/hash/parse/aggregate stored outputs only; no research imports, tests or model/reference reexecution",
+  "source": "user manual run; top exit0 user-reported; child exit0 in saved receipt",
+  "execution_success": true,
+  "tests": 18,
+  "method_slots": 120,
+  "reference_bundles": 102,
+  "total_bundles": 240,
+  "reference_assertions_passed": {
+    "ds_reference_match": 60,
+    "common_cards_match": 60,
+    "terminal_reference_match": 12
+  },
+  "ds_inner_asset_groups": 64,
+  "card_completeness_rows": 120,
+  "duplicate_or_missing_slots": 0,
+  "logs_hash_match": {
+    "stderr.log": true,
+    "stdout.log": true
+  },
+  "binding_and_362_frozen_match": true,
+  "recorded_cpu_seconds": 0.21794799999999998,
+  "recorded_wall_seconds_before_receipt_write": 0.23387570801423863,
+  "output_log_bytes": 114472,
+  "output_directory_bytes": 116174,
+  "os_file_network_isolation": false,
+  "aggregate_by_method": {
+    "M0": {
+      "prefix_count": 30,
+      "metric_sums": {
+        "false_merge": 5,
+        "false_split": 14,
+        "decided_pairs": 61,
+        "rejected_pairs": 0,
+        "total_pairs": 61,
+        "missed_must_notify": 0,
+        "physical_alert": 11,
+        "handling_only": 5,
+        "unsafe_clear": 0,
+        "danger_truth_evaluable": 29,
+        "danger_underassessment": 0,
+        "high_danger_missed": 0,
+        "unsupported_exposure": 0,
+        "conflict_misresolved": 0,
+        "spurious_conflict": 0,
+        "alert_outside_exact_required_prefix": 1
+      },
+      "risk_counts": {
+        "EXPOSURE": 18,
+        "UNKNOWN": 9,
+        "EXPOSURE_HIGH": 1,
+        "CONFLICT_REVIEW": 2
+      },
+      "required_notifications": 10,
+      "window_misses": 0,
+      "max_logical_delay": 0,
+      "unmatched": [
+        {
+          "trace": "T3",
+          "unmatched_alert_prefixes": [
+            3
+          ]
+        }
+      ]
+    },
+    "M1": {
+      "prefix_count": 30,
+      "metric_sums": {
+        "false_merge": 0,
+        "false_split": 0,
+        "decided_pairs": 57,
+        "rejected_pairs": 4,
+        "total_pairs": 61,
+        "missed_must_notify": 0,
+        "physical_alert": 11,
+        "handling_only": 5,
+        "unsafe_clear": 0,
+        "danger_truth_evaluable": 29,
+        "danger_underassessment": 0,
+        "high_danger_missed": 0,
+        "unsupported_exposure": 0,
+        "conflict_misresolved": 0,
+        "spurious_conflict": 0,
+        "alert_outside_exact_required_prefix": 1
+      },
+      "risk_counts": {
+        "EXPOSURE": 18,
+        "UNKNOWN": 9,
+        "EXPOSURE_HIGH": 1,
+        "CONFLICT_REVIEW": 2
+      },
+      "required_notifications": 10,
+      "window_misses": 0,
+      "max_logical_delay": 0,
+      "unmatched": [
+        {
+          "trace": "T3",
+          "unmatched_alert_prefixes": [
+            5
+          ]
+        }
+      ]
+    },
+    "M2": {
+      "prefix_count": 30,
+      "metric_sums": {
+        "false_merge": 0,
+        "false_split": 0,
+        "decided_pairs": 57,
+        "rejected_pairs": 4,
+        "total_pairs": 61,
+        "missed_must_notify": 0,
+        "physical_alert": 11,
+        "handling_only": 5,
+        "unsafe_clear": 0,
+        "danger_truth_evaluable": 29,
+        "danger_underassessment": 0,
+        "high_danger_missed": 0,
+        "unsupported_exposure": 0,
+        "conflict_misresolved": 0,
+        "spurious_conflict": 0,
+        "alert_outside_exact_required_prefix": 1
+      },
+      "risk_counts": {
+        "EXPOSURE": 18,
+        "UNKNOWN": 9,
+        "EXPOSURE_HIGH": 1,
+        "CONFLICT_REVIEW": 2
+      },
+      "required_notifications": 10,
+      "window_misses": 0,
+      "max_logical_delay": 0,
+      "unmatched": [
+        {
+          "trace": "T3",
+          "unmatched_alert_prefixes": [
+            5
+          ]
+        }
+      ]
+    },
+    "M3": {
+      "prefix_count": 30,
+      "metric_sums": {
+        "false_merge": 0,
+        "false_split": 0,
+        "decided_pairs": 57,
+        "rejected_pairs": 4,
+        "total_pairs": 61,
+        "missed_must_notify": 0,
+        "physical_alert": 11,
+        "handling_only": 5,
+        "unsafe_clear": 0,
+        "danger_truth_evaluable": 29,
+        "danger_underassessment": 0,
+        "high_danger_missed": 0,
+        "unsupported_exposure": 0,
+        "conflict_misresolved": 0,
+        "spurious_conflict": 0,
+        "alert_outside_exact_required_prefix": 1
+      },
+      "risk_counts": {
+        "EXPOSURE": 18,
+        "UNKNOWN": 9,
+        "EXPOSURE_HIGH": 1,
+        "CONFLICT_REVIEW": 2
+      },
+      "required_notifications": 10,
+      "window_misses": 0,
+      "max_logical_delay": 0,
+      "unmatched": [
+        {
+          "trace": "T3",
+          "unmatched_alert_prefixes": [
+            5
+          ]
+        }
+      ]
+    }
+  },
+  "raw_evidence_hashes": {
+    "intent.json": "48459d819940275f98901b6255d7dbc220da855751c8625947565efe3c8cb817",
+    "stderr.log": "9f6ce5052e9f1bbb2bdeb386de77bf2ecc2c1803ebf94ed93bd35e9a703544dc",
+    "stdout.log": "78db21877da9de02c0ed99c8800f44e3a536790c6863f1dd87c0aa524c61dee8",
+    "receipt.json": "78353ef26e7f279029df00f3b386fd2a978c86b1174b2db511c1117d2dadc13d"
+  },
+  "rss_measured": false,
+  "formal_MME_v2": "not located",
+  "D07": "not executed"
+}

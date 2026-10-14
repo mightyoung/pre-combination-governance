@@ -1,0 +1,9 @@
+{
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "phase": "method_tests",
+  "counted_bundles": 13,
+  "result": {
+    "tests_run": 13,
+    "passed": true
+  }
+}

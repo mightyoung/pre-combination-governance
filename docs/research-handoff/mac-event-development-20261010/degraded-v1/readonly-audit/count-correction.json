@@ -1,0 +1,23 @@
+{
+  "kind": "ARITHMETIC_WORDING_CORRECTION",
+  "incorrect_previous_final_equation": "120 + 102 = 240",
+  "correct": "18 test bundles + 120 method-prefix bundles + 102 reference bundles = 240; 120 + 102 = 222",
+  "units": {
+    "supervisor_tests": 5,
+    "method_tests": 13,
+    "method_prefix_bundles": 120,
+    "physical_reference_prefix_bundles": 30,
+    "DS_reference_prefix_bundles": 60,
+    "terminal_reference_bundles": 12
+  },
+  "raw_counts": {
+    "supervisor_tests": 5,
+    "method_tests": 13,
+    "main": 120,
+    "evaluation": 102
+  },
+  "raw_outputs_modified": false,
+  "rerun": false,
+  "tests_are_bundles": "each test is a declared protocol unit, not one assess/function invocation",
+  "resource_qualification": "Successful completion does not verify limit/fault cleanup behavior"
+}

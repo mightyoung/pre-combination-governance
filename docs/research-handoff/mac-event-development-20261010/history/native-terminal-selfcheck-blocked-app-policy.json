@@ -1,0 +1,21 @@
+{
+  "status": "BLOCKED_BEFORE_TERMINAL_ACTION_TOOL_APP_DENIAL",
+  "recorded_at_utc": "2026-10-10T13:38:45.552996+00:00",
+  "desktop_inventory": "Mac native apps accessible; no locked-screen error",
+  "requested_app": "com.apple.Terminal",
+  "tool_error": "Computer Use is not allowed to use the app 'com.apple.Terminal' for safety reasons.",
+  "intended_command": "/usr/bin/sandbox-exec -f '<LOCAL_HOST_PATH>' /usr/bin/true",
+  "command_executed": false,
+  "exit_code": null,
+  "true_invocations": 0,
+  "tests_run": 0,
+  "scientific_calls": 0,
+  "alternate_terminal_attempted": false,
+  "security_settings_changed": false,
+  "minimum_user_step": "Run intended command manually in native Terminal, immediately run echo $?, report only stderr and exit code.",
+  "formal_experiment_blockers": [
+    "MME-v2 preregistration not located",
+    "D07 not executed"
+  ],
+  "frozen_inputs_modified": false
+}

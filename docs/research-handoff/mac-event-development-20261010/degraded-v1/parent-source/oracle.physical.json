@@ -1,0 +1,245 @@
+{
+  "version": "INDEPENDENT_LITERAL_PHYSICAL_SCRIPT",
+  "not_available_to_worker": true,
+  "traces": {
+    "T1": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E1",
+        "d": "E1"
+      },
+      "risk": [
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "T2": {
+      "alarm_episodes": {
+        "a": "E1",
+        "d": "E2",
+        "e": "E2"
+      },
+      "risk": [
+        "EXPOSURE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1,
+        5
+      ],
+      "current_presence": [
+        true,
+        false,
+        false,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "STOP",
+        "STOP",
+        "STOP",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "T3": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E1",
+        "c": "E1",
+        "d": "E1",
+        "e": "E1"
+      },
+      "risk": [
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "T4": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E2",
+        "c": "E1",
+        "d": "E2",
+        "e": "E2"
+      },
+      "risk": [
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE_HIGH"
+      ],
+      "must_notify": [
+        1,
+        2,
+        5
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "T5": {
+      "alarm_episodes": {
+        "a": "E1",
+        "d": "E1"
+      },
+      "risk": [
+        "EXPOSURE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN"
+      ],
+      "must_notify": [
+        1
+      ],
+      "current_presence": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "STOP",
+        "STOP",
+        "STOP",
+        "STOP"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "T6": {
+      "alarm_episodes": {
+        "a": "E1",
+        "c": "E2",
+        "d": "E2"
+      },
+      "risk": [
+        "EXPOSURE",
+        "UNKNOWN",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1,
+        4
+      ],
+      "current_presence": [
+        true,
+        false,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "STOP",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "unobservable_danger_prefixes": [
+        3
+      ],
+      "note": "At prefix3 actual motion RUN but only erroneous stopped feedback has arrived; truthful UNKNOWN is permitted, must_notify begins when running evidence is received at prefix4.",
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        true,
+        true
+      ]
+    }
+  }
+}

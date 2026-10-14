@@ -1,0 +1,271 @@
+{
+  "scope": "Read/parse/hash/compare existing output only; no imports or reexecution",
+  "user_reported_top_exit": 0,
+  "saved_child_exit": 0,
+  "error": null,
+  "counts": {
+    "test_bundles": 2,
+    "main_method_prefix_bundles": 40,
+    "physical_reference_prefix_bundles": 10,
+    "DS_reference_prefix_bundles": 20,
+    "terminal_reference_bundles": 4,
+    "reference_bundles": 34,
+    "total_bundles": 76,
+    "actual_assess_calls_including_tests": 120
+  },
+  "recorded_resources": {
+    "cpu_seconds": 0.6669989999999999,
+    "wall_seconds_before_receipt_write": 2.7966935000149533,
+    "log_bytes": 44100,
+    "directory_bytes": 45827,
+    "RSS_measured": false,
+    "limit_or_cleanup_fault_tested": false
+  },
+  "assertions": {
+    "ds_reference_match": 20,
+    "common_cards_match": 20,
+    "terminal_reference_match": 4
+  },
+  "ds_inner_asset_groups": 24,
+  "hashes": "new logs/binding/old raw results/old runtime manifest/frozen362 MATCH",
+  "N1_identical_public_and_original_truth": true,
+  "N1_non_notification_fields_vs_old_T3": "all20 rows unchanged",
+  "N1_reason_differences": [
+    {
+      "prefix": 1,
+      "method": "M0",
+      "old_reasons": [
+        "new_card_or_risk_state_change"
+      ],
+      "new_reasons": [
+        "new_event_first_alert",
+        "risk_escalation"
+      ],
+      "old_physical_alert": true,
+      "new_physical_alert": true
+    },
+    {
+      "prefix": 1,
+      "method": "M1",
+      "old_reasons": [
+        "new_card_or_risk_state_change"
+      ],
+      "new_reasons": [
+        "new_event_first_alert",
+        "risk_escalation"
+      ],
+      "old_physical_alert": true,
+      "new_physical_alert": true
+    },
+    {
+      "prefix": 1,
+      "method": "M2",
+      "old_reasons": [
+        "new_card_or_risk_state_change"
+      ],
+      "new_reasons": [
+        "new_event_first_alert",
+        "risk_escalation"
+      ],
+      "old_physical_alert": true,
+      "new_physical_alert": true
+    },
+    {
+      "prefix": 1,
+      "method": "M3",
+      "old_reasons": [
+        "new_card_or_risk_state_change"
+      ],
+      "new_reasons": [
+        "new_event_first_alert",
+        "risk_escalation"
+      ],
+      "old_physical_alert": true,
+      "new_physical_alert": true
+    },
+    {
+      "prefix": 3,
+      "method": "M0",
+      "old_reasons": [
+        "new_card_or_risk_state_change",
+        "handling_follow_up_only"
+      ],
+      "new_reasons": [
+        "new_event_first_alert",
+        "handling_follow_up_only"
+      ],
+      "old_physical_alert": true,
+      "new_physical_alert": true
+    },
+    {
+      "prefix": 5,
+      "method": "M1",
+      "old_reasons": [
+        "new_card_or_risk_state_change"
+      ],
+      "new_reasons": [],
+      "old_physical_alert": true,
+      "new_physical_alert": false
+    },
+    {
+      "prefix": 5,
+      "method": "M2",
+      "old_reasons": [
+        "new_card_or_risk_state_change"
+      ],
+      "new_reasons": [],
+      "old_physical_alert": true,
+      "new_physical_alert": false
+    },
+    {
+      "prefix": 5,
+      "method": "M3",
+      "old_reasons": [
+        "new_card_or_risk_state_change"
+      ],
+      "new_reasons": [],
+      "old_physical_alert": true,
+      "new_physical_alert": false
+    }
+  ],
+  "summary": {
+    "N1_UNCERTAIN_UPDATE": {
+      "M0": {
+        "physical_alert_prefixes": [
+          1,
+          3
+        ],
+        "handling_prefixes": [
+          3
+        ],
+        "false_merge": 0,
+        "false_split": 12,
+        "rejected_pairs": 0,
+        "final_risk": "EXPOSURE",
+        "final_possible": []
+      },
+      "M1": {
+        "physical_alert_prefixes": [
+          1
+        ],
+        "handling_prefixes": [
+          3
+        ],
+        "false_merge": 0,
+        "false_split": 0,
+        "rejected_pairs": 4,
+        "final_risk": "EXPOSURE",
+        "final_possible": [
+          "e"
+        ]
+      },
+      "M2": {
+        "physical_alert_prefixes": [
+          1
+        ],
+        "handling_prefixes": [
+          3
+        ],
+        "false_merge": 0,
+        "false_split": 0,
+        "rejected_pairs": 4,
+        "final_risk": "EXPOSURE",
+        "final_possible": [
+          "e"
+        ]
+      },
+      "M3": {
+        "physical_alert_prefixes": [
+          1
+        ],
+        "handling_prefixes": [
+          3
+        ],
+        "false_merge": 0,
+        "false_split": 0,
+        "rejected_pairs": 4,
+        "final_risk": "EXPOSURE",
+        "final_possible": [
+          "e"
+        ]
+      }
+    },
+    "N2_RISK_ESCALATION": {
+      "M0": {
+        "physical_alert_prefixes": [
+          1,
+          3,
+          5
+        ],
+        "handling_prefixes": [
+          3
+        ],
+        "false_merge": 0,
+        "false_split": 12,
+        "rejected_pairs": 0,
+        "final_risk": "EXPOSURE_HIGH",
+        "final_possible": []
+      },
+      "M1": {
+        "physical_alert_prefixes": [
+          1,
+          5
+        ],
+        "handling_prefixes": [
+          3
+        ],
+        "false_merge": 0,
+        "false_split": 0,
+        "rejected_pairs": 4,
+        "final_risk": "EXPOSURE_HIGH",
+        "final_possible": [
+          "e"
+        ]
+      },
+      "M2": {
+        "physical_alert_prefixes": [
+          1,
+          5
+        ],
+        "handling_prefixes": [
+          3
+        ],
+        "false_merge": 0,
+        "false_split": 0,
+        "rejected_pairs": 4,
+        "final_risk": "EXPOSURE_HIGH",
+        "final_possible": [
+          "e"
+        ]
+      },
+      "M3": {
+        "physical_alert_prefixes": [
+          1,
+          5
+        ],
+        "handling_prefixes": [
+          3
+        ],
+        "false_merge": 0,
+        "false_split": 0,
+        "rejected_pairs": 4,
+        "final_risk": "EXPOSURE_HIGH",
+        "final_possible": [
+          "e"
+        ]
+      }
+    }
+  },
+  "independent_new_event_first_alert_end_to_end_tested": false,
+  "candidate_negative_checks": "six helper assertions in passing first regression; no end-to-end new event scenario",
+  "downgrade_end_to_end_tested": false,
+  "os_file_network_isolation": false,
+  "MME_v2": "not located",
+  "D07": "not executed",
+  "raw_evidence_hashes": {
+    "intent.json": "c24d360e91573d15323e01bf4dad0b44ea9d56ec19c8d709ac6225d11ab5aa26",
+    "stderr.log": "51d019edd1a54f7106f7443ef8ea6d97f6450243289a706c884fb858af6fd9b0",
+    "stdout.log": "c1d9751f6a65cdb229a0a8ee6ad23189e7189bb0b593896f5b419b56b76333d7",
+    "receipt.json": "4188a23280020224ce951c0b01989c87f1cd608fb39f8e10f1ddb2a0425dc9f1"
+  }
+}

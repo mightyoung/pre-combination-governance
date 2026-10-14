@@ -1,0 +1,85 @@
+{
+  "traces": {
+    "N1_UNCERTAIN_UPDATE": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E1",
+        "c": "E1",
+        "d": "E1",
+        "e": "E1"
+      },
+      "risk": [
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE"
+      ],
+      "must_notify": [
+        1
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "N2_RISK_ESCALATION": {
+      "alarm_episodes": {
+        "a": "E1",
+        "b": "E1",
+        "c": "E1",
+        "d": "E1",
+        "e": "E1"
+      },
+      "risk": [
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE",
+        "EXPOSURE_HIGH"
+      ],
+      "must_notify": [
+        1,
+        5
+      ],
+      "current_presence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_motion_script": [
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN",
+        "RUN"
+      ],
+      "observed_same_target_conflict": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  }
+}

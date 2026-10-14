@@ -1,0 +1,26 @@
+{
+  "status": "STATIC_PREPARED_NON_AUTHOR_REVIEWED_NOT_RUN_MANUAL_ONLY",
+  "cancelled_call": "prior cancellation did not execute this launcher; not an experiment result",
+  "tests_run": 0,
+  "scientific_calls": 0,
+  "os_file_network_isolation": false,
+  "platform_protection_changes": false,
+  "cua_terminal_denial": "preserved; not bypassed with exec/alternate terminal",
+  "reviewer": "/root/degraded_static_review",
+  "fixed_findings": [
+    "CPU hard-limit inheritance",
+    "posthash failure error receipt",
+    "CPU/wall sampling after posthash",
+    "output log hashes",
+    "startup cleanup pipe preservation"
+  ],
+  "limitations": [
+    "hard CPU termination can prevent receipt",
+    "wall110 cooperative, not absolute external deadline",
+    "5 resource predicate tests do not qualify this launcher",
+    "240 bundles not scalar calls",
+    "runtime executable hash does not bind all stdlib files"
+  ],
+  "binding_sha256": "f736b4f9c30cb918a03e4cac7acb8380a77e0b176359f1ae05cd1bc6e8251c78",
+  "review_verdict": "No new definite launch blocker in bounded static review; no runtime qualification"
+}

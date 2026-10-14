@@ -1,0 +1,75 @@
+{
+  "status": "STATIC_NOT_AUTHORIZATION",
+  "files": [
+    {
+      "path": "bounded_actor.py",
+      "bytes": 4203,
+      "sha256": "3b61166e31f3ef41b820177b0f56c101dd04ac74fd2ec254b80517aafac9ea7a"
+    },
+    {
+      "path": "bounded_supervisor.py",
+      "bytes": 18827,
+      "sha256": "ead21dc2b24cb42169fed65f26b294d198904d6aed5acaa6c4f54181b4ccfe51"
+    },
+    {
+      "path": "config.json",
+      "bytes": 1307,
+      "sha256": "b6a73e5921ab095a31872593f7deeb82b22e9d9bf8a9646abdb9c2dc17211ac3"
+    },
+    {
+      "path": "independent_reference.py",
+      "bytes": 2978,
+      "sha256": "75eebb8aa0782c477c656fe370e254cc14fc2f8d259ea980efd5b343ae0ea259"
+    },
+    {
+      "path": "methods.py",
+      "bytes": 5655,
+      "sha256": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343"
+    },
+    {
+      "path": "offline_evaluator.py",
+      "bytes": 4923,
+      "sha256": "703cdc79eb1319d62d3ca616ab24ee3360d69a327ac16834bd839f403ceaf935"
+    },
+    {
+      "path": "oracle.physical.json",
+      "bytes": 4189,
+      "sha256": "6cf91478316ab4e5b988186233663a97a6ef7dd3ac53784cdc70c93534468f61"
+    },
+    {
+      "path": "public-input.json",
+      "bytes": 12896,
+      "sha256": "d22832037e7526fe220c5c78acf0a0a7c820c86c62d5c2a9ba7aa001cf15c216"
+    },
+    {
+      "path": "resource_contract.py",
+      "bytes": 679,
+      "sha256": "e5e908339d5e43d65dfb4ba6ec1cf5224965c48ea799941618480b64e70dd1d6"
+    },
+    {
+      "path": "scoring.py",
+      "bytes": 2615,
+      "sha256": "5cc09fed32a7b9bc10a0ff7dc282118157e53dd4906713b720c375d0c2663dd4"
+    },
+    {
+      "path": "terminal-true-selfcheck.sb",
+      "bytes": 305,
+      "sha256": "174ed07c6759f042fb6a894ee676a1eb66e12876b07385369c5604bb71ecd712"
+    },
+    {
+      "path": "tests.py",
+      "bytes": 3626,
+      "sha256": "22ca5da02c942ea9c4bf01614887e25f54c22981ee5d0102c8cd04daa2bc88f2"
+    },
+    {
+      "path": "tests_supervisor.py",
+      "bytes": 863,
+      "sha256": "3bc7093df0910202a13dd3a22a8fd16f0373bf7cfc9775962b0ee620f865fbd5"
+    },
+    {
+      "path": "worker.py",
+      "bytes": 1852,
+      "sha256": "414c5ff8af6ace189fe03b646f3e8413f2129d2c79aa9eb123c5337fcfd7bb8a"
+    }
+  ]
+}

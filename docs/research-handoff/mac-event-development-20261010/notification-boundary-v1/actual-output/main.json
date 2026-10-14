@@ -1,0 +1,3050 @@
+{
+  "protocol": "DEVELOPMENT_ONLY_NO_OS_FILE_NETWORK_ISOLATION",
+  "phase": "main",
+  "counted_bundles": 100,
+  "result": {
+    "status": "DEVELOPMENT_ONLY_BOUNDARY_DIAGNOSTIC",
+    "method_invocations": 100,
+    "rows": [
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 1,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 1,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 1,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 1,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 2,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 2,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 2,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@1": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 2,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@1": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 3,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 3,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 3,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 3,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 4,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:a",
+            "d": "window:d"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 4,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:K:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 4,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:K:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            },
+            "B@3": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 4,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:K:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            },
+            "B@3": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 5,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:a",
+            "d": "window:d",
+            "e": "window:d"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 5,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:K:epoch:0",
+            "e": "task:K:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 5,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:K:epoch:0",
+            "e": "task:K:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            },
+            "B@3": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B1_NEW_INDEPENDENT",
+        "prefix": 5,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:K:epoch:0",
+            "e": "task:K:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            },
+            "B@3": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 1,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 1,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 1,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 1,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 2,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a"
+          },
+          "possible": [],
+          "risk": "UNKNOWN",
+          "priority": "REVIEW",
+          "notify": false,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE",
+            "to": "UNKNOWN"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 2,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "UNKNOWN",
+          "priority": "REVIEW",
+          "notify": false,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE",
+            "to": "UNKNOWN"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 2,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "UNKNOWN",
+          "priority": "REVIEW",
+          "notify": false,
+          "fused": {
+            "A@1": {
+              "RUN": "0",
+              "STOP": "4/5",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE",
+            "to": "UNKNOWN"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 2,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "UNKNOWN",
+          "priority": "REVIEW",
+          "notify": false,
+          "fused": {
+            "A@1": {
+              "RUN": "0",
+              "STOP": "4/5",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE",
+            "to": "UNKNOWN"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 3,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "c": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "risk_escalation",
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "UNKNOWN",
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 3,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation",
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "UNKNOWN",
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 3,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation",
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "UNKNOWN",
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 3,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation",
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "UNKNOWN",
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 4,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "c": "window:a",
+            "d": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 4,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1",
+            "d": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 4,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1",
+            "d": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 4,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1",
+            "d": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 5,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "c": "window:a",
+            "d": "window:a",
+            "e": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 5,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1",
+            "d": "task:J:epoch:1",
+            "e": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 5,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1",
+            "d": "task:J:epoch:1",
+            "e": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@4": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B2_RECOVERY_RECURRENCE",
+        "prefix": 5,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "c": "task:J:epoch:1",
+            "d": "task:J:epoch:1",
+            "e": "task:J:epoch:1"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@4": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 1,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE_HIGH"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 1,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE_HIGH"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 1,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE_HIGH"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 1,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE_HIGH"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 2,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE_HIGH",
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 2,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE_HIGH",
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 2,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@1": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE_HIGH",
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 2,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@1": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE_HIGH",
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 3,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 3,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 3,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 3,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 4,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:a",
+            "d": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE",
+            "to": "EXPOSURE_HIGH"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 4,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE",
+            "to": "EXPOSURE_HIGH"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 4,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@3": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE",
+            "to": "EXPOSURE_HIGH"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 4,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@3": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": "EXPOSURE",
+            "to": "EXPOSURE_HIGH"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 5,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:a",
+            "d": "window:a",
+            "e": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 5,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 5,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@4": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B3_DOWN_THEN_UP",
+        "prefix": 5,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE_HIGH",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@4": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 1,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 1,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 1,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 1,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 2,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 2,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 2,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 2,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 3,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:c"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 3,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 3,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            },
+            "B@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 3,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            },
+            "B@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 4,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:c",
+            "d": "window:c"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 4,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 4,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "B@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 4,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "B@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 5,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:c",
+            "d": "window:c",
+            "e": "window:c"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 5,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "uncertain:e"
+          },
+          "possible": [
+            "e"
+          ],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [
+            {
+              "id": "e",
+              "kind": "possible_existing_event_update",
+              "association_established": false,
+              "review_required": true
+            }
+          ],
+          "risk_state_update": null,
+          "review_notification_reasons": [
+            "uncertain_new_alarm_requires_review"
+          ]
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 5,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "uncertain:e"
+          },
+          "possible": [
+            "e"
+          ],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "B@4": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [
+            {
+              "id": "e",
+              "kind": "possible_existing_event_update",
+              "association_established": false,
+              "review_required": true
+            }
+          ],
+          "risk_state_update": null,
+          "review_notification_reasons": [
+            "uncertain_new_alarm_requires_review"
+          ]
+        }
+      },
+      {
+        "trace": "B4_IDENTICAL_CONTINUING",
+        "prefix": 5,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "uncertain:e"
+          },
+          "possible": [
+            "e"
+          ],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "B@4": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [
+            {
+              "id": "e",
+              "kind": "possible_existing_event_update",
+              "association_established": false,
+              "review_required": true
+            }
+          ],
+          "risk_state_update": null,
+          "review_notification_reasons": [
+            "uncertain_new_alarm_requires_review"
+          ]
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 1,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 1,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 1,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 1,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "risk_escalation"
+          ],
+          "card_updates": [],
+          "risk_state_update": {
+            "from": null,
+            "to": "EXPOSURE"
+          },
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 2,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 2,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 2,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 2,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "REVIEW",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 3,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:c"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "new_event_first_alert",
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 3,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 3,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            },
+            "B@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 3,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "A@0": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            },
+            "B@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 2,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [
+            "handling_follow_up_only"
+          ],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 4,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:c",
+            "d": "window:c"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 4,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 4,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "B@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 4,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "B@2": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 5,
+        "method": "M0",
+        "result": {
+          "cards": {
+            "a": "window:a",
+            "b": "window:a",
+            "c": "window:c",
+            "d": "window:c",
+            "e": "window:c"
+          },
+          "possible": [],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [],
+          "risk_state_update": null,
+          "review_notification_reasons": []
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 5,
+        "method": "M1",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "uncertain:e"
+          },
+          "possible": [
+            "e"
+          ],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {},
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [
+            {
+              "id": "e",
+              "kind": "possible_existing_event_update",
+              "association_established": false,
+              "review_required": true
+            }
+          ],
+          "risk_state_update": null,
+          "review_notification_reasons": [
+            "uncertain_new_alarm_requires_review"
+          ]
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 5,
+        "method": "M2",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "uncertain:e"
+          },
+          "possible": [
+            "e"
+          ],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "B@4": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [
+            {
+              "id": "e",
+              "kind": "possible_existing_event_update",
+              "association_established": false,
+              "review_required": true
+            }
+          ],
+          "risk_state_update": null,
+          "review_notification_reasons": [
+            "uncertain_new_alarm_requires_review"
+          ]
+        }
+      },
+      {
+        "trace": "B5_IDENTICAL_NEW_HIDDEN",
+        "prefix": 5,
+        "method": "M3",
+        "result": {
+          "cards": {
+            "a": "task:J:epoch:0",
+            "b": "task:J:epoch:0",
+            "c": "task:J:epoch:0",
+            "d": "task:J:epoch:0",
+            "e": "uncertain:e"
+          },
+          "possible": [
+            "e"
+          ],
+          "risk": "EXPOSURE",
+          "priority": "FOLLOW_UP",
+          "notify": true,
+          "fused": {
+            "B@4": {
+              "RUN": "4/5",
+              "STOP": "0",
+              "U": "1/5",
+              "EMPTY": "0",
+              "conflict": "0"
+            }
+          },
+          "independent_evidence": 1,
+          "role": "event rules shared; DS motion fusion diagnostic only",
+          "notification_reasons": [],
+          "card_updates": [
+            {
+              "id": "e",
+              "kind": "possible_existing_event_update",
+              "association_established": false,
+              "review_required": true
+            }
+          ],
+          "risk_state_update": null,
+          "review_notification_reasons": [
+            "uncertain_new_alarm_requires_review"
+          ]
+        }
+      }
+    ]
+  }
+}

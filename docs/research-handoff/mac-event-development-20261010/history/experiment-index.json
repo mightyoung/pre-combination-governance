@@ -1,0 +1,65 @@
+{
+  "scope": "three separately authorized manual development runs; no new execution",
+  "formal_MME_v2": "not located",
+  "D07": "not executed",
+  "os_file_network_isolation": false,
+  "runs": [
+    {
+      "version": "degraded-v1",
+      "receipt_path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001/receipt.json",
+      "receipt_sha256": "78353ef26e7f279029df00f3b386fd2a978c86b1174b2db511c1117d2dadc13d",
+      "binding_path": "pcg-event-smoke-v1/degraded-v1/binding.json",
+      "binding_sha256": "f736b4f9c30cb918a03e4cac7acb8380a77e0b176359f1ae05cd1bc6e8251c78",
+      "status": "DEVELOPMENT_COMPLETED_NOT_ISOLATION_QUALIFIED",
+      "tests": 18,
+      "total_bundles": 240,
+      "resources": {
+        "CPU": 0.21794799999999998,
+        "wall_before_receipt": 0.23387570801423863
+      },
+      "child_exit": 0,
+      "attempts": 1,
+      "retries": 0,
+      "audit_path": "pcg-event-smoke-v1/degraded-v1/manual-attempt-001-readonly-audit/report.md"
+    },
+    {
+      "version": "notification-revision-v1",
+      "receipt_path": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001/receipt.json",
+      "receipt_sha256": "4188a23280020224ce951c0b01989c87f1cd608fb39f8e10f1ddb2a0425dc9f1",
+      "binding_path": "pcg-event-smoke-v1/notification-revision-v1/binding.json",
+      "binding_sha256": "60288e33a6939384815b5ec72444b8b4382693de45cee24a468507ea99e480f7",
+      "status": "DEVELOPMENT_COMPLETED_NOT_ISOLATION_QUALIFIED",
+      "tests": 2,
+      "total_bundles": 76,
+      "resources": {
+        "CPU": 0.6669989999999999,
+        "wall_before_receipt": 2.7966935000149533
+      },
+      "child_exit": 0,
+      "attempts": 1,
+      "retries": 0,
+      "audit_path": "pcg-event-smoke-v1/notification-revision-v1/manual-attempt-001-readonly-audit/report.md"
+    },
+    {
+      "version": "notification-boundary-v1",
+      "receipt_path": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001/receipt.json",
+      "receipt_sha256": "93a6f212177cf3cb32fec445f51f0a2e1acc89c2a6b2193dce51e9d9e2ca686e",
+      "binding_path": "pcg-event-smoke-v1/notification-boundary-v1/binding.json",
+      "binding_sha256": "3ed543724f60d48bf040dc3d9daea758d12ca1c6c7bed9f7c10593bcc3cb7e11",
+      "status": "DIAGNOSTIC_COMPLETED_WITH_PHYSICAL_ALERT_GAPS_NOT_SAFETY_ACCEPTANCE",
+      "tests": 5,
+      "total_bundles": 190,
+      "resources": {
+        "CPU": 0.29384699999999997,
+        "wall_before_receipt": 0.30143049999605864
+      },
+      "child_exit": 0,
+      "attempts": 1,
+      "retries": 0,
+      "audit_path": "pcg-event-smoke-v1/notification-boundary-v1/manual-attempt-001-readonly-audit/report.md"
+    }
+  ],
+  "total_declared_bundles_across_runs": 506,
+  "per_run_budget_limit": 240,
+  "resource_failure_qualification": false
+}
