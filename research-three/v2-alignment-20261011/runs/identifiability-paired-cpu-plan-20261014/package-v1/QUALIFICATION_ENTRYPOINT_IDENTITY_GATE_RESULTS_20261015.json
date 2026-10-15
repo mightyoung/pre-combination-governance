@@ -1,0 +1,112 @@
+{
+  "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-ENTRYPOINT-IDENTITY-GATE-20261015",
+  "base_commit": "68000f1bcab2cac48e77af8381a88bd8338be31a",
+  "branch": "task/research-three-two-hop-lineage-20261012",
+  "classification": "public synthetic entrypoint regression evidence",
+  "synthetic_resources": {
+    "cpu_quota_millis": 1000,
+    "wall_seconds": 60,
+    "memory_bytes": 268435456,
+    "pids_limit": 16,
+    "max_method_output_bytes": 65536,
+    "written_to_TASK_MANIFEST": false
+  },
+  "pre_fix_red_baseline": {
+    "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k uid_or_gid_mismatch -v",
+    "exit_code": 1,
+    "tests_run": 2,
+    "subtests_failed": 4,
+    "failure": "Both entrypoints constructed DockerSession for UID-only and GID-only mismatch cases.",
+    "synthetic_only": true
+  },
+  "focused_verification": {
+    "entrypoint_negative_tests": {
+      "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k uid_or_gid_mismatch -v",
+      "exit_code": 0,
+      "tests_passed": 2,
+      "subtests_passed": 4,
+      "entrypoints": [
+        "run_task",
+        "preflight_only"
+      ],
+      "identities": [
+        {
+          "effective_uid": 1234,
+          "effective_gid": 65534
+        },
+        {
+          "effective_uid": 65534,
+          "effective_gid": 1234
+        }
+      ],
+      "asserted_zero_calls": [
+        "DockerSession constructor",
+        "prepare_empty_image",
+        "run_qualification_probe",
+        "subprocess.run",
+        "subprocess.Popen"
+      ]
+    },
+    "eligible_identity_full_synthetic_probe_control": {
+      "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k eligible_identity_reaches_full_synthetic_probe_from_both_entrypoints -v",
+      "exit_code": 0,
+      "tests_passed": 1,
+      "subtests_passed": 2,
+      "qualification_probe_logic": "run_qualification_probe executed through host canary creation/read/hash, diagnostic and OOM checks, and evidence validation; both qualification-container calls returned synthetic records from a mock.",
+      "entrypoint_controls": {
+        "run_task": {
+          "mocked_DockerSession_constructions": 1,
+          "mocked_prepare_empty_image_calls": 1,
+          "run_qualification_probe_calls": 1,
+          "mocked_qualification_container_calls": 2,
+          "mocked__execute_task_calls": 1,
+          "actual_method_body_executed": false
+        },
+        "preflight_only": {
+          "mocked_DockerSession_constructions": 1,
+          "mocked_prepare_empty_image_calls": 1,
+          "run_qualification_probe_calls": 1,
+          "mocked_qualification_container_calls": 2,
+          "mocked__execute_task_calls": 0
+        }
+      },
+      "subprocess.run_calls": 0,
+      "subprocess.Popen_calls": 0,
+      "actual_container_starts": 0,
+      "actual_method_slots": 0
+    },
+    "existing_probe_internal_short_circuit": {
+      "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k qualification_identity_mismatch_fails_before_any_container_call -v",
+      "exit_code": 0,
+      "tests_passed": 1,
+      "subtests_passed": 2
+    },
+    "syntax_check": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "implementation": {
+    "shared_identity_source": "Both entrypoints and the canary helper use the same os.geteuid()/os.getegid() helper.",
+    "early_failure": "After manifest/package preflight is READY, a mismatched identity returns BLOCKED with NOT_VERIFIED qualification evidence before DockerSession construction or run_task output-root preparation.",
+    "protocol_preserved": "A matching identity continues into the unchanged full canary read/hash validation in run_qualification_probe before qualification-container operations."
+  },
+  "scope": {
+    "real_docker_session_constructed": false,
+    "real_docker_cli_called": false,
+    "real_image_prepared": false,
+    "real_qualification_container_started": false,
+    "new_80_slot_task_run": false,
+    "original_1464_check_trial_rerun": false,
+    "private_mac_originals_uploaded": false,
+    "resource_profile_status": "BLOCKED_MISSING_VALUES",
+    "mac_v2_specification_available": false,
+    "ci_checks_run": false
+  },
+  "tested_source_sha256": {
+    "runner.py": "d4110b4e010743bc7cf091d61fd4816ebf7c0d3de091addd7bfd34875abc4631",
+    "tests/test_runner_preflight.py": "0e21a0fd9a6ff6fa18b7c45143b1bee2edd2fd5c454e8ae9f6d6217e9930ea79"
+  },
+  "supporting_artifact_sha256": {
+    "README.md": "9dc825284ad2cf7f133e6264bbc9dd4f6ce793ae8ff9f29a33766fd95df2064b",
+    "TASK_MANIFEST.json": "36eb5d3937619400f48115e48eb65d8dd8ada7a1505cbe2277385602c1aaa2d5"
+  }
+}

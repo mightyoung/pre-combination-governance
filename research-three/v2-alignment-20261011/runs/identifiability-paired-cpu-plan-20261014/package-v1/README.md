@@ -65,6 +65,13 @@ task manifest, pair-input file, case bindings, oracle, or scorer into the method
 container.
 
 Daemon `info` and stopped-container inspection are only preliminary checks.
+After the manifest and package preflight is `READY`, both `run_task` and
+`--preflight-only` check the host's effective UID/GID before constructing a
+`DockerSession`. An identity mismatch returns `BLOCKED` with `NOT_VERIFIED`
+qualification evidence and makes no Docker CLI call or image-preparation
+request. A matching UID/GID does not bypass the later canary read and content
+hash check, which remains in the probe before either qualification container
+starts.
 Before `--preflight-only` can return `READY`, or before `run_task` can reserve a
 run directory or start a method, the runner also executes the fixed
 `fixed-network-cgroup-oom-v1` qualification probe in separate disposable

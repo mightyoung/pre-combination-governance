@@ -172,10 +172,14 @@ def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def _host_probe_identity() -> tuple[int, int]:
+    """Return the effective host identity required by the qualification probe."""
+    return os.geteuid(), os.getegid()
+
+
 def _host_canary_baseline(path: Path, expected_bytes: bytes) -> dict:
     """Prove the exact sandbox identity can read the untouched host canary."""
-    effective_uid = os.geteuid()
-    effective_gid = os.getegid()
+    effective_uid, effective_gid = _host_probe_identity()
     report = {
         "effective_uid": effective_uid,
         "effective_gid": effective_gid,
@@ -713,6 +717,40 @@ def _probe_check_set() -> dict:
     return {name: "NOT_RUN" for name in QUALIFICATION_CHECKS}
 
 
+def _qualification_identity_failure_evidence(resources: dict) -> dict | None:
+    """Build an early blocked-probe report without contacting Docker."""
+    effective_uid, effective_gid = _host_probe_identity()
+    if effective_uid == 65534 and effective_gid == 65534:
+        return None
+    baseline = {
+        "effective_uid": effective_uid,
+        "effective_gid": effective_gid,
+        "readable": False,
+        "sha256": None,
+        "errno": None,
+        "reason": "HOST_IDENTITY_MISMATCH",
+    }
+    checks = _probe_check_set()
+    checks["host_file_baseline_readable"] = "FAIL"
+    error = ("HOST_IDENTITY_MISMATCH: required 65534:65534, got "
+             + str(effective_uid) + ":" + str(effective_gid))
+    return {
+        "schema_version": 1,
+        "probe_id": QUALIFICATION_PROBE_ID,
+        "status": "NOT_VERIFIED",
+        "script_sha256": _sha256((_QUALIFICATION_DIAGNOSTIC_PROGRAM
+                                   + _QUALIFICATION_OOM_PROGRAM).encode("utf-8")),
+        "image_id": None,
+        "completed_at_utc": datetime.now(timezone.utc).isoformat(),
+        "checks": checks,
+        "observed": {
+            "resources": dict(resources),
+            "host_canary_baseline": baseline,
+        },
+        "error": error,
+    }
+
+
 def run_qualification_probe(session: DockerSession, resources: dict) -> dict:
     """Run a fixed, non-research capability probe before any method slot starts."""
     checks = _probe_check_set()
@@ -1153,6 +1191,13 @@ def run_task(manifest_path, run_id: str, output_root) -> dict:
     if preflight["task_status"] != "READY":
         preflight["run_id"] = run_id
         return preflight
+    identity_failure = _qualification_identity_failure_evidence(
+        preflight["manifest"]["resources"])
+    if identity_failure is not None:
+        blocked = _blocked("sandbox preflight blocked: " + identity_failure["error"],
+                           run_id=run_id)
+        blocked["qualification_evidence"] = identity_failure
+        return blocked
     try:
         output_root.mkdir(parents=True, exist_ok=True)
         if not output_root.is_dir():
@@ -1253,6 +1298,12 @@ def preflight_only(manifest_path) -> dict:
         result["research_acceptance"] = "NOT_EVALUATED"
         result["exit_code"] = 20
         return result
+    identity_failure = _qualification_identity_failure_evidence(
+        result["manifest"]["resources"])
+    if identity_failure is not None:
+        blocked = _blocked("sandbox preflight blocked: " + identity_failure["error"])
+        blocked["qualification_evidence"] = identity_failure
+        return blocked
     session = None
     try:
         wall_limit = result["manifest"]["resources"]["wall_seconds"]

@@ -333,6 +333,178 @@ class RunnerPreflightTests(unittest.TestCase):
                                 if name != "host_file_baseline_readable"))
             self.assertNotIn("diagnostic_container", report["observed"])
 
+    def _synthetic_entrypoint_inputs(self, runner):
+        resources = {"cpu_quota_millis": 1000, "wall_seconds": 60,
+                     "memory_bytes": 268435456, "pids_limit": 16,
+                     "max_method_output_bytes": 65536}
+        preflight = {
+            "task_status": "READY",
+            "manifest": {"resources": resources},
+            "manifest_sha256": "b" * 64,
+            "package_dir": PACKAGE,
+        }
+        session = mock.Mock()
+        session.deadline = None
+        session.image_tag = "synthetic-image"
+        session.image_id = "sha256:" + "a" * 64
+        session.info = {
+            "memory_bytes": 512 * 1024 * 1024,
+            "server_version": "synthetic-docker",
+            "cgroup_version": "2",
+            "required_resource_capabilities": {
+                "memory_limit": True, "swap_limit": True,
+                "cpu_quota": True, "pids_limit": True,
+            },
+        }
+        session.image_cleanup_attempted = False
+        session.prepare_empty_image.return_value = (session.image_tag, session.image_id)
+        session.validate_resources.return_value = None
+        session.remove_empty_image.return_value = None
+        session.close.return_value = None
+        return resources, preflight, session
+
+    def _assert_entrypoint_blocks_identity_mismatch(self, entrypoint, uid, gid):
+        runner = load_runner()
+        resources, preflight, session = self._synthetic_entrypoint_inputs(runner)
+        not_verified = {"status": "NOT_VERIFIED", "checks": {
+            name: "NOT_RUN" for name in runner.QUALIFICATION_CHECKS}}
+        session_factory = mock.Mock(return_value=session)
+        with tempfile.TemporaryDirectory() as temp:
+            output_root = Path(temp) / "returns"
+            with mock.patch.object(runner, "preflight_task", return_value=preflight), \
+                    mock.patch.object(runner.os, "geteuid", return_value=uid), \
+                    mock.patch.object(runner.os, "getegid", return_value=gid), \
+                    mock.patch.object(runner, "DockerSession", session_factory), \
+                    mock.patch.object(runner, "run_qualification_probe",
+                                      return_value=not_verified) as probe_call, \
+                    mock.patch.object(runner.subprocess, "run") as subprocess_run, \
+                    mock.patch.object(runner.subprocess, "Popen") as subprocess_popen:
+                if entrypoint == "run_task":
+                    report = runner.run_task("synthetic-manifest.json", "identity-blocked",
+                                             output_root)
+                else:
+                    report = runner.preflight_only("synthetic-manifest.json")
+
+            self.assertEqual("BLOCKED", report["task_status"])
+            session_factory.assert_not_called()
+            session.prepare_empty_image.assert_not_called()
+            probe_call.assert_not_called()
+            subprocess_run.assert_not_called()
+            subprocess_popen.assert_not_called()
+            self.assertIn("HOST_IDENTITY_MISMATCH", report["stop_reason"])
+            evidence = report["qualification_evidence"]
+            baseline = evidence["observed"]["host_canary_baseline"]
+            self.assertEqual(uid, baseline["effective_uid"])
+            self.assertEqual(gid, baseline["effective_gid"])
+            self.assertEqual("FAIL", evidence["checks"]["host_file_baseline_readable"])
+            self.assertTrue(all(value == "NOT_RUN" for name, value in evidence["checks"].items()
+                                if name != "host_file_baseline_readable"))
+            if entrypoint == "run_task":
+                self.assertFalse(output_root.exists())
+
+    def test_run_task_blocks_uid_or_gid_mismatch_before_docker_session(self):
+        for uid, gid in ((1234, 65534), (65534, 1234)):
+            with self.subTest(uid=uid, gid=gid):
+                self._assert_entrypoint_blocks_identity_mismatch("run_task", uid, gid)
+
+    def test_preflight_only_blocks_uid_or_gid_mismatch_before_docker_session(self):
+        for uid, gid in ((1234, 65534), (65534, 1234)):
+            with self.subTest(uid=uid, gid=gid):
+                self._assert_entrypoint_blocks_identity_mismatch("preflight_only", uid, gid)
+
+    def _synthetic_qualification_container_records(self, resources):
+        checks = {
+            "host_file_baseline_readable": True,
+            "host_file_unreadable": True,
+            "network_positive_control": True,
+            "network_unavailable": True,
+            "effective_cpu_quota": True,
+            "effective_memory_limit": True,
+            "effective_memory_swap_limit": True,
+            "effective_pid_limit": True,
+        }
+        output = {
+            "actual": {
+                "cpu_quota_millis": resources["cpu_quota_millis"],
+                "memory_bytes": resources["memory_bytes"],
+                "memory_swap_bytes": 0,
+                "pids_limit": resources["pids_limit"],
+            },
+            "checks": checks,
+            "probes": {
+                "host_file": {"readable": False, "errno": errno.ENOENT,
+                              "reason": "PATH_NOT_VISIBLE", "sha256": None},
+                "network": {
+                    "positive_control": {"connected": True, "errno": 0,
+                                         "reason": "CONNECTED"},
+                    "external_control": {"connected": False,
+                                         "errno": errno.ENETUNREACH,
+                                         "reason": "NETWORK_UNREACHABLE"},
+                },
+            },
+        }
+        diagnostic = {
+            "container_id": "synthetic-diagnostic", "config_valid": True,
+            "return_code": 0, "stdout": json.dumps(output).encode(), "stderr": b"",
+            "state": {"ExitCode": 0, "OOMKilled": False,
+                      "Running": False, "Status": "exited"},
+            "removed": True, "absent_after_cleanup": True,
+            "error": None, "cleanup_error": None,
+        }
+        oom = {
+            "container_id": "synthetic-oom", "config_valid": True,
+            "return_code": 137, "stdout": b"PCG_OOM_PROBE_READY\n", "stderr": b"",
+            "state": {"ExitCode": 137, "OOMKilled": True,
+                      "Running": False, "Status": "exited"},
+            "removed": True, "absent_after_cleanup": True,
+            "error": None, "cleanup_error": None,
+        }
+        return diagnostic, oom
+
+    def test_eligible_identity_reaches_full_synthetic_probe_from_both_entrypoints(self):
+        runner = load_runner()
+        for entrypoint in ("run_task", "preflight_only"):
+            with self.subTest(entrypoint=entrypoint), tempfile.TemporaryDirectory() as temp:
+                resources, preflight, session = self._synthetic_entrypoint_inputs(runner)
+                session_factory = mock.Mock(return_value=session)
+                diagnostic, oom = self._synthetic_qualification_container_records(resources)
+                with mock.patch.object(runner, "preflight_task", return_value=preflight), \
+                        mock.patch.object(runner.os, "geteuid", return_value=65534), \
+                        mock.patch.object(runner.os, "getegid", return_value=65534), \
+                        mock.patch.object(runner, "DockerSession", session_factory), \
+                        mock.patch.object(runner, "_qualification_container",
+                                          side_effect=[diagnostic, oom]) as container_call, \
+                        mock.patch.object(runner, "run_qualification_probe",
+                                          wraps=runner.run_qualification_probe) as probe_call, \
+                        mock.patch.object(runner.subprocess, "run") as subprocess_run, \
+                        mock.patch.object(runner.subprocess, "Popen") as subprocess_popen, \
+                        mock.patch.object(runner, "_execute_task",
+                                          return_value={"task_status": "METHOD_STAGE_MOCKED"}) as execute:
+                    if entrypoint == "run_task":
+                        report = runner.run_task("synthetic-manifest.json", "identity-ok",
+                                                 Path(temp) / "returns")
+                    else:
+                        report = runner.preflight_only("synthetic-manifest.json")
+
+                self.assertEqual(1, session_factory.call_count)
+                session.prepare_empty_image.assert_called_once_with()
+                probe_call.assert_called_once()
+                container_call.assert_has_calls([
+                    mock.call(session, mock.ANY, mock.ANY, timeout=15,
+                              probe_deadline=None),
+                    mock.call(session, mock.ANY, mock.ANY, timeout=15,
+                              probe_deadline=None),
+                ])
+                self.assertEqual(2, container_call.call_count)
+                subprocess_run.assert_not_called()
+                subprocess_popen.assert_not_called()
+                if entrypoint == "run_task":
+                    self.assertEqual("METHOD_STAGE_MOCKED", report["task_status"])
+                    execute.assert_called_once()
+                else:
+                    self.assertEqual("READY", report["task_status"])
+                    execute.assert_not_called()
+
     def _run_qualification_container_with_cleanup_result(self, final_inspect):
         runner = load_runner()
         if isinstance(final_inspect, str):

@@ -47,6 +47,12 @@
       "sha256": "70d9662034777ce8e5fa1a02c4d870cdc8c788b9290f5231b7a0c8985c9dde24"
     },
     {
+      "bytes": 4674,
+      "classification": "public synthetic development test evidence",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/QUALIFICATION_ENTRYPOINT_IDENTITY_GATE_RESULTS_20261015.json",
+      "sha256": "cc67dd166f0d3c24a0199d4a089f670bbfa64751c55ce69e9e600c034cbfbbc7"
+    },
+    {
       "bytes": 2840,
       "classification": "public synthetic development test evidence",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/QUALIFICATION_IDENTITY_SHORT_CIRCUIT_RESULTS_20261015.json",
@@ -71,16 +77,16 @@
       "sha256": "723b88ee656d57522ab9541387fabcb6ffc2a4d6db8983df1a6d2c4f89c829d6"
     },
     {
-      "bytes": 11317,
+      "bytes": 11778,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/README.md",
-      "sha256": "2f26ff4335dc586f5d6d615af741b80fa4cac4e833c71006df27cb23cedc9903"
+      "sha256": "9dc825284ad2cf7f133e6264bbc9dd4f6ce793ae8ff9f29a33766fd95df2064b"
     },
     {
       "bytes": 4767,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/TASK_MANIFEST.json",
-      "sha256": "17b44c3576b7900cb09d541d5673204cb561c7607058aea7ac61daa1e1633837"
+      "sha256": "36eb5d3937619400f48115e48eb65d8dd8ada7a1505cbe2277385602c1aaa2d5"
     },
     {
       "bytes": 1431,
@@ -173,10 +179,10 @@
       "sha256": "cc60ecc680d168799cd7ee6a90451f0fda6b876bf8d6a6aa339f3d4c31b858ec"
     },
     {
-      "bytes": 102303,
+      "bytes": 104398,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/runner.py",
-      "sha256": "f19c0ba1b5903ccc7dc1a0acedd7cbe901340dab79789154a566f435c3944acb"
+      "sha256": "d4110b4e010743bc7cf091d61fd4816ebf7c0d3de091addd7bfd34875abc4631"
     },
     {
       "bytes": 28,
@@ -335,10 +341,10 @@
       "sha256": "c251b9c2458b46d9df5e38b3dd7efee0136fabd16749e8945082f68e59eb00b5"
     },
     {
-      "bytes": 44436,
+      "bytes": 53768,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_runner_preflight.py",
-      "sha256": "e448c70b84c746d351af3ec4d5c0fe72e96c359a5ed7d917b48f9345f3406507"
+      "sha256": "0e21a0fd9a6ff6fa18b7c45143b1bee2edd2fd5c454e8ae9f6d6217e9930ea79"
     },
     {
       "bytes": 1682,
