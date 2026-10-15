@@ -751,9 +751,27 @@ def run_qualification_probe(session: DockerSession, resources: dict) -> dict:
             canary.write_bytes(canary_bytes)
             baseline = _host_canary_baseline(canary, canary_bytes)
             report["observed"]["host_canary_baseline"] = baseline
+            baseline_verified = (
+                isinstance(baseline, dict)
+                and type(baseline.get("effective_uid")) is int
+                and baseline["effective_uid"] == 65534
+                and type(baseline.get("effective_gid")) is int
+                and baseline["effective_gid"] == 65534
+                and baseline.get("readable") is True
+                and baseline.get("sha256") == _sha256(canary_bytes)
+                and baseline.get("errno") is None
+                and baseline.get("reason") is None
+            )
+            if not baseline_verified:
+                checks["host_file_baseline_readable"] = "FAIL"
+                reason = (baseline.get("reason") if isinstance(baseline, dict)
+                          else "BASELINE_MISSING_OR_MALFORMED")
+                raise SandboxError(
+                    "host canary baseline failed for required identity 65534:65534 ("
+                    + str(reason or "BASELINE_MISMATCH") + ")")
             expected = {key: resources[key] for key in (
                 "cpu_quota_millis", "memory_bytes", "pids_limit")}
-            expected["host_file_baseline_readable"] = baseline["readable"] is True
+            expected["host_file_baseline_readable"] = True
             expected["host_file_sha256"] = baseline["sha256"]
             diagnostic_program = _QUALIFICATION_DIAGNOSTIC_PROGRAM
             diag_spec = build_qualification_container_spec(

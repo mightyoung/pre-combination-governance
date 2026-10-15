@@ -1,0 +1,68 @@
+{
+  "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-IDENTITY-SHORT-CIRCUIT-20261015",
+  "base_commit": "e69d0c5f1a235feefac83f18cffc0694acc25643",
+  "branch": "task/research-three-two-hop-lineage-20261012",
+  "classification": "public synthetic regression evidence",
+  "focused_verification": {
+    "identity_cases": [
+      {
+        "effective_uid": 1234,
+        "effective_gid": 65534,
+        "result": "PASS"
+      },
+      {
+        "effective_uid": 65534,
+        "effective_gid": 1234,
+        "result": "PASS"
+      }
+    ],
+    "new_test": {
+      "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k qualification_identity_mismatch_fails_before_any_container_call -v",
+      "exit_code": 0,
+      "passed": 1,
+      "subtests_passed": 2
+    },
+    "qualification_container_calls": 0,
+    "subprocess_run_calls": 0,
+    "supporting_tests": [
+      {
+        "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k canary_baseline_requires_same_probe_identity_without_chmod -v",
+        "exit_code": 0,
+        "passed": 1
+      },
+      {
+        "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k run_task_never_enters_slots_without_verified_qualification_evidence -v",
+        "exit_code": 0,
+        "passed": 1
+      }
+    ],
+    "syntax_check": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "implementation": {
+    "failure_evidence": "A failed host canary baseline records host_file_baseline_readable=FAIL and retains the exact effective UID/GID and baseline reason.",
+    "unknown_evidence": "All other qualification checks remain NOT_RUN; no diagnostic container evidence is fabricated.",
+    "short_circuit": "run_qualification_probe raises its caught fail-closed error before building or invoking a qualification container when the exact 65534:65534 canary baseline is not verified."
+  },
+  "pre_fix_red_baseline": {
+    "case": "effective UID/GID 1234:1234",
+    "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k qualification_identity_mismatch_fails_before_any_container_call -v",
+    "exit_code": 1,
+    "failed": 1,
+    "failure": "Expected _qualification_container not to be called; it was called once.",
+    "synthetic_mock_only": true
+  },
+  "scope": {
+    "docker_started": false,
+    "new_80_slot_task_run": false,
+    "original_1464_check_trial_rerun": false,
+    "private_mac_originals_uploaded": false,
+    "research_methods_started": false,
+    "resource_profile_status": "BLOCKED_MISSING_VALUES",
+    "mac_v2_specification_available": false
+  },
+  "tested_source_sha256": {
+    "runner.py": "f19c0ba1b5903ccc7dc1a0acedd7cbe901340dab79789154a566f435c3944acb",
+    "tests/test_runner_preflight.py": "e448c70b84c746d351af3ec4d5c0fe72e96c359a5ed7d917b48f9345f3406507"
+  }
+}

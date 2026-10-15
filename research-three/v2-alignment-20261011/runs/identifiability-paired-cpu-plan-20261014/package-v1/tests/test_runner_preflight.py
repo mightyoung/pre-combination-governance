@@ -293,6 +293,46 @@ class RunnerPreflightTests(unittest.TestCase):
             self.assertEqual("HOST_IDENTITY_MISMATCH", baseline["reason"])
             self.assertEqual(before_mode, canary.stat().st_mode)
 
+    def test_qualification_identity_mismatch_fails_before_any_container_call(self):
+        runner = load_runner()
+        resources = {"cpu_quota_millis": 1000,
+                     "memory_bytes": 268435456, "pids_limit": 16}
+        synthetic_failure = {
+            "container_id": "synthetic-container-id", "config_valid": False,
+            "return_code": None, "stdout": b"", "stderr": b"",
+            "state": None, "removed": False, "absent_after_cleanup": False,
+            "error": "synthetic failure", "cleanup_error": None,
+        }
+
+        class FakeSession:
+            image_id = "sha256:" + "a" * 64
+            image_tag = "synthetic-image"
+            deadline = None
+            info = {"memory_bytes": 512 * 1024 * 1024}
+
+        for effective_uid, effective_gid in ((1234, 65534), (65534, 1234)):
+            with self.subTest(effective_uid=effective_uid, effective_gid=effective_gid), \
+                    mock.patch.object(runner.os, "geteuid", return_value=effective_uid), \
+                    mock.patch.object(runner.os, "getegid", return_value=effective_gid), \
+                    mock.patch.object(runner, "_qualification_container",
+                                      return_value=synthetic_failure) as container_call, \
+                    mock.patch.object(runner.subprocess, "run") as subprocess_run:
+                report = runner.run_qualification_probe(FakeSession(), resources)
+
+            container_call.assert_not_called()
+            subprocess_run.assert_not_called()
+            self.assertEqual("NOT_VERIFIED", report["status"])
+            self.assertEqual("HOST_IDENTITY_MISMATCH",
+                             report["observed"]["host_canary_baseline"]["reason"])
+            self.assertEqual(effective_uid,
+                             report["observed"]["host_canary_baseline"]["effective_uid"])
+            self.assertEqual(effective_gid,
+                             report["observed"]["host_canary_baseline"]["effective_gid"])
+            self.assertEqual("FAIL", report["checks"]["host_file_baseline_readable"])
+            self.assertTrue(all(value == "NOT_RUN" for name, value in report["checks"].items()
+                                if name != "host_file_baseline_readable"))
+            self.assertNotIn("diagnostic_container", report["observed"])
+
     def _run_qualification_container_with_cleanup_result(self, final_inspect):
         runner = load_runner()
         if isinstance(final_inspect, str):
