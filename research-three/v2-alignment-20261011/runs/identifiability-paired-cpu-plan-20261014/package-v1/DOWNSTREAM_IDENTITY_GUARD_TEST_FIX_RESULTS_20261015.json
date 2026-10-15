@@ -1,0 +1,70 @@
+{
+  "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-DOWNSTREAM-IDENTITY-GUARD-TESTS-20261015",
+  "base_commit": "92e42df4c614269ca6db6d4767af19577aaac83b",
+  "branch": "task/research-three-two-hop-lineage-20261012",
+  "classification": "public mocked regression test evidence",
+  "red": {
+    "full_affected_file": {
+      "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -v",
+      "exit_code": 1,
+      "tests_run": 34,
+      "failures": 1,
+      "errors": 1,
+      "observed": [
+        {
+          "test": "test_preflight_blocks_even_with_good_daemon_info_when_qualification_is_unverified",
+          "failure": "Expected qualification wording, but the new identity gate returned HOST_IDENTITY_MISMATCH for the unmocked host identity."
+        },
+        {
+          "test": "test_run_task_reports_full_attempt_duration_after_bundle_freeze",
+          "error": "KeyError: wall_seconds_elapsed; the identity gate blocked before the mocked qualification result and execution path."
+        }
+      ],
+      "no_slot_test_note": "The no-slot test initially passed without reaching run_qualification_probe. After adding an explicit probe-call assertion, its focused RED failed because the call count was zero."
+    },
+    "no_slot_probe_assertion": {
+      "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -k run_task_never_enters_slots_without_verified_qualification_evidence -v",
+      "exit_code": 1,
+      "failure": "Expected run_qualification_probe to be called once. Called 0 times."
+    }
+  },
+  "green": {
+    "full_affected_file": {
+      "command": "python3 -I -B -m unittest discover -s tests -p test_runner_preflight.py -v",
+      "exit_code": 0,
+      "tests_run": 34,
+      "passed": 34,
+      "failed": 0,
+      "errors": 0
+    },
+    "downstream_fixture_corrections": {
+      "qualified_identity": "Each affected downstream test patches effective UID/GID to 65534:65534.",
+      "probe_invocation": "The preflight, no-slot, and duration tests explicitly assert run_qualification_probe was called once.",
+      "preserved_assertions": [
+        "preflight remains BLOCKED with qualification-related reason after an unverified probe",
+        "no-slot test starts zero methods and does not call _execute_task",
+        "duration test retains wall_seconds_elapsed=8.5 and attempt_wall_seconds_elapsed=6.25"
+      ]
+    }
+  },
+  "test_scope": {
+    "suite": "tests/test_runner_preflight.py only",
+    "valid_resource_profile_is_synthetic": true,
+    "TASK_MANIFEST_resource_caps_changed": false,
+    "DockerSession_is_fake_or_mocked": true,
+    "qualification_probe_is_mocked_in_affected_downstream_tests": true,
+    "actual_Docker_or_subprocess_run": false,
+    "actual_80_slot_run": false,
+    "original_1464_trial_rerun": false,
+    "permission_or_UID_change": false,
+    "full_package_suite_run": false
+  },
+  "persistence": {
+    "runner_source_changed": false,
+    "test_source_changed": true,
+    "Mac_persistence_manifest_refreshed": true
+  },
+  "tested_source_sha256": {
+    "tests/test_runner_preflight.py": "0f19270202446bd78915340d670eb18d01b13bd1584a5e0edde7ece2576ccbff"
+  }
+}

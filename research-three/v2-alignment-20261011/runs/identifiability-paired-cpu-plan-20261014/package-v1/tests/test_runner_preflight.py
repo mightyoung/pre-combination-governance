@@ -623,14 +623,17 @@ class RunnerPreflightTests(unittest.TestCase):
             "daemon_info": "PASS", "container_inspect": "PASS",
             "runtime_isolation_probe": "NOT_RUN"}}
         with mock.patch.object(runner, "preflight_task", return_value=preflight), \
+                mock.patch.object(runner.os, "geteuid", return_value=65534), \
+                mock.patch.object(runner.os, "getegid", return_value=65534), \
                 mock.patch.object(runner, "DockerSession", FakeSession), \
                 mock.patch.object(runner, "run_qualification_probe", return_value=not_verified,
-                                  create=True):
+                                  create=True) as qualification_probe:
             report = runner.preflight_only("synthetic-manifest.json")
 
         self.assertEqual("BLOCKED", report["task_status"])
         self.assertEqual(0, report["method_invocations_started"])
         self.assertIn("qualification", report["stop_reason"].lower())
+        qualification_probe.assert_called_once()
 
     def test_run_task_never_enters_slots_without_verified_qualification_evidence(self):
         runner = load_runner()
@@ -665,9 +668,11 @@ class RunnerPreflightTests(unittest.TestCase):
         not_verified = {"status": "NOT_VERIFIED", "checks": {"network": "NOT_RUN"}}
         with tempfile.TemporaryDirectory() as temp:
             with mock.patch.object(runner, "preflight_task", return_value=preflight), \
+                    mock.patch.object(runner.os, "geteuid", return_value=65534), \
+                    mock.patch.object(runner.os, "getegid", return_value=65534), \
                     mock.patch.object(runner, "DockerSession", FakeSession), \
                     mock.patch.object(runner, "run_qualification_probe", return_value=not_verified,
-                                      create=True), \
+                                      create=True) as qualification_probe, \
                     mock.patch.object(runner, "_execute_task", return_value={"task_status": "PASS"}) as execute:
                 report = runner.run_task("synthetic-manifest.json", "qualification-blocked", temp)
 
@@ -676,6 +681,7 @@ class RunnerPreflightTests(unittest.TestCase):
             self.assertEqual(0, report["method_invocations_started"])
             self.assertEqual(0, report["completed_method_invocations"])
             self.assertFalse((Path(temp) / "qualification-blocked").exists())
+            qualification_probe.assert_called_once()
             execute.assert_not_called()
 
     def test_runtime_mount_rejects_ancestor_tree_that_contains_oracle_files(self):
@@ -742,14 +748,17 @@ class RunnerPreflightTests(unittest.TestCase):
                          "wall_seconds_scope": runner.WALL_SECONDS_SCOPE}
         with tempfile.TemporaryDirectory() as temp:
             with mock.patch.object(runner, "preflight_task", return_value=preflight), \
+                    mock.patch.object(runner.os, "geteuid", return_value=65534), \
+                    mock.patch.object(runner.os, "getegid", return_value=65534), \
                     mock.patch.object(runner, "DockerSession", FakeSession), \
                     mock.patch.object(runner, "run_qualification_probe",
                                       return_value=verified_qualification(
-                                          runner, preflight["manifest"]["resources"])), \
+                                          runner, preflight["manifest"]["resources"])) as qualification_probe, \
                     mock.patch.object(runner, "_execute_task", return_value=frozen_report), \
                     mock.patch.object(runner.time, "monotonic", side_effect=[100.0, 106.25]):
                 report = runner.run_task("synthetic-manifest.json", "scope-test", temp)
 
+        qualification_probe.assert_called_once()
         self.assertEqual(8.5, report["wall_seconds_elapsed"])
         self.assertEqual(6.25, report["attempt_wall_seconds_elapsed"])
         self.assertEqual("sandbox_lifecycle_through_image_cleanup",
