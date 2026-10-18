@@ -1,0 +1,9 @@
+# S2-N8 Linux public derivative — STATIC DRAFT ONLY
+
+This package contains allowlisted text only. It is smaller than the full Mac package: static import closure for the two methods plus required method-output schema, original/observed byte-identical copies, worker/observer/science contract, and one synthetic S2-N8 input/sidecar/reference/schedule. No Mac runtime/bindings/permit/logs/.omx/real datasets or third-party runtime binaries. Original source commit a21866022ba9ec08a1a5edf4a321718d633a2ab1; Mac BUILD005-r2 manifest a24c9906645e3c5969d0ba7260bfbdde0644f71686d6a2023cfd1ef4b2bb2559 identifies the local donor, not this new package.
+
+protocol.execution_authorized remains false. No entrypoint/launcher or Linux runtime/profile/qualification is supplied. The unchanged worker still requires an external approved permit; none is published. Do not run it directly. The manual workflow only parses/hash-checks files without importing scientific code or performing probes. AST parsing/schema validation is not Linux isolation qualification, method execution or scientific PASS. This draft cannot run the experiment until a new platform adapter/runtime, review and one-time approval exist.
+
+All existing inputs/results are exposed. Warmup scope remains ES-Rebuild then Proposed-current-stream, once each, 2 ACK/6 checkpoints, no measurement/A-A/replay. RETIRE/exact retry/independent addition expected counts 7/0,7/1,8/1 remain static references, not executed results. Root membership is not directly observable in worker science fields. Formal MME blocked; original D07 not executed, prereg v2 existence unknown.
+
+Ancillary JSON schemas used only by uninvoked legacy controller functions are excluded; no general controller-runtime completeness is claimed. The original method_output schema remains byte-identical.

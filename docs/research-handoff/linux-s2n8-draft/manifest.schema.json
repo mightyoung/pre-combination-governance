@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Static public derivative inventory; not execution qualification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_commit", "protocol_id", "execution_authorized", "linux_qualified", "files", "file_count", "total_bytes_excluding_manifest", "manifest_self_excluded"],
+  "properties": {
+    "schema_version": {"const": "pcg-public-static-package.v1"},
+    "source_commit": {"const": "a21866022ba9ec08a1a5edf4a321718d633a2ab1"},
+    "protocol_id": {"type": "string", "minLength": 1},
+    "execution_authorized": {"const": false},
+    "linux_qualified": {"const": false},
+    "manifest_self_excluded": {"const": true},
+    "file_count": {"type": "integer", "minimum": 1},
+    "total_bytes_excluding_manifest": {"type": "integer", "minimum": 1},
+    "files": {"type": "array", "minItems": 1, "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256", "role", "provenance"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^[A-Za-z0-9_./-]+$"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "role": {"enum": ["public_synthetic_input", "external_reference", "science_source_or_contract", "static_metadata"]},
+        "provenance": {"type": "object", "additionalProperties": false, "required": ["source", "byte_identical"], "properties": {"source": {"type": "string"}, "byte_identical": {"type": "boolean"}}}
+      }
+    }}
+  }
+}

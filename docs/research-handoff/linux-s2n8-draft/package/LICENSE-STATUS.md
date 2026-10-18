@@ -1,0 +1,3 @@
+# Rights and redistribution boundary
+
+No tracked LICENSE/SPDX grant was found in the pinned project tree for this selected source. Do not infer a license from public availability. This is a same-repository, repository-maintainer-authorized text derivative; it preserves project scientific/source bytes and supplies no new license. Original notices/docstrings are retained. Third-party Python packages, binary wheels, runtimes, images, papers and datasets are not redistributed. Future use outside this authorized same-repository review remains subject to the rights holders; missing third-party redistribution rights stay unknown.
