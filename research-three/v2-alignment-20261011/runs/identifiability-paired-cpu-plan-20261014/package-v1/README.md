@@ -206,3 +206,7 @@ are recorded in [QUALIFICATION_RETURN_TEST_RESULTS_20261014.json](QUALIFICATION_
 The result-driven alert-evaluation revision, including the preserved Mac trial
 failure and the missing V2-spec freeze boundary, is recorded in
 [`RESULT_DRIVEN_ALERT_EVALUATION_REVISION_20261014.md`](../../../RESULT_DRIVEN_ALERT_EVALUATION_REVISION_20261014.md).
+
+## 2026-10-21 execution pin inventory increment
+
+[Report and handoff](REPORT_EXECUTION_PINS_20261021.md) records the mandatory 25-file execution pin set, test-first failures and 58 passing synthetic contract tests, the read-only Linux/Docker inventory, and an unapproved four-value resource proposal. Missing or extra execution pins now block before Docker or output creation. The four resource values remain null, qualification and the 80-slot experiment remain unrun, and the private V2 authority chain remains unavailable.

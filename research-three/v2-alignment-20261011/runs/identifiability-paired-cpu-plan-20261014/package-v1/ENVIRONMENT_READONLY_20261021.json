@@ -1,0 +1,75 @@
+{
+  "cgroup": {
+    "cgroup.controllers": "cpuset cpu io memory hugetlb pids",
+    "cpu.max": "400000 100000",
+    "memory.max": "17179869184",
+    "memory.swap.max": "max",
+    "pids.max": "max"
+  },
+  "commands": [
+    "docker version --format {{json .}}",
+    "docker info --format {{json .}}",
+    "Python stdlib platform/os/pathlib reads of effective UID/GID, Docker path, local socket access, and /sys/fs/cgroup/{cpu.max,memory.max,memory.swap.max,pids.max,cgroup.controllers}"
+  ],
+  "docker_info": {
+    "exit_code": 0,
+    "selected_read_only_fields": {
+      "Architecture": "x86_64",
+      "CgroupDriver": "cgroupfs",
+      "CgroupVersion": "2",
+      "CpuCfsQuota": true,
+      "MemTotal": 18882674688,
+      "MemoryLimit": true,
+      "NCPU": 5,
+      "OSType": "linux",
+      "PidsLimit": true,
+      "SecurityOptions": [
+        "name=seccomp,profile=builtin",
+        "name=cgroupns"
+      ],
+      "ServerVersion": "28.4.0",
+      "SwapLimit": true
+    }
+  },
+  "docker_path": "/usr/local/bin/docker",
+  "docker_version": {
+    "exit_code": 0,
+    "selected_read_only_fields": {
+      "Client": {
+        "ApiVersion": "1.51",
+        "Arch": "amd64",
+        "Os": "linux",
+        "Version": "28.4.0"
+      },
+      "Server": {
+        "ApiVersion": "1.51",
+        "Arch": "amd64",
+        "Os": "linux",
+        "Version": "28.4.0"
+      }
+    }
+  },
+  "effective_gid": 1000,
+  "effective_uid": 1000,
+  "evidence_class": "READ_ONLY_ENVIRONMENT_INVENTORY_NOT_QUALIFICATION",
+  "formal_method_invocations_started": 0,
+  "host_identity_requirement": "65534:65534",
+  "host_identity_status": "MISMATCH",
+  "observed_at_utc": "2026-10-21",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "private_v2_authority_chain": "NOT_PROVIDED",
+  "qualification_status": "NOT_RUN",
+  "socket_paths": {
+    "/run/docker.sock": {
+      "exists": true,
+      "readable": true,
+      "writable": true
+    },
+    "/var/run/docker.sock": {
+      "exists": true,
+      "readable": true,
+      "writable": true
+    }
+  },
+  "system": "Linux"
+}

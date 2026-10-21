@@ -1074,6 +1074,38 @@ def _valid_manifest(manifest: dict) -> list[str]:
           or any(not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value)
                  for value in manifest["execution_file_hashes"].values())):
         issues.append("execution source pins must be lowercase SHA-256 values")
+    # The execution closure is fixed by this package revision. A caller must
+    # not shrink the hash inventory to skip validation of an execution input.
+    required_execution_files = {
+        'CASE_BINDINGS.json',
+        'PAIR_METHOD_INPUTS.json',
+        'bundle.py',
+        'frozen_source/public-input.json',
+        'frozen_source/runtime/methods.py',
+        'frozen_source/runtime/shared_context.py',
+        'frozen_source/runtime/slot_worker.py',
+        'frozen_source/runtime/worker.py',
+        'frozen_source/source-binding.json',
+        'frozen_source/source-case-plan.md',
+        'frozen_source/source-preparation-status.json',
+        'make_pair_inputs.py',
+        'pair_inputs.py',
+        'preflight.py',
+        'result_contract.py',
+        'return_validator.py',
+        'runner.py',
+        'sandbox/Dockerfile',
+        'sandbox/rootfs/lib/.mountpoint',
+        'sandbox/rootfs/lib64/.mountpoint',
+        'sandbox/rootfs/runtime/.mountpoint',
+        'sandbox/rootfs/task/.mountpoint',
+        'sandbox/rootfs/usr/lib/.mountpoint',
+        'scorer.py',
+        'task_contract.py',
+    }
+    if (isinstance(manifest.get("execution_file_hashes"), dict)
+            and set(manifest["execution_file_hashes"]) != required_execution_files):
+        issues.append("execution source pin inventory differs from the reviewed package")
     expected_source_pins = {
         "frozen_source/runtime/methods.py": "9e1a7f6da7b03c2f4832916fd49130f89feac9f2648e8ee2b3bed8ffcdaf6343",
         "frozen_source/runtime/shared_context.py": "fb46e5040fe91f7337fdd5cb585673e8fc9ee3cbb3fb5dc2e0e1604fab90029e",

@@ -1,0 +1,223 @@
+test_complete_inventory_remains_structurally_valid (test_execution_pin_inventory.ExecutionPinInventoryTests.test_complete_inventory_remains_structurally_valid) ... ok
+test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) ...
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='CASE_BINDINGS.json') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='PAIR_METHOD_INPUTS.json') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='bundle.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/public-input.json') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/runtime/slot_worker.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/source-binding.json') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/source-case-plan.md') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/source-preparation-status.json') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='make_pair_inputs.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='pair_inputs.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='preflight.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='result_contract.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='return_validator.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='runner.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/Dockerfile') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/lib/.mountpoint') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/lib64/.mountpoint') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/runtime/.mountpoint') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/task/.mountpoint') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/usr/lib/.mountpoint') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='scorer.py') ... FAIL
+  test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='task_contract.py') ... FAIL
+test_extra_execution_pin_is_rejected (test_execution_pin_inventory.ExecutionPinInventoryTests.test_extra_execution_pin_is_rejected) ... FAIL
+test_missing_slot_worker_pin_blocks_before_docker_or_output (test_execution_pin_inventory.ExecutionPinInventoryTests.test_missing_slot_worker_pin_blocks_before_docker_or_output) ... FAIL
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='CASE_BINDINGS.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: CASE_BINDINGS.json
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='PAIR_METHOD_INPUTS.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: PAIR_METHOD_INPUTS.json
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='bundle.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: bundle.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/public-input.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: frozen_source/public-input.json
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/runtime/slot_worker.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: frozen_source/runtime/slot_worker.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/source-binding.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: frozen_source/source-binding.json
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/source-case-plan.md')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: frozen_source/source-case-plan.md
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='frozen_source/source-preparation-status.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: frozen_source/source-preparation-status.json
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='make_pair_inputs.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: make_pair_inputs.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='pair_inputs.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: pair_inputs.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='preflight.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: preflight.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='result_contract.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: result_contract.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='return_validator.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: return_validator.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='runner.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: runner.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/Dockerfile')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: sandbox/Dockerfile
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/lib/.mountpoint')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: sandbox/rootfs/lib/.mountpoint
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/lib64/.mountpoint')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: sandbox/rootfs/lib64/.mountpoint
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/runtime/.mountpoint')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: sandbox/rootfs/runtime/.mountpoint
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/task/.mountpoint')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: sandbox/rootfs/task/.mountpoint
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='sandbox/rootfs/usr/lib/.mountpoint')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: sandbox/rootfs/usr/lib/.mountpoint
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='scorer.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: scorer.py
+
+======================================================================
+FAIL: test_each_execution_pin_is_mandatory (test_execution_pin_inventory.ExecutionPinInventoryTests.test_each_execution_pin_is_mandatory) (relative='task_contract.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 24, in test_each_execution_pin_is_mandatory
+    self.assertTrue(runner._valid_manifest(changed),
+AssertionError: [] is not true : missing execution pin accepted: task_contract.py
+
+======================================================================
+FAIL: test_extra_execution_pin_is_rejected (test_execution_pin_inventory.ExecutionPinInventoryTests.test_extra_execution_pin_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 29, in test_extra_execution_pin_is_rejected
+    self.assertTrue(runner._valid_manifest(self.manifest))
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_missing_slot_worker_pin_blocks_before_docker_or_output (test_execution_pin_inventory.ExecutionPinInventoryTests.test_missing_slot_worker_pin_blocks_before_docker_or_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_execution_pin_inventory.py", line 46, in test_missing_slot_worker_pin_blocks_before_docker_or_output
+    self.assertIn('execution source pin inventory', result['stop_reason'])
+AssertionError: 'execution source pin inventory' not found in 'sandbox preflight blocked: HOST_IDENTITY_MISMATCH: required 65534:65534, got 1000:1000'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.007s
+
+FAILED (failures=24)
