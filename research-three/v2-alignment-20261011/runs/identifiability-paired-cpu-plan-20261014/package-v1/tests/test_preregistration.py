@@ -53,6 +53,27 @@ class ResourcePreregistrationTests(unittest.TestCase):
                 else:
                     os.environ[key] = value
 
+    def test_resource_boundary_values_are_rejected_without_running_methods(self):
+        resources = {"cpu_quota_millis": 1000, "wall_seconds": 600,
+                     "memory_bytes": 268435456, "pids_limit": 16,
+                     "max_method_output_bytes": 9437184}
+        preflight = load_preflight()
+        self.assertEqual("READY", preflight.validate_resource_profile(
+            {"resources": resources}).status)
+        for field in resources:
+            for bad in (True, False, 0, -1, 1.5, "16"):
+                with self.subTest(field=field, bad=bad):
+                    changed = dict(resources, **{field: bad})
+                    profile = preflight.validate_resource_profile({"resources": changed})
+                    self.assertEqual("BLOCKED", profile.status)
+                    self.assertIn(field, profile.invalid_fields)
+        for wall in (1, 9):
+            profile = preflight.validate_resource_profile(
+                {"resources": dict(resources, wall_seconds=wall)})
+            self.assertEqual("BLOCKED", profile.status)
+        self.assertEqual("BLOCKED", preflight.validate_resource_profile(
+            {"resources": dict(resources, cpu_quota_millis=2000)}).status)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,35 @@
+{
+  "approved_values": {
+    "max_method_output_bytes": 9437184,
+    "memory_bytes": 268435456,
+    "pids_limit": 16,
+    "wall_seconds": 600
+  },
+  "approved_wall_scope": "per_slot",
+  "baseline_commit": "38ce038cfc384efd51d62ee250cfbe6f2eac005e",
+  "delegated_approval_description": "每槽 wall_seconds=600、memory_bytes=268435456、pids_limit=16、max_method_output_bytes=9437184（累计输出）",
+  "formal_80_slot_execution_authorized": false,
+  "manifest_applied_fields": [
+    "memory_bytes",
+    "pids_limit",
+    "max_method_output_bytes"
+  ],
+  "manifest_wall_seconds": null,
+  "qualification_containers_run": false,
+  "record_id": "PCG-RESOURCE-APPROVAL-20261021",
+  "recorded_date_utc": "2026-10-21",
+  "restrictions": [
+    "no privilege elevation or identity switching",
+    "no security or network configuration changes",
+    "no credential configuration or purchases",
+    "no models or private data",
+    "retain old FAILED and NOT_DELIVERED results"
+  ],
+  "runner_wall_scope": "sandbox_lifecycle_through_image_cleanup",
+  "scope_resolution_required": "Confirm 600 seconds for the existing whole sandbox lifecycle, or separately approve a total lifecycle budget and a new reviewed per-slot deadline implementation. Do not multiply 600 by 80 automatically.",
+  "source_kind": "trusted_user_transcript_in_parent_delegation",
+  "source_thread_id": "01a156fa-2aa1-7484-9e3f-661da0bc00ce",
+  "task_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001",
+  "user_approval_quote": "均批准按照建议执行，并行执行三个研究任务的下一步吧",
+  "wall_mapping_status": "PENDING_SCOPE_RESOLUTION"
+}

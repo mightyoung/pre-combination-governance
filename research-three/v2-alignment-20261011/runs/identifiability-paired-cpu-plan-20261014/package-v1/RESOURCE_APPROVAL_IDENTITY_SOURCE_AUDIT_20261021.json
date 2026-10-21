@@ -1,0 +1,66 @@
+{
+  "evidence_class": "READ_ONLY_IDENTITY_AND_TRACKED_SOURCE_AUDIT_NOT_QUALIFICATION",
+  "uid": 1000,
+  "gid": 1000,
+  "required_uid": 65534,
+  "required_gid": 65534,
+  "identity_gate": {
+    "schema_version": 1,
+    "probe_id": "fixed-network-cgroup-oom-v1",
+    "status": "NOT_VERIFIED",
+    "script_sha256": "280d4c1141df482f7b45fc7712b3de2e28e5a7c6965ea90f533ed4f88f597848",
+    "image_id": null,
+    "completed_at_utc": "2026-10-21T17:07:27.501824+00:00",
+    "checks": {
+      "container_config": "NOT_RUN",
+      "host_file_baseline_readable": "FAIL",
+      "host_file_unreadable": "NOT_RUN",
+      "network_positive_control": "NOT_RUN",
+      "network_unavailable": "NOT_RUN",
+      "effective_cpu_quota": "NOT_RUN",
+      "effective_memory_limit": "NOT_RUN",
+      "effective_memory_swap_limit": "NOT_RUN",
+      "effective_pid_limit": "NOT_RUN",
+      "memory_overlimit_killed": "NOT_RUN",
+      "probe_container_cleanup": "NOT_RUN"
+    },
+    "observed": {
+      "resources": {
+        "cpu_quota_millis": 1000,
+        "max_method_output_bytes": 9437184,
+        "memory_bytes": 268435456,
+        "pids_limit": 16,
+        "wall_seconds": null
+      },
+      "host_canary_baseline": {
+        "effective_uid": 1000,
+        "effective_gid": 1000,
+        "readable": false,
+        "sha256": null,
+        "errno": null,
+        "reason": "HOST_IDENTITY_MISMATCH"
+      }
+    },
+    "error": "HOST_IDENTITY_MISMATCH: required 65534:65534, got 1000:1000"
+  },
+  "method_invocations_started": 0,
+  "qualification_containers_started": 0,
+  "sources": [
+    {
+      "path": "research-three/v2-alignment-20261011/ALIGNMENT.md",
+      "sha256": "bcc6e461849f2e0dad953d0bd12b1aa57e7435154649cd2785a17394de91d768",
+      "scope": "public project documentation only; not private authority proof"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/README.md",
+      "sha256": "19864e95435918bc161b9f9a9ad0378fca7b3da0cace2de1ee5a73735406be0d",
+      "scope": "public project documentation only; not private authority proof"
+    },
+    {
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/MAC_PERSISTENCE_MANIFEST.json",
+      "sha256": "d0ddf4f04e0ee246c18eead4292033e34600831b8bf289c7754dfbfa7ab95d05",
+      "scope": "pre-update persistence snapshot at baseline38ce038; private specification flag is false"
+    }
+  ],
+  "private_v2_authority_chain": "NOT_PROVIDED_IN_AVAILABLE_PROJECT_MATERIALS"
+}

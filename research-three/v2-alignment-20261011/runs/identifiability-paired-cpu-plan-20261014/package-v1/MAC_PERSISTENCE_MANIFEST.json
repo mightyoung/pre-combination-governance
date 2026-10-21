@@ -1,7 +1,7 @@
 {
   "absolute_cloud_paths_included": false,
   "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001-PERSISTENCE",
-  "base_commit": "c5e77abf99e902ca9da0ffff7c6e782f56ffacb0",
+  "base_commit": "38ce038cfc384efd51d62ee250cfbe6f2eac005e",
   "cloud_repository_relative_base": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1",
   "files": [
     {
@@ -107,10 +107,10 @@
       "sha256": "723b88ee656d57522ab9541387fabcb6ffc2a4d6db8983df1a6d2c4f89c829d6"
     },
     {
-      "bytes": 12305,
+      "bytes": 12970,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/README.md",
-      "sha256": "2c3dee443f6a606eb924312baeb083cad3adda77c27b07020475a0a4284eaa10"
+      "sha256": "78c6eb502357bf61cd034e2c9d4906ba4267e094ef22abab23c6e1b7e6e4f475"
     },
     {
       "bytes": 7065,
@@ -119,10 +119,46 @@
       "sha256": "2f765df9c8dafd97ab008b563b562aace13a6cbd78cb062148f3c38f6a44a9a1"
     },
     {
-      "bytes": 4767,
+      "bytes": 1616,
+      "classification": "public resource approval provenance, synthetic software regression or read-only gate audit; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/RESOURCE_APPROVAL_20261021.json",
+      "sha256": "d32e9c0833b0a3d97ab5ff383b7b7247761db7d7493c8655710179947140ff06"
+    },
+    {
+      "bytes": 5864,
+      "classification": "public resource approval provenance, synthetic software regression or read-only gate audit; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/RESOURCE_APPROVAL_HANDOFF_20261021.md",
+      "sha256": "90007953d74e7ad7ace5c2f7ea7b8fbaa0983f4a5ff6e950da6f8cd863b4edf9"
+    },
+    {
+      "bytes": 2475,
+      "classification": "public resource approval provenance, synthetic software regression or read-only gate audit; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/RESOURCE_APPROVAL_IDENTITY_SOURCE_AUDIT_20261021.json",
+      "sha256": "a70822b11d0e30b7448127a93b726b26777199d75fd313a4c3465f2fc17e495e"
+    },
+    {
+      "bytes": 350,
+      "classification": "public resource approval provenance, synthetic software regression or read-only gate audit; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/RESOURCE_APPROVAL_PREFLIGHT_20261021.json",
+      "sha256": "8332981987528f8dceeb2b30f2e968864171a20d31ef73899d95cded071c5d89"
+    },
+    {
+      "bytes": 10601,
+      "classification": "public resource approval provenance, synthetic software regression or read-only gate audit; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/RESOURCE_APPROVAL_TEST_GREEN_20261021.log",
+      "sha256": "37d8b7172fc577d143068e302cfdcddf9b947a296ec4188b6c6f3a92618a8a44"
+    },
+    {
+      "bytes": 12401,
+      "classification": "public resource approval provenance, synthetic software regression or read-only gate audit; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/RESOURCE_APPROVAL_TEST_RED_20261021.log",
+      "sha256": "7d42bf4c5a13367542b1dff5460a1b0ccfd5ef9406c42adfff9f946109ac3a38"
+    },
+    {
+      "bytes": 4773,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/TASK_MANIFEST.json",
-      "sha256": "4b28480a3870919d78ea86cbb07b59b6dfc915a9b778ca77c74f8c278d6306db"
+      "sha256": "eb08747ca586987b8b037872275df535f03c73dfe648ac7b076e514f333eec6d"
     },
     {
       "bytes": 1431,
@@ -353,10 +389,10 @@
       "sha256": "e027b915449acac8d8c4bf89e0fa2c81927a2e064496a254310f064afdaa085a"
     },
     {
-      "bytes": 2968,
+      "bytes": 3882,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_package_contract.py",
-      "sha256": "a49461f6d77e6687dbb8694b7c9aa621be29dd31ed422a911c1091ddbb1f76d6"
+      "sha256": "20c3d48498bb342c1ffa8d3f20a240e5b79eb41d96c47abd2ade6baf32f65121"
     },
     {
       "bytes": 2943,
@@ -365,10 +401,10 @@
       "sha256": "21d193b52abbb04273bdf292e22e461a329a4c2243530554526b3053a71cb77d"
     },
     {
-      "bytes": 2058,
+      "bytes": 3270,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_preregistration.py",
-      "sha256": "c2699a202c0bd0ed52df20019595dc96b4a4553850fd403aa86bc003d9539c74"
+      "sha256": "391ff191d05ef0bcad1d97775bec893a39939db2e24c3224d3db0f610137a589"
     },
     {
       "bytes": 3121,
@@ -468,5 +504,5 @@
   "resource_profile_status": "BLOCKED_MISSING_VALUES",
   "result_driven_alert_evaluation_revision": "research-three/v2-alignment-20261011/RESULT_DRIVEN_ALERT_EVALUATION_REVISION_20261014.md",
   "source_branch": "task/research-three-config-provenance-20261021",
-  "status": "PACKAGE_READY_EXECUTION_BLOCKED_MISSING_RESOURCE_PROFILE"
+  "status": "RESOURCE_APPROVAL_PARTIALLY_APPLIED_EXECUTION_BLOCKED_WALL_SCOPE_AND_IDENTITY"
 }

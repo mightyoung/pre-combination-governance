@@ -19,13 +19,26 @@ def load_runner():
 
 
 class PackageContractTests(unittest.TestCase):
-    def test_manifest_keeps_unprovided_resource_limits_blocked(self):
+    def test_manifest_applies_unambiguous_approvals_and_keeps_wall_scope_blocked(self):
         manifest = json.loads((PACKAGE / "TASK_MANIFEST.json").read_text())
         self.assertEqual("BLOCKED_MISSING_VALUES", manifest["resource_profile_status"])
-        self.assertEqual(1000, manifest["resources"]["cpu_quota_millis"])
-        for field in ("wall_seconds", "memory_bytes", "pids_limit", "max_method_output_bytes"):
-            self.assertIsNone(manifest["resources"][field])
+        self.assertEqual({"cpu_quota_millis": 1000, "wall_seconds": None,
+                          "memory_bytes": 268435456, "pids_limit": 16,
+                          "max_method_output_bytes": 9437184}, manifest["resources"])
         self.assertNotIn("oracle_trace_for_case", manifest)
+
+    def test_resource_approval_preserves_authorized_scope_and_pending_translation(self):
+        approval_path = PACKAGE / "RESOURCE_APPROVAL_20261021.json"
+        self.assertTrue(approval_path.is_file(), "missing approved resource provenance")
+        approval = json.loads(approval_path.read_text())
+        self.assertEqual(600, approval["approved_values"]["wall_seconds"])
+        self.assertEqual("per_slot", approval["approved_wall_scope"])
+        self.assertEqual("sandbox_lifecycle_through_image_cleanup",
+                         approval["runner_wall_scope"])
+        self.assertEqual("PENDING_SCOPE_RESOLUTION", approval["wall_mapping_status"])
+        self.assertFalse(approval["formal_80_slot_execution_authorized"])
+        self.assertEqual("均批准按照建议执行，并行执行三个研究任务的下一步吧",
+                         approval["user_approval_quote"])
 
     def test_runner_blocks_before_creating_output_or_starting_a_method(self):
         runner = load_runner()

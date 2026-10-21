@@ -55,9 +55,9 @@
   "resource_profile_status": "BLOCKED_MISSING_VALUES",
   "resources": {
     "cpu_quota_millis": 1000,
-    "max_method_output_bytes": null,
-    "memory_bytes": null,
-    "pids_limit": null,
+    "max_method_output_bytes": 9437184,
+    "memory_bytes": 268435456,
+    "pids_limit": 16,
     "wall_seconds": null
   },
   "schema_hashes": {
