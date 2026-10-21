@@ -136,8 +136,8 @@ python3 -I runner.py --task-manifest TASK_MANIFEST.json --preflight-only
 
 `--preflight-only` creates and removes the offline scratch image and starts only
 the fixed qualification containers; it does not create a run directory or start
-a research method. The current manifest returns `BLOCKED` while the approved per-slot wall scope
-has not been mapped to the existing lifecycle wall field. To run the plan later, use a new unique run ID and a fresh output
+a research method. The current resource profile is fully preregistered. The saved preflight returns
+`BLOCKED` on host identity mismatch (1000:1000 versus required 65534:65534). To run the plan later, use a new unique run ID and a fresh output
 directory; one run ID gets one attempt and cannot be retried or overwritten:
 
 ```sh
@@ -213,4 +213,8 @@ failure and the missing V2-spec freeze boundary, is recorded in
 
 ## Resource approval follow-up (2026-10-21)
 
-[Approval handoff](RESOURCE_APPROVAL_HANDOFF_20261021.md) and [approval provenance](RESOURCE_APPROVAL_20261021.json) supersede the earlier all-values-pending status: memory, PIDs and cumulative output are applied. The new instruction approves 600 seconds per slot, while the runner field caps the entire sandbox lifecycle; wall remains null pending that scope mapping. Current identity still mismatches; no qualification container or formal slot was started.
+[Approval handoff](RESOURCE_APPROVAL_HANDOFF_20261021.md) and [approval provenance](RESOURCE_APPROVAL_20261021.json) supersede the earlier all-values-pending status: memory, PIDs and cumulative output are applied. At that checkpoint the instruction approved 600 seconds per slot, while the runner field capped the entire sandbox lifecycle; wall was left null pending scope mapping. This historical blocker is resolved by the explicit lifecycle approval below. Current identity still mismatches; no qualification container or formal slot was started.
+
+## Explicit lifecycle approval (2026-10-21)
+
+[Current handoff](LIFECYCLE_APPROVAL_HANDOFF_20261021.md) records the explicit reply approving 600 seconds for the entire sandbox lifecycle, including the existing 9-second cleanup reserve. All four values are now applied and `resource_profile_status=PRE_REGISTERED`. [Actual preflight](LIFECYCLE_APPROVAL_PREFLIGHT_20261021.json) exited 20 with `HOST_IDENTITY_MISMATCH`, 0 starts and 0 completed slots; qualification remains unverified. Resource registration does not authorize formal execution. Earlier reports/preflights remain historical evidence.

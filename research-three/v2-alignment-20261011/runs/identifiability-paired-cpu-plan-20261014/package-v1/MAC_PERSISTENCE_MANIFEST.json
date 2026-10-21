@@ -1,7 +1,7 @@
 {
   "absolute_cloud_paths_included": false,
   "artifact_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001-PERSISTENCE",
-  "base_commit": "38ce038cfc384efd51d62ee250cfbe6f2eac005e",
+  "base_commit": "8784a95f06257448bec365c53143c8d4f6761d79",
   "cloud_repository_relative_base": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1",
   "files": [
     {
@@ -71,6 +71,36 @@
       "sha256": "55d66eca32eddbc863bd8b4eeacc1bdde5186816f31cd3a60ec21f5a5676f0d1"
     },
     {
+      "bytes": 5280,
+      "classification": "public lifecycle resource approval handoff, synthetic regression, or identity-blocked preflight; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/LIFECYCLE_APPROVAL_HANDOFF_20261021.md",
+      "sha256": "f8e17523883b060b523eca900ce3ae6d47d01b6368305a9e76d2bcc38354b213"
+    },
+    {
+      "bytes": 1461,
+      "classification": "public lifecycle resource approval handoff, synthetic regression, or identity-blocked preflight; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/LIFECYCLE_APPROVAL_PREFLIGHT_20261021.json",
+      "sha256": "017ae7e999649569d2c8d4b9f9dc60d6beb32bd9e4f23ef874bc7d6bfce55a6b"
+    },
+    {
+      "bytes": 1745,
+      "classification": "public lifecycle resource approval handoff, synthetic regression, or identity-blocked preflight; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/LIFECYCLE_APPROVAL_PROVENANCE_RED_20261021.log",
+      "sha256": "076d70600bc3a3d850ab3ca8d61d444e96b8d95bb14f2e1b0e2a2d2ed1cde017"
+    },
+    {
+      "bytes": 10581,
+      "classification": "public lifecycle resource approval handoff, synthetic regression, or identity-blocked preflight; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/LIFECYCLE_APPROVAL_TEST_GREEN_20261021.log",
+      "sha256": "0058c1b695d904b475f4c065d9937f0f14fd5197c55744de3a0b6c731c185e21"
+    },
+    {
+      "bytes": 12621,
+      "classification": "public lifecycle resource approval handoff, synthetic regression, or identity-blocked preflight; no formal research execution",
+      "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/LIFECYCLE_APPROVAL_TEST_RED_20261021.log",
+      "sha256": "fda7d870d7872ea3e9baea309e63a0e1238a9c9cf8f45d4776ad8f1cdd521a70"
+    },
+    {
       "bytes": 5425,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/PAIR_METHOD_INPUTS.json",
@@ -107,10 +137,10 @@
       "sha256": "723b88ee656d57522ab9541387fabcb6ffc2a4d6db8983df1a6d2c4f89c829d6"
     },
     {
-      "bytes": 12970,
+      "bytes": 13681,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/README.md",
-      "sha256": "78c6eb502357bf61cd034e2c9d4906ba4267e094ef22abab23c6e1b7e6e4f475"
+      "sha256": "354309f3f1970882cea46dbf4d7b0867a03a1869e2a0f10a1076973dc81d736c"
     },
     {
       "bytes": 7065,
@@ -119,16 +149,16 @@
       "sha256": "2f765df9c8dafd97ab008b563b562aace13a6cbd78cb062148f3c38f6a44a9a1"
     },
     {
-      "bytes": 1616,
+      "bytes": 2865,
       "classification": "public resource approval provenance, synthetic software regression or read-only gate audit; no formal research execution",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/RESOURCE_APPROVAL_20261021.json",
-      "sha256": "d32e9c0833b0a3d97ab5ff383b7b7247761db7d7493c8655710179947140ff06"
+      "sha256": "fb51668a9927565b65c5371f3ad3237d69710a8c91490f392422841ecb529ad1"
     },
     {
-      "bytes": 5864,
+      "bytes": 6105,
       "classification": "public resource approval provenance, synthetic software regression or read-only gate audit; no formal research execution",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/RESOURCE_APPROVAL_HANDOFF_20261021.md",
-      "sha256": "90007953d74e7ad7ace5c2f7ea7b8fbaa0983f4a5ff6e950da6f8cd863b4edf9"
+      "sha256": "a55f1ef97b9d6737044da7f73b3cf7e20a66041f3236209a7773780d5f1e1d27"
     },
     {
       "bytes": 2475,
@@ -155,10 +185,10 @@
       "sha256": "7d42bf4c5a13367542b1dff5460a1b0ccfd5ef9406c42adfff9f946109ac3a38"
     },
     {
-      "bytes": 4773,
+      "bytes": 4764,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/TASK_MANIFEST.json",
-      "sha256": "eb08747ca586987b8b037872275df535f03c73dfe648ac7b076e514f333eec6d"
+      "sha256": "a1f9e230b981ffe1da20c20d77178d46a3a68eb2011bf9dd0f79d348c7e3335a"
     },
     {
       "bytes": 1431,
@@ -389,10 +419,10 @@
       "sha256": "e027b915449acac8d8c4bf89e0fa2c81927a2e064496a254310f064afdaa085a"
     },
     {
-      "bytes": 3882,
+      "bytes": 4395,
       "classification": "public package code/design/schema/test or pinned public synthetic source",
       "path": "research-three/v2-alignment-20261011/runs/identifiability-paired-cpu-plan-20261014/package-v1/tests/test_package_contract.py",
-      "sha256": "20c3d48498bb342c1ffa8d3f20a240e5b79eb41d96c47abd2ade6baf32f65121"
+      "sha256": "dcbe9115ba7735137296e4391a3c57736a02dbbe148c2c3e69dcdc10defcb90b"
     },
     {
       "bytes": 2943,
@@ -501,8 +531,8 @@
   "manifest_version": 1,
   "original_1464_check_trial_rerun": false,
   "research_methods_or_80_slot_run_performed": false,
-  "resource_profile_status": "BLOCKED_MISSING_VALUES",
+  "resource_profile_status": "PRE_REGISTERED",
   "result_driven_alert_evaluation_revision": "research-three/v2-alignment-20261011/RESULT_DRIVEN_ALERT_EVALUATION_REVISION_20261014.md",
   "source_branch": "task/research-three-config-provenance-20261021",
-  "status": "RESOURCE_APPROVAL_PARTIALLY_APPLIED_EXECUTION_BLOCKED_WALL_SCOPE_AND_IDENTITY"
+  "status": "RESOURCE_PROFILE_REGISTERED_EXECUTION_BLOCKED_HOST_IDENTITY"
 }

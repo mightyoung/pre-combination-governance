@@ -1,0 +1,21 @@
+test_all_published_schemas_are_parseable_json (test_package_contract.PackageContractTests.test_all_published_schemas_are_parseable_json) ... ok
+test_manifest_applies_approved_whole_lifecycle_resource_profile (test_package_contract.PackageContractTests.test_manifest_applies_approved_whole_lifecycle_resource_profile) ... ok
+test_oracle_case_labels_live_only_in_scorer_sidecar (test_package_contract.PackageContractTests.test_oracle_case_labels_live_only_in_scorer_sidecar) ... ok
+test_resource_approval_records_explicit_whole_lifecycle_scope_resolution (test_package_contract.PackageContractTests.test_resource_approval_records_explicit_whole_lifecycle_scope_resolution) ... FAIL
+test_runner_blocks_before_creating_output_or_starting_a_method (test_package_contract.PackageContractTests.test_runner_blocks_before_creating_output_or_starting_a_method) ... ok
+
+======================================================================
+FAIL: test_resource_approval_records_explicit_whole_lifecycle_scope_resolution (test_package_contract.PackageContractTests.test_resource_approval_records_explicit_whole_lifecycle_scope_resolution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<package-v1>/tests/test_package_contract.py", line 45, in test_resource_approval_records_explicit_whole_lifecycle_scope_resolution
+    self.assertEqual("可以", approval["user_approval_quote"])
+AssertionError: '可以' != '均批准按照建议执行，并行执行三个研究任务的下一步吧'
+- 可以
++ 均批准按照建议执行，并行执行三个研究任务的下一步吧
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.027s
+
+FAILED (failures=1)

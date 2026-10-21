@@ -5,16 +5,31 @@
     "pids_limit": 16,
     "wall_seconds": 600
   },
-  "approved_wall_scope": "per_slot",
-  "baseline_commit": "38ce038cfc384efd51d62ee250cfbe6f2eac005e",
-  "delegated_approval_description": "每槽 wall_seconds=600、memory_bytes=268435456、pids_limit=16、max_method_output_bytes=9437184（累计输出）",
+  "approved_wall_scope": "sandbox_lifecycle_through_image_cleanup",
+  "baseline_commit": "8784a95f06257448bec365c53143c8d4f6761d79",
+  "delegated_approval_description": "wall_seconds=600，整个生命周期含9秒清理，不是每槽；保持 memory_bytes=268435456、pids_limit=16、max_method_output_bytes=9437184（累计输出）",
   "formal_80_slot_execution_authorized": false,
+  "initial_approval_snapshot": {
+    "approved_wall_scope": "per_slot",
+    "baseline_commit": "38ce038cfc384efd51d62ee250cfbe6f2eac005e",
+    "delegated_approval_description": "每槽 wall_seconds=600、memory_bytes=268435456、pids_limit=16、max_method_output_bytes=9437184（累计输出）",
+    "manifest_applied_fields": [
+      "memory_bytes",
+      "pids_limit",
+      "max_method_output_bytes"
+    ],
+    "manifest_wall_seconds": null,
+    "scope_resolution_required": "Confirm 600 seconds for the existing whole sandbox lifecycle, or separately approve a total lifecycle budget and a new reviewed per-slot deadline implementation. Do not multiply 600 by 80 automatically.",
+    "user_approval_quote": "均批准按照建议执行，并行执行三个研究任务的下一步吧",
+    "wall_mapping_status": "PENDING_SCOPE_RESOLUTION"
+  },
   "manifest_applied_fields": [
+    "wall_seconds",
     "memory_bytes",
     "pids_limit",
     "max_method_output_bytes"
   ],
-  "manifest_wall_seconds": null,
+  "manifest_wall_seconds": 600,
   "qualification_containers_run": false,
   "record_id": "PCG-RESOURCE-APPROVAL-20261021",
   "recorded_date_utc": "2026-10-21",
@@ -26,10 +41,21 @@
     "retain old FAILED and NOT_DELIVERED results"
   ],
   "runner_wall_scope": "sandbox_lifecycle_through_image_cleanup",
-  "scope_resolution_required": "Confirm 600 seconds for the existing whole sandbox lifecycle, or separately approve a total lifecycle budget and a new reviewed per-slot deadline implementation. Do not multiply 600 by 80 automatically.",
+  "scope_resolution_required": null,
   "source_kind": "trusted_user_transcript_in_parent_delegation",
   "source_thread_id": "01a156fa-2aa1-7484-9e3f-661da0bc00ce",
   "task_id": "PCG-IDENTIFIABILITY-PAIRED-CPU-001",
-  "user_approval_quote": "均批准按照建议执行，并行执行三个研究任务的下一步吧",
-  "wall_mapping_status": "PENDING_SCOPE_RESOLUTION"
+  "user_approval_quote": "可以",
+  "wall_mapping_status": "RESOLVED_BY_EXPLICIT_USER_APPROVAL",
+  "wall_scope_resolution": {
+    "assistant_question_quote": "时间上限是否按原建议，设为整个生命周期总计600秒（含9秒清理）？另外两项研究继续推进，不等这个答复。",
+    "cleanup_reserve_seconds": 9,
+    "formal_execution_authorized": false,
+    "per_slot": false,
+    "scope": "sandbox_lifecycle_through_image_cleanup",
+    "source_kind": "trusted_user_transcript_in_parent_delegation",
+    "source_thread_id": "01a156fa-2aa1-7484-9e3f-661da0bc00ce",
+    "user_reply_quote": "可以",
+    "wall_seconds": 600
+  }
 }

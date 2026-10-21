@@ -1,5 +1,7 @@
 # 批准落实与范围核对（2026-10-21）
 
+> 历史检查点（8784a95）。wall 范围待决已由后续明确批准解除；当前状态见 [生命周期批准交接](LIFECYCLE_APPROVAL_HANDOFF_20261021.md)。本报告中的 null/pending 和旧预检只描述该历史检查点。
+
 本轮从已推送的 `38ce038cfc384efd51d62ee250cfbe6f2eac005e` 继续；同一独立分支 `task/research-three-config-provenance-20261021`，工作树起始干净，远端 head 已核对。沿用已读 AGENTS、原任务目标与配对 PLAN，不改方法/输入/真值/历史研究结果。
 
 ## 批准来源及已落地部分

@@ -52,13 +52,13 @@
   "plan_sha256": "546f63965f1ae667181ef48910e12aa60834d5d5b855d52072e158fe3733f01e",
   "planned_method_invocations": 80,
   "public_input_sha256": "905d0670f9693217ef4713f39378c29a07e5213f1c43abf2f527d55f31cd1de9",
-  "resource_profile_status": "BLOCKED_MISSING_VALUES",
+  "resource_profile_status": "PRE_REGISTERED",
   "resources": {
     "cpu_quota_millis": 1000,
     "max_method_output_bytes": 9437184,
     "memory_bytes": 268435456,
     "pids_limit": 16,
-    "wall_seconds": null
+    "wall_seconds": 600
   },
   "schema_hashes": {
     "attempt.schema.json": "03ad7069baa412cd014ef76ac70cc20a72a81ceb70ec67031492267e45b13538",

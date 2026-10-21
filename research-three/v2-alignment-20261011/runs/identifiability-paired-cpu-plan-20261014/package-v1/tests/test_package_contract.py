@@ -4,6 +4,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 
 PACKAGE = Path(__file__).resolve().parents[1]
@@ -19,32 +20,39 @@ def load_runner():
 
 
 class PackageContractTests(unittest.TestCase):
-    def test_manifest_applies_unambiguous_approvals_and_keeps_wall_scope_blocked(self):
+    def test_manifest_applies_approved_whole_lifecycle_resource_profile(self):
         manifest = json.loads((PACKAGE / "TASK_MANIFEST.json").read_text())
-        self.assertEqual("BLOCKED_MISSING_VALUES", manifest["resource_profile_status"])
-        self.assertEqual({"cpu_quota_millis": 1000, "wall_seconds": None,
+        self.assertEqual("PRE_REGISTERED", manifest["resource_profile_status"])
+        self.assertEqual({"cpu_quota_millis": 1000, "wall_seconds": 600,
                           "memory_bytes": 268435456, "pids_limit": 16,
                           "max_method_output_bytes": 9437184}, manifest["resources"])
         self.assertNotIn("oracle_trace_for_case", manifest)
 
-    def test_resource_approval_preserves_authorized_scope_and_pending_translation(self):
+    def test_resource_approval_records_explicit_whole_lifecycle_scope_resolution(self):
         approval_path = PACKAGE / "RESOURCE_APPROVAL_20261021.json"
         self.assertTrue(approval_path.is_file(), "missing approved resource provenance")
         approval = json.loads(approval_path.read_text())
         self.assertEqual(600, approval["approved_values"]["wall_seconds"])
-        self.assertEqual("per_slot", approval["approved_wall_scope"])
+        self.assertEqual("sandbox_lifecycle_through_image_cleanup",
+                         approval["approved_wall_scope"])
         self.assertEqual("sandbox_lifecycle_through_image_cleanup",
                          approval["runner_wall_scope"])
-        self.assertEqual("PENDING_SCOPE_RESOLUTION", approval["wall_mapping_status"])
+        self.assertEqual("RESOLVED_BY_EXPLICIT_USER_APPROVAL", approval["wall_mapping_status"])
+        self.assertEqual("可以", approval["wall_scope_resolution"]["user_reply_quote"])
+        self.assertEqual(9, approval["wall_scope_resolution"]["cleanup_reserve_seconds"])
+        self.assertEqual(600, approval["manifest_wall_seconds"])
         self.assertFalse(approval["formal_80_slot_execution_authorized"])
-        self.assertEqual("均批准按照建议执行，并行执行三个研究任务的下一步吧",
-                         approval["user_approval_quote"])
+        self.assertEqual("可以", approval["user_approval_quote"])
 
     def test_runner_blocks_before_creating_output_or_starting_a_method(self):
         runner = load_runner()
         with tempfile.TemporaryDirectory() as temp:
             output_root = Path(temp) / "returns"
-            report = runner.run_task(PACKAGE / "TASK_MANIFEST.json", "synthetic-blocked", output_root)
+            with mock.patch.object(runner, "_host_probe_identity", return_value=(1000, 1000)), \
+                    mock.patch.object(runner, "DockerSession") as docker:
+                report = runner.run_task(PACKAGE / "TASK_MANIFEST.json", "synthetic-blocked", output_root)
+            docker.assert_not_called()
+            self.assertIn("HOST_IDENTITY_MISMATCH", report["stop_reason"])
             self.assertEqual("BLOCKED", report["task_status"])
             self.assertEqual("NOT_EVALUATED", report["research_acceptance"])
             self.assertEqual(0, report["method_start_requests"])
